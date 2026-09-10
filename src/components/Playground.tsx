@@ -1,6 +1,7 @@
 "use client";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import { ArrowRight } from "lucide-react";
 
 const shots = [
   { label: "UI Design", bg: "linear-gradient(135deg, #e8e4ff, #d4c5ff)", accent: "#6d28d9" },
@@ -225,7 +226,7 @@ export default function Playground() {
             position: "relative",
           }}
         >
-          View all explorations →
+          View all explorations <ArrowRight size={14} strokeWidth={2.5} style={{ display: "inline", verticalAlign: "middle" }} />
         </a>
       </motion.div>
     </section>

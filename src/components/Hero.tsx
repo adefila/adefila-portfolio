@@ -1,5 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
 
 const EASE = [0.22, 1, 0.36, 1] as [number, number, number, number];
 
@@ -154,7 +155,7 @@ export default function Hero() {
             letterSpacing: "-0.2px",
           }}
         >
-          View work →
+          View work <ArrowRight size={14} strokeWidth={2.5} style={{ display: "inline", verticalAlign: "middle" }} />
         </a>
       </motion.div>
 

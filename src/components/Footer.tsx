@@ -1,5 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
+import { ArrowUpRight, ArrowRight } from "lucide-react";
 
 const socials = [
   { label: "Twitter", href: "https://twitter.com" },
@@ -147,7 +148,9 @@ export default function Footer() {
                     letterSpacing: "-0.2px",
                   }}
                 >
-                  {s.label} ↗
+                  <span style={{ display: "flex", alignItems: "center", gap: 4 }}>
+                    {s.label} <ArrowUpRight size={13} strokeWidth={2} />
+                  </span>
                 </a>
               ))}
             </div>

@@ -1,7 +1,7 @@
 "use client";
 import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
-import { CalendarDays, Mail } from "lucide-react";
+import { CalendarDays, Mail, ArrowRight } from "lucide-react";
 
 export default function Contact() {
   const ref = useRef(null);
@@ -260,7 +260,7 @@ export default function Contact() {
                     width: "fit-content",
                   }}
                 >
-                  Send Message →
+                  Send Message <ArrowRight size={14} strokeWidth={2.5} />
                 </button>
               </form>
             )}

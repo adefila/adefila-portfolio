@@ -1,6 +1,7 @@
 ﻿"use client";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import { ArrowRight } from "lucide-react";
 
 const featured = [
   {
@@ -87,7 +88,7 @@ export default function FeaturedProjects() {
               opacity: 0.6,
             }}
           >
-            View all →
+            View all <ArrowRight size={14} strokeWidth={2} style={{ display: "inline", verticalAlign: "middle" }} />
           </a>
         </div>
 

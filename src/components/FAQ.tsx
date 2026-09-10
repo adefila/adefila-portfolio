@@ -1,6 +1,7 @@
 ﻿"use client";
 import { motion, AnimatePresence, useInView } from "framer-motion";
 import { useState, useRef } from "react";
+import { ArrowRight } from "lucide-react";
 
 const faqs = [
   {
@@ -206,7 +207,7 @@ export default function FAQ() {
               textDecoration: "none",
             }}
           >
-            Book a 30min call →
+            Book a 30min call <ArrowRight size={14} strokeWidth={2.5} />
           </a>
         </div>
 

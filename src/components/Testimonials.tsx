@@ -1,6 +1,7 @@
 ﻿"use client";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import { ArrowUpRight } from "lucide-react";
 
 const testimonials = [
   {
@@ -225,7 +226,7 @@ export default function Testimonials() {
               display: "inline-block",
             }}
           >
-            View Upwork Reviews →
+            View Upwork Reviews <ArrowUpRight size={14} strokeWidth={2.5} />
           </a>
         </div>
       </motion.div>

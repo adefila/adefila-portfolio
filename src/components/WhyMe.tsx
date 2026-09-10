@@ -1,6 +1,7 @@
 ﻿"use client";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import { ArrowUpRight } from "lucide-react";
 
 const benefits = [
   {
@@ -238,7 +239,7 @@ export default function WhyMe() {
             textDecoration: "none",
           }}
         >
-          View Upwork Profile →
+          View Upwork Profile <ArrowUpRight size={14} strokeWidth={2.5} />
         </a>
       </motion.div>
     </section>
