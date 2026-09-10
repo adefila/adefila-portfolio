@@ -10,19 +10,29 @@ const testimonials = [
     role: "HitPay App",
   },
   {
-    text: "Adefila was amazing in helping me complete my website on Framer. When he finished, my website was ready to go live. I really appreciate his quick communication and solution-oriented attitude. Hoping to work together in the future",
+    text: "Adefila was amazing in helping me complete my website on Framer. When he finished, my website was ready to go live. I really appreciate his quick communication and solution-oriented attitude. Hoping to work together in the future.",
     name: "Alyssa Corso",
     role: "SEO Consultant for Healthcare Startups",
   },
   {
-    text: "I recently had the pleasure working with Samuel on the development of my Wordpress website, and I am happy to share my exceptional experience and satisfaction with his service.",
+    text: "Adefila built my consultancy's landing page, and I've found about 5+ new clients through it. I'm also receiving a lot of compliments from people on the design. We did some extra work on an additional page to add social proof in the form of a pyramid.",
+    name: "Johnno Van Den Brink",
+    role: "The Initial Agency",
+  },
+  {
+    text: "I recently had the pleasure working with Adeyemi on the development of my Wordpress website, and I am happy to share my exceptional experience and satisfaction with his service.",
     name: "Layo",
     role: "Content Writer",
   },
   {
-    text: "Outstanding work from start to finish. The attention to detail was remarkable and the final product exceeded all expectations. Highly recommended for any Framer project.",
-    name: "Marcus",
-    role: "Startup Founder",
+    text: "I had a great experience working with Adefila. They conducted a thorough audit of our current Framer setup and quickly identified why styles were breaking across different language versions.",
+    name: "Michal Kouril",
+    role: "Leadopo",
+  },
+  {
+    text: "Samuel was very honest and available. He understood the assignment clearly and delivered with a fast turnaround!",
+    name: "Raffaello Cuccuini",
+    role: "Humanity",
   },
 ];
 
