@@ -1,0 +1,81 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&family=Bricolage+Grotesque:wght@400;500;600;700&display=swap");
+@import "tailwindcss";
+
+/* Satoshi via Fontshare */
+@font-face {
+  font-family: "Satoshi";
+  font-weight: 400 700;
+  font-display: swap;
+  src: url("https://api.fontshare.com/v2/fonts/satoshi/satoshi-variable.woff2") format("woff2");
+}
+
+:root {
+  --bg: rgb(245, 244, 240);
+  --fg: #0f0f0f;
+  --fg-secondary: #6b7280;
+  --fg-muted: #9ca3af;
+  --fg-label: #1a1a1a;
+  --accent-green: rgb(0, 171, 74);
+  --accent-purple: #6d28d9;
+  --accent-teal: rgb(12, 237, 230);
+  --dark-bg: #0f0f0f;
+  --card-bg: rgb(235, 234, 230);
+  --white: #ffffff;
+  --font-poppins: "Poppins", sans-serif;
+  --font-inter: "Inter", sans-serif;
+  --font-satoshi: "Satoshi", "Inter", sans-serif;
+  --font-bricolage: "Bricolage Grotesque", sans-serif;
+  --radius-sm: 12px;
+  --radius-md: 24px;
+  --radius-lg: 32px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-inter);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Ticker scrolling */
+@keyframes ticker {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.ticker-track {
+  animation: ticker 30s linear infinite;
+  display: flex;
+  white-space: nowrap;
+}
+
+/* Cursor */
+.custom-cursor {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: difference;
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Selection */
+::selection {
+  background: var(--accent-purple);
+  color: white;
+}
