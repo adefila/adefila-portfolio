@@ -1,24 +1,28 @@
 ﻿"use client";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, BadgeCheck, Zap, Palette, Globe } from "lucide-react";
 
 const benefits = [
   {
     title: "ONE EXPERT, CONSISTENT RESULTS",
     subtitle: "Delivered 50+ projects on time, every time",
+    icon: BadgeCheck,
   },
   {
     title: "SPEED & PRECISION",
     subtitle: "Fast doesn't mean rushed, every detail is handled with focus and care.",
+    icon: Zap,
   },
   {
     title: "TAILORED DESIGN",
     subtitle: "I create custom visuals that position your brand clearly and set it apart.",
+    icon: Palette,
   },
   {
     title: "WIDE-RANGE EXPERIENCE",
     subtitle: "Different industries, one focus, designing products that work and scale.",
+    icon: Globe,
   },
 ];
 
@@ -31,6 +35,7 @@ function BenefitCard({
 }) {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-5%" });
+  const Icon = item.icon;
 
   return (
     <motion.div
@@ -39,24 +44,27 @@ function BenefitCard({
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.5, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
       style={{
-        background: "var(--card-bg)",
-        borderRadius: "var(--radius-md)",
-        padding: "40px 36px",
+        borderTop: "1px solid rgba(0,0,0,0.08)",
+        padding: "40px 0 40px",
         display: "flex",
         flexDirection: "column",
         gap: 16,
       }}
     >
-      <span
+      <div
         style={{
-          fontFamily: "var(--font-inter)",
-          fontWeight: 400,
-          fontSize: 13,
-          color: "var(--fg-muted)",
+          width: 40,
+          height: 40,
+          borderRadius: 10,
+          border: "1px solid rgba(0,0,0,0.1)",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          color: "var(--fg)",
         }}
       >
-        {String(index + 1).padStart(2, "0")}
-      </span>
+        <Icon size={20} strokeWidth={1.5} />
+      </div>
       <h3
         style={{
           fontFamily: "var(--font-poppins)",
