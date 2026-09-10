@@ -34,13 +34,13 @@ export default function About() {
           fontFamily: "var(--font-inter)",
           fontWeight: 700,
           fontSize: 11,
-          letterSpacing: "12px",
+          letterSpacing: "10px",
           textTransform: "uppercase",
-          color: "var(--fg-label)",
+          color: "var(--fg-secondary)",
           marginBottom: 16,
         }}
       >
-        about me
+        ABOUT ME
       </motion.p>
 
       <div style={{ display: "flex", gap: 80, alignItems: "flex-start", flexWrap: "wrap" }}>
@@ -52,10 +52,10 @@ export default function About() {
             transition={{ duration: 0.5, delay: 0.05 }}
             style={{
               fontFamily: "var(--font-poppins)",
-              fontWeight: 500,
-              fontSize: "clamp(22px, 2.5vw, 40px)",
-              letterSpacing: "-2.5px",
-              lineHeight: 1,
+              fontWeight: 700,
+              fontSize: "clamp(24px, 3vw, 44px)",
+              letterSpacing: "-2px",
+              lineHeight: 1.05,
               textTransform: "uppercase",
               color: "var(--fg)",
               marginBottom: 32,

@@ -7,91 +7,93 @@ const projects = [
     title: "BookedEZ",
     meta: "Mobile App • United States • LIVE",
     category: "App Design",
-    gradient: "linear-gradient(135deg, #e8e4ff 0%, #d4c5ff 100%)",
+    gradient: "linear-gradient(160deg, #e8e4ff 0%, #cdb8ff 100%)",
     accent: "#6d28d9",
-    shape: "#c4b5fd",
   },
   {
     title: "HitPay",
     meta: "Framer Development • Singapore • LIVE",
     category: "Framer Dev",
-    gradient: "linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%)",
+    gradient: "linear-gradient(160deg, #dbeafe 0%, #93c5fd 100%)",
     accent: "#1d4ed8",
-    shape: "#93c5fd",
-  },
-  {
-    title: "Clipmaster",
-    meta: "Website Design • Belgium • LIVE",
-    category: "Web Design",
-    gradient: "linear-gradient(135deg, #fef3c7 0%, #fde68a 100%)",
-    accent: "#b45309",
-    shape: "#fcd34d",
   },
   {
     title: "Neetly",
     meta: "App Design • Nigeria • Figma File",
     category: "UI/UX Design",
-    gradient: "linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%)",
+    gradient: "linear-gradient(160deg, #d1fae5 0%, #6ee7b7 100%)",
     accent: "#047857",
-    shape: "#6ee7b7",
   },
 ];
+
+const EASE = [0.22, 1, 0.36, 1] as [number, number, number, number];
 
 function ProjectCard({ project, index }: { project: (typeof projects)[0]; index: number }) {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-5%" });
+
+  const isFirst = index === 0;
 
   return (
     <motion.div
       ref={ref}
       initial={{ opacity: 0, y: 20, filter: "blur(8px)" }}
       animate={inView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
-      transition={{ duration: 0.6, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
+      transition={{ duration: 0.6, delay: index * 0.1, ease: EASE }}
+      whileHover={{ y: -6, transition: { duration: 0.3, ease: EASE } }}
       style={{
         position: "relative",
         borderRadius: "var(--radius-md)",
         overflow: "hidden",
         cursor: "pointer",
         background: project.gradient,
-        aspectRatio: index === 0 ? "16/10" : index === 1 ? "4/3" : "4/3",
+        gridColumn: isFirst ? "span 2" : "span 1",
+        minHeight: isFirst ? 380 : 300,
         display: "flex",
         flexDirection: "column",
         justifyContent: "flex-end",
-        padding: 24,
-        gridColumn: index === 0 ? "span 2" : "span 1",
+        padding: "28px 28px 28px 28px",
       }}
-      whileHover={{ scale: 1.02, y: -4, transition: { duration: 0.3, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] } }}
     >
-      {/* Abstract shape */}
+      {/* Image placeholder area */}
       <div
         style={{
           position: "absolute",
-          top: "30%",
-          left: "50%",
-          transform: "translate(-50%, -50%)",
-          width: index === 0 ? 200 : 120,
-          height: index === 0 ? 200 : 120,
-          borderRadius: "50%",
-          background: project.shape,
-          opacity: 0.35,
-          filter: "blur(40px)",
-          pointerEvents: "none",
+          inset: 0,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          paddingBottom: 80,
         }}
-      />
-      <div
-        style={{
-          position: "absolute",
-          top: "20%",
-          left: index === 0 ? "20%" : "30%",
-          width: index === 0 ? 80 : 50,
-          height: index === 0 ? 80 : 50,
-          borderRadius: "var(--radius-sm)",
-          background: project.shape,
-          opacity: 0.2,
-          transform: "rotate(15deg)",
-          pointerEvents: "none",
-        }}
-      />
+      >
+        <div
+          style={{
+            width: isFirst ? "60%" : "70%",
+            aspectRatio: "16/10",
+            borderRadius: 12,
+            background: "rgba(255,255,255,0.25)",
+            border: "1px solid rgba(255,255,255,0.4)",
+            backdropFilter: "blur(4px)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <span
+            style={{
+              fontFamily: "var(--font-inter)",
+              fontSize: 11,
+              fontWeight: 500,
+              letterSpacing: "1.5px",
+              textTransform: "uppercase",
+              color: project.accent,
+              opacity: 0.7,
+            }}
+          >
+            Project Preview
+          </span>
+        </div>
+      </div>
 
       {/* Project info */}
       <div style={{ position: "relative" }}>
@@ -110,10 +112,10 @@ function ProjectCard({ project, index }: { project: (typeof projects)[0]; index:
         </p>
         <h3
           style={{
-            fontFamily: "var(--font-inter)",
+            fontFamily: "var(--font-poppins)",
             fontWeight: 700,
-            fontSize: 20,
-            letterSpacing: "-0.3px",
+            fontSize: isFirst ? 24 : 18,
+            letterSpacing: "-0.5px",
             textTransform: "uppercase",
             color: "var(--fg)",
             marginBottom: 4,
@@ -149,47 +151,47 @@ export default function Projects() {
         width: "100%",
         maxWidth: 1200,
         margin: "0 auto",
-        padding: "60px 20px",
+        padding: "80px 20px",
       }}
     >
       {/* Section header */}
       <div style={{ marginBottom: 48 }}>
         <motion.p
           ref={ref}
-          initial={{ opacity: 0, y: 10, filter: "blur(8px)" }}
-          animate={inView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
-          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
+          initial={{ opacity: 0, y: 10 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5, ease: EASE }}
           style={{
             fontFamily: "var(--font-inter)",
             fontWeight: 700,
             fontSize: 11,
-            letterSpacing: "12px",
+            letterSpacing: "10px",
             textTransform: "uppercase",
-            color: "var(--fg-label)",
+            color: "var(--fg-secondary)",
             marginBottom: 12,
           }}
         >
-          /Recent Projects
+          / Recent Projects
         </motion.p>
         <motion.h2
           initial={{ opacity: 0, y: 10, filter: "blur(8px)" }}
           animate={inView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
-          transition={{ duration: 0.5, delay: 0.05, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
+          transition={{ duration: 0.5, delay: 0.05, ease: EASE }}
           style={{
             fontFamily: "var(--font-poppins)",
             fontWeight: 700,
-            fontSize: "clamp(28px, 3.5vw, 64px)",
+            fontSize: "clamp(32px, 4vw, 56px)",
             letterSpacing: "-2px",
-            lineHeight: 1.2,
+            lineHeight: 1,
             textTransform: "uppercase",
             color: "var(--fg)",
           }}
         >
-          Featured projects
+          Featured Projects
         </motion.h2>
       </div>
 
-      {/* Projects grid */}
+      {/* Projects grid — 3 cols, first card spans 2 */}
       <div
         style={{
           display: "grid",

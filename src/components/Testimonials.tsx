@@ -58,9 +58,9 @@ export default function Testimonials() {
             fontFamily: "var(--font-inter)",
             fontWeight: 700,
             fontSize: 11,
-            letterSpacing: "12px",
+            letterSpacing: "10px",
             textTransform: "uppercase",
-            color: "var(--fg-label)",
+            color: "var(--fg-secondary)",
             marginBottom: 16,
           }}
         >
@@ -73,9 +73,9 @@ export default function Testimonials() {
           style={{
             fontFamily: "var(--font-poppins)",
             fontWeight: 700,
-            fontSize: "clamp(28px, 4vw, 64px)",
+            fontSize: "clamp(28px, 3.5vw, 48px)",
             letterSpacing: "-2px",
-            lineHeight: 1.2,
+            lineHeight: 1.1,
             textTransform: "uppercase",
             color: "var(--fg)",
           }}

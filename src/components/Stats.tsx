@@ -1,6 +1,5 @@
-﻿"use client";
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
+"use client";
+import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 
 const stats = [
@@ -24,12 +23,11 @@ function StatItem({ number, label, delay }: { number: string; label: string; del
       <div
         style={{
           fontFamily: "var(--font-satoshi)",
-          fontWeight: 500,
-          fontSize: "clamp(56px, 6vw, 100px)",
-          letterSpacing: "-0.1em",
+          fontWeight: 700,
+          fontSize: "clamp(56px, 7vw, 112px)",
+          letterSpacing: "-0.05em",
           lineHeight: 1,
-          textTransform: "uppercase",
-          color: "var(--accent-purple)",
+          color: "var(--fg)",
           marginBottom: 12,
         }}
       >
@@ -39,12 +37,12 @@ function StatItem({ number, label, delay }: { number: string; label: string; del
         style={{
           fontFamily: "var(--font-inter)",
           fontWeight: 400,
-          fontSize: 14,
-          letterSpacing: "-0.7px",
-          lineHeight: 1.7,
-          color: "rgba(245,244,240,0.6)",
+          fontSize: 13,
+          letterSpacing: "0.05em",
+          lineHeight: 1.5,
+          color: "var(--fg-secondary)",
           textTransform: "uppercase",
-          maxWidth: 160,
+          maxWidth: 180,
           margin: "0 auto",
         }}
       >
@@ -58,20 +56,19 @@ export default function Stats() {
   return (
     <section
       style={{
-        background: "var(--dark-bg)",
-        borderRadius: "var(--radius-md)",
-        width: "98%",
+        width: "100%",
+        maxWidth: 1200,
         margin: "0 auto",
-        padding: "60px 40px",
+        padding: "80px 20px",
+        borderTop: "1px solid rgba(0,0,0,0.07)",
+        borderBottom: "1px solid rgba(0,0,0,0.07)",
       }}
     >
       <div
         style={{
-          maxWidth: 1200,
-          margin: "0 auto",
           display: "flex",
           alignItems: "center",
-          justifyContent: "space-between",
+          justifyContent: "space-around",
           gap: 40,
           flexWrap: "wrap",
         }}

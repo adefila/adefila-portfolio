@@ -135,9 +135,9 @@ export default function FAQ() {
             fontFamily: "var(--font-inter)",
             fontWeight: 700,
             fontSize: 11,
-            letterSpacing: "12px",
+            letterSpacing: "10px",
             textTransform: "uppercase",
-            color: "var(--fg-label)",
+            color: "var(--fg-secondary)",
             marginBottom: 16,
           }}
         >
@@ -149,10 +149,10 @@ export default function FAQ() {
           transition={{ duration: 0.5, delay: 0.06 }}
           style={{
             fontFamily: "var(--font-poppins)",
-            fontWeight: 500,
-            fontSize: "clamp(26px, 3vw, 40px)",
-            letterSpacing: "-2.5px",
-            lineHeight: 1,
+            fontWeight: 700,
+            fontSize: "clamp(28px, 3.5vw, 48px)",
+            letterSpacing: "-2px",
+            lineHeight: 1.05,
             textTransform: "uppercase",
             color: "var(--fg)",
           }}

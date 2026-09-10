@@ -1,6 +1,7 @@
 "use client";
 import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
+import { CalendarDays, Mail } from "lucide-react";
 
 export default function Contact() {
   const ref = useRef(null);
@@ -17,9 +18,9 @@ export default function Contact() {
     <section
       id="contact"
       style={{
-        background: "#fff",
         width: "100%",
         padding: "80px 20px",
+        background: "var(--card-bg)",
       }}
     >
       <div style={{ maxWidth: 1200, margin: "0 auto" }}>
@@ -35,9 +36,9 @@ export default function Contact() {
                 fontFamily: "var(--font-inter)",
                 fontWeight: 700,
                 fontSize: 11,
-                letterSpacing: "12px",
+                letterSpacing: "10px",
                 textTransform: "uppercase",
-                color: "var(--fg-label)",
+                color: "var(--fg-secondary)",
                 marginBottom: 20,
               }}
             >
@@ -51,7 +52,7 @@ export default function Contact() {
               style={{
                 fontFamily: "var(--font-poppins)",
                 fontWeight: 700,
-                fontSize: "clamp(32px, 4vw, 64px)",
+                fontSize: "clamp(32px, 4vw, 56px)",
                 letterSpacing: "-2px",
                 lineHeight: 1,
                 textTransform: "uppercase",
@@ -84,7 +85,7 @@ export default function Contact() {
               initial={{ opacity: 0, y: 10 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: 0.18 }}
-              style={{ display: "flex", flexDirection: "column", gap: 12 }}
+              style={{ display: "flex", flexDirection: "column", gap: 16 }}
             >
               <a
                 href="https://calendly.com"
@@ -93,15 +94,21 @@ export default function Contact() {
                 style={{
                   display: "inline-flex",
                   alignItems: "center",
-                  gap: 8,
+                  gap: 10,
                   fontFamily: "var(--font-inter)",
                   fontWeight: 600,
                   fontSize: 14,
-                  color: "var(--accent-purple)",
+                  color: "var(--fg)",
                   textDecoration: "none",
                   letterSpacing: "-0.3px",
+                  background: "var(--white)",
+                  padding: "14px 20px",
+                  borderRadius: 100,
+                  border: "1px solid rgba(0,0,0,0.08)",
+                  width: "fit-content",
                 }}
               >
+                <CalendarDays size={16} strokeWidth={2} />
                 Book a call — 30 mins, no commitment
               </a>
               <a
@@ -109,15 +116,17 @@ export default function Contact() {
                 style={{
                   display: "inline-flex",
                   alignItems: "center",
-                  gap: 8,
+                  gap: 10,
                   fontFamily: "var(--font-inter)",
                   fontWeight: 500,
                   fontSize: 14,
                   color: "var(--fg-secondary)",
                   textDecoration: "none",
                   letterSpacing: "-0.3px",
+                  width: "fit-content",
                 }}
               >
+                <Mail size={16} strokeWidth={1.5} />
                 adefilasamuel929@gmail.com
               </a>
             </motion.div>
@@ -135,22 +144,24 @@ export default function Contact() {
                 style={{
                   textAlign: "center",
                   padding: 48,
-                  background: "var(--card-bg)",
+                  background: "var(--white)",
                   borderRadius: "var(--radius-md)",
                 }}
               >
                 <h3
                   style={{
                     fontFamily: "var(--font-poppins)",
-                    fontWeight: 600,
-                    fontSize: 24,
+                    fontWeight: 700,
+                    fontSize: 28,
+                    letterSpacing: "-1px",
+                    textTransform: "uppercase",
                     color: "var(--fg)",
-                    marginBottom: 8,
+                    marginBottom: 12,
                   }}
                 >
-                  Message sent!
+                  Message Sent!
                 </h3>
-                <p style={{ color: "var(--fg-secondary)", fontSize: 14 }}>
+                <p style={{ color: "var(--fg-secondary)", fontSize: 14, fontFamily: "var(--font-inter)" }}>
                   I&apos;ll get back to you within 24 hours.
                 </p>
               </div>
@@ -167,7 +178,7 @@ export default function Contact() {
                         fontFamily: "var(--font-inter)",
                         fontWeight: 500,
                         fontSize: 12,
-                        color: "rgb(136, 136, 136)",
+                        color: "var(--fg-secondary)",
                         marginBottom: 8,
                         letterSpacing: "-0.2px",
                       }}
@@ -185,12 +196,13 @@ export default function Contact() {
                         padding: "14px 16px",
                         borderRadius: 12,
                         border: "1px solid rgba(0,0,0,0.1)",
-                        background: "var(--card-bg)",
+                        background: "var(--white)",
                         fontFamily: "var(--font-inter)",
                         fontSize: 14,
                         color: "var(--fg)",
                         outline: "none",
                         letterSpacing: "-0.3px",
+                        boxSizing: "border-box",
                       }}
                     />
                   </div>
@@ -203,7 +215,7 @@ export default function Contact() {
                       fontFamily: "var(--font-inter)",
                       fontWeight: 500,
                       fontSize: 12,
-                      color: "rgb(136, 136, 136)",
+                      color: "var(--fg-secondary)",
                       marginBottom: 8,
                     }}
                   >
@@ -220,13 +232,14 @@ export default function Contact() {
                       padding: "14px 16px",
                       borderRadius: 12,
                       border: "1px solid rgba(0,0,0,0.1)",
-                      background: "var(--card-bg)",
+                      background: "var(--white)",
                       fontFamily: "var(--font-inter)",
                       fontSize: 14,
                       color: "var(--fg)",
                       outline: "none",
                       resize: "vertical",
                       letterSpacing: "-0.3px",
+                      boxSizing: "border-box",
                     }}
                   />
                 </div>
@@ -244,7 +257,7 @@ export default function Contact() {
                     border: "none",
                     cursor: "pointer",
                     letterSpacing: "-0.2px",
-                    transition: "opacity 0.2s",
+                    width: "fit-content",
                   }}
                 >
                   Send Message →
