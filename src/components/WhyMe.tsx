@@ -7,31 +7,22 @@ const benefits = [
   {
     title: "ONE EXPERT, CONSISTENT RESULTS",
     subtitle: "Delivered 50+ projects on time, every time",
-    description: "",
   },
   {
     title: "SPEED & PRECISION",
     subtitle: "Fast doesn't mean rushed, every detail is handled with focus and care.",
-    description: "",
   },
   {
     title: "TAILORED DESIGN",
     subtitle: "I create custom visuals that position your brand clearly and set it apart.",
-    description: "",
-  },
-  {
-    title: "ONE EXPERT. ONE VISION.",
-    subtitle: "From strategy to launch, everything handled with clarity and intent.",
-    description: "",
   },
   {
     title: "WIDE-RANGE EXPERIENCE",
     subtitle: "Different industries, one focus, designing products that work and scale.",
-    description: "",
   },
 ];
 
-function BenefitRow({
+function BenefitCard({
   item,
   index,
 }: {
@@ -44,15 +35,16 @@ function BenefitRow({
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 16 }}
+      initial={{ opacity: 0, y: 20 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.5, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
       style={{
+        background: "var(--card-bg)",
+        borderRadius: "var(--radius-md)",
+        padding: "40px 36px",
         display: "flex",
-        alignItems: "flex-start",
-        gap: 40,
-        padding: "32px 0",
-        borderBottom: "1px solid rgba(0,0,0,0.08)",
+        flexDirection: "column",
+        gap: 16,
       }}
     >
       <span
@@ -61,41 +53,35 @@ function BenefitRow({
           fontWeight: 400,
           fontSize: 13,
           color: "var(--fg-muted)",
-          flexShrink: 0,
-          width: 32,
-          paddingTop: 4,
         }}
       >
         {String(index + 1).padStart(2, "0")}
       </span>
-      <div style={{ flex: 1 }}>
-        <h3
-          style={{
-            fontFamily: "var(--font-poppins)",
-            fontWeight: 500,
-            fontSize: "clamp(16px, 1.4vw, 18px)",
-            letterSpacing: "-0.6px",
-            textTransform: "uppercase",
-            color: "var(--fg)",
-            marginBottom: 8,
-          }}
-        >
-          {item.title}
-        </h3>
-        <p
-          style={{
-            fontFamily: "var(--font-inter)",
-            fontWeight: 400,
-            fontSize: 14,
-            letterSpacing: "-0.7px",
-            lineHeight: 1.5,
-            color: "var(--fg-secondary)",
-            maxWidth: 500,
-          }}
-        >
-          {item.subtitle}
-        </p>
-      </div>
+      <h3
+        style={{
+          fontFamily: "var(--font-poppins)",
+          fontWeight: 700,
+          fontSize: "clamp(16px, 1.4vw, 20px)",
+          letterSpacing: "-0.6px",
+          textTransform: "uppercase",
+          color: "var(--fg)",
+          lineHeight: 1.2,
+        }}
+      >
+        {item.title}
+      </h3>
+      <p
+        style={{
+          fontFamily: "var(--font-inter)",
+          fontWeight: 400,
+          fontSize: 14,
+          letterSpacing: "-0.3px",
+          lineHeight: 1.6,
+          color: "var(--fg-secondary)",
+        }}
+      >
+        {item.subtitle}
+      </p>
     </motion.div>
   );
 }
@@ -174,10 +160,10 @@ export default function WhyMe() {
         </motion.p>
       </div>
 
-      {/* Benefits list */}
-      <div style={{ borderTop: "1px solid rgba(0,0,0,0.08)" }}>
+      {/* Benefits grid */}
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 20 }}>
         {benefits.map((item, i) => (
-          <BenefitRow key={i} item={item} index={i} />
+          <BenefitCard key={i} item={item} index={i} />
         ))}
       </div>
 
