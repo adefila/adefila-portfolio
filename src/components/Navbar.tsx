@@ -1,6 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { CalendarDays } from "lucide-react";
 
 export default function Navbar() {
   return (
@@ -31,42 +32,24 @@ export default function Navbar() {
           WebkitBackdropFilter: "blur(24px)",
           border: "1px solid rgba(0,0,0,0.07)",
           borderRadius: 100,
-          padding: "12px 20px 12px 28px",
+          padding: "12px 12px 12px 28px",
           pointerEvents: "auto",
         }}
       >
         <Link
           href="/"
           style={{
-            fontFamily: "var(--font-poppins)",
+            fontFamily: "var(--font-inter)",
             fontWeight: 700,
-            fontSize: 16,
-            letterSpacing: "-0.5px",
+            fontSize: 15,
+            letterSpacing: "1px",
+            textTransform: "uppercase",
             color: "var(--fg)",
             textDecoration: "none",
           }}
         >
-          Adefila.
+          Samuel
         </Link>
-
-        <div style={{ display: "flex", gap: 28, alignItems: "center" }}>
-          {["Work", "About", "FAQ"].map((item) => (
-            <a
-              key={item}
-              href={`#${item.toLowerCase()}`}
-              style={{
-                fontFamily: "var(--font-inter)",
-                fontWeight: 500,
-                fontSize: 13,
-                color: "var(--fg-secondary)",
-                textDecoration: "none",
-                letterSpacing: "-0.2px",
-              }}
-            >
-              {item}
-            </a>
-          ))}
-        </div>
 
         <a
           href="#contact"
@@ -76,13 +59,17 @@ export default function Navbar() {
             fontSize: 13,
             color: "var(--white)",
             background: "var(--fg)",
-            padding: "10px 22px",
+            padding: "10px 20px",
             borderRadius: 100,
             textDecoration: "none",
             letterSpacing: "-0.2px",
+            display: "flex",
+            alignItems: "center",
+            gap: 8,
           }}
         >
-          Book a call
+          Schedule Free Call
+          <CalendarDays size={14} strokeWidth={2} />
         </a>
       </div>
     </motion.nav>
