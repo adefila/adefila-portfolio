@@ -139,7 +139,7 @@ export default function Hero() {
             transition: "opacity 0.2s",
           }}
         >
-          Book a call
+          BOOK A CALL
         </a>
         <a
           href="#work"
@@ -155,7 +155,7 @@ export default function Hero() {
             letterSpacing: "-0.2px",
           }}
         >
-          View work <ArrowRight size={14} strokeWidth={2.5} style={{ display: "inline", verticalAlign: "middle" }} />
+          VIEW WORK <ArrowRight size={14} strokeWidth={2.5} style={{ display: "inline", verticalAlign: "middle" }} />
         </a>
       </motion.div>
 

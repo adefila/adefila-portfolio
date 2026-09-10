@@ -207,7 +207,7 @@ export default function FAQ() {
               textDecoration: "none",
             }}
           >
-            Book a 30min call <ArrowRight size={14} strokeWidth={2.5} />
+            BOOK A 30MIN CALL <ArrowRight size={14} strokeWidth={2.5} />
           </a>
         </div>
 

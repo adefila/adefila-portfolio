@@ -88,7 +88,7 @@ export default function FeaturedProjects() {
               opacity: 0.6,
             }}
           >
-            View all <ArrowRight size={14} strokeWidth={2} style={{ display: "inline", verticalAlign: "middle" }} />
+            VIEW ALL <ArrowRight size={14} strokeWidth={2} style={{ display: "inline", verticalAlign: "middle" }} />
           </a>
         </div>
 

@@ -68,7 +68,7 @@ export default function Navbar() {
             gap: 8,
           }}
         >
-          Schedule Free Call
+          SCHEDULE FREE CALL
           <CalendarDays size={14} strokeWidth={2} />
         </a>
       </div>

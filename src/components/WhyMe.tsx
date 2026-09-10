@@ -233,7 +233,7 @@ export default function WhyMe() {
             textDecoration: "none",
           }}
         >
-          View Upwork Profile <ArrowUpRight size={14} strokeWidth={2.5} />
+          VIEW UPWORK PROFILE <ArrowUpRight size={14} strokeWidth={2.5} />
         </a>
       </motion.div>
     </section>
