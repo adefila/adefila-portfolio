@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 
@@ -7,37 +7,33 @@ const projects = [
     title: "BookedEZ",
     meta: "Mobile App • United States • LIVE",
     category: "App Design",
-    color: "#e8e4ff",
-    accent: "#6d28d9",
-    emoji: "📱",
     gradient: "linear-gradient(135deg, #e8e4ff 0%, #d4c5ff 100%)",
+    accent: "#6d28d9",
+    shape: "#c4b5fd",
   },
   {
     title: "HitPay",
     meta: "Framer Development • Singapore • LIVE",
     category: "Framer Dev",
-    color: "#e0f4ff",
-    accent: "#0077cc",
-    emoji: "💳",
-    gradient: "linear-gradient(135deg, #e0f4ff 0%, #b8e4ff 100%)",
+    gradient: "linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%)",
+    accent: "#1d4ed8",
+    shape: "#93c5fd",
   },
   {
     title: "Clipmaster",
     meta: "Website Design • Belgium • LIVE",
     category: "Web Design",
-    color: "#fff4e0",
-    accent: "#d97706",
-    emoji: "✂️",
-    gradient: "linear-gradient(135deg, #fff4e0 0%, #ffe0a0 100%)",
+    gradient: "linear-gradient(135deg, #fef3c7 0%, #fde68a 100%)",
+    accent: "#b45309",
+    shape: "#fcd34d",
   },
   {
     title: "Neetly",
     meta: "App Design • Nigeria • Figma File",
     category: "UI/UX Design",
-    color: "#e0fff4",
-    accent: "#059669",
-    emoji: "🌿",
-    gradient: "linear-gradient(135deg, #e0fff4 0%, #a7f3d0 100%)",
+    gradient: "linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%)",
+    accent: "#047857",
+    shape: "#6ee7b7",
   },
 ];
 
@@ -57,38 +53,54 @@ function ProjectCard({ project, index }: { project: (typeof projects)[0]; index:
         overflow: "hidden",
         cursor: "pointer",
         background: project.gradient,
-        aspectRatio: index === 0 || index === 1 ? "16/10" : "4/3",
+        aspectRatio: index === 0 ? "16/10" : index === 1 ? "4/3" : "4/3",
         display: "flex",
         flexDirection: "column",
         justifyContent: "flex-end",
         padding: 24,
         gridColumn: index === 0 ? "span 2" : "span 1",
-        transition: "transform 0.3s cubic-bezier(0.22,1,0.36,1), box-shadow 0.3s",
       }}
-      whileHover={{ scale: 1.02, y: -4 }}
+      whileHover={{ scale: 1.02, y: -4, transition: { duration: 0.3, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] } }}
     >
-      {/* Emoji icon */}
+      {/* Abstract shape */}
       <div
         style={{
           position: "absolute",
-          top: "50%",
+          top: "30%",
           left: "50%",
-          transform: "translate(-50%,-60%)",
-          fontSize: 72,
-          opacity: 0.5,
+          transform: "translate(-50%, -50%)",
+          width: index === 0 ? 200 : 120,
+          height: index === 0 ? 200 : 120,
+          borderRadius: "50%",
+          background: project.shape,
+          opacity: 0.35,
+          filter: "blur(40px)",
+          pointerEvents: "none",
         }}
-      >
-        {project.emoji}
-      </div>
+      />
+      <div
+        style={{
+          position: "absolute",
+          top: "20%",
+          left: index === 0 ? "20%" : "30%",
+          width: index === 0 ? 80 : 50,
+          height: index === 0 ? 80 : 50,
+          borderRadius: "var(--radius-sm)",
+          background: project.shape,
+          opacity: 0.2,
+          transform: "rotate(15deg)",
+          pointerEvents: "none",
+        }}
+      />
 
       {/* Project info */}
-      <div>
+      <div style={{ position: "relative" }}>
         <p
           style={{
             fontFamily: "var(--font-inter)",
             fontWeight: 700,
-            fontSize: 11,
-            letterSpacing: "0.3px",
+            fontSize: 10,
+            letterSpacing: "2px",
             textTransform: "uppercase",
             color: project.accent,
             marginBottom: 6,
@@ -113,8 +125,8 @@ function ProjectCard({ project, index }: { project: (typeof projects)[0]; index:
           style={{
             fontFamily: "var(--font-inter)",
             fontWeight: 400,
-            fontSize: 12,
-            letterSpacing: "0.3px",
+            fontSize: 11,
+            letterSpacing: "0.5px",
             textTransform: "uppercase",
             color: "var(--fg-secondary)",
           }}

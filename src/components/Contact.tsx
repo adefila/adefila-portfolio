@@ -102,7 +102,7 @@ export default function Contact() {
                   letterSpacing: "-0.3px",
                 }}
               >
-                📞 Book a call — 30 mins, no commitment
+                Book a call — 30 mins, no commitment
               </a>
               <a
                 href="mailto:adefilasamuel929@gmail.com"
@@ -118,7 +118,7 @@ export default function Contact() {
                   letterSpacing: "-0.3px",
                 }}
               >
-                ✉️ adefilasamuel929@gmail.com
+                adefilasamuel929@gmail.com
               </a>
             </motion.div>
           </div>
@@ -139,7 +139,6 @@ export default function Contact() {
                   borderRadius: "var(--radius-md)",
                 }}
               >
-                <p style={{ fontSize: 48, marginBottom: 16 }}>🎉</p>
                 <h3
                   style={{
                     fontFamily: "var(--font-poppins)",

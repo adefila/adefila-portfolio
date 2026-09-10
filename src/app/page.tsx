@@ -29,10 +29,8 @@ export default function Home() {
       {/* Hero */}
       <Hero />
 
-      {/* Stats - dark section */}
-      <div style={{ width: "100%", maxWidth: 1200, padding: "0 20px", marginTop: 15 }}>
-        <Stats />
-      </div>
+      {/* Stats - full-width dark section */}
+      <Stats />
 
       {/* Recent Projects grid */}
       <Projects />
@@ -41,9 +39,7 @@ export default function Home() {
       <WhyMe />
 
       {/* Featured Projects */}
-      <div style={{ width: "100%", maxWidth: 1200, padding: "0 20px" }}>
-        <FeaturedProjects />
-      </div>
+      <FeaturedProjects />
 
       {/* About */}
       <About />

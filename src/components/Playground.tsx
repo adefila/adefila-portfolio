@@ -1,14 +1,14 @@
-﻿"use client";
+"use client";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 
 const shots = [
-  { label: "UI Design", color: "#e8e4ff", emoji: "🎨" },
-  { label: "Branding", color: "#ffe0b2", emoji: "✦" },
-  { label: "Mobile App", color: "#b2ebf2", emoji: "📲" },
-  { label: "Web Design", color: "#f8bbd9", emoji: "🌐" },
-  { label: "Dashboard", color: "#c8e6c9", emoji: "📊" },
-  { label: "Motion", color: "#fff9c4", emoji: "⚡" },
+  { label: "UI Design", bg: "linear-gradient(135deg, #e8e4ff, #d4c5ff)", accent: "#6d28d9" },
+  { label: "Branding", bg: "linear-gradient(135deg, #fef3c7, #fde68a)", accent: "#b45309" },
+  { label: "Mobile App", bg: "linear-gradient(135deg, #dbeafe, #bfdbfe)", accent: "#1d4ed8" },
+  { label: "Web Design", bg: "linear-gradient(135deg, #fce7f3, #fbcfe8)", accent: "#be185d" },
+  { label: "Dashboard", bg: "linear-gradient(135deg, #d1fae5, #a7f3d0)", accent: "#047857" },
+  { label: "Motion", bg: "linear-gradient(135deg, #fef9c3, #fef08a)", accent: "#a16207" },
 ];
 
 export default function Playground() {
@@ -24,8 +24,8 @@ export default function Playground() {
         padding: "60px 20px",
       }}
     >
-      {/* Light version */}
-      <div style={{ textAlign: "center", marginBottom: 64 }}>
+      {/* Section heading */}
+      <div style={{ textAlign: "center", marginBottom: 48 }}>
         <motion.p
           ref={ref}
           initial={{ opacity: 0, y: 10, filter: "blur(8px)" }}
@@ -77,27 +77,56 @@ export default function Playground() {
               transition={{ duration: 0.5, delay: 0.1 + i * 0.07, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
               whileHover={{ y: -6, scale: 1.02, transition: { duration: 0.25 } }}
               style={{
-                background: shot.color,
+                background: shot.bg,
                 borderRadius: "var(--radius-sm)",
                 aspectRatio: i < 2 ? "4/3" : "3/4",
                 display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                flexDirection: "column",
-                gap: 12,
+                alignItems: "flex-end",
+                justifyContent: "flex-start",
+                padding: 20,
                 cursor: "pointer",
-                gridRow: i > 1 ? "span 1" : "span 1",
+                position: "relative",
+                overflow: "hidden",
               }}
             >
-              <span style={{ fontSize: 48 }}>{shot.emoji}</span>
+              {/* Abstract shape decoration */}
+              <div
+                style={{
+                  position: "absolute",
+                  top: "20%",
+                  right: "10%",
+                  width: 80,
+                  height: 80,
+                  borderRadius: "50%",
+                  background: shot.accent,
+                  opacity: 0.15,
+                  filter: "blur(20px)",
+                  pointerEvents: "none",
+                }}
+              />
+              <div
+                style={{
+                  position: "absolute",
+                  top: "40%",
+                  left: "30%",
+                  width: 60,
+                  height: 60,
+                  borderRadius: 12,
+                  background: shot.accent,
+                  opacity: 0.1,
+                  transform: "rotate(20deg)",
+                  pointerEvents: "none",
+                }}
+              />
               <span
                 style={{
                   fontFamily: "var(--font-inter)",
                   fontWeight: 600,
-                  fontSize: 13,
-                  letterSpacing: "-0.3px",
-                  color: "rgba(0,0,0,0.5)",
+                  fontSize: 12,
+                  letterSpacing: "1px",
+                  color: shot.accent,
                   textTransform: "uppercase",
+                  position: "relative",
                 }}
               >
                 {shot.label}
@@ -107,7 +136,7 @@ export default function Playground() {
         </div>
       </div>
 
-      {/* Dark version (MoodboardCanvas equivalent) */}
+      {/* Dark moodboard canvas */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -122,7 +151,7 @@ export default function Playground() {
           position: "relative",
         }}
       >
-        {/* Decorative grid of emoji/design squares */}
+        {/* Decorative colored squares grid */}
         <div
           style={{
             position: "absolute",
@@ -131,7 +160,7 @@ export default function Playground() {
             gridTemplateColumns: "repeat(8, 1fr)",
             gap: 8,
             padding: 24,
-            opacity: 0.12,
+            opacity: 0.1,
             pointerEvents: "none",
           }}
         >
