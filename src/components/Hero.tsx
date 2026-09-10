@@ -116,7 +116,7 @@ export default function Hero() {
               style={{
                 width: 40,
                 height: 40,
-                borderRadius: 10,
+                borderRadius: 6,
                 background: tool.bg,
                 display: "inline-flex",
                 alignItems: "center",

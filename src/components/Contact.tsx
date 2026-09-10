@@ -194,7 +194,7 @@ export default function Contact() {
                       style={{
                         width: "100%",
                         padding: "14px 16px",
-                        borderRadius: 12,
+                        borderRadius: 0,
                         border: "1px solid rgba(0,0,0,0.1)",
                         background: "var(--white)",
                         fontFamily: "var(--font-inter)",
@@ -230,7 +230,7 @@ export default function Contact() {
                     style={{
                       width: "100%",
                       padding: "14px 16px",
-                      borderRadius: 12,
+                      borderRadius: 0,
                       border: "1px solid rgba(0,0,0,0.1)",
                       background: "var(--white)",
                       fontFamily: "var(--font-inter)",

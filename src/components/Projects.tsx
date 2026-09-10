@@ -34,7 +34,7 @@ function ProjectRow({ project, index }: { project: (typeof projects)[0]; index: 
         padding: "24px 28px",
         background: "var(--white)",
         border: "1px solid rgba(0,0,0,0.07)",
-        borderRadius: 12,
+        borderRadius: 0,
         cursor: "pointer",
       }}
     >

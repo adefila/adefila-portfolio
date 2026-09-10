@@ -34,7 +34,7 @@ function BenefitCard({ item, index }: { item: (typeof benefits)[0]; index: numbe
         style={{
           width: 40,
           height: 40,
-          borderRadius: 10,
+          borderRadius: 6,
           border: "1px solid rgba(0,0,0,0.1)",
           display: "flex",
           alignItems: "center",
