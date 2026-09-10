@@ -2,12 +2,13 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 
-const techStacks = ["Figma", "Framer", "Webflow", "WordPress"];
+const techStacks = ["Figma", "Framer", "Webflow", "WordPress", "Shopify", "React"];
 
 const workHistory = [
-  { year: "2024 – Present", role: "Senior Framer Developer", company: "Freelance (Upwork)", badge: "Top Rated" },
-  { year: "2022 – 2024", role: "UI/UX Designer", company: "Freelance", badge: null },
-  { year: "2020 – 2022", role: "WordPress Developer", company: "Freelance", badge: null },
+  { period: "2020–2021", role: "Wordpress Intern Web Developer", company: "Davis Enterprises" },
+  { period: "2024–2025", role: "UX/UI Designer", company: "Trust Tai Web Agency" },
+  { period: "2024–2025", role: "Framer Developer", company: "HitPay" },
+  { period: "Sep 2023–Sep 2025", role: "Lead Product Designer", company: "BookedEZ LLC" },
 ];
 
 export default function About() {
@@ -110,16 +111,16 @@ export default function About() {
           >
             <p
               style={{
-                fontFamily: "var(--font-poppins)",
-                fontWeight: 500,
-                fontSize: 16,
-                letterSpacing: "-0.7px",
+                fontFamily: "var(--font-inter)",
+                fontWeight: 700,
+                fontSize: 11,
+                letterSpacing: "10px",
                 textTransform: "uppercase",
-                color: "var(--fg)",
+                color: "var(--fg-secondary)",
                 marginBottom: 16,
               }}
             >
-              My tech stacks
+              MY TECH STACKS
             </p>
             <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
               {techStacks.map((tech) => (
@@ -152,36 +153,37 @@ export default function About() {
         >
           <p
             style={{
-              fontFamily: "var(--font-poppins)",
-              fontWeight: 500,
-              fontSize: 16,
-              letterSpacing: "-0.7px",
+              fontFamily: "var(--font-inter)",
+              fontWeight: 700,
+              fontSize: 11,
+              letterSpacing: "10px",
               textTransform: "uppercase",
-              color: "var(--fg)",
+              color: "var(--fg-secondary)",
               marginBottom: 24,
             }}
           >
-            My work history
+            MY WORK HISTORY
           </p>
-          <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
+          <div style={{ display: "flex", flexDirection: "column" }}>
             {workHistory.map((job, i) => (
               <div
                 key={i}
                 style={{
                   padding: "20px 0",
-                  borderBottom: i < workHistory.length - 1 ? "1px solid rgba(0,0,0,0.08)" : "none",
+                  borderBottom: "1px solid rgba(0,0,0,0.08)",
                 }}
               >
                 <p
                   style={{
                     fontFamily: "var(--font-inter)",
-                    fontSize: 12,
+                    fontSize: 11,
                     color: "var(--fg-muted)",
                     marginBottom: 6,
-                    letterSpacing: "-0.2px",
+                    letterSpacing: "0.02em",
+                    textTransform: "uppercase",
                   }}
                 >
-                  {job.year}
+                  {job.period}
                 </p>
                 <p
                   style={{
@@ -189,43 +191,42 @@ export default function About() {
                     fontWeight: 600,
                     fontSize: 14,
                     color: "var(--fg)",
-                    marginBottom: 4,
+                    marginBottom: 2,
                     letterSpacing: "-0.3px",
+                    textTransform: "uppercase",
                   }}
                 >
                   {job.role}
                 </p>
-                <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                  <p
-                    style={{
-                      fontFamily: "var(--font-inter)",
-                      fontSize: 13,
-                      color: "var(--fg-secondary)",
-                      letterSpacing: "-0.2px",
-                    }}
-                  >
-                    {job.company}
-                  </p>
-                  {job.badge && (
-                    <span
-                      style={{
-                        fontFamily: "var(--font-inter)",
-                        fontWeight: 600,
-                        fontSize: 10,
-                        color: "#14a800",
-                        background: "rgba(20,168,0,0.1)",
-                        padding: "3px 8px",
-                        borderRadius: 100,
-                        letterSpacing: "0.02em",
-                      }}
-                    >
-                      {job.badge}
-                    </span>
-                  )}
-                </div>
+                <p
+                  style={{
+                    fontFamily: "var(--font-inter)",
+                    fontSize: 13,
+                    color: "var(--fg-secondary)",
+                    letterSpacing: "-0.2px",
+                  }}
+                >
+                  {job.company}
+                </p>
               </div>
             ))}
           </div>
+          <button
+            style={{
+              marginTop: 16,
+              fontFamily: "var(--font-inter)",
+              fontWeight: 500,
+              fontSize: 13,
+              color: "var(--fg-secondary)",
+              background: "none",
+              border: "none",
+              cursor: "pointer",
+              padding: 0,
+              letterSpacing: "-0.2px",
+            }}
+          >
+            Show all
+          </button>
         </motion.div>
       </div>
     </section>
