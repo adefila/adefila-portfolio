@@ -1,77 +1,30 @@
 "use client";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { ArrowUpRight, BadgeCheck, Zap, Palette, Globe, Target } from "lucide-react";
+import { ArrowUpRight, ChevronsRight, Tag, CircleDot, TrendingUp } from "lucide-react";
 
 const benefits = [
-  { title: "ONE EXPERT, CONSISTENT RESULTS", subtitle: "Delivered 50+ projects on time, every time", icon: BadgeCheck },
-  { title: "SPEED & PRECISION", subtitle: "Fast doesn't mean rushed, every detail is handled with focus and care.", icon: Zap },
-  { title: "TAILORED DESIGN", subtitle: "I create custom visuals that position your brand clearly and set it apart.", icon: Palette },
-  { title: "ONE EXPERT. ONE VISION.", subtitle: "From strategy to launch, everything handled with clarity and intent.", icon: Target },
-  { title: "WIDE-RANGE EXPERIENCE", subtitle: "Different industries, one focus, designing products that work and scale.", icon: Globe },
+  {
+    icon: ChevronsRight,
+    title: "SPEED & PRECISION",
+    desc: "Fast doesn't mean rushed, every detail is handled with focus and care.",
+  },
+  {
+    icon: Tag,
+    title: "TAILORED DESIGN",
+    desc: "I create custom visuals that position your brand clearly and set it apart.",
+  },
+  {
+    icon: CircleDot,
+    title: "ONE EXPERT. ONE VISION.",
+    desc: "From strategy to launch, everything handled with clarity and intent.",
+  },
+  {
+    icon: TrendingUp,
+    title: "WIDE-RANGE EXPERIENCE",
+    desc: "Different industries, one focus, designing products that work and scale.",
+  },
 ];
-
-function BenefitCard({ item, index }: { item: (typeof benefits)[0]; index: number }) {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-5%" });
-  const Icon = item.icon;
-
-  return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 20 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.5, delay: index * 0.07, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
-      style={{
-        borderTop: "1px solid rgba(0,0,0,0.08)",
-        padding: "36px 0",
-        display: "flex",
-        flexDirection: "column",
-        gap: 16,
-      }}
-    >
-      <div
-        style={{
-          width: 40,
-          height: 40,
-          borderRadius: 6,
-          border: "1px solid rgba(0,0,0,0.1)",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          color: "var(--fg)",
-        }}
-      >
-        <Icon size={20} strokeWidth={1.5} />
-      </div>
-      <h3
-        style={{
-          fontFamily: "var(--font-poppins)",
-          fontWeight: 700,
-          fontSize: "clamp(15px, 1.3vw, 18px)",
-          letterSpacing: "-0.5px",
-          textTransform: "uppercase",
-          color: "var(--fg)",
-          lineHeight: 1.2,
-        }}
-      >
-        {item.title}
-      </h3>
-      <p
-        style={{
-          fontFamily: "var(--font-inter)",
-          fontWeight: 400,
-          fontSize: 14,
-          letterSpacing: "-0.3px",
-          lineHeight: 1.6,
-          color: "var(--fg-secondary)",
-        }}
-      >
-        {item.subtitle}
-      </p>
-    </motion.div>
-  );
-}
 
 export default function Benefits() {
   const ref = useRef(null);
@@ -83,11 +36,11 @@ export default function Benefits() {
         width: "100%",
         maxWidth: 1200,
         margin: "0 auto",
-        padding: "60px 20px",
+        padding: "80px 20px",
       }}
     >
       {/* Header */}
-      <div ref={ref} style={{ marginBottom: 8 }}>
+      <div ref={ref} style={{ marginBottom: 48 }}>
         <motion.p
           initial={{ opacity: 0, y: 10 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -98,8 +51,8 @@ export default function Benefits() {
             fontSize: 11,
             letterSpacing: "10px",
             textTransform: "uppercase",
-            color: "var(--fg-secondary)",
-            marginBottom: 16,
+            color: "var(--accent-purple)",
+            marginBottom: 20,
           }}
         >
           BENEFITS
@@ -111,82 +64,248 @@ export default function Benefits() {
           style={{
             fontFamily: "var(--font-poppins)",
             fontWeight: 700,
-            fontSize: "clamp(24px, 3vw, 40px)",
+            fontSize: "clamp(28px, 3.5vw, 48px)",
             letterSpacing: "-2px",
             lineHeight: 1.05,
             textTransform: "uppercase",
             color: "var(--fg)",
-            maxWidth: 600,
-            marginBottom: 0,
+            maxWidth: 700,
           }}
         >
-          Why clients keep coming back
+          ONE EXPERT, CONSISTENT RESULTS: DELIVERED 50+ PROJECTS ON TIME, EVERY TIME
         </motion.h2>
       </div>
 
-      {/* Benefits grid — 2 cols, 5 items (last spans 2 cols or sits alone) */}
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "0 48px" }}>
-        {benefits.map((item, i) => (
-          <BenefitCard key={i} item={item} index={i} />
-        ))}
+      {/* 2×2 grid */}
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(2, 1fr)",
+          gap: "0 80px",
+          marginBottom: 48,
+        }}
+      >
+        {benefits.map((item, i) => {
+          const Icon = item.icon;
+          return (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
+              style={{
+                borderTop: "1px solid rgba(0,0,0,0.1)",
+                padding: "32px 0",
+              }}
+            >
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 8,
+                  marginBottom: 12,
+                }}
+              >
+                <Icon size={16} strokeWidth={1.5} color="var(--fg-secondary)" />
+                <h3
+                  style={{
+                    fontFamily: "var(--font-inter)",
+                    fontWeight: 700,
+                    fontSize: 14,
+                    letterSpacing: "0.3px",
+                    textTransform: "uppercase",
+                    color: "var(--fg)",
+                    lineHeight: 1,
+                  }}
+                >
+                  {item.title}
+                </h3>
+              </div>
+              <p
+                style={{
+                  fontFamily: "var(--font-inter)",
+                  fontWeight: 400,
+                  fontSize: 14,
+                  letterSpacing: "-0.2px",
+                  lineHeight: 1.6,
+                  color: "var(--fg-secondary)",
+                }}
+              >
+                {item.desc}
+              </p>
+            </motion.div>
+          );
+        })}
       </div>
 
-      {/* Upwork CTA */}
+      {/* Upwork card */}
       <motion.div
         initial={{ opacity: 0, y: 16 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.5, delay: 0.3 }}
+        transition={{ duration: 0.5, delay: 0.2 }}
         style={{
-          marginTop: 48,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          padding: "28px 32px",
-          background: "var(--card-bg)",
+          background: "var(--white)",
+          border: "1px solid rgba(0,0,0,0.07)",
           borderRadius: "var(--radius-md)",
-          flexWrap: "wrap",
-          gap: 24,
+          padding: "28px 32px",
         }}
       >
-        <div>
-          <h3
-            style={{
-              fontFamily: "var(--font-poppins)",
-              fontWeight: 700,
-              fontSize: 18,
-              letterSpacing: "-0.5px",
-              textTransform: "uppercase",
-              color: "var(--fg)",
-              marginBottom: 6,
-            }}
-          >
-            HIRE ME ON UPWORK
-          </h3>
-          <p style={{ fontFamily: "var(--font-inter)", fontSize: 14, color: "var(--fg-secondary)", letterSpacing: "-0.4px" }}>
-            Trusted by 50+ clients to design, fix bugs, customise templates, and launch websites built to convert.
-          </p>
-        </div>
-        <a
-          href="https://www.upwork.com"
-          target="_blank"
-          rel="noopener noreferrer"
+        {/* Top row: logo + badges */}
+        <div
           style={{
-            fontFamily: "var(--font-inter)",
-            fontWeight: 600,
-            fontSize: 13,
-            color: "var(--white)",
-            background: "#14a800",
-            padding: "12px 24px",
-            borderRadius: 100,
-            textDecoration: "none",
-            display: "inline-flex",
+            display: "flex",
+            justifyContent: "space-between",
             alignItems: "center",
-            gap: 6,
+            marginBottom: 24,
           }}
         >
-          HIRE ME ON UPWORK <ArrowUpRight size={14} strokeWidth={2.5} />
-        </a>
+          {/* Upwork logo */}
+          <div
+            style={{
+              width: 48,
+              height: 48,
+              borderRadius: "50%",
+              background: "#14a800",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <span
+              style={{
+                fontFamily: "var(--font-inter)",
+                fontWeight: 900,
+                fontSize: 16,
+                color: "#fff",
+                letterSpacing: "-1px",
+              }}
+            >
+              up
+            </span>
+          </div>
+
+          {/* Badges */}
+          <div style={{ display: "flex", gap: 16, alignItems: "center" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+              <div
+                style={{
+                  width: 32,
+                  height: 32,
+                  borderRadius: "50%",
+                  border: "2px solid #1d9bf0",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  fontSize: 14,
+                }}
+              >
+                👑
+              </div>
+              <span
+                style={{
+                  fontFamily: "var(--font-inter)",
+                  fontWeight: 600,
+                  fontSize: 13,
+                  color: "var(--fg)",
+                }}
+              >
+                100% Job Success
+              </span>
+            </div>
+            <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+              <div
+                style={{
+                  width: 32,
+                  height: 32,
+                  borderRadius: "50%",
+                  border: "2px solid #1d9bf0",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  fontSize: 14,
+                }}
+              >
+                ⭐
+              </div>
+              <span
+                style={{
+                  fontFamily: "var(--font-inter)",
+                  fontWeight: 600,
+                  fontSize: 13,
+                  color: "var(--fg)",
+                }}
+              >
+                Top Rated
+              </span>
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom row: text + button */}
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "flex-end",
+            flexWrap: "wrap",
+            gap: 20,
+          }}
+        >
+          <div>
+            <h3
+              style={{
+                fontFamily: "var(--font-poppins)",
+                fontWeight: 700,
+                fontSize: 18,
+                letterSpacing: "-0.5px",
+                textTransform: "uppercase",
+                color: "var(--fg)",
+                marginBottom: 8,
+              }}
+            >
+              HIRE ME ON UPWORK
+            </h3>
+            <p
+              style={{
+                fontFamily: "var(--font-inter)",
+                fontSize: 14,
+                color: "var(--fg-secondary)",
+                letterSpacing: "-0.3px",
+                lineHeight: 1.5,
+                maxWidth: 480,
+              }}
+            >
+              Trusted by{" "}
+              <span style={{ color: "var(--accent-purple)", fontWeight: 500 }}>
+                50+ clients
+              </span>{" "}
+              to design, fix bugs, customise templates, and launch websites built to convert.
+            </p>
+          </div>
+          <a
+            href="https://www.upwork.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              fontFamily: "var(--font-inter)",
+              fontWeight: 600,
+              fontSize: 13,
+              color: "var(--white)",
+              background: "var(--fg)",
+              padding: "14px 28px",
+              borderRadius: 100,
+              textDecoration: "none",
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 8,
+              whiteSpace: "nowrap",
+            }}
+          >
+            HIRE ME ON UPWORK <ArrowUpRight size={14} strokeWidth={2.5} />
+          </a>
+        </div>
       </motion.div>
     </section>
   );

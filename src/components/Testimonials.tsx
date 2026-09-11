@@ -142,7 +142,7 @@ export default function Testimonials() {
         </div>
 
         {/* Main content: stat card + testimonials */}
-        <div style={{ display: "grid", gridTemplateColumns: "240px 1fr", gap: 20, alignItems: "stretch" }}>
+        <div style={{ display: "grid", gridTemplateColumns: "240px 1fr", gap: 0, alignItems: "stretch" }}>
           {/* Left: purple stat card */}
           <div
             style={{
@@ -152,7 +152,7 @@ export default function Testimonials() {
               display: "flex",
               flexDirection: "column",
               justifyContent: "flex-end",
-              minHeight: 320,
+              minHeight: 400,
             }}
           >
             <p
@@ -181,7 +181,7 @@ export default function Testimonials() {
           </div>
 
           {/* Right: two testimonial cards */}
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20 }}>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 0 }}>
             {visible.map((t, i) => (
               <motion.div
                 key={`${page}-${i}`}
@@ -191,8 +191,10 @@ export default function Testimonials() {
                 style={{
                   background: "var(--white)",
                   border: "1px solid rgba(109,40,217,0.15)",
-                  borderRadius: "var(--radius-md)",
+                  borderLeft: i === 0 ? "none" : "1px solid rgba(109,40,217,0.15)",
+                  borderRadius: 0,
                   padding: 28,
+                  minHeight: 400,
                   display: "flex",
                   flexDirection: "column",
                   justifyContent: "space-between",
