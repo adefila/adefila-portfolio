@@ -142,7 +142,7 @@ export default function FAQ() {
             marginBottom: 16,
           }}
         >
-          f.a.q
+          F.A.Q
         </motion.p>
         <motion.h2
           initial={{ opacity: 0, y: 10, filter: "blur(8px)" }}
@@ -158,9 +158,9 @@ export default function FAQ() {
             color: "var(--fg)",
           }}
         >
-          Have a question?
+          HAVE A QUESTION?
           <br />
-          I&apos;m happy to chat
+          I&apos;M HAPPY TO CHAT
         </motion.h2>
       </div>
 
