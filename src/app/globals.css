@@ -10,7 +10,7 @@
 }
 
 :root {
-  --bg: rgb(245, 244, 240);
+  --bg: #F7F7F7;
   --fg: #0f0f0f;
   --fg-secondary: #6b7280;
   --fg-muted: #9ca3af;
