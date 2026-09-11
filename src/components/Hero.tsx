@@ -87,39 +87,6 @@ export default function Hero() {
               {word}
             </motion.span>
           ))}
-        {/* Inline tool icon badges */}
-        <motion.span
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.4, delay: 0.9, ease: EASE }}
-          style={{ display: "inline-flex", alignItems: "center", gap: 6, verticalAlign: "middle", marginLeft: 8 }}
-        >
-          {[
-            { bg: "#a259ff", label: "F" },
-            { bg: "#000", label: "Fr" },
-            { bg: "#4353ff", label: "W" },
-          ].map((tool) => (
-            <span
-              key={tool.label}
-              style={{
-                width: 40,
-                height: 40,
-                borderRadius: 6,
-                background: tool.bg,
-                display: "inline-flex",
-                alignItems: "center",
-                justifyContent: "center",
-                fontFamily: "var(--font-inter)",
-                fontWeight: 700,
-                fontSize: 13,
-                color: "#fff",
-                flexShrink: 0,
-              }}
-            >
-              {tool.label}
-            </span>
-          ))}
-        </motion.span>
       </div>
 
       {/* Subtitle */}
