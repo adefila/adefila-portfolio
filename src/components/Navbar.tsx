@@ -23,7 +23,7 @@ export default function Navbar() {
       <div
         style={{
           width: "calc(100% - 48px)",
-          maxWidth: 1100,
+          maxWidth: 1200,
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",

@@ -19,25 +19,15 @@ export default function Home() {
         width: "100%",
       }}
     >
-      <div
-        style={{
-          maxWidth: 1200,
-          margin: "0 auto",
-          width: "100%",
-          padding: "0 20px",
-          boxSizing: "border-box",
-        }}
-      >
-        <Navbar />
-        <Hero />
-        <WhyMe />
-        <Projects />
-        <Benefits />
-        <FeaturedProjects />
-        <About />
-        <Testimonials />
-        <FAQ />
-      </div>
+      <Navbar />
+      <Hero />
+      <WhyMe />
+      <Projects />
+      <Benefits />
+      <FeaturedProjects />
+      <About />
+      <Testimonials />
+      <FAQ />
       <Footer />
     </main>
   );
