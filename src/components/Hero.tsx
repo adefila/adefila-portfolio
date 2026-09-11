@@ -9,19 +9,7 @@ const fadeUp = (delay = 0) => ({
   transition: { duration: 0.6, delay, ease: EASE },
 });
 
-const TICKER_ITEMS = [
-  "Framer Development",
-  "UI/UX Design",
-  "WordPress",
-  "Webflow",
-  "Figma",
-  "Product Design",
-  "Landing Pages",
-  "Web Apps",
-];
-
 export default function Hero() {
-  const repeated = [...TICKER_ITEMS, ...TICKER_ITEMS, ...TICKER_ITEMS, ...TICKER_ITEMS];
 
   return (
     <section
@@ -175,42 +163,6 @@ export default function Hero() {
         </a>
       </motion.div>
 
-      {/* Ticker */}
-      <div
-        style={{
-          width: "calc(100% + 40px)",
-          marginLeft: -20,
-          overflow: "hidden",
-          borderTop: "1px solid rgba(0,0,0,0.08)",
-          borderBottom: "1px solid rgba(0,0,0,0.08)",
-          padding: "16px 0",
-          position: "relative",
-        }}
-      >
-        <div className="ticker-track">
-          {repeated.map((item, i) => (
-            <span
-              key={i}
-              style={{
-                fontFamily: "var(--font-poppins)",
-                fontWeight: 500,
-                fontSize: 13,
-                textTransform: "uppercase",
-                letterSpacing: "0.05em",
-                color: "var(--fg-secondary)",
-                padding: "0 32px",
-                flexShrink: 0,
-                display: "inline-flex",
-                alignItems: "center",
-                gap: 32,
-              }}
-            >
-              {item}
-              <span style={{ color: "var(--accent-green)", fontSize: 8 }}>●</span>
-            </span>
-          ))}
-        </div>
-      </div>
     </section>
   );
 }
