@@ -2,196 +2,231 @@
 import { motion } from "framer-motion";
 import { ArrowUpRight, ArrowRight } from "lucide-react";
 
-const socials = [
-  { label: "Twitter", href: "https://twitter.com" },
-  { label: "LinkedIn", href: "https://linkedin.com" },
+const portfolioLinks = [
   { label: "Dribbble", href: "https://dribbble.com" },
-  { label: "Upwork", href: "https://upwork.com" },
+  { label: "Behance", href: "https://behance.net" },
+  { label: "Layers", href: "https://layers.to" },
+];
+
+const socialLinks = [
+  { label: "Twitter (X)", href: "https://twitter.com" },
+  { label: "LinkedIn", href: "https://linkedin.com" },
+  { label: "Instagram", href: "https://instagram.com" },
+  { label: "Facebook", href: "https://facebook.com" },
 ];
 
 export default function Footer() {
   return (
-    <footer
-      style={{
-        background: "rgb(250, 250, 250)",
-        borderTop: "1px solid rgba(0,0,0,0.06)",
-        padding: "80px 20px",
-        width: "100%",
-      }}
-    >
+    <footer style={{ width: "100%" }}>
+      {/* GET STARTED CTA */}
       <div
         style={{
-          maxWidth: 1200,
-          margin: "0 auto",
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "flex-start",
-          flexWrap: "wrap",
-          gap: 40,
+          width: "100%",
+          background: "var(--accent-purple)",
+          padding: "80px 20px",
         }}
       >
-        {/* Left */}
-        <div>
-          <motion.h3
+        <div
+          style={{
+            maxWidth: 1200,
+            margin: "0 auto",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            flexWrap: "wrap",
+            gap: 40,
+          }}
+        >
+          <div>
+            <motion.p
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              style={{
+                fontFamily: "var(--font-inter)",
+                fontWeight: 700,
+                fontSize: 11,
+                letterSpacing: "10px",
+                textTransform: "uppercase",
+                color: "rgba(255,255,255,0.6)",
+                marginBottom: 16,
+              }}
+            >
+              GET STARTED
+            </motion.p>
+            <motion.h2
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.06 }}
+              style={{
+                fontFamily: "var(--font-poppins)",
+                fontWeight: 700,
+                fontSize: "clamp(32px, 4vw, 60px)",
+                letterSpacing: "-2px",
+                lineHeight: 1,
+                textTransform: "uppercase",
+                color: "var(--white)",
+              }}
+            >
+              READY TO WORK WITH ME?
+            </motion.h2>
+          </div>
+
+          <motion.div
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            style={{
-              fontFamily: "var(--font-poppins)",
-              fontWeight: 700,
-              fontSize: 24,
-              letterSpacing: "-0.5px",
-              color: "var(--fg)",
-              marginBottom: 8,
-            }}
+            transition={{ duration: 0.5, delay: 0.12 }}
+            style={{ display: "flex", gap: 12, flexWrap: "wrap" }}
           >
-            Adefila.
-          </motion.h3>
-          <p
-            style={{
-              fontFamily: "var(--font-inter)",
-              fontSize: 14,
-              color: "var(--fg-secondary)",
-              letterSpacing: "-0.3px",
-              maxWidth: 300,
-              lineHeight: 1.6,
-            }}
-          >
-            Framer Developer &amp; UI/UX Designer. Building websites that convert.
-          </p>
-          <p
-            style={{
-              fontFamily: "var(--font-inter)",
-              fontSize: 13,
-              color: "var(--accent-green)",
-              marginTop: 12,
-              display: "flex",
-              alignItems: "center",
-              gap: 6,
-            }}
-          >
-            <span
+            <a
+              href="#contact"
               style={{
-                width: 6,
-                height: 6,
-                borderRadius: "50%",
-                background: "var(--accent-green)",
-                display: "inline-block",
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 8,
+                fontFamily: "var(--font-inter)",
+                fontWeight: 600,
+                fontSize: 14,
+                color: "var(--accent-purple)",
+                background: "var(--white)",
+                padding: "14px 28px",
+                textDecoration: "none",
+                letterSpacing: "-0.2px",
               }}
-            />
-            Available for work
-          </p>
+            >
+              BOOK A CALL <ArrowRight size={14} strokeWidth={2.5} />
+            </a>
+            <a
+              href="#work"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 8,
+                fontFamily: "var(--font-inter)",
+                fontWeight: 600,
+                fontSize: 14,
+                color: "var(--white)",
+                background: "transparent",
+                padding: "14px 28px",
+                border: "1px solid rgba(255,255,255,0.4)",
+                textDecoration: "none",
+                letterSpacing: "-0.2px",
+              }}
+            >
+              VIEW MORE WORKS <ArrowUpRight size={14} strokeWidth={2.5} />
+            </a>
+          </motion.div>
         </div>
+      </div>
 
-        {/* Nav links */}
-        <div style={{ display: "flex", gap: 80, flexWrap: "wrap" }}>
+      {/* Footer bar */}
+      <div
+        style={{
+          width: "100%",
+          background: "#0f0f0f",
+          padding: "48px 20px",
+        }}
+      >
+        <div
+          style={{
+            maxWidth: 1200,
+            margin: "0 auto",
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "flex-start",
+            flexWrap: "wrap",
+            gap: 40,
+          }}
+        >
+          {/* Portfolio links */}
           <div>
-            <p
-              style={{
-                fontFamily: "var(--font-inter)",
-                fontWeight: 600,
-                fontSize: 12,
-                letterSpacing: "0.05em",
-                textTransform: "uppercase",
-                color: "var(--fg-muted)",
-                marginBottom: 16,
-              }}
-            >
-              Navigate
-            </p>
             <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-              {["Work", "About", "FAQ", "Contact"].map((item) => (
+              {portfolioLinks.map((link) => (
                 <a
-                  key={item}
-                  href={`#${item.toLowerCase()}`}
-                  style={{
-                    fontFamily: "var(--font-inter)",
-                    fontSize: 14,
-                    color: "var(--fg-secondary)",
-                    textDecoration: "none",
-                    letterSpacing: "-0.2px",
-                  }}
-                >
-                  {item}
-                </a>
-              ))}
-            </div>
-          </div>
-
-          <div>
-            <p
-              style={{
-                fontFamily: "var(--font-inter)",
-                fontWeight: 600,
-                fontSize: 12,
-                letterSpacing: "0.05em",
-                textTransform: "uppercase",
-                color: "var(--fg-muted)",
-                marginBottom: 16,
-              }}
-            >
-              Connect
-            </p>
-            <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-              {socials.map((s) => (
-                <a
-                  key={s.label}
-                  href={s.href}
+                  key={link.label}
+                  href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
                   style={{
                     fontFamily: "var(--font-inter)",
                     fontSize: 14,
-                    color: "var(--fg-secondary)",
+                    color: "rgba(255,255,255,0.7)",
                     textDecoration: "none",
-                    letterSpacing: "-0.2px",
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 4,
                   }}
                 >
-                  <span style={{ display: "flex", alignItems: "center", gap: 4 }}>
-                    {s.label} <ArrowUpRight size={13} strokeWidth={2} />
-                  </span>
+                  {link.label} <ArrowUpRight size={13} strokeWidth={2} />
                 </a>
               ))}
             </div>
           </div>
-        </div>
-      </div>
 
-      {/* Bottom bar */}
-      <div
-        style={{
-          maxWidth: 1200,
-          margin: "48px auto 0",
-          paddingTop: 24,
-          borderTop: "1px solid rgba(0,0,0,0.06)",
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          flexWrap: "wrap",
-          gap: 12,
-        }}
-      >
-        <p
-          style={{
-            fontFamily: "var(--font-inter)",
-            fontSize: 12,
-            color: "var(--fg-muted)",
-            letterSpacing: "-0.2px",
-          }}
-        >
-          © {new Date().getFullYear()} Adefila Samuel. All rights reserved.
-        </p>
-        <p
-          style={{
-            fontFamily: "var(--font-inter)",
-            fontSize: 12,
-            color: "var(--fg-muted)",
-            letterSpacing: "-0.2px",
-          }}
-        >
-          Built with Next.js &amp; Framer Motion
-        </p>
+          {/* Social links */}
+          <div>
+            <p
+              style={{
+                fontFamily: "var(--font-inter)",
+                fontWeight: 600,
+                fontSize: 11,
+                letterSpacing: "2px",
+                textTransform: "uppercase",
+                color: "rgba(255,255,255,0.4)",
+                marginBottom: 14,
+              }}
+            >
+              FOLLOW ME ON
+            </p>
+            <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+              {socialLinks.map((link) => (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    fontFamily: "var(--font-inter)",
+                    fontSize: 14,
+                    color: "rgba(255,255,255,0.7)",
+                    textDecoration: "none",
+                  }}
+                >
+                  {link.label}
+                </a>
+              ))}
+            </div>
+          </div>
+
+          {/* Email + copyright */}
+          <div style={{ display: "flex", flexDirection: "column", gap: 16, alignItems: "flex-end" }}>
+            <a
+              href="mailto:adefilasamuel929@gmail.com"
+              style={{
+                fontFamily: "var(--font-inter)",
+                fontSize: 14,
+                color: "rgba(255,255,255,0.7)",
+                textDecoration: "none",
+              }}
+            >
+              adefilasamuel929@gmail.com
+            </a>
+            <p
+              style={{
+                fontFamily: "var(--font-inter)",
+                fontSize: 12,
+                color: "rgba(255,255,255,0.35)",
+                letterSpacing: "0.5px",
+                textTransform: "uppercase",
+              }}
+            >
+              © ADEYEMI 2025. ALL RIGHTS RESERVED
+            </p>
+          </div>
+        </div>
       </div>
     </footer>
   );
