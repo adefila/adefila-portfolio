@@ -15,21 +15,29 @@ export default function Home() {
       style={{
         background: "var(--bg)",
         minHeight: "100vh",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
         overflowX: "hidden",
+        width: "100%",
       }}
     >
-      <Navbar />
-      <Hero />
-      <WhyMe />
-      <Projects />
-      <Benefits />
-      <FeaturedProjects />
-      <About />
-      <Testimonials />
-      <FAQ />
+      <div
+        style={{
+          maxWidth: 1200,
+          margin: "0 auto",
+          width: "100%",
+          padding: "0 20px",
+          boxSizing: "border-box",
+        }}
+      >
+        <Navbar />
+        <Hero />
+        <WhyMe />
+        <Projects />
+        <Benefits />
+        <FeaturedProjects />
+        <About />
+        <Testimonials />
+        <FAQ />
+      </div>
       <Footer />
     </main>
   );
