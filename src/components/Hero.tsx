@@ -59,7 +59,7 @@ export default function Hero() {
       </motion.div>
 
       {/* Main headline */}
-      <div style={{ maxWidth: 1000, marginBottom: 24 }}>
+      <div style={{ marginBottom: 24 }}>
         {"CONVERT MORE VISITORS INTO CLIENTS WITH CUSTOM FRAMER WEBSITES"
           .split(" ")
           .map((word, i) => (
@@ -76,7 +76,7 @@ export default function Hero() {
                 display: "inline-block",
                 fontFamily: "var(--font-poppins)",
                 fontWeight: 700,
-                fontSize: "clamp(36px, 5.3vw, 64px)",
+                fontSize: "clamp(40px, 7vw, 88px)",
                 letterSpacing: "-0.05em",
                 lineHeight: 1,
                 textTransform: "uppercase",
