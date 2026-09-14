@@ -9,18 +9,17 @@ const fadeUp = (delay = 0) => ({
   transition: { duration: 0.6, delay, ease: EASE },
 });
 
-// Project slides — replace `img` with real paths once the folder is ready
 const slides = [
-  { title: "The Initial — AI Website", meta: "Figma to Framer · 2025", img: "" },
-  { title: "HitPay — SaaS Website", meta: "Framer Development · 2024", img: "" },
-  { title: "BindHQ", meta: "Framer Template Customization · 2026", img: "" },
-  { title: "Clipmaster — Video Agency", meta: "Web Design · 2024", img: "" },
-  { title: "VPA London — Talent Website", meta: "Framer Development · 2025", img: "" },
-  { title: "Virvly", meta: "Framer Development · 2025", img: "" },
-  { title: "Jamal Muse — Personal Portfolio", meta: "Claude to Framer · 2025", img: "" },
-  { title: "Alyssa Corso — Personal Portfolio", meta: "Framer Development · 2026", img: "" },
-  { title: "Upside ESG", meta: "SaaS Framer Development · 2026", img: "" },
-  { title: "Emalbu", meta: "HTML to Framer · 2026", img: "" },
+  { title: "The Initial — AI Website", meta: "Figma to Framer · 2025", img: "/projects/elite-property.png" },
+  { title: "HitPay — SaaS Website", meta: "Framer Development · 2024", img: "/projects/nature.png" },
+  { title: "BindHQ", meta: "Framer Template Customization · 2026", img: "/projects/virvly.png" },
+  { title: "Clipmaster — Video Agency", meta: "Web Design · 2024", img: "/projects/jamal.png" },
+  { title: "VPA London — Talent Website", meta: "Framer Development · 2025", img: "/projects/elite-property.png" },
+  { title: "Virvly", meta: "Framer Development · 2025", img: "/projects/virvly.png" },
+  { title: "Jamal Muse — Personal Portfolio", meta: "Claude to Framer · 2025", img: "/projects/jamal.png" },
+  { title: "Alyssa Corso — Personal Portfolio", meta: "Framer Development · 2026", img: "/projects/nature.png" },
+  { title: "Upside ESG", meta: "SaaS Framer Development · 2026", img: "/projects/elite-property.png" },
+  { title: "Emalbu", meta: "HTML to Framer · 2026", img: "/projects/virvly.png" },
 ];
 
 // Duplicate for seamless infinite loop
@@ -151,8 +150,8 @@ export default function Hero() {
               key={i}
               style={{
                 flexShrink: 0,
-                width: 280,
-                height: 200,
+                width: 340,
+                height: 280,
                 background: slide.img ? "transparent" : "rgba(0,0,0,0.05)",
                 border: "1px solid rgba(0,0,0,0.07)",
                 borderRadius: 12,
