@@ -60,7 +60,7 @@ export default function Hero() {
 
       {/* Main headline */}
       <div style={{ marginBottom: 24 }}>
-        {"CONVERT MORE VISITORS INTO CLIENTS WITH CUSTOM FRAMER WEBSITES"
+        {"FRAMER WEBSITES THAT TURN VISITORS INTO PAYING CLIENTS"
           .split(" ")
           .map((word, i) => (
             <motion.span
@@ -103,7 +103,7 @@ export default function Hero() {
           marginBottom: 48,
         }}
       >
-        Built to reach the right audience and drive real results
+        Custom-built, conversion-focused sites for founders who want results — not just good-looking pages.
       </motion.p>
 
       {/* CTA buttons */}

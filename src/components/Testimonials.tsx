@@ -94,7 +94,7 @@ export default function Testimonials() {
                 maxWidth: 580,
               }}
             >
-              50+ FOUNDERS TRUST SAMUEL TO BUILD CONVERTING WEBSITES
+              50+ FOUNDERS HIRED SAMUEL. HERE'S WHAT HAPPENED.
             </motion.h2>
           </div>
 

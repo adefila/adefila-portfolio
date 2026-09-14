@@ -2,13 +2,31 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Adefila Samuel — Framer Developer & UI/UX Designer",
+  title: "Samuel Adefila — Framer Developer & UI/UX Designer | Websites That Convert",
   description:
-    "Convert more visitors into clients with custom Framer websites. Trusted by 50+ founders.",
+    "Top Rated Framer developer with 100% Job Success on Upwork. 50+ custom websites built for founders and agencies worldwide. Your site should win clients — book a free call.",
+  keywords: [
+    "Framer developer",
+    "UI/UX designer",
+    "Framer website",
+    "Figma to Framer",
+    "custom website design",
+    "conversion-focused web design",
+    "Upwork Top Rated",
+    "Samuel Adefila",
+  ],
   openGraph: {
-    title: "Adefila Samuel — Framer Developer & UI/UX Designer",
-    description: "Convert more visitors into clients with custom Framer websites.",
+    title: "Samuel Adefila — Framer Developer & UI/UX Designer",
+    description:
+      "50+ custom Framer websites delivered for founders and agencies. Top Rated on Upwork with 100% Job Success. Book a free strategy call.",
     type: "website",
+    url: "https://adefilasamuel.com",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Samuel Adefila — Framer Developer & UI/UX Designer",
+    description:
+      "50+ conversion-focused Framer websites. Top Rated on Upwork. Book a free call.",
   },
 };
 

@@ -70,7 +70,7 @@ export default function Footer() {
                 color: "var(--white)",
               }}
             >
-              READY TO WORK WITH ME?
+              YOUR NEXT CLIENT IS ONE WEBSITE AWAY.
             </motion.h2>
           </div>
 

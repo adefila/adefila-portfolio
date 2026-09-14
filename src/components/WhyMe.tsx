@@ -3,9 +3,9 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 
 const stats = [
-  { number: "50+", label: "Finished Projects" },
-  { number: "94%", label: "Average Client Conversion Increase" },
-  { number: "5+", label: "Years of Experience" },
+  { number: "50+", label: "Projects Shipped On Time" },
+  { number: "94%", label: "Average Client Conversion Lift" },
+  { number: "5+", label: "Years Building For The Web" },
 ];
 
 const services = [
@@ -73,9 +73,9 @@ export default function WhyMe() {
               color: "var(--fg)",
             }}
           >
-            Great design is not enough.{" "}
+            Pretty websites don't pay bills.{" "}
             <span style={{ color: "rgb(163,163,163)" }}>
-              I build websites that perform.
+              Converting ones do.
             </span>
           </motion.h2>
         </div>

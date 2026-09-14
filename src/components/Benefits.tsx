@@ -6,23 +6,23 @@ import { ArrowUpRight, ChevronsRight, Tag, CircleDot, TrendingUp } from "lucide-
 const benefits = [
   {
     icon: ChevronsRight,
-    title: "SPEED & PRECISION",
-    desc: "Fast doesn't mean rushed, every detail is handled with focus and care.",
+    title: "SPEED WITHOUT SACRIFICE",
+    desc: "Delivered in 7–14 days with every detail intact. Your deadline is real — I take it seriously.",
   },
   {
     icon: Tag,
-    title: "TAILORED DESIGN",
-    desc: "I create custom visuals that position your brand clearly and set it apart.",
+    title: "BUILT FOR YOUR BRAND",
+    desc: "No templates. No shortcuts. Every design starts from scratch and ends with your audience in mind.",
   },
   {
     icon: CircleDot,
-    title: "ONE EXPERT. ONE VISION.",
-    desc: "From strategy to launch, everything handled with clarity and intent.",
+    title: "ONE EXPERT, ALL THE WAY",
+    desc: "No handoffs, no gaps. I own design, development, and launch — so nothing gets lost in translation.",
   },
   {
     icon: TrendingUp,
-    title: "WIDE-RANGE EXPERIENCE",
-    desc: "Different industries, one focus, designing products that work and scale.",
+    title: "PROVEN ACROSS INDUSTRIES",
+    desc: "SaaS, agencies, personal brands — 50+ sites, one pattern: visitors that become clients.",
   },
 ];
 
@@ -72,7 +72,7 @@ export default function Benefits() {
             maxWidth: 700,
           }}
         >
-          ONE EXPERT, CONSISTENT RESULTS: DELIVERED 50+ PROJECTS ON TIME, EVERY TIME
+          50+ FOUNDERS. ONE CONSISTENT RESULT: MORE CLIENTS.
         </motion.h2>
       </div>
 
@@ -265,7 +265,7 @@ export default function Benefits() {
                 marginBottom: 8,
               }}
             >
-              HIRE ME ON UPWORK
+              WORK WITH ME ON UPWORK
             </h3>
             <p
               style={{
@@ -277,11 +277,11 @@ export default function Benefits() {
                 maxWidth: 480,
               }}
             >
-              Trusted by{" "}
+              50+ founders hired me for one thing:{" "}
               <span style={{ color: "var(--accent-purple)", fontWeight: 500 }}>
-                50+ clients
+                a website that brings in clients.
               </span>{" "}
-              to design, fix bugs, customise templates, and launch websites built to convert.
+              Top Rated · 100% Job Success · fast turnaround.
             </p>
           </div>
           <a

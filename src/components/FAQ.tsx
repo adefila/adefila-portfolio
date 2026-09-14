@@ -5,35 +5,35 @@ import { useState, useRef } from "react";
 const faqs = [
   {
     q: "WHO DO YOU WORK WITH?",
-    a: "I work with startups, founders, agencies, and businesses of all sizes who want high-quality Framer websites. Whether you're launching something new or improving an existing site, I'm here to help.",
+    a: "Founders, startups, and agencies who are ready to turn their website into a client-getting machine. If you have a product worth selling, I'll build the site that sells it.",
   },
   {
     q: "CAN YOU IMPROVE MY EXISTING WEBSITE?",
-    a: "Absolutely. I specialize in auditing, redesigning, and improving existing websites — fixing bugs, improving performance, enhancing UI, or migrating from another platform to Framer.",
+    a: "Yes — and often that's the highest-leverage move. I audit what's hurting you, fix what's broken, and rebuild what's holding you back. Platform migration, performance, UI overhaul — all covered.",
   },
   {
     q: "DO YOU BUILD FROM SCRATCH?",
-    a: "Yes. I design and develop fully custom Framer websites from scratch, tailored to your brand, audience, and goals — no templates, no shortcuts.",
+    a: "Every time. No templates, no recycled layouts. Your site starts from a blank canvas and is designed entirely around your brand, your audience, and what makes them convert.",
   },
   {
     q: "HOW MUCH DOES IT COST?",
-    a: "Clear costs, no hidden fees. I offer monthly subscriptions or individual project rates depending on your needs. Book a call and I'll walk you through the options.",
+    a: "Pricing is scoped to your project — no retainers you don't need, no surprise invoices. Book a call and you'll leave with a clear number and a clear plan.",
   },
   {
     q: "HOW FAST IS DELIVERY?",
-    a: "Most Framer websites are delivered within 7–14 days depending on scope. Complex projects with multiple pages and custom animations may take 2–3 weeks. I'll give you a clear timeline before we begin.",
+    a: "Most projects ship in 7–14 days. Multi-page builds with custom animations run 2–3 weeks. Either way, you'll have a firm timeline before we start — and I stick to it.",
   },
   {
     q: "DO YOU USE TEMPLATES OR CUSTOM DESIGN?",
-    a: "Everything is custom. I don't use pre-made templates. Every project starts from a blank canvas and is designed specifically for you and your audience.",
+    a: "Never templates. Every project is built from scratch, designed specifically for you. Cookie-cutter sites don't convert — that's why I don't make them.",
   },
   {
     q: "WILL MY SITE BE EASY TO MANAGE?",
-    a: "Yes. Framer's CMS makes it simple to update content without touching any code. I'll also provide a walkthrough so you feel confident managing your site after launch.",
+    a: "Absolutely. Framer's CMS lets you update content without touching code. I'll also walk you through everything after launch so you feel fully in control from day one.",
   },
   {
     q: "HOW DO WE GET STARTED?",
-    a: "Book a free 30-minute call. We'll talk about your project, timeline, and goals — and I'll give you a clear plan to move forward.",
+    a: "Book a free 30-minute call. We'll map out your project, set a realistic timeline, and I'll tell you exactly what to expect — no fluff, no pressure, no obligation.",
   },
 ];
 
@@ -87,9 +87,9 @@ export default function FAQ() {
             color: "var(--fg)",
           }}
         >
-          HAVE A QUESTION?
+          STILL DECIDING?
           <br />
-          I&apos;M HAPPY TO CHAT
+          LET ME CLEAR THAT UP.
         </motion.h2>
       </div>
 
