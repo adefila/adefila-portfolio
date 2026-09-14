@@ -70,6 +70,7 @@ export default function Hero() {
           {["I DESIGN AND BUILD", "WEBSITES THAT CONVERT."].map((line, i) => (
             <motion.div
               key={i}
+              className="hero-headline"
               initial={{ opacity: 0, y: 14, filter: "blur(10px)" }}
               animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
               transition={{ duration: 0.55, delay: 0.15 + i * 0.12, ease: EASE }}
@@ -92,6 +93,7 @@ export default function Hero() {
         {/* Subtitle */}
         <motion.p
           {...fadeUp(0.4)}
+          className="hero-subtitle"
           style={{
             fontFamily: "var(--font-inter)",
             fontWeight: 400,

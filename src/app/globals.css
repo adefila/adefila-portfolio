@@ -168,4 +168,28 @@ html {
   .hero-section {
     padding-top: 100px !important;
   }
+
+  /* Hero headline: smaller min on mobile */
+  .hero-headline {
+    font-size: clamp(28px, 9vw, 88px) !important;
+  }
+
+  /* Hero subtitle: smaller text + tighter gap */
+  .hero-subtitle {
+    font-size: 16px !important;
+    margin-bottom: 32px !important;
+  }
+
+  /* WhyMe: tighter gap between stats and benefits */
+  .whyme-top-row {
+    margin-bottom: 32px !important;
+    gap: 32px !important;
+  }
+
+  /* WhyMe stats: wrap label below number so it doesn't squish */
+  .whyme-stat {
+    flex-wrap: wrap !important;
+    align-items: flex-start !important;
+    gap: 4px 12px !important;
+  }
 }

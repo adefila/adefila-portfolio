@@ -82,6 +82,7 @@ export default function WhyMe() {
       {/* Top row: heading left, stats right */}
       <div
         ref={ref}
+        className="whyme-top-row"
         style={{
           display: "flex",
           gap: 80,
@@ -145,6 +146,7 @@ export default function WhyMe() {
               initial={{ opacity: 0, y: 16 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: 0.1 + i * 0.08 }}
+              className="whyme-stat"
               style={{
                 display: "flex",
                 alignItems: "baseline",
