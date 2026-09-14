@@ -103,11 +103,12 @@ export default function Hero() {
             letterSpacing: "-0.7px",
             lineHeight: 1.6,
             color: "var(--fg-secondary)",
-            maxWidth: 560,
-            marginBottom: 48,
+            maxWidth: 520,
+            marginBottom: 32,
           }}
         >
-          Product designer and no-code developer. I use Framer, Shopify, Webflow and whatever fits your vision to build sites that genuinely work.
+          Product designer & Framer developer. I use Framer, Shopify,
+          and Webflow to build sites that genuinely convert.
         </motion.p>
 
         {/* CTA buttons */}
