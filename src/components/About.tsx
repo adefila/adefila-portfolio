@@ -111,7 +111,7 @@ export default function About() {
         width: "100%",
         maxWidth: 1200,
         margin: "0 auto",
-        padding: "60px 20px",
+        padding: "80px 20px",
       }}
     >
       {/* Section header */}

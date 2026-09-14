@@ -47,7 +47,7 @@ export default function Projects() {
             letterSpacing: "4px",
             textTransform: "uppercase",
             color: "var(--accent-purple)",
-            marginBottom: 12,
+            marginBottom: 16,
           }}
         >
           RECENT PROJECTS

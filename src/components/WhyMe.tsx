@@ -103,7 +103,7 @@ export default function WhyMe() {
               letterSpacing: "4px",
               textTransform: "uppercase",
               color: "var(--accent-purple)",
-              marginBottom: 20,
+              marginBottom: 16,
             }}
           >
             WHY ME

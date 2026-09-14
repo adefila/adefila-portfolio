@@ -21,7 +21,7 @@ const track = [...slides, ...slides];
 
 export default function Hero() {
   return (
-    <section id="hero" className="hero-section" style={{ paddingTop: 160, paddingBottom: 0, width: "100%", overflow: "hidden" }}>
+    <section id="hero" className="hero-section" style={{ paddingTop: 120, paddingBottom: 0, width: "100%", overflow: "hidden" }}>
       <style>{`
         @keyframes marquee {
           0%   { transform: translateX(0); }
@@ -109,7 +109,7 @@ export default function Hero() {
         {/* CTA buttons */}
         <motion.div
           {...fadeUp(0.5)}
-          style={{ display: "flex", gap: 12, flexWrap: "wrap", marginBottom: 64 }}
+          style={{ display: "flex", gap: 12, flexWrap: "wrap", marginBottom: 48 }}
         >
           <a
             href="#contact"
