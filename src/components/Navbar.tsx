@@ -12,7 +12,7 @@ const NAV_LINKS = [
   { label: "FAQ", href: "#faq" },
 ];
 
-const SECTION_IDS = ["hero", "work", "benefits", "about", "testimonials", "faq"];
+const SECTION_IDS = ["hero", "work", "benefits", "testimonials", "about", "faq"];
 
 export default function Navbar() {
   const [active, setActive] = useState("");

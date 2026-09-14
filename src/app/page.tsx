@@ -1,9 +1,10 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
-import WhyMe from "@/components/WhyMe";
+import SocialProof from "@/components/SocialProof";
 import Projects from "@/components/Projects";
-import About from "@/components/About";
+import WhyMe from "@/components/WhyMe";
 import Testimonials from "@/components/Testimonials";
+import About from "@/components/About";
 import FAQ from "@/components/FAQ";
 import Footer from "@/components/Footer";
 
@@ -19,10 +20,11 @@ export default function Home() {
     >
       <Navbar />
       <Hero />
-      <WhyMe />
+      <SocialProof />
       <Projects />
-      <About />
+      <WhyMe />
       <Testimonials />
+      <About />
       <FAQ />
       <Footer />
     </main>
