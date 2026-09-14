@@ -1,9 +1,30 @@
-﻿"use client";
+"use client";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { CalendarDays } from "lucide-react";
+import { useEffect, useState } from "react";
+
+const NAV_LINKS = [
+  { label: "Work", href: "#work" },
+  { label: "About", href: "#about" },
+  { label: "FAQ", href: "#faq" },
+];
 
 export default function Navbar() {
+  const [active, setActive] = useState("");
+
+  useEffect(() => {
+    const ids = ["work", "about", "testimonials", "faq"];
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => { if (e.isIntersecting) setActive(e.target.id); });
+      },
+      { rootMargin: "-40% 0px -55% 0px" }
+    );
+    ids.forEach((id) => { const el = document.getElementById(id); if (el) observer.observe(el); });
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <motion.nav
       initial={{ opacity: 0, y: -20 }}
@@ -49,6 +70,34 @@ export default function Navbar() {
           Samuel
         </Link>
 
+        {/* Nav links */}
+        <div style={{ display: "flex", gap: 2 }}>
+          {NAV_LINKS.map(({ label, href }) => {
+            const id = href.slice(1);
+            const isActive = active === id || (id === "work" && active === "testimonials");
+            return (
+              <a
+                key={href}
+                href={href}
+                style={{
+                  fontFamily: "var(--font-inter)",
+                  fontWeight: 500,
+                  fontSize: 13,
+                  color: isActive ? "var(--fg)" : "var(--fg-secondary)",
+                  textDecoration: "none",
+                  padding: "7px 14px",
+                  borderRadius: 100,
+                  background: isActive ? "rgba(0,0,0,0.06)" : "transparent",
+                  transition: "color 0.2s, background 0.2s",
+                  letterSpacing: "-0.2px",
+                }}
+              >
+                {label}
+              </a>
+            );
+          })}
+        </div>
+
         <a
           href="#contact"
           style={{
@@ -64,7 +113,9 @@ export default function Navbar() {
             display: "flex",
             alignItems: "center",
             gap: 8,
+            transition: "opacity 0.2s",
           }}
+          className="nav-cta"
         >
           SCHEDULE FREE CALL
           <CalendarDays size={14} strokeWidth={2} />
@@ -73,4 +124,3 @@ export default function Navbar() {
     </motion.nav>
   );
 }
-

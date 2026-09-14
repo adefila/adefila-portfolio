@@ -101,7 +101,7 @@ export default function Hero() {
             letterSpacing: "-0.7px",
             lineHeight: 1.6,
             color: "var(--fg-secondary)",
-            maxWidth: 900,
+            maxWidth: 560,
             marginBottom: 48,
           }}
         >

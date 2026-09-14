@@ -1,6 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
-import { ArrowUpRight, ArrowRight } from "lucide-react"; // ArrowUpRight used in portfolio/social links
+import { ArrowUpRight, ArrowRight } from "lucide-react";
 
 const portfolioLinks = [
   { label: "Dribbble", href: "https://dribbble.com" },
@@ -20,10 +20,13 @@ export default function Footer() {
     <footer style={{ width: "100%" }}>
       {/* GET STARTED CTA */}
       <div
+        className="footer-cta"
         style={{
           width: "100%",
           background: "var(--accent-purple)",
           padding: "72px 20px",
+          position: "relative",
+          overflow: "hidden",
         }}
       >
         <div
@@ -37,25 +40,8 @@ export default function Footer() {
             gap: 48,
           }}
         >
-          {/* Left: eyebrow + headline + subheading */}
+          {/* Left: headline + subheading */}
           <div style={{ flex: "1 1 480px", maxWidth: 600 }}>
-            <motion.p
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-              style={{
-                fontFamily: "var(--font-inter)",
-                fontWeight: 700,
-                fontSize: 11,
-                letterSpacing: "10px",
-                textTransform: "uppercase",
-                color: "rgba(255,255,255,0.6)",
-                marginBottom: 16,
-              }}
-            >
-              GET STARTED
-            </motion.p>
             <motion.h2
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -104,6 +90,7 @@ export default function Footer() {
           >
             <a
               href="#contact"
+              className="btn-cta"
               style={{
                 display: "inline-flex",
                 alignItems: "center",
@@ -119,6 +106,7 @@ export default function Footer() {
                 textDecoration: "none",
                 letterSpacing: "-0.2px",
                 whiteSpace: "nowrap",
+                transition: "opacity 0.2s, transform 0.2s",
               }}
             >
               BOOK A CALL <ArrowRight size={14} strokeWidth={2.5} />
