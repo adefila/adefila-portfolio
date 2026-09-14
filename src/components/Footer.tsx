@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 import { motion } from "framer-motion";
 import { ArrowUpRight, ArrowRight } from "lucide-react";
 
@@ -23,7 +23,7 @@ export default function Footer() {
         style={{
           width: "100%",
           background: "var(--accent-purple)",
-          padding: "80px 20px",
+          padding: "100px 20px",
         }}
       >
         <div
@@ -34,10 +34,11 @@ export default function Footer() {
             alignItems: "center",
             justifyContent: "space-between",
             flexWrap: "wrap",
-            gap: 40,
+            gap: 48,
           }}
         >
-          <div>
+          {/* Left: eyebrow + headline + subheading */}
+          <div style={{ flex: "1 1 480px", maxWidth: 600 }}>
             <motion.p
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -63,23 +64,43 @@ export default function Footer() {
               style={{
                 fontFamily: "var(--font-poppins)",
                 fontWeight: 700,
-                fontSize: "clamp(32px, 4vw, 60px)",
+                fontSize: "clamp(32px, 4vw, 56px)",
                 letterSpacing: "-1px",
-                lineHeight: 1,
+                lineHeight: 1.05,
                 textTransform: "uppercase",
                 color: "var(--white)",
+                marginBottom: 20,
+                maxWidth: 560,
               }}
             >
-              LET'S BUILD SOMETHING YOU'RE PROUD OF.
+              LET&apos;S BUILD SOMETHING YOU&apos;RE PROUD OF.
             </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.12 }}
+              style={{
+                fontFamily: "var(--font-inter)",
+                fontWeight: 400,
+                fontSize: 15,
+                letterSpacing: "-0.3px",
+                lineHeight: 1.65,
+                color: "rgba(255,255,255,0.7)",
+                maxWidth: 460,
+              }}
+            >
+              No back-and-forth, no bloated agencies, no wasted time. Tell me what you need and I&apos;ll tell you exactly how I&apos;ll get it done.
+            </motion.p>
           </div>
 
+          {/* Right: buttons */}
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.12 }}
-            style={{ display: "flex", gap: 12, flexWrap: "wrap" }}
+            transition={{ duration: 0.5, delay: 0.18 }}
+            style={{ display: "flex", flexDirection: "column", gap: 12, flexShrink: 0 }}
           >
             <a
               href="#contact"
@@ -96,6 +117,7 @@ export default function Footer() {
                 borderRadius: 100,
                 textDecoration: "none",
                 letterSpacing: "-0.2px",
+                whiteSpace: "nowrap",
               }}
             >
               BOOK A CALL <ArrowRight size={14} strokeWidth={2.5} />
@@ -116,6 +138,7 @@ export default function Footer() {
                 border: "1px solid rgba(255,255,255,0.4)",
                 textDecoration: "none",
                 letterSpacing: "-0.2px",
+                whiteSpace: "nowrap",
               }}
             >
               VIEW MORE WORKS <ArrowUpRight size={14} strokeWidth={2.5} />
@@ -124,11 +147,11 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* Footer bar */}
+      {/* Footer bar — deep purple */}
       <div
         style={{
           width: "100%",
-          background: "#0f0f0f",
+          background: "#1a0636",
           padding: "48px 20px",
         }}
       >
@@ -262,7 +285,7 @@ export default function Footer() {
               style={{
                 fontFamily: "var(--font-inter)",
                 fontSize: 12,
-                color: "rgba(255,255,255,0.35)",
+                color: "rgba(255,255,255,0.3)",
                 letterSpacing: "0.5px",
                 textTransform: "uppercase",
               }}
@@ -275,4 +298,3 @@ export default function Footer() {
     </footer>
   );
 }
-
