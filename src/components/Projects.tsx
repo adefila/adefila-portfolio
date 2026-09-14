@@ -131,7 +131,8 @@ export default function Projects() {
                       fontWeight: 400,
                       fontSize: 11,
                       color: "var(--fg-secondary)",
-                      letterSpacing: "0.2px",
+                      letterSpacing: "0.5px",
+                      textTransform: "uppercase",
                     }}
                   >
                     {project.meta} &nbsp;·&nbsp; {project.year}
