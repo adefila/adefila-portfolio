@@ -287,6 +287,16 @@ html {
     gap: 40px !important;
   }
 
+  /* Process steps: stack on mobile */
+  .process-step {
+    grid-template-columns: 48px 1fr !important;
+    gap: 0 24px !important;
+  }
+  .process-step > div:last-child {
+    grid-column: 2 !important;
+    margin-top: 16px !important;
+  }
+
   /* Footer CTA: reduce padding on mobile */
   .footer-cta {
     padding: 48px 20px !important;

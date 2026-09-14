@@ -64,7 +64,28 @@ export default function Hero() {
               color: "var(--accent-green)",
             }}
           >
-            Available for work
+            2 spots open
+          </span>
+          <span
+            style={{
+              width: 3,
+              height: 3,
+              borderRadius: "50%",
+              background: "var(--fg-muted)",
+              display: "inline-block",
+            }}
+          />
+          <span
+            style={{
+              fontFamily: "var(--font-inter)",
+              fontWeight: 500,
+              fontSize: 11,
+              letterSpacing: "0.06em",
+              textTransform: "uppercase",
+              color: "var(--fg-secondary)",
+            }}
+          >
+            Next start: Oct 2026
           </span>
         </motion.div>
 
