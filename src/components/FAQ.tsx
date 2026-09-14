@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import { motion, AnimatePresence, useInView } from "framer-motion";
 import { useState, useRef } from "react";
 
@@ -9,23 +9,23 @@ const faqs = [
   },
   {
     q: "WHAT TOOLS DO YOU BUILD WITH?",
-    a: "Framer, Shopify, Webflow, WordPress — I choose based on what's right for you, not what I'm most comfortable with. My job is to give you the best tool for the job, then build it well.",
+    a: "Framer, Shopify, Webflow, WordPress "” I choose based on what's right for you, not what I'm most comfortable with. My job is to give you the best tool for the job, then build it well.",
   },
   {
     q: "CAN YOU IMPROVE MY EXISTING WEBSITE?",
-    a: "Yes — and that's often the most impactful move. I look at what's working, fix what's not, and improve what could be better. Whether it's a redesign, a migration, or a targeted fix.",
+    a: "Yes "” and that's often the most impactful move. I look at what's working, fix what's not, and improve what could be better. Whether it's a redesign, a migration, or a targeted fix.",
   },
   {
     q: "HOW MUCH DOES IT COST?",
-    a: "Pricing is scoped to your project — no surprises, no retainers you don't need. Book a call and you'll leave with a clear number and exactly what's included.",
+    a: "Pricing is scoped to your project "” no surprises, no retainers you don't need. Book a call and you'll leave with a clear number and exactly what's included.",
   },
   {
     q: "HOW FAST IS DELIVERY?",
-    a: "Most projects are done in 7–14 days. Larger builds with multiple pages can run 2–3 weeks. You'll know the timeline before we start — and I stick to it.",
+    a: "Most projects are done in 7"“14 days. Larger builds with multiple pages can run 2"“3 weeks. You'll know the timeline before we start "” and I stick to it.",
   },
   {
     q: "DO YOU USE TEMPLATES?",
-    a: "Never. Everything starts from scratch. Your site is designed specifically for you, your audience, and what you're trying to accomplish — not pulled from a library.",
+    a: "Never. Everything starts from scratch. Your site is designed specifically for you, your audience, and what you're trying to accomplish "” not pulled from a library.",
   },
   {
     q: "WILL MY SITE BE EASY TO MANAGE?",
@@ -33,7 +33,7 @@ const faqs = [
   },
   {
     q: "HOW DO WE GET STARTED?",
-    a: "Book a free 30-minute call. We'll talk about your project, your goals, and what a good outcome looks like. No pressure — just an honest conversation.",
+    a: "Book a free 30-minute call. We'll talk about your project, your goals, and what a good outcome looks like. No pressure "” just an honest conversation.",
   },
 ];
 
@@ -65,7 +65,7 @@ export default function FAQ() {
             fontFamily: "var(--font-inter)",
             fontWeight: 700,
             fontSize: 11,
-            letterSpacing: "10px",
+            letterSpacing: "4px",
             textTransform: "uppercase",
             color: "var(--accent-purple)",
             marginBottom: 20,
@@ -81,7 +81,7 @@ export default function FAQ() {
             fontFamily: "var(--font-poppins)",
             fontWeight: 700,
             fontSize: "clamp(28px, 3.5vw, 52px)",
-            letterSpacing: "-2px",
+            letterSpacing: "-1px",
             lineHeight: 1.05,
             textTransform: "uppercase",
             color: "var(--fg)",
@@ -182,3 +182,5 @@ export default function FAQ() {
     </section>
   );
 }
+
+

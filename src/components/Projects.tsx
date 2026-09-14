@@ -1,16 +1,16 @@
-"use client";
+﻿"use client";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 
 const projects = [
-  { title: "The Initail — AI Website", meta: "Figma to Framer", year: "2025" },
-  { title: "HitPay — SaaS Website", meta: "Framer Development", year: "2024" },
+  { title: "The Initail "” AI Website", meta: "Figma to Framer", year: "2025" },
+  { title: "HitPay "” SaaS Website", meta: "Framer Development", year: "2024" },
   { title: "Everything AI", meta: "Figma to Framer", year: "2025" },
-  { title: "Clipmaster — Video Agency", meta: "Web Design", year: "2024" },
-  { title: "VPA London — Talent Website", meta: "Framer Development", year: "2025" },
+  { title: "Clipmaster "” Video Agency", meta: "Web Design", year: "2024" },
+  { title: "VPA London "” Talent Website", meta: "Framer Development", year: "2025" },
   { title: "Virvly", meta: "Framer Development", year: "2025" },
-  { title: "Jamal Muse — Personal Portfolio", meta: "Claude to Framer", year: "2025" },
-  { title: "Alyssa Corso — Personal Portfolio", meta: "Framer Development", year: "2026" },
+  { title: "Jamal Muse "” Personal Portfolio", meta: "Claude to Framer", year: "2025" },
+  { title: "Alyssa Corso "” Personal Portfolio", meta: "Framer Development", year: "2026" },
   { title: "Venera", meta: "Framer Development", year: "2026" },
 ];
 
@@ -61,7 +61,7 @@ function ProjectRow({ project, index }: { project: (typeof projects)[0]; index: 
           flexShrink: 0,
         }}
       >
-        {project.meta} &nbsp;•&nbsp; {project.year}
+        {project.meta} &nbsp;"¢&nbsp; {project.year}
       </p>
     </motion.div>
   );
@@ -92,7 +92,7 @@ export default function Projects() {
             fontFamily: "var(--font-inter)",
             fontWeight: 700,
             fontSize: 11,
-            letterSpacing: "10px",
+            letterSpacing: "4px",
             textTransform: "uppercase",
             color: "var(--accent-purple)",
             marginBottom: 12,
@@ -108,7 +108,7 @@ export default function Projects() {
             fontFamily: "var(--font-poppins)",
             fontWeight: 700,
             fontSize: "clamp(28px, 3.5vw, 48px)",
-            letterSpacing: "-2px",
+            letterSpacing: "-1px",
             lineHeight: 1,
             textTransform: "uppercase",
             color: "var(--fg)",
@@ -133,3 +133,5 @@ export default function Projects() {
     </section>
   );
 }
+
+

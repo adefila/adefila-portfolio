@@ -1,14 +1,14 @@
-"use client";
+﻿"use client";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 
 const techStacks = ["Figma", "Framer", "Webflow", "WordPress", "Shopify", "React"];
 
 const workHistory = [
-  { period: "2020–2021", role: "Wordpress Intern Web Developer", company: "Davis Enterprises" },
-  { period: "2024–2025", role: "UX/UI Designer", company: "Trust Tai Web Agency" },
-  { period: "2024–2025", role: "Framer Developer", company: "HitPay" },
-  { period: "Sep 2023–Sep 2025", role: "Lead Product Designer", company: "BookedEZ LLC" },
+  { period: "2020"“2021", role: "Wordpress Intern Web Developer", company: "Davis Enterprises" },
+  { period: "2024"“2025", role: "UX/UI Designer", company: "Trust Tai Web Agency" },
+  { period: "2024"“2025", role: "Framer Developer", company: "HitPay" },
+  { period: "Sep 2023"“Sep 2025", role: "Lead Product Designer", company: "BookedEZ LLC" },
 ];
 
 export default function About() {
@@ -35,9 +35,9 @@ export default function About() {
           fontFamily: "var(--font-inter)",
           fontWeight: 700,
           fontSize: 11,
-          letterSpacing: "10px",
+          letterSpacing: "4px",
           textTransform: "uppercase",
-          color: "var(--fg-secondary)",
+          color: "var(--accent-purple)",
           marginBottom: 16,
         }}
       >
@@ -55,7 +55,7 @@ export default function About() {
               fontFamily: "var(--font-poppins)",
               fontWeight: 700,
               fontSize: "clamp(28px, 3.5vw, 48px)",
-              letterSpacing: "-2px",
+              letterSpacing: "-1px",
               lineHeight: 1.05,
               textTransform: "uppercase",
               color: "var(--fg)",
@@ -232,3 +232,4 @@ export default function About() {
     </section>
   );
 }
+

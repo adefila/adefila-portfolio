@@ -67,7 +67,7 @@ export default function FeaturedProjects() {
                 fontFamily: "var(--font-poppins)",
                 fontWeight: 700,
                 fontSize: "clamp(28px, 3.5vw, 48px)",
-                letterSpacing: "-2px",
+                letterSpacing: "-1px",
                 lineHeight: 1,
                 textTransform: "uppercase",
                 color: "var(--fg)",
@@ -194,3 +194,4 @@ export default function FeaturedProjects() {
     </section>
   );
 }
+

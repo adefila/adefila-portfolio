@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import { motion } from "framer-motion";
 import { ArrowUpRight, ArrowRight } from "lucide-react";
 
@@ -64,7 +64,7 @@ export default function Footer() {
                 fontFamily: "var(--font-poppins)",
                 fontWeight: 700,
                 fontSize: "clamp(32px, 4vw, 60px)",
-                letterSpacing: "-2px",
+                letterSpacing: "-1px",
                 lineHeight: 1,
                 textTransform: "uppercase",
                 color: "var(--white)",
@@ -223,7 +223,7 @@ export default function Footer() {
                 textTransform: "uppercase",
               }}
             >
-              © ADEYEMI 2025. ALL RIGHTS RESERVED
+              Â© ADEYEMI 2025. ALL RIGHTS RESERVED
             </p>
           </div>
         </div>
@@ -231,3 +231,4 @@ export default function Footer() {
     </footer>
   );
 }
+

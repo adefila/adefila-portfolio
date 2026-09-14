@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { ArrowUpRight, ChevronsRight, Tag, CircleDot, TrendingUp } from "lucide-react";
@@ -7,7 +7,7 @@ const benefits = [
   {
     icon: ChevronsRight,
     title: "SPEED WITHOUT COMPROMISE",
-    desc: "Launched in 7–14 days without cutting corners. Your timeline is real — I treat it that way.",
+    desc: "Launched in 7"“14 days without cutting corners. Your timeline is real "” I treat it that way.",
   },
   {
     icon: Tag,
@@ -22,7 +22,7 @@ const benefits = [
   {
     icon: TrendingUp,
     title: "TOOLS THAT FIT THE JOB",
-    desc: "Framer, Shopify, Webflow — I choose what's right for your project, not what's easiest for me.",
+    desc: "Framer, Shopify, Webflow "” I choose what's right for your project, not what's easiest for me.",
   },
 ];
 
@@ -49,7 +49,7 @@ export default function Benefits() {
             fontFamily: "var(--font-inter)",
             fontWeight: 700,
             fontSize: 11,
-            letterSpacing: "10px",
+            letterSpacing: "4px",
             textTransform: "uppercase",
             color: "var(--accent-purple)",
             marginBottom: 20,
@@ -65,7 +65,7 @@ export default function Benefits() {
             fontFamily: "var(--font-poppins)",
             fontWeight: 700,
             fontSize: "clamp(28px, 3.5vw, 48px)",
-            letterSpacing: "-2px",
+            letterSpacing: "-1px",
             lineHeight: 1.05,
             textTransform: "uppercase",
             color: "var(--fg)",
@@ -201,7 +201,7 @@ export default function Benefits() {
                   fontSize: 14,
                 }}
               >
-                👑
+                ðŸ‘‘
               </div>
               <span
                 style={{
@@ -227,7 +227,7 @@ export default function Benefits() {
                   fontSize: 14,
                 }}
               >
-                ⭐
+                ⭐
               </div>
               <span
                 style={{
@@ -310,3 +310,5 @@ export default function Benefits() {
     </section>
   );
 }
+
+

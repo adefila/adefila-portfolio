@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
 import { CalendarDays, Mail, ArrowRight } from "lucide-react";
@@ -53,7 +53,7 @@ export default function Contact() {
                 fontFamily: "var(--font-poppins)",
                 fontWeight: 700,
                 fontSize: "clamp(32px, 4vw, 56px)",
-                letterSpacing: "-2px",
+                letterSpacing: "-1px",
                 lineHeight: 1,
                 textTransform: "uppercase",
                 color: "var(--fg)",
@@ -109,7 +109,7 @@ export default function Contact() {
                 }}
               >
                 <CalendarDays size={16} strokeWidth={2} />
-                BOOK A CALL — 30 MINS, NO COMMITMENT
+                BOOK A CALL â€” 30 MINS, NO COMMITMENT
               </a>
               <a
                 href="mailto:adefilasamuel929@gmail.com"
@@ -270,3 +270,4 @@ export default function Contact() {
     </section>
   );
 }
+

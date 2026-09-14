@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { ArrowRight } from "lucide-react";
@@ -196,7 +196,7 @@ export default function Playground() {
             fontFamily: "var(--font-poppins)",
             fontWeight: 700,
             fontSize: "clamp(28px, 4vw, 64px)",
-            letterSpacing: "-2px",
+            letterSpacing: "-1px",
             lineHeight: 1,
             textTransform: "uppercase",
             marginBottom: 40,
@@ -232,3 +232,4 @@ export default function Playground() {
     </section>
   );
 }
+

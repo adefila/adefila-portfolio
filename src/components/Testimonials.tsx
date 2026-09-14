@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
@@ -71,7 +71,7 @@ export default function Testimonials() {
                 fontFamily: "var(--font-inter)",
                 fontWeight: 700,
                 fontSize: 11,
-                letterSpacing: "10px",
+                letterSpacing: "4px",
                 textTransform: "uppercase",
                 color: "var(--accent-purple)",
                 marginBottom: 16,
@@ -87,7 +87,7 @@ export default function Testimonials() {
                 fontFamily: "var(--font-poppins)",
                 fontWeight: 700,
                 fontSize: "clamp(28px, 3.5vw, 48px)",
-                letterSpacing: "-2px",
+                letterSpacing: "-1px",
                 lineHeight: 1.05,
                 textTransform: "uppercase",
                 color: "var(--fg)",
@@ -251,3 +251,5 @@ export default function Testimonials() {
     </section>
   );
 }
+
+

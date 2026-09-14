@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 
@@ -80,3 +80,4 @@ export default function Stats() {
     </section>
   );
 }
+
