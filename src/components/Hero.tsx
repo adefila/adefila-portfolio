@@ -153,8 +153,8 @@ export default function Hero() {
               className="marquee-card"
             style={{
                 flexShrink: 0,
-                width: 420,
-                height: 340,
+                width: 560,
+                height: 420,
                 background: slide.img ? "transparent" : "rgba(0,0,0,0.05)",
                 border: "1px solid rgba(0,0,0,0.07)",
                 borderRadius: 12,

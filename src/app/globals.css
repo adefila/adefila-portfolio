@@ -84,6 +84,10 @@ html {
 
 /* Tablet 769–1024 */
 @media (max-width: 1024px) and (min-width: 769px) {
+  .marquee-card {
+    width: 420px !important;
+    height: 340px !important;
+  }
   .services-grid {
     grid-template-columns: repeat(2, 1fr) !important;
   }
