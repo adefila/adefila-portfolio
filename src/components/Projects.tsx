@@ -5,17 +5,17 @@ import { useRef } from "react";
 
 const projects = [
   { title: "The Prime Media", meta: "Figma to Framer Development", year: "2025", href: "https://theprimemedia.ca/" },
-  { title: "The Initial — AI Website", meta: "Figma to Framer", year: "2025" },
-  { title: "HitPay — SaaS Website", meta: "Framer Development", year: "2024" },
-  { title: "BindHQ", meta: "Framer Template Customization", year: "2026" },
-  { title: "Clipmaster — Video Agency", meta: "Web Design", year: "2024" },
-  { title: "VPA London — Talent Website", meta: "Framer Development", year: "2025" },
-  { title: "Virvly", meta: "Framer Development", year: "2025" },
-  { title: "Jamal Muse — Personal Portfolio", meta: "Claude to Framer", year: "2025" },
-  { title: "Alyssa Corso — Personal Portfolio", meta: "Framer Development", year: "2026" },
+  { title: "The Initial — AI Website", meta: "Figma to Framer", year: "2025", href: "https://the-initial.com/" },
+  { title: "HitPay — SaaS Website", meta: "Framer Development", year: "2024", href: "https://hitpayapp.com/" },
+  { title: "BindHQ", meta: "Framer Template Customization", year: "2026", href: "https://www.bindhq.com/" },
+  { title: "Clipmaster — Video Agency", meta: "Web Design", year: "2024", href: "https://clipmasters.io/" },
+  { title: "VPA London — Talent Website", meta: "Framer Development", year: "2025", href: "https://www.vpalondon.co.uk/" },
+  { title: "Virvly", meta: "Framer Development", year: "2025", href: "https://virvly.com/" },
+  { title: "Jamal Muse — Personal Portfolio", meta: "Claude to Framer", year: "2025", href: "https://www.jamalmuse.com/" },
+  { title: "Alyssa Corso — Personal Portfolio", meta: "Framer Development", year: "2026", href: "https://alyssacorso.com/" },
   { title: "Venera", meta: "Framer Development", year: "2026" },
-  { title: "Emalbu", meta: "HTML to Framer Development", year: "2026" },
-  { title: "Upside ESG", meta: "SaaS Framer Development and Integrations", year: "2026" },
+  { title: "Emalbu", meta: "HTML to Framer Development", year: "2026", href: "https://emalbu.com/" },
+  { title: "Upside ESG", meta: "SaaS Framer Development and Integrations", year: "2026", href: "https://upside-esg.com/" },
 ];
 
 const COLS = 3;
