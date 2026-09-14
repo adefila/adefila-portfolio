@@ -1,19 +1,63 @@
 "use client";
 import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
-const techStacks = ["Figma", "Framer", "Webflow", "WordPress", "Shopify", "React"];
+const techStacks = ["Figma", "Framer", "Webflow", "WordPress", "Shopify", "React", "Claude"];
 
 const workHistory = [
   { period: "2020–2021", role: "Wordpress Intern Web Developer", company: "Davis Enterprises" },
   { period: "2024–2025", role: "UX/UI Designer", company: "Trust Tai Web Agency" },
   { period: "2024–2025", role: "Framer Developer", company: "HitPay" },
   { period: "Sep 2023–Sep 2025", role: "Lead Product Designer", company: "BookedEZ LLC" },
+  { period: "2025–2026", role: "Framer Developer — Remote", company: "Klimt & Design" },
 ];
+
+// Placeholder photos — replace src values with real image paths when ready
+const photos = [
+  { id: 1, label: "Photo 1" },
+  { id: 2, label: "Photo 2" },
+  { id: 3, label: "Photo 3" },
+  { id: 4, label: "Photo 4" },
+  { id: 5, label: "Photo 5" },
+];
+
+function TechTag({ label }: { label: string }) {
+  const [hovered, setHovered] = useState(false);
+  return (
+    <span
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      style={{
+        fontFamily: "var(--font-inter)",
+        fontWeight: 500,
+        fontSize: 11,
+        letterSpacing: "0.5px",
+        textTransform: "uppercase",
+        color: hovered ? "#fff" : "var(--fg)",
+        background: hovered ? "#1d9bf0" : "var(--white)",
+        border: `1px solid ${hovered ? "#1d9bf0" : "rgba(0,0,0,0.12)"}`,
+        padding: "8px 16px",
+        borderRadius: 100,
+        cursor: "default",
+        transition: "all 0.18s ease",
+        userSelect: "none",
+      }}
+    >
+      {label}
+    </span>
+  );
+}
 
 export default function About() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-10%" });
+  const [photoIndex, setPhotoIndex] = useState(0);
+  const visibleCount = 3;
+  const maxIndex = photos.length - visibleCount;
+
+  const prev = () => setPhotoIndex((p) => Math.max(0, p - 1));
+  const next = () => setPhotoIndex((p) => Math.min(maxIndex, p + 1));
 
   return (
     <section
@@ -124,21 +168,7 @@ export default function About() {
             </p>
             <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
               {techStacks.map((tech) => (
-                <span
-                  key={tech}
-                  style={{
-                    fontFamily: "var(--font-inter)",
-                    fontWeight: 500,
-                    fontSize: 12,
-                    letterSpacing: "-0.4px",
-                    color: "var(--white)",
-                    background: "var(--fg)",
-                    padding: "8px 16px",
-                    borderRadius: 100,
-                  }}
-                >
-                  {tech}
-                </span>
+                <TechTag key={tech} label={tech} />
               ))}
             </div>
           </motion.div>
@@ -211,25 +241,143 @@ export default function About() {
               </div>
             ))}
           </div>
-          <button
-            style={{
-              marginTop: 16,
-              fontFamily: "var(--font-inter)",
-              fontWeight: 500,
-              fontSize: 13,
-              color: "var(--fg-secondary)",
-              background: "none",
-              border: "none",
-              cursor: "pointer",
-              padding: 0,
-              letterSpacing: "-0.2px",
-            }}
-          >
-            Show all
-          </button>
         </motion.div>
       </div>
+
+      {/* Photo carousel */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={inView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.5, delay: 0.35 }}
+        style={{ marginTop: 64 }}
+      >
+        {/* Carousel header */}
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            marginBottom: 20,
+          }}
+        >
+          <p
+            style={{
+              fontFamily: "var(--font-inter)",
+              fontWeight: 700,
+              fontSize: 11,
+              letterSpacing: "4px",
+              textTransform: "uppercase",
+              color: "var(--accent-purple)",
+            }}
+          >
+            PHOTO LIBRARY
+          </p>
+          <div style={{ display: "flex", gap: 8 }}>
+            <button
+              onClick={prev}
+              disabled={photoIndex === 0}
+              style={{
+                width: 36,
+                height: 36,
+                borderRadius: "50%",
+                border: "1px solid rgba(0,0,0,0.12)",
+                background: photoIndex === 0 ? "rgba(0,0,0,0.03)" : "var(--white)",
+                cursor: photoIndex === 0 ? "not-allowed" : "pointer",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                opacity: photoIndex === 0 ? 0.4 : 1,
+                transition: "opacity 0.2s",
+              }}
+            >
+              <ChevronLeft size={16} strokeWidth={2} />
+            </button>
+            <button
+              onClick={next}
+              disabled={photoIndex >= maxIndex}
+              style={{
+                width: 36,
+                height: 36,
+                borderRadius: "50%",
+                border: "1px solid rgba(0,0,0,0.12)",
+                background: photoIndex >= maxIndex ? "rgba(0,0,0,0.03)" : "var(--white)",
+                cursor: photoIndex >= maxIndex ? "not-allowed" : "pointer",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                opacity: photoIndex >= maxIndex ? 0.4 : 1,
+                transition: "opacity 0.2s",
+              }}
+            >
+              <ChevronRight size={16} strokeWidth={2} />
+            </button>
+          </div>
+        </div>
+
+        {/* Carousel track */}
+        <div style={{ overflow: "hidden" }}>
+          <motion.div
+            animate={{ x: `calc(-${photoIndex} * (33.333% + 12px))` }}
+            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+            style={{
+              display: "flex",
+              gap: 12,
+            }}
+          >
+            {photos.map((photo) => (
+              <div
+                key={photo.id}
+                style={{
+                  flexShrink: 0,
+                  width: "calc(33.333% - 8px)",
+                  aspectRatio: "4/3",
+                  borderRadius: 12,
+                  background: "rgba(0,0,0,0.06)",
+                  border: "1px solid rgba(0,0,0,0.07)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  overflow: "hidden",
+                  cursor: "pointer",
+                }}
+              >
+                {/* Replace this div with <img src="..." /> when photos are ready */}
+                <p
+                  style={{
+                    fontFamily: "var(--font-inter)",
+                    fontSize: 12,
+                    color: "var(--fg-muted)",
+                    letterSpacing: "1px",
+                    textTransform: "uppercase",
+                  }}
+                >
+                  {photo.label}
+                </p>
+              </div>
+            ))}
+          </motion.div>
+        </div>
+
+        {/* Dot indicators */}
+        <div style={{ display: "flex", gap: 6, justifyContent: "center", marginTop: 16 }}>
+          {Array.from({ length: maxIndex + 1 }).map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setPhotoIndex(i)}
+              style={{
+                width: photoIndex === i ? 20 : 6,
+                height: 6,
+                borderRadius: 100,
+                background: photoIndex === i ? "var(--fg)" : "rgba(0,0,0,0.15)",
+                border: "none",
+                cursor: "pointer",
+                padding: 0,
+                transition: "all 0.25s ease",
+              }}
+            />
+          ))}
+        </div>
+      </motion.div>
     </section>
   );
 }
-
