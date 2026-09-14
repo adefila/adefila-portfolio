@@ -107,6 +107,11 @@ html {
   .project-row:hover .project-num {
     color: var(--accent-purple) !important;
   }
+  .project-link-icon:hover {
+    background: var(--accent-purple) !important;
+    border-color: var(--accent-purple) !important;
+    color: #fff !important;
+  }
 }
 
 /* CTA Book button hover */

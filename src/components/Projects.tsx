@@ -1,8 +1,10 @@
 "use client";
 import { motion, useInView } from "framer-motion";
+import { ArrowUpRight } from "lucide-react";
 import { useRef } from "react";
 
 const projects = [
+  { title: "The Prime Media", meta: "Figma to Framer Development", year: "2025", href: "https://theprimemedia.ca/" },
   { title: "The Initial — AI Website", meta: "Figma to Framer", year: "2025" },
   { title: "HitPay — SaaS Website", meta: "Framer Development", year: "2024" },
   { title: "BindHQ", meta: "Framer Template Customization", year: "2026" },
@@ -117,21 +119,46 @@ export default function Projects() {
                 >
                   {i + 1}
                 </span>
-                <div style={{ minWidth: 0 }}>
-                  <h3
-                    style={{
-                      fontFamily: "var(--font-poppins)",
-                      fontWeight: 600,
-                      fontSize: "clamp(12px, 1.1vw, 15px)",
-                      letterSpacing: "-0.3px",
-                      textTransform: "uppercase",
-                      color: "var(--fg)",
-                      lineHeight: 1.3,
-                      marginBottom: 4,
-                    }}
-                  >
-                    {project.title}
-                  </h3>
+                <div style={{ minWidth: 0, flex: 1 }}>
+                  <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8, marginBottom: 4 }}>
+                    <h3
+                      style={{
+                        fontFamily: "var(--font-poppins)",
+                        fontWeight: 600,
+                        fontSize: "clamp(12px, 1.1vw, 15px)",
+                        letterSpacing: "-0.3px",
+                        textTransform: "uppercase",
+                        color: "var(--fg)",
+                        lineHeight: 1.3,
+                      }}
+                    >
+                      {project.title}
+                    </h3>
+                    {project.href && (
+                      <a
+                        href={project.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="project-link-icon"
+                        onClick={(e) => e.stopPropagation()}
+                        style={{
+                          display: "inline-flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          width: 26,
+                          height: 26,
+                          borderRadius: "50%",
+                          border: "1px solid rgba(0,0,0,0.1)",
+                          color: "var(--fg-secondary)",
+                          flexShrink: 0,
+                          transition: "background 0.2s, color 0.2s, border-color 0.2s",
+                          textDecoration: "none",
+                        }}
+                      >
+                        <ArrowUpRight size={13} strokeWidth={2} />
+                      </a>
+                    )}
+                  </div>
                   <p
                     style={{
                       fontFamily: "var(--font-inter)",
