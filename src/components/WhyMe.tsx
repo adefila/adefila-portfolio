@@ -253,11 +253,11 @@ export default function WhyMe() {
 
       {/* Services numbered list */}
       <div
-        className="services-grid"
+        className="services-grid whyme-services"
         style={{
           borderTop: "1px solid rgba(0,0,0,0.08)",
           display: "grid",
-          gridTemplateColumns: "repeat(3, 1fr)",
+          gridTemplateColumns: "repeat(2, 1fr)",
           marginBottom: 64,
         }}
       >
@@ -273,8 +273,8 @@ export default function WhyMe() {
               gap: 20,
               padding: "28px 0",
               borderBottom: "1px solid rgba(0,0,0,0.08)",
-              borderRight: (i + 1) % 3 !== 0 ? "1px solid rgba(0,0,0,0.08)" : "none",
-              paddingLeft: i % 3 !== 0 ? 28 : 0,
+              borderRight: (i + 1) % 2 !== 0 ? "1px solid rgba(0,0,0,0.08)" : "none",
+              paddingLeft: i % 2 !== 0 ? 28 : 0,
             }}
           >
             <span

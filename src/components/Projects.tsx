@@ -91,6 +91,7 @@ export default function Projects() {
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.4, delay: 0.1 + i * 0.04, ease: EASE }}
               className="project-row"
+              onClick={() => project.href && window.open(project.href, "_blank", "noopener,noreferrer")}
               style={{
                 display: "flex",
                 alignItems: "flex-start",
@@ -102,6 +103,7 @@ export default function Projects() {
                 borderBottom: isLastRow ? "none" : "1px solid rgba(0,0,0,0.08)",
                 borderRight: col !== COLS - 1 ? "1px solid rgba(0,0,0,0.08)" : "none",
                 transition: "background 0.2s",
+                cursor: project.href ? "pointer" : "default",
               }}
             >
               <div style={{ display: "flex", alignItems: "flex-start", gap: 16, flex: 1, minWidth: 0 }}>

@@ -156,14 +156,6 @@ html {
     width: 460px !important;
     height: 290px !important;
   }
-  .services-grid {
-    grid-template-columns: repeat(2, 1fr) !important;
-  }
-  .services-grid > * {
-    border-right: none !important;
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-  }
   .projects-grid {
     grid-template-columns: repeat(2, 1fr) !important;
   }
@@ -179,14 +171,35 @@ html {
 
 /* Mobile ≤ 768px */
 @media (max-width: 768px) {
-  /* Services 3-col → 1-col */
-  .services-grid {
-    grid-template-columns: 1fr !important;
-  }
+  /* Services stays 2-col on mobile (items are short labels) */
   .services-grid > * {
-    border-right: none !important;
     padding-left: 0 !important;
     padding-right: 0 !important;
+  }
+
+  /* Tighten section vertical padding on mobile */
+  .whyme-services {
+    margin-bottom: 0 !important;
+  }
+  #benefits {
+    padding-top: 48px !important;
+    padding-bottom: 40px !important;
+  }
+  #testimonials {
+    padding-top: 40px !important;
+    padding-bottom: 40px !important;
+  }
+  #work {
+    padding-top: 48px !important;
+    padding-bottom: 40px !important;
+  }
+  #about {
+    padding-top: 40px !important;
+    padding-bottom: 40px !important;
+  }
+  #faq {
+    padding-top: 40px !important;
+    padding-bottom: 40px !important;
   }
 
   /* Benefits 2-col → 1-col */
