@@ -1,7 +1,7 @@
 "use client";
-import { motion, useInView } from "framer-motion";
-import { useRef, useState } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { motion, useInView, AnimatePresence } from "framer-motion";
+import { useRef, useState, useEffect } from "react";
+import { ChevronLeft, ChevronRight, X } from "lucide-react";
 
 const techStacks = ["Figma", "Framer", "Webflow", "WordPress", "Shopify", "React", "Claude"];
 
@@ -52,11 +52,35 @@ export default function About() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-10%" });
   const [photoIndex, setPhotoIndex] = useState(0);
+  const [lightbox, setLightbox] = useState<number | null>(null);
   const visibleCount = 3;
   const maxIndex = photos.length - visibleCount;
 
   const prev = () => setPhotoIndex((p) => Math.max(0, p - 1));
   const next = () => setPhotoIndex((p) => Math.min(maxIndex, p + 1));
+
+  const lbPrev = () => setLightbox((p) => (p !== null ? (p - 1 + photos.length) % photos.length : 0));
+  const lbNext = () => setLightbox((p) => (p !== null ? (p + 1) % photos.length : 0));
+
+  // Auto-scroll every 3s
+  useEffect(() => {
+    const id = setInterval(() => {
+      setPhotoIndex((p) => (p >= maxIndex ? 0 : p + 1));
+    }, 3000);
+    return () => clearInterval(id);
+  }, [maxIndex]);
+
+  // Keyboard navigation for lightbox
+  useEffect(() => {
+    if (lightbox === null) return;
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === "ArrowLeft") lbPrev();
+      if (e.key === "ArrowRight") lbNext();
+      if (e.key === "Escape") setLightbox(null);
+    };
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
+  });
 
   return (
     <section
@@ -317,24 +341,22 @@ export default function About() {
         <div style={{ overflow: "hidden" }}>
           <motion.div
             animate={{ x: `calc(-${photoIndex} * (33.333% + 12px))` }}
-            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-            style={{
-              display: "flex",
-              gap: 12,
-            }}
+            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+            style={{ display: "flex", gap: 12 }}
           >
-            {photos.map((photo) => (
+            {photos.map((photo, i) => (
               <div
                 key={photo.id}
+                onClick={() => setLightbox(i)}
                 style={{
                   flexShrink: 0,
                   width: "calc(33.333% - 8px)",
-                  aspectRatio: "4/3",
+                  height: 360,
                   borderRadius: 12,
                   background: "rgba(0,0,0,0.06)",
                   border: "1px solid rgba(0,0,0,0.07)",
                   overflow: "hidden",
-                  cursor: "pointer",
+                  cursor: "zoom-in",
                 }}
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -368,6 +390,131 @@ export default function About() {
           ))}
         </div>
       </motion.div>
+
+      {/* Lightbox */}
+      <AnimatePresence>
+        {lightbox !== null && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            onClick={() => setLightbox(null)}
+            style={{
+              position: "fixed",
+              inset: 0,
+              background: "rgba(0,0,0,0.92)",
+              zIndex: 1000,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            {/* Close */}
+            <button
+              onClick={() => setLightbox(null)}
+              style={{
+                position: "absolute",
+                top: 20,
+                right: 20,
+                width: 40,
+                height: 40,
+                borderRadius: "50%",
+                background: "rgba(255,255,255,0.12)",
+                border: "none",
+                cursor: "pointer",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                color: "#fff",
+              }}
+            >
+              <X size={18} />
+            </button>
+
+            {/* Prev */}
+            <button
+              onClick={(e) => { e.stopPropagation(); lbPrev(); }}
+              style={{
+                position: "absolute",
+                left: 20,
+                width: 44,
+                height: 44,
+                borderRadius: "50%",
+                background: "rgba(255,255,255,0.12)",
+                border: "none",
+                cursor: "pointer",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                color: "#fff",
+              }}
+            >
+              <ChevronLeft size={22} />
+            </button>
+
+            {/* Image */}
+            <motion.div
+              key={lightbox}
+              initial={{ opacity: 0, scale: 0.96 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.96 }}
+              transition={{ duration: 0.25 }}
+              onClick={(e) => e.stopPropagation()}
+              style={{
+                maxWidth: "80vw",
+                maxHeight: "85vh",
+                borderRadius: 12,
+                overflow: "hidden",
+              }}
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={photos[lightbox].src}
+                alt={`Gallery photo ${lightbox + 1}`}
+                style={{ maxWidth: "80vw", maxHeight: "85vh", objectFit: "contain", display: "block" }}
+              />
+            </motion.div>
+
+            {/* Next */}
+            <button
+              onClick={(e) => { e.stopPropagation(); lbNext(); }}
+              style={{
+                position: "absolute",
+                right: 20,
+                width: 44,
+                height: 44,
+                borderRadius: "50%",
+                background: "rgba(255,255,255,0.12)",
+                border: "none",
+                cursor: "pointer",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                color: "#fff",
+              }}
+            >
+              <ChevronRight size={22} />
+            </button>
+
+            {/* Counter */}
+            <p
+              style={{
+                position: "absolute",
+                bottom: 20,
+                left: "50%",
+                transform: "translateX(-50%)",
+                fontFamily: "var(--font-inter)",
+                fontSize: 12,
+                color: "rgba(255,255,255,0.5)",
+                letterSpacing: "1px",
+              }}
+            >
+              {lightbox + 1} / {photos.length}
+            </p>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }
