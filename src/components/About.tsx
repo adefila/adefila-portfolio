@@ -88,7 +88,7 @@ export default function About() {
   useEffect(() => {
     const id = setInterval(() => {
       setPhotoIndex((p) => (p >= maxIndex ? 0 : p + 1));
-    }, 3000);
+    }, 4500);
     return () => clearInterval(id);
   }, [maxIndex]);
 
@@ -363,8 +363,13 @@ export default function About() {
         <div ref={carouselRef} style={{ overflow: "hidden" }}>
           <motion.div
             animate={{ x: slideWidth > 0 ? -(photoIndex * (slideWidth + CAROUSEL_GAP)) : 0 }}
-            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
-            style={{ display: "flex", gap: CAROUSEL_GAP }}
+            transition={{
+              type: "spring",
+              stiffness: 280,
+              damping: 36,
+              mass: 0.9,
+            }}
+            style={{ display: "flex", gap: CAROUSEL_GAP, willChange: "transform" }}
           >
             {photos.map((photo, i) => (
               <div
@@ -406,7 +411,7 @@ export default function About() {
                 border: "none",
                 cursor: "pointer",
                 padding: 0,
-                transition: "all 0.25s ease",
+                transition: "width 0.4s cubic-bezier(0.16,1,0.3,1), background 0.3s ease",
               }}
             />
           ))}
