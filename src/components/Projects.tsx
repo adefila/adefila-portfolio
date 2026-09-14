@@ -5,7 +5,7 @@ import { useRef } from "react";
 const projects = [
   { title: "The Initial — AI Website", meta: "Figma to Framer", year: "2025" },
   { title: "HitPay — SaaS Website", meta: "Framer Development", year: "2024" },
-  { title: "Everything AI", meta: "Figma to Framer", year: "2025" },
+  { title: "BindHQ", meta: "Framer Template Customization", year: "2026" },
   { title: "Clipmaster — Video Agency", meta: "Web Design", year: "2024" },
   { title: "VPA London — Talent Website", meta: "Framer Development", year: "2025" },
   { title: "Virvly", meta: "Framer Development", year: "2025" },
