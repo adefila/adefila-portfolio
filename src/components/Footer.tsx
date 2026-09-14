@@ -1,6 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
-import { ArrowUpRight, ArrowRight } from "lucide-react";
+import { ArrowUpRight, ArrowRight } from "lucide-react"; // ArrowUpRight used in portfolio/social links
 
 const portfolioLinks = [
   { label: "Dribbble", href: "https://dribbble.com" },
@@ -23,7 +23,7 @@ export default function Footer() {
         style={{
           width: "100%",
           background: "var(--accent-purple)",
-          padding: "100px 20px",
+          padding: "72px 20px",
         }}
       >
         <div
@@ -122,28 +122,6 @@ export default function Footer() {
               }}
             >
               BOOK A CALL <ArrowRight size={14} strokeWidth={2.5} />
-            </a>
-            <a
-              href="#work"
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                justifyContent: "center",
-                gap: 8,
-                fontFamily: "var(--font-inter)",
-                fontWeight: 600,
-                fontSize: 14,
-                color: "var(--white)",
-                background: "transparent",
-                padding: "14px 28px",
-                borderRadius: 100,
-                border: "1px solid rgba(255,255,255,0.4)",
-                textDecoration: "none",
-                letterSpacing: "-0.2px",
-                whiteSpace: "nowrap",
-              }}
-            >
-              VIEW MORE WORKS <ArrowUpRight size={14} strokeWidth={2.5} />
             </a>
           </motion.div>
         </div>
