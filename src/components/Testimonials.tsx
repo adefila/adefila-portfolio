@@ -91,7 +91,7 @@ export default function Testimonials() {
                 lineHeight: 1.05,
                 textTransform: "uppercase",
                 color: "var(--fg)",
-                maxWidth: 580,
+                whiteSpace: "nowrap",
               }}
             >
               DON'T TAKE MY WORD FOR IT.
@@ -190,8 +190,8 @@ export default function Testimonials() {
                 transition={{ duration: 0.4, delay: i * 0.08 }}
                 style={{
                   background: "var(--white)",
-                  border: "1px solid rgba(109,40,217,0.15)",
-                  borderLeft: i === 0 ? "none" : "1px solid rgba(109,40,217,0.15)",
+                  border: "1px solid rgba(0,0,0,0.07)",
+                  borderLeft: i === 0 ? "none" : "1px solid rgba(0,0,0,0.07)",
                   borderRadius: 0,
                   padding: 28,
                   minHeight: 400,
