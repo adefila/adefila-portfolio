@@ -1,6 +1,7 @@
 "use client";
 import { motion, AnimatePresence, useInView } from "framer-motion";
 import { useState, useRef } from "react";
+import { Mail } from "lucide-react";
 
 const faqs = [
   {
@@ -36,6 +37,105 @@ const faqs = [
     a: "Book a free 30-minute call. We'll talk about your project, your goals, and what a good outcome looks like. No pressure — just an honest conversation.",
   },
 ];
+
+const left = faqs.slice(0, 4);
+const right = faqs.slice(4);
+
+function AccordionItem({
+  faq,
+  index,
+  globalIndex,
+  openIndex,
+  toggle,
+  inView,
+}: {
+  faq: { q: string; a: string };
+  index: number;
+  globalIndex: number;
+  openIndex: number | null;
+  toggle: (i: number) => void;
+  inView: boolean;
+}) {
+  const isOpen = openIndex === globalIndex;
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 12 }}
+      animate={inView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.4, delay: 0.05 + index * 0.06 }}
+      style={{
+        borderBottom: "1px solid rgba(0,0,0,0.07)",
+      }}
+    >
+      <button
+        onClick={() => toggle(globalIndex)}
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          width: "100%",
+          padding: "22px 0",
+          background: "none",
+          border: "none",
+          cursor: "pointer",
+          gap: 24,
+          textAlign: "left",
+        }}
+      >
+        <span
+          style={{
+            fontFamily: "var(--font-inter)",
+            fontWeight: 600,
+            fontSize: 13,
+            letterSpacing: "0.3px",
+            color: "var(--fg)",
+            textTransform: "uppercase",
+          }}
+        >
+          {faq.q}
+        </span>
+        <motion.span
+          animate={{ rotate: isOpen ? 45 : 0 }}
+          transition={{ duration: 0.2 }}
+          style={{
+            fontSize: 22,
+            color: "var(--fg)",
+            flexShrink: 0,
+            lineHeight: 1,
+            display: "inline-block",
+          }}
+        >
+          +
+        </motion.span>
+      </button>
+
+      <AnimatePresence initial={false}>
+        {isOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
+            style={{ overflow: "hidden" }}
+          >
+            <p
+              style={{
+                fontFamily: "var(--font-inter)",
+                fontWeight: 400,
+                fontSize: 14,
+                letterSpacing: "-0.2px",
+                lineHeight: 1.7,
+                color: "var(--fg-secondary)",
+                paddingBottom: 20,
+              }}
+            >
+              {faq.a}
+            </p>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.div>
+  );
+}
 
 export default function FAQ() {
   const ref = useRef(null);
@@ -85,102 +185,83 @@ export default function FAQ() {
             lineHeight: 1.05,
             textTransform: "uppercase",
             color: "var(--fg)",
+            marginBottom: 20,
           }}
         >
           STILL DECIDING?
           <br />
           LET ME CLEAR THAT UP.
         </motion.h2>
+        <motion.p
+          initial={{ opacity: 0, y: 10 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5, delay: 0.14 }}
+          style={{
+            fontFamily: "var(--font-inter)",
+            fontWeight: 400,
+            fontSize: 15,
+            letterSpacing: "-0.3px",
+            lineHeight: 1.6,
+            color: "var(--fg-secondary)",
+          }}
+        >
+          Can&apos;t find what you&apos;re looking for? Just reach out directly —{" "}
+          <a
+            href="mailto:adefilasamuel929@gmail.com"
+            style={{
+              color: "var(--accent-purple)",
+              fontWeight: 500,
+              textDecoration: "none",
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 4,
+            }}
+          >
+            <Mail size={14} strokeWidth={1.5} />
+            adefilasamuel929@gmail.com
+          </a>
+        </motion.p>
       </div>
 
-      {/* Full-width accordion */}
-      <div style={{ maxWidth: 780, margin: "0 auto" }}>
-        {faqs.map((faq, i) => {
-          const isOpen = openIndex === i;
-          return (
-            <motion.div
+      {/* Two-column accordion */}
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "1fr 1fr",
+          gap: "0 64px",
+          alignItems: "start",
+        }}
+      >
+        {/* Left column */}
+        <div style={{ borderTop: "1px solid rgba(0,0,0,0.07)" }}>
+          {left.map((faq, i) => (
+            <AccordionItem
               key={i}
-              initial={{ opacity: 0, y: 12 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.4, delay: 0.05 + i * 0.05 }}
-              style={{
-                background: "var(--white)",
-                borderBottom: "1px solid rgba(0,0,0,0.07)",
-              }}
-            >
-              <button
-                onClick={() => toggle(i)}
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                  width: "100%",
-                  padding: "22px 24px",
-                  background: "none",
-                  border: "none",
-                  cursor: "pointer",
-                  gap: 24,
-                  textAlign: "left",
-                }}
-              >
-                <span
-                  style={{
-                    fontFamily: "var(--font-inter)",
-                    fontWeight: 600,
-                    fontSize: 14,
-                    letterSpacing: "0.3px",
-                    color: "var(--fg)",
-                    textTransform: "uppercase",
-                  }}
-                >
-                  {faq.q}
-                </span>
-                <motion.span
-                  animate={{ rotate: isOpen ? 45 : 0 }}
-                  transition={{ duration: 0.2 }}
-                  style={{
-                    fontSize: 22,
-                    color: "var(--fg)",
-                    flexShrink: 0,
-                    lineHeight: 1,
-                    display: "inline-block",
-                  }}
-                >
-                  +
-                </motion.span>
-              </button>
+              faq={faq}
+              index={i}
+              globalIndex={i}
+              openIndex={openIndex}
+              toggle={toggle}
+              inView={inView}
+            />
+          ))}
+        </div>
 
-              <AnimatePresence initial={false}>
-                {isOpen && (
-                  <motion.div
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: "auto", opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
-                    style={{ overflow: "hidden" }}
-                  >
-                    <p
-                      style={{
-                        fontFamily: "var(--font-inter)",
-                        fontWeight: 400,
-                        fontSize: 14,
-                        letterSpacing: "-0.2px",
-                        lineHeight: 1.7,
-                        color: "var(--fg-secondary)",
-                        padding: "0 24px 24px",
-                      }}
-                    >
-                      {faq.a}
-                    </p>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </motion.div>
-          );
-        })}
+        {/* Right column */}
+        <div style={{ borderTop: "1px solid rgba(0,0,0,0.07)" }}>
+          {right.map((faq, i) => (
+            <AccordionItem
+              key={i}
+              faq={faq}
+              index={i}
+              globalIndex={i + 4}
+              openIndex={openIndex}
+              toggle={toggle}
+              inView={inView}
+            />
+          ))}
+        </div>
       </div>
     </section>
   );
 }
-
-
