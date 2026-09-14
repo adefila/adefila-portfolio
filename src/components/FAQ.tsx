@@ -5,35 +5,35 @@ import { useState, useRef } from "react";
 const faqs = [
   {
     q: "WHO DO YOU WORK WITH?",
-    a: "Founders, startups, and agencies who are ready to turn their website into a client-getting machine. If you have a product worth selling, I'll build the site that sells it.",
+    a: "Founders, startups, and agencies who need a website that actually does something for their business. If you're serious about your product, I'm serious about your site.",
+  },
+  {
+    q: "WHAT TOOLS DO YOU BUILD WITH?",
+    a: "Framer, Shopify, Webflow, WordPress — I choose based on what's right for you, not what I'm most comfortable with. My job is to give you the best tool for the job, then build it well.",
   },
   {
     q: "CAN YOU IMPROVE MY EXISTING WEBSITE?",
-    a: "Yes — and often that's the highest-leverage move. I audit what's hurting you, fix what's broken, and rebuild what's holding you back. Platform migration, performance, UI overhaul — all covered.",
-  },
-  {
-    q: "DO YOU BUILD FROM SCRATCH?",
-    a: "Every time. No templates, no recycled layouts. Your site starts from a blank canvas and is designed entirely around your brand, your audience, and what makes them convert.",
+    a: "Yes — and that's often the most impactful move. I look at what's working, fix what's not, and improve what could be better. Whether it's a redesign, a migration, or a targeted fix.",
   },
   {
     q: "HOW MUCH DOES IT COST?",
-    a: "Pricing is scoped to your project — no retainers you don't need, no surprise invoices. Book a call and you'll leave with a clear number and a clear plan.",
+    a: "Pricing is scoped to your project — no surprises, no retainers you don't need. Book a call and you'll leave with a clear number and exactly what's included.",
   },
   {
     q: "HOW FAST IS DELIVERY?",
-    a: "Most projects ship in 7–14 days. Multi-page builds with custom animations run 2–3 weeks. Either way, you'll have a firm timeline before we start — and I stick to it.",
+    a: "Most projects are done in 7–14 days. Larger builds with multiple pages can run 2–3 weeks. You'll know the timeline before we start — and I stick to it.",
   },
   {
-    q: "DO YOU USE TEMPLATES OR CUSTOM DESIGN?",
-    a: "Never templates. Every project is built from scratch, designed specifically for you. Cookie-cutter sites don't convert — that's why I don't make them.",
+    q: "DO YOU USE TEMPLATES?",
+    a: "Never. Everything starts from scratch. Your site is designed specifically for you, your audience, and what you're trying to accomplish — not pulled from a library.",
   },
   {
     q: "WILL MY SITE BE EASY TO MANAGE?",
-    a: "Absolutely. Framer's CMS lets you update content without touching code. I'll also walk you through everything after launch so you feel fully in control from day one.",
+    a: "Yes. I build with content management in mind so you can update things without touching code. I'll walk you through everything after launch so you feel confident on day one.",
   },
   {
     q: "HOW DO WE GET STARTED?",
-    a: "Book a free 30-minute call. We'll map out your project, set a realistic timeline, and I'll tell you exactly what to expect — no fluff, no pressure, no obligation.",
+    a: "Book a free 30-minute call. We'll talk about your project, your goals, and what a good outcome looks like. No pressure — just an honest conversation.",
   },
 ];
 

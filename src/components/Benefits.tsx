@@ -6,23 +6,23 @@ import { ArrowUpRight, ChevronsRight, Tag, CircleDot, TrendingUp } from "lucide-
 const benefits = [
   {
     icon: ChevronsRight,
-    title: "SPEED WITHOUT SACRIFICE",
-    desc: "Delivered in 7–14 days with every detail intact. Your deadline is real — I take it seriously.",
+    title: "SPEED WITHOUT COMPROMISE",
+    desc: "Launched in 7–14 days without cutting corners. Your timeline is real — I treat it that way.",
   },
   {
     icon: Tag,
-    title: "BUILT FOR YOUR BRAND",
-    desc: "No templates. No shortcuts. Every design starts from scratch and ends with your audience in mind.",
+    title: "MADE FOR YOUR AUDIENCE",
+    desc: "No templates, no guesswork. Everything built from scratch around your brand, your users, and what they need to say yes.",
   },
   {
     icon: CircleDot,
-    title: "ONE EXPERT, ALL THE WAY",
-    desc: "No handoffs, no gaps. I own design, development, and launch — so nothing gets lost in translation.",
+    title: "ONE PERSON. FULL OWNERSHIP.",
+    desc: "One point of contact from first call to launch. No handoffs, no gaps, no 'let me check with the team.'",
   },
   {
     icon: TrendingUp,
-    title: "PROVEN ACROSS INDUSTRIES",
-    desc: "SaaS, agencies, personal brands — 50+ sites, one pattern: visitors that become clients.",
+    title: "TOOLS THAT FIT THE JOB",
+    desc: "Framer, Shopify, Webflow — I choose what's right for your project, not what's easiest for me.",
   },
 ];
 
@@ -72,7 +72,7 @@ export default function Benefits() {
             maxWidth: 700,
           }}
         >
-          50+ FOUNDERS. ONE CONSISTENT RESULT: MORE CLIENTS.
+          50 PROJECTS IN. THE BAR HAS ONLY GONE UP.
         </motion.h2>
       </div>
 
@@ -277,11 +277,11 @@ export default function Benefits() {
                 maxWidth: 480,
               }}
             >
-              50+ founders hired me for one thing:{" "}
+              50+ founders and agencies have worked with me through Upwork.{" "}
               <span style={{ color: "var(--accent-purple)", fontWeight: 500 }}>
-                a website that brings in clients.
+                Top Rated. 100% Job Success.
               </span>{" "}
-              Top Rated · 100% Job Success · fast turnaround.
+              I show up, I deliver, and I make the process easy.
             </p>
           </div>
           <a

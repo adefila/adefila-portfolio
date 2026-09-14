@@ -60,7 +60,7 @@ export default function Hero() {
 
       {/* Main headline */}
       <div style={{ marginBottom: 24 }}>
-        {"FRAMER WEBSITES THAT TURN VISITORS INTO PAYING CLIENTS"
+        {"I DESIGN AND BUILD WEBSITES THAT MAKE YOUR BUSINESS IMPOSSIBLE TO IGNORE"
           .split(" ")
           .map((word, i) => (
             <motion.span
@@ -103,7 +103,7 @@ export default function Hero() {
           marginBottom: 48,
         }}
       >
-        Custom-built, conversion-focused sites for founders who want results — not just good-looking pages.
+        Product designer and no-code developer. I use Framer, Shopify, Webflow — and whatever fits your vision — to build sites that genuinely work.
       </motion.p>
 
       {/* CTA buttons */}

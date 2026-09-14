@@ -73,9 +73,9 @@ export default function WhyMe() {
               color: "var(--fg)",
             }}
           >
-            Pretty websites don't pay bills.{" "}
+            Good design is table stakes.{" "}
             <span style={{ color: "rgb(163,163,163)" }}>
-              Converting ones do.
+              I go further.
             </span>
           </motion.h2>
         </div>

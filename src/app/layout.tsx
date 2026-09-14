@@ -4,7 +4,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Samuel Adefila — Framer Developer & UI/UX Designer | Websites That Convert",
   description:
-    "Top Rated Framer developer with 100% Job Success on Upwork. 50+ custom websites built for founders and agencies worldwide. Your site should win clients — book a free call.",
+    "Samuel Adefila is a product designer and no-code developer. He builds with Framer, Shopify, and Webflow — 50+ projects delivered, Top Rated on Upwork with 100% Job Success. Book a free call.",
   keywords: [
     "Framer developer",
     "UI/UX designer",
