@@ -114,9 +114,9 @@ export default function About() {
                 fontFamily: "var(--font-inter)",
                 fontWeight: 700,
                 fontSize: 11,
-                letterSpacing: "10px",
+                letterSpacing: "4px",
                 textTransform: "uppercase",
-                color: "var(--fg-secondary)",
+                color: "var(--accent-purple)",
                 marginBottom: 16,
               }}
             >
@@ -156,9 +156,9 @@ export default function About() {
               fontFamily: "var(--font-inter)",
               fontWeight: 700,
               fontSize: 11,
-              letterSpacing: "10px",
+              letterSpacing: "4px",
               textTransform: "uppercase",
-              color: "var(--fg-secondary)",
+              color: "var(--accent-purple)",
               marginBottom: 24,
             }}
           >
