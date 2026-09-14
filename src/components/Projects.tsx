@@ -1,16 +1,16 @@
-﻿"use client";
+"use client";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 
 const projects = [
-  { title: “The Initial — AI Website”, meta: “Figma to Framer”, year: “2025” },
-  { title: “HitPay — SaaS Website”, meta: “Framer Development”, year: “2024” },
-  { title: “Everything AI”, meta: “Figma to Framer”, year: “2025” },
-  { title: “Clipmaster — Video Agency”, meta: “Web Design”, year: “2024” },
-  { title: “VPA London — Talent Website”, meta: “Framer Development”, year: “2025” },
-  { title: “Virvly”, meta: “Framer Development”, year: “2025” },
-  { title: “Jamal Muse — Personal Portfolio”, meta: “Claude to Framer”, year: “2025” },
-  { title: “Alyssa Corso — Personal Portfolio”, meta: “Framer Development”, year: “2026” },
+  { title: "The Initial — AI Website", meta: "Figma to Framer", year: "2025" },
+  { title: "HitPay — SaaS Website", meta: "Framer Development", year: "2024" },
+  { title: "Everything AI", meta: "Figma to Framer", year: "2025" },
+  { title: "Clipmaster — Video Agency", meta: "Web Design", year: "2024" },
+  { title: "VPA London — Talent Website", meta: "Framer Development", year: "2025" },
+  { title: "Virvly", meta: "Framer Development", year: "2025" },
+  { title: "Jamal Muse — Personal Portfolio", meta: "Claude to Framer", year: "2025" },
+  { title: "Alyssa Corso — Personal Portfolio", meta: "Framer Development", year: "2026" },
   { title: "Venera", meta: "Framer Development", year: "2026" },
 ];
 

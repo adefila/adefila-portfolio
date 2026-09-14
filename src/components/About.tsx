@@ -1,14 +1,14 @@
-﻿"use client";
+"use client";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 
 const techStacks = ["Figma", "Framer", "Webflow", "WordPress", "Shopify", "React"];
 
 const workHistory = [
-  { period: “2020–2021”, role: “Wordpress Intern Web Developer”, company: “Davis Enterprises” },
-  { period: “2024–2025”, role: “UX/UI Designer”, company: “Trust Tai Web Agency” },
-  { period: “2024–2025”, role: “Framer Developer”, company: “HitPay” },
-  { period: “Sep 2023–Sep 2025”, role: “Lead Product Designer”, company: “BookedEZ LLC” },
+  { period: "2020–2021", role: "Wordpress Intern Web Developer", company: "Davis Enterprises" },
+  { period: "2024–2025", role: "UX/UI Designer", company: "Trust Tai Web Agency" },
+  { period: "2024–2025", role: "Framer Developer", company: "HitPay" },
+  { period: "Sep 2023–Sep 2025", role: "Lead Product Designer", company: "BookedEZ LLC" },
 ];
 
 export default function About() {
