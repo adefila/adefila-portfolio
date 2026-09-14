@@ -151,7 +151,7 @@ export default function Footer() {
       <div
         style={{
           width: "100%",
-          background: "#1a0636",
+          background: "var(--accent-purple)",
           padding: "48px 20px",
         }}
       >
