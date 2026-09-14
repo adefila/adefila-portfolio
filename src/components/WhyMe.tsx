@@ -72,6 +72,7 @@ export default function WhyMe() {
 
   return (
     <section
+      id="benefits"
       style={{
         width: "100%",
         maxWidth: 1200,

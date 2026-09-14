@@ -5,24 +5,32 @@ import { CalendarDays } from "lucide-react";
 import { useEffect, useState } from "react";
 
 const NAV_LINKS = [
-  { label: "Work", href: "#work" },
-  { label: "About", href: "#about" },
+  { label: "WORK", href: "#work" },
+  { label: "BENEFITS", href: "#benefits" },
+  { label: "TESTIMONIALS", href: "#testimonials" },
+  { label: "ABOUT", href: "#about" },
   { label: "FAQ", href: "#faq" },
 ];
+
+const SECTION_IDS = ["hero", "work", "benefits", "about", "testimonials", "faq"];
 
 export default function Navbar() {
   const [active, setActive] = useState("");
 
   useEffect(() => {
-    const ids = ["work", "about", "testimonials", "faq"];
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => { if (e.isIntersecting) setActive(e.target.id); });
-      },
-      { rootMargin: "-40% 0px -55% 0px" }
-    );
-    ids.forEach((id) => { const el = document.getElementById(id); if (el) observer.observe(el); });
-    return () => observer.disconnect();
+    const onScroll = () => {
+      const scrollY = window.scrollY + window.innerHeight * 0.35;
+      let current = "hero";
+      for (const id of SECTION_IDS) {
+        const el = document.getElementById(id);
+        if (el && el.offsetTop <= scrollY) current = id;
+      }
+      setActive(current === "hero" ? "" : current);
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   return (
@@ -74,22 +82,22 @@ export default function Navbar() {
         <div style={{ display: "flex", gap: 2 }}>
           {NAV_LINKS.map(({ label, href }) => {
             const id = href.slice(1);
-            const isActive = active === id || (id === "work" && active === "testimonials");
+            const isActive = active === id;
             return (
               <a
                 key={href}
                 href={href}
                 style={{
                   fontFamily: "var(--font-inter)",
-                  fontWeight: 500,
-                  fontSize: 13,
+                  fontWeight: 600,
+                  fontSize: 11,
+                  letterSpacing: "0.06em",
                   color: isActive ? "var(--fg)" : "var(--fg-secondary)",
                   textDecoration: "none",
-                  padding: "7px 14px",
+                  padding: "7px 12px",
                   borderRadius: 100,
                   background: isActive ? "rgba(0,0,0,0.06)" : "transparent",
                   transition: "color 0.2s, background 0.2s",
-                  letterSpacing: "-0.2px",
                 }}
               >
                 {label}
@@ -100,6 +108,7 @@ export default function Navbar() {
 
         <a
           href="#contact"
+          className="nav-cta"
           style={{
             fontFamily: "var(--font-inter)",
             fontWeight: 600,
@@ -115,7 +124,6 @@ export default function Navbar() {
             gap: 8,
             transition: "opacity 0.2s",
           }}
-          className="nav-cta"
         >
           SCHEDULE FREE CALL
           <CalendarDays size={14} strokeWidth={2} />
