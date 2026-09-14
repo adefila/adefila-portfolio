@@ -60,7 +60,7 @@ export default function Hero() {
 
       {/* Main headline */}
       <div style={{ marginBottom: 24 }}>
-        {["I DESIGN AND BUILD", "WEBSITES THAT MATTER."].map((line, i) => (
+        {["I DESIGN AND BUILD", "WEBSITES THAT CONVERT."].map((line, i) => (
           <motion.div
             key={i}
             initial={{ opacity: 0, y: 14, filter: "blur(10px)" }}
@@ -92,7 +92,7 @@ export default function Hero() {
           letterSpacing: "-0.7px",
           lineHeight: 1.6,
           color: "var(--fg-secondary)",
-          maxWidth: 560,
+          maxWidth: 900,
           marginBottom: 48,
         }}
       >
