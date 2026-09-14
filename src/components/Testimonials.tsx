@@ -86,7 +86,7 @@ export default function Testimonials() {
               style={{
                 fontFamily: "var(--font-poppins)",
                 fontWeight: 700,
-                fontSize: "clamp(24px, 3vw, 44px)",
+                fontSize: "clamp(28px, 3.5vw, 48px)",
                 letterSpacing: "-2px",
                 lineHeight: 1.05,
                 textTransform: "uppercase",
