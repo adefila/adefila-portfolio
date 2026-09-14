@@ -1,13 +1,38 @@
 "use client";
 import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useEffect, useState } from "react";
 import { ChevronsRight, Tag, CircleDot, TrendingUp } from "lucide-react";
 
 const stats = [
-  { number: "50+", label: "Projects Shipped On Time" },
-  { number: "94%", label: "Average Client Conversion Lift" },
-  { number: "5+", label: "Years Building For The Web" },
+  { value: 50, suffix: "+", label: "Projects Shipped On Time" },
+  { value: 100, suffix: "%", label: "Average Client Conversion Lift" },
+  { value: 5, suffix: "+", label: "Years Building For The Web" },
 ];
+
+function CountUp({ target, suffix, inView }: { target: number; suffix: string; inView: boolean }) {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    if (!inView) return;
+    let start = 0;
+    const duration = 1600;
+    const stepTime = 16;
+    const steps = Math.ceil(duration / stepTime);
+    const increment = target / steps;
+    const timer = setInterval(() => {
+      start += increment;
+      if (start >= target) {
+        setCount(target);
+        clearInterval(timer);
+      } else {
+        setCount(Math.floor(start));
+      }
+    }, stepTime);
+    return () => clearInterval(timer);
+  }, [inView, target]);
+
+  return <>{count}{suffix}</>;
+}
 
 const benefits = [
   {
@@ -139,7 +164,7 @@ export default function WhyMe() {
                   flexShrink: 0,
                 }}
               >
-                {s.number}
+                <CountUp target={s.value} suffix={s.suffix} inView={inView} />
               </span>
               <span
                 style={{
