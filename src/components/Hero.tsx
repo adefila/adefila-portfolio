@@ -60,33 +60,26 @@ export default function Hero() {
 
       {/* Main headline */}
       <div style={{ marginBottom: 24 }}>
-        {"I DESIGN AND BUILD WEBSITES THAT MAKE YOUR BUSINESS IMPOSSIBLE TO IGNORE"
-          .split(" ")
-          .map((word, i) => (
-            <motion.span
-              key={i}
-              initial={{ opacity: 0, y: 10, filter: "blur(10px)" }}
-              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-              transition={{
-                duration: 0.5,
-                delay: 0.06 * i + 0.2,
-                ease: EASE,
-              }}
-              style={{
-                display: "inline-block",
-                fontFamily: "var(--font-poppins)",
-                fontWeight: 700,
-                fontSize: "clamp(40px, 7vw, 88px)",
-                letterSpacing: "-0.05em",
-                lineHeight: 1,
-                textTransform: "uppercase",
-                color: "var(--fg)",
-                marginRight: "0.25em",
-              }}
-            >
-              {word}
-            </motion.span>
-          ))}
+        {["I DESIGN AND BUILD", "WEBSITES THAT MATTER."].map((line, i) => (
+          <motion.div
+            key={i}
+            initial={{ opacity: 0, y: 14, filter: "blur(10px)" }}
+            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            transition={{ duration: 0.55, delay: 0.15 + i * 0.12, ease: EASE }}
+            style={{
+              fontFamily: "var(--font-poppins)",
+              fontWeight: 700,
+              fontSize: "clamp(40px, 7vw, 88px)",
+              letterSpacing: "-0.05em",
+              lineHeight: 1.05,
+              textTransform: "uppercase",
+              color: "var(--fg)",
+              display: "block",
+            }}
+          >
+            {line}
+          </motion.div>
+        ))}
       </div>
 
       {/* Subtitle */}
