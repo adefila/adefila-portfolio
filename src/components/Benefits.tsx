@@ -7,7 +7,7 @@ const benefits = [
   {
     icon: ChevronsRight,
     title: "SPEED WITHOUT COMPROMISE",
-    desc: "Launched in 7"“14 days without cutting corners. Your timeline is real "” I treat it that way.",
+    desc: “Launched in 7–14 days without cutting corners. Your timeline is real — I treat it that way.”,
   },
   {
     icon: Tag,
@@ -22,7 +22,7 @@ const benefits = [
   {
     icon: TrendingUp,
     title: "TOOLS THAT FIT THE JOB",
-    desc: "Framer, Shopify, Webflow "” I choose what's right for your project, not what's easiest for me.",
+    desc: “Framer, Shopify, Webflow — I choose what's right for your project, not what's easiest for me.”,
   },
 ];
 
