@@ -29,7 +29,7 @@ export default function Navbar() {
           justifyContent: "space-between",
           background: "var(--white)",
           border: "1px solid rgba(0,0,0,0.07)",
-          borderRadius: 0,
+          borderRadius: 100,
           padding: "12px 12px 12px 28px",
           pointerEvents: "auto",
         }}
