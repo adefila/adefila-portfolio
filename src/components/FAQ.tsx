@@ -1,7 +1,6 @@
 "use client";
 import { motion, AnimatePresence, useInView } from "framer-motion";
 import { useState, useRef } from "react";
-import { Mail } from "lucide-react";
 
 const faqs = [
   {
@@ -121,12 +120,8 @@ export default function FAQ() {
                 color: "var(--accent-purple)",
                 fontWeight: 500,
                 textDecoration: "none",
-                display: "inline-flex",
-                alignItems: "center",
-                gap: 4,
               }}
             >
-              <Mail size={13} strokeWidth={1.5} />
               adefilasamuel929@gmail.com
             </a>
           </motion.p>

@@ -238,7 +238,7 @@ export default function Footer() {
           </div>
 
           {/* Email + copyright */}
-          <div style={{ display: "flex", flexDirection: "column", gap: 16, alignItems: "flex-end" }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: 16, alignItems: "flex-start" }}>
             <a
               href="mailto:adefilasamuel929@gmail.com"
               style={{

@@ -177,9 +177,9 @@ a, button { cursor: none !important; }
     gap: 0 !important;
   }
 
-  /* Projects 3-col → 1-col */
+  /* Projects 3-col → 2-col on mobile */
   .projects-grid {
-    grid-template-columns: 1fr !important;
+    grid-template-columns: repeat(2, 1fr) !important;
   }
   .projects-grid > * {
     border-right: none !important;
