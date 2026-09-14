@@ -13,7 +13,7 @@ const projects = [
   { title: "Virvly", meta: "Framer Development", year: "2025", href: "https://virvly.com/" },
   { title: "Jamal Muse — Personal Portfolio", meta: "Claude to Framer", year: "2025", href: "https://www.jamalmuse.com/" },
   { title: "Alyssa Corso — Personal Portfolio", meta: "Framer Development", year: "2026", href: "https://alyssacorso.com/" },
-  { title: "Venera", meta: "Framer Development", year: "2026" },
+  { title: "Venara Talent", meta: "Framer Development", year: "2026", href: "https://www.venaratalent.com/" },
   { title: "Emalbu", meta: "HTML to Framer Development", year: "2026", href: "https://emalbu.com/" },
   { title: "Upside ESG", meta: "SaaS Framer Development and Integrations", year: "2026", href: "https://upside-esg.com/" },
 ];
