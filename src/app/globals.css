@@ -119,10 +119,16 @@ html {
   opacity: 0.8;
 }
 
-/* Hide nav links on mobile */
+/* Mobile nav: hide links + desktop CTA, show hamburger */
 @media (max-width: 768px) {
   .nav-links {
     display: none !important;
+  }
+  .nav-cta-desktop {
+    display: none !important;
+  }
+  .hamburger-btn {
+    display: flex !important;
   }
 }
 
