@@ -192,7 +192,6 @@ export default function Testimonials() {
                   background: "var(--white)",
                   border: "1px solid rgba(0,0,0,0.07)",
                   borderLeft: i === 0 ? "none" : "1px solid rgba(0,0,0,0.07)",
-                  borderRadius: 12,
                   padding: 28,
                   minHeight: 400,
                   display: "flex",
