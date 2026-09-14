@@ -1,6 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import { ArrowUpRight, ArrowRight } from "lucide-react";
+import MagneticButton from "./MagneticButton";
 
 const portfolioLinks = [
   { label: "Dribbble", href: "https://dribbble.com" },
@@ -88,11 +89,10 @@ export default function Footer() {
             transition={{ duration: 0.5, delay: 0.18 }}
             style={{ display: "flex", flexDirection: "column", gap: 12, flexShrink: 0 }}
           >
-            <a
+            <MagneticButton
               href="#contact"
               className="btn-cta"
               style={{
-                display: "inline-flex",
                 alignItems: "center",
                 justifyContent: "center",
                 gap: 8,
@@ -106,11 +106,10 @@ export default function Footer() {
                 textDecoration: "none",
                 letterSpacing: "-0.2px",
                 whiteSpace: "nowrap",
-                transition: "opacity 0.2s, transform 0.2s",
               }}
             >
               BOOK A CALL <ArrowRight size={14} strokeWidth={2.5} />
-            </a>
+            </MagneticButton>
           </motion.div>
         </div>
       </div>
@@ -125,6 +124,7 @@ export default function Footer() {
         }}
       >
         <div
+          className="footer-bar-inner"
           style={{
             maxWidth: 1200,
             margin: "0 auto",

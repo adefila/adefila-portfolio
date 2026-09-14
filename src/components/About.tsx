@@ -133,7 +133,7 @@ export default function About() {
         ABOUT ME
       </motion.p>
 
-      <div style={{ display: "flex", gap: 80, alignItems: "flex-start", flexWrap: "wrap" }}>
+      <div className="about-columns" style={{ display: "flex", gap: 80, alignItems: "flex-start", flexWrap: "wrap" }}>
         {/* Left: Bio */}
         <div style={{ flex: 2, minWidth: 300 }}>
           <motion.h2

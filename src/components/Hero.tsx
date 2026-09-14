@@ -1,5 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
+import MagneticButton from "./MagneticButton";
 
 const EASE = [0.22, 1, 0.36, 1] as [number, number, number, number];
 
@@ -114,7 +115,7 @@ export default function Hero() {
           {...fadeUp(0.5)}
           style={{ display: "flex", gap: 12, flexWrap: "wrap", marginBottom: 48 }}
         >
-          <a
+          <MagneticButton
             href="#contact"
             style={{
               fontFamily: "var(--font-inter)",
@@ -126,11 +127,10 @@ export default function Hero() {
               borderRadius: 100,
               textDecoration: "none",
               letterSpacing: "-0.2px",
-              transition: "opacity 0.2s",
             }}
           >
             BOOK A CALL
-          </a>
+          </MagneticButton>
         </motion.div>
       </div>
 
@@ -161,6 +161,19 @@ export default function Hero() {
                 borderRadius: 12,
                 overflow: "hidden",
                 position: "relative",
+                transition: "transform 0.4s cubic-bezier(0.22,1,0.36,1), box-shadow 0.4s",
+                transformStyle: "preserve-3d",
+              }}
+              onMouseMove={(e) => {
+                const rect = e.currentTarget.getBoundingClientRect();
+                const x = (e.clientX - rect.left) / rect.width - 0.5;
+                const y = (e.clientY - rect.top) / rect.height - 0.5;
+                e.currentTarget.style.transform = `perspective(900px) rotateY(${x * 10}deg) rotateX(${-y * 7}deg) scale(1.03)`;
+                e.currentTarget.style.boxShadow = `${-x * 12}px ${-y * 12}px 32px rgba(0,0,0,0.15)`;
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = "perspective(900px) rotateY(0deg) rotateX(0deg) scale(1)";
+                e.currentTarget.style.boxShadow = "none";
               }}
             >
               {slide.img ? (

@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { CalendarDays } from "lucide-react";
 import { useEffect, useState } from "react";
+import MagneticButton from "./MagneticButton";
 
 const NAV_LINKS = [
   { label: "WORK", href: "#work" },
@@ -16,9 +17,11 @@ const SECTION_IDS = ["hero", "work", "benefits", "testimonials", "about", "faq"]
 
 export default function Navbar() {
   const [active, setActive] = useState("");
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     const onScroll = () => {
+      setScrolled(window.scrollY > 60);
       const scrollY = window.scrollY + window.innerHeight * 0.35;
       let current = "hero";
       for (const id of SECTION_IDS) {
@@ -27,7 +30,6 @@ export default function Navbar() {
       }
       setActive(current === "hero" ? "" : current);
     };
-
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
     return () => window.removeEventListener("scroll", onScroll);
@@ -56,11 +58,14 @@ export default function Navbar() {
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
-          background: "var(--white)",
+          background: scrolled ? "rgba(255,255,255,0.82)" : "var(--white)",
+          backdropFilter: scrolled ? "blur(20px)" : "none",
+          WebkitBackdropFilter: scrolled ? "blur(20px)" : "none",
           border: "1px solid rgba(0,0,0,0.07)",
           borderRadius: 100,
           padding: "12px 12px 12px 28px",
           pointerEvents: "auto",
+          transition: "background 0.4s, backdrop-filter 0.4s",
         }}
       >
         <Link
@@ -78,8 +83,8 @@ export default function Navbar() {
           Samuel
         </Link>
 
-        {/* Nav links */}
-        <div style={{ display: "flex", gap: 2 }}>
+        {/* Nav links — hidden on mobile */}
+        <div className="nav-links" style={{ display: "flex", gap: 2 }}>
           {NAV_LINKS.map(({ label, href }) => {
             const id = href.slice(1);
             const isActive = active === id;
@@ -106,7 +111,7 @@ export default function Navbar() {
           })}
         </div>
 
-        <a
+        <MagneticButton
           href="#contact"
           className="nav-cta"
           style={{
@@ -119,15 +124,13 @@ export default function Navbar() {
             borderRadius: 100,
             textDecoration: "none",
             letterSpacing: "-0.2px",
-            display: "flex",
             alignItems: "center",
             gap: 8,
-            transition: "opacity 0.2s",
           }}
         >
           SCHEDULE FREE CALL
           <CalendarDays size={14} strokeWidth={2} />
-        </a>
+        </MagneticButton>
       </div>
     </motion.nav>
   );

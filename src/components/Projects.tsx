@@ -88,6 +88,7 @@ export default function Projects() {
               initial={{ opacity: 0, y: 12 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.4, delay: 0.1 + i * 0.04, ease: EASE }}
+              className="project-row"
               style={{
                 display: "flex",
                 alignItems: "flex-start",
@@ -98,10 +99,12 @@ export default function Projects() {
                 paddingRight: col !== COLS - 1 ? 28 : 0,
                 borderBottom: isLastRow ? "none" : "1px solid rgba(0,0,0,0.08)",
                 borderRight: col !== COLS - 1 ? "1px solid rgba(0,0,0,0.08)" : "none",
+                transition: "background 0.2s",
               }}
             >
               <div style={{ display: "flex", alignItems: "flex-start", gap: 16, flex: 1, minWidth: 0 }}>
                 <span
+                  className="project-num"
                   style={{
                     fontFamily: "var(--font-inter)",
                     fontWeight: 400,
@@ -109,6 +112,7 @@ export default function Projects() {
                     color: "var(--fg-muted)",
                     flexShrink: 0,
                     paddingTop: 2,
+                    transition: "color 0.2s",
                   }}
                 >
                   {i + 1}

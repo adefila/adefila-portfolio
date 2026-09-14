@@ -144,6 +144,7 @@ export default function Testimonials() {
         <div className="testimonials-grid" style={{ display: "grid", gridTemplateColumns: "240px 1fr", gap: 0, alignItems: "stretch" }}>
           {/* Left: purple stat card */}
           <div
+            className="testimonials-stat-card"
             style={{
               background: "var(--accent-purple)",
               borderRadius: "var(--radius-md)",

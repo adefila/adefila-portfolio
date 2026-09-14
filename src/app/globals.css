@@ -94,29 +94,36 @@ html {
 
 /* ── Elite details ── */
 
-/* Hide native cursor */
-* { cursor: none !important; }
-a, button { cursor: none !important; }
-
-/* Marquee card hover lift */
-.marquee-card {
-  transition: transform 0.35s cubic-bezier(0.22,1,0.36,1), box-shadow 0.35s cubic-bezier(0.22,1,0.36,1);
+/* Hide native cursor on pointer devices only */
+@media (hover: hover) {
+  * { cursor: none !important; }
 }
-.marquee-card:hover {
-  transform: scale(1.025) translateY(-4px);
-  box-shadow: 0 16px 40px rgba(0,0,0,0.14);
-  z-index: 2;
+
+/* Project row hover */
+@media (hover: hover) {
+  .project-row:hover {
+    background: rgba(0,0,0,0.025);
+  }
+  .project-row:hover .project-num {
+    color: var(--accent-purple) !important;
+  }
 }
 
 /* CTA Book button hover */
 .btn-cta:hover {
   opacity: 0.88;
-  transform: translateY(-1px);
 }
 
 /* Nav CTA hover */
 .nav-cta:hover {
   opacity: 0.8;
+}
+
+/* Hide nav links on mobile */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none !important;
+  }
 }
 
 /* Grain noise on footer CTA */
@@ -211,6 +218,10 @@ a, button { cursor: none !important; }
   .testimonials-title {
     white-space: normal !important;
   }
+  .testimonials-stat-card {
+    min-height: 160px !important;
+    padding: 24px !important;
+  }
 
   /* Hero marquee cards: shrink on mobile */
   .marquee-card {
@@ -245,5 +256,21 @@ a, button { cursor: none !important; }
     flex-wrap: wrap !important;
     align-items: flex-start !important;
     gap: 4px 12px !important;
+  }
+
+  /* About: tighten the bio ↔ work-history gap when stacked */
+  .about-columns {
+    gap: 40px !important;
+  }
+
+  /* Footer CTA: reduce padding on mobile */
+  .footer-cta {
+    padding: 48px 20px !important;
+  }
+
+  /* Footer bar: stack columns full-width on small screens */
+  .footer-bar-inner {
+    flex-direction: column !important;
+    gap: 32px !important;
   }
 }
