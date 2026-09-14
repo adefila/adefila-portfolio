@@ -93,6 +93,7 @@ export default function Footer() {
                 color: "var(--accent-purple)",
                 background: "var(--white)",
                 padding: "14px 28px",
+                borderRadius: 100,
                 textDecoration: "none",
                 letterSpacing: "-0.2px",
               }}
@@ -111,6 +112,7 @@ export default function Footer() {
                 color: "var(--white)",
                 background: "transparent",
                 padding: "14px 28px",
+                borderRadius: 100,
                 border: "1px solid rgba(255,255,255,0.4)",
                 textDecoration: "none",
                 letterSpacing: "-0.2px",
@@ -141,8 +143,50 @@ export default function Footer() {
             gap: 40,
           }}
         >
+          {/* Brand */}
+          <div>
+            <p
+              style={{
+                fontFamily: "var(--font-inter)",
+                fontWeight: 700,
+                fontSize: 15,
+                letterSpacing: "1px",
+                textTransform: "uppercase",
+                color: "var(--white)",
+                marginBottom: 12,
+              }}
+            >
+              Samuel
+            </p>
+            <p
+              style={{
+                fontFamily: "var(--font-inter)",
+                fontWeight: 400,
+                fontSize: 13,
+                color: "rgba(255,255,255,0.45)",
+                lineHeight: 1.6,
+                maxWidth: 200,
+              }}
+            >
+              Framer & Web Developer building fast, beautiful sites.
+            </p>
+          </div>
+
           {/* Portfolio links */}
           <div>
+            <p
+              style={{
+                fontFamily: "var(--font-inter)",
+                fontWeight: 600,
+                fontSize: 11,
+                letterSpacing: "2px",
+                textTransform: "uppercase",
+                color: "rgba(255,255,255,0.4)",
+                marginBottom: 14,
+              }}
+            >
+              PORTFOLIO
+            </p>
             <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
               {portfolioLinks.map((link) => (
                 <a
@@ -223,7 +267,7 @@ export default function Footer() {
                 textTransform: "uppercase",
               }}
             >
-              Â© ADEYEMI 2025. ALL RIGHTS RESERVED
+              &copy; SAMUEL ADEFILA 2026. ALL RIGHTS RESERVED
             </p>
           </div>
         </div>
