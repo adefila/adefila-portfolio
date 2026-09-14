@@ -160,8 +160,8 @@ html {
 
   /* Hero marquee cards: shrink on mobile */
   .marquee-card {
-    width: 240px !important;
-    height: 200px !important;
+    width: 280px !important;
+    height: 240px !important;
   }
 
   /* Hero top padding */

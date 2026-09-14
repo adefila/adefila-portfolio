@@ -138,17 +138,23 @@ export default function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.6, delay: 0.7 }}
-        style={{ width: "100%", overflow: "hidden", paddingBottom: 80 }}
+        style={{
+          width: "100%",
+          overflow: "hidden",
+          paddingBottom: 80,
+          WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)",
+          maskImage: "linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)",
+        }}
       >
-        <div className="marquee-track" style={{ display: "flex", gap: 16, width: "max-content" }}>
+        <div className="marquee-track" style={{ display: "flex", gap: 20, width: "max-content" }}>
           {track.map((slide, i) => (
             <div
               key={i}
               className="marquee-card"
             style={{
                 flexShrink: 0,
-                width: 340,
-                height: 280,
+                width: 420,
+                height: 340,
                 background: slide.img ? "transparent" : "rgba(0,0,0,0.05)",
                 border: "1px solid rgba(0,0,0,0.07)",
                 borderRadius: 12,
