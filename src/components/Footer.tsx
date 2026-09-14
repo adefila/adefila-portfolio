@@ -107,6 +107,7 @@ export default function Footer() {
               style={{
                 display: "inline-flex",
                 alignItems: "center",
+                justifyContent: "center",
                 gap: 8,
                 fontFamily: "var(--font-inter)",
                 fontWeight: 600,
@@ -127,6 +128,7 @@ export default function Footer() {
               style={{
                 display: "inline-flex",
                 alignItems: "center",
+                justifyContent: "center",
                 gap: 8,
                 fontFamily: "var(--font-inter)",
                 fontWeight: 600,
@@ -153,6 +155,7 @@ export default function Footer() {
           width: "100%",
           background: "var(--accent-purple)",
           padding: "48px 20px",
+          borderTop: "1px solid rgba(255,255,255,0.12)",
         }}
       >
         <div

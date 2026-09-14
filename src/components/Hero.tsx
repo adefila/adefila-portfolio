@@ -151,11 +151,11 @@ export default function Hero() {
             <div
               key={i}
               className="marquee-card"
-            style={{
+              style={{
                 flexShrink: 0,
-                width: 560,
-                height: 420,
-                background: slide.img ? "transparent" : "rgba(0,0,0,0.05)",
+                width: 600,
+                height: 380,
+                background: slide.img ? "#e8e8e8" : "rgba(0,0,0,0.05)",
                 border: "1px solid rgba(0,0,0,0.07)",
                 borderRadius: 12,
                 overflow: "hidden",
@@ -167,7 +167,7 @@ export default function Hero() {
                 <img
                   src={slide.img}
                   alt={slide.title}
-                  style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }}
+                  style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "contain", objectPosition: "top center" }}
                 />
               ) : null}
             </div>

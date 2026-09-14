@@ -85,8 +85,8 @@ html {
 /* Tablet 769–1024 */
 @media (max-width: 1024px) and (min-width: 769px) {
   .marquee-card {
-    width: 420px !important;
-    height: 340px !important;
+    width: 460px !important;
+    height: 290px !important;
   }
   .services-grid {
     grid-template-columns: repeat(2, 1fr) !important;
@@ -164,8 +164,8 @@ html {
 
   /* Hero marquee cards: shrink on mobile */
   .marquee-card {
-    width: 280px !important;
-    height: 240px !important;
+    width: 300px !important;
+    height: 190px !important;
   }
 
   /* Hero top padding */
