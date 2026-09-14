@@ -21,7 +21,7 @@ const track = [...slides, ...slides];
 
 export default function Hero() {
   return (
-    <section id="hero" style={{ paddingTop: 160, paddingBottom: 0, width: "100%", overflow: "hidden" }}>
+    <section id="hero" className="hero-section" style={{ paddingTop: 160, paddingBottom: 0, width: "100%", overflow: "hidden" }}>
       <style>{`
         @keyframes marquee {
           0%   { transform: translateX(0); }
@@ -142,7 +142,8 @@ export default function Hero() {
           {track.map((slide, i) => (
             <div
               key={i}
-              style={{
+              className="marquee-card"
+            style={{
                 flexShrink: 0,
                 width: 340,
                 height: 280,

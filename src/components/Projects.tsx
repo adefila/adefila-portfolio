@@ -72,6 +72,7 @@ export default function Projects() {
 
       {/* Numbered grid */}
       <div
+        className="projects-grid"
         style={{
           borderTop: "1px solid rgba(0,0,0,0.08)",
           display: "grid",

@@ -48,12 +48,34 @@ function TechTag({ label }: { label: string }) {
   );
 }
 
+const CAROUSEL_GAP = 12;
+
 export default function About() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-10%" });
   const [photoIndex, setPhotoIndex] = useState(0);
   const [lightbox, setLightbox] = useState<number | null>(null);
-  const visibleCount = 3;
+  const carouselRef = useRef<HTMLDivElement>(null);
+  const [slideWidth, setSlideWidth] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Compute slide dimensions from container size
+  useEffect(() => {
+    const update = () => {
+      const mobile = window.innerWidth < 768;
+      setIsMobile(mobile);
+      if (carouselRef.current) {
+        const w = carouselRef.current.clientWidth;
+        const visible = mobile ? 1 : 3;
+        setSlideWidth((w - CAROUSEL_GAP * (visible - 1)) / visible);
+      }
+    };
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, []);
+
+  const visibleCount = isMobile ? 1 : 3;
   const maxIndex = photos.length - visibleCount;
 
   const prev = () => setPhotoIndex((p) => Math.max(0, p - 1));
@@ -338,11 +360,11 @@ export default function About() {
         </div>
 
         {/* Carousel track */}
-        <div style={{ overflow: "hidden" }}>
+        <div ref={carouselRef} style={{ overflow: "hidden" }}>
           <motion.div
-            animate={{ x: `calc(-${photoIndex} * (33.333% + 12px))` }}
-            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-            style={{ display: "flex", gap: 12 }}
+            animate={{ x: slideWidth > 0 ? -(photoIndex * (slideWidth + CAROUSEL_GAP)) : 0 }}
+            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
+            style={{ display: "flex", gap: CAROUSEL_GAP }}
           >
             {photos.map((photo, i) => (
               <div
@@ -350,7 +372,7 @@ export default function About() {
                 onClick={() => setLightbox(i)}
                 style={{
                   flexShrink: 0,
-                  width: "calc(33.333% - 8px)",
+                  width: slideWidth > 0 ? slideWidth : "calc(33.333% - 8px)",
                   height: 360,
                   borderRadius: 12,
                   background: "rgba(0,0,0,0.06)",

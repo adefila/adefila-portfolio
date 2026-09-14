@@ -186,6 +186,7 @@ export default function WhyMe() {
 
       {/* Benefits 2×2 grid */}
       <div
+        className="benefits-grid"
         style={{
           display: "grid",
           gridTemplateColumns: "repeat(2, 1fr)",
@@ -249,6 +250,7 @@ export default function WhyMe() {
 
       {/* Services numbered list */}
       <div
+        className="services-grid"
         style={{
           borderTop: "1px solid rgba(0,0,0,0.08)",
           display: "grid",

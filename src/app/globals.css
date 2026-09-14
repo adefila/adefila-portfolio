@@ -79,3 +79,93 @@ html {
   background: var(--accent-purple);
   color: white;
 }
+
+/* ── Responsive ── */
+
+/* Tablet 769–1024 */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  .services-grid > * {
+    border-right: none !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+  .projects-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  .projects-grid > * {
+    border-right: none !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+  .faq-grid {
+    gap: 0 40px !important;
+  }
+}
+
+/* Mobile ≤ 768px */
+@media (max-width: 768px) {
+  /* Services 3-col → 1-col */
+  .services-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .services-grid > * {
+    border-right: none !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  /* Benefits 2-col → 1-col */
+  .benefits-grid {
+    grid-template-columns: 1fr !important;
+    gap: 0 !important;
+  }
+
+  /* Projects 3-col → 1-col */
+  .projects-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .projects-grid > * {
+    border-right: none !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    border-bottom: 1px solid rgba(0,0,0,0.08) !important;
+  }
+  .projects-grid > *:last-child {
+    border-bottom: none !important;
+  }
+
+  /* FAQ 2-col → stacked */
+  .faq-grid {
+    grid-template-columns: 1fr !important;
+    gap: 0 !important;
+  }
+  .faq-left {
+    position: static !important;
+    margin-bottom: 40px;
+  }
+
+  /* Testimonials grid → stacked */
+  .testimonials-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .testimonials-cards {
+    grid-template-columns: 1fr !important;
+  }
+  .testimonials-title {
+    white-space: normal !important;
+  }
+
+  /* Hero marquee cards: shrink on mobile */
+  .marquee-card {
+    width: 240px !important;
+    height: 200px !important;
+  }
+
+  /* Hero top padding */
+  .hero-section {
+    padding-top: 100px !important;
+  }
+}

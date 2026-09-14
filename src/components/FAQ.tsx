@@ -56,6 +56,7 @@ export default function FAQ() {
       }}
     >
       <div
+        className="faq-grid"
         style={{
           display: "grid",
           gridTemplateColumns: "1fr 1fr",
@@ -64,7 +65,7 @@ export default function FAQ() {
         }}
       >
         {/* Left: sticky header block */}
-        <div ref={ref} style={{ position: "sticky", top: 120 }}>
+        <div ref={ref} className="faq-left" style={{ position: "sticky", top: 120 }}>
           <motion.p
             initial={{ opacity: 0, y: 10 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}

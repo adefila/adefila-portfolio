@@ -91,7 +91,6 @@ export default function Testimonials() {
                 lineHeight: 1.05,
                 textTransform: "uppercase",
                 color: "var(--fg)",
-                whiteSpace: "nowrap",
               }}
             >
               DON'T TAKE MY WORD FOR IT.
@@ -142,7 +141,7 @@ export default function Testimonials() {
         </div>
 
         {/* Main content: stat card + testimonials */}
-        <div style={{ display: "grid", gridTemplateColumns: "240px 1fr", gap: 0, alignItems: "stretch" }}>
+        <div className="testimonials-grid" style={{ display: "grid", gridTemplateColumns: "240px 1fr", gap: 0, alignItems: "stretch" }}>
           {/* Left: purple stat card */}
           <div
             style={{
@@ -181,7 +180,7 @@ export default function Testimonials() {
           </div>
 
           {/* Right: two testimonial cards */}
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 0 }}>
+          <div className="testimonials-cards" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 0 }}>
             {visible.map((t, i) => (
               <motion.div
                 key={`${page}-${i}`}
