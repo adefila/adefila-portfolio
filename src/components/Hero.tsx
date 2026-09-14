@@ -159,10 +159,6 @@ export default function Hero() {
                 border: "1px solid rgba(0,0,0,0.07)",
                 borderRadius: 12,
                 overflow: "hidden",
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "flex-end",
-                padding: 20,
                 position: "relative",
               }}
             >
@@ -174,34 +170,6 @@ export default function Hero() {
                   style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }}
                 />
               ) : null}
-              <div style={{ position: "relative", zIndex: 1 }}>
-                <p
-                  style={{
-                    fontFamily: "var(--font-poppins)",
-                    fontWeight: 600,
-                    fontSize: 13,
-                    letterSpacing: "-0.3px",
-                    textTransform: "uppercase",
-                    color: "var(--fg)",
-                    marginBottom: 4,
-                    lineHeight: 1.3,
-                  }}
-                >
-                  {slide.title}
-                </p>
-                <p
-                  style={{
-                    fontFamily: "var(--font-inter)",
-                    fontWeight: 400,
-                    fontSize: 11,
-                    letterSpacing: "0.3px",
-                    textTransform: "uppercase",
-                    color: "var(--fg-secondary)",
-                  }}
-                >
-                  {slide.meta}
-                </p>
-              </div>
             </div>
           ))}
         </div>
