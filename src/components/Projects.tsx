@@ -12,6 +12,8 @@ const projects = [
   { title: "Jamal Muse — Personal Portfolio", meta: "Claude to Framer", year: "2025" },
   { title: "Alyssa Corso — Personal Portfolio", meta: "Framer Development", year: "2026" },
   { title: "Venera", meta: "Framer Development", year: "2026" },
+  { title: "Emalbu", meta: "HTML to Framer Development", year: "2026" },
+  { title: "Upside ESG", meta: "SaaS Framer Development and Integrations", year: "2026" },
 ];
 
 const COLS = 3;
