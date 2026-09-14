@@ -109,7 +109,7 @@ export default function Contact() {
                 }}
               >
                 <CalendarDays size={16} strokeWidth={2} />
-                BOOK A CALL &mdash; 30 MINS, NO COMMITMENT
+                BOOK A FREE CALL
               </a>
               <a
                 href="mailto:adefilasamuel929@gmail.com"

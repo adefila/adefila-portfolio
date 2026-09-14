@@ -10,16 +10,10 @@ const fadeUp = (delay = 0) => ({
 });
 
 const slides = [
-  { title: "The Initial — AI Website", meta: "Figma to Framer · 2025", img: "/projects/elite-property.png" },
-  { title: "HitPay — SaaS Website", meta: "Framer Development · 2024", img: "/projects/nature.png" },
-  { title: "BindHQ", meta: "Framer Template Customization · 2026", img: "/projects/virvly.png" },
-  { title: "Clipmaster — Video Agency", meta: "Web Design · 2024", img: "/projects/jamal.png" },
-  { title: "VPA London — Talent Website", meta: "Framer Development · 2025", img: "/projects/elite-property.png" },
-  { title: "Virvly", meta: "Framer Development · 2025", img: "/projects/virvly.png" },
+  { title: "Elite Property", meta: "Framer Development · 2025", img: "/projects/elite-property.png" },
   { title: "Jamal Muse — Personal Portfolio", meta: "Claude to Framer · 2025", img: "/projects/jamal.png" },
-  { title: "Alyssa Corso — Personal Portfolio", meta: "Framer Development · 2026", img: "/projects/nature.png" },
-  { title: "Upside ESG", meta: "SaaS Framer Development · 2026", img: "/projects/elite-property.png" },
-  { title: "Emalbu", meta: "HTML to Framer · 2026", img: "/projects/virvly.png" },
+  { title: "Nature", meta: "Web Design · 2025", img: "/projects/nature.png" },
+  { title: "Virvly", meta: "Framer Development · 2025", img: "/projects/virvly.png" },
 ];
 
 // Duplicate for seamless infinite loop
