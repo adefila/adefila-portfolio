@@ -14,58 +14,8 @@ const projects = [
   { title: "Venera", meta: "Framer Development", year: "2026" },
 ];
 
+const COLS = 3;
 const EASE = [0.22, 1, 0.36, 1] as [number, number, number, number];
-
-function ProjectRow({ project, index }: { project: (typeof projects)[0]; index: number }) {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-5%" });
-
-  return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 12 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.4, delay: (index % 2) * 0.06, ease: EASE }}
-      style={{
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between",
-        gap: 16,
-        padding: "24px 28px",
-        background: "var(--white)",
-        border: "1px solid rgba(0,0,0,0.07)",
-        borderRadius: 12,
-        cursor: "pointer",
-      }}
-    >
-      <h3
-        style={{
-          fontFamily: "var(--font-poppins)",
-          fontWeight: 700,
-          fontSize: "clamp(13px, 1.2vw, 16px)",
-          letterSpacing: "-0.3px",
-          textTransform: "uppercase",
-          color: "var(--fg)",
-          lineHeight: 1.2,
-        }}
-      >
-        {project.title}
-      </h3>
-      <p
-        style={{
-          fontFamily: "var(--font-inter)",
-          fontWeight: 400,
-          fontSize: 12,
-          color: "var(--fg-secondary)",
-          whiteSpace: "nowrap",
-          flexShrink: 0,
-        }}
-      >
-        {project.meta} &nbsp;·&nbsp; {project.year}
-      </p>
-    </motion.div>
-  );
-}
 
 export default function Projects() {
   const ref = useRef(null);
@@ -118,20 +68,80 @@ export default function Projects() {
         </motion.h2>
       </div>
 
-      {/* 2-column list grid */}
+      {/* Numbered grid */}
       <div
         style={{
+          borderTop: "1px solid rgba(0,0,0,0.08)",
           display: "grid",
-          gridTemplateColumns: "1fr 1fr",
-          gap: 12,
+          gridTemplateColumns: `repeat(${COLS}, 1fr)`,
         }}
       >
-        {projects.map((project, i) => (
-          <ProjectRow key={project.title} project={project} index={i} />
-        ))}
+        {projects.map((project, i) => {
+          const col = i % COLS;
+          const isLastRow = i >= projects.length - COLS;
+          return (
+            <motion.div
+              key={project.title}
+              initial={{ opacity: 0, y: 12 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.4, delay: 0.1 + i * 0.04, ease: EASE }}
+              style={{
+                display: "flex",
+                alignItems: "flex-start",
+                justifyContent: "space-between",
+                gap: 16,
+                padding: "28px 0",
+                paddingLeft: col !== 0 ? 28 : 0,
+                paddingRight: col !== COLS - 1 ? 28 : 0,
+                borderBottom: isLastRow ? "none" : "1px solid rgba(0,0,0,0.08)",
+                borderRight: col !== COLS - 1 ? "1px solid rgba(0,0,0,0.08)" : "none",
+              }}
+            >
+              <div style={{ display: "flex", alignItems: "flex-start", gap: 16, flex: 1, minWidth: 0 }}>
+                <span
+                  style={{
+                    fontFamily: "var(--font-inter)",
+                    fontWeight: 400,
+                    fontSize: 13,
+                    color: "var(--fg-muted)",
+                    flexShrink: 0,
+                    paddingTop: 2,
+                  }}
+                >
+                  {i + 1}
+                </span>
+                <div style={{ minWidth: 0 }}>
+                  <h3
+                    style={{
+                      fontFamily: "var(--font-poppins)",
+                      fontWeight: 600,
+                      fontSize: "clamp(12px, 1.1vw, 15px)",
+                      letterSpacing: "-0.3px",
+                      textTransform: "uppercase",
+                      color: "var(--fg)",
+                      lineHeight: 1.3,
+                      marginBottom: 4,
+                    }}
+                  >
+                    {project.title}
+                  </h3>
+                  <p
+                    style={{
+                      fontFamily: "var(--font-inter)",
+                      fontWeight: 400,
+                      fontSize: 11,
+                      color: "var(--fg-secondary)",
+                      letterSpacing: "0.2px",
+                    }}
+                  >
+                    {project.meta} &nbsp;·&nbsp; {project.year}
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+          );
+        })}
       </div>
     </section>
   );
 }
-
-
