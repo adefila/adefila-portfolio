@@ -118,7 +118,9 @@ export default function Hero() {
           style={{ display: "flex", gap: 12, flexWrap: "wrap", marginBottom: 48 }}
         >
           <MagneticButton
-            href="#contact"
+            href="https://calendly.com/adefilasamuel929/30min"
+            target="_blank"
+            rel="noopener noreferrer"
             style={{
               fontFamily: "var(--font-inter)",
               fontWeight: 600,

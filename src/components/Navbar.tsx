@@ -184,7 +184,9 @@ export default function Navbar() {
 
           {/* Desktop CTA */}
           <MagneticButton
-            href="#contact"
+            href="https://calendly.com/adefilasamuel929/30min"
+            target="_blank"
+            rel="noopener noreferrer"
             className="nav-cta nav-cta-desktop"
             style={{
               fontFamily: "var(--font-inter)",
@@ -290,7 +292,9 @@ export default function Navbar() {
               style={{ marginTop: 40 }}
             >
               <a
-                href="#contact"
+                href="https://calendly.com/adefilasamuel929/30min"
+                target="_blank"
+                rel="noopener noreferrer"
                 onClick={close}
                 style={{
                   display: "inline-flex",

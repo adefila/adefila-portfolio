@@ -88,7 +88,7 @@ export default function Contact() {
               style={{ display: "flex", flexDirection: "column", gap: 16 }}
             >
               <a
-                href="https://calendly.com"
+                href="https://calendly.com/adefilasamuel929/30min"
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{

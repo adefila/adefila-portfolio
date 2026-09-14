@@ -1,6 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
-import { ArrowUpRight, ArrowRight } from "lucide-react";
+import { ArrowUpRight, CalendarDays } from "lucide-react";
 import MagneticButton from "./MagneticButton";
 
 const portfolioLinks = [
@@ -90,7 +90,9 @@ export default function Footer() {
             style={{ display: "flex", flexDirection: "column", gap: 12, flexShrink: 0 }}
           >
             <MagneticButton
-              href="#contact"
+              href="https://calendly.com/adefilasamuel929/30min"
+              target="_blank"
+              rel="noopener noreferrer"
               className="btn-cta"
               style={{
                 alignItems: "center",
@@ -108,7 +110,7 @@ export default function Footer() {
                 whiteSpace: "nowrap",
               }}
             >
-              BOOK A CALL <ArrowRight size={14} strokeWidth={2.5} />
+              BOOK A FREE CALL <CalendarDays size={14} strokeWidth={2} />
             </MagneticButton>
           </motion.div>
         </div>
