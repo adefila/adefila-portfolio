@@ -13,13 +13,12 @@ const workHistory = [
   { period: "2025–2026", role: "Framer Developer — Remote", company: "Klimt & Design" },
 ];
 
-// Placeholder photos — replace src values with real image paths when ready
 const photos = [
-  { id: 1, label: "Photo 1" },
-  { id: 2, label: "Photo 2" },
-  { id: 3, label: "Photo 3" },
-  { id: 4, label: "Photo 4" },
-  { id: 5, label: "Photo 5" },
+  { id: 1, src: "/gallery/photo-1.jpeg" },
+  { id: 2, src: "/gallery/photo-2.jpeg" },
+  { id: 3, src: "/gallery/photo-3.jpeg" },
+  { id: 4, src: "/gallery/photo-4.jpeg" },
+  { id: 5, src: "/gallery/photo-5.jpeg" },
 ];
 
 function TechTag({ label }: { label: string }) {
@@ -334,25 +333,16 @@ export default function About() {
                   borderRadius: 12,
                   background: "rgba(0,0,0,0.06)",
                   border: "1px solid rgba(0,0,0,0.07)",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
                   overflow: "hidden",
                   cursor: "pointer",
                 }}
               >
-                {/* Replace this div with <img src="..." /> when photos are ready */}
-                <p
-                  style={{
-                    fontFamily: "var(--font-inter)",
-                    fontSize: 12,
-                    color: "var(--fg-muted)",
-                    letterSpacing: "1px",
-                    textTransform: "uppercase",
-                  }}
-                >
-                  {photo.label}
-                </p>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={photo.src}
+                  alt={`Gallery photo ${photo.id}`}
+                  style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+                />
               </div>
             ))}
           </motion.div>
