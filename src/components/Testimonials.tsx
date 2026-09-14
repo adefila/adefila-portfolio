@@ -200,7 +200,7 @@ export default function Testimonials() {
                 }}
               >
                 <div>
-                  <p style={{ fontSize: 28, color: "var(--fg)", lineHeight: 1, marginBottom: 16 }}>&ldquo;</p>
+                  <p style={{ fontSize: 96, color: "var(--fg)", opacity: 0.08, lineHeight: 0.8, marginBottom: 8, fontFamily: "var(--font-poppins)", fontWeight: 700 }}>&ldquo;</p>
                   <p
                     style={{
                       fontFamily: "var(--font-inter)",
