@@ -294,6 +294,18 @@ html {
     gap: 40px !important;
   }
 
+  /* Side projects: 3-col → 1-col on mobile */
+  .side-projects-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .side-projects-grid > * {
+    border-right: none !important;
+    border-bottom: 1px solid rgba(255,255,255,0.06) !important;
+  }
+  .side-projects-grid > *:last-child {
+    border-bottom: none !important;
+  }
+
   /* Process steps: stack on mobile */
   .process-step {
     grid-template-columns: 40px 1fr !important;

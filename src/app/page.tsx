@@ -2,6 +2,7 @@ import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import SocialProof from "@/components/SocialProof";
 import Projects from "@/components/Projects";
+import SideProjects from "@/components/SideProjects";
 import WhyMe from "@/components/WhyMe";
 import HowIWork from "@/components/HowIWork";
 import Testimonials from "@/components/Testimonials";
@@ -23,6 +24,7 @@ export default function Home() {
       <Hero />
       <SocialProof />
       <Projects />
+      <SideProjects />
       <WhyMe />
       <HowIWork />
       <Testimonials />
