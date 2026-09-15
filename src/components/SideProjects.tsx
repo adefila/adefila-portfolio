@@ -17,7 +17,7 @@ const projects = [
     tagline: "I had a 400MB Loom recording I needed to send to a client. Every tool online wanted my email or had a file limit. Built this in a weekend — compresses in the browser, nothing ever leaves your device.",
     stack: ["Next.js", "FFmpeg WASM"],
     href: "https://video-compressor-bay.vercel.app/",
-    accent: "#0ce0d6",
+    accent: "#0073e6",
     label: "UTILITY",
   },
   {
@@ -41,214 +41,214 @@ export default function SideProjects() {
       id="side-projects"
       style={{
         width: "100%",
-        background: "var(--fg)",
+        maxWidth: 1200,
+        margin: "0 auto",
         padding: "80px 20px",
       }}
     >
-      <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-        {/* Header */}
-        <div
-          ref={ref}
-          style={{
-            display: "flex",
-            alignItems: "flex-end",
-            justifyContent: "space-between",
-            flexWrap: "wrap",
-            gap: 24,
-            marginBottom: 56,
-          }}
-        >
-          <div>
-            <motion.p
-              initial={{ opacity: 0, y: 10 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5 }}
-              style={{
-                fontFamily: "var(--font-inter)",
-                fontWeight: 700,
-                fontSize: 11,
-                letterSpacing: "4px",
-                textTransform: "uppercase",
-                color: "var(--accent-purple)",
-                marginBottom: 16,
-              }}
-            >
-              SIDE PROJECTS
-            </motion.p>
-            <motion.h2
-              initial={{ opacity: 0, y: 10, filter: "blur(8px)" }}
-              animate={inView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
-              transition={{ duration: 0.5, delay: 0.06, ease: EASE }}
-              style={{
-                fontFamily: "var(--font-poppins)",
-                fontWeight: 700,
-                fontSize: "clamp(26px, 3.2vw, 44px)",
-                letterSpacing: "-1px",
-                lineHeight: 1.08,
-                textTransform: "uppercase",
-                color: "var(--white)",
-              }}
-            >
-              Stuff I built{" "}
-              <span style={{ color: "rgba(255,255,255,0.25)" }}>
-                because I needed it.
-              </span>
-            </motion.h2>
-          </div>
-
+      {/* Header — matches other sections */}
+      <div
+        ref={ref}
+        style={{
+          display: "flex",
+          gap: 80,
+          alignItems: "flex-end",
+          flexWrap: "wrap",
+          marginBottom: 56,
+          borderBottom: "1px solid rgba(0,0,0,0.08)",
+          paddingBottom: 40,
+        }}
+      >
+        <div style={{ flex: "1 1 360px" }}>
           <motion.p
-            initial={{ opacity: 0 }}
-            animate={inView ? { opacity: 1 } : {}}
-            transition={{ duration: 0.5, delay: 0.18 }}
+            initial={{ opacity: 0, y: 10 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5 }}
             style={{
               fontFamily: "var(--font-inter)",
-              fontWeight: 400,
-              fontSize: 14,
-              lineHeight: 1.65,
-              color: "rgba(255,255,255,0.4)",
-              maxWidth: 280,
-              letterSpacing: "-0.2px",
+              fontWeight: 700,
+              fontSize: 11,
+              letterSpacing: "4px",
+              textTransform: "uppercase",
+              color: "var(--accent-purple)",
+              marginBottom: 16,
             }}
           >
-            Not client work. Three things I built because I ran into the problem myself.
+            SIDE PROJECTS
           </motion.p>
+          <motion.h2
+            initial={{ opacity: 0, y: 10, filter: "blur(8px)" }}
+            animate={inView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
+            transition={{ duration: 0.5, delay: 0.06, ease: EASE }}
+            style={{
+              fontFamily: "var(--font-poppins)",
+              fontWeight: 700,
+              fontSize: "clamp(26px, 3.2vw, 44px)",
+              letterSpacing: "-1px",
+              lineHeight: 1.08,
+              textTransform: "uppercase",
+              color: "var(--fg)",
+            }}
+          >
+            Stuff I built{" "}
+            <span style={{ color: "rgb(163,163,163)" }}>
+              because I needed it.
+            </span>
+          </motion.h2>
         </div>
 
-        {/* Cards grid */}
-        <div
-          className="side-projects-grid"
+        <motion.p
+          initial={{ opacity: 0, y: 10 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5, delay: 0.14 }}
           style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(3, 1fr)",
-            gap: 1,
-            background: "rgba(255,255,255,0.06)",
-            border: "1px solid rgba(255,255,255,0.06)",
+            flex: "1 1 280px",
+            fontFamily: "var(--font-inter)",
+            fontWeight: 400,
+            fontSize: 15,
+            lineHeight: 1.7,
+            color: "var(--fg-secondary)",
+            letterSpacing: "-0.3px",
           }}
         >
-          {projects.map((project, i) => (
-            <motion.a
-              key={project.name}
-              href={project.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              initial={{ opacity: 0, y: 24 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: 0.1 + i * 0.1, ease: EASE }}
+          Not client work. Three things I built because I ran into the problem myself.
+        </motion.p>
+      </div>
+
+      {/* Cards grid */}
+      <div
+        className="side-projects-grid"
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(3, 1fr)",
+          gap: 1,
+          background: "rgba(0,0,0,0.06)",
+          border: "1px solid rgba(0,0,0,0.07)",
+        }}
+      >
+        {projects.map((project, i) => (
+          <motion.a
+            key={project.name}
+            href={project.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            initial={{ opacity: 0, y: 24 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5, delay: 0.1 + i * 0.1, ease: EASE }}
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-between",
+              padding: "32px 28px",
+              background: "var(--bg)",
+              textDecoration: "none",
+              borderRight: i < projects.length - 1 ? "1px solid rgba(0,0,0,0.07)" : "none",
+              transition: "background 0.2s",
+              minHeight: 260,
+              position: "relative",
+              overflow: "hidden",
+            }}
+            whileHover={{ background: "var(--white)" } as never}
+          >
+            {/* Accent top bar */}
+            <div
               style={{
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "space-between",
-                padding: "32px 28px",
-                background: "var(--fg)",
-                textDecoration: "none",
-                borderRight: i < projects.length - 1 ? "1px solid rgba(255,255,255,0.06)" : "none",
-                transition: "background 0.2s",
-                minHeight: 260,
-                position: "relative",
-                overflow: "hidden",
+                position: "absolute",
+                top: 0,
+                left: 0,
+                right: 0,
+                height: 2,
+                background: project.accent,
               }}
-              whileHover={{ background: "rgba(255,255,255,0.03)" } as never}
-            >
-              {/* Accent top bar */}
-              <div
-                style={{
-                  position: "absolute",
-                  top: 0,
-                  left: 0,
-                  right: 0,
-                  height: 2,
-                  background: project.accent,
-                }}
-              />
+            />
 
-              {/* Top: label + title */}
-              <div>
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "space-between",
-                    marginBottom: 16,
-                  }}
-                >
-                  <span
-                    style={{
-                      fontFamily: "var(--font-inter)",
-                      fontWeight: 600,
-                      fontSize: 10,
-                      letterSpacing: "2px",
-                      textTransform: "uppercase",
-                      color: project.accent,
-                    }}
-                  >
-                    {project.label}
-                  </span>
-                  <ArrowUpRight
-                    size={16}
-                    strokeWidth={1.5}
-                    color="rgba(255,255,255,0.25)"
-                  />
-                </div>
-
-                <h3
-                  style={{
-                    fontFamily: "var(--font-poppins)",
-                    fontWeight: 700,
-                    fontSize: "clamp(18px, 1.6vw, 22px)",
-                    letterSpacing: "-0.5px",
-                    color: "var(--white)",
-                    marginBottom: 12,
-                    lineHeight: 1.2,
-                  }}
-                >
-                  {project.name}
-                </h3>
-
-                <p
-                  style={{
-                    fontFamily: "var(--font-inter)",
-                    fontWeight: 400,
-                    fontSize: 14,
-                    lineHeight: 1.65,
-                    color: "rgba(255,255,255,0.5)",
-                    letterSpacing: "-0.2px",
-                  }}
-                >
-                  {project.tagline}
-                </p>
-              </div>
-
-              {/* Bottom: stack tags */}
+            {/* Top: label + arrow */}
+            <div>
               <div
                 style={{
                   display: "flex",
-                  flexWrap: "wrap",
-                  gap: 6,
-                  marginTop: 24,
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  marginBottom: 16,
                 }}
               >
-                {project.stack.map((tech) => (
-                  <span
-                    key={tech}
-                    style={{
-                      fontFamily: "var(--font-inter)",
-                      fontWeight: 500,
-                      fontSize: 11,
-                      letterSpacing: "0.3px",
-                      color: "rgba(255,255,255,0.4)",
-                      background: "rgba(255,255,255,0.06)",
-                      border: "1px solid rgba(255,255,255,0.08)",
-                      padding: "4px 10px",
-                      borderRadius: 100,
-                    }}
-                  >
-                    {tech}
-                  </span>
-                ))}
+                <span
+                  style={{
+                    fontFamily: "var(--font-inter)",
+                    fontWeight: 600,
+                    fontSize: 10,
+                    letterSpacing: "2px",
+                    textTransform: "uppercase",
+                    color: project.accent,
+                  }}
+                >
+                  {project.label}
+                </span>
+                <ArrowUpRight
+                  size={16}
+                  strokeWidth={1.5}
+                  color="rgba(0,0,0,0.25)"
+                />
               </div>
-            </motion.a>
-          ))}
-        </div>
+
+              <h3
+                style={{
+                  fontFamily: "var(--font-poppins)",
+                  fontWeight: 700,
+                  fontSize: "clamp(18px, 1.6vw, 22px)",
+                  letterSpacing: "-0.5px",
+                  color: "var(--fg)",
+                  marginBottom: 12,
+                  lineHeight: 1.2,
+                }}
+              >
+                {project.name}
+              </h3>
+
+              <p
+                style={{
+                  fontFamily: "var(--font-inter)",
+                  fontWeight: 400,
+                  fontSize: 14,
+                  lineHeight: 1.65,
+                  color: "var(--fg-secondary)",
+                  letterSpacing: "-0.2px",
+                }}
+              >
+                {project.tagline}
+              </p>
+            </div>
+
+            {/* Bottom: stack tags */}
+            <div
+              style={{
+                display: "flex",
+                flexWrap: "wrap",
+                gap: 6,
+                marginTop: 24,
+              }}
+            >
+              {project.stack.map((tech) => (
+                <span
+                  key={tech}
+                  style={{
+                    fontFamily: "var(--font-inter)",
+                    fontWeight: 500,
+                    fontSize: 11,
+                    letterSpacing: "0.3px",
+                    color: "var(--fg-secondary)",
+                    background: "rgba(0,0,0,0.04)",
+                    border: "1px solid rgba(0,0,0,0.08)",
+                    padding: "4px 10px",
+                    borderRadius: 100,
+                  }}
+                >
+                  {tech}
+                </span>
+              ))}
+            </div>
+          </motion.a>
+        ))}
       </div>
     </section>
   );
