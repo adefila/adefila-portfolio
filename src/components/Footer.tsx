@@ -4,16 +4,15 @@ import { ArrowUpRight, CalendarDays } from "lucide-react";
 import MagneticButton from "./MagneticButton";
 
 const portfolioLinks = [
-  { label: "Dribbble", href: "https://dribbble.com" },
-  { label: "Behance", href: "https://behance.net" },
-  { label: "Layers", href: "https://layers.to" },
+  { label: "Dribbble", href: "https://dribbble.com/Adeyemisamuel020" },
+  { label: "Behance", href: "https://www.behance.net/adefilasamuel" },
+  { label: "Layers", href: "https://layers.to/adeyemisamuel" },
 ];
 
 const socialLinks = [
-  { label: "Twitter (X)", href: "https://twitter.com" },
-  { label: "LinkedIn", href: "https://linkedin.com" },
-  { label: "Instagram", href: "https://instagram.com" },
-  { label: "Facebook", href: "https://facebook.com" },
+  { label: "Twitter (X)", href: "https://x.com/adeyemiS_" },
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/adefila-samuel-144448201/" },
+  { label: "Instagram", href: "https://www.instagram.com/adeyemi929_" },
 ];
 
 export default function Footer() {
