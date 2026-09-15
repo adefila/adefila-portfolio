@@ -69,9 +69,10 @@ body {
   mix-blend-mode: difference;
 }
 
-/* Smooth scroll */
+/* Smooth scroll + offset for sticky navbar */
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 80px;
 }
 
 /* Selection */
@@ -185,6 +186,10 @@ html {
     padding-top: 48px !important;
     padding-bottom: 40px !important;
   }
+  #process {
+    padding-top: 40px !important;
+    padding-bottom: 40px !important;
+  }
   #testimonials {
     padding-top: 40px !important;
     padding-bottom: 40px !important;
@@ -208,15 +213,17 @@ html {
     gap: 0 !important;
   }
 
-  /* Projects 3-col → 2-col on mobile */
+  /* Projects → 1-col on mobile (titles too long for 2-col) */
   .projects-grid {
-    grid-template-columns: repeat(2, 1fr) !important;
+    grid-template-columns: 1fr !important;
   }
   .projects-grid > * {
     border-right: none !important;
     padding-left: 0 !important;
     padding-right: 0 !important;
     border-bottom: 1px solid rgba(0,0,0,0.08) !important;
+    padding-top: 20px !important;
+    padding-bottom: 20px !important;
   }
   .projects-grid > *:last-child {
     border-bottom: none !important;
@@ -289,12 +296,21 @@ html {
 
   /* Process steps: stack on mobile */
   .process-step {
-    grid-template-columns: 48px 1fr !important;
-    gap: 0 24px !important;
+    grid-template-columns: 40px 1fr !important;
+    gap: 0 20px !important;
   }
   .process-step > div:last-child {
-    grid-column: 2 !important;
+    grid-column: 1 / -1 !important;
     margin-top: 16px !important;
+    border-left: none !important;
+    border-top: 1px solid rgba(109,40,217,0.12) !important;
+    padding-left: 0 !important;
+    padding-top: 14px !important;
+  }
+
+  /* Testimonial cards: don't force 400px on mobile */
+  .testimonial-card {
+    min-height: 200px !important;
   }
 
   /* Footer CTA: reduce padding on mobile */
