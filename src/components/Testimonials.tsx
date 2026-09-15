@@ -34,6 +34,11 @@ const testimonials = [
     name: "Raffaello Cuccuini",
     role: "Humanity",
   },
+  {
+    text: "Samuel did an outstanding job! He is reliable, knowledgeable, patient and kind. I highly recommend Samuel from the sea of providers on Upwork.",
+    name: "Heather Burns",
+    role: "Upside ESG",
+  },
 ];
 
 export default function Testimonials() {
