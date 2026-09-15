@@ -133,6 +133,7 @@ export default function WhyMe() {
 
         {/* Right: stats */}
         <div
+          className="whyme-stats-col"
           style={{
             flex: "1 1 300px",
             display: "flex",

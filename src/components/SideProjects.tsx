@@ -49,6 +49,7 @@ export default function SideProjects() {
       {/* Header — matches other sections */}
       <div
         ref={ref}
+        className="section-header-row"
         style={{
           display: "flex",
           gap: 80,

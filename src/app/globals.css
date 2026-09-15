@@ -295,12 +295,18 @@ html {
   }
 
   /* Side projects: 3-col → 1-col on mobile */
+  #side-projects {
+    padding-top: 40px !important;
+    padding-bottom: 40px !important;
+  }
   .side-projects-grid {
     grid-template-columns: 1fr !important;
   }
   .side-projects-grid > * {
     border-right: none !important;
     border-bottom: 1px solid rgba(0,0,0,0.07) !important;
+    padding: 24px 20px !important;
+    min-height: auto !important;
   }
   .side-projects-grid > *:last-child {
     border-bottom: none !important;
@@ -309,15 +315,16 @@ html {
   /* Process steps: stack on mobile */
   .process-step {
     grid-template-columns: 40px 1fr !important;
-    gap: 0 20px !important;
+    gap: 0 16px !important;
+    padding: 24px 0 !important;
   }
   .process-step > div:last-child {
     grid-column: 1 / -1 !important;
-    margin-top: 16px !important;
+    margin-top: 12px !important;
     border-left: none !important;
     border-top: 1px solid rgba(109,40,217,0.12) !important;
     padding-left: 0 !important;
-    padding-top: 14px !important;
+    padding-top: 12px !important;
   }
 
   /* Testimonial cards: don't force 400px on mobile */
@@ -334,5 +341,44 @@ html {
   .footer-bar-inner {
     flex-direction: column !important;
     gap: 32px !important;
+  }
+
+  /* Section header rows: reduce stacking gap on mobile */
+  .section-header-row {
+    gap: 24px !important;
+    margin-bottom: 40px !important;
+    padding-bottom: 32px !important;
+  }
+  .process-header-row {
+    gap: 24px !important;
+    margin-bottom: 40px !important;
+    padding-bottom: 32px !important;
+  }
+
+  /* WhyMe stats: tighter vertical gap on mobile */
+  .whyme-stats-col {
+    gap: 16px !important;
+    padding-top: 0 !important;
+  }
+
+  /* Benefits grid cards: tighter padding on mobile */
+  .benefits-grid > div {
+    padding: 20px 0 !important;
+  }
+
+  /* Services grid items: tighter on mobile */
+  .services-grid > div {
+    padding: 18px 0 !important;
+  }
+  /* Services grid bottom margin via whyme-services override in JS (already 0) */
+
+  /* About photo carousel: tighter top margin */
+  .about-carousel {
+    margin-top: 40px !important;
+  }
+
+  /* Process header section marginBottom */
+  #process .process-header-row {
+    margin-bottom: 40px !important;
   }
 }

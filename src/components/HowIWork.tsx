@@ -52,6 +52,7 @@ export default function HowIWork() {
       {/* Header */}
       <div
         ref={ref}
+        className="process-header-row"
         style={{
           display: "flex",
           gap: 80,
