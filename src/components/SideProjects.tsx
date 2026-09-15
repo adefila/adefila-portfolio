@@ -6,7 +6,7 @@ import { ArrowUpRight } from "lucide-react";
 const projects = [
   {
     name: "CVCraft",
-    tagline: "AI-powered CV builder that beats ATS screening — with a built-in HR simulator to review your CV before you send it.",
+    tagline: "I kept getting ghosted after applying. Turned out my CV wasn't making it past ATS. Built this to fix that — it rewrites your CV and lets you run it through an HR simulator before you send it.",
     stack: ["Claude API", "Next.js"],
     href: "https://cvcraftai.vercel.app/",
     accent: "#7c3aed",
@@ -14,7 +14,7 @@ const projects = [
   },
   {
     name: "Video Compressor",
-    tagline: "Browser-based tool to compress large video files instantly. No uploads to a server, no account, no waiting.",
+    tagline: "I had a 400MB Loom recording I needed to send to a client. Every tool online wanted my email or had a file limit. Built this in a weekend — compresses in the browser, nothing ever leaves your device.",
     stack: ["Next.js", "FFmpeg WASM"],
     href: "https://video-compressor-bay.vercel.app/",
     accent: "#0ce0d6",
@@ -22,7 +22,7 @@ const projects = [
   },
   {
     name: "CourseShare",
-    tagline: "Open-source platform for students to share lecture notes and course materials across universities.",
+    tagline: "My uni course materials lived across 12 different WhatsApp groups and no one could find anything. Built one place where students upload notes, anyone can search, and nothing gets buried.",
     stack: ["Next.js", "Supabase"],
     href: "https://courseshare-delta.vercel.app/",
     accent: "#00ab4a",
@@ -73,7 +73,7 @@ export default function SideProjects() {
                 marginBottom: 16,
               }}
             >
-              ALSO BUILT
+              SIDE PROJECTS
             </motion.p>
             <motion.h2
               initial={{ opacity: 0, y: 10, filter: "blur(8px)" }}
@@ -89,9 +89,9 @@ export default function SideProjects() {
                 color: "var(--white)",
               }}
             >
-              Things I shipped{" "}
+              Stuff I built{" "}
               <span style={{ color: "rgba(255,255,255,0.25)" }}>
-                for myself.
+                because I needed it.
               </span>
             </motion.h2>
           </div>
@@ -110,7 +110,7 @@ export default function SideProjects() {
               letterSpacing: "-0.2px",
             }}
           >
-            Side projects I built to solve problems I had — or just to see if I could.
+            Not client work. Three things I built because I ran into the problem myself.
           </motion.p>
         </div>
 

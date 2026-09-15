@@ -24,11 +24,11 @@ export default function Home() {
       <Hero />
       <SocialProof />
       <Projects />
-      <SideProjects />
       <WhyMe />
       <HowIWork />
       <Testimonials />
       <About />
+      <SideProjects />
       <FAQ />
       <Footer />
     </main>
