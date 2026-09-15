@@ -21,12 +21,21 @@ export const metadata: Metadata = {
       "50+ custom Framer websites delivered for founders and agencies. Top Rated on Upwork with 100% Job Success. Book a free strategy call.",
     type: "website",
     url: "https://adefilasamuel.com",
+    images: [
+      {
+        url: "/og-image.svg",
+        width: 1200,
+        height: 630,
+        alt: "Samuel Adefila — Framer Developer & UI/UX Designer",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Samuel Adefila — Framer Developer & UI/UX Designer",
     description:
       "50+ conversion-focused Framer websites. Top Rated on Upwork. Book a free call.",
+    images: ["/og-image.svg"],
   },
 };
 
