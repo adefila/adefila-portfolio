@@ -90,9 +90,9 @@ export default function SideProjects() {
               color: "var(--fg)",
             }}
           >
-            Stuff I built{" "}
+            STUFF I BUILT{" "}
             <span style={{ color: "rgb(163,163,163)" }}>
-              because I needed it.
+              BECAUSE I NEEDED IT.
             </span>
           </motion.h2>
         </div>
@@ -145,23 +145,9 @@ export default function SideProjects() {
               borderRight: i < projects.length - 1 ? "1px solid rgba(0,0,0,0.07)" : "none",
               transition: "background 0.2s",
               minHeight: 260,
-              position: "relative",
-              overflow: "hidden",
             }}
             whileHover={{ background: "var(--white)" } as never}
           >
-            {/* Accent top bar */}
-            <div
-              style={{
-                position: "absolute",
-                top: 0,
-                left: 0,
-                right: 0,
-                height: 2,
-                background: project.accent,
-              }}
-            />
-
             {/* Top: label + arrow */}
             <div>
               <div
