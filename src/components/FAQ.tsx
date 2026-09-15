@@ -160,7 +160,7 @@ export default function FAQ() {
                     style={{
                       fontFamily: "var(--font-inter)",
                       fontWeight: 600,
-                      fontSize: 13,
+                      fontSize: 14,
                       letterSpacing: "0.3px",
                       color: "var(--fg)",
                       textTransform: "uppercase",
@@ -196,7 +196,7 @@ export default function FAQ() {
                         style={{
                           fontFamily: "var(--font-inter)",
                           fontWeight: 400,
-                          fontSize: 14,
+                          fontSize: 16,
                           letterSpacing: "-0.2px",
                           lineHeight: 1.7,
                           color: "var(--fg-secondary)",

@@ -198,7 +198,7 @@ export default function HowIWork() {
                 style={{
                   fontFamily: "var(--font-inter)",
                   fontWeight: 400,
-                  fontSize: 14,
+                  fontSize: 15,
                   lineHeight: 1.7,
                   color: "var(--fg-secondary)",
                   letterSpacing: "-0.2px",
@@ -220,7 +220,7 @@ export default function HowIWork() {
                 style={{
                   fontFamily: "var(--font-inter)",
                   fontWeight: 400,
-                  fontSize: 13,
+                  fontSize: 14,
                   lineHeight: 1.65,
                   color: "var(--fg-secondary)",
                   letterSpacing: "-0.1px",

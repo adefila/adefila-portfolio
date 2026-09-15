@@ -127,7 +127,7 @@ export default function Projects() {
                       style={{
                         fontFamily: "var(--font-poppins)",
                         fontWeight: 600,
-                        fontSize: "clamp(12px, 1.1vw, 15px)",
+                        fontSize: "clamp(14px, 1.1vw, 15px)",
                         letterSpacing: "-0.3px",
                         textTransform: "uppercase",
                         color: "var(--fg)",

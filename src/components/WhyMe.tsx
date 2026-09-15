@@ -238,7 +238,7 @@ export default function WhyMe() {
                 style={{
                   fontFamily: "var(--font-inter)",
                   fontWeight: 400,
-                  fontSize: 14,
+                  fontSize: 15,
                   letterSpacing: "-0.2px",
                   lineHeight: 1.6,
                   color: "var(--fg-secondary)",
@@ -292,7 +292,7 @@ export default function WhyMe() {
               style={{
                 fontFamily: "var(--font-poppins)",
                 fontWeight: 600,
-                fontSize: "clamp(13px, 1.2vw, 16px)",
+                fontSize: "clamp(14px, 1.2vw, 16px)",
                 letterSpacing: "-0.3px",
                 textTransform: "uppercase",
                 color: "var(--fg)",
