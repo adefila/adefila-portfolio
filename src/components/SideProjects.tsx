@@ -181,12 +181,13 @@ export default function SideProjects() {
               <h3
                 style={{
                   fontFamily: "var(--font-poppins)",
-                  fontWeight: 700,
-                  fontSize: "clamp(18px, 1.6vw, 22px)",
-                  letterSpacing: "-0.5px",
+                  fontWeight: 600,
+                  fontSize: "clamp(13px, 1.1vw, 15px)",
+                  letterSpacing: "-0.2px",
+                  textTransform: "uppercase",
                   color: "var(--fg)",
                   marginBottom: 12,
-                  lineHeight: 1.2,
+                  lineHeight: 1.3,
                 }}
               >
                 {project.name}
