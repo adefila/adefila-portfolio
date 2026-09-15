@@ -181,7 +181,7 @@ export default function Testimonials() {
                 lineHeight: 1.4,
               }}
             >
-              Successfully Delivered projects
+              Successfully Delivered Projects
             </p>
           </div>
 
