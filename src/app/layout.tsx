@@ -32,6 +32,64 @@ export const metadata: Metadata = {
 
 import Cursor from "@/components/Cursor";
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://adefilasamuel.com/#person",
+      name: "Samuel Adefila",
+      url: "https://adefilasamuel.com",
+      jobTitle: "Framer Developer & UI/UX Designer",
+      description:
+        "Product designer and no-code developer building conversion-focused websites with Framer, Shopify, and Webflow. Top Rated on Upwork with 100% Job Success.",
+      sameAs: [
+        "https://www.linkedin.com/in/adefila-samuel-144448201/",
+        "https://x.com/adeyemiS_",
+        "https://dribbble.com/Adeyemisamuel020",
+        "https://www.behance.net/adefilasamuel",
+        "https://layers.to/adeyemisamuel",
+        "https://www.instagram.com/adeyemi929_",
+        "https://www.upwork.com/freelancers/samueladefila",
+      ],
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://adefilasamuel.com/#website",
+      url: "https://adefilasamuel.com",
+      name: "Samuel Adefila — Framer Developer & UI/UX Designer",
+      description:
+        "Portfolio of Samuel Adefila — 50+ conversion-focused websites built with Framer, Shopify, and Webflow.",
+      author: { "@id": "https://adefilasamuel.com/#person" },
+    },
+    {
+      "@type": "ProfessionalService",
+      "@id": "https://adefilasamuel.com/#service",
+      name: "Samuel Adefila — Web Design & Development",
+      url: "https://adefilasamuel.com",
+      provider: { "@id": "https://adefilasamuel.com/#person" },
+      serviceType: [
+        "Framer Development",
+        "Webflow Development",
+        "Shopify Development",
+        "UI/UX Design",
+        "Figma to Framer",
+        "Website Migration",
+      ],
+      areaServed: "Worldwide",
+      hasOfferCatalog: {
+        "@type": "OfferCatalog",
+        name: "Web Design Services",
+        itemListElement: [
+          { "@type": "Offer", itemOffered: { "@type": "Service", name: "Framer Website Design & Development" } },
+          { "@type": "Offer", itemOffered: { "@type": "Service", name: "Shopify Store Design" } },
+          { "@type": "Offer", itemOffered: { "@type": "Service", name: "Webflow Development" } },
+        ],
+      },
+    },
+  ],
+};
+
 export default function RootLayout({
   children,
 }: {
@@ -49,6 +107,10 @@ export default function RootLayout({
         <link
           href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap"
           rel="stylesheet"
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
       <body>
