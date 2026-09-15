@@ -12,10 +12,6 @@ const faqs = [
     a: "Framer, Shopify, Webflow, WordPress — I choose based on what's right for you, not what I'm most comfortable with. My job is to give you the best tool for the job, then build it well.",
   },
   {
-    q: "CAN YOU IMPROVE MY EXISTING WEBSITE?",
-    a: "Yes — and that's often the most impactful move. I look at what's working, fix what's not, and improve what could be better. Whether it's a redesign, a migration, or a targeted fix.",
-  },
-  {
     q: "HOW MUCH DOES IT COST?",
     a: "Pricing is scoped to your project — no surprises, no retainers you don't need. Book a call and you'll leave with a clear number and exactly what's included.",
   },
@@ -24,12 +20,24 @@ const faqs = [
     a: "Most projects are done in 7–14 days. Larger builds with multiple pages can run 2–3 weeks. You'll know the timeline before we start — and I stick to it.",
   },
   {
-    q: "DO YOU USE TEMPLATES?",
-    a: "Never. Everything starts from scratch. Your site is designed specifically for you, your audience, and what you're trying to accomplish — not pulled from a library.",
+    q: "HOW MANY REVISIONS DO I GET?",
+    a: "As many as you need to get it right — within the agreed scope. I don't cap revisions at some arbitrary number. What I do is build revision cycles into the process early, so by the time we're in development, there's almost nothing left to change.",
+  },
+  {
+    q: "CAN YOU IMPROVE MY EXISTING WEBSITE?",
+    a: "Yes — and that's often the most impactful move. I look at what's working, fix what's not, and improve what could be better. Whether it's a redesign, a migration, or a targeted fix.",
+  },
+  {
+    q: "DO YOU OFFER ONGOING SUPPORT?",
+    a: "Yes. Once your site is live, I'm available for updates, tweaks, and new additions. Most clients keep me on retainer for small ongoing changes rather than having to re-brief a new developer each time.",
   },
   {
     q: "WILL MY SITE BE EASY TO MANAGE?",
     a: "Yes. I build with content management in mind so you can update things without touching code. I'll walk you through everything after launch so you feel confident on day one.",
+  },
+  {
+    q: "DO YOU USE TEMPLATES?",
+    a: "Never. Everything starts from scratch. Your site is designed specifically for you, your audience, and what you're trying to accomplish — not pulled from a library.",
   },
   {
     q: "HOW DO WE GET STARTED?",
@@ -111,6 +119,7 @@ export default function FAQ() {
               letterSpacing: "-0.3px",
               lineHeight: 1.7,
               color: "var(--fg-secondary)",
+              marginBottom: 40,
             }}
           >
             Can&apos;t find what you&apos;re looking for? Reach out directly —{" "}
@@ -125,6 +134,54 @@ export default function FAQ() {
               adefilasamuel929@gmail.com
             </a>
           </motion.p>
+
+          {/* Quick-stat row */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5, delay: 0.22 }}
+            style={{
+              display: "flex",
+              gap: 0,
+              border: "1px solid rgba(0,0,0,0.08)",
+            }}
+          >
+            {[
+              { n: "50+", label: "Projects" },
+              { n: "100%", label: "Job Success" },
+              { n: "7–14d", label: "Avg. Delivery" },
+            ].map((stat, i) => (
+              <div
+                key={i}
+                style={{
+                  flex: 1,
+                  padding: "16px 14px",
+                  borderRight: i < 2 ? "1px solid rgba(0,0,0,0.08)" : "none",
+                  textAlign: "center",
+                }}
+              >
+                <p style={{
+                  fontFamily: "var(--font-poppins)",
+                  fontWeight: 700,
+                  fontSize: 18,
+                  letterSpacing: "-0.5px",
+                  color: "var(--fg)",
+                  marginBottom: 2,
+                }}>
+                  {stat.n}
+                </p>
+                <p style={{
+                  fontFamily: "var(--font-inter)",
+                  fontSize: 10,
+                  letterSpacing: "1.5px",
+                  textTransform: "uppercase",
+                  color: "var(--fg-secondary)",
+                }}>
+                  {stat.label}
+                </p>
+              </div>
+            ))}
+          </motion.div>
         </div>
 
         {/* Right: accordion */}
@@ -136,9 +193,11 @@ export default function FAQ() {
                 key={i}
                 initial={{ opacity: 0, y: 12 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.4, delay: 0.05 + i * 0.05 }}
+                transition={{ duration: 0.4, delay: 0.05 + i * 0.04 }}
                 style={{
                   borderBottom: "1px solid rgba(0,0,0,0.07)",
+                  background: isOpen ? "rgba(109,40,217,0.025)" : "transparent",
+                  transition: "background 0.25s ease",
                 }}
               >
                 <button
@@ -156,27 +215,44 @@ export default function FAQ() {
                     textAlign: "left",
                   }}
                 >
-                  <span
-                    style={{
+                  <div style={{ display: "flex", alignItems: "center", gap: 16, minWidth: 0, flex: 1 }}>
+                    <span style={{
                       fontFamily: "var(--font-inter)",
-                      fontWeight: 600,
-                      fontSize: 14,
-                      letterSpacing: "0.3px",
-                      color: "var(--fg)",
-                      textTransform: "uppercase",
-                    }}
-                  >
-                    {faq.q}
-                  </span>
+                      fontWeight: 400,
+                      fontSize: 10,
+                      letterSpacing: "0.5px",
+                      color: isOpen ? "var(--accent-purple)" : "rgba(0,0,0,0.2)",
+                      flexShrink: 0,
+                      transition: "color 0.2s",
+                      fontVariantNumeric: "tabular-nums",
+                      minWidth: 20,
+                    }}>
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <span
+                      style={{
+                        fontFamily: "var(--font-inter)",
+                        fontWeight: 600,
+                        fontSize: 13,
+                        letterSpacing: "0.3px",
+                        color: isOpen ? "var(--accent-purple)" : "var(--fg)",
+                        textTransform: "uppercase",
+                        transition: "color 0.2s",
+                      }}
+                    >
+                      {faq.q}
+                    </span>
+                  </div>
                   <motion.span
                     animate={{ rotate: isOpen ? 45 : 0 }}
-                    transition={{ duration: 0.2 }}
+                    transition={{ duration: 0.22 }}
                     style={{
-                      fontSize: 22,
-                      color: "var(--fg)",
+                      fontSize: 20,
+                      color: isOpen ? "var(--accent-purple)" : "var(--fg)",
                       flexShrink: 0,
                       lineHeight: 1,
                       display: "inline-block",
+                      transition: "color 0.2s",
                     }}
                   >
                     +
@@ -196,11 +272,12 @@ export default function FAQ() {
                         style={{
                           fontFamily: "var(--font-inter)",
                           fontWeight: 400,
-                          fontSize: 16,
+                          fontSize: 15,
                           letterSpacing: "-0.2px",
-                          lineHeight: 1.7,
+                          lineHeight: 1.75,
                           color: "var(--fg-secondary)",
                           paddingBottom: 20,
+                          paddingLeft: 36,
                         }}
                       >
                         {faq.a}
