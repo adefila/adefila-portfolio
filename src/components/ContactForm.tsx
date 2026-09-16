@@ -1,6 +1,6 @@
 "use client";
 import { motion, useInView } from "framer-motion";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { ArrowUpRight, Send } from "lucide-react";
 import { useLang } from "@/context/LangContext";
 
@@ -32,6 +32,15 @@ export default function ContactForm() {
   const { t } = useLang();
 
   const [status, setStatus] = useState<Status>("idle");
+  const [countdown, setCountdown] = useState(5);
+
+  useEffect(() => {
+    if (status !== "success") return;
+    setCountdown(5);
+    const interval = setInterval(() => setCountdown((c) => c - 1), 1000);
+    const reset = setTimeout(() => { setStatus("idle"); setForm({ name: "", email: "", service: "", budget: "", message: "" }); }, 5000);
+    return () => { clearInterval(interval); clearTimeout(reset); };
+  }, [status]);
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -196,19 +205,76 @@ export default function ContactForm() {
           transition={{ duration: 0.5, delay: 0.12, ease: EASE }}
         >
           {status === "success" ? (
-            <div style={{
-              padding: "48px 32px",
-              border: "1px solid rgba(0,0,0,0.08)",
-              textAlign: "center",
-            }}>
-              <p style={{ fontSize: 32, marginBottom: 16 }}>✓</p>
-              <p style={{ fontFamily: "var(--font-poppins)", fontWeight: 700, fontSize: 18, color: "var(--fg)", letterSpacing: "-0.5px", marginBottom: 8 }}>
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.45, ease: EASE }}
+              style={{
+                padding: "52px 32px",
+                border: "1px solid rgba(0,0,0,0.08)",
+                textAlign: "center",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                gap: 0,
+              }}
+            >
+              {/* Isometric sent-mail icon */}
+              <motion.div
+                animate={{ y: [0, -6, 0] }}
+                transition={{ duration: 2.8, repeat: Infinity, ease: "easeInOut" }}
+                style={{ marginBottom: 28 }}
+              >
+                <svg width="110" height="90" viewBox="0 0 110 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  {/* Top face */}
+                  <polygon points="55,8 95,28 55,48 15,28" fill="#0f0f0f"/>
+                  {/* Left face */}
+                  <polygon points="15,28 15,66 55,86 55,48" fill="#2a2a2a"/>
+                  {/* Right face */}
+                  <polygon points="95,28 95,66 55,86 55,48" fill="#1a1a1a"/>
+                  {/* Envelope fold line on top */}
+                  <polyline points="15,28 55,48 95,28" stroke="rgba(255,255,255,0.15)" strokeWidth="1"/>
+                  {/* Envelope V-flap */}
+                  <polyline points="15,28 55,14 95,28" stroke="rgba(255,255,255,0.25)" strokeWidth="1" strokeDasharray="3 2"/>
+                  {/* Checkmark on top face */}
+                  <polyline
+                    points="40,28 51,38 72,18"
+                    stroke="white"
+                    strokeWidth="3"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                  {/* Shine on top face */}
+                  <polygon points="55,8 95,28 55,48 15,28" fill="url(#topShine)" opacity="0.08"/>
+                  <defs>
+                    <linearGradient id="topShine" x1="55" y1="8" x2="55" y2="48" gradientUnits="userSpaceOnUse">
+                      <stop stopColor="white"/>
+                      <stop offset="1" stopColor="white" stopOpacity="0"/>
+                    </linearGradient>
+                  </defs>
+                </svg>
+              </motion.div>
+
+              <p style={{ fontFamily: "var(--font-poppins)", fontWeight: 700, fontSize: 20, color: "var(--fg)", letterSpacing: "-0.5px", marginBottom: 8, lineHeight: 1.2 }}>
                 {t("contact.success.title")}
               </p>
-              <p style={{ fontFamily: "var(--font-inter)", fontSize: 14, color: "var(--fg-secondary)", lineHeight: 1.6 }}>
+              <p style={{ fontFamily: "var(--font-inter)", fontSize: 14, color: "var(--fg-secondary)", lineHeight: 1.6, maxWidth: 320, marginBottom: 24 }}>
                 {t("contact.success.desc")}
               </p>
-            </div>
+
+              {/* Countdown bar */}
+              <div style={{ width: "100%", maxWidth: 200, height: 2, background: "rgba(0,0,0,0.07)", borderRadius: 1, overflow: "hidden" }}>
+                <motion.div
+                  initial={{ width: "100%" }}
+                  animate={{ width: "0%" }}
+                  transition={{ duration: 5, ease: "linear" }}
+                  style={{ height: "100%", background: "var(--fg)" }}
+                />
+              </div>
+              <p style={{ fontFamily: "var(--font-inter)", fontSize: 11, color: "var(--fg-muted)", letterSpacing: "0.05em", marginTop: 10 }}>
+                Form resets in {countdown}s
+              </p>
+            </motion.div>
           ) : (
             <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: 12 }}>
               {/* Name + Email */}
