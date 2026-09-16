@@ -4,42 +4,14 @@ import { useRef, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useLang } from "@/context/LangContext";
 
-const testimonials = [
-  {
-    text: "Samuel was a fantastic collaborator throughout the entire project. He brought a high level of professionalism, attention to detail, and technical skill to the website build. Communication was smooth, and he consistently delivered high-quality work on time. I'd gladly work with him again on future projects and highly recommend him to anyone looking for a reliable and capable framer developer.",
-    name: "Nitin",
-    role: "HitPay App",
-  },
-  {
-    text: "Adefila was amazing in helping me complete my website on Framer. When he finished, my website was ready to go live. I really appreciate his quick communication and solution-oriented attitude. Hoping to work together in the future.",
-    name: "Alyssa Corso",
-    role: "SEO Consultant for Healthcare Startups",
-  },
-  {
-    text: "Adefila built my consultancy's landing page, and I've found about 5+ new clients through it. I'm also receiving a lot of compliments from people on the design. We did some extra work on an additional page to add social proof in the form of a pyramid.",
-    name: "Johnno Van Den Brink",
-    role: "The Initial Agency",
-  },
-  {
-    text: "I recently had the pleasure working with Adeyemi on the development of my Wordpress website, and I am happy to share my exceptional experience and satisfaction with his service.",
-    name: "Layo",
-    role: "Content Writer",
-  },
-  {
-    text: "I had a great experience working with Adefila. They conducted a thorough audit of our current Framer setup and quickly identified why styles were breaking across different language versions.",
-    name: "Michal Kouril",
-    role: "Leadopo",
-  },
-  {
-    text: "Samuel was very honest and available. He understood the assignment clearly and delivered with a fast turnaround!",
-    name: "Raffaello Cuccuini",
-    role: "Humanity",
-  },
-  {
-    text: "Samuel did an outstanding job! He is reliable, knowledgeable, patient and kind. I highly recommend Samuel from the sea of providers on Upwork.",
-    name: "Heather Burns",
-    role: "Upside ESG",
-  },
+const testimonialMeta = [
+  { name: "Nitin",               role: "HitPay App",                            key: "testimonials.t0" },
+  { name: "Alyssa Corso",        role: "SEO Consultant for Healthcare Startups", key: "testimonials.t1" },
+  { name: "Johnno Van Den Brink",role: "The Initial Agency",                    key: "testimonials.t2" },
+  { name: "Layo",                role: "Content Writer",                        key: "testimonials.t3" },
+  { name: "Michal Kouril",       role: "Leadopo",                               key: "testimonials.t4" },
+  { name: "Raffaello Cuccuini",  role: "Humanity",                              key: "testimonials.t5" },
+  { name: "Heather Burns",       role: "Upside ESG",                            key: "testimonials.t6" },
 ];
 
 export default function Testimonials() {
@@ -48,8 +20,8 @@ export default function Testimonials() {
   const [page, setPage] = useState(0);
   const { t } = useLang();
   const perPage = 2;
-  const totalPages = Math.ceil(testimonials.length / perPage);
-  const visible = testimonials.slice(page * perPage, page * perPage + perPage);
+  const totalPages = Math.ceil(testimonialMeta.length / perPage);
+  const visible = testimonialMeta.slice(page * perPage, page * perPage + perPage);
 
   return (
     <section
@@ -189,7 +161,7 @@ export default function Testimonials() {
 
           {/* Right: two testimonial cards */}
           <div className="testimonials-cards" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 0 }}>
-            {visible.map((t, i) => (
+            {visible.map((item, i) => (
               <motion.div
                 key={`${page}-${i}`}
                 initial={{ opacity: 0, y: 16 }}
@@ -220,7 +192,7 @@ export default function Testimonials() {
                       letterSpacing: "-0.2px",
                     }}
                   >
-                    {t.text}
+                    {t(item.key)}
                   </p>
                 </div>
                 <div>
@@ -235,7 +207,7 @@ export default function Testimonials() {
                       marginBottom: 4,
                     }}
                   >
-                    {t.name}
+                    {item.name}
                   </p>
                   <p
                     style={{
@@ -247,7 +219,7 @@ export default function Testimonials() {
                       color: "var(--fg-secondary)",
                     }}
                   >
-                    {t.role}
+                    {item.role}
                   </p>
                 </div>
               </motion.div>

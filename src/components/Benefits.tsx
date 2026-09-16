@@ -285,7 +285,7 @@ export default function Benefits() {
             </p>
           </div>
           <a
-            href="https://www.upwork.com"
+            href="https://upwork.com/freelancers/adefilasamuel"
             target="_blank"
             rel="noopener noreferrer"
             style={{

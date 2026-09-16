@@ -168,7 +168,7 @@ export default function ContactForm() {
           >
             {[
               { label: "Email", value: "adefilasamuel929@gmail.com", href: "mailto:adefilasamuel929@gmail.com" },
-              { label: "Upwork", value: "Samuel Adefila — Top Rated", href: "https://www.upwork.com/freelancers/samueladefila" },
+              { label: "Upwork", value: "Samuel Adefila — Top Rated", href: "https://upwork.com/freelancers/adefilasamuel" },
               { label: "LinkedIn", value: "linkedin.com/in/adefila-samuel", href: "https://www.linkedin.com/in/adefila-samuel-144448201/" },
             ].map((item) => (
               <a

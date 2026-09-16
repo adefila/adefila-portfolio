@@ -66,7 +66,7 @@ const jsonLd = {
         "https://www.behance.net/adefilasamuel",
         "https://layers.to/adeyemisamuel",
         "https://www.instagram.com/adeyemi929_",
-        "https://www.upwork.com/freelancers/samueladefila",
+        "https://upwork.com/freelancers/adefilasamuel",
       ],
     },
     {

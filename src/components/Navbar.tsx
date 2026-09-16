@@ -14,9 +14,10 @@ const NAV_HREFS = [
   { key: "nav.testimonials", href: "#testimonials" },
   { key: "nav.about",        href: "#about"        },
   { key: "nav.faq",          href: "#faq"          },
+  { key: "nav.contact",      href: "#contact"      },
 ];
 
-const SECTION_IDS = ["hero", "work", "benefits", "process", "pricing", "testimonials", "about", "faq"];
+const SECTION_IDS = ["hero", "work", "benefits", "process", "pricing", "testimonials", "about", "faq", "contact"];
 
 const EASE = [0.22, 1, 0.36, 1] as [number, number, number, number];
 
