@@ -176,7 +176,7 @@ export default function Footer() {
                 fontSize: 11,
                 letterSpacing: "2px",
                 textTransform: "uppercase",
-                color: "rgba(255,255,255,0.75)",
+                color: "rgba(255,255,255,0.88)",
                 marginBottom: 14,
               }}
             >
@@ -214,7 +214,7 @@ export default function Footer() {
                 fontSize: 11,
                 letterSpacing: "2px",
                 textTransform: "uppercase",
-                color: "rgba(255,255,255,0.75)",
+                color: "rgba(255,255,255,0.88)",
                 marginBottom: 14,
               }}
             >
@@ -257,7 +257,7 @@ export default function Footer() {
               style={{
                 fontFamily: "var(--font-inter)",
                 fontSize: 12,
-                color: "rgba(255,255,255,0.7)",
+                color: "rgba(255,255,255,0.85)",
                 letterSpacing: "0.5px",
                 textTransform: "uppercase",
               }}
