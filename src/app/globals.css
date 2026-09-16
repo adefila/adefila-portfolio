@@ -1,13 +1,5 @@
 @import "tailwindcss";
 
-/* Satoshi via Fontshare — variable font, swap prevents FOIT */
-@font-face {
-  font-family: "Satoshi";
-  font-weight: 400 700;
-  font-display: swap;
-  src: url("https://api.fontshare.com/v2/fonts/satoshi/satoshi-variable.woff2") format("woff2");
-}
-
 :root {
   --bg: #F7F7F7;
   --fg: #0f0f0f;

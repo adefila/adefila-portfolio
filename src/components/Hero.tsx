@@ -1,6 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import { CalendarDays } from "lucide-react";
+import Image from "next/image";
 import MagneticButton from "./MagneticButton";
 import { useLang } from "@/context/LangContext";
 
@@ -207,11 +208,13 @@ export default function Hero() {
               }}
             >
               {slide.img ? (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img
+                <Image
                   src={slide.img}
                   alt={slide.title}
-                  style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "contain", objectPosition: "top center" }}
+                  fill
+                  sizes="600px"
+                  priority={i < 2}
+                  style={{ objectFit: "contain", objectPosition: "top center" }}
                 />
               ) : null}
             </div>
