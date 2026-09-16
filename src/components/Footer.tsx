@@ -103,7 +103,7 @@ export default function Footer() {
                 color: "var(--accent-purple)",
                 background: "var(--white)",
                 padding: "14px 28px",
-                borderRadius: 0,
+                borderRadius: 100,
                 textDecoration: "none",
                 letterSpacing: "-0.2px",
                 whiteSpace: "nowrap",

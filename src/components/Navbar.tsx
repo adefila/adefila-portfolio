@@ -197,7 +197,7 @@ export default function Navbar() {
               color: "var(--white)",
               background: "var(--fg)",
               padding: "10px 20px",
-              borderRadius: 0,
+              borderRadius: 100,
               textDecoration: "none",
               letterSpacing: "-0.2px",
               alignItems: "center",
@@ -308,7 +308,7 @@ export default function Navbar() {
                   color: "var(--fg)",
                   background: "var(--white)",
                   padding: "14px 28px",
-                  borderRadius: 0,
+                  borderRadius: 100,
                   textDecoration: "none",
                   letterSpacing: "-0.2px",
                 }}
