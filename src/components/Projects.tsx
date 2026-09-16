@@ -21,11 +21,6 @@ const projects = [
 
 const COLS = 3;
 const EASE = [0.22, 1, 0.36, 1] as [number, number, number, number];
-const ACCENTS = [
-  "#6d28d9", "#0891b2", "#059669", "#d97706",
-  "#dc2626", "#7c3aed", "#0284c7", "#16a34a",
-  "#b45309", "#be123c", "#4f46e5", "#0f766e",
-];
 
 function screenshotUrl(href: string) {
   return `https://api.microlink.io?url=${encodeURIComponent(href)}&screenshot=true&meta=false&embed=screenshot.url`;
@@ -42,7 +37,6 @@ function FloatingPreview({
   springX: ReturnType<typeof useSpring>;
   springY: ReturnType<typeof useSpring>;
 }) {
-  const accent = ACCENTS[index % ACCENTS.length];
   const [loaded, setLoaded] = useState(false);
   const [errored, setErrored] = useState(false);
 
@@ -55,15 +49,13 @@ function FloatingPreview({
         pointerEvents: "none",
         zIndex: 9999,
         width: 300,
+        boxShadow: "0 24px 64px rgba(0,0,0,0.32)",
       }}
       initial={{ opacity: 0, scale: 0.9, y: 10 }}
       animate={{ opacity: 1, scale: 1, y: 0 }}
       exit={{ opacity: 0, scale: 0.9, y: 10 }}
       transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
     >
-      {/* Accent bar */}
-      <div style={{ height: 3, background: accent }} />
-
       {/* Screenshot container */}
       <div
         style={{
@@ -72,7 +64,6 @@ function FloatingPreview({
           position: "relative",
           overflow: "hidden",
           background: "#111",
-          boxShadow: "0 24px 64px rgba(0,0,0,0.28)",
         }}
       >
         {/* Skeleton shimmer while loading */}
@@ -136,7 +127,7 @@ function FloatingPreview({
           style={{
             position: "absolute",
             inset: 0,
-            background: "linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.1) 55%, transparent 100%)",
+            background: "linear-gradient(to top, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.1) 55%, transparent 100%)",
           }}
         />
 
@@ -152,16 +143,16 @@ function FloatingPreview({
         >
           <p style={{
             fontFamily: "var(--font-inter)",
-            fontWeight: 700,
+            fontWeight: 500,
             fontSize: 9,
             letterSpacing: "2px",
             textTransform: "uppercase",
-            color: accent,
+            color: "rgba(255,255,255,0.55)",
             marginBottom: 4,
           }}>
             {project.meta} · {project.year}
           </p>
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8 }}>
             <p style={{
               fontFamily: "var(--font-poppins)",
               fontWeight: 700,
@@ -176,13 +167,13 @@ function FloatingPreview({
             <div style={{
               width: 28,
               height: 28,
-              background: accent,
+              background: "#fff",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
               flexShrink: 0,
             }}>
-              <ArrowUpRight size={13} strokeWidth={2.5} color="#fff" />
+              <ArrowUpRight size={13} strokeWidth={2.5} color="#0f0f0f" />
             </div>
           </div>
         </div>
@@ -285,7 +276,6 @@ export default function Projects() {
         {projects.map((project, i) => {
           const col = i % COLS;
           const isLastRow = i >= projects.length - COLS;
-          const accent = ACCENTS[i % ACCENTS.length];
           const isHovered = hoveredIndex === i;
 
           return (
@@ -301,49 +291,31 @@ export default function Projects() {
               style={{
                 display: "flex",
                 alignItems: "flex-start",
-                justifyContent: "space-between",
                 gap: 16,
-                padding: "28px 0",
-                paddingLeft: col !== 0 ? 28 : 0,
-                paddingRight: col !== COLS - 1 ? 28 : 0,
+                padding: "28px",
+                paddingLeft: col !== 0 ? 28 : 28,
+                paddingRight: 28,
                 borderBottom: isLastRow ? "none" : "1px solid rgba(0,0,0,0.08)",
                 borderRight: col !== COLS - 1 ? "1px solid rgba(0,0,0,0.08)" : "none",
                 transition: "background 0.25s",
                 cursor: project.href ? "pointer" : "default",
-                background: isHovered ? "rgba(0,0,0,0.032)" : "transparent",
-                position: "relative",
+                background: isHovered ? "#0f0f0f" : "transparent",
               }}
             >
-              {col === 0 && (
-                <motion.div
-                  animate={{ scaleY: isHovered ? 1 : 0, opacity: isHovered ? 1 : 0 }}
-                  transition={{ duration: 0.2 }}
-                  style={{
-                    position: "absolute",
-                    left: 0,
-                    top: 0,
-                    bottom: 0,
-                    width: 3,
-                    background: accent,
-                    transformOrigin: "top",
-                  }}
-                />
-              )}
-
               <div style={{ display: "flex", alignItems: "flex-start", gap: 16, flex: 1, minWidth: 0 }}>
-                <motion.span
-                  animate={{ color: isHovered ? accent : "var(--fg-muted)" }}
-                  transition={{ duration: 0.2 }}
+                <span
                   style={{
                     fontFamily: "var(--font-inter)",
-                    fontWeight: isHovered ? 600 : 400,
+                    fontWeight: 400,
                     fontSize: 13,
                     flexShrink: 0,
                     paddingTop: 2,
+                    color: isHovered ? "rgba(255,255,255,0.4)" : "var(--fg-muted)",
+                    transition: "color 0.2s",
                   }}
                 >
                   {String(i + 1).padStart(2, "0")}
-                </motion.span>
+                </span>
                 <div style={{ minWidth: 0, flex: 1 }}>
                   <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8, marginBottom: 4 }}>
                     <motion.h3
@@ -355,8 +327,9 @@ export default function Projects() {
                         fontSize: "clamp(14px, 1.1vw, 15px)",
                         letterSpacing: "-0.3px",
                         textTransform: "uppercase",
-                        color: "var(--fg)",
+                        color: isHovered ? "#fff" : "var(--fg)",
                         lineHeight: 1.3,
+                        transition: "color 0.2s",
                       }}
                     >
                       {project.title}
@@ -374,9 +347,9 @@ export default function Projects() {
                           justifyContent: "center",
                           width: 26,
                           height: 26,
-                          background: isHovered ? accent : "transparent",
-                          border: `1px solid ${isHovered ? accent : "rgba(0,0,0,0.1)"}`,
-                          color: isHovered ? "#fff" : "var(--fg-secondary)",
+                          background: isHovered ? "#fff" : "transparent",
+                          border: `1px solid ${isHovered ? "#fff" : "rgba(0,0,0,0.1)"}`,
+                          color: isHovered ? "#0f0f0f" : "var(--fg-secondary)",
                           flexShrink: 0,
                           transition: "background 0.2s, color 0.2s, border-color 0.2s",
                           textDecoration: "none",
@@ -391,9 +364,10 @@ export default function Projects() {
                       fontFamily: "var(--font-inter)",
                       fontWeight: 400,
                       fontSize: 11,
-                      color: "var(--fg-secondary)",
+                      color: isHovered ? "rgba(255,255,255,0.5)" : "var(--fg-secondary)",
                       letterSpacing: "0.5px",
                       textTransform: "uppercase",
+                      transition: "color 0.2s",
                     }}
                   >
                     {project.meta} &nbsp;·&nbsp; {project.year}
