@@ -16,6 +16,20 @@
     "react-dom": "19.2.8",
     "resend": "^6.28.1"
   },
+  "browserslist": {
+    "production": [
+      "chrome >= 87",
+      "firefox >= 78",
+      "safari >= 14",
+      "edge >= 88",
+      "not IE 11"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
   "devDependencies": {
     "@fontsource/poppins": "^5.3.0",
     "@tailwindcss/postcss": "^4",

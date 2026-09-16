@@ -5,13 +5,8 @@ import Image from "next/image";
 import MagneticButton from "./MagneticButton";
 import { useLang } from "@/context/LangContext";
 
-const EASE = [0.22, 1, 0.36, 1] as [number, number, number, number];
-
-const fadeUp = (delay = 0) => ({
-  initial: { opacity: 0, y: 10 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.6, delay, ease: EASE },
-});
+// CSS easing for hero animations (used in animation shorthand)
+const EASE = "cubic-bezier(0.22, 1, 0.36, 1)";
 
 const slides = [
   { title: "Elite Property", meta: "Framer Development · 2025", img: "/projects/elite-property.png" },
@@ -42,22 +37,34 @@ export default function Hero() {
       `}</style>
 
       <div style={{ maxWidth: 1200, margin: "0 auto", paddingLeft: 20, paddingRight: 20 }}>
-        {/* Available badge */}
-        <motion.div
-          {...fadeUp(0.1)}
+        {/* Available badge — plain HTML + CSS animation so it's visible before JS hydrates */}
+        <div
           className="hero-badge"
-          style={{ display: "inline-flex", alignItems: "center", gap: 6, marginBottom: 32 }}
+          style={{ display: "inline-flex", alignItems: "center", gap: 6, marginBottom: 32, animation: `heroFadeUp 0.6s 0.1s ${EASE} both` }}
         >
-          <span
-            style={{
-              width: 8,
-              height: 8,
-              borderRadius: "50%",
-              background: "var(--accent-green)",
-              display: "inline-block",
-              animation: "pulse 2s ease-in-out infinite",
-            }}
-          />
+          {/* Ripple dot: two layers so the outer span animates scale+opacity (compositor-only) */}
+          <span style={{ position: "relative", width: 8, height: 8, flexShrink: 0, display: "inline-flex", alignItems: "center", justifyContent: "center" }}>
+            <span
+              style={{
+                position: "absolute",
+                inset: 0,
+                borderRadius: "50%",
+                background: "var(--accent-green)",
+                animation: "pulseRipple 2s ease-out infinite",
+              }}
+            />
+            <span
+              style={{
+                width: 8,
+                height: 8,
+                borderRadius: "50%",
+                background: "var(--accent-green)",
+                display: "block",
+                position: "relative",
+                zIndex: 1,
+              }}
+            />
+          </span>
           <span
             style={{
               fontFamily: "var(--font-inter)",
@@ -91,17 +98,14 @@ export default function Hero() {
           >
             {t("hero.badge2")}
           </span>
-        </motion.div>
+        </div>
 
-        {/* Main headline */}
+        {/* Main headline — CSS animation per line */}
         <div style={{ marginBottom: 24 }}>
           {[t("hero.h1"), t("hero.h2")].map((line, i) => (
-            <motion.div
+            <div
               key={i}
               className="hero-headline"
-              initial={{ opacity: 0, y: 14 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.55, delay: 0.15 + i * 0.12, ease: EASE }}
               style={{
                 fontFamily: "var(--font-poppins)",
                 fontWeight: 700,
@@ -111,16 +115,16 @@ export default function Hero() {
                 textTransform: "uppercase",
                 color: "var(--fg)",
                 display: "block",
+                animation: `heroFadeUp 0.55s ${0.15 + i * 0.12}s ${EASE} both`,
               }}
             >
               {line}
-            </motion.div>
+            </div>
           ))}
         </div>
 
-        {/* Subtitle */}
-        <motion.p
-          {...fadeUp(0.4)}
+        {/* Subtitle — CSS animation; this is the LCP element */}
+        <p
           className="hero-subtitle"
           style={{
             fontFamily: "var(--font-inter)",
@@ -131,16 +135,16 @@ export default function Hero() {
             color: "var(--fg-secondary)",
             maxWidth: 520,
             marginBottom: 32,
+            animation: `heroFadeUp 0.6s 0.35s ${EASE} both`,
           }}
         >
           {t("hero.subtitle")}
-        </motion.p>
+        </p>
 
-        {/* CTA buttons */}
-        <motion.div
-          {...fadeUp(0.5)}
+        {/* CTA buttons — CSS animation */}
+        <div
           className="hero-cta"
-          style={{ display: "flex", gap: 12, flexWrap: "wrap", marginBottom: 48 }}
+          style={{ display: "flex", gap: 12, flexWrap: "wrap", marginBottom: 48, animation: `heroFadeUp 0.6s 0.5s ${EASE} both` }}
         >
           <MagneticButton
             href="https://calendly.com/adefilasamuel929/30min"
@@ -162,10 +166,10 @@ export default function Hero() {
           >
             {t("hero.cta")} <CalendarDays size={15} strokeWidth={2} />
           </MagneticButton>
-        </motion.div>
+        </div>
       </div>
 
-      {/* Full-width project marquee */}
+      {/* Full-width project marquee — keep motion for opacity fade-in */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -212,7 +216,7 @@ export default function Hero() {
                   src={slide.img}
                   alt={slide.title}
                   fill
-                  sizes="600px"
+                  sizes="(max-width: 768px) 300px, 600px"
                   priority={i < 2}
                   style={{ objectFit: "contain", objectPosition: "top center" }}
                 />
