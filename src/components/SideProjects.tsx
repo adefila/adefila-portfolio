@@ -2,32 +2,12 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { ArrowUpRight } from "lucide-react";
+import { useLang } from "@/context/LangContext";
 
-const projects = [
-  {
-    name: "CVCraft",
-    tagline: "I kept getting ghosted after applying. Turned out my CV wasn't making it past ATS. Built this to fix that — it rewrites your CV and lets you run it through an HR simulator before you send it.",
-    stack: ["Claude API", "Next.js"],
-    href: "https://cvcraftai.vercel.app/",
-    accent: "#7c3aed",
-    label: "AI TOOL",
-  },
-  {
-    name: "Video Compressor",
-    tagline: "I had a 400MB Loom recording I needed to send to a client. Every tool online wanted my email or had a file limit. Built this in a weekend — compresses in the browser, nothing ever leaves your device.",
-    stack: ["Next.js", "FFmpeg WASM"],
-    href: "https://video-compressor-bay.vercel.app/",
-    accent: "#0073e6",
-    label: "UTILITY",
-  },
-  {
-    name: "CourseShare",
-    tagline: "My uni course materials lived across 12 different WhatsApp groups and no one could find anything. Built one place where students upload notes, anyone can search, and nothing gets buried.",
-    stack: ["Next.js", "Supabase"],
-    href: "https://courseshare-delta.vercel.app/",
-    accent: "#00ab4a",
-    label: "PLATFORM",
-  },
+const PROJECTS_BASE = [
+  { name: "CVCraft",          stack: ["Claude API", "Next.js"],  href: "https://cvcraftai.vercel.app/",            accent: "#7c3aed", label: "AI TOOL",  taglineKey: "sideprojects.p0.tagline" },
+  { name: "Video Compressor", stack: ["Next.js", "FFmpeg WASM"], href: "https://video-compressor-bay.vercel.app/", accent: "#0073e6", label: "UTILITY",  taglineKey: "sideprojects.p1.tagline" },
+  { name: "CourseShare",      stack: ["Next.js", "Supabase"],    href: "https://courseshare-delta.vercel.app/",    accent: "#00ab4a", label: "PLATFORM", taglineKey: "sideprojects.p2.tagline" },
 ];
 
 const EASE = [0.22, 1, 0.36, 1] as [number, number, number, number];
@@ -35,6 +15,9 @@ const EASE = [0.22, 1, 0.36, 1] as [number, number, number, number];
 export default function SideProjects() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-10%" });
+  const { t } = useLang();
+
+  const projects = PROJECTS_BASE.map((p) => ({ ...p, tagline: t(p.taglineKey) }));
 
   return (
     <section
@@ -75,7 +58,7 @@ export default function SideProjects() {
               marginBottom: 16,
             }}
           >
-            SIDE PROJECTS
+            {t("sideprojects.eyebrow")}
           </motion.p>
           <motion.h2
             initial={{ opacity: 0, y: 10, filter: "blur(8px)" }}
@@ -91,9 +74,9 @@ export default function SideProjects() {
               color: "var(--fg)",
             }}
           >
-            STUFF I BUILT{" "}
+            {t("sideprojects.h1")}{" "}
             <span style={{ color: "rgb(163,163,163)" }}>
-              BECAUSE I NEEDED IT.
+              {t("sideprojects.h1b")}
             </span>
           </motion.h2>
         </div>
@@ -112,7 +95,7 @@ export default function SideProjects() {
             letterSpacing: "-0.3px",
           }}
         >
-          Not client work. Three things I built because I ran into the problem myself.
+          {t("sideprojects.desc")}
         </motion.p>
       </div>
 

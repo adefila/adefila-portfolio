@@ -2,6 +2,7 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
 import { ArrowUpRight, Send } from "lucide-react";
+import { useLang } from "@/context/LangContext";
 
 // Get a free form ID at formspree.io → create a new form → paste the ID in .env.local as NEXT_PUBLIC_FORMSPREE_ID
 const FORMSPREE_ID = process.env.NEXT_PUBLIC_FORMSPREE_ID;
@@ -30,6 +31,7 @@ const EASE = [0.22, 1, 0.36, 1] as [number, number, number, number];
 export default function ContactForm() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-10%" });
+  const { t } = useLang();
 
   const [status, setStatus] = useState<Status>("idle");
   const [form, setForm] = useState({
@@ -119,7 +121,7 @@ export default function ContactForm() {
               marginBottom: 16,
             }}
           >
-            GET IN TOUCH
+            {t("contact.eyebrow")}
           </motion.p>
           <motion.h2
             initial={{ opacity: 0, y: 10, filter: "blur(8px)" }}
@@ -136,9 +138,9 @@ export default function ContactForm() {
               marginBottom: 20,
             }}
           >
-            NOT READY FOR A CALL?{" "}
+            {t("contact.h1")}{" "}
             <span style={{ color: "rgb(163,163,163)" }}>
-              JUST DROP A MESSAGE.
+              {t("contact.h1b")}
             </span>
           </motion.h2>
 
@@ -155,7 +157,7 @@ export default function ContactForm() {
               marginBottom: 40,
             }}
           >
-            Tell me what you&apos;re working on and I&apos;ll come back to you within 24 hours with an honest take on whether I can help — and what that would look like.
+            {t("contact.desc")}
           </motion.p>
 
           <motion.div
@@ -211,10 +213,10 @@ export default function ContactForm() {
             }}>
               <p style={{ fontSize: 32, marginBottom: 16 }}>✓</p>
               <p style={{ fontFamily: "var(--font-poppins)", fontWeight: 700, fontSize: 18, color: "var(--fg)", letterSpacing: "-0.5px", marginBottom: 8 }}>
-                Message sent.
+                {t("contact.success.title")}
               </p>
               <p style={{ fontFamily: "var(--font-inter)", fontSize: 14, color: "var(--fg-secondary)", lineHeight: 1.6 }}>
-                I&apos;ll get back to you within 24 hours.
+                {t("contact.success.desc")}
               </p>
             </div>
           ) : (
@@ -223,12 +225,12 @@ export default function ContactForm() {
               <div className="form-row" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
                 <div>
                   <label style={{ fontFamily: "var(--font-inter)", fontSize: 10, letterSpacing: "2px", textTransform: "uppercase", color: "var(--fg-muted)", display: "block", marginBottom: 6 }}>
-                    Name *
+                    {t("contact.label.name")} *
                   </label>
                   <input
                     required
                     type="text"
-                    placeholder="Your name"
+                    placeholder={t("contact.ph.name")}
                     value={form.name}
                     onChange={set("name")}
                     style={inputStyle}
@@ -238,7 +240,7 @@ export default function ContactForm() {
                 </div>
                 <div>
                   <label style={{ fontFamily: "var(--font-inter)", fontSize: 10, letterSpacing: "2px", textTransform: "uppercase", color: "var(--fg-muted)", display: "block", marginBottom: 6 }}>
-                    Email *
+                    {t("contact.label.email")} *
                   </label>
                   <input
                     required
@@ -257,7 +259,7 @@ export default function ContactForm() {
               <div className="form-row" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
                 <div>
                   <label style={{ fontFamily: "var(--font-inter)", fontSize: 10, letterSpacing: "2px", textTransform: "uppercase", color: "var(--fg-muted)", display: "block", marginBottom: 6 }}>
-                    Service
+                    {t("contact.label.service")}
                   </label>
                   <select
                     value={form.service}
@@ -272,7 +274,7 @@ export default function ContactForm() {
                 </div>
                 <div>
                   <label style={{ fontFamily: "var(--font-inter)", fontSize: 10, letterSpacing: "2px", textTransform: "uppercase", color: "var(--fg-muted)", display: "block", marginBottom: 6 }}>
-                    Budget
+                    {t("contact.label.budget")}
                   </label>
                   <select
                     value={form.budget}
@@ -290,12 +292,12 @@ export default function ContactForm() {
               {/* Message */}
               <div>
                 <label style={{ fontFamily: "var(--font-inter)", fontSize: 10, letterSpacing: "2px", textTransform: "uppercase", color: "var(--fg-muted)", display: "block", marginBottom: 6 }}>
-                  Tell me about your project *
+                  {t("contact.label.message")} *
                 </label>
                 <textarea
                   required
                   rows={5}
-                  placeholder="What are you building, what's the goal, and when do you need it?"
+                  placeholder={t("contact.ph.message")}
                   value={form.message}
                   onChange={set("message")}
                   style={{ ...inputStyle, resize: "vertical", minHeight: 130 }}
@@ -306,7 +308,7 @@ export default function ContactForm() {
 
               {status === "error" && (
                 <p style={{ fontFamily: "var(--font-inter)", fontSize: 13, color: "#e53e3e" }}>
-                  Something went wrong — try emailing me directly at adefilasamuel929@gmail.com
+                  {t("contact.error")}
                 </p>
               )}
 
@@ -334,7 +336,7 @@ export default function ContactForm() {
                   alignSelf: "flex-start",
                 }}
               >
-                {status === "submitting" ? "Sending…" : "Send message"}
+                {status === "submitting" ? t("contact.btn.sending") : t("contact.btn.send")}
                 {status !== "submitting" && <Send size={13} strokeWidth={2} />}
               </button>
             </form>

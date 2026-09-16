@@ -2,11 +2,12 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
 import { ChevronsRight, Tag, CircleDot, TrendingUp } from "lucide-react";
+import { useLang } from "@/context/LangContext";
 
-const stats = [
-  { value: 50, suffix: "+", label: "Projects Shipped On Time" },
-  { value: 100, suffix: "%", label: "Average Client Conversion Lift" },
-  { value: 5, suffix: "+", label: "Years Building For The Web" },
+const STAT_VALUES = [
+  { value: 50, suffix: "+" },
+  { value: 100, suffix: "%" },
+  { value: 5, suffix: "+" },
 ];
 
 function CountUp({ target, suffix, inView }: { target: number; suffix: string; inView: boolean }) {
@@ -34,41 +35,33 @@ function CountUp({ target, suffix, inView }: { target: number; suffix: string; i
   return <>{count}{suffix}</>;
 }
 
-const benefits = [
-  {
-    icon: ChevronsRight,
-    title: "SPEED WITHOUT COMPROMISE",
-    desc: "Launched in 7–14 days without cutting corners. Your timeline is real — I treat it that way.",
-  },
-  {
-    icon: Tag,
-    title: "MADE FOR YOUR AUDIENCE",
-    desc: "No templates, no guesswork. Everything built from scratch around your brand, your users, and what they need to say yes.",
-  },
-  {
-    icon: CircleDot,
-    title: "ONE PERSON. FULL OWNERSHIP.",
-    desc: "One point of contact from first call to launch. No handoffs, no gaps, no 'let me check with the team.'",
-  },
-  {
-    icon: TrendingUp,
-    title: "TOOLS THAT FIT THE JOB",
-    desc: "Framer, Shopify, Webflow — I choose what's right for your project, not what's easiest for me.",
-  },
-];
-
-const services = [
-  { n: "1", label: "RESPONSIVE DESIGN" },
-  { n: "2", label: "FIGMA TO FRAMER" },
-  { n: "3", label: "WEBSITE MIGRATION" },
-  { n: "4", label: "USER INTERFACE & UX" },
-  { n: "5", label: "SHOPIFY INTEGRATION" },
-  { n: "6", label: "FIGMA TO WEBFLOW" },
-];
+const BENEFIT_ICONS = [ChevronsRight, Tag, CircleDot, TrendingUp];
 
 export default function WhyMe() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-10%" });
+  const { t } = useLang();
+
+  const stats = STAT_VALUES.map((s, i) => ({
+    ...s,
+    label: t(`whyme.stat${i}`),
+  }));
+
+  const benefits = [
+    { icon: BENEFIT_ICONS[0], title: t("whyme.b0.title"), desc: t("whyme.b0.desc") },
+    { icon: BENEFIT_ICONS[1], title: t("whyme.b1.title"), desc: t("whyme.b1.desc") },
+    { icon: BENEFIT_ICONS[2], title: t("whyme.b2.title"), desc: t("whyme.b2.desc") },
+    { icon: BENEFIT_ICONS[3], title: t("whyme.b3.title"), desc: t("whyme.b3.desc") },
+  ];
+
+  const services = [
+    { n: "1", label: t("whyme.svc1") },
+    { n: "2", label: t("whyme.svc2") },
+    { n: "3", label: t("whyme.svc3") },
+    { n: "4", label: t("whyme.svc4") },
+    { n: "5", label: t("whyme.svc5") },
+    { n: "6", label: t("whyme.svc6") },
+  ];
 
   return (
     <section
@@ -108,7 +101,7 @@ export default function WhyMe() {
               marginBottom: 16,
             }}
           >
-            WHY ME
+            {t("whyme.eyebrow")}
           </motion.p>
           <motion.h2
             initial={{ opacity: 0, y: 10, filter: "blur(8px)" }}
@@ -124,9 +117,9 @@ export default function WhyMe() {
               color: "var(--fg)",
             }}
           >
-            Good design is table stakes.{" "}
+            {t("whyme.h1")}{" "}
             <span style={{ color: "rgb(163,163,163)" }}>
-              I go further.
+              {t("whyme.h1b")}
             </span>
           </motion.h2>
         </div>

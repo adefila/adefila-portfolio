@@ -1,54 +1,18 @@
 "use client";
 import { motion, AnimatePresence, useInView } from "framer-motion";
 import { useState, useRef } from "react";
-
-const faqs = [
-  {
-    q: "WHO DO YOU WORK WITH?",
-    a: "Founders, startups, and agencies who need a website that actually does something for their business. If you're serious about your product, I'm serious about your site.",
-  },
-  {
-    q: "WHAT TOOLS DO YOU BUILD WITH?",
-    a: "Framer, Shopify, Webflow, WordPress — I choose based on what's right for you, not what I'm most comfortable with. My job is to give you the best tool for the job, then build it well.",
-  },
-  {
-    q: "HOW MUCH DOES IT COST?",
-    a: "Pricing is scoped to your project — no surprises, no retainers you don't need. Book a call and you'll leave with a clear number and exactly what's included.",
-  },
-  {
-    q: "HOW FAST IS DELIVERY?",
-    a: "Most projects are done in 7–14 days. Larger builds with multiple pages can run 2–3 weeks. You'll know the timeline before we start — and I stick to it.",
-  },
-  {
-    q: "HOW MANY REVISIONS DO I GET?",
-    a: "As many as you need to get it right — within the agreed scope. I don't cap revisions at some arbitrary number. What I do is build revision cycles into the process early, so by the time we're in development, there's almost nothing left to change.",
-  },
-  {
-    q: "CAN YOU IMPROVE MY EXISTING WEBSITE?",
-    a: "Yes — and that's often the most impactful move. I look at what's working, fix what's not, and improve what could be better. Whether it's a redesign, a migration, or a targeted fix.",
-  },
-  {
-    q: "DO YOU OFFER ONGOING SUPPORT?",
-    a: "Yes. Once your site is live, I'm available for updates, tweaks, and new additions. Most clients keep me on retainer for small ongoing changes rather than having to re-brief a new developer each time.",
-  },
-  {
-    q: "WILL MY SITE BE EASY TO MANAGE?",
-    a: "Yes. I build with content management in mind so you can update things without touching code. I'll walk you through everything after launch so you feel confident on day one.",
-  },
-  {
-    q: "DO YOU USE TEMPLATES?",
-    a: "Never. Everything starts from scratch. Your site is designed specifically for you, your audience, and what you're trying to accomplish — not pulled from a library.",
-  },
-  {
-    q: "HOW DO WE GET STARTED?",
-    a: "Book a free 30-minute call. We'll talk about your project, your goals, and what a good outcome looks like. No pressure — just an honest conversation.",
-  },
-];
+import { useLang } from "@/context/LangContext";
 
 export default function FAQ() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-10%" });
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const { t } = useLang();
+
+  const faqs = Array.from({ length: 10 }, (_, i) => ({
+    q: t(`faq.q${i}`),
+    a: t(`faq.a${i}`),
+  }));
 
   const toggle = (i: number) => setOpenIndex(openIndex === i ? null : i);
 
@@ -87,7 +51,7 @@ export default function FAQ() {
               marginBottom: 16,
             }}
           >
-            F . A . Q
+            {t("faq.eyebrow")}
           </motion.p>
           <motion.h2
             initial={{ opacity: 0, y: 10, filter: "blur(8px)" }}
@@ -104,9 +68,9 @@ export default function FAQ() {
               marginBottom: 20,
             }}
           >
-            STILL DECIDING?
+            {t("faq.h1")}
             <br />
-            LET ME CLEAR THAT UP.
+            {t("faq.h2")}
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 10 }}
@@ -122,7 +86,7 @@ export default function FAQ() {
               marginBottom: 40,
             }}
           >
-            Can&apos;t find what you&apos;re looking for? Reach out directly —{" "}
+            {t("faq.desc")}{" "}
             <a
               href="mailto:adefilasamuel929@gmail.com"
               style={{

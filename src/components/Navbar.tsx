@@ -2,7 +2,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { CalendarDays } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import MagneticButton from "./MagneticButton";
 import { useLang } from "@/context/LangContext";
 
@@ -79,7 +79,10 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const { t } = useLang();
-  const NAV_LINKS = NAV_HREFS.map(({ key, href }) => ({ label: t(key), href }));
+  const navLinks = useMemo(
+    () => NAV_HREFS.map(({ key, href }) => ({ label: t(key), href })),
+    [t],
+  );
 
   useEffect(() => {
     const onScroll = () => {
@@ -161,7 +164,7 @@ export default function Navbar() {
 
           {/* Desktop nav links */}
           <div className="nav-links" style={{ display: "flex", gap: 2 }}>
-            {NAV_LINKS.map(({ label, href }) => {
+            {navLinks.map(({ label, href }) => {
               const id = href.slice(1);
               const isActive = active === id;
               return (
@@ -252,7 +255,7 @@ export default function Navbar() {
           >
             {/* Nav links */}
             <nav style={{ width: "100%" }}>
-              {NAV_LINKS.map(({ label, href }, i) => {
+              {navLinks.map(({ label, href }, i) => {
                 const id = href.slice(1);
                 const isActive = active === id;
                 return (
@@ -293,7 +296,7 @@ export default function Navbar() {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.4, delay: NAV_LINKS.length * 0.055 + 0.05, ease: EASE }}
+              transition={{ duration: 0.4, delay: navLinks.length * 0.055 + 0.05, ease: EASE }}
               style={{ marginTop: 40 }}
             >
               <a

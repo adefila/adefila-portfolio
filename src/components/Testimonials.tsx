@@ -2,6 +2,7 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useLang } from "@/context/LangContext";
 
 const testimonials = [
   {
@@ -45,6 +46,7 @@ export default function Testimonials() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-10%" });
   const [page, setPage] = useState(0);
+  const { t } = useLang();
   const perPage = 2;
   const totalPages = Math.ceil(testimonials.length / perPage);
   const visible = testimonials.slice(page * perPage, page * perPage + perPage);
@@ -82,7 +84,7 @@ export default function Testimonials() {
                 marginBottom: 16,
               }}
             >
-              TESTIMONIALS
+              {t("testimonials.eyebrow")}
             </motion.p>
             <motion.h2
               initial={{ opacity: 0, y: 10, filter: "blur(8px)" }}
@@ -98,7 +100,7 @@ export default function Testimonials() {
                 color: "var(--fg)",
               }}
             >
-              DON'T TAKE MY WORD FOR IT.
+              {t("testimonials.h1")}
             </motion.h2>
           </div>
 
@@ -181,7 +183,7 @@ export default function Testimonials() {
                 lineHeight: 1.4,
               }}
             >
-              Successfully Delivered Projects
+              {t("testimonials.statLabel")}
             </p>
           </div>
 

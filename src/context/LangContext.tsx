@@ -4,6 +4,52 @@ import {
   LangCode, CurrencyCode, LANGUAGES, CURRENCIES, T,
 } from "@/i18n/translations";
 
+// Maps a browser locale string (e.g. "fr-FR", "pt-BR", "en-NG") to
+// one of our supported languages + currency pairs.
+function detectLocale(): { lang: LangCode; currency: CurrencyCode } {
+  const raw = (typeof navigator !== "undefined" ? navigator.language : "en") ?? "en";
+  const [base, region] = raw.toLowerCase().split("-");
+
+  // Language mapping
+  const langMap: Record<string, LangCode> = {
+    fr: "fr",
+    es: "es",
+    de: "de",
+    pt: "pt",
+    zh: "zh",
+    ja: "ja",
+    yo: "yo",
+  };
+  const lang: LangCode = langMap[base] ?? "en";
+
+  // Currency refinement — regional English variants + other region overrides
+  const currencyMap: Record<string, CurrencyCode> = {
+    // English regions
+    "en-gb": "GBP",
+    "en-au": "AUD",
+    "en-ca": "CAD",
+    "en-ng": "NGN",
+    "en-ae": "AED",
+    "en-sg": "USD",  // SGD not in list, fall back
+    "en-nz": "AUD",
+    // Portuguese regions
+    "pt-br": "BRL",
+    "pt-pt": "EUR",
+    // Arabic-speaking regions (Arabic not in language list)
+    "ar-ae": "AED",
+    "ar-sa": "AED",
+    // Chinese regions
+    "zh-tw": "CNY",
+    "zh-hk": "CNY",
+  };
+
+  const fullLocale = region ? `${base}-${region}` : base;
+  const defaultCurrency = LANGUAGES.find((l) => l.code === lang)?.currency ?? "USD";
+  const currency: CurrencyCode = currencyMap[fullLocale] ?? defaultCurrency;
+
+  return { lang, currency };
+}
+
 interface LangContextType {
   lang: LangCode;
   currency: CurrencyCode;
@@ -34,8 +80,17 @@ export function LangProvider({ children }: { children: React.ReactNode }) {
     try {
       const savedLang = localStorage.getItem("sam-lang") as LangCode | null;
       const savedCurr = localStorage.getItem("sam-currency") as CurrencyCode | null;
-      if (savedLang && LANGUAGES.find((l) => l.code === savedLang)) setLangState(savedLang);
-      if (savedCurr && CURRENCIES.find((c) => c.code === savedCurr)) setCurrencyState(savedCurr);
+      if (savedLang && LANGUAGES.find((l) => l.code === savedLang)) {
+        setLangState(savedLang);
+        if (savedCurr && CURRENCIES.find((c) => c.code === savedCurr)) setCurrencyState(savedCurr);
+        return;
+      }
+      // First visit — detect from browser locale and save for next time
+      const { lang: detectedLang, currency: detectedCurr } = detectLocale();
+      setLangState(detectedLang);
+      setCurrencyState(detectedCurr);
+      localStorage.setItem("sam-lang", detectedLang);
+      localStorage.setItem("sam-currency", detectedCurr);
     } catch {
       // localStorage blocked (private mode etc.)
     }

@@ -2,31 +2,19 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { ArrowRight } from "lucide-react";
+import { useLang } from "@/context/LangContext";
 
-const featured = [
-  {
-    title: "BookedEZ",
-    meta: "PLAY STORE & APP STORE",
-    type: "Mobile App • United States • LIVE",
-    color: "#d4c5ff",
-    bgColor: "#f0ecff",
-    description: "A seamless booking experience for service-based businesses, available on both major app stores.",
-    index: "01",
-  },
-  {
-    title: "HitPay",
-    meta: "LIVE",
-    type: "Framer Development • Singapore",
-    color: "#b8d4ff",
-    bgColor: "#e8f0ff",
-    description: "A next-generation payment platform built on Framer with seamless user experience.",
-    index: "02",
-  },
+const FEATURED_BASE = [
+  { title: "BookedEZ", meta: "PLAY STORE & APP STORE", type: "Mobile App • United States • LIVE", color: "#d4c5ff", bgColor: "#f0ecff", index: "01", descKey: "featured.p0.desc" },
+  { title: "HitPay",   meta: "LIVE",                   type: "Framer Development • Singapore",   color: "#b8d4ff", bgColor: "#e8f0ff", index: "02", descKey: "featured.p1.desc" },
 ];
 
 export default function FeaturedProjects() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-10%" });
+  const { t } = useLang();
+
+  const featured = FEATURED_BASE.map((p) => ({ ...p, description: t(p.descKey) }));
 
   return (
     <section
@@ -57,7 +45,7 @@ export default function FeaturedProjects() {
                 marginBottom: 12,
               }}
             >
-              RECENT PROJECTS
+              {t("featured.eyebrow")}
             </motion.p>
             <motion.h2
               initial={{ opacity: 0, y: 10, filter: "blur(8px)" }}
@@ -73,7 +61,7 @@ export default function FeaturedProjects() {
                 color: "var(--fg)",
               }}
             >
-              FEATURED PROJECTS
+              {t("featured.h1")}
             </motion.h2>
           </div>
           <a
@@ -88,7 +76,7 @@ export default function FeaturedProjects() {
               opacity: 0.6,
             }}
           >
-            VIEW ALL <ArrowRight size={14} strokeWidth={2} style={{ display: "inline", verticalAlign: "middle" }} />
+            {t("featured.viewAll")} <ArrowRight size={14} strokeWidth={2} style={{ display: "inline", verticalAlign: "middle" }} />
           </a>
         </div>
 

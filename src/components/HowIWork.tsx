@@ -1,43 +1,23 @@
 "use client";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-
-const steps = [
-  {
-    n: "01",
-    title: "Discovery Call",
-    duration: "Day 1",
-    desc: "A 30-minute call where I ask more questions than I talk. I need to understand your goals, your audience, and what done looks like for you — before anything gets designed.",
-    detail: "No pitch. No slide deck. Just a conversation that gives me enough to work with.",
-  },
-  {
-    n: "02",
-    title: "Design Review",
-    duration: "Days 2–4",
-    desc: "I build a clickable Figma wireframe based on what we talked about. You can see exactly how the site will flow before a single line of code is written — and change anything you want.",
-    detail: "Most revision cycles happen here. That's intentional — it's cheaper to fix a wireframe than a built page.",
-  },
-  {
-    n: "03",
-    title: "Framer Build",
-    duration: "Days 5–12",
-    desc: "Development starts and you get a live Framer preview link on Day 5. You're not waiting two weeks to see something — you're watching it come together in real time.",
-    detail: "Animations, interactions, and responsive behaviour are all built in, not added as an afterthought.",
-  },
-  {
-    n: "04",
-    title: "Launch & Handoff",
-    duration: "Days 13–14",
-    desc: "I deploy to your domain, QA every screen on every device, and record a short Loom walkthrough showing you exactly how to edit your own site. You own it — no dependency on me.",
-    detail: "Most clients are live and editing on their own within 48 hours of handoff.",
-  },
-];
+import { useLang } from "@/context/LangContext";
 
 const EASE = [0.22, 1, 0.36, 1] as [number, number, number, number];
+const STEP_NUMS = ["01", "02", "03", "04"];
 
 export default function HowIWork() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-10%" });
+  const { t } = useLang();
+
+  const steps = STEP_NUMS.map((n, i) => ({
+    n,
+    title: t(`process.s${i}.title`),
+    duration: t(`process.s${i}.dur`),
+    desc: t(`process.s${i}.desc`),
+    detail: t(`process.s${i}.detail`),
+  }));
 
   return (
     <section
@@ -78,7 +58,7 @@ export default function HowIWork() {
               marginBottom: 16,
             }}
           >
-            THE PROCESS
+            {t("process.eyebrow")}
           </motion.p>
           <motion.h2
             initial={{ opacity: 0, y: 10, filter: "blur(8px)" }}
@@ -94,9 +74,9 @@ export default function HowIWork() {
               color: "var(--fg)",
             }}
           >
-            From first call to live site —{" "}
+            {t("process.h1")}{" "}
             <span style={{ color: "rgb(163,163,163)" }}>
-              here&apos;s exactly how we do it.
+              {t("process.h1b")}
             </span>
           </motion.h2>
         </div>
@@ -115,8 +95,7 @@ export default function HowIWork() {
             letterSpacing: "-0.3px",
           }}
         >
-          Most projects ship in 14 days. The timeline is tight because the
-          process is tight — no ambiguity, no waiting, no surprises.
+          {t("process.desc")}
         </motion.p>
       </div>
 
