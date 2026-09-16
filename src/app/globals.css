@@ -297,10 +297,10 @@ html {
     gap: 32px !important;
   }
 
-  /* WhyMe stats: wrap label below number so it doesn't squish */
+  /* WhyMe stats: wrap label below number on mobile */
   .whyme-stat {
     flex-wrap: wrap !important;
-    align-items: flex-start !important;
+    align-items: center !important;
     gap: 4px 12px !important;
   }
 
