@@ -229,8 +229,10 @@ export default function FAQ() {
                           letterSpacing: "-0.2px",
                           lineHeight: 1.75,
                           color: "var(--fg-secondary)",
-                          paddingBottom: 20,
+                          paddingTop: 4,
+                          paddingBottom: 28,
                           paddingLeft: 36,
+                          paddingRight: 16,
                         }}
                       >
                         {faq.a}
