@@ -4,8 +4,6 @@ import { useRef, useState } from "react";
 import { ArrowUpRight, Send } from "lucide-react";
 import { useLang } from "@/context/LangContext";
 
-// Get a free form ID at formspree.io → create a new form → paste the ID in .env.local as NEXT_PUBLIC_FORMSPREE_ID
-const FORMSPREE_ID = process.env.NEXT_PUBLIC_FORMSPREE_ID;
 
 const services = [
   "Framer Website",
@@ -49,28 +47,20 @@ export default function ContactForm() {
     e.preventDefault();
     setStatus("submitting");
 
-    if (FORMSPREE_ID) {
-      try {
-        const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json", Accept: "application/json" },
-          body: JSON.stringify(form),
-        });
-        if (res.ok) {
-          setStatus("success");
-          setForm({ name: "", email: "", service: "", budget: "", message: "" });
-        } else {
-          setStatus("error");
-        }
-      } catch {
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      if (res.ok) {
+        setStatus("success");
+        setForm({ name: "", email: "", service: "", budget: "", message: "" });
+      } else {
         setStatus("error");
       }
-    } else {
-      // Fallback: open mail client
-      const subject = encodeURIComponent(`Project enquiry from ${form.name}`);
-      const body = encodeURIComponent(`Name: ${form.name}\nEmail: ${form.email}\nService: ${form.service}\nBudget: ${form.budget}\n\n${form.message}`);
-      window.location.href = `mailto:adefilasamuel929@gmail.com?subject=${subject}&body=${body}`;
-      setStatus("success");
+    } catch {
+      setStatus("error");
     }
   };
 
