@@ -74,7 +74,7 @@ export default function Currently() {
             marginBottom: 24,
           }}
         >
-          CURRENTLY
+          {t("currently.label")}
         </motion.p>
 
         <div

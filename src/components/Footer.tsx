@@ -163,7 +163,7 @@ export default function Footer() {
                 maxWidth: 200,
               }}
             >
-              Framer & Web Developer building fast, beautiful sites.
+              {t("footer.tagline")}
             </p>
           </div>
 
@@ -180,7 +180,7 @@ export default function Footer() {
                 marginBottom: 14,
               }}
             >
-              PORTFOLIO
+              {t("footer.portfolioLabel")}
             </p>
             <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
               {portfolioLinks.map((link) => (
@@ -218,7 +218,7 @@ export default function Footer() {
                 marginBottom: 14,
               }}
             >
-              FOLLOW ME ON
+              {t("footer.followLabel")}
             </p>
             <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
               {socialLinks.map((link) => (

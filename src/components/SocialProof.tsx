@@ -1,23 +1,19 @@
 "use client";
+import { useLang } from "@/context/LangContext";
 
-const items = [
-  "TOP RATED ON UPWORK",
-  "50+ PROJECTS SHIPPED",
-  "100% JOB SUCCESS",
-  "FRAMER DEVELOPER",
-  "5★ CLIENT RATING",
-  "FIGMA TO FRAMER",
-  "SHOPIFY · WEBFLOW",
-  "WORKS GLOBALLY",
+const ITEM_KEYS = [
+  "social.item0", "social.item1", "social.item2", "social.item3",
+  "social.item4", "social.item5", "social.item6", "social.item7",
 ];
 
 const Sep = () => (
   <span style={{ color: "var(--accent-purple)", margin: "0 20px", fontWeight: 700, fontSize: 10 }}>◆</span>
 );
 
-const track = [...items, ...items];
-
 export default function SocialProof() {
+  const { t } = useLang();
+  const items = ITEM_KEYS.map((k) => t(k));
+  const track = [...items, ...items];
   return (
     <div
       style={{

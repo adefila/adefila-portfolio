@@ -2,6 +2,7 @@
 import { motion, useInView } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { useRef } from "react";
+import { useLang } from "@/context/LangContext";
 
 const projects = [
   { title: "The Prime Media", meta: "Figma to Framer Development", year: "2025", href: "https://theprimemedia.ca/" },
@@ -24,6 +25,7 @@ const EASE = [0.22, 1, 0.36, 1] as [number, number, number, number];
 export default function Projects() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-10%" });
+  const { t } = useLang();
 
   return (
     <section
@@ -52,7 +54,7 @@ export default function Projects() {
             marginBottom: 16,
           }}
         >
-          RECENT PROJECTS
+          {t("projects.eyebrow")}
         </motion.p>
         <motion.h2
           initial={{ opacity: 0, y: 10, filter: "blur(8px)" }}
@@ -68,7 +70,7 @@ export default function Projects() {
             color: "var(--fg)",
           }}
         >
-          Featured Projects
+          {t("projects.h1")}
         </motion.h2>
       </div>
 

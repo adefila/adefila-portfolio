@@ -5,57 +5,17 @@ import { Check, ArrowUpRight } from "lucide-react";
 import { useLang } from "@/context/LangContext";
 import { CURRENCIES, CurrencyCode } from "@/i18n/translations";
 
-const PLANS = [
-  {
-    label: "LANDING PAGE",
-    name: "Single Page",
-    usdPrice: 500,
-    desc: "One focused page built to convert — for launches, lead gen, or a clear product pitch.",
-    features: [
-      "Custom Framer or Webflow design",
-      "Mobile-responsive, pixel-perfect",
-      "Animations & micro-interactions",
-      "CMS content management",
-      "Delivered in 5–7 days",
-    ],
-    featured: false,
-  },
-  {
-    label: "FULL WEBSITE",
-    name: "Multi-Page Build",
-    usdPrice: 2000,
-    desc: "A complete site for founders and businesses who need more than a landing page.",
-    features: [
-      "Up to 8 pages",
-      "Figma wireframe before we build",
-      "Blog or portfolio CMS setup",
-      "SEO basics + sitemap",
-      "Delivered in 10–14 days",
-      "Loom handoff walkthrough",
-    ],
-    featured: true,
-  },
-  {
-    label: "E-COMMERCE",
-    name: "Shopify / WooCommerce",
-    usdPrice: 3000,
-    desc: "Conversion-focused store design for brands ready to sell online the right way.",
-    features: [
-      "Custom Shopify or WooCommerce theme",
-      "Product pages built to sell",
-      "Payment & checkout optimisation",
-      "Mobile-first, fast-loading",
-      "Delivered in 14 days",
-    ],
-    featured: false,
-  },
+const PLANS_BASE = [
+  { usdPrice: 500,  featured: false, featureCount: 5, planKey: "plan0" },
+  { usdPrice: 2000, featured: true,  featureCount: 6, planKey: "plan1" },
+  { usdPrice: 3000, featured: false, featureCount: 5, planKey: "plan2" },
 ];
 
-const ADDONS = [
-  { label: "Any Platform → Framer",    usdPrice: 1000, perMonth: false },
-  { label: "Ongoing monthly support",   usdPrice: 250,  perMonth: true  },
-  { label: "Design only (Figma)",       usdPrice: 500,  perMonth: false },
-  { label: "SEO audit + fixes",         usdPrice: 500,  perMonth: false },
+const ADDONS_BASE = [
+  { addonKey: "addon0", usdPrice: 1000, perMonth: false },
+  { addonKey: "addon1", usdPrice: 250,  perMonth: true  },
+  { addonKey: "addon2", usdPrice: 500,  perMonth: false },
+  { addonKey: "addon3", usdPrice: 500,  perMonth: false },
 ];
 
 const EASE = [0.22, 1, 0.36, 1] as [number, number, number, number];
@@ -66,6 +26,21 @@ export default function Pricing() {
   const { t, formatPrice, currency, setCurrency } = useLang();
 
   const currentCurr = CURRENCIES.find((c) => c.code === currency) ?? CURRENCIES[0];
+
+  const plans = PLANS_BASE.map(({ planKey, usdPrice, featured, featureCount }) => ({
+    label: t(`pricing.${planKey}.label`),
+    name: t(`pricing.${planKey}.name`),
+    desc: t(`pricing.${planKey}.desc`),
+    features: Array.from({ length: featureCount }, (_, i) => t(`pricing.${planKey}.f${i}`)),
+    usdPrice,
+    featured,
+  }));
+
+  const addons = ADDONS_BASE.map(({ addonKey, usdPrice, perMonth }) => ({
+    label: t(`pricing.${addonKey}`),
+    usdPrice,
+    perMonth,
+  }));
 
   return (
     <section
@@ -164,7 +139,7 @@ export default function Pricing() {
           color: "var(--fg-muted)",
           marginRight: 4,
         }}>
-          Prices in:
+          {t("pricing.pricesIn")}
         </span>
         {CURRENCIES.map((c) => {
           const active = currency === c.code;
@@ -216,7 +191,7 @@ export default function Pricing() {
           marginBottom: 1,
         }}
       >
-        {PLANS.map((plan, i) => (
+        {plans.map((plan, i) => (
           <motion.div
             key={plan.name}
             initial={{ opacity: 0, y: 24 }}
@@ -274,7 +249,7 @@ export default function Pricing() {
               marginBottom: 4,
               lineHeight: 1,
             }}>
-              from {formatPrice(plan.usdPrice)}
+              {t("pricing.from")} {formatPrice(plan.usdPrice)}
             </p>
             {currency !== "USD" && (
               <p style={{
@@ -369,7 +344,7 @@ export default function Pricing() {
         }}
         className="addons-grid"
       >
-        {ADDONS.map((addon, i) => (
+        {addons.map((addon, i) => (
           <div
             key={i}
             style={{

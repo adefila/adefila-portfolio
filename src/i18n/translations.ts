@@ -40,6 +40,236 @@ export const CURRENCIES: Currency[] = [
 ];
 
 export const T: Record<string, Record<LangCode, string>> = {
+  // ── Social Proof ticker ──────────────────────────────────────────────
+  "social.item0": {
+    en: "TOP RATED ON UPWORK",      fr: "TOP RATED SUR UPWORK",      es: "TOP RATED EN UPWORK",      de: "TOP RATED AUF UPWORK",
+    pt: "TOP RATED NO UPWORK",      zh: "Upwork 顶级认证",             ja: "UpworkトップRated",          yo: "ÀMÀ GÍGA LÓ UPWORK",
+  },
+  "social.item1": {
+    en: "50+ PROJECTS SHIPPED",     fr: "50+ PROJETS LIVRÉS",        es: "50+ PROYECTOS ENTREGADOS", de: "50+ PROJEKTE GELIEFERT",
+    pt: "50+ PROJETOS ENTREGUES",   zh: "50+ 项目已交付",              ja: "50以上のプロジェクト納品",   yo: "ÀWỌ̀N IṢẸ́ 50+ TÍ A PÉ",
+  },
+  "social.item2": {
+    en: "100% JOB SUCCESS",         fr: "100% DE SUCCÈS",            es: "100% DE ÉXITO",            de: "100% JOB-ERFOLG",
+    pt: "100% DE SUCESSO",          zh: "100% 工作成功率",             ja: "100% 成功率",               yo: "100% ÀṢEYỌRÍ IṢẸ́",
+  },
+  "social.item3": {
+    en: "FRAMER DEVELOPER",         fr: "DÉVELOPPEUR FRAMER",        es: "DESARROLLADOR FRAMER",     de: "FRAMER-ENTWICKLER",
+    pt: "DESENVOLVEDOR FRAMER",     zh: "Framer 开发者",              ja: "Framer開発者",              yo: "OLÙGBÉJÁDE FRAMER",
+  },
+  "social.item4": {
+    en: "5★ CLIENT RATING",         fr: "NOTE CLIENTS 5★",           es: "CALIFICACIÓN 5★",          de: "5★ KUNDENBEWERTUNG",
+    pt: "AVALIAÇÃO 5★",             zh: "5星客户评分",                 ja: "5★クライアント評価",        yo: "ÌṢÌ ONÍBÀÁRÀ 5★",
+  },
+  "social.item5": {
+    en: "FIGMA TO FRAMER",          fr: "FIGMA VERS FRAMER",         es: "FIGMA A FRAMER",           de: "FIGMA ZU FRAMER",
+    pt: "FIGMA PARA FRAMER",        zh: "Figma 转 Framer",            ja: "FigmaからFramer",           yo: "FIGMA SÍ FRAMER",
+  },
+  "social.item6": {
+    en: "SHOPIFY · WEBFLOW",        fr: "SHOPIFY · WEBFLOW",         es: "SHOPIFY · WEBFLOW",        de: "SHOPIFY · WEBFLOW",
+    pt: "SHOPIFY · WEBFLOW",        zh: "Shopify · Webflow",         ja: "Shopify · Webflow",        yo: "SHOPIFY · WEBFLOW",
+  },
+  "social.item7": {
+    en: "WORKS GLOBALLY",           fr: "DISPONIBLE PARTOUT",        es: "TRABAJO A NIVEL GLOBAL",   de: "WELTWEIT TÄTIG",
+    pt: "TRABALHO GLOBAL",          zh: "全球服务",                    ja: "グローバル対応",             yo: "N ṢIṢẸ́ KÁÀKIRI AYÉ",
+  },
+
+  // ── Projects section ──────────────────────────────────────────────────
+  "projects.eyebrow": {
+    en: "RECENT PROJECTS",          fr: "PROJETS RÉCENTS",           es: "PROYECTOS RECIENTES",      de: "AKTUELLE PROJEKTE",
+    pt: "PROJETOS RECENTES",        zh: "近期项目",                    ja: "最近のプロジェクト",         yo: "ÀWỌN IṢẸ́ ÀÌPẸ́",
+  },
+  "projects.h1": {
+    en: "Featured Projects",        fr: "Projets Phares",            es: "Proyectos Destacados",     de: "Ausgewählte Projekte",
+    pt: "Projetos em Destaque",     zh: "精选项目",                    ja: "注目プロジェクト",           yo: "Àwọn Iṣẹ́ Pàtàkì",
+  },
+
+  // ── Pricing plans & addons ────────────────────────────────────────────
+  "pricing.pricesIn": {
+    en: "Prices in:",               fr: "Prix en :",                 es: "Precios en:",              de: "Preise in:",
+    pt: "Preços em:",               zh: "价格单位：",                  ja: "価格通貨：",                yo: "Iye ní:",
+  },
+  "pricing.from": {
+    en: "from",                     fr: "à partir de",              es: "desde",                    de: "ab",
+    pt: "a partir de",              zh: "起价",                       ja: "〜から",                    yo: "láti",
+  },
+  "pricing.plan0.label": {
+    en: "LANDING PAGE",             fr: "PAGE D'ATTERRISSAGE",       es: "PÁGINA DE DESTINO",        de: "LANDINGPAGE",
+    pt: "PÁGINA DE DESTINO",        zh: "落地页",                     ja: "ランディングページ",         yo: "ÌWÉ ÌDÓKÒWÒ",
+  },
+  "pricing.plan0.name": {
+    en: "Single Page",              fr: "Page Unique",               es: "Página Única",             de: "Einzelseite",
+    pt: "Página Única",             zh: "单页",                       ja: "シングルページ",             yo: "Ojúewé Kan",
+  },
+  "pricing.plan0.desc": {
+    en: "One focused page built to convert — for launches, lead gen, or a clear product pitch.",
+    fr: "Une page ciblée conçue pour convertir — pour les lancements, la génération de prospects ou un pitch produit clair.",
+    es: "Una página enfocada para convertir — para lanzamientos, captación de leads o una presentación de producto.",
+    de: "Eine fokussierte Seite zum Konvertieren — für Launches, Lead-Generierung oder einen klaren Produkt-Pitch.",
+    pt: "Uma página focada para converter — para lançamentos, geração de leads ou um pitch de produto claro.",
+    zh: "一个专注于转化的页面——用于产品发布、潜在客户开发或产品介绍。",
+    ja: "コンバージョンに特化した1ページ——リリース、リード獲得、または明確なプロダクトピッチに。",
+    yo: "Ojúewé kan tó dojúkọ ìyípadà — fún ìfilọ́lẹ̀, gbígba àwọn oníbàárà, tàbí ìgbékalẹ̀ ọjà.",
+  },
+  "pricing.plan0.f0": {
+    en: "Custom Framer or Webflow design",        fr: "Design Framer ou Webflow personnalisé",   es: "Diseño Framer o Webflow personalizado",
+    de: "Individuelles Framer- oder Webflow-Design", pt: "Design Framer ou Webflow personalizado",  zh: "定制 Framer 或 Webflow 设计",
+    ja: "カスタムFramerまたはWebflowデザイン",    yo: "Àpẹẹrẹ Framer tàbí Webflow pàtó",
+  },
+  "pricing.plan0.f1": {
+    en: "Mobile-responsive, pixel-perfect",       fr: "Responsive mobile, pixel-perfect",        es: "Mobile-responsive, pixel-perfecto",
+    de: "Mobil-responsiv, pixelgenau",             pt: "Responsivo para mobile, pixel-perfect",   zh: "移动端响应式，像素级精准",
+    ja: "モバイル対応、ピクセルパーフェクト",        yo: "Tó ń fèsì sí fóònù, tó pipe",
+  },
+  "pricing.plan0.f2": {
+    en: "Animations & micro-interactions",        fr: "Animations et micro-interactions",        es: "Animaciones y micro-interacciones",
+    de: "Animationen & Micro-Interaktionen",       pt: "Animações e micro-interações",            zh: "动画与微交互",
+    ja: "アニメーションとマイクロインタラクション",   yo: "Àwọn ìgbésẹ̀ & ìfọwọ́kàn kéékèékè",
+  },
+  "pricing.plan0.f3": {
+    en: "CMS content management",                 fr: "Gestion de contenu CMS",                  es: "Gestión de contenido CMS",
+    de: "CMS-Content-Management",                  pt: "Gerenciamento de conteúdo CMS",           zh: "CMS 内容管理",
+    ja: "CMSコンテンツ管理",                         yo: "Ìṣàkóso àkóónú CMS",
+  },
+  "pricing.plan0.f4": {
+    en: "Delivered in 5–7 days",                  fr: "Livré en 5–7 jours",                      es: "Entregado en 5–7 días",
+    de: "Lieferung in 5–7 Tagen",                  pt: "Entregue em 5–7 dias",                    zh: "5–7天交付",
+    ja: "5〜7日で納品",                              yo: "A fi ránṣẹ́ ní ọjọ́ 5–7",
+  },
+  "pricing.plan1.label": {
+    en: "FULL WEBSITE",             fr: "SITE COMPLET",              es: "SITIO COMPLETO",           de: "KOMPLETTE WEBSITE",
+    pt: "SITE COMPLETO",            zh: "完整网站",                    ja: "フルサイト",                 yo: "OJÚEWÉ ÌPÍNNÚ",
+  },
+  "pricing.plan1.name": {
+    en: "Multi-Page Build",         fr: "Site Multi-Pages",          es: "Sitio Multi-Página",       de: "Mehrseitige Website",
+    pt: "Site Multi-Páginas",       zh: "多页网站",                    ja: "マルチページ構築",           yo: "Kíkọ́ Ojúewé Púpọ̀",
+  },
+  "pricing.plan1.desc": {
+    en: "A complete site for founders and businesses who need more than a landing page.",
+    fr: "Un site complet pour les fondateurs et entreprises qui ont besoin de plus qu'une page d'atterrissage.",
+    es: "Un sitio completo para fundadores y negocios que necesitan más que una landing page.",
+    de: "Eine vollständige Website für Gründer und Unternehmen, die mehr als eine Landingpage brauchen.",
+    pt: "Um site completo para fundadores e empresas que precisam de mais do que uma landing page.",
+    zh: "为需要不止落地页的创始人和企业打造的完整网站。",
+    ja: "ランディングページ以上のものが必要な創業者やビジネスのための完全なサイト。",
+    yo: "Ojúewé pípé fún àwọn olùdásílẹ̀ àti àwọn iṣowó tó nílò jù ojúewé ìdókòwò lọ.",
+  },
+  "pricing.plan1.f0": {
+    en: "Up to 8 pages",                          fr: "Jusqu'à 8 pages",                         es: "Hasta 8 páginas",
+    de: "Bis zu 8 Seiten",                         pt: "Até 8 páginas",                           zh: "最多8页",
+    ja: "最大8ページ",                               yo: "Ó tó ojúewé 8",
+  },
+  "pricing.plan1.f1": {
+    en: "Figma wireframe before we build",        fr: "Maquette Figma avant construction",       es: "Wireframe Figma antes de construir",
+    de: "Figma-Wireframe vor dem Bau",             pt: "Wireframe Figma antes de construir",      zh: "构建前提供 Figma 线框图",
+    ja: "構築前にFigmaワイヤーフレーム",               yo: "Àpẹẹrẹ Figma ṣáájú kíkọ́",
+  },
+  "pricing.plan1.f2": {
+    en: "Blog or portfolio CMS setup",            fr: "Configuration CMS blog ou portfolio",     es: "Configuración CMS de blog o portafolio",
+    de: "Blog- oder Portfolio-CMS-Einrichtung",    pt: "Configuração de CMS de blog ou portfólio", zh: "博客或作品集 CMS 设置",
+    ja: "ブログまたはポートフォリオCMSセットアップ",   yo: "Ìtò CMS fún àgbékalẹ̀ tàbí àkójọ iṣẹ́",
+  },
+  "pricing.plan1.f3": {
+    en: "SEO basics + sitemap",                   fr: "SEO de base + sitemap",                   es: "SEO básico + mapa del sitio",
+    de: "SEO-Grundlagen + Sitemap",                pt: "SEO básico + mapa do site",               zh: "基础 SEO + 网站地图",
+    ja: "SEO基礎 + サイトマップ",                    yo: "Ìpìlẹ̀ SEO + maapu ojúewé",
+  },
+  "pricing.plan1.f4": {
+    en: "Delivered in 10–14 days",                fr: "Livré en 10–14 jours",                    es: "Entregado en 10–14 días",
+    de: "Lieferung in 10–14 Tagen",                pt: "Entregue em 10–14 dias",                  zh: "10–14天交付",
+    ja: "10〜14日で納品",                            yo: "A fi ránṣẹ́ ní ọjọ́ 10–14",
+  },
+  "pricing.plan1.f5": {
+    en: "Loom handoff walkthrough",               fr: "Tutoriel Loom de transfert",              es: "Tutorial Loom de entrega",
+    de: "Loom-Übergabe-Walkthrough",               pt: "Tutorial Loom de entrega",                zh: "Loom 交接教程",
+    ja: "Loomで引き渡しウォークスルー",               yo: "Àtúpalẹ̀ Loom fún gbigbe iṣẹ́",
+  },
+  "pricing.plan2.label": {
+    en: "E-COMMERCE",               fr: "E-COMMERCE",                es: "E-COMMERCE",               de: "E-COMMERCE",
+    pt: "E-COMMERCE",               zh: "电商",                       ja: "Eコマース",                  yo: "ÌṢÒWÒ AYÉLUJÁRA",
+  },
+  "pricing.plan2.name": {
+    en: "Shopify / WooCommerce",    fr: "Shopify / WooCommerce",     es: "Shopify / WooCommerce",    de: "Shopify / WooCommerce",
+    pt: "Shopify / WooCommerce",    zh: "Shopify / WooCommerce",     ja: "Shopify / WooCommerce",    yo: "Shopify / WooCommerce",
+  },
+  "pricing.plan2.desc": {
+    en: "Conversion-focused store design for brands ready to sell online the right way.",
+    fr: "Design de boutique axé sur la conversion pour les marques prêtes à vendre en ligne de la bonne façon.",
+    es: "Diseño de tienda enfocado en conversión para marcas listas para vender en línea de la manera correcta.",
+    de: "Conversion-fokussiertes Shop-Design für Marken, die online richtig verkaufen wollen.",
+    pt: "Design de loja focado em conversão para marcas prontas para vender online do jeito certo.",
+    zh: "以转化为核心的商店设计，适合准备好以正确方式在线销售的品牌。",
+    ja: "正しい方法でオンライン販売する準備ができたブランドのための、コンバージョン重視のストアデザイン。",
+    yo: "Àpẹẹrẹ ilé-ìtajà tó dojúkọ ìyípadà fún àwọn àmì tó ṣetán láti tà ní orí ìnẹ́tì.",
+  },
+  "pricing.plan2.f0": {
+    en: "Custom Shopify or WooCommerce theme",    fr: "Thème Shopify ou WooCommerce personnalisé", es: "Tema Shopify o WooCommerce personalizado",
+    de: "Individuelles Shopify- oder WooCommerce-Theme", pt: "Tema Shopify ou WooCommerce personalizado", zh: "定制 Shopify 或 WooCommerce 主题",
+    ja: "カスタムShopifyまたはWooCommerceテーマ",   yo: "Àpẹẹrẹ Shopify tàbí WooCommerce pàtó",
+  },
+  "pricing.plan2.f1": {
+    en: "Product pages built to sell",            fr: "Pages produits conçues pour vendre",      es: "Páginas de producto diseñadas para vender",
+    de: "Produktseiten zum Verkaufen erstellt",    pt: "Páginas de produto para vender",          zh: "专为销售打造的产品页",
+    ja: "販売のために作られた商品ページ",               yo: "Àwọn ojúewé ọjà tí a kọ́ láti tà",
+  },
+  "pricing.plan2.f2": {
+    en: "Payment & checkout optimisation",        fr: "Optimisation paiement & caisse",          es: "Optimización de pago y checkout",
+    de: "Zahlungs- & Checkout-Optimierung",        pt: "Otimização de pagamento e checkout",      zh: "支付与结账优化",
+    ja: "支払いとチェックアウトの最適化",               yo: "Ìmúdára ìsanwó & ìgbẹ̀yìn rírà",
+  },
+  "pricing.plan2.f3": {
+    en: "Mobile-first, fast-loading",             fr: "Mobile-first, chargement rapide",         es: "Mobile-first, carga rápida",
+    de: "Mobile-first, schnell ladend",            pt: "Mobile-first, carregamento rápido",       zh: "移动优先，快速加载",
+    ja: "モバイルファースト、高速ロード",               yo: "Fóònù kọ́kọ́, ìgbòkègbodò ìyára",
+  },
+  "pricing.plan2.f4": {
+    en: "Delivered in 14 days",                   fr: "Livré en 14 jours",                       es: "Entregado en 14 días",
+    de: "Lieferung in 14 Tagen",                   pt: "Entregue em 14 dias",                     zh: "14天交付",
+    ja: "14日で納品",                               yo: "A fi ránṣẹ́ ní ọjọ́ 14",
+  },
+  "pricing.addon0": {
+    en: "Any Platform → Framer",    fr: "Toute Plateforme → Framer", es: "Cualquier Plataforma → Framer", de: "Jede Plattform → Framer",
+    pt: "Qualquer Plataforma → Framer", zh: "任意平台 → Framer",       ja: "どのプラットフォームも → Framer", yo: "Pẹpẹ Èyíkéyìí → Framer",
+  },
+  "pricing.addon1": {
+    en: "Ongoing monthly support",  fr: "Support mensuel continu",   es: "Soporte mensual continuo",  de: "Laufender monatlicher Support",
+    pt: "Suporte mensal contínuo",  zh: "持续月度支持",                ja: "継続月次サポート",            yo: "Àtìlẹ́yọ̀ oṣùnṣù tí ń lọ síwájú",
+  },
+  "pricing.addon2": {
+    en: "Design only (Figma)",      fr: "Design seul (Figma)",       es: "Solo diseño (Figma)",       de: "Nur Design (Figma)",
+    pt: "Somente design (Figma)",   zh: "仅设计 (Figma)",              ja: "デザインのみ（Figma）",      yo: "Àpẹẹrẹ nìkan (Figma)",
+  },
+  "pricing.addon3": {
+    en: "SEO audit + fixes",        fr: "Audit SEO + corrections",   es: "Auditoría SEO + correcciones", de: "SEO-Audit + Korrekturen",
+    pt: "Auditoria SEO + correções", zh: "SEO 审计 + 修复",            ja: "SEO監査 + 修正",             yo: "Ìdánwò SEO + àtúnṣe",
+  },
+
+  // ── Footer bar ────────────────────────────────────────────────────────
+  "footer.portfolioLabel": {
+    en: "PORTFOLIO",                fr: "PORTFOLIO",                 es: "PORTFOLIO",                de: "PORTFOLIO",
+    pt: "PORTFÓLIO",                zh: "作品集",                     ja: "ポートフォリオ",             yo: "ÀKÓJỌ IṢẸ́",
+  },
+  "footer.followLabel": {
+    en: "FOLLOW ME ON",             fr: "SUIVEZ-MOI SUR",            es: "SÍGUEME EN",               de: "FOLGT MIR AUF",
+    pt: "SIGA-ME EM",               zh: "关注我",                     ja: "フォローはこちら",           yo: "TẸ̀LEМ Í LÓRí",
+  },
+  "footer.tagline": {
+    en: "Framer & Web Developer building fast, beautiful sites.",
+    fr: "Développeur Framer & Web créant des sites rapides et beaux.",
+    es: "Desarrollador Framer & Web creando sitios rápidos y hermosos.",
+    de: "Framer & Web-Entwickler, der schnelle, schöne Websites baut.",
+    pt: "Desenvolvedor Framer & Web criando sites rápidos e bonitos.",
+    zh: "Framer & 网页开发者，打造快速美观的网站。",
+    ja: "Framer＆Web開発者。速くて美しいサイトを制作。",
+    yo: "Olùgbéjáde Framer & Wẹ́ẹ̀bù tó ń kọ́ àwọn ojúewé tó yára àti tó dára.",
+  },
+
+  // ── Currently section ─────────────────────────────────────────────────
+  "currently.label": {
+    en: "CURRENTLY",                fr: "EN CE MOMENT",              es: "ACTUALMENTE",              de: "AKTUELL",
+    pt: "ATUALMENTE",               zh: "当前",                       ja: "いま",                      yo: "NÍ BÁYÌÍ",
+  },
+
   // ── Nav ──────────────────────────────────────────────────────────────
   "nav.work": {
     en: "WORK",         fr: "PROJETS",      es: "PROYECTOS",    de: "ARBEIT",
