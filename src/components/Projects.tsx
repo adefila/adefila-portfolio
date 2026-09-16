@@ -1,7 +1,7 @@
 "use client";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, useMotionValue, useSpring, AnimatePresence } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
-import { useRef } from "react";
+import { useRef, useState, useCallback } from "react";
 import { useLang } from "@/context/LangContext";
 
 const projects = [
@@ -22,21 +22,167 @@ const projects = [
 const COLS = 3;
 const EASE = [0.22, 1, 0.36, 1] as [number, number, number, number];
 
+// Accent colors per project — cycles through a palette
+const ACCENTS = [
+  "#6d28d9", "#0891b2", "#059669", "#d97706",
+  "#dc2626", "#7c3aed", "#0284c7", "#16a34a",
+  "#b45309", "#be123c", "#4f46e5", "#0f766e",
+];
+
+function FloatingPreview({
+  project,
+  index,
+  springX,
+  springY,
+}: {
+  project: (typeof projects)[0];
+  index: number;
+  springX: ReturnType<typeof useSpring>;
+  springY: ReturnType<typeof useSpring>;
+}) {
+  const accent = ACCENTS[index % ACCENTS.length];
+  return (
+    <motion.div
+      style={{
+        position: "fixed",
+        left: springX,
+        top: springY,
+        pointerEvents: "none",
+        zIndex: 9999,
+        width: 260,
+      }}
+      initial={{ opacity: 0, scale: 0.88, y: 8 }}
+      animate={{ opacity: 1, scale: 1, y: 0 }}
+      exit={{ opacity: 0, scale: 0.88, y: 8 }}
+      transition={{ duration: 0.18, ease: [0.22, 1, 0.36, 1] }}
+    >
+      {/* Accent bar */}
+      <div style={{ height: 3, background: accent, width: "100%", marginBottom: 0 }} />
+      <div
+        style={{
+          background: "var(--fg)",
+          padding: "20px 22px 22px",
+          overflow: "hidden",
+          position: "relative",
+        }}
+      >
+        {/* Big ghost number */}
+        <span
+          style={{
+            position: "absolute",
+            bottom: -16,
+            right: 14,
+            fontFamily: "var(--font-poppins)",
+            fontWeight: 700,
+            fontSize: 80,
+            lineHeight: 1,
+            color: "rgba(255,255,255,0.04)",
+            userSelect: "none",
+            letterSpacing: "-4px",
+          }}
+        >
+          {String(index + 1).padStart(2, "0")}
+        </span>
+
+        {/* Meta */}
+        <p
+          style={{
+            fontFamily: "var(--font-inter)",
+            fontWeight: 700,
+            fontSize: 9,
+            letterSpacing: "2.5px",
+            textTransform: "uppercase",
+            color: accent,
+            marginBottom: 10,
+          }}
+        >
+          {project.meta} · {project.year}
+        </p>
+
+        {/* Title */}
+        <p
+          style={{
+            fontFamily: "var(--font-poppins)",
+            fontWeight: 700,
+            fontSize: 17,
+            letterSpacing: "-0.5px",
+            lineHeight: 1.2,
+            color: "#fff",
+            textTransform: "uppercase",
+            marginBottom: 16,
+          }}
+        >
+          {project.title}
+        </p>
+
+        {/* CTA label */}
+        <div
+          style={{
+            display: "inline-flex",
+            alignItems: "center",
+            gap: 5,
+            background: accent,
+            padding: "5px 10px",
+          }}
+        >
+          <span
+            style={{
+              fontFamily: "var(--font-inter)",
+              fontWeight: 600,
+              fontSize: 10,
+              letterSpacing: "1.5px",
+              textTransform: "uppercase",
+              color: "#fff",
+            }}
+          >
+            View Project
+          </span>
+          <ArrowUpRight size={11} strokeWidth={2.5} color="#fff" />
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
 export default function Projects() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-10%" });
   const { t } = useLang();
 
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+
+  const rawX = useMotionValue(0);
+  const rawY = useMotionValue(0);
+  const springX = useSpring(rawX, { stiffness: 220, damping: 22 });
+  const springY = useSpring(rawY, { stiffness: 220, damping: 22 });
+
+  const handleMouseMove = useCallback(
+    (e: React.MouseEvent) => {
+      rawX.set(e.clientX + 24);
+      rawY.set(e.clientY - 60);
+    },
+    [rawX, rawY]
+  );
+
   return (
     <section
       id="work"
-      style={{
-        width: "100%",
-        maxWidth: 1200,
-        margin: "0 auto",
-        padding: "80px 20px",
-      }}
+      style={{ width: "100%", maxWidth: 1200, margin: "0 auto", padding: "80px 20px" }}
+      onMouseMove={handleMouseMove}
     >
+      {/* Floating preview */}
+      <AnimatePresence>
+        {hoveredIndex !== null && (
+          <FloatingPreview
+            key={hoveredIndex}
+            project={projects[hoveredIndex]}
+            index={hoveredIndex}
+            springX={springX}
+            springY={springY}
+          />
+        )}
+      </AnimatePresence>
+
       {/* Header */}
       <div style={{ marginBottom: 40 }}>
         <motion.p
@@ -86,6 +232,9 @@ export default function Projects() {
         {projects.map((project, i) => {
           const col = i % COLS;
           const isLastRow = i >= projects.length - COLS;
+          const accent = ACCENTS[i % ACCENTS.length];
+          const isHovered = hoveredIndex === i;
+
           return (
             <motion.div
               key={project.title}
@@ -93,6 +242,8 @@ export default function Projects() {
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.4, delay: 0.1 + i * 0.04, ease: EASE }}
               className="project-row"
+              onMouseEnter={() => setHoveredIndex(i)}
+              onMouseLeave={() => setHoveredIndex(null)}
               onClick={() => project.href && window.open(project.href, "_blank", "noopener,noreferrer")}
               style={{
                 display: "flex",
@@ -104,28 +255,48 @@ export default function Projects() {
                 paddingRight: col !== COLS - 1 ? 28 : 0,
                 borderBottom: isLastRow ? "none" : "1px solid rgba(0,0,0,0.08)",
                 borderRight: col !== COLS - 1 ? "1px solid rgba(0,0,0,0.08)" : "none",
-                transition: "background 0.2s",
+                transition: "background 0.25s",
                 cursor: project.href ? "pointer" : "default",
+                background: isHovered ? "rgba(0,0,0,0.032)" : "transparent",
+                position: "relative",
               }}
             >
+              {/* Left accent bar that slides in on hover */}
+              {col === 0 && (
+                <motion.div
+                  animate={{ scaleY: isHovered ? 1 : 0, opacity: isHovered ? 1 : 0 }}
+                  transition={{ duration: 0.2 }}
+                  style={{
+                    position: "absolute",
+                    left: 0,
+                    top: 0,
+                    bottom: 0,
+                    width: 3,
+                    background: accent,
+                    transformOrigin: "top",
+                  }}
+                />
+              )}
+
               <div style={{ display: "flex", alignItems: "flex-start", gap: 16, flex: 1, minWidth: 0 }}>
-                <span
-                  className="project-num"
+                <motion.span
+                  animate={{ color: isHovered ? accent : "var(--fg-muted)" }}
+                  transition={{ duration: 0.2 }}
                   style={{
                     fontFamily: "var(--font-inter)",
-                    fontWeight: 400,
+                    fontWeight: isHovered ? 600 : 400,
                     fontSize: 13,
-                    color: "var(--fg-muted)",
                     flexShrink: 0,
                     paddingTop: 2,
-                    transition: "color 0.2s",
                   }}
                 >
-                  {i + 1}
-                </span>
+                  {String(i + 1).padStart(2, "0")}
+                </motion.span>
                 <div style={{ minWidth: 0, flex: 1 }}>
                   <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 8, marginBottom: 4 }}>
-                    <h3
+                    <motion.h3
+                      animate={{ x: isHovered ? 4 : 0 }}
+                      transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
                       style={{
                         fontFamily: "var(--font-poppins)",
                         fontWeight: 600,
@@ -137,7 +308,7 @@ export default function Projects() {
                       }}
                     >
                       {project.title}
-                    </h3>
+                    </motion.h3>
                     {project.href && (
                       <a
                         href={project.href}
@@ -151,9 +322,9 @@ export default function Projects() {
                           justifyContent: "center",
                           width: 26,
                           height: 26,
-                          borderRadius: "50%",
-                          border: "1px solid rgba(0,0,0,0.1)",
-                          color: "var(--fg-secondary)",
+                          background: isHovered ? accent : "transparent",
+                          border: `1px solid ${isHovered ? accent : "rgba(0,0,0,0.1)"}`,
+                          color: isHovered ? "#fff" : "var(--fg-secondary)",
                           flexShrink: 0,
                           transition: "background 0.2s, color 0.2s, border-color 0.2s",
                           textDecoration: "none",
