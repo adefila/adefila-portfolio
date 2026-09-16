@@ -81,7 +81,7 @@ export default function ContactForm() {
     width: "100%",
     padding: "14px 16px",
     fontFamily: "var(--font-inter)",
-    fontSize: 14,
+    fontSize: 16,
     letterSpacing: "-0.2px",
     color: "var(--fg)",
     background: "var(--bg)",
