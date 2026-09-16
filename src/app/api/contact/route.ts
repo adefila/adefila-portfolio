@@ -87,7 +87,9 @@ export async function POST(req: Request) {
     });
 
     // ── 2. Confirm to client ──────────────────────────────────────────────
-    await resend.emails.send({
+    // Non-fatal: only works once a verified sending domain is set up in Resend.
+    // Until then, Resend blocks delivery to addresses other than the account owner's.
+    try { await resend.emails.send({
       from: `${FROM_NAME} <${FROM_ADDRESS}>`,
       to: email,
       replyTo: TO_ADDRESS,
@@ -150,7 +152,9 @@ export async function POST(req: Request) {
   </table>
 </body>
 </html>`,
-    });
+    }); } catch (clientEmailErr) {
+      console.warn("[contact] client confirmation skipped (unverified sender domain):", clientEmailErr);
+    }
 
     return NextResponse.json({ ok: true });
   } catch (err) {
