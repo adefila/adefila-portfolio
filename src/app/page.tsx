@@ -34,8 +34,8 @@ export default function Home() {
       <About />
       <Currently />
       <SideProjects />
-      <ContactForm />
       <FAQ />
+      <ContactForm />
       <Footer />
     </main>
   );

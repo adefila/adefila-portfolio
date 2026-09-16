@@ -135,53 +135,6 @@ export default function FAQ() {
             </a>
           </motion.p>
 
-          {/* Quick-stat row */}
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5, delay: 0.22 }}
-            style={{
-              display: "flex",
-              gap: 0,
-              border: "1px solid rgba(0,0,0,0.08)",
-            }}
-          >
-            {[
-              { n: "50+", label: "Projects" },
-              { n: "100%", label: "Job Success" },
-              { n: "7–14d", label: "Avg. Delivery" },
-            ].map((stat, i) => (
-              <div
-                key={i}
-                style={{
-                  flex: 1,
-                  padding: "16px 14px",
-                  borderRight: i < 2 ? "1px solid rgba(0,0,0,0.08)" : "none",
-                  textAlign: "center",
-                }}
-              >
-                <p style={{
-                  fontFamily: "var(--font-poppins)",
-                  fontWeight: 700,
-                  fontSize: 18,
-                  letterSpacing: "-0.5px",
-                  color: "var(--fg)",
-                  marginBottom: 2,
-                }}>
-                  {stat.n}
-                </p>
-                <p style={{
-                  fontFamily: "var(--font-inter)",
-                  fontSize: 10,
-                  letterSpacing: "1.5px",
-                  textTransform: "uppercase",
-                  color: "var(--fg-secondary)",
-                }}>
-                  {stat.label}
-                </p>
-              </div>
-            ))}
-          </motion.div>
         </div>
 
         {/* Right: accordion */}

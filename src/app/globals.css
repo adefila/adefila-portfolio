@@ -183,28 +183,28 @@ html {
     margin-bottom: 0 !important;
   }
   #benefits {
-    padding-top: 48px !important;
-    padding-bottom: 40px !important;
+    padding-top: 60px !important;
+    padding-bottom: 60px !important;
   }
   #process {
-    padding-top: 40px !important;
-    padding-bottom: 40px !important;
+    padding-top: 60px !important;
+    padding-bottom: 60px !important;
   }
   #testimonials {
-    padding-top: 40px !important;
-    padding-bottom: 40px !important;
+    padding-top: 60px !important;
+    padding-bottom: 60px !important;
   }
   #work {
-    padding-top: 48px !important;
-    padding-bottom: 40px !important;
+    padding-top: 60px !important;
+    padding-bottom: 60px !important;
   }
   #about {
-    padding-top: 40px !important;
-    padding-bottom: 40px !important;
+    padding-top: 60px !important;
+    padding-bottom: 60px !important;
   }
   #faq {
-    padding-top: 40px !important;
-    padding-bottom: 40px !important;
+    padding-top: 60px !important;
+    padding-bottom: 60px !important;
   }
 
   /* Benefits 2-col → 1-col */
@@ -262,7 +262,15 @@ html {
 
   /* Hero top padding */
   .hero-section {
-    padding-top: 100px !important;
+    padding-top: 96px !important;
+  }
+
+  /* Hero spacing: tighten element gaps on mobile */
+  .hero-badge {
+    margin-bottom: 20px !important;
+  }
+  .hero-cta {
+    margin-bottom: 32px !important;
   }
 
   /* Hero headline: smaller min on mobile */
@@ -301,6 +309,13 @@ html {
   .addons-grid {
     grid-template-columns: 1fr 1fr !important;
   }
+  /* Pricing header: collapse gap and align top when stacked */
+  .pricing-header {
+    gap: 24px !important;
+    align-items: flex-start !important;
+    margin-bottom: 36px !important;
+    padding-bottom: 28px !important;
+  }
 
   /* Currently: 2-col → 1-col on mobile */
   .currently-grid {
@@ -318,8 +333,8 @@ html {
 
   /* Side projects: 3-col → 1-col on mobile */
   #side-projects {
-    padding-top: 40px !important;
-    padding-bottom: 40px !important;
+    padding-top: 60px !important;
+    padding-bottom: 60px !important;
   }
   .side-projects-grid {
     grid-template-columns: 1fr !important;

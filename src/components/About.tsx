@@ -48,7 +48,7 @@ function TechTag({ label }: { label: string }) {
   );
 }
 
-const CAROUSEL_GAP = 12;
+const CAROUSEL_GAP = 0;
 
 export default function About() {
   const ref = useRef(null);
@@ -58,6 +58,7 @@ export default function About() {
   const carouselRef = useRef<HTMLDivElement>(null);
   const [slideWidth, setSlideWidth] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
+  const directionRef = useRef(1);
 
   useEffect(() => {
     const update = () => {
@@ -66,7 +67,7 @@ export default function About() {
       if (carouselRef.current) {
         const w = carouselRef.current.clientWidth;
         const visible = mobile ? 1 : 3;
-        setSlideWidth((w - CAROUSEL_GAP * (visible - 1)) / visible);
+        setSlideWidth(w / visible);
       }
     };
     update();
@@ -85,7 +86,11 @@ export default function About() {
 
   useEffect(() => {
     const id = setInterval(() => {
-      setPhotoIndex((p) => (p >= maxIndex ? 0 : p + 1));
+      setPhotoIndex((p) => {
+        if (p >= maxIndex) directionRef.current = -1;
+        if (p <= 0) directionRef.current = 1;
+        return Math.max(0, Math.min(maxIndex, p + directionRef.current));
+      });
     }, 4500);
     return () => clearInterval(id);
   }, [maxIndex]);
@@ -357,11 +362,10 @@ export default function About() {
                 onClick={() => setLightbox(i)}
                 style={{
                   flexShrink: 0,
-                  width: slideWidth > 0 ? slideWidth : "calc(33.333% - 8px)",
-                  height: 360,
-                  borderRadius: 12,
+                  width: slideWidth > 0 ? slideWidth : "calc(33.333%)",
+                  height: isMobile ? 280 : 400,
+                  borderRadius: 0,
                   background: "rgba(0,0,0,0.06)",
-                  border: "1px solid rgba(0,0,0,0.07)",
                   overflow: "hidden",
                   cursor: "zoom-in",
                 }}

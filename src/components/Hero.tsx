@@ -42,6 +42,7 @@ export default function Hero() {
         {/* Available badge */}
         <motion.div
           {...fadeUp(0.1)}
+          className="hero-badge"
           style={{ display: "inline-flex", alignItems: "center", gap: 6, marginBottom: 32 }}
         >
           <span
@@ -136,6 +137,7 @@ export default function Hero() {
         {/* CTA buttons */}
         <motion.div
           {...fadeUp(0.5)}
+          className="hero-cta"
           style={{ display: "flex", gap: 12, flexWrap: "wrap", marginBottom: 48 }}
         >
           <MagneticButton

@@ -81,6 +81,7 @@ export default function Pricing() {
       {/* Header */}
       <div
         ref={ref}
+        className="pricing-header"
         style={{
           display: "flex",
           gap: 80,

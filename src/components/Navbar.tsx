@@ -9,12 +9,13 @@ const NAV_LINKS = [
   { label: "WORK", href: "#work" },
   { label: "BENEFITS", href: "#benefits" },
   { label: "PROCESS", href: "#process" },
+  { label: "PRICING", href: "#pricing" },
   { label: "TESTIMONIALS", href: "#testimonials" },
   { label: "ABOUT", href: "#about" },
   { label: "FAQ", href: "#faq" },
 ];
 
-const SECTION_IDS = ["hero", "work", "benefits", "process", "testimonials", "about", "faq"];
+const SECTION_IDS = ["hero", "work", "benefits", "process", "pricing", "testimonials", "about", "faq"];
 
 const EASE = [0.22, 1, 0.36, 1] as [number, number, number, number];
 
