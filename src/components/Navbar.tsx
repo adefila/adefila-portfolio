@@ -173,9 +173,8 @@ export default function Navbar() {
                     color: isActive ? "var(--fg)" : "var(--fg-secondary)",
                     textDecoration: "none",
                     padding: "7px 12px",
-                    borderRadius: 100,
-                    background: isActive ? "rgba(0,0,0,0.06)" : "transparent",
                     borderRadius: 0,
+                    background: isActive ? "rgba(0,0,0,0.06)" : "transparent",
                     transition: "color 0.2s, background 0.2s",
                   }}
                 >
