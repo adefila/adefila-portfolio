@@ -31,6 +31,8 @@ export const metadata: Metadata = {
 };
 
 import Cursor from "@/components/Cursor";
+import { LangProvider } from "@/context/LangContext";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -114,8 +116,11 @@ export default function RootLayout({
         />
       </head>
       <body>
-        <Cursor />
-        {children}
+        <LangProvider>
+          <Cursor />
+          {children}
+          <LanguageSwitcher />
+        </LangProvider>
       </body>
     </html>
   );

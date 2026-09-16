@@ -4,15 +4,16 @@ import Link from "next/link";
 import { CalendarDays } from "lucide-react";
 import { useEffect, useState } from "react";
 import MagneticButton from "./MagneticButton";
+import { useLang } from "@/context/LangContext";
 
-const NAV_LINKS = [
-  { label: "WORK", href: "#work" },
-  { label: "BENEFITS", href: "#benefits" },
-  { label: "PROCESS", href: "#process" },
-  { label: "PRICING", href: "#pricing" },
-  { label: "TESTIMONIALS", href: "#testimonials" },
-  { label: "ABOUT", href: "#about" },
-  { label: "FAQ", href: "#faq" },
+const NAV_HREFS = [
+  { key: "nav.work",         href: "#work"         },
+  { key: "nav.benefits",     href: "#benefits"     },
+  { key: "nav.process",      href: "#process"      },
+  { key: "nav.pricing",      href: "#pricing"      },
+  { key: "nav.testimonials", href: "#testimonials" },
+  { key: "nav.about",        href: "#about"        },
+  { key: "nav.faq",          href: "#faq"          },
 ];
 
 const SECTION_IDS = ["hero", "work", "benefits", "process", "pricing", "testimonials", "about", "faq"];
@@ -77,6 +78,8 @@ export default function Navbar() {
   const [active, setActive] = useState("");
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const { t } = useLang();
+  const NAV_LINKS = NAV_HREFS.map(({ key, href }) => ({ label: t(key), href }));
 
   useEffect(() => {
     const onScroll = () => {
@@ -204,7 +207,7 @@ export default function Navbar() {
               gap: 8,
             }}
           >
-            SCHEDULE FREE CALL
+            {t("common.scheduleCall")}
             <CalendarDays size={14} strokeWidth={2} />
           </MagneticButton>
 
@@ -313,7 +316,7 @@ export default function Navbar() {
                   letterSpacing: "-0.2px",
                 }}
               >
-                SCHEDULE FREE CALL
+                {t("common.scheduleCall")}
                 <CalendarDays size={15} strokeWidth={2} />
               </a>
             </motion.div>

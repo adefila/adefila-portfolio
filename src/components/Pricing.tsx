@@ -2,12 +2,14 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { Check, ArrowUpRight } from "lucide-react";
+import { useLang } from "@/context/LangContext";
+import { CURRENCIES, CurrencyCode } from "@/i18n/translations";
 
-const plans = [
+const PLANS = [
   {
     label: "LANDING PAGE",
     name: "Single Page",
-    price: "from $600",
+    usdPrice: 500,
     desc: "One focused page built to convert — for launches, lead gen, or a clear product pitch.",
     features: [
       "Custom Framer or Webflow design",
@@ -16,14 +18,12 @@ const plans = [
       "CMS content management",
       "Delivered in 5–7 days",
     ],
-    cta: "Book a call",
-    href: "https://cal.com/samuel-adefila",
     featured: false,
   },
   {
     label: "FULL WEBSITE",
     name: "Multi-Page Build",
-    price: "from $1,500",
+    usdPrice: 2000,
     desc: "A complete site for founders and businesses who need more than a landing page.",
     features: [
       "Up to 8 pages",
@@ -33,14 +33,12 @@ const plans = [
       "Delivered in 10–14 days",
       "Loom handoff walkthrough",
     ],
-    cta: "Book a call",
-    href: "https://cal.com/samuel-adefila",
     featured: true,
   },
   {
     label: "E-COMMERCE",
     name: "Shopify / WooCommerce",
-    price: "from $2,000",
+    usdPrice: 3000,
     desc: "Conversion-focused store design for brands ready to sell online the right way.",
     features: [
       "Custom Shopify or WooCommerce theme",
@@ -49,17 +47,15 @@ const plans = [
       "Mobile-first, fast-loading",
       "Delivered in 14 days",
     ],
-    cta: "Book a call",
-    href: "https://cal.com/samuel-adefila",
     featured: false,
   },
 ];
 
-const addons = [
-  { label: "Framer → Webflow migration", price: "from $800" },
-  { label: "Ongoing monthly support", price: "from $300 / mo" },
-  { label: "Design only (Figma)", price: "from $400" },
-  { label: "SEO audit + fixes", price: "from $250" },
+const ADDONS = [
+  { label: "Any Platform → Framer",    usdPrice: 1000, perMonth: false },
+  { label: "Ongoing monthly support",   usdPrice: 250,  perMonth: true  },
+  { label: "Design only (Figma)",       usdPrice: 500,  perMonth: false },
+  { label: "SEO audit + fixes",         usdPrice: 500,  perMonth: false },
 ];
 
 const EASE = [0.22, 1, 0.36, 1] as [number, number, number, number];
@@ -67,16 +63,14 @@ const EASE = [0.22, 1, 0.36, 1] as [number, number, number, number];
 export default function Pricing() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-10%" });
+  const { t, formatPrice, currency, setCurrency } = useLang();
+
+  const currentCurr = CURRENCIES.find((c) => c.code === currency) ?? CURRENCIES[0];
 
   return (
     <section
       id="pricing"
-      style={{
-        width: "100%",
-        maxWidth: 1200,
-        margin: "0 auto",
-        padding: "80px 20px",
-      }}
+      style={{ width: "100%", maxWidth: 1200, margin: "0 auto", padding: "80px 20px" }}
     >
       {/* Header */}
       <div
@@ -107,7 +101,7 @@ export default function Pricing() {
               marginBottom: 16,
             }}
           >
-            INVESTMENT
+            {t("pricing.eyebrow")}
           </motion.p>
           <motion.h2
             initial={{ opacity: 0, y: 10, filter: "blur(8px)" }}
@@ -123,9 +117,9 @@ export default function Pricing() {
               color: "var(--fg)",
             }}
           >
-            CLEAR SCOPE.{" "}
+            {t("pricing.h2a")}{" "}
             <span style={{ color: "rgb(163,163,163)" }}>
-              CLEAR NUMBER. NO SURPRISES.
+              {t("pricing.h2b")}
             </span>
           </motion.h2>
         </div>
@@ -144,9 +138,71 @@ export default function Pricing() {
             letterSpacing: "-0.3px",
           }}
         >
-          Pricing is scoped per project — no hourly billing, no retainers you didn&apos;t ask for. Book a call and you&apos;ll leave with an exact number and exactly what&apos;s included.
+          {t("pricing.desc")}
         </motion.p>
       </div>
+
+      {/* Currency strip */}
+      <motion.div
+        initial={{ opacity: 0, y: 8 }}
+        animate={inView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.4, delay: 0.08, ease: EASE }}
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: 8,
+          marginBottom: 20,
+          flexWrap: "wrap",
+        }}
+      >
+        <span style={{
+          fontFamily: "var(--font-inter)",
+          fontSize: 10,
+          fontWeight: 700,
+          letterSpacing: "2px",
+          textTransform: "uppercase",
+          color: "var(--fg-muted)",
+          marginRight: 4,
+        }}>
+          Prices in:
+        </span>
+        {CURRENCIES.map((c) => {
+          const active = currency === c.code;
+          return (
+            <button
+              key={c.code}
+              onClick={() => setCurrency(c.code as CurrencyCode)}
+              title={c.name}
+              style={{
+                padding: "4px 10px",
+                background: active ? "var(--fg)" : "transparent",
+                border: `1px solid ${active ? "var(--fg)" : "rgba(0,0,0,0.12)"}`,
+                cursor: "pointer",
+                fontFamily: "var(--font-inter)",
+                fontSize: 11,
+                fontWeight: active ? 700 : 500,
+                color: active ? "#fff" : "var(--fg-secondary)",
+                letterSpacing: "0.3px",
+                transition: "all 0.15s",
+                lineHeight: 1.6,
+              }}
+            >
+              {c.code}
+            </button>
+          );
+        })}
+        {currency !== "USD" && (
+          <span style={{
+            fontFamily: "var(--font-inter)",
+            fontSize: 10,
+            color: "var(--fg-muted)",
+            marginLeft: 4,
+            letterSpacing: "-0.1px",
+          }}>
+            · indicative rates vs USD · {currentCurr.symbol}1 = ${(1 / currentCurr.rate).toFixed(4)}
+          </span>
+        )}
+      </motion.div>
 
       {/* Plans */}
       <div
@@ -160,7 +216,7 @@ export default function Pricing() {
           marginBottom: 1,
         }}
       >
-        {plans.map((plan, i) => (
+        {PLANS.map((plan, i) => (
           <motion.div
             key={plan.name}
             initial={{ opacity: 0, y: 24 }}
@@ -215,11 +271,23 @@ export default function Pricing() {
               fontSize: 28,
               letterSpacing: "-1px",
               color: plan.featured ? "#fff" : "var(--fg)",
-              marginBottom: 16,
+              marginBottom: 4,
               lineHeight: 1,
             }}>
-              {plan.price}
+              from {formatPrice(plan.usdPrice)}
             </p>
+            {currency !== "USD" && (
+              <p style={{
+                fontFamily: "var(--font-inter)",
+                fontSize: 11,
+                color: plan.featured ? "rgba(255,255,255,0.4)" : "var(--fg-muted)",
+                marginBottom: 12,
+                letterSpacing: "-0.1px",
+              }}>
+                ≈ ${plan.usdPrice.toLocaleString()} USD
+              </p>
+            )}
+            {currency === "USD" && <div style={{ marginBottom: 12 }} />}
 
             <p style={{
               fontFamily: "var(--font-inter)",
@@ -240,7 +308,7 @@ export default function Pricing() {
                   <Check
                     size={13}
                     strokeWidth={2.5}
-                    color={plan.featured ? "var(--accent-purple)" : "var(--accent-purple)"}
+                    color="var(--accent-purple)"
                     style={{ flexShrink: 0, marginTop: 2 }}
                   />
                   <span style={{
@@ -257,7 +325,7 @@ export default function Pricing() {
             </div>
 
             <a
-              href={plan.href}
+              href="https://calendly.com/adefilasamuel929/30min"
               target="_blank"
               rel="noopener noreferrer"
               style={{
@@ -279,7 +347,7 @@ export default function Pricing() {
               onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.85")}
               onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
             >
-              {plan.cta}
+              {t("pricing.cta")}
               <ArrowUpRight size={14} strokeWidth={2} />
             </a>
           </motion.div>
@@ -301,7 +369,7 @@ export default function Pricing() {
         }}
         className="addons-grid"
       >
-        {addons.map((addon, i) => (
+        {ADDONS.map((addon, i) => (
           <div
             key={i}
             style={{
@@ -329,7 +397,7 @@ export default function Pricing() {
               letterSpacing: "-0.2px",
               flexShrink: 0,
             }}>
-              {addon.price}
+              {formatPrice(addon.usdPrice, addon.perMonth)}
             </span>
           </div>
         ))}
@@ -347,7 +415,7 @@ export default function Pricing() {
           letterSpacing: "-0.1px",
         }}
       >
-        All prices are starting points — final quote depends on scope. Book a free 30-min call and you&apos;ll have a number before you leave.
+        {t("pricing.disclaimer")}
       </motion.p>
     </section>
   );

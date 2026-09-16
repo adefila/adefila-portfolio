@@ -2,6 +2,7 @@
 import { motion } from "framer-motion";
 import { ArrowUpRight, CalendarDays } from "lucide-react";
 import MagneticButton from "./MagneticButton";
+import { useLang } from "@/context/LangContext";
 
 const portfolioLinks = [
   { label: "Dribbble", href: "https://dribbble.com/Adeyemisamuel020" },
@@ -16,6 +17,7 @@ const socialLinks = [
 ];
 
 export default function Footer() {
+  const { t } = useLang();
   return (
     <footer style={{ width: "100%" }}>
       {/* GET STARTED CTA */}
@@ -59,7 +61,7 @@ export default function Footer() {
                 maxWidth: 560,
               }}
             >
-              LET&apos;S BUILD SOMETHING YOU&apos;RE PROUD OF.
+              {t("footer.cta")}
             </motion.h2>
             <motion.p
               initial={{ opacity: 0, y: 10 }}
@@ -76,7 +78,7 @@ export default function Footer() {
                 maxWidth: 460,
               }}
             >
-              No back-and-forth, no bloated agencies, no wasted time. Tell me what you need and I&apos;ll tell you exactly how I&apos;ll get it done.
+              {t("footer.ctaDesc")}
             </motion.p>
           </div>
 
@@ -109,7 +111,7 @@ export default function Footer() {
                 whiteSpace: "nowrap",
               }}
             >
-              BOOK A FREE CALL <CalendarDays size={14} strokeWidth={2} />
+              {t("common.bookCall")} <CalendarDays size={14} strokeWidth={2} />
             </MagneticButton>
           </motion.div>
         </div>

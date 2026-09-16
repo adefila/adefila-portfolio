@@ -2,6 +2,7 @@
 import { motion } from "framer-motion";
 import { CalendarDays } from "lucide-react";
 import MagneticButton from "./MagneticButton";
+import { useLang } from "@/context/LangContext";
 
 const EASE = [0.22, 1, 0.36, 1] as [number, number, number, number];
 
@@ -22,6 +23,7 @@ const slides = [
 const track = [...slides, ...slides];
 
 export default function Hero() {
+  const { t } = useLang();
   return (
     <section id="hero" className="hero-section" style={{ paddingTop: 120, paddingBottom: 0, width: "100%", overflow: "hidden" }}>
       <style>{`
@@ -65,7 +67,7 @@ export default function Hero() {
               color: "var(--accent-green)",
             }}
           >
-            2 spots open
+            {t("hero.badge")}
           </span>
           <span
             style={{
@@ -86,13 +88,13 @@ export default function Hero() {
               color: "var(--fg-secondary)",
             }}
           >
-            Next start: Oct 2026
+            {t("hero.badge2")}
           </span>
         </motion.div>
 
         {/* Main headline */}
         <div style={{ marginBottom: 24 }}>
-          {["I DESIGN AND BUILD", "WEBSITES THAT CONVERT."].map((line, i) => (
+          {[t("hero.h1"), t("hero.h2")].map((line, i) => (
             <motion.div
               key={i}
               className="hero-headline"
@@ -130,8 +132,7 @@ export default function Hero() {
             marginBottom: 32,
           }}
         >
-          Product designer & Framer developer. I use Framer, Shopify,
-          and Webflow to build sites that genuinely convert.
+          {t("hero.subtitle")}
         </motion.p>
 
         {/* CTA buttons */}
@@ -158,7 +159,7 @@ export default function Hero() {
               gap: 8,
             }}
           >
-            BOOK A FREE CALL <CalendarDays size={15} strokeWidth={2} />
+            {t("hero.cta")} <CalendarDays size={15} strokeWidth={2} />
           </MagneticButton>
         </motion.div>
       </div>
