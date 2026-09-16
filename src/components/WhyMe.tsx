@@ -144,7 +144,7 @@ export default function WhyMe() {
               className="whyme-stat"
               style={{
                 display: "flex",
-                alignItems: "baseline",
+                alignItems: "center",
                 gap: 16,
                 borderBottom: "1px solid rgba(0,0,0,0.07)",
                 paddingBottom: 24,
