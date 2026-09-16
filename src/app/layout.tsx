@@ -44,10 +44,9 @@ export const metadata: Metadata = {
   },
 };
 
-import dynamic from "next/dynamic";
 import Cursor from "@/components/Cursor";
 import { LangProvider } from "@/context/LangContext";
-const LanguageSwitcher = dynamic(() => import("@/components/LanguageSwitcher"), { ssr: false });
+import LanguageSwitcher from "@/components/LanguageSwitcher";
 
 const jsonLd = {
   "@context": "https://schema.org",
