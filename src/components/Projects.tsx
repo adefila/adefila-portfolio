@@ -21,13 +21,15 @@ const projects = [
 
 const COLS = 3;
 const EASE = [0.22, 1, 0.36, 1] as [number, number, number, number];
-
-// Accent colors per project — cycles through a palette
 const ACCENTS = [
   "#6d28d9", "#0891b2", "#059669", "#d97706",
   "#dc2626", "#7c3aed", "#0284c7", "#16a34a",
   "#b45309", "#be123c", "#4f46e5", "#0f766e",
 ];
+
+function screenshotUrl(href: string) {
+  return `https://api.microlink.io?url=${encodeURIComponent(href)}&screenshot=true&meta=false&embed=screenshot.url`;
+}
 
 function FloatingPreview({
   project,
@@ -41,6 +43,9 @@ function FloatingPreview({
   springY: ReturnType<typeof useSpring>;
 }) {
   const accent = ACCENTS[index % ACCENTS.length];
+  const [loaded, setLoaded] = useState(false);
+  const [errored, setErrored] = useState(false);
+
   return (
     <motion.div
       style={{
@@ -49,97 +54,146 @@ function FloatingPreview({
         top: springY,
         pointerEvents: "none",
         zIndex: 9999,
-        width: 260,
+        width: 300,
       }}
-      initial={{ opacity: 0, scale: 0.88, y: 8 }}
+      initial={{ opacity: 0, scale: 0.9, y: 10 }}
       animate={{ opacity: 1, scale: 1, y: 0 }}
-      exit={{ opacity: 0, scale: 0.88, y: 8 }}
-      transition={{ duration: 0.18, ease: [0.22, 1, 0.36, 1] }}
+      exit={{ opacity: 0, scale: 0.9, y: 10 }}
+      transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
     >
       {/* Accent bar */}
-      <div style={{ height: 3, background: accent, width: "100%", marginBottom: 0 }} />
+      <div style={{ height: 3, background: accent }} />
+
+      {/* Screenshot container */}
       <div
         style={{
-          background: "var(--fg)",
-          padding: "20px 22px 22px",
-          overflow: "hidden",
+          width: 300,
+          height: 190,
           position: "relative",
+          overflow: "hidden",
+          background: "#111",
+          boxShadow: "0 24px 64px rgba(0,0,0,0.28)",
         }}
       >
-        {/* Big ghost number */}
-        <span
+        {/* Skeleton shimmer while loading */}
+        {!loaded && !errored && (
+          <div
+            style={{
+              position: "absolute",
+              inset: 0,
+              background: "linear-gradient(90deg, #1a1a1a 25%, #252525 50%, #1a1a1a 75%)",
+              backgroundSize: "200% 100%",
+              animation: "shimmer 1.4s infinite",
+            }}
+          />
+        )}
+
+        {/* Fallback if screenshot fails */}
+        {errored && (
+          <div
+            style={{
+              position: "absolute",
+              inset: 0,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              background: "#111",
+            }}
+          >
+            <span style={{
+              fontFamily: "var(--font-poppins)",
+              fontWeight: 700,
+              fontSize: 48,
+              color: "rgba(255,255,255,0.06)",
+              letterSpacing: "-2px",
+            }}>
+              {String(index + 1).padStart(2, "0")}
+            </span>
+          </div>
+        )}
+
+        {/* Actual screenshot */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={screenshotUrl(project.href)}
+          alt={project.title}
+          onLoad={() => setLoaded(true)}
+          onError={() => setErrored(true)}
           style={{
             position: "absolute",
-            bottom: -16,
-            right: 14,
-            fontFamily: "var(--font-poppins)",
-            fontWeight: 700,
-            fontSize: 80,
-            lineHeight: 1,
-            color: "rgba(255,255,255,0.04)",
-            userSelect: "none",
-            letterSpacing: "-4px",
+            inset: 0,
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            objectPosition: "top center",
+            opacity: loaded ? 1 : 0,
+            transition: "opacity 0.3s ease",
+          }}
+        />
+
+        {/* Gradient overlay */}
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            background: "linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.1) 55%, transparent 100%)",
+          }}
+        />
+
+        {/* Project info overlay */}
+        <div
+          style={{
+            position: "absolute",
+            bottom: 0,
+            left: 0,
+            right: 0,
+            padding: "16px",
           }}
         >
-          {String(index + 1).padStart(2, "0")}
-        </span>
-
-        {/* Meta */}
-        <p
-          style={{
+          <p style={{
             fontFamily: "var(--font-inter)",
             fontWeight: 700,
             fontSize: 9,
-            letterSpacing: "2.5px",
+            letterSpacing: "2px",
             textTransform: "uppercase",
             color: accent,
-            marginBottom: 10,
-          }}
-        >
-          {project.meta} · {project.year}
-        </p>
-
-        {/* Title */}
-        <p
-          style={{
-            fontFamily: "var(--font-poppins)",
-            fontWeight: 700,
-            fontSize: 17,
-            letterSpacing: "-0.5px",
-            lineHeight: 1.2,
-            color: "#fff",
-            textTransform: "uppercase",
-            marginBottom: 16,
-          }}
-        >
-          {project.title}
-        </p>
-
-        {/* CTA label */}
-        <div
-          style={{
-            display: "inline-flex",
-            alignItems: "center",
-            gap: 5,
-            background: accent,
-            padding: "5px 10px",
-          }}
-        >
-          <span
-            style={{
-              fontFamily: "var(--font-inter)",
-              fontWeight: 600,
-              fontSize: 10,
-              letterSpacing: "1.5px",
-              textTransform: "uppercase",
+            marginBottom: 4,
+          }}>
+            {project.meta} · {project.year}
+          </p>
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+            <p style={{
+              fontFamily: "var(--font-poppins)",
+              fontWeight: 700,
+              fontSize: 14,
+              letterSpacing: "-0.3px",
+              lineHeight: 1.2,
               color: "#fff",
-            }}
-          >
-            View Project
-          </span>
-          <ArrowUpRight size={11} strokeWidth={2.5} color="#fff" />
+              textTransform: "uppercase",
+            }}>
+              {project.title}
+            </p>
+            <div style={{
+              width: 28,
+              height: 28,
+              background: accent,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              flexShrink: 0,
+            }}>
+              <ArrowUpRight size={13} strokeWidth={2.5} color="#fff" />
+            </div>
+          </div>
         </div>
       </div>
+
+      <style>{`
+        @keyframes shimmer {
+          0% { background-position: 200% 0; }
+          100% { background-position: -200% 0; }
+        }
+      `}</style>
     </motion.div>
   );
 }
@@ -159,7 +213,7 @@ export default function Projects() {
   const handleMouseMove = useCallback(
     (e: React.MouseEvent) => {
       rawX.set(e.clientX + 24);
-      rawY.set(e.clientY - 60);
+      rawY.set(e.clientY - 100);
     },
     [rawX, rawY]
   );
@@ -170,7 +224,6 @@ export default function Projects() {
       style={{ width: "100%", maxWidth: 1200, margin: "0 auto", padding: "80px 20px" }}
       onMouseMove={handleMouseMove}
     >
-      {/* Floating preview */}
       <AnimatePresence>
         {hoveredIndex !== null && (
           <FloatingPreview
@@ -220,7 +273,7 @@ export default function Projects() {
         </motion.h2>
       </div>
 
-      {/* Numbered grid */}
+      {/* Grid */}
       <div
         className="projects-grid"
         style={{
@@ -261,7 +314,6 @@ export default function Projects() {
                 position: "relative",
               }}
             >
-              {/* Left accent bar that slides in on hover */}
               {col === 0 && (
                 <motion.div
                   animate={{ scaleY: isHovered ? 1 : 0, opacity: isHovered ? 1 : 0 }}

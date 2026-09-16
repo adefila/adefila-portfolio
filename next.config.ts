@@ -7,6 +7,7 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       { protocol: "https", hostname: "covers.openlibrary.org" },
       { protocol: "https", hostname: "i.scdn.co" },
+      { protocol: "https", hostname: "api.microlink.io" },
     ],
   },
 };
