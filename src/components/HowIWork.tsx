@@ -144,7 +144,7 @@ export default function HowIWork() {
                     fontWeight: 700,
                     fontSize: "clamp(32px, 3vw, 48px)",
                     letterSpacing: "-0.04em",
-                    color: isDark ? "rgba(255,255,255,0.07)" : "rgba(0,0,0,0.07)",
+                    color: isDark ? "rgba(255,255,255,0.2)" : "rgba(0,0,0,0.18)",
                     lineHeight: 1,
                     display: "block",
                     transition: `color ${trans}`,

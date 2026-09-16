@@ -255,9 +255,10 @@ export default function Navbar() {
               background: "var(--fg)",
               display: "flex",
               flexDirection: "column",
-              justifyContent: "center",
+              justifyContent: "flex-start",
               alignItems: "flex-start",
-              padding: "100px 40px 60px",
+              padding: "80px 40px 48px",
+              overflowY: "auto",
             }}
           >
             {/* Nav links */}
