@@ -42,21 +42,20 @@ export async function POST(req: Request) {
         <tr>
           <td style="background:#ffffff;padding:40px;">
             <table width="100%" cellpadding="0" cellspacing="0">
-              ${[
-                ["Name", name],
-                ["Email", email],
-                service ? ["Service", service] : null,
-                budget  ? ["Budget", budget]  : null,
-              ]
-                .filter(Boolean)
-                .map(([label, val]) => `
+              ${(
+                [
+                  ["Name", name],
+                  ["Email", email],
+                  ...(service ? [["Service", service]] : []),
+                  ...(budget  ? [["Budget",  budget]]  : []),
+                ] as [string, string][]
+              ).map(([label, val]) => `
               <tr>
                 <td style="padding:12px 0;border-bottom:1px solid #f0f0f0;">
                   <p style="margin:0;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#9ca3af;margin-bottom:4px;">${label}</p>
                   <p style="margin:0;font-size:15px;color:#0f0f0f;font-weight:500;">${val}</p>
                 </td>
-              </tr>`)
-                .join("")}
+              </tr>`).join("")}
               <tr>
                 <td style="padding:24px 0 0;">
                   <p style="margin:0;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#9ca3af;margin-bottom:8px;">Message</p>
