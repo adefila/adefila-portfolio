@@ -134,7 +134,7 @@ export default function Navbar() {
             backdropFilter: scrolled && !menuOpen ? "blur(20px)" : "none",
             WebkitBackdropFilter: scrolled && !menuOpen ? "blur(20px)" : "none",
             border: menuOpen ? "1px solid rgba(255,255,255,0.08)" : "1px solid rgba(0,0,0,0.07)",
-            borderRadius: 100,
+            borderRadius: 0,
             padding: "12px 12px 12px 28px",
             pointerEvents: "auto",
             transition: "background 0.4s, border 0.3s",
@@ -175,6 +175,7 @@ export default function Navbar() {
                     padding: "7px 12px",
                     borderRadius: 100,
                     background: isActive ? "rgba(0,0,0,0.06)" : "transparent",
+                    borderRadius: 0,
                     transition: "color 0.2s, background 0.2s",
                   }}
                 >
@@ -197,7 +198,7 @@ export default function Navbar() {
               color: "var(--white)",
               background: "var(--fg)",
               padding: "10px 20px",
-              borderRadius: 100,
+              borderRadius: 0,
               textDecoration: "none",
               letterSpacing: "-0.2px",
               alignItems: "center",
@@ -308,7 +309,7 @@ export default function Navbar() {
                   color: "var(--fg)",
                   background: "var(--white)",
                   padding: "14px 28px",
-                  borderRadius: 100,
+                  borderRadius: 0,
                   textDecoration: "none",
                   letterSpacing: "-0.2px",
                 }}

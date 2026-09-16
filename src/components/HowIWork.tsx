@@ -188,7 +188,7 @@ export default function HowIWork() {
                     color: "var(--accent-purple)",
                     background: "rgba(109,40,217,0.08)",
                     padding: "3px 8px",
-                    borderRadius: 100,
+                    borderRadius: 0,
                     flexShrink: 0,
                   }}
                 >

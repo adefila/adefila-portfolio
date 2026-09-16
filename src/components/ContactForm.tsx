@@ -327,7 +327,7 @@ export default function ContactForm() {
                   letterSpacing: "-0.2px",
                   textTransform: "uppercase",
                   border: "none",
-                  borderRadius: 100,
+                  borderRadius: 0,
                   cursor: status === "submitting" ? "not-allowed" : "pointer",
                   opacity: status === "submitting" ? 0.6 : 1,
                   transition: "opacity 0.2s",

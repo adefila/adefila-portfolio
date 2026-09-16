@@ -37,7 +37,7 @@ function TechTag({ label }: { label: string }) {
         background: hovered ? "var(--accent-purple)" : "var(--white)",
         border: `1px solid ${hovered ? "var(--accent-purple)" : "rgba(0,0,0,0.12)"}`,
         padding: "8px 16px",
-        borderRadius: 100,
+        borderRadius: 0,
         cursor: "default",
         transition: "all 0.18s ease",
         userSelect: "none",
@@ -315,7 +315,7 @@ export default function About() {
               style={{
                 width: 36,
                 height: 36,
-                borderRadius: "50%",
+                borderRadius: 0,
                 border: "1px solid rgba(0,0,0,0.12)",
                 background: photoIndex === 0 ? "rgba(0,0,0,0.03)" : "var(--white)",
                 cursor: photoIndex === 0 ? "not-allowed" : "pointer",
@@ -334,7 +334,7 @@ export default function About() {
               style={{
                 width: 36,
                 height: 36,
-                borderRadius: "50%",
+                borderRadius: 0,
                 border: "1px solid rgba(0,0,0,0.12)",
                 background: photoIndex >= maxIndex ? "rgba(0,0,0,0.03)" : "var(--white)",
                 cursor: photoIndex >= maxIndex ? "not-allowed" : "pointer",
@@ -389,7 +389,7 @@ export default function About() {
               style={{
                 width: photoIndex === i ? 20 : 6,
                 height: 6,
-                borderRadius: 100,
+                borderRadius: 0,
                 background: photoIndex === i ? "var(--fg)" : "rgba(0,0,0,0.15)",
                 border: "none",
                 cursor: "pointer",
@@ -428,7 +428,7 @@ export default function About() {
                 right: 20,
                 width: 40,
                 height: 40,
-                borderRadius: "50%",
+                borderRadius: 0,
                 background: "rgba(255,255,255,0.12)",
                 border: "none",
                 cursor: "pointer",
@@ -448,7 +448,7 @@ export default function About() {
                 left: 20,
                 width: 44,
                 height: 44,
-                borderRadius: "50%",
+                borderRadius: 0,
                 background: "rgba(255,255,255,0.12)",
                 border: "none",
                 cursor: "pointer",
@@ -468,7 +468,7 @@ export default function About() {
               exit={{ opacity: 0, scale: 0.96 }}
               transition={{ duration: 0.25 }}
               onClick={(e) => e.stopPropagation()}
-              style={{ maxWidth: "80vw", maxHeight: "85vh", borderRadius: 12, overflow: "hidden" }}
+              style={{ maxWidth: "80vw", maxHeight: "85vh", borderRadius: 0, overflow: "hidden" }}
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
@@ -485,7 +485,7 @@ export default function About() {
                 right: 20,
                 width: 44,
                 height: 44,
-                borderRadius: "50%",
+                borderRadius: 0,
                 background: "rgba(255,255,255,0.12)",
                 border: "none",
                 cursor: "pointer",

@@ -228,7 +228,7 @@ export default function SideProjects() {
                     background: "rgba(0,0,0,0.04)",
                     border: "1px solid rgba(0,0,0,0.08)",
                     padding: "4px 10px",
-                    borderRadius: 100,
+                    borderRadius: 0,
                   }}
                 >
                   {tech}
