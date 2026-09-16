@@ -168,22 +168,19 @@ export default function About() {
             }}
           >
             <p>
-              I began my journey in 2020 as a{" "}
-              <strong style={{ color: "var(--accent-purple)", fontWeight: 500 }}>WordPress Developer</strong>,
-              building a solid foundation in HTML, CSS3, and JavaScript. In 2022, I transitioned into{" "}
-              <strong style={{ color: "var(--accent-purple)", fontWeight: 500 }}>UI/UX Design</strong>,
-              driven by a deep passion for crafting intuitive and user-centered digital experiences. Over the years, I&apos;ve collaborated with diverse teams to bring ideas to life, translating vision into engaging, functional products.
+              I started in 2020 doing{" "}
+              <strong style={{ color: "var(--accent-purple)", fontWeight: 500 }}>WordPress sites</strong>{" "}
+              for small businesses — nothing glamorous, but those early projects taught me more about what clients actually need than anything I&apos;ve read since. I figured out quickly that most people don&apos;t need a beautiful site. They need one that works.
             </p>
             <p>
-              To strengthen my strategic thinking, I recently completed a{" "}
-              <strong style={{ color: "var(--accent-purple)", fontWeight: 500 }}>Product Design Management</strong>{" "}
-              course with the MTF Institute of Management Technology &amp; Finance. This experience has refined my ability to align design with business goals and lead design efforts with clarity and purpose.
+              That led me into{" "}
+              <strong style={{ color: "var(--accent-purple)", fontWeight: 500 }}>UI/UX Design</strong>{" "}
+              in 2022, then Framer — and that&apos;s where everything clicked. Being able to take a project from blank Figma canvas to live, indexed, and converting without the broken-telephone of handoffs means what ships actually looks like what was designed. I&apos;ve done it across SaaS dashboards, agency sites, e-commerce, and everything in between.
             </p>
             <p>
-              My commitment to delivering high-quality, impactful work has been recognized on{" "}
-              <strong style={{ color: "var(--fg)", fontWeight: 600 }}>Upwork</strong>, where I&apos;ve earned the{" "}
-              <strong style={{ color: "var(--fg)", fontWeight: 600 }}>Top Rated</strong> badge for my performance as a{" "}
-              <strong style={{ color: "var(--fg)", fontWeight: 600 }}>Framer Developer</strong>. I&apos;m focused on helping forward-thinking teams build exceptional digital products that make a difference.
+              That track record earned me{" "}
+              <strong style={{ color: "var(--fg)", fontWeight: 600 }}>Top Rated on Upwork</strong>{" "}
+              — 100% Job Success across 50+ projects. Most clients keep coming back — not because they have to, but because we got the result right the first time. That&apos;s the part I&apos;m most proud of.
             </p>
           </motion.div>
 

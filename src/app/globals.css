@@ -294,6 +294,28 @@ html {
     gap: 40px !important;
   }
 
+  /* Pricing: 3-col → 1-col on mobile */
+  .pricing-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .addons-grid {
+    grid-template-columns: 1fr 1fr !important;
+  }
+
+  /* Currently: 2-col → 1-col on mobile */
+  .currently-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Contact: 2-col → 1-col on mobile */
+  .contact-grid {
+    grid-template-columns: 1fr !important;
+    gap: 40px !important;
+  }
+  .form-row {
+    grid-template-columns: 1fr !important;
+  }
+
   /* Side projects: 3-col → 1-col on mobile */
   #side-projects {
     padding-top: 40px !important;

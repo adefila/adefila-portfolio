@@ -2,11 +2,14 @@ import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import SocialProof from "@/components/SocialProof";
 import Projects from "@/components/Projects";
-import SideProjects from "@/components/SideProjects";
 import WhyMe from "@/components/WhyMe";
 import HowIWork from "@/components/HowIWork";
+import Pricing from "@/components/Pricing";
 import Testimonials from "@/components/Testimonials";
 import About from "@/components/About";
+import Currently from "@/components/Currently";
+import SideProjects from "@/components/SideProjects";
+import ContactForm from "@/components/ContactForm";
 import FAQ from "@/components/FAQ";
 import Footer from "@/components/Footer";
 
@@ -26,9 +29,12 @@ export default function Home() {
       <Projects />
       <WhyMe />
       <HowIWork />
+      <Pricing />
       <Testimonials />
       <About />
+      <Currently />
       <SideProjects />
+      <ContactForm />
       <FAQ />
       <Footer />
     </main>
