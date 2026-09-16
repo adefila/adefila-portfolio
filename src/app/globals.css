@@ -392,10 +392,14 @@ html {
     padding: 20px 0 !important;
   }
 
-  /* Services grid items: tighter on mobile — preserve horizontal padding */
+  /* Services grid items: tighter vertical padding on mobile */
   .services-grid > div {
     padding-top: 18px !important;
     padding-bottom: 18px !important;
+  }
+  /* Right-column items always get left padding away from the divider */
+  .services-grid > div:nth-child(even) {
+    padding-left: 32px !important;
   }
   /* Services grid bottom margin via whyme-services override in JS (already 0) */
 

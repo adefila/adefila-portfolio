@@ -265,10 +265,12 @@ export default function WhyMe() {
               display: "flex",
               alignItems: "center",
               gap: 20,
-              padding: "28px 0",
+              paddingTop: 28,
+              paddingBottom: 28,
+              paddingLeft: i % 2 !== 0 ? 32 : 0,
+              paddingRight: 0,
               borderBottom: "1px solid rgba(0,0,0,0.08)",
               borderRight: (i + 1) % 2 !== 0 ? "1px solid rgba(0,0,0,0.08)" : "none",
-              paddingLeft: i % 2 !== 0 ? 28 : 0,
             }}
           >
             <span
