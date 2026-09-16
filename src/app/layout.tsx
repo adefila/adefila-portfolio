@@ -16,6 +16,7 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://adefilasamuel.com"),
   title: "Samuel Adefila — Framer Developer & UI/UX Designer | Websites That Convert",
   description:
     "Samuel Adefila is a product designer and no-code developer. He builds with Framer, Shopify, and Webflow — 50+ projects delivered, Top Rated on Upwork with 100% Job Success. Book a free call.",
@@ -114,6 +115,8 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${poppins.variable}`}>
       <head>
+        <meta name="theme-color" content="#0f0f0f" />
+        <meta name="color-scheme" content="light" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

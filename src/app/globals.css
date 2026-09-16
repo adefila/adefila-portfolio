@@ -62,7 +62,6 @@ body {
 
 /* Smooth scroll + offset for sticky navbar */
 html {
-  scroll-behavior: smooth;
   scroll-padding-top: 80px;
 }
 
@@ -91,20 +90,7 @@ html {
   * { cursor: none !important; }
 }
 
-/* Project row hover */
-@media (hover: hover) {
-  .project-row:hover {
-    background: rgba(0,0,0,0.025);
-  }
-  .project-row:hover .project-num {
-    color: var(--accent-purple) !important;
-  }
-  .project-link-icon:hover {
-    background: var(--accent-purple) !important;
-    border-color: var(--accent-purple) !important;
-    color: #fff !important;
-  }
-}
+/* Project row hover handled entirely via inline styles in Projects.tsx */
 
 /* CTA Book button hover */
 .btn-cta:hover {
