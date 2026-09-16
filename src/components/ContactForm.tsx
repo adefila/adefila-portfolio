@@ -219,43 +219,35 @@ export default function ContactForm() {
                 gap: 0,
               }}
             >
-              {/* Isometric sent-mail icon */}
+              {/* Isometric outline icon */}
               <motion.div
-                animate={{ y: [0, -6, 0] }}
-                transition={{ duration: 2.8, repeat: Infinity, ease: "easeInOut" }}
-                style={{ marginBottom: 28 }}
+                animate={{ y: [0, -8, 0] }}
+                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                style={{ marginBottom: 32 }}
               >
-                <svg width="110" height="90" viewBox="0 0 110 90" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  {/* Top face */}
-                  <polygon points="55,8 95,28 55,48 15,28" fill="#0f0f0f"/>
-                  {/* Left face */}
-                  <polygon points="15,28 15,66 55,86 55,48" fill="#2a2a2a"/>
-                  {/* Right face */}
-                  <polygon points="95,28 95,66 55,86 55,48" fill="#1a1a1a"/>
-                  {/* Envelope fold line on top */}
-                  <polyline points="15,28 55,48 95,28" stroke="rgba(255,255,255,0.15)" strokeWidth="1"/>
-                  {/* Envelope V-flap */}
-                  <polyline points="15,28 55,14 95,28" stroke="rgba(255,255,255,0.25)" strokeWidth="1" strokeDasharray="3 2"/>
+                <svg width="160" height="130" viewBox="0 0 160 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  {/* Subtle face fills for depth */}
+                  <polygon points="80,10 132,38 80,66 28,38" fill="rgba(0,0,0,0.04)"/>
+                  <polygon points="28,38 28,92 80,120 80,66" fill="rgba(0,0,0,0.07)"/>
+                  <polygon points="132,38 132,92 80,120 80,66" fill="rgba(0,0,0,0.05)"/>
+                  {/* Top face edges */}
+                  <polygon points="80,10 132,38 80,66 28,38" stroke="var(--fg)" strokeWidth="1.8" fill="none"/>
+                  {/* Left face edges */}
+                  <polyline points="28,38 28,92 80,120 80,66" stroke="var(--fg)" strokeWidth="1.8"/>
+                  {/* Right face edges */}
+                  <polyline points="132,38 132,92 80,120" stroke="var(--fg)" strokeWidth="1.8"/>
                   {/* Checkmark on top face */}
                   <polyline
-                    points="40,28 51,38 72,18"
-                    stroke="white"
-                    strokeWidth="3"
+                    points="55,40 70,53 106,22"
+                    stroke="var(--fg)"
+                    strokeWidth="3.5"
                     strokeLinecap="round"
                     strokeLinejoin="round"
                   />
-                  {/* Shine on top face */}
-                  <polygon points="55,8 95,28 55,48 15,28" fill="url(#topShine)" opacity="0.08"/>
-                  <defs>
-                    <linearGradient id="topShine" x1="55" y1="8" x2="55" y2="48" gradientUnits="userSpaceOnUse">
-                      <stop stopColor="white"/>
-                      <stop offset="1" stopColor="white" stopOpacity="0"/>
-                    </linearGradient>
-                  </defs>
                 </svg>
               </motion.div>
 
-              <p style={{ fontFamily: "var(--font-poppins)", fontWeight: 700, fontSize: 20, color: "var(--fg)", letterSpacing: "-0.5px", marginBottom: 8, lineHeight: 1.2 }}>
+              <p style={{ fontFamily: "var(--font-poppins)", fontWeight: 700, fontSize: "clamp(18px,2.5vw,26px)", color: "var(--fg)", letterSpacing: "-0.5px", marginBottom: 8, lineHeight: 1.1, textTransform: "uppercase" }}>
                 {t("contact.success.title")}
               </p>
               <p style={{ fontFamily: "var(--font-inter)", fontSize: 14, color: "var(--fg-secondary)", lineHeight: 1.6, maxWidth: 320, marginBottom: 24 }}>

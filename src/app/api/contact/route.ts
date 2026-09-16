@@ -19,7 +19,7 @@ export async function POST(req: Request) {
 
     // ── 1. Notify Samuel ─────────────────────────────────────────────────
     await resend.emails.send({
-      from: `${FROM_NAME} Portfolio <${FROM_ADDRESS}>`,
+      from: `"${FROM_NAME}" <${FROM_ADDRESS}>`,
       to: TO_ADDRESS,
       replyTo: email,
       subject: `New enquiry from ${name}`,
@@ -34,8 +34,8 @@ export async function POST(req: Request) {
         <!-- Header -->
         <tr>
           <td style="background:#0f0f0f;padding:32px 40px;">
-            <p style="margin:0;font-family:'Inter',Arial,sans-serif;font-size:11px;letter-spacing:4px;text-transform:uppercase;color:#6d28d9;margin-bottom:8px;">PORTFOLIO CONTACT</p>
-            <h1 style="margin:0;font-family:'Inter',Arial,sans-serif;font-size:24px;font-weight:700;color:#ffffff;letter-spacing:-0.5px;">New Enquiry</h1>
+            <p style="margin:0;font-family:'Inter',Arial,sans-serif;font-size:11px;letter-spacing:4px;text-transform:uppercase;color:rgba(255,255,255,0.55);margin-bottom:8px;">PORTFOLIO CONTACT</p>
+            <h1 style="margin:0;font-family:'Inter',Arial,sans-serif;font-size:24px;font-weight:700;color:#ffffff;letter-spacing:1px;text-transform:uppercase;">NEW ENQUIRY</h1>
           </td>
         </tr>
         <!-- Body -->
@@ -90,7 +90,7 @@ export async function POST(req: Request) {
     // Non-fatal: only works once a verified sending domain is set up in Resend.
     // Until then, Resend blocks delivery to addresses other than the account owner's.
     try { await resend.emails.send({
-      from: `${FROM_NAME} <${FROM_ADDRESS}>`,
+      from: `"${FROM_NAME}" <${FROM_ADDRESS}>`,
       to: email,
       replyTo: TO_ADDRESS,
       subject: `Got it, ${name.split(" ")[0]}! I'll be in touch soon.`,
@@ -105,8 +105,8 @@ export async function POST(req: Request) {
         <!-- Header -->
         <tr>
           <td style="background:#0f0f0f;padding:32px 40px;">
-            <p style="margin:0;font-family:'Inter',Arial,sans-serif;font-size:11px;letter-spacing:4px;text-transform:uppercase;color:#6d28d9;margin-bottom:8px;">SAMUEL ADEFILA</p>
-            <h1 style="margin:0;font-family:'Inter',Arial,sans-serif;font-size:24px;font-weight:700;color:#ffffff;letter-spacing:-0.5px;">Thanks for reaching out!</h1>
+            <p style="margin:0;font-family:'Inter',Arial,sans-serif;font-size:11px;letter-spacing:4px;text-transform:uppercase;color:rgba(255,255,255,0.55);margin-bottom:8px;">SAMUEL ADEFILA</p>
+            <h1 style="margin:0;font-family:'Inter',Arial,sans-serif;font-size:24px;font-weight:700;color:#ffffff;letter-spacing:1px;text-transform:uppercase;">THANKS FOR REACHING OUT!</h1>
           </td>
         </tr>
         <!-- Body -->
