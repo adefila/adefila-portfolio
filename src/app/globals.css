@@ -166,10 +166,6 @@ html {
 /* Mobile ≤ 768px */
 @media (max-width: 768px) {
   /* Services stays 2-col on mobile (items are short labels) */
-  .services-grid > * {
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-  }
 
   /* Tighten section vertical padding on mobile */
   .whyme-services {
@@ -396,9 +392,10 @@ html {
     padding: 20px 0 !important;
   }
 
-  /* Services grid items: tighter on mobile */
+  /* Services grid items: tighter on mobile — preserve horizontal padding */
   .services-grid > div {
-    padding: 18px 0 !important;
+    padding-top: 18px !important;
+    padding-bottom: 18px !important;
   }
   /* Services grid bottom margin via whyme-services override in JS (already 0) */
 

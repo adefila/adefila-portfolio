@@ -77,7 +77,7 @@ export default function Testimonials() {
           </div>
 
           {/* Nav arrows */}
-          <div style={{ display: "flex", gap: 12, alignSelf: "flex-start", marginTop: 8 }}>
+          <div style={{ display: "flex", gap: 8, alignSelf: "flex-end" }}>
             <button
               aria-label="Previous testimonials"
               onClick={() => setPage((p) => Math.max(0, p - 1))}
@@ -85,7 +85,7 @@ export default function Testimonials() {
               style={{
                 width: 44,
                 height: 44,
-                borderRadius: "50%",
+                borderRadius: 0,
                 border: "1px solid rgba(0,0,0,0.15)",
                 background: page === 0 ? "rgba(0,0,0,0.04)" : "var(--white)",
                 cursor: page === 0 ? "not-allowed" : "pointer",
@@ -105,7 +105,7 @@ export default function Testimonials() {
               style={{
                 width: 44,
                 height: 44,
-                borderRadius: "50%",
+                borderRadius: 0,
                 border: "1px solid rgba(0,0,0,0.15)",
                 background: page === totalPages - 1 ? "rgba(0,0,0,0.04)" : "var(--white)",
                 cursor: page === totalPages - 1 ? "not-allowed" : "pointer",

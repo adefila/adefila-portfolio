@@ -1,7 +1,7 @@
 "use client";
 import { motion, useInView, useMotionValue, useSpring, AnimatePresence } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
-import { useRef, useState, useCallback } from "react";
+import { useRef, useState, useCallback, useEffect } from "react";
 import { useLang } from "@/context/LangContext";
 
 const projects = [
@@ -195,6 +195,11 @@ export default function Projects() {
   const { t } = useLang();
 
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const [hasHover, setHasHover] = useState(false);
+
+  useEffect(() => {
+    setHasHover(window.matchMedia("(hover: hover) and (pointer: fine)").matches);
+  }, []);
 
   const rawX = useMotionValue(0);
   const rawY = useMotionValue(0);
@@ -216,7 +221,7 @@ export default function Projects() {
       onMouseMove={handleMouseMove}
     >
       <AnimatePresence>
-        {hoveredIndex !== null && (
+        {hasHover && hoveredIndex !== null && (
           <FloatingPreview
             key={hoveredIndex}
             project={projects[hoveredIndex]}
@@ -285,8 +290,8 @@ export default function Projects() {
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.4, delay: 0.1 + i * 0.04, ease: EASE }}
               className="project-row"
-              onMouseEnter={() => setHoveredIndex(i)}
-              onMouseLeave={() => setHoveredIndex(null)}
+              onMouseEnter={() => hasHover && setHoveredIndex(i)}
+              onMouseLeave={() => hasHover && setHoveredIndex(null)}
               onClick={() => project.href && window.open(project.href, "_blank", "noopener,noreferrer")}
               style={{
                 display: "flex",

@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Globe } from "lucide-react";
+import { Globe, X } from "lucide-react";
 import { useLang } from "@/context/LangContext";
 import { LANGUAGES, CURRENCIES, CurrencyCode } from "@/i18n/translations";
 
@@ -44,8 +44,8 @@ export default function LanguageSwitcher() {
               overflow: "hidden",
             }}
           >
-            {/* Languages */}
-            <div style={{ padding: "14px 16px 10px" }}>
+            {/* Header with close */}
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "12px 16px 0" }}>
               <p style={{
                 fontFamily: "var(--font-inter)",
                 fontSize: 9,
@@ -53,10 +53,32 @@ export default function LanguageSwitcher() {
                 letterSpacing: "2.5px",
                 textTransform: "uppercase",
                 color: "var(--fg-muted)",
-                marginBottom: 10,
               }}>
-                Language
+                Language &amp; Currency
               </p>
+              <button
+                onClick={() => setOpen(false)}
+                aria-label="Close"
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  width: 24,
+                  height: 24,
+                  background: "rgba(0,0,0,0.06)",
+                  border: "none",
+                  cursor: "pointer",
+                  borderRadius: 0,
+                  color: "var(--fg)",
+                  flexShrink: 0,
+                }}
+              >
+                <X size={12} strokeWidth={2.5} />
+              </button>
+            </div>
+
+            {/* Languages */}
+            <div style={{ padding: "10px 16px 10px" }}>
               <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 3 }}>
                 {LANGUAGES.map((l) => {
                   const active = lang === l.code;

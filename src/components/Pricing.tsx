@@ -205,16 +205,6 @@ export default function Pricing() {
               position: "relative",
             }}
           >
-            {plan.featured && (
-              <span style={{
-                position: "absolute",
-                top: 0,
-                left: 0,
-                right: 0,
-                height: 3,
-                background: "var(--accent-purple)",
-              }} />
-            )}
 
             <p style={{
               fontFamily: "var(--font-inter)",
