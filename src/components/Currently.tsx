@@ -2,6 +2,7 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 import { BookOpen, Music } from "lucide-react";
+import { useLang } from "@/context/LangContext";
 
 // ── Update this whenever you start a new book ──
 const currentBook = {
@@ -27,6 +28,7 @@ export default function Currently() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-10%" });
   const [spotify, setSpotify] = useState<SpotifyData | null>(null);
+  const { t } = useLang();
 
   useEffect(() => {
     const load = async () => {
