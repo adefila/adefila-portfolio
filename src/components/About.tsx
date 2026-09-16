@@ -48,28 +48,47 @@ function TechTag({ label }: { label: string }) {
   );
 }
 
-const EASE = [0.22, 1, 0.36, 1] as [number, number, number, number];
+const CAROUSEL_GAP = 12;
 
 export default function About() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-10%" });
   const [photoIndex, setPhotoIndex] = useState(0);
   const [lightbox, setLightbox] = useState<number | null>(null);
-  const [isHoveringMain, setIsHoveringMain] = useState(false);
+  const carouselRef = useRef<HTMLDivElement>(null);
+  const [slideWidth, setSlideWidth] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
 
-  const prev = () => setPhotoIndex((p) => (p - 1 + photos.length) % photos.length);
-  const next = () => setPhotoIndex((p) => (p + 1) % photos.length);
+  useEffect(() => {
+    const update = () => {
+      const mobile = window.innerWidth < 768;
+      setIsMobile(mobile);
+      if (carouselRef.current) {
+        const w = carouselRef.current.clientWidth;
+        const visible = mobile ? 1 : 3;
+        setSlideWidth((w - CAROUSEL_GAP * (visible - 1)) / visible);
+      }
+    };
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, []);
+
+  const visibleCount = isMobile ? 1 : 3;
+  const maxIndex = photos.length - visibleCount;
+
+  const prev = () => setPhotoIndex((p) => Math.max(0, p - 1));
+  const next = () => setPhotoIndex((p) => Math.min(maxIndex, p + 1));
 
   const lbPrev = () => setLightbox((p) => (p !== null ? (p - 1 + photos.length) % photos.length : 0));
   const lbNext = () => setLightbox((p) => (p !== null ? (p + 1) % photos.length : 0));
 
   useEffect(() => {
-    if (isHoveringMain) return;
     const id = setInterval(() => {
-      setPhotoIndex((p) => (p + 1) % photos.length);
+      setPhotoIndex((p) => (p >= maxIndex ? 0 : p + 1));
     }, 4500);
     return () => clearInterval(id);
-  }, [isHoveringMain]);
+  }, [maxIndex]);
 
   useEffect(() => {
     if (lightbox === null) return;
@@ -89,10 +108,9 @@ export default function About() {
         width: "100%",
         maxWidth: 1200,
         margin: "0 auto",
-        padding: "80px 20px 0",
+        padding: "80px 20px",
       }}
     >
-      {/* Section header */}
       <motion.p
         ref={ref}
         initial={{ opacity: 0, y: 10 }}
@@ -174,7 +192,7 @@ export default function About() {
             initial={{ opacity: 0, y: 10 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, delay: 0.25 }}
-            style={{ marginTop: 40, paddingBottom: 80 }}
+            style={{ marginTop: 40 }}
           >
             <p
               style={{
@@ -267,228 +285,117 @@ export default function About() {
         </motion.div>
       </div>
 
-      {/* ── Cinematic Gallery ── */}
+      {/* Photo carousel */}
       <motion.div
-        className="about-cinema"
-        initial={{ opacity: 0 }}
-        animate={inView ? { opacity: 1 } : {}}
-        transition={{ duration: 0.8, delay: 0.45 }}
-        style={{
-          width: "100vw",
-          position: "relative",
-          left: "50%",
-          transform: "translateX(-50%)",
-          background: "#080808",
-        }}
+        className="about-carousel"
+        initial={{ opacity: 0, y: 20 }}
+        animate={inView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.5, delay: 0.35 }}
+        style={{ marginTop: 64 }}
       >
-        {/* Purple accent line */}
-        <div style={{
-          height: 1,
-          background: "linear-gradient(to right, transparent 0%, rgba(109,40,217,0.5) 30%, rgba(109,40,217,0.2) 70%, transparent 100%)",
-        }} />
-
-        {/* Header row */}
-        <div style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          padding: "20px 28px 16px",
-        }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-            <motion.span
-              animate={{ opacity: [1, 0.3, 1] }}
-              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-              style={{
-                display: "inline-block",
-                width: 6,
-                height: 6,
-                borderRadius: "50%",
-                background: "#6d28d9",
-                boxShadow: "0 0 10px rgba(109,40,217,0.9)",
-                flexShrink: 0,
-              }}
-            />
-            <span style={{
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 20 }}>
+          <p
+            style={{
               fontFamily: "var(--font-inter)",
-              fontWeight: 600,
-              fontSize: 10,
-              letterSpacing: "3.5px",
+              fontWeight: 700,
+              fontSize: 11,
+              letterSpacing: "4px",
               textTransform: "uppercase",
-              color: "rgba(255,255,255,0.3)",
-            }}>
-              IN FRAMES
-            </span>
-          </div>
-          <span style={{
-            fontFamily: "var(--font-inter)",
-            fontWeight: 400,
-            fontSize: 10,
-            letterSpacing: "2px",
-            color: "rgba(255,255,255,0.18)",
-            fontVariantNumeric: "tabular-nums",
-          }}>
-            {String(photoIndex + 1).padStart(2, "0")} / {String(photos.length).padStart(2, "0")}
-          </span>
-        </div>
-
-        {/* Main photo */}
-        <div
-          style={{ position: "relative", overflow: "hidden" }}
-          onMouseEnter={() => setIsHoveringMain(true)}
-          onMouseLeave={() => setIsHoveringMain(false)}
-        >
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={photoIndex}
-              initial={{ opacity: 0, scale: 1.04 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.97 }}
-              transition={{ duration: 0.6, ease: EASE }}
-              onClick={() => setLightbox(photoIndex)}
+              color: "var(--accent-purple)",
+            }}
+          >
+            PHOTO LIBRARY
+          </p>
+          <div style={{ display: "flex", gap: 8 }}>
+            <button
+              onClick={prev}
+              disabled={photoIndex === 0}
               style={{
-                width: "100%",
-                height: "clamp(220px, 38vw, 560px)",
-                overflow: "hidden",
-                cursor: "zoom-in",
-                position: "relative",
+                width: 36,
+                height: 36,
+                borderRadius: "50%",
+                border: "1px solid rgba(0,0,0,0.12)",
+                background: photoIndex === 0 ? "rgba(0,0,0,0.03)" : "var(--white)",
+                cursor: photoIndex === 0 ? "not-allowed" : "pointer",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                opacity: photoIndex === 0 ? 0.4 : 1,
+                transition: "opacity 0.2s",
               }}
             >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={photos[photoIndex].src}
-                alt={`Gallery photo ${photoIndex + 1}`}
-                style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
-              />
-              {/* Cinematic letterbox gradient */}
-              <div style={{
-                position: "absolute",
-                inset: 0,
-                background: "linear-gradient(to bottom, rgba(8,8,8,0.65) 0%, transparent 22%, transparent 62%, rgba(8,8,8,0.75) 100%)",
-                pointerEvents: "none",
-              }} />
-              {/* Film grain */}
-              <div style={{
-                position: "absolute",
-                inset: 0,
-                backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
-                backgroundSize: "180px",
-                opacity: 0.07,
-                mixBlendMode: "overlay",
-                pointerEvents: "none",
-              }} />
-              {/* Expand hint */}
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: isHoveringMain ? 1 : 0 }}
-                transition={{ duration: 0.2 }}
-                style={{
-                  position: "absolute",
-                  bottom: 18,
-                  right: 22,
-                  fontFamily: "var(--font-inter)",
-                  fontSize: 9,
-                  letterSpacing: "2.5px",
-                  textTransform: "uppercase",
-                  color: "rgba(255,255,255,0.4)",
-                  pointerEvents: "none",
-                }}
-              >
-                EXPAND ↗
-              </motion.div>
-            </motion.div>
-          </AnimatePresence>
-
-          {/* Prev hit zone */}
-          <button
-            onClick={prev}
-            aria-label="Previous photo"
-            style={{
-              position: "absolute",
-              left: 0,
-              top: 0,
-              bottom: 0,
-              width: "18%",
-              background: "transparent",
-              border: "none",
-              cursor: "pointer",
-              display: "flex",
-              alignItems: "center",
-              paddingLeft: 20,
-              color: "rgba(255,255,255,0.45)",
-              transition: "color 0.2s",
-            }}
-            onMouseEnter={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.9)")}
-            onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.45)")}
-          >
-            <ChevronLeft size={30} strokeWidth={1.2} />
-          </button>
-
-          {/* Next hit zone */}
-          <button
-            onClick={next}
-            aria-label="Next photo"
-            style={{
-              position: "absolute",
-              right: 0,
-              top: 0,
-              bottom: 0,
-              width: "18%",
-              background: "transparent",
-              border: "none",
-              cursor: "pointer",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "flex-end",
-              paddingRight: 20,
-              color: "rgba(255,255,255,0.45)",
-              transition: "color 0.2s",
-            }}
-            onMouseEnter={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.9)")}
-            onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.45)")}
-          >
-            <ChevronRight size={30} strokeWidth={1.2} />
-          </button>
+              <ChevronLeft size={16} strokeWidth={2} />
+            </button>
+            <button
+              onClick={next}
+              disabled={photoIndex >= maxIndex}
+              style={{
+                width: 36,
+                height: 36,
+                borderRadius: "50%",
+                border: "1px solid rgba(0,0,0,0.12)",
+                background: photoIndex >= maxIndex ? "rgba(0,0,0,0.03)" : "var(--white)",
+                cursor: photoIndex >= maxIndex ? "not-allowed" : "pointer",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                opacity: photoIndex >= maxIndex ? 0.4 : 1,
+                transition: "opacity 0.2s",
+              }}
+            >
+              <ChevronRight size={16} strokeWidth={2} />
+            </button>
+          </div>
         </div>
 
-        {/* Film strip thumbnails */}
-        <div style={{
-          display: "flex",
-          gap: 4,
-          justifyContent: "center",
-          padding: "18px 28px 32px",
-        }}>
-          {photos.map((photo, i) => (
+        <div ref={carouselRef} style={{ overflow: "hidden" }}>
+          <motion.div
+            animate={{ x: slideWidth > 0 ? -(photoIndex * (slideWidth + CAROUSEL_GAP)) : 0 }}
+            transition={{ type: "spring", stiffness: 280, damping: 36, mass: 0.9 }}
+            style={{ display: "flex", gap: CAROUSEL_GAP, willChange: "transform" }}
+          >
+            {photos.map((photo, i) => (
+              <div
+                key={photo.id}
+                onClick={() => setLightbox(i)}
+                style={{
+                  flexShrink: 0,
+                  width: slideWidth > 0 ? slideWidth : "calc(33.333% - 8px)",
+                  height: 360,
+                  borderRadius: 12,
+                  background: "rgba(0,0,0,0.06)",
+                  border: "1px solid rgba(0,0,0,0.07)",
+                  overflow: "hidden",
+                  cursor: "zoom-in",
+                }}
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={photo.src}
+                  alt={`Gallery photo ${photo.id}`}
+                  style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+                />
+              </div>
+            ))}
+          </motion.div>
+        </div>
+
+        <div style={{ display: "flex", gap: 6, justifyContent: "center", marginTop: 16 }}>
+          {Array.from({ length: maxIndex + 1 }).map((_, i) => (
             <button
               key={i}
               onClick={() => setPhotoIndex(i)}
               style={{
-                width: 68,
-                height: 42,
-                border: `1px solid ${i === photoIndex ? "rgba(109,40,217,0.7)" : "rgba(255,255,255,0.07)"}`,
-                padding: 2,
-                overflow: "hidden",
-                background: "rgba(255,255,255,0.02)",
+                width: photoIndex === i ? 20 : 6,
+                height: 6,
+                borderRadius: 100,
+                background: photoIndex === i ? "var(--fg)" : "rgba(0,0,0,0.15)",
+                border: "none",
                 cursor: "pointer",
-                opacity: i === photoIndex ? 1 : 0.3,
-                transition: "opacity 0.3s ease, border-color 0.3s ease",
-                flexShrink: 0,
-                outline: "none",
+                padding: 0,
+                transition: "width 0.4s cubic-bezier(0.16,1,0.3,1), background 0.3s ease",
               }}
-            >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={photo.src}
-                alt=""
-                style={{
-                  width: "100%",
-                  height: "100%",
-                  objectFit: "cover",
-                  display: "block",
-                  filter: i === photoIndex ? "none" : "grayscale(100%)",
-                  transition: "filter 0.3s ease",
-                }}
-              />
-            </button>
+            />
           ))}
         </div>
       </motion.div>
@@ -505,7 +412,7 @@ export default function About() {
             style={{
               position: "fixed",
               inset: 0,
-              background: "rgba(0,0,0,0.94)",
+              background: "rgba(0,0,0,0.92)",
               zIndex: 1000,
               display: "flex",
               alignItems: "center",
@@ -521,7 +428,7 @@ export default function About() {
                 width: 40,
                 height: 40,
                 borderRadius: "50%",
-                background: "rgba(255,255,255,0.1)",
+                background: "rgba(255,255,255,0.12)",
                 border: "none",
                 cursor: "pointer",
                 display: "flex",
@@ -541,7 +448,7 @@ export default function About() {
                 width: 44,
                 height: 44,
                 borderRadius: "50%",
-                background: "rgba(255,255,255,0.1)",
+                background: "rgba(255,255,255,0.12)",
                 border: "none",
                 cursor: "pointer",
                 display: "flex",
@@ -560,17 +467,13 @@ export default function About() {
               exit={{ opacity: 0, scale: 0.96 }}
               transition={{ duration: 0.25 }}
               onClick={(e) => e.stopPropagation()}
-              style={{
-                maxWidth: "85vw",
-                maxHeight: "88vh",
-                overflow: "hidden",
-              }}
+              style={{ maxWidth: "80vw", maxHeight: "85vh", borderRadius: 12, overflow: "hidden" }}
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={photos[lightbox].src}
                 alt={`Gallery photo ${lightbox + 1}`}
-                style={{ maxWidth: "85vw", maxHeight: "88vh", objectFit: "contain", display: "block" }}
+                style={{ maxWidth: "80vw", maxHeight: "85vh", objectFit: "contain", display: "block" }}
               />
             </motion.div>
 
@@ -582,7 +485,7 @@ export default function About() {
                 width: 44,
                 height: 44,
                 borderRadius: "50%",
-                background: "rgba(255,255,255,0.1)",
+                background: "rgba(255,255,255,0.12)",
                 border: "none",
                 cursor: "pointer",
                 display: "flex",
@@ -594,18 +497,19 @@ export default function About() {
               <ChevronRight size={22} />
             </button>
 
-            <p style={{
-              position: "absolute",
-              bottom: 20,
-              left: "50%",
-              transform: "translateX(-50%)",
-              fontFamily: "var(--font-inter)",
-              fontSize: 11,
-              color: "rgba(255,255,255,0.35)",
-              letterSpacing: "2px",
-              fontVariantNumeric: "tabular-nums",
-            }}>
-              {String(lightbox + 1).padStart(2, "0")} / {String(photos.length).padStart(2, "0")}
+            <p
+              style={{
+                position: "absolute",
+                bottom: 20,
+                left: "50%",
+                transform: "translateX(-50%)",
+                fontFamily: "var(--font-inter)",
+                fontSize: 12,
+                color: "rgba(255,255,255,0.5)",
+                letterSpacing: "1px",
+              }}
+            >
+              {lightbox + 1} / {photos.length}
             </p>
           </motion.div>
         )}
