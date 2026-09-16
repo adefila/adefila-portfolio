@@ -88,13 +88,19 @@ export default function Navbar() {
   useEffect(() => {
     const onScroll = () => {
       setScrolled(window.scrollY > 60);
-      const scrollY = window.scrollY + window.innerHeight * 0.35;
+      // getBoundingClientRect is accurate regardless of lazy-loaded layout shifts
+      const trigger = window.innerHeight * 0.45;
       let current = "hero";
       for (const id of SECTION_IDS) {
         const el = document.getElementById(id);
-        if (el && el.offsetTop <= scrollY) current = id;
+        if (el && el.getBoundingClientRect().top <= trigger) current = id;
       }
       setActive(current === "hero" ? "" : current);
+      // Sync URL hash to current section without pushing a history entry
+      const hash = current === "hero" ? "" : `#${current}`;
+      if (window.location.hash !== hash) {
+        history.replaceState(null, "", hash || window.location.pathname);
+      }
     };
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
