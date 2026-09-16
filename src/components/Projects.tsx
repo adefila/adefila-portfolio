@@ -247,8 +247,8 @@ export default function Projects() {
           {t("projects.eyebrow")}
         </motion.p>
         <motion.h2
-          initial={{ opacity: 0, y: 10, filter: "blur(8px)" }}
-          animate={inView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
+          initial={{ opacity: 0, y: 10 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, delay: 0.05 }}
           style={{
             fontFamily: "var(--font-poppins)",
@@ -339,6 +339,7 @@ export default function Projects() {
                         href={project.href}
                         target="_blank"
                         rel="noopener noreferrer"
+                        aria-label={`Visit ${project.title}`}
                         className="project-link-icon"
                         onClick={(e) => e.stopPropagation()}
                         style={{

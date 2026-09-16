@@ -29,8 +29,8 @@ export default function Playground() {
       <div style={{ textAlign: "center", marginBottom: 48 }}>
         <motion.p
           ref={ref}
-          initial={{ opacity: 0, y: 10, filter: "blur(8px)" }}
-          animate={inView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
+          initial={{ opacity: 0, y: 10 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5 }}
           style={{
             fontFamily: "var(--font-inter)",
@@ -45,8 +45,8 @@ export default function Playground() {
           /PLAYGROUND
         </motion.p>
         <motion.h2
-          initial={{ opacity: 0, y: 10, filter: "blur(8px)" }}
-          animate={inView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
+          initial={{ opacity: 0, y: 10 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, delay: 0.06 }}
           style={{
             fontFamily: "var(--font-poppins)",

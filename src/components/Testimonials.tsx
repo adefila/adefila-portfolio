@@ -59,8 +59,8 @@ export default function Testimonials() {
               {t("testimonials.eyebrow")}
             </motion.p>
             <motion.h2
-              initial={{ opacity: 0, y: 10, filter: "blur(8px)" }}
-              animate={inView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
+              initial={{ opacity: 0, y: 10 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: 0.06 }}
               style={{
                 fontFamily: "var(--font-poppins)",
@@ -79,6 +79,7 @@ export default function Testimonials() {
           {/* Nav arrows */}
           <div style={{ display: "flex", gap: 12, alignSelf: "flex-start", marginTop: 8 }}>
             <button
+              aria-label="Previous testimonials"
               onClick={() => setPage((p) => Math.max(0, p - 1))}
               disabled={page === 0}
               style={{
@@ -98,6 +99,7 @@ export default function Testimonials() {
               <ChevronLeft size={18} strokeWidth={2} />
             </button>
             <button
+              aria-label="Next testimonials"
               onClick={() => setPage((p) => Math.min(totalPages - 1, p + 1))}
               disabled={page === totalPages - 1}
               style={{
@@ -151,7 +153,7 @@ export default function Testimonials() {
                 fontFamily: "var(--font-inter)",
                 fontWeight: 400,
                 fontSize: 14,
-                color: "rgba(255,255,255,0.7)",
+                color: "rgba(255,255,255,0.9)",
                 lineHeight: 1.4,
               }}
             >

@@ -127,8 +127,8 @@ export default function ContactForm() {
             {t("contact.eyebrow")}
           </motion.p>
           <motion.h2
-            initial={{ opacity: 0, y: 10, filter: "blur(8px)" }}
-            animate={inView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
+            initial={{ opacity: 0, y: 10 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, delay: 0.06, ease: EASE }}
             style={{
               fontFamily: "var(--font-poppins)",
@@ -276,10 +276,11 @@ export default function ContactForm() {
               {/* Name + Email */}
               <div className="form-row" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
                 <div>
-                  <label style={{ fontFamily: "var(--font-inter)", fontSize: 10, letterSpacing: "2px", textTransform: "uppercase", color: "var(--fg-muted)", display: "block", marginBottom: 6 }}>
+                  <label htmlFor="contact-name" style={{ fontFamily: "var(--font-inter)", fontSize: 10, letterSpacing: "2px", textTransform: "uppercase", color: "var(--fg-muted)", display: "block", marginBottom: 6 }}>
                     {t("contact.label.name")} *
                   </label>
                   <input
+                    id="contact-name"
                     required
                     type="text"
                     placeholder={t("contact.ph.name")}
@@ -291,10 +292,11 @@ export default function ContactForm() {
                   />
                 </div>
                 <div>
-                  <label style={{ fontFamily: "var(--font-inter)", fontSize: 10, letterSpacing: "2px", textTransform: "uppercase", color: "var(--fg-muted)", display: "block", marginBottom: 6 }}>
+                  <label htmlFor="contact-email" style={{ fontFamily: "var(--font-inter)", fontSize: 10, letterSpacing: "2px", textTransform: "uppercase", color: "var(--fg-muted)", display: "block", marginBottom: 6 }}>
                     {t("contact.label.email")} *
                   </label>
                   <input
+                    id="contact-email"
                     required
                     type="email"
                     placeholder="your@email.com"
@@ -310,10 +312,11 @@ export default function ContactForm() {
               {/* Service + Budget */}
               <div className="form-row" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
                 <div>
-                  <label style={{ fontFamily: "var(--font-inter)", fontSize: 10, letterSpacing: "2px", textTransform: "uppercase", color: "var(--fg-muted)", display: "block", marginBottom: 6 }}>
+                  <label htmlFor="contact-service" style={{ fontFamily: "var(--font-inter)", fontSize: 10, letterSpacing: "2px", textTransform: "uppercase", color: "var(--fg-muted)", display: "block", marginBottom: 6 }}>
                     {t("contact.label.service")}
                   </label>
                   <select
+                    id="contact-service"
                     value={form.service}
                     onChange={set("service")}
                     style={{ ...inputStyle, cursor: "pointer" }}
@@ -325,10 +328,11 @@ export default function ContactForm() {
                   </select>
                 </div>
                 <div>
-                  <label style={{ fontFamily: "var(--font-inter)", fontSize: 10, letterSpacing: "2px", textTransform: "uppercase", color: "var(--fg-muted)", display: "block", marginBottom: 6 }}>
+                  <label htmlFor="contact-budget" style={{ fontFamily: "var(--font-inter)", fontSize: 10, letterSpacing: "2px", textTransform: "uppercase", color: "var(--fg-muted)", display: "block", marginBottom: 6 }}>
                     {t("contact.label.budget")}
                   </label>
                   <select
+                    id="contact-budget"
                     value={form.budget}
                     onChange={set("budget")}
                     style={{ ...inputStyle, cursor: "pointer" }}
@@ -343,10 +347,11 @@ export default function ContactForm() {
 
               {/* Message */}
               <div>
-                <label style={{ fontFamily: "var(--font-inter)", fontSize: 10, letterSpacing: "2px", textTransform: "uppercase", color: "var(--fg-muted)", display: "block", marginBottom: 6 }}>
+                <label htmlFor="contact-message" style={{ fontFamily: "var(--font-inter)", fontSize: 10, letterSpacing: "2px", textTransform: "uppercase", color: "var(--fg-muted)", display: "block", marginBottom: 6 }}>
                   {t("contact.label.message")} *
                 </label>
                 <textarea
+                  id="contact-message"
                   required
                   rows={5}
                   placeholder={t("contact.ph.message")}

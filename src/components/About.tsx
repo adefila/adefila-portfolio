@@ -140,8 +140,8 @@ export default function About() {
         {/* Left: Bio */}
         <div style={{ flex: 2, minWidth: 300 }}>
           <motion.h2
-            initial={{ opacity: 0, y: 10, filter: "blur(8px)" }}
-            animate={inView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
+            initial={{ opacity: 0, y: 10 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, delay: 0.05 }}
             style={{
               fontFamily: "var(--font-poppins)",
@@ -300,6 +300,7 @@ export default function About() {
           </p>
           <div style={{ display: "flex", gap: 8 }}>
             <button
+              aria-label="Previous photo"
               onClick={prev}
               disabled={photoIndex === 0}
               style={{
@@ -319,6 +320,7 @@ export default function About() {
               <ChevronLeft size={16} strokeWidth={2} />
             </button>
             <button
+              aria-label="Next photo"
               onClick={next}
               disabled={photoIndex >= maxIndex}
               style={{
@@ -375,6 +377,7 @@ export default function About() {
           {Array.from({ length: maxIndex + 1 }).map((_, i) => (
             <button
               key={i}
+              aria-label={`Go to photo ${i + 1}`}
               onClick={() => setPhotoIndex(i)}
               style={{
                 width: photoIndex === i ? 20 : 6,
@@ -411,6 +414,7 @@ export default function About() {
             }}
           >
             <button
+              aria-label="Close photo viewer"
               onClick={() => setLightbox(null)}
               style={{
                 position: "absolute",
@@ -432,6 +436,7 @@ export default function About() {
             </button>
 
             <button
+              aria-label="Previous photo"
               onClick={(e) => { e.stopPropagation(); lbPrev(); }}
               style={{
                 position: "absolute",
@@ -469,6 +474,7 @@ export default function About() {
             </motion.div>
 
             <button
+              aria-label="Next photo"
               onClick={(e) => { e.stopPropagation(); lbNext(); }}
               style={{
                 position: "absolute",

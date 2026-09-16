@@ -8,8 +8,8 @@ import { useLang } from "@/context/LangContext";
 const EASE = [0.22, 1, 0.36, 1] as [number, number, number, number];
 
 const fadeUp = (delay = 0) => ({
-  initial: { opacity: 0, y: 10, filter: "blur(10px)" },
-  animate: { opacity: 1, y: 0, filter: "blur(0px)" },
+  initial: { opacity: 0, y: 10 },
+  animate: { opacity: 1, y: 0 },
   transition: { duration: 0.6, delay, ease: EASE },
 });
 
@@ -65,7 +65,7 @@ export default function Hero() {
               fontSize: 11,
               letterSpacing: "0.08em",
               textTransform: "uppercase",
-              color: "var(--accent-green)",
+              color: "#006b2e",
             }}
           >
             {t("hero.badge")}
@@ -99,8 +99,8 @@ export default function Hero() {
             <motion.div
               key={i}
               className="hero-headline"
-              initial={{ opacity: 0, y: 14, filter: "blur(10px)" }}
-              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              initial={{ opacity: 0, y: 14 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.55, delay: 0.15 + i * 0.12, ease: EASE }}
               style={{
                 fontFamily: "var(--font-poppins)",

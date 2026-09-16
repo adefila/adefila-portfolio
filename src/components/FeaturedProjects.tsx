@@ -48,8 +48,8 @@ export default function FeaturedProjects() {
               {t("featured.eyebrow")}
             </motion.p>
             <motion.h2
-              initial={{ opacity: 0, y: 10, filter: "blur(8px)" }}
-              animate={inView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
+              initial={{ opacity: 0, y: 10 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: 0.05 }}
               style={{
                 fontFamily: "var(--font-poppins)",
@@ -85,8 +85,8 @@ export default function FeaturedProjects() {
           {featured.map((project, i) => (
             <motion.div
               key={project.title}
-              initial={{ opacity: 0, y: 20, filter: "blur(8px)" }}
-              animate={inView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
+              initial={{ opacity: 0, y: 20 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: i * 0.12, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
               whileHover={{ y: -6, transition: { duration: 0.3 } }}
               style={{

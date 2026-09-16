@@ -74,7 +74,7 @@ export default function Footer() {
                 fontSize: 15,
                 letterSpacing: "-0.3px",
                 lineHeight: 1.65,
-                color: "rgba(255,255,255,0.7)",
+                color: "rgba(255,255,255,0.85)",
                 maxWidth: 460,
               }}
             >
@@ -158,7 +158,7 @@ export default function Footer() {
                 fontFamily: "var(--font-inter)",
                 fontWeight: 400,
                 fontSize: 13,
-                color: "rgba(255,255,255,0.45)",
+                color: "rgba(255,255,255,0.8)",
                 lineHeight: 1.6,
                 maxWidth: 200,
               }}
@@ -176,7 +176,7 @@ export default function Footer() {
                 fontSize: 11,
                 letterSpacing: "2px",
                 textTransform: "uppercase",
-                color: "rgba(255,255,255,0.4)",
+                color: "rgba(255,255,255,0.75)",
                 marginBottom: 14,
               }}
             >
@@ -192,7 +192,7 @@ export default function Footer() {
                   style={{
                     fontFamily: "var(--font-inter)",
                     fontSize: 14,
-                    color: "rgba(255,255,255,0.7)",
+                    color: "rgba(255,255,255,0.9)",
                     textDecoration: "none",
                     display: "flex",
                     alignItems: "center",
@@ -214,7 +214,7 @@ export default function Footer() {
                 fontSize: 11,
                 letterSpacing: "2px",
                 textTransform: "uppercase",
-                color: "rgba(255,255,255,0.4)",
+                color: "rgba(255,255,255,0.75)",
                 marginBottom: 14,
               }}
             >
@@ -230,7 +230,7 @@ export default function Footer() {
                   style={{
                     fontFamily: "var(--font-inter)",
                     fontSize: 14,
-                    color: "rgba(255,255,255,0.7)",
+                    color: "rgba(255,255,255,0.9)",
                     textDecoration: "none",
                   }}
                 >
@@ -247,7 +247,7 @@ export default function Footer() {
               style={{
                 fontFamily: "var(--font-inter)",
                 fontSize: 14,
-                color: "rgba(255,255,255,0.7)",
+                color: "rgba(255,255,255,0.9)",
                 textDecoration: "none",
               }}
             >
@@ -257,7 +257,7 @@ export default function Footer() {
               style={{
                 fontFamily: "var(--font-inter)",
                 fontSize: 12,
-                color: "rgba(255,255,255,0.3)",
+                color: "rgba(255,255,255,0.7)",
                 letterSpacing: "0.5px",
                 textTransform: "uppercase",
               }}
