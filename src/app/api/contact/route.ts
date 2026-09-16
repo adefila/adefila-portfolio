@@ -3,6 +3,20 @@ import { Resend } from "resend";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
+// ── Rate limiting (in-memory, per serverless instance) ───────────────────────
+const ipLog = new Map<string, { count: number; reset: number }>();
+const LIMIT = 3;
+const WINDOW = 60 * 60 * 1000; // 1 hour
+
+function allowed(ip: string): boolean {
+  const now = Date.now();
+  const entry = ipLog.get(ip);
+  if (!entry || now > entry.reset) { ipLog.set(ip, { count: 1, reset: now + WINDOW }); return true; }
+  if (entry.count >= LIMIT) return false;
+  entry.count++;
+  return true;
+}
+
 const FROM_NAME = "Samuel Adefila";
 const FROM_ADDRESS = process.env.RESEND_FROM_ADDRESS ?? "onboarding@resend.dev";
 const TO_ADDRESS = "adefilasamuel929@gmail.com";
@@ -29,7 +43,27 @@ const row = (label: string, val: string) =>
 
 export async function POST(req: Request) {
   try {
-    const { name, email, service, budget, message } = await req.json();
+    // ── Spam checks ────────────────────────────────────────────────────────
+    const ip =
+      req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ??
+      req.headers.get("x-real-ip") ??
+      "unknown";
+
+    if (!allowed(ip)) {
+      return NextResponse.json({ error: "Too many submissions. Try again later." }, { status: 429 });
+    }
+
+    const { name, email, service, budget, message, _h, _t } = await req.json();
+
+    // Honeypot: bots fill the hidden field, humans leave it empty
+    if (_h) {
+      return NextResponse.json({ ok: true }); // silent accept so bots don't retry
+    }
+
+    // Timing check: reject if submitted in under 3 seconds (bot speed)
+    if (typeof _t === "number" && Date.now() - _t < 3000) {
+      return NextResponse.json({ ok: true }); // silent accept
+    }
 
     if (!name || !email || !message) {
       return NextResponse.json({ error: "Missing required fields" }, { status: 400 });

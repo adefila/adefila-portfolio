@@ -33,6 +33,10 @@ export default function ContactForm() {
 
   const [status, setStatus] = useState<Status>("idle");
   const [countdown, setCountdown] = useState(5);
+  const loadedAt = useRef<number>(0);
+  const [honey, setHoney] = useState("");
+
+  useEffect(() => { loadedAt.current = Date.now(); }, []);
 
   useEffect(() => {
     if (status !== "success") return;
@@ -60,7 +64,7 @@ export default function ContactForm() {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        body: JSON.stringify({ ...form, _t: loadedAt.current, _h: honey }),
       });
       if (res.ok) {
         setStatus("success");
@@ -351,6 +355,18 @@ export default function ContactForm() {
                   style={{ ...inputStyle, resize: "vertical", minHeight: 130 }}
                   onFocus={(e) => (e.target.style.borderColor = "var(--accent-purple)")}
                   onBlur={(e) => (e.target.style.borderColor = "rgba(0,0,0,0.12)")}
+                />
+              </div>
+
+              {/* Honeypot — hidden from real users, bots fill it */}
+              <div style={{ position: "absolute", left: "-9999px", top: 0, height: 0, overflow: "hidden" }} aria-hidden="true">
+                <input
+                  type="text"
+                  name="website"
+                  value={honey}
+                  onChange={(e) => setHoney(e.target.value)}
+                  tabIndex={-1}
+                  autoComplete="off"
                 />
               </div>
 
