@@ -147,7 +147,7 @@ export default function Navbar() {
           }}
         >
           <Link
-            href="/"
+            href="#hero"
             style={{
               fontFamily: "var(--font-inter)",
               fontWeight: 700,
