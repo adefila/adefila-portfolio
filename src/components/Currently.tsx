@@ -122,6 +122,8 @@ export default function Currently() {
               <img
                 src={currentBook.cover}
                 alt={currentBook.title}
+                loading="lazy"
+                decoding="async"
                 style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
               />
             </div>
