@@ -125,6 +125,22 @@ html {
   opacity: 0.8;
 }
 
+/* Link + button zoom on hover */
+@media (hover: hover) {
+  a, button {
+    transition: transform 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  a:hover, button:hover {
+    transform: scale(1.04);
+  }
+  /* Don't zoom nav rows or full-width elements */
+  .project-row:hover,
+  .faq-grid a:hover,
+  nav a:hover {
+    transform: none;
+  }
+}
+
 /* Mobile nav: hide links + desktop CTA, show hamburger */
 @media (max-width: 768px) {
   .nav-links {
