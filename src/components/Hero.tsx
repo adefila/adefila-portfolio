@@ -151,7 +151,7 @@ export default function Hero() {
               color: "var(--white)",
               background: "var(--fg)",
               padding: "14px 28px",
-              borderRadius: 100,
+              borderRadius: 0,
               textDecoration: "none",
               letterSpacing: "-0.2px",
               alignItems: "center",
