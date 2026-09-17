@@ -97,7 +97,7 @@ function ProjectCard({
           display: "block",
           position: "relative",
           width: "100%",
-          aspectRatio: "16/10",
+          aspectRatio: "1200/630",
           overflow: "hidden",
           background: "#e8e8e8",
           textDecoration: "none",
@@ -175,7 +175,8 @@ function ProjectCard({
           style={{
             position: "absolute", inset: 0,
             width: "100%", height: "100%",
-            objectFit: "cover", objectPosition: "top center",
+            objectFit: "cover",
+            objectPosition: "preview" in project && project.preview ? "center" : "top center",
             opacity: loaded ? 1 : 0,
             transition: `opacity 0.4s ease, transform 0.45s ${SPRING}`,
             transform: hovered ? "scale(1.05) translateY(6px)" : "scale(1) translateY(0)",
