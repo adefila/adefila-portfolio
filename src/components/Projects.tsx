@@ -195,10 +195,12 @@ export default function Projects() {
   const { t } = useLang();
 
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-  const [hasHover, setHasHover] = useState(false);
+  // Suppress preview only on genuine touch-only devices (coarse pointer, narrow screen)
+  const [isTouchOnly, setIsTouchOnly] = useState(false);
 
   useEffect(() => {
-    setHasHover(window.matchMedia("(hover: hover) and (pointer: fine)").matches);
+    const coarse = window.matchMedia("(pointer: coarse)").matches;
+    setIsTouchOnly(coarse && window.innerWidth <= 900);
   }, []);
 
   const rawX = useMotionValue(0);
@@ -221,7 +223,7 @@ export default function Projects() {
       onMouseMove={handleMouseMove}
     >
       <AnimatePresence>
-        {hasHover && hoveredIndex !== null && (
+        {!isTouchOnly && hoveredIndex !== null && (
           <FloatingPreview
             key={hoveredIndex}
             project={projects[hoveredIndex]}
@@ -290,8 +292,8 @@ export default function Projects() {
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.4, delay: 0.1 + i * 0.04, ease: EASE }}
               className="project-row"
-              onMouseEnter={() => hasHover && setHoveredIndex(i)}
-              onMouseLeave={() => hasHover && setHoveredIndex(null)}
+              onMouseEnter={() => !isTouchOnly && setHoveredIndex(i)}
+              onMouseLeave={() => setHoveredIndex(null)}
               onClick={() => project.href && window.open(project.href, "_blank", "noopener,noreferrer")}
               style={{
                 display: "flex",
