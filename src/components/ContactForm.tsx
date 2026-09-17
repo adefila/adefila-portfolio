@@ -4,6 +4,74 @@ import { useRef, useState, useEffect } from "react";
 import { ArrowUpRight, Send } from "lucide-react";
 import { useLang } from "@/context/LangContext";
 
+const EMAIL = "adefilasamuel929@gmail.com";
+
+function CopyEmailRow() {
+  const [copied, setCopied] = useState(false);
+  const [hovered, setHovered] = useState(false);
+  const [canHover, setCanHover] = useState(false);
+
+  useEffect(() => {
+    setCanHover(window.matchMedia("(hover: hover)").matches);
+  }, []);
+
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (!canHover) return;
+    e.preventDefault();
+    navigator.clipboard.writeText(EMAIL).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1600);
+    });
+  };
+
+  return (
+    <a
+      href={`mailto:${EMAIL}`}
+      onClick={handleClick}
+      onMouseEnter={() => canHover && setHovered(true)}
+      onMouseLeave={() => { setHovered(false); }}
+      style={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+        padding: "14px 0",
+        borderBottom: "1px solid rgba(0,0,0,0.07)",
+        textDecoration: "none",
+      }}
+    >
+      <div>
+        <p style={{ fontFamily: "var(--font-inter)", fontSize: 10, letterSpacing: "2px", textTransform: "uppercase", color: "var(--fg-muted)", marginBottom: 3 }}>
+          Email
+        </p>
+        <p style={{
+          fontFamily: "var(--font-inter)", fontSize: 14, color: "var(--fg)", letterSpacing: "-0.2px",
+          borderBottom: `1px solid ${hovered ? "rgba(0,0,0,0.35)" : "transparent"}`,
+          paddingBottom: 1,
+          transition: "border-color 0.2s ease",
+          display: "inline",
+        }}>
+          {EMAIL}
+        </p>
+      </div>
+      <span style={{
+        fontFamily: "var(--font-inter)",
+        fontWeight: 600,
+        fontSize: 10,
+        letterSpacing: "1.5px",
+        textTransform: "uppercase",
+        color: copied ? "var(--accent-purple)" : "var(--fg-muted)",
+        opacity: hovered ? 1 : 0,
+        transform: hovered ? "translateX(0)" : "translateX(6px)",
+        transition: "opacity 0.22s ease, transform 0.22s ease, color 0.15s ease",
+        whiteSpace: "nowrap",
+        pointerEvents: "none",
+      }}>
+        {copied ? "Copied ✓" : "Copy"}
+      </span>
+    </a>
+  );
+}
+
 
 const services = [
   "Framer Website",
@@ -167,17 +235,17 @@ export default function ContactForm() {
             initial={{ opacity: 0, y: 10 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, delay: 0.2 }}
-            style={{ display: "flex", flexDirection: "column", gap: 16 }}
+            style={{ display: "flex", flexDirection: "column" }}
           >
+            <CopyEmailRow />
             {[
-              { label: "Email", value: "adefilasamuel929@gmail.com", href: "mailto:adefilasamuel929@gmail.com" },
               { label: "Upwork", value: "Samuel Adefila — Top Rated", href: "https://upwork.com/freelancers/adefilasamuel" },
               { label: "LinkedIn", value: "linkedin.com/in/adefila-samuel", href: "https://www.linkedin.com/in/adefila-samuel-144448201/" },
             ].map((item) => (
               <a
                 key={item.label}
                 href={item.href}
-                target={item.href.startsWith("mailto") ? undefined : "_blank"}
+                target="_blank"
                 rel="noopener noreferrer"
                 style={{
                   display: "flex",

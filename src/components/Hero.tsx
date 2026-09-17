@@ -1,6 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
-import { CalendarDays } from "lucide-react";
+import { CalendarDays, Download } from "lucide-react";
 import Image from "next/image";
 import MagneticButton from "./MagneticButton";
 import { useLang } from "@/context/LangContext";
@@ -166,6 +166,36 @@ export default function Hero() {
               >
                 {t("hero.cta")} <CalendarDays size={15} strokeWidth={2} />
               </MagneticButton>
+              <a
+                href="/samuel-adefila-cv.pdf"
+                download
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: 8,
+                  fontFamily: "var(--font-inter)",
+                  fontWeight: 600,
+                  fontSize: 14,
+                  color: "var(--fg)",
+                  background: "transparent",
+                  border: "1px solid rgba(0,0,0,0.18)",
+                  padding: "13px 24px",
+                  borderRadius: 0,
+                  textDecoration: "none",
+                  letterSpacing: "-0.2px",
+                  transition: "border-color 0.2s ease, background 0.2s ease",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.borderColor = "var(--fg)";
+                  e.currentTarget.style.background = "rgba(0,0,0,0.04)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.borderColor = "rgba(0,0,0,0.18)";
+                  e.currentTarget.style.background = "transparent";
+                }}
+              >
+                Download CV <Download size={14} strokeWidth={2} />
+              </a>
             </div>
       </div>
       {/* Full-width project marquee — keep motion for opacity fade-in */}

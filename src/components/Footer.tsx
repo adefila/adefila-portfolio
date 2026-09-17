@@ -3,6 +3,69 @@ import { motion } from "framer-motion";
 import { ArrowUpRight, CalendarDays } from "lucide-react";
 import MagneticButton from "./MagneticButton";
 import { useLang } from "@/context/LangContext";
+import { useState, useEffect } from "react";
+
+const FOOTER_EMAIL = "adefilasamuel929@gmail.com";
+
+function FooterCopyEmail() {
+  const [copied, setCopied] = useState(false);
+  const [hovered, setHovered] = useState(false);
+  const [canHover, setCanHover] = useState(false);
+
+  useEffect(() => {
+    setCanHover(window.matchMedia("(hover: hover)").matches);
+  }, []);
+
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (!canHover) return;
+    e.preventDefault();
+    navigator.clipboard.writeText(FOOTER_EMAIL).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1600);
+    });
+  };
+
+  return (
+    <a
+      href={`mailto:${FOOTER_EMAIL}`}
+      onClick={handleClick}
+      onMouseEnter={() => canHover && setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      style={{
+        display: "inline-flex",
+        alignItems: "center",
+        gap: 8,
+        fontFamily: "var(--font-inter)",
+        fontSize: 14,
+        color: "rgba(255,255,255,0.9)",
+        textDecoration: "none",
+      }}
+    >
+      <span style={{
+        borderBottom: `1px solid ${hovered ? "rgba(255,255,255,0.45)" : "transparent"}`,
+        paddingBottom: 1,
+        transition: "border-color 0.2s ease",
+      }}>
+        {FOOTER_EMAIL}
+      </span>
+      <span style={{
+        fontFamily: "var(--font-inter)",
+        fontWeight: 600,
+        fontSize: 10,
+        letterSpacing: "1.5px",
+        textTransform: "uppercase",
+        color: copied ? "#c4b5fd" : "rgba(255,255,255,0.4)",
+        opacity: hovered ? 1 : 0,
+        transform: hovered ? "translateX(0)" : "translateX(6px)",
+        transition: "opacity 0.22s ease, transform 0.22s ease, color 0.15s ease",
+        whiteSpace: "nowrap",
+        pointerEvents: "none",
+      }}>
+        {copied ? "Copied ✓" : "Copy"}
+      </span>
+    </a>
+  );
+}
 
 const portfolioLinks = [
   { label: "Dribbble", href: "https://dribbble.com/Adeyemisamuel020" },
@@ -242,17 +305,7 @@ export default function Footer() {
 
           {/* Email + copyright */}
           <div style={{ display: "flex", flexDirection: "column", gap: 16, alignItems: "flex-start" }}>
-            <a
-              href="mailto:adefilasamuel929@gmail.com"
-              style={{
-                fontFamily: "var(--font-inter)",
-                fontSize: 14,
-                color: "rgba(255,255,255,0.9)",
-                textDecoration: "none",
-              }}
-            >
-              adefilasamuel929@gmail.com
-            </a>
+            <FooterCopyEmail />
             <p
               style={{
                 fontFamily: "var(--font-inter)",
