@@ -271,18 +271,18 @@ export default function About() {
                   }}
                 >
                   {job.company}
+                  {"location" in job && (
+                    <span style={{
+                      fontFamily: "var(--font-inter)",
+                      fontSize: 11,
+                      color: "var(--fg-muted)",
+                      letterSpacing: "0.01em",
+                      marginLeft: 6,
+                    }}>
+                      · {job.location}
+                    </span>
+                  )}
                 </p>
-                {"location" in job && (
-                  <p style={{
-                    fontFamily: "var(--font-inter)",
-                    fontSize: 11,
-                    color: "var(--fg-muted)",
-                    letterSpacing: "0.01em",
-                    marginTop: 2,
-                  }}>
-                    {job.location}
-                  </p>
-                )}
               </div>
             ))}
           </div>
