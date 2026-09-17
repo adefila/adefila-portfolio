@@ -1,7 +1,7 @@
 "use client";
 import { motion, useInView } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { useLang } from "@/context/LangContext";
 
@@ -71,6 +71,12 @@ function ProjectCard({
   const [loaded, setLoaded] = useState(false);
   const [errored, setErrored] = useState(false);
   const [hovered, setHovered] = useState(false);
+
+  useEffect(() => {
+    if (loaded || errored) return;
+    const t = setTimeout(() => setErrored(true), 8000);
+    return () => clearTimeout(t);
+  }, [loaded, errored]);
 
   const displayUrl = project.href.replace(/^https?:\/\//, "").replace(/\/$/, "");
 
