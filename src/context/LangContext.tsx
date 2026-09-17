@@ -98,10 +98,14 @@ export function LangProvider({ children }: { children: React.ReactNode }) {
 
   const setLang = (l: LangCode) => {
     setLangState(l);
-    try { localStorage.setItem("sam-lang", l); } catch {}
-    // Currency is never changed by language switching — it is set once from
-    // the browser locale on first visit and only updated by the user via the
-    // currency picker (setCurrency).
+    // Always sync currency to the selected country — even if user manually
+    // picked a different currency, switching country overrides it.
+    const newCurr = LANGUAGES.find((lg) => lg.code === l)?.currency ?? "USD";
+    setCurrencyState(newCurr);
+    try {
+      localStorage.setItem("sam-lang", l);
+      localStorage.setItem("sam-currency", newCurr);
+    } catch {}
   };
 
   const setCurrency = (c: CurrencyCode) => {
