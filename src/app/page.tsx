@@ -1,6 +1,7 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import Projects from "@/components/Projects";
+import MidCTA from "@/components/MidCTA";
 import WhyMe from "@/components/WhyMe";
 import HowIWork from "@/components/HowIWork";
 import Pricing from "@/components/Pricing";
@@ -25,6 +26,7 @@ export default function Home() {
       <Navbar />
       <Hero />
       <Projects />
+      <MidCTA />
       <WhyMe />
       <HowIWork />
       <Pricing />

@@ -206,12 +206,9 @@ function ProjectCard({
           transition: `background 0.3s ease`,
         }} />
 
-        {/* Arrow button — always links to live site */}
-        <a
-          href={project.href}
-          target="_blank"
-          rel="noopener noreferrer"
-          onClick={(e) => e.stopPropagation()}
+        {/* Arrow button — always opens live site; button avoids nested <a> */}
+        <button
+          onClick={(e) => { e.preventDefault(); e.stopPropagation(); window.open(project.href, "_blank", "noopener,noreferrer"); }}
           style={{
             position: "absolute", top: 14, right: 14, zIndex: 4,
             width: 36, height: 36,
@@ -219,6 +216,9 @@ function ProjectCard({
             display: "flex", alignItems: "center", justifyContent: "center",
             transition: `background 0.25s ease, transform 0.3s ${SPRING}`,
             transform: hovered ? "scale(1.1)" : "scale(1)",
+            border: "none",
+            cursor: "pointer",
+            padding: 0,
           }}
         >
           <ArrowUpRight
@@ -227,7 +227,7 @@ function ProjectCard({
             color={hovered ? "#0f0f0f" : "#fff"}
             style={{ transition: "color 0.25s ease" }}
           />
-        </a>
+        </button>
       </Link>
 
       {/* Info below card */}

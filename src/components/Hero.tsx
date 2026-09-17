@@ -1,6 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
-import { CalendarDays, Download } from "lucide-react";
+import { CalendarDays } from "lucide-react";
 import Image from "next/image";
 import MagneticButton from "./MagneticButton";
 import { useLang } from "@/context/LangContext";
@@ -134,11 +134,27 @@ export default function Hero() {
                 lineHeight: 1.6,
                 color: "var(--fg-secondary)",
                 maxWidth: 480,
-                marginBottom: 32,
+                marginBottom: 16,
                 animation: `heroFadeUp 0.6s 0.35s ${EASE} both`,
               }}
             >
               {t("hero.subtitle")}
+            </p>
+
+            {/* Trust proof row */}
+            <p
+              style={{
+                fontFamily: "var(--font-inter)",
+                fontWeight: 500,
+                fontSize: 11,
+                letterSpacing: "0.08em",
+                textTransform: "uppercase",
+                color: "var(--fg-muted)",
+                marginBottom: 32,
+                animation: `heroFadeUp 0.6s 0.42s ${EASE} both`,
+              }}
+            >
+              {t("hero.proof")}
             </p>
 
             {/* CTA buttons — CSS animation */}
@@ -166,39 +182,6 @@ export default function Hero() {
               >
                 {t("hero.cta")} <CalendarDays size={15} strokeWidth={2} />
               </MagneticButton>
-              <a
-                href="/samuel-adefila-cv.pdf"
-                download
-                style={{
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: 8,
-                  fontFamily: "var(--font-inter)",
-                  fontWeight: 600,
-                  fontSize: 14,
-                  color: "var(--fg)",
-                  background: "transparent",
-                  border: "1px solid rgba(0,0,0,0.18)",
-                  padding: "13px 24px",
-                  borderRadius: 0,
-                  textDecoration: "none",
-                  letterSpacing: "0.3px",
-                  textTransform: "uppercase",
-                  transition: "border-color 0.2s ease, background 0.2s ease, color 0.2s ease",
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.background = "var(--fg)";
-                  e.currentTarget.style.borderColor = "var(--fg)";
-                  e.currentTarget.style.color = "#fff";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.background = "transparent";
-                  e.currentTarget.style.borderColor = "rgba(0,0,0,0.18)";
-                  e.currentTarget.style.color = "var(--fg)";
-                }}
-              >
-                {t("hero.downloadCv")} <Download size={14} strokeWidth={2} />
-              </a>
             </div>
       </div>
       {/* Full-width project marquee — keep motion for opacity fade-in */}

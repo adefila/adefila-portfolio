@@ -1,17 +1,14 @@
 "use client";
-import { useRef, ReactNode, CSSProperties } from "react";
+import { useRef, ReactNode, CSSProperties, ComponentPropsWithoutRef } from "react";
 
-interface Props {
+type Props = Omit<ComponentPropsWithoutRef<"a">, "style"> & {
   children: ReactNode;
   href?: string;
-  target?: string;
-  rel?: string;
-  className?: string;
   style?: CSSProperties;
   strength?: number;
-}
+};
 
-export default function MagneticButton({ children, href, target, rel, className, style, strength = 0.3 }: Props) {
+export default function MagneticButton({ children, href, className, style, strength = 0.3, onMouseLeave: externalLeave, ...rest }: Props) {
   const ref = useRef<HTMLElement>(null);
 
   const onMove = (e: React.MouseEvent) => {
@@ -24,15 +21,15 @@ export default function MagneticButton({ children, href, target, rel, className,
     el.style.transform = `translate(${dx}px, ${dy}px)`;
   };
 
-  const onLeave = () => {
+  const onLeave = (e: React.MouseEvent<HTMLAnchorElement>) => {
     const el = ref.current;
-    if (!el) return;
-    el.style.transform = "translate(0px, 0px)";
+    if (el) el.style.transform = "translate(0px, 0px)";
+    externalLeave?.(e);
   };
 
   const shared: CSSProperties = {
     ...style,
-    transition: "transform 0.45s cubic-bezier(0.22, 1, 0.36, 1)",
+    transition: [style?.transition, "transform 0.45s cubic-bezier(0.22, 1, 0.36, 1)"].filter(Boolean).join(", "),
     display: "inline-flex",
   };
 
@@ -41,12 +38,11 @@ export default function MagneticButton({ children, href, target, rel, className,
       <a
         ref={ref as React.Ref<HTMLAnchorElement>}
         href={href}
-        target={target}
-        rel={rel}
         className={className}
         style={shared}
         onMouseMove={onMove}
         onMouseLeave={onLeave}
+        {...rest}
       >
         {children}
       </a>
@@ -59,7 +55,6 @@ export default function MagneticButton({ children, href, target, rel, className,
       className={className}
       style={shared}
       onMouseMove={onMove}
-      onMouseLeave={onLeave}
     >
       {children}
     </span>

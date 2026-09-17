@@ -178,6 +178,7 @@ export default function Navbar() {
                 <a
                   key={href}
                   href={href}
+                  className="nav-link-anim"
                   style={{
                     fontFamily: "var(--font-inter)",
                     fontWeight: 600,
@@ -189,9 +190,14 @@ export default function Navbar() {
                     borderRadius: 0,
                     background: isActive ? "rgba(0,0,0,0.06)" : "transparent",
                     transition: "color 0.2s, background 0.2s",
+                    display: "inline-block",
                   }}
                 >
-                  {label}
+                  <span className="nav-link-clip">
+                    <span className="nav-link-inner" data-text={label}>
+                      {label}
+                    </span>
+                  </span>
                 </a>
               );
             })}

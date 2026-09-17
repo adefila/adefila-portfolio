@@ -112,6 +112,29 @@ html {
   opacity: 0.8;
 }
 
+/* Nav link text-flip — clip wrapper is fixed, inner span translates within it */
+.nav-link-clip {
+  display: block;
+  overflow: hidden;
+  line-height: 1;
+}
+.nav-link-inner {
+  display: block;
+  position: relative;
+  transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.nav-link-inner::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 100%;
+  left: 0;
+  white-space: nowrap;
+  pointer-events: none;
+}
+.nav-link-anim:hover .nav-link-inner {
+  transform: translateY(-100%);
+}
+
 /* Link + button zoom on hover */
 @media (hover: hover) {
   a, button {
@@ -120,10 +143,9 @@ html {
   a:hover, button:hover {
     transform: scale(1.04);
   }
-  /* Don't zoom nav rows or full-width elements */
+  /* Don't zoom project rows or FAQ anchors */
   .project-row:hover,
-  .faq-grid a:hover,
-  nav a:hover {
+  .faq-grid a:hover {
     transform: none;
   }
 }

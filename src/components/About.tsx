@@ -1,7 +1,8 @@
 "use client";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
-import { ChevronLeft, ChevronRight, X } from "lucide-react";
+import { ChevronLeft, ChevronRight, X, Download } from "lucide-react";
+import MagneticButton from "./MagneticButton";
 import { useLang } from "@/context/LangContext";
 
 const techStacks = ["Figma", "Framer", "Webflow", "WordPress", "Shopify", "React", "Claude"];
@@ -205,6 +206,46 @@ export default function About() {
                 <TechTag key={tech} label={tech} />
               ))}
             </div>
+          </motion.div>
+
+          {/* CV download — magnetic button matching Book a Call style */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5, delay: 0.32 }}
+            style={{ marginTop: 32 }}
+          >
+            <MagneticButton
+              href="/samuel-adefila-cv.pdf"
+              download
+              style={{
+                fontFamily: "var(--font-inter)",
+                fontWeight: 600,
+                fontSize: 13,
+                letterSpacing: "0.5px",
+                textTransform: "uppercase",
+                color: "var(--fg)",
+                background: "transparent",
+                border: "1px solid rgba(0,0,0,0.2)",
+                padding: "11px 22px",
+                textDecoration: "none",
+                alignItems: "center",
+                gap: 8,
+                transition: "background 0.2s ease, border-color 0.2s ease, color 0.2s ease",
+              }}
+              onMouseEnter={(e: React.MouseEvent<HTMLAnchorElement>) => {
+                e.currentTarget.style.background = "var(--fg)";
+                e.currentTarget.style.borderColor = "var(--fg)";
+                e.currentTarget.style.color = "#fff";
+              }}
+              onMouseLeave={(e: React.MouseEvent<HTMLAnchorElement>) => {
+                e.currentTarget.style.background = "transparent";
+                e.currentTarget.style.borderColor = "rgba(0,0,0,0.2)";
+                e.currentTarget.style.color = "var(--fg)";
+              }}
+            >
+              {t("hero.downloadCv")} <Download size={13} strokeWidth={2} />
+            </MagneticButton>
           </motion.div>
         </div>
 
