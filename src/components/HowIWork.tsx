@@ -113,10 +113,12 @@ export default function HowIWork() {
   }
 
   // Colors — all passing WCAG AA
+  const purple  = "var(--accent-purple)";
+  const purpleA = isDark ? "rgba(109,40,217,0.30)" : "rgba(109,40,217,0.08)"; // active tab bg
+  const purpleB = isDark ? "rgba(109,40,217,0.7)"  : "rgba(109,40,217,0.4)";  // active tab border
+  const purpleC = isDark ? "rgba(109,40,217,0.5)"  : "rgba(109,40,217,0.1)";  // badge bg active
   const fg      = isDark ? "#ffffff"                : "var(--fg)";
-  // fgSub: 7.4:1 on both dark and light ✓
   const fgSub   = isDark ? "rgba(255,255,255,0.80)" : "#4b5563";
-  // fgMuted: 5.9:1 dark / 4.7:1 light ✓ (passes AA for normal text)
   const fgMuted = isDark ? "rgba(255,255,255,0.62)" : "#5c6474";
   const fgGhost = isDark ? "rgba(255,255,255,0.08)" : "rgba(0,0,0,0.05)";
   const border  = isDark ? "rgba(255,255,255,0.12)" : "rgba(0,0,0,0.10)";
@@ -151,7 +153,7 @@ export default function HowIWork() {
             <p style={{
               fontFamily: "var(--font-inter)", fontWeight: 700, fontSize: 11,
               letterSpacing: "4px", textTransform: "uppercase",
-              color: "var(--accent-purple)", marginBottom: 10,
+              color: purple, marginBottom: 10,
             }}>
               {t("process.eyebrow")}
             </p>
@@ -186,7 +188,7 @@ export default function HowIWork() {
         >
           <div
             ref={fillRef}
-            style={{ position: "absolute", left: 0, top: 0, height: "100%", width: "0%", background: "var(--accent-purple)" }}
+            style={{ position: "absolute", left: 0, top: 0, height: "100%", width: "0%", background: purple }}
           />
           {steps.map((_, i) => {
             const isActive = i === active;
@@ -205,9 +207,9 @@ export default function HowIWork() {
                 <div style={{
                   width: isActive ? 14 : 9, height: isActive ? 14 : 9,
                   borderRadius: "50%",
-                  background: isPast || isActive ? "var(--accent-purple)" : trackBg,
-                  border: `2px solid ${isPast || isActive ? "var(--accent-purple)" : border}`,
-                  boxShadow: isActive ? "0 0 0 4px rgba(109,40,217,0.2)" : "none",
+                  background: isPast || isActive ? purple : trackBg,
+                  border: `2px solid ${isPast || isActive ? purple : border}`,
+                  boxShadow: isActive ? "0 0 0 4px rgba(109,40,217,0.25)" : "none",
                   transition: `all 0.35s ${E}`,
                 }} />
               </div>
@@ -237,10 +239,8 @@ export default function HowIWork() {
                 onClick={() => handleStepClick(i)}
                 style={{
                   flex: "1 1 0", minWidth: 0,
-                  background: isActive
-                    ? isDark ? "rgba(109,40,217,0.22)" : "rgba(109,40,217,0.08)"
-                    : "transparent",
-                  border: `1px solid ${isActive ? "rgba(109,40,217,0.4)" : border}`,
+                  background: isActive ? purpleA : "transparent",
+                  border: `1px solid ${isActive ? purpleB : border}`,
                   padding: "12px 14px 10px",
                   cursor: "pointer", textAlign: "left",
                   transition: `background 0.3s ease, border-color 0.3s ease`,
@@ -252,15 +252,15 @@ export default function HowIWork() {
                   <span style={{
                     fontFamily: "var(--font-poppins)", fontWeight: 700, fontSize: 11,
                     letterSpacing: "2px",
-                    color: isActive ? "var(--accent-purple)" : fgMuted,
+                    color: isActive ? purple : fgMuted,
                     transition: `color 0.3s ease`,
                   }}>{step.n}</span>
                   <span style={{
                     fontFamily: "var(--font-inter)", fontWeight: 700, fontSize: 10,
                     letterSpacing: "0.5px", textTransform: "uppercase",
-                    color: isActive ? "var(--accent-purple)" : fgMuted,
+                    color: isActive ? "#ffffff" : fgMuted,
                     background: isActive
-                      ? isDark ? "rgba(109,40,217,0.3)" : "rgba(109,40,217,0.1)"
+                      ? purpleC
                       : isDark ? "rgba(255,255,255,0.07)" : "rgba(0,0,0,0.06)",
                     padding: "2px 6px",
                     transition: `all 0.3s ease`,
@@ -348,7 +348,7 @@ export default function HowIWork() {
                   <p style={{
                     fontFamily: "var(--font-inter)", fontWeight: 700, fontSize: 11,
                     letterSpacing: "3px", textTransform: "uppercase",
-                    color: "var(--accent-purple)", marginBottom: 12,
+                    color: purple, marginBottom: 12,
                   }}>
                     What to expect
                   </p>
@@ -386,7 +386,7 @@ export default function HowIWork() {
                     style={{
                       width: 36, height: 36, display: "flex", alignItems: "center", justifyContent: "center",
                       border: `1px solid ${active === steps.length - 1 ? border : "transparent"}`,
-                      background: active === steps.length - 1 ? "transparent" : "var(--accent-purple)",
+                      background: active === steps.length - 1 ? "transparent" : purple,
                       cursor: active === steps.length - 1 ? "default" : "pointer",
                       opacity: active === steps.length - 1 ? 0.35 : 1,
                       transition: `all 0.2s ease`,
@@ -415,7 +415,7 @@ export default function HowIWork() {
 
       <style>{`
         #process [role="tab"]:focus-visible {
-          outline: 2px solid var(--accent-purple);
+          outline: 2px solid ${purple};
           outline-offset: 2px;
         }
         @media (max-width: 768px) {

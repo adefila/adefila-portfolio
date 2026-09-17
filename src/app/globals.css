@@ -193,6 +193,24 @@ html {
   .faq-grid {
     gap: 0 40px !important;
   }
+  /* Testimonials: stack cards to 1-col at tablet to avoid cramped 2-col */
+  .testimonials-cards {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* Mid breakpoint: testimonials grid narrows around 900px */
+@media (max-width: 900px) {
+  .testimonials-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .testimonials-stat-card {
+    min-height: 160px !important;
+    padding: 24px 28px !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 16px !important;
+  }
 }
 
 /* Mobile ≤ 768px */
