@@ -85,7 +85,7 @@ export default function LanguageSwitcher() {
                   return (
                     <button
                       key={l.code}
-                      onClick={() => setLang(l.code)}
+                      onClick={() => { setLang(l.code); setOpen(false); }}
                       style={{
                         display: "flex",
                         alignItems: "center",
