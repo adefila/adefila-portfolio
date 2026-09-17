@@ -77,6 +77,16 @@ html {
   to   { opacity: 1; transform: translateY(0); }
 }
 
+/* Section entrance — replaces Framer Motion initial:opacity-0 in all sections */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
 /* Ripple pulse for available badge dot — compositor-only (opacity + transform) */
 @keyframes pulseRipple {
   0%   { transform: scale(1); opacity: 0.8; }

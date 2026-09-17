@@ -1,7 +1,6 @@
 "use client";
-import { motion, useInView } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useLang } from "@/context/LangContext";
 
@@ -52,8 +51,8 @@ const projects = [
   },
 ];
 
-const EASE = [0.22, 1, 0.36, 1] as [number, number, number, number];
 const SPRING = "cubic-bezier(0.22, 1, 0.36, 1)";
+const E = SPRING;
 
 function screenshotUrl(href: string) {
   return `https://image.thum.io/get/width/1200/crop/750/noanimate/${href}`;
@@ -62,11 +61,9 @@ function screenshotUrl(href: string) {
 function ProjectCard({
   project,
   index,
-  inView,
 }: {
   project: (typeof projects)[0];
   index: number;
-  inView: boolean;
 }) {
   const [loaded, setLoaded] = useState(false);
   const [errored, setErrored] = useState(false);
@@ -83,12 +80,7 @@ function ProjectCard({
   const cardIsExternal = !("caseStudy" in project && project.caseStudy);
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 24 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.5, delay: 0.1 + index * 0.08, ease: EASE }}
-      style={{ display: "flex", flexDirection: "column" }}
-    >
+    <div style={{ display: "flex", flexDirection: "column", animation: `fadeUp 0.5s ${0.08 + index * 0.07}s ${E} both` }}>
       {/* Screenshot card */}
       <Link
         href={cardHref}
@@ -288,13 +280,13 @@ function ProjectCard({
           )}
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 }
 
+const E2 = "cubic-bezier(0.22,1,0.36,1)";
+
 export default function Projects() {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-10%" });
   const { t } = useLang();
 
   return (
@@ -314,44 +306,31 @@ export default function Projects() {
 
       {/* Header */}
       <div style={{ marginBottom: 48 }}>
-        <motion.p
-          ref={ref}
-          initial={{ opacity: 0, y: 10 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5 }}
-          style={{
-            fontFamily: "var(--font-inter)", fontWeight: 700,
-            fontSize: 11, letterSpacing: "4px", textTransform: "uppercase",
-            color: "var(--accent-purple)", marginBottom: 16,
-          }}
-        >
+        <p style={{
+          fontFamily: "var(--font-inter)", fontWeight: 700,
+          fontSize: 11, letterSpacing: "4px", textTransform: "uppercase",
+          color: "var(--accent-purple)", marginBottom: 16,
+          animation: `fadeUp 0.5s 0.05s ${E2} both`,
+        }}>
           {t("projects.eyebrow")}
-        </motion.p>
-        <motion.h2
-          initial={{ opacity: 0, y: 10 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5, delay: 0.05 }}
-          style={{
-            fontFamily: "var(--font-poppins)", fontWeight: 700,
-            fontSize: "clamp(28px, 3.5vw, 48px)", letterSpacing: "-1px",
-            lineHeight: 1, textTransform: "uppercase", color: "var(--fg)",
-          }}
-        >
+        </p>
+        <h2 style={{
+          fontFamily: "var(--font-poppins)", fontWeight: 700,
+          fontSize: "clamp(28px, 3.5vw, 48px)", letterSpacing: "-1px",
+          lineHeight: 1, textTransform: "uppercase", color: "var(--fg)",
+          animation: `fadeUp 0.5s 0.12s ${E2} both`,
+        }}>
           {t("projects.h1")}
-        </motion.h2>
+        </h2>
       </div>
 
       {/* 2×3 card grid */}
       <div
         className="projects-card-grid"
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(2, 1fr)",
-          gap: "56px 40px",
-        }}
+        style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "56px 40px" }}
       >
         {projects.map((project, i) => (
-          <ProjectCard key={project.title} project={project} index={i} inView={inView} />
+          <ProjectCard key={project.title} project={project} index={i} />
         ))}
       </div>
     </section>

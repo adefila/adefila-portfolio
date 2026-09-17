@@ -1,6 +1,4 @@
 "use client";
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
 import { Check, ArrowUpRight } from "lucide-react";
 import { useLang } from "@/context/LangContext";
 
@@ -17,11 +15,9 @@ const ADDONS_BASE = [
   { addonKey: "addon3", usdPrice: 500,  perMonth: false },
 ];
 
-const EASE = [0.22, 1, 0.36, 1] as [number, number, number, number];
+const E = "cubic-bezier(0.22,1,0.36,1)";
 
 export default function Pricing() {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-10%" });
   const { t, formatPrice, currency } = useLang();
 
   const plans = PLANS_BASE.map(({ planKey, usdPrice, featured, featureCount }) => ({
@@ -46,72 +42,39 @@ export default function Pricing() {
     >
       {/* Header */}
       <div
-        ref={ref}
         className="pricing-header"
         style={{
-          display: "flex",
-          gap: 80,
-          alignItems: "flex-end",
-          flexWrap: "wrap",
-          marginBottom: 56,
-          borderBottom: "1px solid rgba(0,0,0,0.08)",
-          paddingBottom: 40,
+          display: "flex", gap: 80, alignItems: "flex-end",
+          flexWrap: "wrap", marginBottom: 56,
+          borderBottom: "1px solid rgba(0,0,0,0.08)", paddingBottom: 40,
         }}
       >
-        <div style={{ flex: "1 1 360px" }}>
-          <motion.p
-            initial={{ opacity: 0, y: 10 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5 }}
-            style={{
-              fontFamily: "var(--font-inter)",
-              fontWeight: 700,
-              fontSize: 11,
-              letterSpacing: "4px",
-              textTransform: "uppercase",
-              color: "var(--accent-purple)",
-              marginBottom: 16,
-            }}
-          >
+        <div style={{ flex: "1 1 360px", animation: `fadeUp 0.5s 0.05s ${E} both` }}>
+          <p style={{
+            fontFamily: "var(--font-inter)", fontWeight: 700, fontSize: 11,
+            letterSpacing: "4px", textTransform: "uppercase",
+            color: "var(--accent-purple)", marginBottom: 16,
+          }}>
             {t("pricing.eyebrow")}
-          </motion.p>
-          <motion.h2
-            initial={{ opacity: 0, y: 10 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5, delay: 0.06, ease: EASE }}
-            style={{
-              fontFamily: "var(--font-poppins)",
-              fontWeight: 700,
-              fontSize: "clamp(26px, 3.2vw, 44px)",
-              letterSpacing: "-1px",
-              lineHeight: 1.08,
-              textTransform: "uppercase",
-              color: "var(--fg)",
-            }}
-          >
+          </p>
+          <h2 style={{
+            fontFamily: "var(--font-poppins)", fontWeight: 700,
+            fontSize: "clamp(26px, 3.2vw, 44px)", letterSpacing: "-1px",
+            lineHeight: 1.08, textTransform: "uppercase", color: "var(--fg)",
+          }}>
             {t("pricing.h2a")}{" "}
-            <span style={{ color: "rgb(163,163,163)" }}>
-              {t("pricing.h2b")}
-            </span>
-          </motion.h2>
+            <span style={{ color: "rgb(163,163,163)" }}>{t("pricing.h2b")}</span>
+          </h2>
         </div>
 
-        <motion.p
-          initial={{ opacity: 0, y: 10 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5, delay: 0.14 }}
-          style={{
-            flex: "1 1 280px",
-            fontFamily: "var(--font-inter)",
-            fontWeight: 400,
-            fontSize: 15,
-            lineHeight: 1.7,
-            color: "var(--fg-secondary)",
-            letterSpacing: "-0.3px",
-          }}
-        >
+        <p style={{
+          flex: "1 1 280px",
+          fontFamily: "var(--font-inter)", fontWeight: 400, fontSize: 15,
+          lineHeight: 1.7, color: "var(--fg-secondary)", letterSpacing: "-0.3px",
+          animation: `fadeUp 0.5s 0.14s ${E} both`,
+        }}>
           {t("pricing.desc")}
-        </motion.p>
+        </p>
       </div>
 
       {/* Plans */}
@@ -127,17 +90,14 @@ export default function Pricing() {
         }}
       >
         {plans.map((plan, i) => (
-          <motion.div
+          <div
             key={plan.name}
-            initial={{ opacity: 0, y: 24 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5, delay: 0.1 + i * 0.08, ease: EASE }}
             style={{
-              display: "flex",
-              flexDirection: "column",
+              display: "flex", flexDirection: "column",
               padding: "32px 28px",
               background: plan.featured ? "var(--fg)" : "var(--bg)",
               position: "relative",
+              animation: `fadeUp 0.5s ${0.1 + i * 0.08}s ${E} both`,
             }}
           >
 
@@ -250,24 +210,19 @@ export default function Pricing() {
               {t("pricing.cta")}
               <ArrowUpRight size={14} strokeWidth={2} />
             </a>
-          </motion.div>
+          </div>
         ))}
       </div>
 
       {/* Add-ons strip */}
-      <motion.div
-        initial={{ opacity: 0, y: 16 }}
-        animate={inView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.5, delay: 0.4, ease: EASE }}
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(4, 1fr)",
-          gap: 1,
-          background: "rgba(0,0,0,0.06)",
-          border: "1px solid rgba(0,0,0,0.06)",
-          borderTop: "none",
-        }}
+      <div
         className="addons-grid"
+        style={{
+          display: "grid", gridTemplateColumns: "repeat(4, 1fr)",
+          gap: 1, background: "rgba(0,0,0,0.06)",
+          border: "1px solid rgba(0,0,0,0.06)", borderTop: "none",
+          animation: `fadeIn 0.5s 0.35s ${E} both`,
+        }}
       >
         {addons.map((addon, i) => (
           <div
@@ -301,22 +256,15 @@ export default function Pricing() {
             </span>
           </div>
         ))}
-      </motion.div>
+      </div>
 
-      <motion.p
-        initial={{ opacity: 0 }}
-        animate={inView ? { opacity: 1 } : {}}
-        transition={{ duration: 0.5, delay: 0.5 }}
-        style={{
-          fontFamily: "var(--font-inter)",
-          fontSize: 12,
-          color: "var(--fg-muted)",
-          marginTop: 16,
-          letterSpacing: "-0.1px",
-        }}
-      >
+      <p style={{
+        fontFamily: "var(--font-inter)", fontSize: 12,
+        color: "var(--fg-muted)", marginTop: 16, letterSpacing: "-0.1px",
+        animation: `fadeIn 0.5s 0.45s ${E} both`,
+      }}>
         {t("pricing.disclaimer")}
-      </motion.p>
+      </p>
     </section>
   );
 }
