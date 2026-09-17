@@ -11,6 +11,7 @@ const projects = [
     meta: "Figma to Framer",
     year: "2025",
     href: "https://the-initial.com/",
+    preview: "https://framerusercontent.com/assets/n3sAZpPxdXvBqAdluBlIy6oqgs.svg",
     caseStudy: "/case-study/the-initial",
   },
   {
@@ -19,6 +20,7 @@ const projects = [
     meta: "Template Customization",
     year: "2026",
     href: "https://www.bindhq.com/",
+    preview: "https://framerusercontent.com/images/8UlogeRvnNxYazVcp56Y4cn7Zx4.png",
   },
   {
     title: "VPA London",
@@ -26,6 +28,7 @@ const projects = [
     meta: "Framer Development",
     year: "2025",
     href: "https://www.vpalondon.co.uk/",
+    preview: "https://framerusercontent.com/images/r8WJbImis5H4OlUHf3Iinr5R0fI.png",
   },
   {
     title: "Upside ESG",
@@ -33,6 +36,7 @@ const projects = [
     meta: "Framer Dev & Integrations",
     year: "2026",
     href: "https://upside-esg.com/",
+    preview: "https://framerusercontent.com/images/3e0RYZS2y2GDKCPfHll3oOfNf8w.png",
     caseStudy: "/case-study/upside-esg",
   },
   {
@@ -48,6 +52,7 @@ const projects = [
     meta: "Website Migration",
     year: "2026",
     href: "https://emalbu.com/",
+    preview: "https://framerusercontent.com/assets/cwo9tTjQjvZKnI5Af9MWoLy3hw.png",
   },
 ];
 
@@ -163,7 +168,7 @@ function ProjectCard({
         {/* Screenshot image — shifts & zooms on hover */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src={screenshotUrl(project.href)}
+          src={"preview" in project && project.preview ? project.preview : screenshotUrl(project.href)}
           alt={project.title}
           onLoad={() => setLoaded(true)}
           onError={() => setErrored(true)}

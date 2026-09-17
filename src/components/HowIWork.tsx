@@ -1,20 +1,29 @@
 "use client";
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useEffect, useState } from "react";
 import { useLang } from "@/context/LangContext";
 
 const EASE = [0.22, 1, 0.36, 1] as [number, number, number, number];
+const E = `cubic-bezier(${EASE.join(",")})`;
 const STEP_NUMS = ["01", "02", "03", "04"];
 
 export default function HowIWork() {
-  const contentRef = useRef(null);
-  const sectionRef = useRef(null);
-
-  // Entrance animation fires once; color toggle fires both ways
-  const inView = useInView(contentRef, { once: true, margin: "-10%" });
-  const isDark = useInView(sectionRef, { once: false, margin: "-15% 0px" });
+  const sectionRef = useRef<HTMLElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
+  const [isDark, setIsDark] = useState(false);
 
   const { t } = useLang();
+
+  // Toggle dark background when section is in view (fires both ways)
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => setIsDark(entry.isIntersecting),
+      { rootMargin: "-15% 0px" }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
 
   const steps = STEP_NUMS.map((n, i) => ({
     n,
@@ -24,7 +33,7 @@ export default function HowIWork() {
     detail: t(`process.s${i}.detail`),
   }));
 
-  const trans = "0.72s cubic-bezier(0.22, 1, 0.36, 1)";
+  const trans = `0.72s ${E}`;
 
   return (
     <section
@@ -54,11 +63,8 @@ export default function HowIWork() {
             transition: `border-color ${trans}`,
           }}
         >
-          <div style={{ flex: "1 1 360px" }}>
-            <motion.p
-              initial={{ opacity: 0, y: 10 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5 }}
+          <div style={{ flex: "1 1 360px", animation: `fadeUp 0.5s 0.05s ${E} both` }}>
+            <p
               style={{
                 fontFamily: "var(--font-inter)",
                 fontWeight: 700,
@@ -70,11 +76,8 @@ export default function HowIWork() {
               }}
             >
               {t("process.eyebrow")}
-            </motion.p>
-            <motion.h2
-              initial={{ opacity: 0, y: 10 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: 0.06, ease: EASE }}
+            </p>
+            <h2
               style={{
                 fontFamily: "var(--font-poppins)",
                 fontWeight: 700,
@@ -93,13 +96,10 @@ export default function HowIWork() {
               }}>
                 {t("process.h1b")}
               </span>
-            </motion.h2>
+            </h2>
           </div>
 
-          <motion.p
-            initial={{ opacity: 0, y: 10 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5, delay: 0.14 }}
+          <p
             style={{
               flex: "1 1 280px",
               fontFamily: "var(--font-inter)",
@@ -109,20 +109,18 @@ export default function HowIWork() {
               color: isDark ? "rgba(255,255,255,0.5)" : "var(--fg-secondary)",
               letterSpacing: "-0.3px",
               transition: `color ${trans}`,
+              animation: `fadeUp 0.5s 0.14s ${E} both`,
             }}
           >
             {t("process.desc")}
-          </motion.p>
+          </p>
         </div>
 
         {/* Steps */}
         <div style={{ display: "flex", flexDirection: "column" }}>
           {steps.map((step, i) => (
-            <motion.div
+            <div
               key={i}
-              initial={{ opacity: 0, y: 20 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: 0.1 + i * 0.1, ease: EASE }}
               className="process-step"
               style={{
                 display: "grid",
@@ -134,6 +132,7 @@ export default function HowIWork() {
                   : "none",
                 alignItems: "start",
                 transition: `border-color ${trans}`,
+                animation: `fadeUp 0.5s ${0.1 + i * 0.1}s ${E} both`,
               }}
             >
               {/* Step number */}
@@ -235,7 +234,7 @@ export default function HowIWork() {
                   {step.detail}
                 </p>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>
