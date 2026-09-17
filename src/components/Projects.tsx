@@ -56,7 +56,7 @@ const EASE = [0.22, 1, 0.36, 1] as [number, number, number, number];
 const SPRING = "cubic-bezier(0.22, 1, 0.36, 1)";
 
 function screenshotUrl(href: string) {
-  return `https://api.microlink.io?url=${encodeURIComponent(href)}&screenshot=true&meta=false&embed=screenshot.url`;
+  return `https://image.thum.io/get/width/1200/crop/750/noanimate/${href}`;
 }
 
 function ProjectCard({
@@ -74,11 +74,13 @@ function ProjectCard({
 
   useEffect(() => {
     if (loaded || errored) return;
-    const t = setTimeout(() => setErrored(true), 8000);
+    const t = setTimeout(() => setErrored(true), 12000);
     return () => clearTimeout(t);
   }, [loaded, errored]);
 
   const displayUrl = project.href.replace(/^https?:\/\//, "").replace(/\/$/, "");
+  const cardHref = "caseStudy" in project && project.caseStudy ? project.caseStudy as string : project.href;
+  const cardIsExternal = !("caseStudy" in project && project.caseStudy);
 
   return (
     <motion.div
@@ -88,10 +90,10 @@ function ProjectCard({
       style={{ display: "flex", flexDirection: "column" }}
     >
       {/* Screenshot card */}
-      <a
-        href={project.href}
-        target="_blank"
-        rel="noopener noreferrer"
+      <Link
+        href={cardHref}
+        target={cardIsExternal ? "_blank" : undefined}
+        rel={cardIsExternal ? "noopener noreferrer" : undefined}
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
         style={{
@@ -206,23 +208,29 @@ function ProjectCard({
           transition: `background 0.3s ease`,
         }} />
 
-        {/* Arrow button */}
-        <div style={{
-          position: "absolute", top: 14, right: 14, zIndex: 4,
-          width: 36, height: 36,
-          background: hovered ? "#fff" : "var(--fg)",
-          display: "flex", alignItems: "center", justifyContent: "center",
-          transition: `background 0.25s ease, transform 0.3s ${SPRING}`,
-          transform: hovered ? "scale(1.1)" : "scale(1)",
-        }}>
+        {/* Arrow button — always links to live site */}
+        <a
+          href={project.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={(e) => e.stopPropagation()}
+          style={{
+            position: "absolute", top: 14, right: 14, zIndex: 4,
+            width: 36, height: 36,
+            background: hovered ? "#fff" : "var(--fg)",
+            display: "flex", alignItems: "center", justifyContent: "center",
+            transition: `background 0.25s ease, transform 0.3s ${SPRING}`,
+            transform: hovered ? "scale(1.1)" : "scale(1)",
+          }}
+        >
           <ArrowUpRight
             size={16}
             strokeWidth={2}
             color={hovered ? "#0f0f0f" : "#fff"}
             style={{ transition: "color 0.25s ease" }}
           />
-        </div>
-      </a>
+        </a>
+      </Link>
 
       {/* Info below card */}
       <div style={{ paddingTop: 18 }}>
@@ -241,8 +249,9 @@ function ProjectCard({
           <span style={{
             fontFamily: "var(--font-inter)", fontWeight: 700,
             fontSize: 9, letterSpacing: "1.8px", textTransform: "uppercase",
-            color: "#ede9fe",
-            background: "rgba(109,40,217,0.55)",
+            color: "var(--accent-purple)",
+            background: "rgba(109,40,217,0.08)",
+            border: "1px solid rgba(109,40,217,0.18)",
             padding: "3px 7px",
             flexShrink: 0,
           }}>
