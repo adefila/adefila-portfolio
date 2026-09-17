@@ -306,8 +306,9 @@ html {
     padding-bottom: 28px !important;
   }
 
-  /* Currently: 2-col → 1-col on mobile */
-  .currently-grid {
+  /* Currently panels: 2-col → 1-col on mobile */
+  .currently-grid,
+  .currently-panels {
     grid-template-columns: 1fr !important;
   }
 
