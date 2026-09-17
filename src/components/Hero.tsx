@@ -168,7 +168,6 @@ export default function Hero() {
               </MagneticButton>
             </div>
       </div>
-
       {/* Full-width project marquee — keep motion for opacity fade-in */}
       <motion.div
         initial={{ opacity: 0 }}
