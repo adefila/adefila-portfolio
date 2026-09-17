@@ -88,7 +88,7 @@ export default function HowIWork() {
             >
               {t("process.h1")}{" "}
               <span style={{
-                color: isDark ? "rgba(255,255,255,0.28)" : "rgb(163,163,163)",
+                color: isDark ? "rgba(255,255,255,0.6)" : "rgb(163,163,163)",
                 transition: `color ${trans}`,
               }}>
                 {t("process.h1b")}
@@ -185,8 +185,8 @@ export default function HowIWork() {
                       fontSize: 11,
                       letterSpacing: "0.5px",
                       textTransform: "uppercase",
-                      color: "var(--accent-purple)",
-                      background: isDark ? "rgba(109,40,217,0.25)" : "rgba(109,40,217,0.08)",
+                      color: isDark ? "#c4b5fd" : "var(--accent-purple)",
+                      background: isDark ? "rgba(109,40,217,0.35)" : "rgba(109,40,217,0.08)",
                       padding: "3px 8px",
                       borderRadius: 0,
                       flexShrink: 0,
@@ -226,7 +226,7 @@ export default function HowIWork() {
                     fontWeight: 400,
                     fontSize: 14,
                     lineHeight: 1.65,
-                    color: isDark ? "rgba(255,255,255,0.45)" : "var(--fg-secondary)",
+                    color: isDark ? "rgba(255,255,255,0.65)" : "var(--fg-secondary)",
                     letterSpacing: "-0.1px",
                     fontStyle: "italic",
                     transition: `color ${trans}`,
