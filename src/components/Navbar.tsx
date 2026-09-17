@@ -1,7 +1,6 @@
 "use client";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import { CalendarDays } from "lucide-react";
 import { useEffect, useState, useMemo } from "react";
 import MagneticButton from "./MagneticButton";
 import { useLang } from "@/context/LangContext";
@@ -14,7 +13,6 @@ const NAV_HREFS = [
   { key: "nav.testimonials", href: "#testimonials" },
   { key: "nav.about",        href: "#about"        },
   { key: "nav.faq",          href: "#faq"          },
-  { key: "nav.contact",      href: "#contact"      },
 ];
 
 const SECTION_IDS = ["hero", "work", "benefits", "process", "pricing", "testimonials", "about", "faq", "contact"];
@@ -205,9 +203,7 @@ export default function Navbar() {
 
           {/* Desktop CTA */}
           <MagneticButton
-            href="https://calendly.com/adefilasamuel929/30min"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="#contact"
             className="nav-cta nav-cta-desktop"
             style={{
               fontFamily: "var(--font-inter)",
@@ -218,13 +214,13 @@ export default function Navbar() {
               padding: "10px 20px",
               borderRadius: 0,
               textDecoration: "none",
-              letterSpacing: "-0.2px",
+              letterSpacing: "0.5px",
+              textTransform: "uppercase",
               alignItems: "center",
               gap: 8,
             }}
           >
-            {t("common.scheduleCall")}
-            <CalendarDays size={14} strokeWidth={2} />
+            Contact Me
           </MagneticButton>
 
           {/* Mobile hamburger */}
@@ -314,9 +310,7 @@ export default function Navbar() {
               style={{ marginTop: 40 }}
             >
               <a
-                href="https://calendly.com/adefilasamuel929/30min"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="#contact"
                 onClick={close}
                 style={{
                   display: "inline-flex",
@@ -330,11 +324,11 @@ export default function Navbar() {
                   padding: "14px 28px",
                   borderRadius: 0,
                   textDecoration: "none",
-                  letterSpacing: "-0.2px",
+                  letterSpacing: "0.5px",
+                  textTransform: "uppercase",
                 }}
               >
-                {t("common.scheduleCall")}
-                <CalendarDays size={15} strokeWidth={2} />
+                Contact Me
               </a>
             </motion.div>
 
