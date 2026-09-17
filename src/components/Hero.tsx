@@ -34,17 +34,9 @@ export default function Hero() {
         .marquee-track:hover {
           animation-play-state: paused;
         }
-        @media (max-width: 900px) {
-          .hero-inner { grid-template-columns: 1fr !important; }
-          .hero-photo-col { display: none !important; }
-        }
       `}</style>
 
       <div style={{ maxWidth: 1200, margin: "0 auto", paddingLeft: 20, paddingRight: 20 }}>
-        <div className="hero-inner" style={{ display: "grid", gridTemplateColumns: "1fr auto", gap: "0 72px", alignItems: "center" }}>
-
-          {/* Left: all text content */}
-          <div>
             {/* Available badge — plain HTML + CSS animation so it's visible before JS hydrates */}
             <div
               className="hero-badge"
@@ -152,7 +144,7 @@ export default function Hero() {
             {/* CTA buttons — CSS animation */}
             <div
               className="hero-cta"
-              style={{ display: "flex", gap: 12, flexWrap: "wrap", marginBottom: 28, animation: `heroFadeUp 0.6s 0.5s ${EASE} both` }}
+              style={{ display: "flex", gap: 12, flexWrap: "wrap", marginBottom: 48, animation: `heroFadeUp 0.6s 0.5s ${EASE} both` }}
             >
               <MagneticButton
                 href="https://calendly.com/adefilasamuel929/30min"
@@ -175,77 +167,6 @@ export default function Hero() {
                 {t("hero.cta")} <CalendarDays size={15} strokeWidth={2} />
               </MagneticButton>
             </div>
-
-            {/* Trust strip */}
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                gap: 20,
-                flexWrap: "wrap",
-                animation: `heroFadeUp 0.6s 0.6s ${EASE} both`,
-                marginBottom: 48,
-              }}
-            >
-              {[
-                { label: "Top Rated", sub: "on Upwork" },
-                { label: "100% Job Success", sub: "score" },
-                { label: "50+ Projects", sub: "shipped on time" },
-              ].map((item, i) => (
-                <div key={i} style={{ display: "flex", alignItems: "center", gap: i > 0 ? 20 : 0 }}>
-                  {i > 0 && (
-                    <span style={{ width: 1, height: 28, background: "rgba(0,0,0,0.12)", flexShrink: 0 }} />
-                  )}
-                  <div style={{ display: "flex", flexDirection: "column", gap: 1, paddingLeft: i > 0 ? 20 : 0 }}>
-                    <span style={{
-                      fontFamily: "var(--font-poppins)",
-                      fontWeight: 700,
-                      fontSize: 13,
-                      letterSpacing: "-0.2px",
-                      color: "var(--fg)",
-                    }}>{item.label}</span>
-                    <span style={{
-                      fontFamily: "var(--font-inter)",
-                      fontWeight: 400,
-                      fontSize: 11,
-                      letterSpacing: "0.5px",
-                      textTransform: "uppercase",
-                      color: "var(--fg-secondary)",
-                    }}>{item.sub}</span>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Right: Samuel's photo */}
-          <div
-            className="hero-photo-col"
-            style={{
-              width: 340,
-              flexShrink: 0,
-              animation: `heroFadeUp 0.7s 0.3s ${EASE} both`,
-            }}
-          >
-            <div style={{
-              width: 340,
-              height: 420,
-              overflow: "hidden",
-              position: "relative",
-              background: "#e8e8e8",
-            }}>
-              <Image
-                src="/gallery/photo-4.jpeg"
-                alt="Samuel Adefila — Framer Developer"
-                fill
-                priority
-                sizes="340px"
-                style={{ objectFit: "cover", objectPosition: "center top" }}
-              />
-            </div>
-          </div>
-
-        </div>
       </div>
 
       {/* Full-width project marquee — keep motion for opacity fade-in */}
