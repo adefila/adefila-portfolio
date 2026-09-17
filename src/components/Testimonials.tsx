@@ -222,7 +222,7 @@ export default function Testimonials() {
                       muted
                       loop
                       playsInline
-                      preload="metadata"
+                      preload="none"
                       style={{
                         position: "absolute", inset: 0,
                         width: "100%", height: "100%",
