@@ -220,20 +220,10 @@ function ProjectCard({
 
       {/* Info below card */}
       <div style={{ paddingTop: 18 }}>
-        {/* Tag + Title */}
+        {/* Title + trailing tag */}
         <div style={{
-          display: "flex", alignItems: "baseline", gap: 8, marginBottom: 6, flexWrap: "wrap",
+          display: "flex", alignItems: "center", gap: 8, marginBottom: 6, flexWrap: "wrap",
         }}>
-          <span style={{
-            fontFamily: "var(--font-inter)", fontWeight: 700,
-            fontSize: 9, letterSpacing: "1.8px", textTransform: "uppercase",
-            color: "var(--accent-purple)",
-            padding: "3px 7px",
-            border: "1px solid rgba(109,40,217,0.28)",
-            flexShrink: 0,
-          }}>
-            {project.tag}
-          </span>
           <h3 style={{
             fontFamily: "var(--font-poppins)", fontWeight: 600,
             fontSize: "clamp(14px, 1.1vw, 16px)", letterSpacing: "-0.3px",
@@ -242,6 +232,16 @@ function ProjectCard({
           }}>
             {project.title}
           </h3>
+          <span style={{
+            fontFamily: "var(--font-inter)", fontWeight: 700,
+            fontSize: 9, letterSpacing: "1.8px", textTransform: "uppercase",
+            color: "#ede9fe",
+            background: "rgba(109,40,217,0.55)",
+            padding: "3px 7px",
+            flexShrink: 0,
+          }}>
+            {project.tag}
+          </span>
         </div>
 
         {/* Type + Year + Case Study */}
