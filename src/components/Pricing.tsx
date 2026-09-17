@@ -3,7 +3,6 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { Check, ArrowUpRight } from "lucide-react";
 import { useLang } from "@/context/LangContext";
-import { CURRENCIES, CurrencyCode } from "@/i18n/translations";
 
 const PLANS_BASE = [
   { usdPrice: 500,  featured: false, featureCount: 5, planKey: "plan0" },
@@ -23,9 +22,7 @@ const EASE = [0.22, 1, 0.36, 1] as [number, number, number, number];
 export default function Pricing() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-10%" });
-  const { t, formatPrice, currency, setCurrency } = useLang();
-
-  const currentCurr = CURRENCIES.find((c) => c.code === currency) ?? CURRENCIES[0];
+  const { t, formatPrice, currency } = useLang();
 
   const plans = PLANS_BASE.map(({ planKey, usdPrice, featured, featureCount }) => ({
     label: t(`pricing.${planKey}.label`),
@@ -116,68 +113,6 @@ export default function Pricing() {
           {t("pricing.desc")}
         </motion.p>
       </div>
-
-      {/* Currency strip */}
-      <motion.div
-        initial={{ opacity: 0, y: 8 }}
-        animate={inView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.4, delay: 0.08, ease: EASE }}
-        style={{
-          display: "flex",
-          alignItems: "center",
-          gap: 8,
-          marginBottom: 20,
-          flexWrap: "wrap",
-        }}
-      >
-        <span style={{
-          fontFamily: "var(--font-inter)",
-          fontSize: 10,
-          fontWeight: 700,
-          letterSpacing: "2px",
-          textTransform: "uppercase",
-          color: "var(--fg-muted)",
-          marginRight: 4,
-        }}>
-          {t("pricing.pricesIn")}
-        </span>
-        {CURRENCIES.map((c) => {
-          const active = currency === c.code;
-          return (
-            <button
-              key={c.code}
-              onClick={() => setCurrency(c.code as CurrencyCode)}
-              title={c.name}
-              style={{
-                padding: "4px 10px",
-                background: active ? "var(--fg)" : "transparent",
-                border: `1px solid ${active ? "var(--fg)" : "rgba(0,0,0,0.12)"}`,
-                cursor: "pointer",
-                fontFamily: "var(--font-inter)",
-                fontSize: 11,
-                fontWeight: active ? 700 : 500,
-                color: active ? "#fff" : "var(--fg-secondary)",
-                letterSpacing: "0.3px",
-                transition: "all 0.15s",
-                lineHeight: 1.6,
-              }}
-            >
-              {c.code}
-            </button>
-          );
-        })}
-        {currency !== "USD" && (
-          <span style={{
-            fontFamily: "var(--font-inter)",
-            fontSize: 10,
-            color: "var(--fg-muted)",
-            marginLeft: 4,
-            letterSpacing: "-0.1px",
-          }}>
-            · indicative rates vs USD · {currentCurr.symbol}1 = ${(1 / currentCurr.rate).toFixed(4)}
-          </span>
-        )}
-      </motion.div>
 
       {/* Plans */}
       <div
