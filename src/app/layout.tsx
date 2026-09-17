@@ -47,6 +47,7 @@ export const metadata: Metadata = {
 import Cursor from "@/components/Cursor";
 import { LangProvider } from "@/context/LangContext";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -128,6 +129,7 @@ export default function RootLayout({
           <LanguageSwitcher />
         </LangProvider>
       </body>
+      <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID!} />
     </html>
   );
 }

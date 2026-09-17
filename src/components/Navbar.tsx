@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useState, useMemo } from "react";
 import MagneticButton from "./MagneticButton";
 import { useLang } from "@/context/LangContext";
+import { trackEvent } from "@/lib/gtag";
 
 const NAV_HREFS = [
   { key: "nav.work",         href: "#work"         },
@@ -204,6 +205,7 @@ export default function Navbar() {
           {/* Desktop CTA */}
           <MagneticButton
             href="#contact"
+            onClick={() => trackEvent("cta_click", { location: "navbar" })}
             className="nav-cta nav-cta-desktop"
             style={{
               fontFamily: "var(--font-inter)",

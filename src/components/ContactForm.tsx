@@ -3,6 +3,7 @@ import { motion, useInView } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 import { ArrowUpRight, Send } from "lucide-react";
 import { useLang } from "@/context/LangContext";
+import { trackEvent } from "@/lib/gtag";
 
 const EMAIL = "adefilasamuel929@gmail.com";
 
@@ -136,6 +137,10 @@ export default function ContactForm() {
       });
       if (res.ok) {
         setStatus("success");
+        trackEvent("generate_lead", {
+          service: form.service || "unspecified",
+          budget: form.budget || "unspecified",
+        });
         setForm({ name: "", email: "", service: "", budget: "", message: "" });
       } else {
         setStatus("error");
