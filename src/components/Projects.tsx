@@ -2,12 +2,13 @@
 import { motion, useInView, useMotionValue, useSpring, AnimatePresence } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { useRef, useState, useCallback, useEffect } from "react";
+import Link from "next/link";
 import { useLang } from "@/context/LangContext";
 
 const projects = [
   { title: "The Prime Media", meta: "Figma to Framer Development", year: "2025", href: "https://theprimemedia.ca/" },
   { title: "The Initial — AI Website", meta: "Figma to Framer", year: "2025", href: "https://the-initial.com/" },
-  { title: "HitPay — SaaS Website", meta: "Framer Development", year: "2024", href: "https://hitpayapp.com/" },
+  { title: "HitPay — SaaS Website", meta: "Framer Development", year: "2024", href: "https://hitpayapp.com/", caseStudy: "/case-study/hitpay" },
   { title: "BindHQ", meta: "Framer Template Customization", year: "2026", href: "https://www.bindhq.com/" },
   { title: "Clipmaster — Video Agency", meta: "Web Design", year: "2024", href: "https://clipmasters.io/" },
   { title: "VPA London — Talent Website", meta: "Framer Development", year: "2025", href: "https://www.vpalondon.co.uk/" },
@@ -367,19 +368,42 @@ export default function Projects() {
                       </a>
                     )}
                   </div>
-                  <p
-                    style={{
-                      fontFamily: "var(--font-inter)",
-                      fontWeight: 400,
-                      fontSize: 11,
-                      color: isHovered ? "rgba(255,255,255,0.5)" : "var(--fg-secondary)",
-                      letterSpacing: "0.5px",
-                      textTransform: "uppercase",
-                      transition: "color 0.2s",
-                    }}
-                  >
-                    {project.meta} &nbsp;·&nbsp; {project.year}
-                  </p>
+                  <div style={{ display: "flex", alignItems: "center", gap: 12, flexWrap: "wrap" }}>
+                    <p
+                      style={{
+                        fontFamily: "var(--font-inter)",
+                        fontWeight: 400,
+                        fontSize: 11,
+                        color: isHovered ? "rgba(255,255,255,0.5)" : "var(--fg-secondary)",
+                        letterSpacing: "0.5px",
+                        textTransform: "uppercase",
+                        transition: "color 0.2s",
+                      }}
+                    >
+                      {project.meta} &nbsp;·&nbsp; {project.year}
+                    </p>
+                    {"caseStudy" in project && project.caseStudy && (
+                      <Link
+                        href={project.caseStudy as string}
+                        onClick={(e) => e.stopPropagation()}
+                        style={{
+                          fontFamily: "var(--font-inter)",
+                          fontWeight: 700,
+                          fontSize: 10,
+                          letterSpacing: "1.5px",
+                          textTransform: "uppercase",
+                          color: isHovered ? "#c4b5fd" : "var(--accent-purple)",
+                          textDecoration: "none",
+                          borderBottom: `1px solid ${isHovered ? "rgba(196,181,253,0.4)" : "rgba(109,40,217,0.3)"}`,
+                          paddingBottom: 1,
+                          transition: "color 0.2s, border-color 0.2s",
+                          flexShrink: 0,
+                        }}
+                      >
+                        Case Study →
+                      </Link>
+                    )}
+                  </div>
                 </div>
               </div>
             </motion.div>

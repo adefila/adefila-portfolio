@@ -322,7 +322,7 @@ export const T: Record<string, Record<LangCode, string>> = {
     pt: "SITES QUE CONVERTEM.",    zh: "能够转化的网站。",           ja: "コンバージョンするサイト。", yo: "ÀWỌN OJÚEWÉ TÓ YÁRA.",
   },
   "hero.subtitle": {
-    en: "Product designer & Framer developer. I use Framer, Shopify, and Webflow to build sites that genuinely convert.",
+    en: "Framer developer and designer. I take projects from brief to live in 14 days — for founders and teams who need it built properly.",
     fr: "Designer produit & développeur Framer. J'utilise Framer, Shopify et Webflow pour créer des sites qui convertissent vraiment.",
     es: "Diseñador de producto y desarrollador Framer. Uso Framer, Shopify y Webflow para crear sitios que realmente convierten.",
     de: "Produktdesigner & Framer-Entwickler. Ich nutze Framer, Shopify und Webflow, um Websites zu bauen, die wirklich konvertieren.",
@@ -376,7 +376,7 @@ export const T: Record<string, Record<LangCode, string>> = {
 
   // ── Footer ───────────────────────────────────────────────────────────
   "footer.cta": {
-    en: "LET'S BUILD SOMETHING YOU'RE PROUD OF.",
+    en: "READY WHEN YOU ARE.",
     fr: "CONSTRUISONS QUELQUE CHOSE DONT VOUS SEREZ FIER.",
     es: "CONSTRUYAMOS ALGO DE LO QUE ESTÉS ORGULLOSO.",
     de: "LASS UNS ETWAS BAUEN, AUF DAS DU STOLZ BIST.",
@@ -386,7 +386,7 @@ export const T: Record<string, Record<LangCode, string>> = {
     yo: "JẸ́ KÁ KÒ NǸKAN TÍ YÓÒ MU INÚ RẸ DÀN.",
   },
   "footer.ctaDesc": {
-    en: "No back-and-forth, no bloated agencies, no wasted time. Tell me what you need and I'll tell you exactly how I'll get it done.",
+    en: "Tell me what you're building. I'll tell you if I can help, what it'll cost, and when it'll be done — usually in the first call.",
     fr: "Pas d'allers-retours, pas d'agences gonflées, pas de temps perdu. Dites-moi ce qu'il vous faut et je vous dirai exactement comment y parvenir.",
     es: "Sin idas y venidas, sin agencias infladas, sin tiempo perdido. Dime lo que necesitas y te diré exactamente cómo lo haré.",
     de: "Kein Hin und Her, keine aufgeblähten Agenturen, keine Zeitverschwendung. Sagen Sie mir, was Sie brauchen, und ich sage Ihnen genau, wie ich es umsetze.",
@@ -412,13 +412,13 @@ export const T: Record<string, Record<LangCode, string>> = {
     pt: "POR QUE EU",     zh: "为什么选我",        ja: "なぜ私か",          yo: "KÍNI MO FÉ",
   },
   "whyme.h1": {
-    en: "Good design is table stakes.",          fr: "Un bon design, c'est le minimum.",
+    en: "A site that looks good is just the start.",          fr: "Un bon design, c'est le minimum.",
     es: "El buen diseño es lo básico.",          de: "Gutes Design ist selbstverständlich.",
     pt: "Bom design é o mínimo.",                zh: "好设计是基本门槛。",
     ja: "良いデザインは当たり前。",                yo: "Àpẹẹrẹ tó dára jẹ́ ohun àdánidá.",
   },
   "whyme.h1b": {
-    en: "I go further.",                         fr: "Je vais plus loin.",
+    en: "The work is making it work.",                         fr: "Je vais plus loin.",
     es: "Yo voy más allá.",                      de: "Ich gehe weiter.",
     pt: "Eu vou além.",                          zh: "我更进一步。",
     ja: "私はさらに先へ。",                        yo: "Mo lọ jínà sí i.",
@@ -430,7 +430,7 @@ export const T: Record<string, Record<LangCode, string>> = {
     ja: "期日通りに完了したプロジェクト",           yo: "Àwọn iṣẹ́ tí a pé ní àkókò",
   },
   "whyme.stat1": {
-    en: "Average Client Conversion Lift",        fr: "Amélioration moyenne des conversions",
+    en: "Upwork Job Success Score",        fr: "Amélioration moyenne des conversions",
     es: "Mejora promedio de conversión",         de: "Durchschnittliche Conversion-Steigerung",
     pt: "Melhora média de conversão",            zh: "平均客户转化率提升",
     ja: "平均コンバージョン向上率",                yo: "Àlékún àárọ̀ ìyípadà àwọn oníbàárà",
@@ -442,7 +442,7 @@ export const T: Record<string, Record<LangCode, string>> = {
     ja: "年間のWeb制作経験",                       yo: "Ọdún tí mo ti ń kọ́ fún wẹ́ẹ̀bù",
   },
   "whyme.b0.title": {
-    en: "SPEED WITHOUT COMPROMISE",             fr: "RAPIDITÉ SANS COMPROMIS",
+    en: "7–14 DAYS. LOCKED IN.",             fr: "RAPIDITÉ SANS COMPROMIS",
     es: "VELOCIDAD SIN COMPROMISO",             de: "TEMPO OHNE KOMPROMISSE",
     pt: "VELOCIDADE SEM COMPROMISSO",           zh: "速度不打折扣",
     ja: "妥協なきスピード",                        yo: "IYÁRA LÁÌSÍ ÀÁRẸ̀",
@@ -458,7 +458,7 @@ export const T: Record<string, Record<LangCode, string>> = {
     yo: "A bẹ̀rẹ̀ ní ọjọ́ 7–14 láì gé àwọn igun. Àkókò rẹ jẹ́ gidi — mo mú u ni pé.",
   },
   "whyme.b1.title": {
-    en: "MADE FOR YOUR AUDIENCE",              fr: "CONÇU POUR VOTRE AUDIENCE",
+    en: "BUILT AROUND YOUR CUSTOMER",              fr: "CONÇU POUR VOTRE AUDIENCE",
     es: "HECHO PARA TU AUDIENCIA",             de: "FÜR IHR PUBLIKUM GEMACHT",
     pt: "FEITO PARA O SEU PÚBLICO",            zh: "为您的受众量身打造",
     ja: "あなたのオーディエンスのために",          yo: "A ṢÈ FÚN ÀWỌN ARẸ́ RẸ",
@@ -490,7 +490,7 @@ export const T: Record<string, Record<LangCode, string>> = {
     yo: "Ènìyàn kan láti ìpè àkọ́kọ́ sí ìfilọ́lẹ̀. Kò sí gbigbe iṣẹ́ lọ, kò sí àáfin.",
   },
   "whyme.b3.title": {
-    en: "TOOLS THAT FIT THE JOB",              fr: "LES BONS OUTILS POUR LE BON TRAVAIL",
+    en: "I PICK THE RIGHT TOOL",              fr: "LES BONS OUTILS POUR LE BON TRAVAIL",
     es: "HERRAMIENTAS QUE SE ADAPTAN",         de: "WERKZEUGE, DIE ZUR AUFGABE PASSEN",
     pt: "FERRAMENTAS CERTAS PARA O TRABALHO",  zh: "因项目而选工具",
     ja: "仕事に合ったツール",                    yo: "ÀWỌN ÌMÒ TÓ YẸ FÚN IṢẸ́",
@@ -530,7 +530,7 @@ export const T: Record<string, Record<LangCode, string>> = {
     ja: "まさにこうやって進めます。",               yo: "bẹ́ẹ̀ ni a ṣe é gan-an.",
   },
   "process.desc": {
-    en: "Most projects ship in 14 days. The timeline is tight because the process is tight — no ambiguity, no waiting, no surprises.",
+    en: "Most projects are live in 14 days. Day 1 is a call, Day 2 you have a wireframe, Day 14 you're live. That's the schedule — not a rough estimate.",
     fr: "La plupart des projets sont livrés en 14 jours. Le délai est serré parce que le processus l'est — sans ambiguïté, sans attente, sans surprises.",
     es: "La mayoría de proyectos se entregan en 14 días. El plazo es ajustado porque el proceso lo es — sin ambigüedad, sin esperas, sin sorpresas.",
     de: "Die meisten Projekte gehen in 14 Tagen live. Der Zeitplan ist eng, weil der Prozess eng ist — keine Unklarheiten, kein Warten, keine Überraschungen.",
@@ -722,7 +722,7 @@ export const T: Record<string, Record<LangCode, string>> = {
     pt: "SOBRE MIM",       zh: "关于我",            ja: "私について",         yo: "NÍPA MI",
   },
   "about.h1": {
-    en: "FROM WORDPRESS TO FRAMER: 6 YEARS BUILDING WEBSITES THAT CONVERT",
+    en: "FROM WORDPRESS TO FRAMER: 6 YEARS, 50+ PROJECTS, ONE POINT OF CONTACT",
     fr: "DE WORDPRESS À FRAMER : 6 ANS À CRÉER DES SITES QUI CONVERTISSENT",
     es: "DE WORDPRESS A FRAMER: 6 AÑOS CREANDO SITIOS QUE CONVIERTEN",
     de: "VON WORDPRESS ZU FRAMER: 6 JAHRE WEBSITES DIE KONVERTIEREN",
