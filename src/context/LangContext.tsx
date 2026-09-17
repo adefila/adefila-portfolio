@@ -98,16 +98,10 @@ export function LangProvider({ children }: { children: React.ReactNode }) {
 
   const setLang = (l: LangCode) => {
     setLangState(l);
-    // Only auto-update currency if the user hasn't manually overridden it.
-    // "Not overridden" means current currency still equals the current language's default.
-    const currentLangDefault = LANGUAGES.find((lg) => lg.code === lang)?.currency ?? "USD";
-    const newLangDefault = LANGUAGES.find((lg) => lg.code === l)?.currency ?? "USD";
-    const shouldUpdateCurrency = currency === currentLangDefault;
-    if (shouldUpdateCurrency) {
-      setCurrencyState(newLangDefault);
-      try { localStorage.setItem("sam-currency", newLangDefault); } catch {}
-    }
     try { localStorage.setItem("sam-lang", l); } catch {}
+    // Currency is never changed by language switching — it is set once from
+    // the browser locale on first visit and only updated by the user via the
+    // currency picker (setCurrency).
   };
 
   const setCurrency = (c: CurrencyCode) => {
