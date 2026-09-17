@@ -335,6 +335,10 @@ export const T: Record<string, Record<LangCode, string>> = {
     en: "BOOK A FREE CALL",        fr: "RÉSERVER UN APPEL",       es: "AGENDAR LLAMADA",         de: "ANRUF BUCHEN",
     pt: "AGENDAR CHAMADA",         zh: "预约免费通话",              ja: "無料通話を予約",            yo: "PADE NÍNÚ ÌPÈ",
   },
+  "hero.downloadCv": {
+    en: "DOWNLOAD CV",             fr: "TÉLÉCHARGER CV",          es: "DESCARGAR CV",            de: "CV HERUNTERLADEN",
+    pt: "BAIXAR CV",               zh: "下载简历",                 ja: "履歴書を取得",              yo: "GBOYE CV",
+  },
 
   // ── Pricing ──────────────────────────────────────────────────────────
   "pricing.eyebrow": {

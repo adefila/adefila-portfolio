@@ -197,7 +197,7 @@ export default function Hero() {
                   e.currentTarget.style.color = "var(--fg)";
                 }}
               >
-                Download CV <Download size={14} strokeWidth={2} />
+                {t("hero.downloadCv")} <Download size={14} strokeWidth={2} />
               </a>
             </div>
       </div>

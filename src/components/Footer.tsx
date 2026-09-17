@@ -122,6 +122,7 @@ export default function Footer() {
                 color: "var(--white)",
                 marginBottom: 20,
                 maxWidth: 560,
+                textWrap: "balance",
               }}
             >
               {t("footer.cta")}
