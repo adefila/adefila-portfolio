@@ -34,138 +34,217 @@ export default function Hero() {
         .marquee-track:hover {
           animation-play-state: paused;
         }
+        @media (max-width: 900px) {
+          .hero-inner { grid-template-columns: 1fr !important; }
+          .hero-photo-col { display: none !important; }
+        }
       `}</style>
 
       <div style={{ maxWidth: 1200, margin: "0 auto", paddingLeft: 20, paddingRight: 20 }}>
-        {/* Available badge — plain HTML + CSS animation so it's visible before JS hydrates */}
-        <div
-          className="hero-badge"
-          style={{ display: "inline-flex", alignItems: "center", gap: 6, marginBottom: 32, animation: `heroFadeUp 0.6s 0.1s ${EASE} both` }}
-        >
-          {/* Ripple dot: two layers so the outer span animates scale+opacity (compositor-only) */}
-          <span style={{ position: "relative", width: 8, height: 8, flexShrink: 0, display: "inline-flex", alignItems: "center", justifyContent: "center" }}>
-            <span
-              style={{
-                position: "absolute",
-                inset: 0,
-                borderRadius: "50%",
-                background: "var(--accent-green)",
-                animation: "pulseRipple 2s ease-out infinite",
-              }}
-            />
-            <span
-              style={{
-                width: 8,
-                height: 8,
-                borderRadius: "50%",
-                background: "var(--accent-green)",
-                display: "block",
-                position: "relative",
-                zIndex: 1,
-              }}
-            />
-          </span>
-          <span
-            style={{
-              fontFamily: "var(--font-inter)",
-              fontWeight: 600,
-              fontSize: 11,
-              letterSpacing: "0.08em",
-              textTransform: "uppercase",
-              color: "#006b2e",
-            }}
-          >
-            {t("hero.badge")}
-          </span>
-          <span
-            style={{
-              width: 3,
-              height: 3,
-              borderRadius: "50%",
-              background: "var(--fg-muted)",
-              display: "inline-block",
-            }}
-          />
-          <span
-            style={{
-              fontFamily: "var(--font-inter)",
-              fontWeight: 500,
-              fontSize: 11,
-              letterSpacing: "0.06em",
-              textTransform: "uppercase",
-              color: "var(--fg-secondary)",
-            }}
-          >
-            {t("hero.badge2")}
-          </span>
-        </div>
+        <div className="hero-inner" style={{ display: "grid", gridTemplateColumns: "1fr auto", gap: "0 72px", alignItems: "center" }}>
 
-        {/* Main headline — CSS animation per line */}
-        <div style={{ marginBottom: 24 }}>
-          {[t("hero.h1"), t("hero.h2")].map((line, i) => (
+          {/* Left: all text content */}
+          <div>
+            {/* Available badge — plain HTML + CSS animation so it's visible before JS hydrates */}
             <div
-              key={i}
-              className="hero-headline"
+              className="hero-badge"
+              style={{ display: "inline-flex", alignItems: "center", gap: 6, marginBottom: 32, animation: `heroFadeUp 0.6s 0.1s ${EASE} both` }}
+            >
+              {/* Ripple dot: two layers so the outer span animates scale+opacity (compositor-only) */}
+              <span style={{ position: "relative", width: 8, height: 8, flexShrink: 0, display: "inline-flex", alignItems: "center", justifyContent: "center" }}>
+                <span
+                  style={{
+                    position: "absolute",
+                    inset: 0,
+                    borderRadius: "50%",
+                    background: "var(--accent-green)",
+                    animation: "pulseRipple 2s ease-out infinite",
+                  }}
+                />
+                <span
+                  style={{
+                    width: 8,
+                    height: 8,
+                    borderRadius: "50%",
+                    background: "var(--accent-green)",
+                    display: "block",
+                    position: "relative",
+                    zIndex: 1,
+                  }}
+                />
+              </span>
+              <span
+                style={{
+                  fontFamily: "var(--font-inter)",
+                  fontWeight: 600,
+                  fontSize: 11,
+                  letterSpacing: "0.08em",
+                  textTransform: "uppercase",
+                  color: "#006b2e",
+                }}
+              >
+                {t("hero.badge")}
+              </span>
+              <span
+                style={{
+                  width: 3,
+                  height: 3,
+                  borderRadius: "50%",
+                  background: "var(--fg-muted)",
+                  display: "inline-block",
+                }}
+              />
+              <span
+                style={{
+                  fontFamily: "var(--font-inter)",
+                  fontWeight: 500,
+                  fontSize: 11,
+                  letterSpacing: "0.06em",
+                  textTransform: "uppercase",
+                  color: "var(--fg-secondary)",
+                }}
+              >
+                {t("hero.badge2")}
+              </span>
+            </div>
+
+            {/* Main headline — CSS animation per line */}
+            <div style={{ marginBottom: 24 }}>
+              {[t("hero.h1"), t("hero.h2")].map((line, i) => (
+                <div
+                  key={i}
+                  className="hero-headline"
+                  style={{
+                    fontFamily: "var(--font-poppins)",
+                    fontWeight: 700,
+                    fontSize: "clamp(36px, 5.5vw, 80px)",
+                    letterSpacing: "-0.05em",
+                    lineHeight: 1.05,
+                    textTransform: "uppercase",
+                    color: "var(--fg)",
+                    display: "block",
+                    animation: `heroFadeUp 0.55s ${0.15 + i * 0.12}s ${EASE} both`,
+                  }}
+                >
+                  {line}
+                </div>
+              ))}
+            </div>
+
+            {/* Subtitle — CSS animation; this is the LCP element */}
+            <p
+              className="hero-subtitle"
               style={{
-                fontFamily: "var(--font-poppins)",
-                fontWeight: 700,
-                fontSize: "clamp(40px, 7vw, 88px)",
-                letterSpacing: "-0.05em",
-                lineHeight: 1.05,
-                textTransform: "uppercase",
-                color: "var(--fg)",
-                display: "block",
-                animation: `heroFadeUp 0.55s ${0.15 + i * 0.12}s ${EASE} both`,
+                fontFamily: "var(--font-inter)",
+                fontWeight: 400,
+                fontSize: 18,
+                letterSpacing: "-0.7px",
+                lineHeight: 1.6,
+                color: "var(--fg-secondary)",
+                maxWidth: 480,
+                marginBottom: 32,
+                animation: `heroFadeUp 0.6s 0.35s ${EASE} both`,
               }}
             >
-              {line}
+              {t("hero.subtitle")}
+            </p>
+
+            {/* CTA buttons — CSS animation */}
+            <div
+              className="hero-cta"
+              style={{ display: "flex", gap: 12, flexWrap: "wrap", marginBottom: 28, animation: `heroFadeUp 0.6s 0.5s ${EASE} both` }}
+            >
+              <MagneticButton
+                href="https://calendly.com/adefilasamuel929/30min"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  fontFamily: "var(--font-inter)",
+                  fontWeight: 600,
+                  fontSize: 14,
+                  color: "var(--white)",
+                  background: "var(--fg)",
+                  padding: "14px 28px",
+                  borderRadius: 0,
+                  textDecoration: "none",
+                  letterSpacing: "-0.2px",
+                  alignItems: "center",
+                  gap: 8,
+                }}
+              >
+                {t("hero.cta")} <CalendarDays size={15} strokeWidth={2} />
+              </MagneticButton>
             </div>
-          ))}
-        </div>
 
-        {/* Subtitle — CSS animation; this is the LCP element */}
-        <p
-          className="hero-subtitle"
-          style={{
-            fontFamily: "var(--font-inter)",
-            fontWeight: 400,
-            fontSize: 20,
-            letterSpacing: "-0.7px",
-            lineHeight: 1.6,
-            color: "var(--fg-secondary)",
-            maxWidth: 520,
-            marginBottom: 32,
-            animation: `heroFadeUp 0.6s 0.35s ${EASE} both`,
-          }}
-        >
-          {t("hero.subtitle")}
-        </p>
+            {/* Trust strip */}
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: 20,
+                flexWrap: "wrap",
+                animation: `heroFadeUp 0.6s 0.6s ${EASE} both`,
+                marginBottom: 48,
+              }}
+            >
+              {[
+                { label: "Top Rated", sub: "on Upwork" },
+                { label: "100% Job Success", sub: "score" },
+                { label: "50+ Projects", sub: "shipped on time" },
+              ].map((item, i) => (
+                <div key={i} style={{ display: "flex", alignItems: "center", gap: i > 0 ? 20 : 0 }}>
+                  {i > 0 && (
+                    <span style={{ width: 1, height: 28, background: "rgba(0,0,0,0.12)", flexShrink: 0 }} />
+                  )}
+                  <div style={{ display: "flex", flexDirection: "column", gap: 1, paddingLeft: i > 0 ? 20 : 0 }}>
+                    <span style={{
+                      fontFamily: "var(--font-poppins)",
+                      fontWeight: 700,
+                      fontSize: 13,
+                      letterSpacing: "-0.2px",
+                      color: "var(--fg)",
+                    }}>{item.label}</span>
+                    <span style={{
+                      fontFamily: "var(--font-inter)",
+                      fontWeight: 400,
+                      fontSize: 11,
+                      letterSpacing: "0.5px",
+                      textTransform: "uppercase",
+                      color: "var(--fg-secondary)",
+                    }}>{item.sub}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
 
-        {/* CTA buttons — CSS animation */}
-        <div
-          className="hero-cta"
-          style={{ display: "flex", gap: 12, flexWrap: "wrap", marginBottom: 48, animation: `heroFadeUp 0.6s 0.5s ${EASE} both` }}
-        >
-          <MagneticButton
-            href="https://calendly.com/adefilasamuel929/30min"
-            target="_blank"
-            rel="noopener noreferrer"
+          {/* Right: Samuel's photo */}
+          <div
+            className="hero-photo-col"
             style={{
-              fontFamily: "var(--font-inter)",
-              fontWeight: 600,
-              fontSize: 14,
-              color: "var(--white)",
-              background: "var(--fg)",
-              padding: "14px 28px",
-              borderRadius: 0,
-              textDecoration: "none",
-              letterSpacing: "-0.2px",
-              alignItems: "center",
-              gap: 8,
+              width: 340,
+              flexShrink: 0,
+              animation: `heroFadeUp 0.7s 0.3s ${EASE} both`,
             }}
           >
-            {t("hero.cta")} <CalendarDays size={15} strokeWidth={2} />
-          </MagneticButton>
+            <div style={{
+              width: 340,
+              height: 420,
+              overflow: "hidden",
+              position: "relative",
+              background: "#e8e8e8",
+            }}>
+              <Image
+                src="/gallery/photo-4.jpeg"
+                alt="Samuel Adefila — Framer Developer"
+                fill
+                priority
+                sizes="340px"
+                style={{ objectFit: "cover", objectPosition: "center top" }}
+              />
+            </div>
+          </div>
+
         </div>
       </div>
 

@@ -11,7 +11,7 @@ const STAT_VALUES = [
 ];
 
 function CountUp({ target, suffix, inView }: { target: number; suffix: string; inView: boolean }) {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(target);
 
   useEffect(() => {
     if (!inView) return;
