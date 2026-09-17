@@ -182,16 +182,19 @@ export default function Hero() {
                   padding: "13px 24px",
                   borderRadius: 0,
                   textDecoration: "none",
-                  letterSpacing: "-0.2px",
-                  transition: "border-color 0.2s ease, background 0.2s ease",
+                  letterSpacing: "0.3px",
+                  textTransform: "uppercase",
+                  transition: "border-color 0.2s ease, background 0.2s ease, color 0.2s ease",
                 }}
                 onMouseEnter={(e) => {
+                  e.currentTarget.style.background = "var(--fg)";
                   e.currentTarget.style.borderColor = "var(--fg)";
-                  e.currentTarget.style.background = "rgba(0,0,0,0.04)";
+                  e.currentTarget.style.color = "#fff";
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.borderColor = "rgba(0,0,0,0.18)";
                   e.currentTarget.style.background = "transparent";
+                  e.currentTarget.style.borderColor = "rgba(0,0,0,0.18)";
+                  e.currentTarget.style.color = "var(--fg)";
                 }}
               >
                 Download CV <Download size={14} strokeWidth={2} />
