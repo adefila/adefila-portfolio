@@ -7,8 +7,8 @@ import { useLang } from "@/context/LangContext";
 
 const projects = [
   { title: "The Prime Media", meta: "Figma to Framer Development", year: "2025", href: "https://theprimemedia.ca/" },
-  { title: "The Initial — AI Website", meta: "Figma to Framer", year: "2025", href: "https://the-initial.com/" },
-  { title: "HitPay — SaaS Website", meta: "Framer Development", year: "2024", href: "https://hitpayapp.com/", caseStudy: "/case-study/hitpay" },
+  { title: "The Initial — AI Website", meta: "Figma to Framer", year: "2025", href: "https://the-initial.com/", caseStudy: "/case-study/the-initial" },
+  { title: "HitPay — SaaS Website", meta: "Framer Development", year: "2024", href: "https://hitpayapp.com/" },
   { title: "BindHQ", meta: "Framer Template Customization", year: "2026", href: "https://www.bindhq.com/" },
   { title: "Clipmaster — Video Agency", meta: "Web Design", year: "2024", href: "https://clipmasters.io/" },
   { title: "VPA London — Talent Website", meta: "Framer Development", year: "2025", href: "https://www.vpalondon.co.uk/" },
@@ -17,7 +17,7 @@ const projects = [
   { title: "Alyssa Corso — Personal Portfolio", meta: "Framer Development", year: "2026", href: "https://alyssacorso.com/" },
   { title: "Venara Talent", meta: "Framer Development", year: "2026", href: "https://www.venaratalent.com/" },
   { title: "Emalbu", meta: "HTML to Framer Development", year: "2026", href: "https://emalbu.com/" },
-  { title: "Upside ESG", meta: "SaaS Framer Development and Integrations", year: "2026", href: "https://upside-esg.com/" },
+  { title: "Upside ESG", meta: "SaaS Framer Development and Integrations", year: "2026", href: "https://upside-esg.com/", caseStudy: "/case-study/upside-esg" },
 ];
 
 const COLS = 3;

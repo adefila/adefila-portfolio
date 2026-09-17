@@ -17,31 +17,30 @@ const poppins = Poppins({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://adefilasamuel.com"),
-  title: "Samuel Adefila — Framer Developer & UI/UX Designer | Websites That Convert",
+  title: "Samuel Adefila — Framer Developer | 14-Day Builds for Founders",
   description:
-    "Samuel Adefila is a product designer and no-code developer. He builds with Framer, Shopify, and Webflow — 50+ projects delivered, Top Rated on Upwork with 100% Job Success. Book a free call.",
+    "Samuel Adefila is a Framer developer and designer. He takes projects from brief to live in 14 days — 50+ projects shipped, Top Rated on Upwork with 100% Job Success. Book a free call.",
   keywords: [
     "Framer developer",
-    "UI/UX designer",
-    "Framer website",
     "Figma to Framer",
-    "custom website design",
-    "conversion-focused web design",
+    "custom Framer website",
+    "Framer development",
+    "web designer for founders",
     "Upwork Top Rated",
     "Samuel Adefila",
   ],
   openGraph: {
-    title: "Samuel Adefila — Framer Developer & UI/UX Designer",
+    title: "Samuel Adefila — Framer Developer",
     description:
-      "50+ custom Framer websites delivered for founders and agencies. Top Rated on Upwork with 100% Job Success. Book a free strategy call.",
+      "50+ Framer sites shipped for founders and teams. Brief to live in 14 days. Top Rated on Upwork, 100% Job Success. Book a call.",
     type: "website",
     url: "https://adefilasamuel.com",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Samuel Adefila — Framer Developer & UI/UX Designer",
+    title: "Samuel Adefila — Framer Developer",
     description:
-      "50+ conversion-focused Framer websites. Top Rated on Upwork. Book a free call.",
+      "50+ Framer sites. Brief to live in 14 days. Top Rated on Upwork. Book a free call.",
   },
 };
 
@@ -59,7 +58,7 @@ const jsonLd = {
       url: "https://adefilasamuel.com",
       jobTitle: "Framer Developer & UI/UX Designer",
       description:
-        "Product designer and no-code developer building conversion-focused websites with Framer, Shopify, and Webflow. Top Rated on Upwork with 100% Job Success.",
+        "Framer developer and designer. Takes projects from brief to live in 14 days with Framer, Shopify, and Webflow. Top Rated on Upwork with 100% Job Success.",
       sameAs: [
         "https://www.linkedin.com/in/adefila-samuel-144448201/",
         "https://x.com/adeyemiS_",
@@ -76,7 +75,7 @@ const jsonLd = {
       url: "https://adefilasamuel.com",
       name: "Samuel Adefila — Framer Developer & UI/UX Designer",
       description:
-        "Portfolio of Samuel Adefila — 50+ conversion-focused websites built with Framer, Shopify, and Webflow.",
+        "Portfolio of Samuel Adefila — 50+ Framer sites built for founders and teams. Brief to live in 14 days.",
       author: { "@id": "https://adefilasamuel.com/#person" },
     },
     {

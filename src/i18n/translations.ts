@@ -254,7 +254,7 @@ export const T: Record<string, Record<LangCode, string>> = {
     pt: "SIGA-ME EM",               zh: "关注我",                     ja: "フォローはこちら",           yo: "TẸ̀LEМ Í LÓRí",
   },
   "footer.tagline": {
-    en: "Framer & Web Developer building fast, beautiful sites.",
+    en: "Framer developer. Brief to live in 14 days.",
     fr: "Développeur Framer & Web créant des sites rapides et beaux.",
     es: "Desarrollador Framer & Web creando sitios rápidos y hermosos.",
     de: "Framer & Web-Entwickler, der schnelle, schöne Websites baut.",
@@ -318,7 +318,7 @@ export const T: Record<string, Record<LangCode, string>> = {
     pt: "EU PROJETO E CONSTRUO",   zh: "我设计并构建",              ja: "デザインして構築する",      yo: "MO ṢEÈDÀ ATI KÒ",
   },
   "hero.h2": {
-    en: "WEBSITES THAT CONVERT.",  fr: "DES SITES QUI CONVERTISSENT.", es: "SITIOS WEB QUE CONVIERTEN.", de: "WEBSITES DIE KONVERTIEREN.",
+    en: "FRAMER SITES IN 14 DAYS.",  fr: "DES SITES QUI CONVERTISSENT.", es: "SITIOS WEB QUE CONVIERTEN.", de: "WEBSITES DIE KONVERTIEREN.",
     pt: "SITES QUE CONVERTEM.",    zh: "能够转化的网站。",           ja: "コンバージョンするサイト。", yo: "ÀWỌN OJÚEWÉ TÓ YÁRA.",
   },
   "hero.subtitle": {
@@ -418,7 +418,7 @@ export const T: Record<string, Record<LangCode, string>> = {
     ja: "良いデザインは当たり前。",                yo: "Àpẹẹrẹ tó dára jẹ́ ohun àdánidá.",
   },
   "whyme.h1b": {
-    en: "The work is making it work.",                         fr: "Je vais plus loin.",
+    en: "Getting it right takes more.",                         fr: "Je vais plus loin.",
     es: "Yo voy más allá.",                      de: "Ich gehe weiter.",
     pt: "Eu vou além.",                          zh: "我更进一步。",
     ja: "私はさらに先へ。",                        yo: "Mo lọ jínà sí i.",
