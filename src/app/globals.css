@@ -264,6 +264,16 @@ html {
     padding-top: 96px !important;
   }
 
+  /* Hero marquee: less bottom breathing room before projects on mobile */
+  .hero-marquee-wrap {
+    padding-bottom: 32px !important;
+  }
+
+  /* Projects: less top padding on mobile since marquee already has some */
+  #work {
+    padding-top: 32px !important;
+  }
+
   /* Hero spacing: tighten element gaps on mobile */
   .hero-badge {
     margin-bottom: 20px !important;
