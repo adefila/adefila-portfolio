@@ -235,20 +235,22 @@ export default function SideProjects() {
             )}
           </div>
 
-          {/* Video */}
+          {/* Video — only mount the element once section is visible */}
           <div className="sp-video" style={{
             position: "relative", overflow: "hidden", minHeight: 360, background: "#111",
           }}>
-            <video
-              key={project.video}
-              src={project.video}
-              autoPlay muted loop playsInline preload="none"
-              style={{
-                position: "absolute", inset: 0,
-                width: "100%", height: "100%",
-                objectFit: "cover", display: "block",
-              }}
-            />
+            {inView && (
+              <video
+                key={project.video}
+                src={project.video}
+                autoPlay muted loop playsInline preload="none"
+                style={{
+                  position: "absolute", inset: 0,
+                  width: "100%", height: "100%",
+                  objectFit: "cover", display: "block",
+                }}
+              />
+            )}
           </div>
         </motion.div>
       </AnimatePresence>
