@@ -171,7 +171,7 @@ export default function SideProjects() {
             <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
               <span style={{
                 fontFamily: "var(--font-inter)", fontWeight: 700, fontSize: 11,
-                letterSpacing: "3px", color: "rgba(0,0,0,0.18)",
+                letterSpacing: "3px", color: "rgba(0,0,0,0.45)",
               }}>
                 {String(active + 1).padStart(2, "0")}
               </span>

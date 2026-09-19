@@ -210,11 +210,7 @@ export default function Testimonials() {
               >
                 {"video" in item && item.video ? (
                   /* ── Video testimonial card ── */
-                  <button
-                    onClick={() => setVideoOpen(true)}
-                    aria-label={`Play video testimonial from ${item.name}`}
-                    style={{ all: "unset", display: "contents", cursor: "pointer" }}
-                  >
+                  <>
                     {/* Silent preview — plays muted in the card */}
                     <video
                       src={item.video}
@@ -229,30 +225,11 @@ export default function Testimonials() {
                         objectFit: "cover",
                       }}
                     />
-                    {/* Subtle dark vignette — not a full blackout */}
+                    {/* Subtle dark vignette */}
                     <div style={{
                       position: "absolute", inset: 0,
                       background: "linear-gradient(to top, rgba(0,0,0,0.65) 30%, rgba(0,0,0,0.12) 100%)",
                     }} />
-                    {/* Play button in center */}
-                    <div style={{
-                      position: "absolute", inset: 0,
-                      display: "flex", alignItems: "center", justifyContent: "center",
-                    }}>
-                      <div style={{
-                        width: 56, height: 56, borderRadius: "50%",
-                        background: "rgba(255,255,255,0.18)",
-                        backdropFilter: "blur(6px)",
-                        border: "1px solid rgba(255,255,255,0.35)",
-                        display: "flex", alignItems: "center", justifyContent: "center",
-                        transition: "background 0.2s, transform 0.2s",
-                      }}
-                        onMouseEnter={e => { (e.currentTarget as HTMLDivElement).style.background = "rgba(255,255,255,0.3)"; (e.currentTarget as HTMLDivElement).style.transform = "scale(1.08)"; }}
-                        onMouseLeave={e => { (e.currentTarget as HTMLDivElement).style.background = "rgba(255,255,255,0.18)"; (e.currentTarget as HTMLDivElement).style.transform = "scale(1)"; }}
-                      >
-                        <Play size={22} fill="#fff" color="#fff" style={{ marginLeft: 3 }} />
-                      </div>
-                    </div>
                     {/* Name / role at the bottom */}
                     <div style={{ position: "relative", zIndex: 1, padding: 28, display: "flex", flexDirection: "column", justifyContent: "space-between", height: "100%", minHeight: 400, pointerEvents: "none" }}>
                       <span style={{
@@ -275,13 +252,36 @@ export default function Testimonials() {
                         <p style={{
                           fontFamily: "var(--font-inter)", fontWeight: 400, fontSize: 11,
                           textTransform: "uppercase", letterSpacing: "0.5px",
-                          color: "rgba(255,255,255,0.7)",
+                          color: "rgba(255,255,255,0.85)",
                         }}>
                           {item.role}
                         </p>
                       </div>
                     </div>
-                  </button>
+                    {/* Play button — full-card overlay button, accessibility-tree-safe */}
+                    <button
+                      onClick={() => setVideoOpen(true)}
+                      aria-label={`Play video testimonial from ${item.name}`}
+                      style={{
+                        position: "absolute", inset: 0, zIndex: 2,
+                        width: "100%", height: "100%",
+                        background: "none", border: "none", cursor: "pointer",
+                        display: "flex", alignItems: "center", justifyContent: "center",
+                      }}
+                    >
+                      <div style={{
+                        width: 56, height: 56, borderRadius: "50%",
+                        background: "rgba(255,255,255,0.18)",
+                        backdropFilter: "blur(6px)",
+                        border: "1px solid rgba(255,255,255,0.35)",
+                        display: "flex", alignItems: "center", justifyContent: "center",
+                        transition: "background 0.2s, transform 0.2s",
+                        pointerEvents: "none",
+                      }}>
+                        <Play size={22} fill="#fff" color="#fff" style={{ marginLeft: 3 }} />
+                      </div>
+                    </button>
+                  </>
                 ) : (
                   /* ── Text testimonial card ── */
                   <div style={{ padding: 28, display: "flex", flexDirection: "column", justifyContent: "space-between", height: "100%", gap: 20 }}>

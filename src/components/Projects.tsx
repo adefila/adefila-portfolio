@@ -209,6 +209,7 @@ function ProjectCard({
         {/* Arrow button — always opens live site; button avoids nested <a> */}
         <button
           onClick={(e) => { e.preventDefault(); e.stopPropagation(); window.open(project.href, "_blank", "noopener,noreferrer"); }}
+          aria-label={`Open ${project.title}`}
           style={{
             position: "absolute", top: 14, right: 14, zIndex: 4,
             width: 36, height: 36,
