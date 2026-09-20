@@ -419,7 +419,7 @@ export default function About() {
                 <img
                   src={photo.src}
                   alt={`Gallery photo ${photo.id}`}
-                  style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+                  style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", filter: "grayscale(100%) contrast(1.05)" }}
                 />
               </div>
             ))}

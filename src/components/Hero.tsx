@@ -207,8 +207,8 @@ export default function Hero() {
                 flexShrink: 0,
                 width: 600,
                 height: 380,
-                background: slide.img ? "#e8e8e8" : "rgba(0,0,0,0.05)",
-                border: "1px solid rgba(0,0,0,0.07)",
+                background: "#111",
+                border: "1px solid rgba(255,255,255,0.06)",
                 borderRadius: 0,
                 overflow: "hidden",
                 position: "relative",
@@ -220,7 +220,7 @@ export default function Hero() {
                 const x = (e.clientX - rect.left) / rect.width - 0.5;
                 const y = (e.clientY - rect.top) / rect.height - 0.5;
                 e.currentTarget.style.transform = `perspective(900px) rotateY(${x * 10}deg) rotateX(${-y * 7}deg) scale(1.03)`;
-                e.currentTarget.style.boxShadow = `${-x * 12}px ${-y * 12}px 32px rgba(0,0,0,0.15)`;
+                e.currentTarget.style.boxShadow = `${-x * 12}px ${-y * 12}px 32px rgba(0,0,0,0.3)`;
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.transform = "perspective(900px) rotateY(0deg) rotateX(0deg) scale(1)";
@@ -228,14 +228,35 @@ export default function Hero() {
               }}
             >
               {slide.img ? (
-                <Image
-                  src={slide.img}
-                  alt={slide.title}
-                  fill
-                  sizes="(max-width: 768px) 300px, 600px"
-                  priority={i < 2}
-                  style={{ objectFit: "contain", objectPosition: "top center" }}
-                />
+                <>
+                  <Image
+                    src={slide.img}
+                    alt={slide.title}
+                    fill
+                    sizes="(max-width: 768px) 300px, 600px"
+                    priority={i < 2}
+                    style={{ objectFit: "cover", objectPosition: "top center", filter: "grayscale(30%) brightness(0.75)", mixBlendMode: "luminosity" }}
+                  />
+                  {/* Dark overlay for cohesion */}
+                  <div style={{ position: "absolute", inset: 0, background: "rgba(0,0,0,0.45)" }} />
+                  {/* Caption */}
+                  <div style={{
+                    position: "absolute", bottom: 0, left: 0, right: 0,
+                    padding: "20px 24px",
+                    background: "linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 100%)",
+                  }}>
+                    <p style={{
+                      fontFamily: "var(--font-poppins)", fontWeight: 700,
+                      fontSize: 14, letterSpacing: "-0.3px", textTransform: "uppercase",
+                      color: "#fff", margin: 0, lineHeight: 1.2,
+                    }}>{slide.title}</p>
+                    <p style={{
+                      fontFamily: "var(--font-inter)", fontSize: 11,
+                      letterSpacing: "0.5px", color: "rgba(255,255,255,0.55)",
+                      margin: "4px 0 0",
+                    }}>{slide.meta}</p>
+                  </div>
+                </>
               ) : null}
             </div>
           ))}

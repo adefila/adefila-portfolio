@@ -42,7 +42,7 @@ export default function MidCTA() {
               marginBottom: 10,
             }}
           >
-            {t("midcta.headline")}
+            Seen enough?
           </p>
           <p
             style={{
@@ -55,7 +55,7 @@ export default function MidCTA() {
               maxWidth: 400,
             }}
           >
-            {t("midcta.desc")}
+            Most clients decide within the first scroll. One call gets you the scope, the timeline, and the exact price.
           </p>
         </div>
         <MagneticButton

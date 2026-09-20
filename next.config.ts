@@ -11,12 +11,16 @@ const nextConfig: NextConfig = {
     ],
   },
   async headers() {
+    const isDev = process.env.NODE_ENV === "development";
     return [
       {
-        // Immutable cache for hashed static assets (JS/CSS bundles)
+        // Immutable cache for hashed static assets (JS/CSS bundles) — production only
         source: "/_next/static/:path*",
         headers: [
-          { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
+          {
+            key: "Cache-Control",
+            value: isDev ? "no-store" : "public, max-age=31536000, immutable",
+          },
         ],
       },
       {

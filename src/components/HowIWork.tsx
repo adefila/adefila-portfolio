@@ -138,7 +138,7 @@ export default function HowIWork() {
         width: "100%",
         background: isDark ? "#0f0f0f" : "var(--bg)",
         transition: `background ${TRANS}`,
-        padding: "80px 0",
+        padding: "80px 0 60px",
       }}
     >
       <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 20px" }}>
