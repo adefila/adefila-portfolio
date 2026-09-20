@@ -341,7 +341,7 @@ export default function Benefits() {
               <span style={{ color: "var(--accent-purple)", fontWeight: 500 }}>
                 Top Rated. 100% Job Success.
               </span>{" "}
-              I show up, I deliver, and I make the process easy.
+              I show up, I deliver, and I don't make you chase me.
             </p>
           </div>
           <a

@@ -318,11 +318,11 @@ export const T: Record<string, Record<LangCode, string>> = {
     pt: "EU PROJETO E CONSTRUO",   zh: "我设计并构建",              ja: "デザインして構築する",      yo: "MO ṢEÈDÀ ATI KÒ",
   },
   "hero.h2": {
-    en: "PRODUCTS THAT SHIP.",        fr: "DES SITES QUI CONVERTISSENT.", es: "SITIOS WEB QUE CONVIERTEN.", de: "WEBSITES DIE KONVERTIEREN.",
+    en: "SITES THAT CONVERT.",         fr: "DES SITES QUI CONVERTISSENT.", es: "SITIOS WEB QUE CONVIERTEN.", de: "WEBSITES DIE KONVERTIEREN.",
     pt: "SITES QUE CONVERTEM.",    zh: "能够转化的网站。",           ja: "コンバージョンするサイト。", yo: "ÀWỌN OJÚEWÉ TÓ YÁRA.",
   },
   "hero.subtitle": {
-    en: "Senior product designer & Framer developer. 48+ projects shipped, open to full-time roles and select freelance work.",
+    en: "Framer developer & product designer. From brief to launch in 14 days. for founders done waiting on slow agencies.",
     fr: "Développeur & designer Framer. Du brief au lancement en 14 jours. pour les fondateurs qui en ont fini avec les agences lentes.",
     es: "Desarrollador y diseñador Framer. Del brief al lanzamiento en 14 días. para fundadores hartos de agencias lentas y presupuestos inflados.",
     de: "Framer-Entwickler & Designer. Vom Brief bis live in 14 Tagen. für Gründer, die aufgehört haben, auf träge Agenturen zu warten.",
@@ -332,7 +332,7 @@ export const T: Record<string, Record<LangCode, string>> = {
     yo: "Olùgbéjáde & aṣàpẹẹrẹ Framer. Láti àkọsílẹ̀ sí ìfilọ́lẹ̀ ní ọjọ́ 14. fún àwọn adárí tó ti rẹ̀ àwọn ilé-iṣẹ́ tó lọrا.",
   },
   "hero.proof": {
-    en: "Top Rated on Upwork. 48+ Projects Shipped. Open to Full-Time Roles",
+    en: "Top Rated on Upwork  ·  50+ Projects Shipped  ·  100% Job Success",
     fr: "Top Rated sur Upwork  ·  50+ projets livrés  ·  100% de succès",
     es: "Top Rated en Upwork  ·  50+ proyectos entregados  ·  100% de éxito",
     de: "Top Rated auf Upwork  ·  50+ Projekte geliefert  ·  100% Erfolgsquote",
@@ -378,7 +378,7 @@ export const T: Record<string, Record<LangCode, string>> = {
     pt: "Agendar chamada",  zh: "预约通话",               ja: "通話を予約",           yo: "Sọ̀rọ̀ fún mi",
   },
   "pricing.disclaimer": {
-    en: "All prices are starting points. final quote depends on scope. Book a free 30-min call and you'll leave with a number.",
+    en: "All prices are starting points. Final scope and quote are confirmed on a free 30-min call — no obligation.",
     fr: "Tous les prix sont des points de départ. Réservez un appel gratuit de 30 min et vous repartirez avec un chiffre précis.",
     es: "Todos los precios son puntos de partida. Agenda una llamada gratuita de 30 minutos y tendrás un número exacto.",
     de: "Alle Preise sind Ausgangspunkte. Buchen Sie ein kostenloses 30-minütiges Gespräch und erhalten Sie eine genaue Zahl.",
@@ -428,7 +428,7 @@ export const T: Record<string, Record<LangCode, string>> = {
     ja: "十分見ましたか？",               yo: "Ti rí tó bí?",
   },
   "midcta.desc": {
-    en: "Most clients decide within the first scroll. one call gets you the scope, the timeline, and an exact price.",
+    en: "One call gets you the scope, the timeline, and an exact price. No agencies, no back-and-forth.",
     fr: "Un seul appel suffit pour obtenir le cadre, le calendrier et le prix exact.",
     es: "Una llamada y obtienes el alcance, el cronograma y el precio exacto.",
     de: "Ein Anruf genügt. Umfang, Zeitplan und Fixpreis.",
@@ -496,7 +496,7 @@ export const T: Record<string, Record<LangCode, string>> = {
     ja: "あなたのオーディエンスのために",          yo: "A ṢÈ FÚN ÀWỌN ARẸ́ RẸ",
   },
   "whyme.b1.desc": {
-    en: "Custom or template. whatever fits your brand best. Every decision is made around your audience and what they need to say yes, not what's easiest off the shelf.",
+    en: "Everything built around your audience and what they need to say yes. No off-the-shelf solutions, no guesswork — every decision serves your customer.",
     fr: "Sur mesure ou template. ce qui correspond le mieux à votre marque. Chaque décision tourne autour de votre audience et de ce qu'elle a besoin pour dire oui.",
     es: "Personalizado o plantilla. lo que mejor se adapte a tu marca. Cada decisión gira en torno a tu audiencia y lo que necesita para decir sí.",
     de: "Custom oder Template. was auch immer am besten zu Ihrer Marke passt. Jede Entscheidung dreht sich um Ihr Publikum und was es braucht, um Ja zu sagen.",
@@ -698,7 +698,7 @@ export const T: Record<string, Record<LangCode, string>> = {
     yo: "Adefila ṣe iṣẹ́ tó tayọ láti ràn mí lọ́wọ́ pẹ̀lú ọ̀nàwòlé mi lórí Framer. Nígbàtí ó parí, ọ̀nàwòlé mi ti ṣetán. Mo yin ìbáraẹniṣepọ̀ rẹ̀ tó yára àti ìdáhùn-ojúkọ rẹ̀.",
   },
   "testimonials.t2": {
-    en: "Adefila built my consultancy's landing page, and I've found about 5+ new clients through it. I'm also receiving a lot of compliments from people on the design. We did some extra work on an additional page to add social proof.",
+    en: "Adefila built my consultancy's landing page, and I've found 5+ new clients through it. I'm also receiving a lot of compliments from people on the design. We did some extra work on an additional page to add social proof.",
     fr: "Adefila a créé la page d'atterrissage de mon cabinet, et j'ai trouvé plus de 5 nouveaux clients grâce à elle. Je reçois également beaucoup de compliments sur le design. Nous avons également travaillé sur une page supplémentaire pour ajouter de la preuve sociale.",
     es: "Adefila construyó la página de aterrizaje de mi consultoría, y he encontrado más de 5 nuevos clientes gracias a ella. También recibo muchos elogios por el diseño. Hicimos trabajo adicional en una página extra para añadir prueba social.",
     de: "Adefila hat die Landing Page meiner Beratung erstellt, und ich habe über 5 neue Kunden dadurch gefunden. Ich erhalte auch viele Komplimente für das Design. Wir haben zusätzlich an einer weiteren Seite gearbeitet, um soziale Beweise hinzuzufügen.",
@@ -754,7 +754,7 @@ export const T: Record<string, Record<LangCode, string>> = {
     pt: "SOBRE MIM",       zh: "关于我",            ja: "私について",         yo: "NÍPA MI",
   },
   "about.h1": {
-    en: "FROM WORDPRESS TO FRAMER: 6 YEARS, 50+ PROJECTS, ONE POINT OF CONTACT",
+    en: "FROM WORDPRESS TO FRAMER: 6 YEARS. 50+ PROJECTS. ZERO HANDOFFS.",
     fr: "DE WORDPRESS À FRAMER : 6 ANS À CRÉER DES SITES QUI CONVERTISSENT",
     es: "DE WORDPRESS A FRAMER: 6 AÑOS CREANDO SITIOS QUE CONVIERTEN",
     de: "VON WORDPRESS ZU FRAMER: 6 JAHRE WEBSITES DIE KONVERTIEREN",
@@ -784,7 +784,7 @@ export const T: Record<string, Record<LangCode, string>> = {
     yo: "Èyí mú mi lọ sí Àpẹẹrẹ UI/UX ní 2022, lẹ́yìn náà Framer. àti níbẹ̀ ló ti ohun gbogbo bẹ̀rẹ̀ ṣiṣẹ́. Lágbára láti mú iṣẹ́ kan láti Figma àgbàdo ofo sí ojúewé alàáyè tó ń yí àwọn ará padà ní túmọ̀ pé ohun tí a gbé jade dàbí ohun tí a ṣàpẹẹrẹ.",
   },
   "about.p3": {
-    en: "That track record earned me Top Rated on Upwork. 100% Job Success across 50+ projects. Most clients keep coming back. not because they have to, but because we got the result right the first time. That's the part I'm most proud of.",
+    en: "That track record earned me Top Rated on Upwork. 100% Job Success across 50+ projects. Most clients keep coming back. not because they have to, but because I got the result right the first time. That's the part I'm most proud of.",
     fr: "Ce bilan m'a valu le statut Top Rated sur Upwork. 100% de succès sur plus de 50 projets. La plupart des clients reviennent. non pas parce qu'ils y sont obligés, mais parce que nous avons obtenu le bon résultat dès la première fois. C'est la partie dont je suis le plus fier.",
     es: "Ese historial me ganó el Top Rated en Upwork. 100% de éxito en más de 50 proyectos. La mayoría de los clientes siguen volviendo. no porque tengan que hacerlo, sino porque conseguimos el resultado correcto a la primera. De eso es de lo que más orgulloso estoy.",
     de: "Diese Erfolgsbilanz brachte mir die Bewertung 'Top Rated' auf Upwork ein. 100% Job-Erfolg bei über 50 Projekten. Die meisten Kunden kommen immer wieder. nicht weil sie müssen, sondern weil wir beim ersten Mal das richtige Ergebnis erzielt haben. Darauf bin ich am stolzesten.",
@@ -936,7 +936,7 @@ export const T: Record<string, Record<LangCode, string>> = {
     ja: "継続的なサポートはありますか？",      yo: "ṢÉ O N FUNNI NI ÀTÌLẸ́YỌ̀ TÓ MÁA Ń LÒ?",
   },
   "faq.a6": {
-    en: "Yes. Once your site is live, I'm available for updates, tweaks, and new additions. Most clients keep me on retainer for small ongoing changes rather than having to re-brief a new developer each time.",
+    en: "Yes. Once your site is live, I'm available for updates, tweaks, and new additions. Most clients keep me on retainer for ongoing changes rather than explaining their entire project to a new developer every time.",
     fr: "Oui. Une fois votre site en ligne, je suis disponible pour les mises à jour, ajustements et nouveaux ajouts. La plupart des clients me gardent en forfait pour les petits changements continus plutôt que de devoir briefer un nouveau développeur à chaque fois.",
     es: "Sí. Una vez que tu sitio esté activo, estoy disponible para actualizaciones, ajustes y nuevas adiciones. La mayoría de los clientes me mantienen en retención para pequeños cambios continuos en lugar de tener que informar a un nuevo desarrollador cada vez.",
     de: "Ja. Sobald Ihre Site live ist, stehe ich für Updates, Anpassungen und neue Ergänzungen zur Verfügung. Die meisten Kunden halten mich für kleine laufende Änderungen auf Retainer, anstatt jedes Mal einen neuen Entwickler einarbeiten zu müssen.",
