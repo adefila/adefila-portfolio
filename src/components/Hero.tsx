@@ -36,7 +36,7 @@ export default function Hero() {
           paddingLeft: 20,
           paddingRight: 20,
           display: "grid",
-          gridTemplateColumns: "55fr 45fr",
+          gridTemplateColumns: "46fr 54fr",
           gap: "0 60px",
           alignItems: "center",
           minHeight: 500,
@@ -155,7 +155,7 @@ export default function Hero() {
         {/* ── RIGHT: isometric card stack ── */}
         <div
           className="hero-stack-col"
-          style={{ position: "relative", height: 520, overflow: "visible" }}
+          style={{ position: "relative", height: 700, overflow: "visible" }}
         >
           {/*
             Outer wrapper applies the radial mask — fades edges to transparent
@@ -164,14 +164,14 @@ export default function Hero() {
           <div
             style={{
               position: "absolute",
-              inset: "-10% -15%",
+              inset: "-10% -18%",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
               WebkitMaskImage:
-                "radial-gradient(ellipse 72% 70% at 48% 52%, black 22%, rgba(0,0,0,0.6) 48%, transparent 72%)",
+                "radial-gradient(ellipse 80% 76% at 50% 52%, black 20%, rgba(0,0,0,0.6) 46%, transparent 70%)",
               maskImage:
-                "radial-gradient(ellipse 72% 70% at 48% 52%, black 22%, rgba(0,0,0,0.6) 48%, transparent 72%)",
+                "radial-gradient(ellipse 80% 76% at 50% 52%, black 20%, rgba(0,0,0,0.6) 46%, transparent 70%)",
             }}
           >
             {/*
@@ -181,10 +181,10 @@ export default function Hero() {
             <div
               style={{
                 position: "relative",
-                width: 380,
-                height: 250,
+                width: 560,
+                height: 390,
                 transform:
-                  "perspective(1100px) rotateX(20deg) rotateY(-24deg) rotateZ(2deg)",
+                  "perspective(1400px) rotateX(18deg) rotateY(-22deg) rotateZ(2deg)",
                 transformStyle: "preserve-3d",
                 animation: `heroFadeUp 0.9s 0.55s ${EASE} both`,
               }}
@@ -199,8 +199,8 @@ export default function Hero() {
                       width: "100%",
                       height: "100%",
                       // Each successive card sits further "back" — shifted down-right
-                      top: i * 26,
-                      left: i * 20,
+                      top: i * 38,
+                      left: i * 28,
                       background: "#0f0f0f",
                       border: "1px solid rgba(255,255,255,0.07)",
                       overflow: "hidden",
@@ -230,7 +230,7 @@ export default function Hero() {
                         right: 8,
                         fontFamily: "var(--font-poppins)",
                         fontWeight: 700,
-                        fontSize: 120,
+                        fontSize: 180,
                         letterSpacing: "-6px",
                         lineHeight: 1,
                         color: "rgba(255,255,255,0.03)",
@@ -252,19 +252,19 @@ export default function Hero() {
                         display: "flex",
                         alignItems: "center",
                         justifyContent: "space-between",
-                        padding: "15px 18px",
+                        padding: "20px 26px",
                       }}
                     >
                       <span
                         style={{
                           fontFamily: "var(--font-inter)",
                           fontWeight: 700,
-                          fontSize: 9,
+                          fontSize: 11,
                           letterSpacing: "2.2px",
                           textTransform: "uppercase",
                           color: card.accent,
                           border: `1px solid ${card.accent}50`,
-                          padding: "3px 8px",
+                          padding: "4px 10px",
                         }}
                       >
                         {card.tag}
@@ -272,7 +272,7 @@ export default function Hero() {
                       <span
                         style={{
                           fontFamily: "var(--font-inter)",
-                          fontSize: 9,
+                          fontSize: 11,
                           letterSpacing: "1px",
                           color: "rgba(255,255,255,0.25)",
                         }}
@@ -289,14 +289,14 @@ export default function Hero() {
                         display: "flex",
                         alignItems: "center",
                         justifyContent: "center",
-                        padding: "0 22px",
+                        padding: "0 32px",
                       }}
                     >
                       <h3
                         style={{
                           fontFamily: "var(--font-poppins)",
                           fontWeight: 700,
-                          fontSize: "clamp(16px, 2vw, 22px)",
+                          fontSize: "clamp(22px, 2.5vw, 34px)",
                           letterSpacing: "-0.04em",
                           lineHeight: 1.1,
                           textTransform: "uppercase",
@@ -317,14 +317,14 @@ export default function Hero() {
                         left: 0,
                         right: 0,
                         zIndex: 2,
-                        padding: "13px 18px",
+                        padding: "18px 26px",
                         borderTop: "1px solid rgba(255,255,255,0.05)",
                       }}
                     >
                       <span
                         style={{
                           fontFamily: "var(--font-inter)",
-                          fontSize: 9,
+                          fontSize: 11,
                           letterSpacing: "1.4px",
                           textTransform: "uppercase",
                           color: "rgba(255,255,255,0.32)",
