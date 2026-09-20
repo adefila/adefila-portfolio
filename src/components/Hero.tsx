@@ -1,5 +1,5 @@
 "use client";
-import { CalendarDays } from "lucide-react";
+import { CalendarDays, ArrowRight } from "lucide-react";
 import MagneticButton from "./MagneticButton";
 import { useLang } from "@/context/LangContext";
 
@@ -50,7 +50,7 @@ export default function Hero() {
               display: "inline-flex",
               alignItems: "center",
               gap: 6,
-              marginBottom: 32,
+              marginBottom: 28,
               animation: `heroFadeUp 0.6s 0.1s ${EASE} both`,
             }}
           >
@@ -67,8 +67,8 @@ export default function Hero() {
             </span>
           </div>
 
-          {/* Headline */}
-          <div style={{ marginBottom: 24 }}>
+          {/* Headline — smaller, mixed case */}
+          <div style={{ marginBottom: 20 }}>
             {[t("hero.h1"), t("hero.h2")].map((line, i) => (
               <div
                 key={i}
@@ -76,10 +76,10 @@ export default function Hero() {
                 style={{
                   fontFamily: "var(--font-poppins)",
                   fontWeight: 700,
-                  fontSize: "clamp(32px, 4.8vw, 72px)",
-                  letterSpacing: "-0.05em",
-                  lineHeight: 1.05,
-                  textTransform: "uppercase",
+                  fontSize: "clamp(28px, 3.4vw, 48px)",
+                  letterSpacing: "-0.04em",
+                  lineHeight: 1.08,
+                  textTransform: "none",
                   color: "var(--fg)",
                   display: "block",
                   animation: `heroFadeUp 0.55s ${0.15 + i * 0.12}s ${EASE} both`,
@@ -96,12 +96,12 @@ export default function Hero() {
             style={{
               fontFamily: "var(--font-inter)",
               fontWeight: 400,
-              fontSize: 17,
-              letterSpacing: "-0.5px",
-              lineHeight: 1.65,
+              fontSize: 15,
+              letterSpacing: "-0.3px",
+              lineHeight: 1.7,
               color: "var(--fg-secondary)",
-              maxWidth: 420,
-              marginBottom: 16,
+              maxWidth: 400,
+              marginBottom: 14,
               animation: `heroFadeUp 0.6s 0.35s ${EASE} both`,
             }}
           >
@@ -117,14 +117,14 @@ export default function Hero() {
               letterSpacing: "0.08em",
               textTransform: "uppercase",
               color: "var(--fg-muted)",
-              marginBottom: 36,
+              marginBottom: 32,
               animation: `heroFadeUp 0.6s 0.42s ${EASE} both`,
             }}
           >
             {t("hero.proof")}
           </p>
 
-          {/* CTA */}
+          {/* CTA row */}
           <div
             className="hero-cta"
             style={{ display: "flex", gap: 12, flexWrap: "wrap", animation: `heroFadeUp 0.6s 0.5s ${EASE} both` }}
@@ -139,7 +139,7 @@ export default function Hero() {
                 fontSize: 14,
                 color: "var(--white)",
                 background: "var(--fg)",
-                padding: "14px 28px",
+                padding: "13px 26px",
                 borderRadius: 0,
                 textDecoration: "none",
                 letterSpacing: "-0.2px",
@@ -147,42 +147,54 @@ export default function Hero() {
                 gap: 8,
               }}
             >
-              {t("hero.cta")} <CalendarDays size={15} strokeWidth={2} />
+              {t("hero.cta")} <CalendarDays size={14} strokeWidth={2} />
+            </MagneticButton>
+
+            <MagneticButton
+              href="#work"
+              style={{
+                fontFamily: "var(--font-inter)",
+                fontWeight: 500,
+                fontSize: 14,
+                color: "var(--fg)",
+                background: "transparent",
+                border: "1px solid rgba(0,0,0,0.18)",
+                padding: "13px 26px",
+                borderRadius: 0,
+                textDecoration: "none",
+                letterSpacing: "-0.2px",
+                alignItems: "center",
+                gap: 8,
+              }}
+            >
+              See work <ArrowRight size={14} strokeWidth={2} />
             </MagneticButton>
           </div>
         </div>
 
-        {/* ── RIGHT: isometric card stack ── */}
+        {/* ── RIGHT: isometric light card stack ── */}
         <div
           className="hero-stack-col"
-          style={{ position: "relative", height: 700, overflow: "visible" }}
+          style={{ position: "relative", height: 640, overflow: "visible" }}
         >
-          {/*
-            Outer wrapper applies the radial mask — fades edges to transparent
-            so the stack dissolves into the page background on all sides.
-          */}
           <div
             style={{
               position: "absolute",
-              inset: "-10% -18%",
+              inset: "-8% -16%",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
               WebkitMaskImage:
-                "radial-gradient(ellipse 80% 76% at 50% 52%, black 20%, rgba(0,0,0,0.6) 46%, transparent 70%)",
+                "radial-gradient(ellipse 82% 78% at 50% 50%, black 28%, rgba(0,0,0,0.55) 52%, transparent 72%)",
               maskImage:
-                "radial-gradient(ellipse 80% 76% at 50% 52%, black 20%, rgba(0,0,0,0.6) 46%, transparent 70%)",
+                "radial-gradient(ellipse 82% 78% at 50% 50%, black 28%, rgba(0,0,0,0.55) 52%, transparent 72%)",
             }}
           >
-            {/*
-              Inner wrapper applies the isometric perspective rotation.
-              Cards are stacked inside with absolute positioning + offset.
-            */}
             <div
               style={{
                 position: "relative",
-                width: 560,
-                height: 390,
+                width: 520,
+                height: 360,
                 transform:
                   "perspective(1400px) rotateX(18deg) rotateY(-22deg) rotateZ(2deg)",
                 transformStyle: "preserve-3d",
@@ -198,42 +210,43 @@ export default function Hero() {
                       position: "absolute",
                       width: "100%",
                       height: "100%",
-                      // Each successive card sits further "back" — shifted down-right
-                      top: i * 38,
-                      left: i * 28,
-                      background: "#0f0f0f",
-                      border: "1px solid rgba(255,255,255,0.07)",
+                      top: i * 36,
+                      left: i * 26,
+                      background: "#ffffff",
+                      border: "1px solid rgba(0,0,0,0.08)",
                       overflow: "hidden",
-                      opacity: isFront ? 1 : 1 - i * 0.22,
+                      opacity: isFront ? 1 : 1 - i * 0.18,
                       zIndex: cards.length - i,
-                      // Only the front card casts a shadow
                       boxShadow: isFront
-                        ? "0 40px 100px rgba(0,0,0,0.28), 0 12px 32px rgba(0,0,0,0.18)"
-                        : "none",
+                        ? "0 24px 80px rgba(0,0,0,0.18), 0 6px 24px rgba(0,0,0,0.10)"
+                        : "0 2px 14px rgba(0,0,0,0.07)",
                     }}
                   >
-                    {/* Accent colour wash — corner gradient */}
+                    {/* Accent top bar */}
                     <div
                       style={{
                         position: "absolute",
-                        inset: 0,
-                        background: `linear-gradient(135deg, ${card.accent}20 0%, transparent 55%)`,
-                        pointerEvents: "none",
+                        top: 0,
+                        left: 0,
+                        right: 0,
+                        height: 3,
+                        background: card.accent,
+                        zIndex: 3,
                       }}
                     />
 
-                    {/* Ghost number — background texture */}
+                    {/* Ghost number */}
                     <span
                       style={{
                         position: "absolute",
-                        bottom: -10,
+                        bottom: -20,
                         right: 8,
                         fontFamily: "var(--font-poppins)",
                         fontWeight: 700,
-                        fontSize: 180,
+                        fontSize: 170,
                         letterSpacing: "-6px",
                         lineHeight: 1,
-                        color: "rgba(255,255,255,0.03)",
+                        color: "rgba(0,0,0,0.03)",
                         userSelect: "none",
                         pointerEvents: "none",
                       }}
@@ -241,7 +254,7 @@ export default function Hero() {
                       {String(i + 1).padStart(2, "0")}
                     </span>
 
-                    {/* Top bar — tag + year */}
+                    {/* Top row — tag + year */}
                     <div
                       style={{
                         position: "absolute",
@@ -259,12 +272,13 @@ export default function Hero() {
                         style={{
                           fontFamily: "var(--font-inter)",
                           fontWeight: 700,
-                          fontSize: 11,
-                          letterSpacing: "2.2px",
+                          fontSize: 10,
+                          letterSpacing: "2px",
                           textTransform: "uppercase",
                           color: card.accent,
-                          border: `1px solid ${card.accent}50`,
+                          border: `1px solid ${card.accent}45`,
                           padding: "4px 10px",
+                          background: `${card.accent}08`,
                         }}
                       >
                         {card.tag}
@@ -273,15 +287,15 @@ export default function Hero() {
                         style={{
                           fontFamily: "var(--font-inter)",
                           fontSize: 11,
-                          letterSpacing: "1px",
-                          color: "rgba(255,255,255,0.25)",
+                          letterSpacing: "0.5px",
+                          color: "rgba(0,0,0,0.28)",
                         }}
                       >
                         {card.year}
                       </span>
                     </div>
 
-                    {/* Centred title */}
+                    {/* Center — project title */}
                     <div
                       style={{
                         position: "absolute",
@@ -296,11 +310,10 @@ export default function Hero() {
                         style={{
                           fontFamily: "var(--font-poppins)",
                           fontWeight: 700,
-                          fontSize: "clamp(22px, 2.5vw, 34px)",
+                          fontSize: "clamp(20px, 2.2vw, 30px)",
                           letterSpacing: "-0.04em",
                           lineHeight: 1.1,
-                          textTransform: "uppercase",
-                          color: isFront ? "#ffffff" : "rgba(255,255,255,0.7)",
+                          color: isFront ? "#0f0f0f" : "rgba(0,0,0,0.55)",
                           textAlign: "center",
                           margin: 0,
                         }}
@@ -309,7 +322,7 @@ export default function Hero() {
                       </h3>
                     </div>
 
-                    {/* Bottom bar — meta */}
+                    {/* Bottom — meta + status dot */}
                     <div
                       style={{
                         position: "absolute",
@@ -317,21 +330,34 @@ export default function Hero() {
                         left: 0,
                         right: 0,
                         zIndex: 2,
-                        padding: "18px 26px",
-                        borderTop: "1px solid rgba(255,255,255,0.05)",
+                        padding: "16px 26px",
+                        borderTop: "1px solid rgba(0,0,0,0.05)",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "space-between",
                       }}
                     >
                       <span
                         style={{
                           fontFamily: "var(--font-inter)",
-                          fontSize: 11,
-                          letterSpacing: "1.4px",
+                          fontSize: 10,
+                          letterSpacing: "1.2px",
                           textTransform: "uppercase",
-                          color: "rgba(255,255,255,0.32)",
+                          color: "rgba(0,0,0,0.35)",
                         }}
                       >
                         {card.meta}
                       </span>
+                      <span
+                        style={{
+                          width: 7,
+                          height: 7,
+                          borderRadius: "50%",
+                          background: card.accent,
+                          display: "inline-block",
+                          flexShrink: 0,
+                        }}
+                      />
                     </div>
                   </div>
                 );

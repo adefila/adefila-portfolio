@@ -314,12 +314,12 @@ export const T: Record<string, Record<LangCode, string>> = {
     pt: "Início: Out 2026",        zh: "下一期: 2026年10月",       ja: "次回開始: 2026年10月",     yo: "Ìbẹ̀rẹ̀: Okt 2026",
   },
   "hero.h1": {
-    en: "I DESIGN AND BUILD",      fr: "JE CONÇOIS ET CRÉE",      es: "DISEÑO Y CONSTRUYO",      de: "ICH GESTALTE UND BAUE",
-    pt: "EU PROJETO E CONSTRUO",   zh: "我设计并构建",              ja: "デザインして構築する",      yo: "MO ṢEÈDÀ ATI KÒ",
+    en: "I Design & Build",        fr: "Je conçois et crée",      es: "Diseño y construyo",      de: "Ich gestalte und baue",
+    pt: "Eu projeto e construo",   zh: "我设计并构建",              ja: "デザインして構築する",      yo: "Mo ṣeèdà ati kò",
   },
   "hero.h2": {
-    en: "FRAMER SITES IN 14 DAYS.",  fr: "DES SITES QUI CONVERTISSENT.", es: "SITIOS WEB QUE CONVIERTEN.", de: "WEBSITES DIE KONVERTIEREN.",
-    pt: "SITES QUE CONVERTEM.",    zh: "能够转化的网站。",           ja: "コンバージョンするサイト。", yo: "ÀWỌN OJÚEWÉ TÓ YÁRA.",
+    en: "Framer Sites in 14 Days.", fr: "Des sites qui convertissent.", es: "Sitios web que convierten.", de: "Websites die konvertieren.",
+    pt: "Sites que convertem.",    zh: "能够转化的网站。",           ja: "コンバージョンするサイト。", yo: "Àwọn ojúewé tó yára.",
   },
   "hero.subtitle": {
     en: "Framer developer and designer. Brief to live in 14 days — for founders done waiting on slow agencies and bloated timelines.",
