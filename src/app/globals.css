@@ -5,6 +5,25 @@
   100% { transform: translateX(-50%); }
 }
 
+@keyframes heroFloat {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-14px); }
+}
+
+.hero-layout {
+  display: flex;
+  gap: 48px;
+  align-items: center;
+}
+
+.hero-left  { flex: 0 0 52%; }
+.hero-right { flex: 1; display: flex; justify-content: center; align-items: center; }
+
+@media (max-width: 860px) {
+  .hero-layout { flex-direction: column; gap: 40px; }
+  .hero-right  { width: 100%; }
+}
+
 .marquee-track {
   animation: marquee 32s linear infinite;
   will-change: transform;
