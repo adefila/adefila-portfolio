@@ -1,7 +1,12 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+// Instantiated inside the handler so missing env vars don't crash the build
+function getResend() {
+  const key = process.env.RESEND_API_KEY;
+  if (!key) throw new Error("RESEND_API_KEY is not set");
+  return new Resend(key);
+}
 
 // ── Rate limiting (in-memory, per serverless instance) ───────────────────────
 const ipLog = new Map<string, { count: number; reset: number }>();
@@ -72,6 +77,7 @@ export async function POST(req: Request) {
     const firstName = name.split(" ")[0];
 
     // ── 1. Notify Samuel ────────────────────────────────────────────────────
+    const resend = getResend();
     await resend.emails.send({
       from: `"${FROM_NAME}" <${FROM_ADDRESS}>`,
       to: TO_ADDRESS,
