@@ -115,6 +115,7 @@ export default function Hero() {
             lineHeight: 1.6,
             color: "var(--fg-secondary)",
             maxWidth: 480,
+            textWrap: "balance" as const,
             marginBottom: 16,
             animation: `heroFadeUp 0.6s 0.35s ${EASE} both`,
           }}
