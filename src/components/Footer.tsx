@@ -121,8 +121,6 @@ export default function Footer() {
                 textTransform: "uppercase",
                 color: "var(--white)",
                 marginBottom: 20,
-                maxWidth: 560,
-                textWrap: "balance",
               }}
             >
               {(() => {
