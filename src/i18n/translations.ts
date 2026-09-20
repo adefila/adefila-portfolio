@@ -322,7 +322,7 @@ export const T: Record<string, Record<LangCode, string>> = {
     pt: "SITES QUE CONVERTEM.",    zh: "能够转化的网站。",           ja: "コンバージョンするサイト。", yo: "ÀWỌN OJÚEWÉ TÓ YÁRA.",
   },
   "hero.subtitle": {
-    en: "Framer developer and designer. Brief to live in 14 days — for founders done waiting on slow agencies and bloated timelines.",
+    en: "Senior Framer developer & product designer. 48+ projects shipped — open to full-time roles and select freelance.",
     fr: "Développeur & designer Framer. Du brief au lancement en 14 jours — pour les fondateurs qui en ont fini avec les agences lentes.",
     es: "Desarrollador y diseñador Framer. Del brief al lanzamiento en 14 días — para fundadores hartos de agencias lentas y presupuestos inflados.",
     de: "Framer-Entwickler & Designer. Vom Brief bis live in 14 Tagen — für Gründer, die aufgehört haben, auf träge Agenturen zu warten.",
@@ -332,7 +332,7 @@ export const T: Record<string, Record<LangCode, string>> = {
     yo: "Olùgbéjáde & aṣàpẹẹrẹ Framer. Láti àkọsílẹ̀ sí ìfilọ́lẹ̀ ní ọjọ́ 14 — fún àwọn adárí tó ti rẹ̀ àwọn ilé-iṣẹ́ tó lọrا.",
   },
   "hero.proof": {
-    en: "Top Rated on Upwork  ·  50+ Projects Shipped  ·  100% Job Success",
+    en: "Top Rated on Upwork  ·  48+ Projects Shipped  ·  Open to Full-Time Roles",
     fr: "Top Rated sur Upwork  ·  50+ projets livrés  ·  100% de succès",
     es: "Top Rated en Upwork  ·  50+ proyectos entregados  ·  100% de éxito",
     de: "Top Rated auf Upwork  ·  50+ Projekte geliefert  ·  100% Erfolgsquote",
