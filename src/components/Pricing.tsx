@@ -2,33 +2,12 @@
 import { Check, ArrowUpRight } from "lucide-react";
 import { useLang } from "@/context/LangContext";
 
-const PRICING_CSS = `
-  @keyframes price-bar {
-    0%,10%  { transform:scaleY(0); opacity:0; }
-    40%,68% { transform:scaleY(1); opacity:1; }
-    88%,100%{ transform:scaleY(0); opacity:0; }
-  }
-  @keyframes price-diamond {
-    from { stroke-dashoffset:0; }
-    to   { stroke-dashoffset:-107; }
-  }
-  @keyframes price-infinity {
-    from { stroke-dashoffset:0; }
-    to   { stroke-dashoffset:-100; }
-  }
-`;
-
 function PricingStarterIcon({ c }: { c: string }) {
-  const bar = (delay: string) => ({
-    transformBox: "fill-box" as const,
-    transformOrigin: "bottom" as const,
-    animation: `price-bar 2.8s ease-in-out infinite ${delay}`,
-  });
   return (
     <svg width="40" height="40" viewBox="0 0 44 44" fill="none" aria-hidden>
-      <rect x="5"  y="28" width="9" height="12" rx="2" fill={c} style={bar("0s")}/>
-      <rect x="17" y="18" width="9" height="22" rx="2" fill={c} style={bar("0.22s")}/>
-      <rect x="29" y="8"  width="9" height="32" rx="2" fill={c} style={bar("0.44s")}/>
+      <rect x="5"  y="28" width="9" height="12" rx="2" fill={c}/>
+      <rect x="17" y="18" width="9" height="22" rx="2" fill={c}/>
+      <rect x="29" y="8"  width="9" height="32" rx="2" fill={c}/>
     </svg>
   );
 }
@@ -37,11 +16,7 @@ function PricingProIcon({ c }: { c: string }) {
   return (
     <svg width="40" height="40" viewBox="0 0 44 44" fill="none" aria-hidden>
       <path d="M22 3 L40 19 L22 42 L4 19 Z"
-        fill="none" stroke={c} strokeWidth="2" strokeLinejoin="round" opacity="0.2"/>
-      <path d="M22 3 L40 19 L22 42 L4 19 Z"
-        fill="none" stroke={c} strokeWidth="2.5" strokeLinejoin="round" strokeLinecap="round"
-        strokeDasharray="20 87"
-        style={{ animation: "price-diamond 2.2s linear infinite" }}/>
+        fill="none" stroke={c} strokeWidth="2.5" strokeLinejoin="round"/>
     </svg>
   );
 }
@@ -50,10 +25,7 @@ function PricingCustomIcon({ c }: { c: string }) {
   const d = "M22,22 C18,14 6,14 6,22 C6,30 18,30 22,22 C26,14 38,14 38,22 C38,30 26,30 22,22 Z";
   return (
     <svg width="40" height="40" viewBox="0 0 44 44" fill="none" aria-hidden>
-      <path d={d} fill="none" stroke={c} strokeWidth="2" opacity="0.2"/>
-      <path d={d} fill="none" stroke={c} strokeWidth="2.5" strokeLinecap="round"
-        strokeDasharray="10 90"
-        style={{ animation: "price-infinity 2.2s linear infinite" }}/>
+      <path d={d} fill="none" stroke={c} strokeWidth="2.5" strokeLinecap="round"/>
     </svg>
   );
 }
@@ -136,7 +108,6 @@ export default function Pricing() {
       </div>
 
       {/* Plans */}
-      <style>{PRICING_CSS}</style>
       <div
         className="pricing-grid"
         style={{
