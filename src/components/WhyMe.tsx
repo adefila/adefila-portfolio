@@ -2,64 +2,50 @@
 import { useRef, useEffect, useState } from "react";
 import { useLang } from "@/context/LangContext";
 
-const IC = {
-  top: "#ede9fe", left: "#ddd6fe", right: "#c4b5fd",
-  stroke: "#7c3aed", fill: "#7c3aed", sw: 1.5,
-};
+const IC = { stroke: "#7c3aed", sw: 1.5 };
 
 function IsoSpeedIcon() {
   return (
-    <svg width="52" height="48" viewBox="0 0 52 48" fill="none" aria-hidden>
-      <path d="M26 6 L44 15 L26 24 L8 15 Z" fill={IC.top} stroke={IC.stroke} strokeWidth={IC.sw} strokeLinejoin="round"/>
-      <path d="M8 15 L8 34 L26 43 L26 24 Z" fill={IC.left} stroke={IC.stroke} strokeWidth={IC.sw} strokeLinejoin="round"/>
-      <path d="M26 24 L26 43 L44 34 L44 15 Z" fill={IC.right} stroke={IC.stroke} strokeWidth={IC.sw} strokeLinejoin="round"/>
-      <polyline points="21,17 26,11 31,17" fill="none" stroke={IC.fill} strokeWidth={IC.sw} strokeLinecap="round" strokeLinejoin="round"/>
-      <polyline points="21,20 26,14 31,20" fill="none" stroke={IC.fill} strokeWidth={IC.sw} strokeLinecap="round" strokeLinejoin="round"/>
+    <svg width="48" height="48" viewBox="0 0 48 48" fill="none" aria-hidden>
+      <polygon
+        points="28,4 12,26 22,26 18,44 36,22 26,22"
+        fill="none" stroke={IC.stroke} strokeWidth={IC.sw}
+        strokeLinejoin="round" strokeLinecap="round"
+      />
     </svg>
   );
 }
 
 function IsoAudienceIcon() {
   return (
-    <svg width="52" height="48" viewBox="0 0 52 48" fill="none" aria-hidden>
-      <path d="M26 6 L44 15 L26 24 L8 15 Z" fill={IC.top} stroke={IC.stroke} strokeWidth={IC.sw} strokeLinejoin="round"/>
-      <path d="M8 15 L8 34 L26 43 L26 24 Z" fill={IC.left} stroke={IC.stroke} strokeWidth={IC.sw} strokeLinejoin="round"/>
-      <path d="M26 24 L26 43 L44 34 L44 15 Z" fill={IC.right} stroke={IC.stroke} strokeWidth={IC.sw} strokeLinejoin="round"/>
-      <ellipse cx="20" cy="11" rx="2" ry="1.2" fill={IC.fill}/>
-      <line x1="20" y1="12.2" x2="20" y2="19" stroke={IC.fill} strokeWidth={IC.sw} strokeLinecap="round"/>
-      <line x1="17" y1="15" x2="23" y2="15" stroke={IC.fill} strokeWidth={IC.sw} strokeLinecap="round"/>
-      <ellipse cx="32" cy="11" rx="2" ry="1.2" fill={IC.fill}/>
-      <line x1="32" y1="12.2" x2="32" y2="19" stroke={IC.fill} strokeWidth={IC.sw} strokeLinecap="round"/>
-      <line x1="29" y1="15" x2="35" y2="15" stroke={IC.fill} strokeWidth={IC.sw} strokeLinecap="round"/>
+    <svg width="48" height="48" viewBox="0 0 48 48" fill="none" aria-hidden>
+      <circle cx="24" cy="24" r="4" stroke={IC.stroke} strokeWidth={IC.sw}/>
+      <circle cx="24" cy="24" r="11" stroke={IC.stroke} strokeWidth={IC.sw}/>
+      <circle cx="24" cy="24" r="18" stroke={IC.stroke} strokeWidth={IC.sw}/>
     </svg>
   );
 }
 
 function IsoOwnershipIcon() {
   return (
-    <svg width="52" height="48" viewBox="0 0 52 48" fill="none" aria-hidden>
-      <path d="M26 6 L44 15 L26 24 L8 15 Z" fill={IC.top} stroke={IC.stroke} strokeWidth={IC.sw} strokeLinejoin="round"/>
-      <path d="M8 15 L8 34 L26 43 L26 24 Z" fill={IC.left} stroke={IC.stroke} strokeWidth={IC.sw} strokeLinejoin="round"/>
-      <path d="M26 24 L26 43 L44 34 L44 15 Z" fill={IC.right} stroke={IC.stroke} strokeWidth={IC.sw} strokeLinejoin="round"/>
-      <ellipse cx="26" cy="10" rx="2.5" ry="1.5" fill={IC.fill}/>
-      <line x1="26" y1="11.5" x2="26" y2="20" stroke={IC.fill} strokeWidth={IC.sw} strokeLinecap="round"/>
-      <line x1="22" y1="15" x2="30" y2="15" stroke={IC.fill} strokeWidth={IC.sw} strokeLinecap="round"/>
+    <svg width="48" height="48" viewBox="0 0 48 48" fill="none" aria-hidden>
+      <rect x="10" y="22" width="28" height="22" rx="3" stroke={IC.stroke} strokeWidth={IC.sw}/>
+      <path d="M16 22 L16 16 Q24 6 32 16 L32 22" stroke={IC.stroke} strokeWidth={IC.sw} strokeLinecap="round" fill="none"/>
+      <circle cx="24" cy="33" r="3" stroke={IC.stroke} strokeWidth={IC.sw}/>
+      <line x1="24" y1="36" x2="24" y2="40" stroke={IC.stroke} strokeWidth={IC.sw} strokeLinecap="round"/>
     </svg>
   );
 }
 
 function IsoToolsIcon() {
   return (
-    <svg width="52" height="48" viewBox="0 0 52 48" fill="none" aria-hidden>
-      <path d="M26 6 L44 15 L26 24 L8 15 Z" fill={IC.top} stroke={IC.stroke} strokeWidth={IC.sw} strokeLinejoin="round"/>
-      <path d="M8 15 L8 34 L26 43 L26 24 Z" fill={IC.left} stroke={IC.stroke} strokeWidth={IC.sw} strokeLinejoin="round"/>
-      <path d="M26 24 L26 43 L44 34 L44 15 Z" fill={IC.right} stroke={IC.stroke} strokeWidth={IC.sw} strokeLinejoin="round"/>
-      <line x1="18" y1="15" x2="34" y2="15" stroke={IC.fill} strokeWidth={IC.sw} strokeLinecap="round"/>
-      <line x1="26" y1="9" x2="26" y2="21" stroke={IC.fill} strokeWidth={IC.sw} strokeLinecap="round"/>
-      <circle cx="18" cy="15" r="1.8" fill={IC.fill}/>
-      <circle cx="34" cy="15" r="1.8" fill={IC.fill}/>
-      <circle cx="26" cy="9" r="1.8" fill={IC.fill}/>
-      <circle cx="26" cy="21" r="1.8" fill={IC.fill}/>
+    <svg width="48" height="48" viewBox="0 0 48 48" fill="none" aria-hidden>
+      <line x1="8" y1="14" x2="40" y2="14" stroke={IC.stroke} strokeWidth={IC.sw} strokeLinecap="round"/>
+      <line x1="8" y1="24" x2="40" y2="24" stroke={IC.stroke} strokeWidth={IC.sw} strokeLinecap="round"/>
+      <line x1="8" y1="34" x2="40" y2="34" stroke={IC.stroke} strokeWidth={IC.sw} strokeLinecap="round"/>
+      <circle cx="28" cy="14" r="4" fill="var(--white, #fff)" stroke={IC.stroke} strokeWidth={IC.sw}/>
+      <circle cx="16" cy="24" r="4" fill="var(--white, #fff)" stroke={IC.stroke} strokeWidth={IC.sw}/>
+      <circle cx="32" cy="34" r="4" fill="var(--white, #fff)" stroke={IC.stroke} strokeWidth={IC.sw}/>
     </svg>
   );
 }
