@@ -314,11 +314,11 @@ export const T: Record<string, Record<LangCode, string>> = {
     pt: "Início: Out 2026",        zh: "下一期: 2026年10月",       ja: "次回開始: 2026年10月",     yo: "Ìbẹ̀rẹ̀: Okt 2026",
   },
   "hero.h1": {
-    en: "YOUR SITE. LIVE.",         fr: "JE CONÇOIS ET CRÉE",      es: "DISEÑO Y CONSTRUYO",      de: "ICH GESTALTE UND BAUE",
+    en: "I DESIGN & BUILD",         fr: "JE CONÇOIS ET CRÉE",      es: "DISEÑO Y CONSTRUYO",      de: "ICH GESTALTE UND BAUE",
     pt: "EU PROJETO E CONSTRUO",   zh: "我设计并构建",              ja: "デザインして構築する",      yo: "MO ṢEÈDÀ ATI KÒ",
   },
   "hero.h2": {
-    en: "IN 14 DAYS.",               fr: "DES SITES QUI CONVERTISSENT.", es: "SITIOS WEB QUE CONVIERTEN.", de: "WEBSITES DIE KONVERTIEREN.",
+    en: "PRODUCTS THAT SHIP.",        fr: "DES SITES QUI CONVERTISSENT.", es: "SITIOS WEB QUE CONVIERTEN.", de: "WEBSITES DIE KONVERTIEREN.",
     pt: "SITES QUE CONVERTEM.",    zh: "能够转化的网站。",           ja: "コンバージョンするサイト。", yo: "ÀWỌN OJÚEWÉ TÓ YÁRA.",
   },
   "hero.subtitle": {
