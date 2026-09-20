@@ -2,7 +2,6 @@
 import { motion } from "framer-motion";
 import { CalendarDays } from "lucide-react";
 import Image from "next/image";
-import { useEffect, useState } from "react";
 import MagneticButton from "./MagneticButton";
 import { useLang } from "@/context/LangContext";
 
@@ -17,209 +16,130 @@ const slides = [
 
 const track = [...slides, ...slides];
 
-// Words that cycle in the hero — each scrambles in over ~1s
-const SERVICES = ["FRAMER SITES", "LANDING PAGES", "WEB DASHBOARDS", "WEBFLOW SITES"];
-const CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-
-const stats = [
-  { value: "48+", label: "Projects" },
-  { value: "14",  label: "Day Delivery" },
-  { value: "5★",  label: "Client Rating" },
-];
-
 export default function Hero() {
   const { t } = useLang();
-  const [display, setDisplay] = useState(SERVICES[0]);
-
-  // Character-scramble cycling effect
-  useEffect(() => {
-    let idx = 0;
-
-    const runNext = () => {
-      idx = (idx + 1) % SERVICES.length;
-      const target = SERVICES[idx];
-      let iter = 0;
-      // Each character takes ~5 iterations to "land" → total ≈ len * 5
-      const maxIter = target.replace(/ /g, "").length * 5;
-
-      const scramble = setInterval(() => {
-        setDisplay(
-          target
-            .split("")
-            .map((ch, ci) => {
-              if (ch === " ") return " ";
-              if (ci < Math.floor(iter / 5)) return ch; // already resolved
-              return CHARS[Math.floor(Math.random() * CHARS.length)];
-            })
-            .join("")
-        );
-        iter++;
-        if (iter > maxIter) {
-          clearInterval(scramble);
-          setDisplay(target);
-        }
-      }, 32);
-    };
-
-    const interval = setInterval(runNext, 3400);
-    return () => clearInterval(interval);
-  }, []);
-
   return (
-    <section
-      id="hero"
-      className="hero-section"
-      style={{ paddingTop: 120, paddingBottom: 0, width: "100%", overflow: "hidden" }}
-    >
-      <div style={{ maxWidth: 1200, margin: "0 auto", paddingLeft: 20, paddingRight: 20 }}>
+    <section id="hero" className="hero-section" style={{ paddingTop: 120, paddingBottom: 0, width: "100%", overflow: "hidden" }}>
 
-        {/* ── Badge ── */}
+      <div style={{ maxWidth: 1200, margin: "0 auto", paddingLeft: 20, paddingRight: 20 }}>
         <div
-          style={{
-            display: "inline-flex",
-            alignItems: "center",
-            gap: 6,
-            marginBottom: 36,
-            animation: `heroFadeUp 0.6s 0.1s ${EASE} both`,
-          }}
+          className="hero-badge"
+          style={{ display: "inline-flex", alignItems: "center", gap: 6, marginBottom: 32, animation: `heroFadeUp 0.6s 0.1s ${EASE} both` }}
         >
           <span style={{ position: "relative", width: 8, height: 8, flexShrink: 0, display: "inline-flex", alignItems: "center", justifyContent: "center" }}>
-            <span style={{ position: "absolute", inset: 0, borderRadius: "50%", background: "var(--accent-green)", animation: "pulseRipple 2s ease-out infinite" }} />
-            <span style={{ width: 8, height: 8, borderRadius: "50%", background: "var(--accent-green)", display: "block", position: "relative", zIndex: 1 }} />
+            <span
+              style={{
+                position: "absolute",
+                inset: 0,
+                borderRadius: "50%",
+                background: "var(--accent-green)",
+                animation: "pulseRipple 2s ease-out infinite",
+              }}
+            />
+            <span
+              style={{
+                width: 8,
+                height: 8,
+                borderRadius: "50%",
+                background: "var(--accent-green)",
+                display: "block",
+                position: "relative",
+                zIndex: 1,
+              }}
+            />
           </span>
-          <span style={{ fontFamily: "var(--font-inter)", fontWeight: 600, fontSize: 11, letterSpacing: "0.08em", textTransform: "uppercase", color: "#006b2e" }}>
+          <span
+            style={{
+              fontFamily: "var(--font-inter)",
+              fontWeight: 600,
+              fontSize: 11,
+              letterSpacing: "0.08em",
+              textTransform: "uppercase",
+              color: "#006b2e",
+            }}
+          >
             {t("hero.badge")}
           </span>
-          <span style={{ width: 3, height: 3, borderRadius: "50%", background: "var(--fg-muted)", display: "inline-block" }} />
-          <span style={{ fontFamily: "var(--font-inter)", fontWeight: 500, fontSize: 11, letterSpacing: "0.06em", textTransform: "uppercase", color: "var(--fg-secondary)" }}>
+          <span
+            style={{
+              width: 3,
+              height: 3,
+              borderRadius: "50%",
+              background: "var(--fg-muted)",
+              display: "inline-block",
+            }}
+          />
+          <span
+            style={{
+              fontFamily: "var(--font-inter)",
+              fontWeight: 500,
+              fontSize: 11,
+              letterSpacing: "0.06em",
+              textTransform: "uppercase",
+              color: "var(--fg-secondary)",
+            }}
+          >
             {t("hero.badge2")}
           </span>
         </div>
 
-        {/* ── Headline: small label + massive cycling word ── */}
-        <div style={{ marginBottom: 28 }}>
-          {/* "I DESIGN AND BUILD" — small, wide-tracked, muted */}
-          <div
-            style={{
-              fontFamily: "var(--font-inter)",
-              fontWeight: 500,
-              fontSize: "clamp(11px, 1.3vw, 16px)",
-              letterSpacing: "0.22em",
-              textTransform: "uppercase",
-              color: "var(--fg-secondary)",
-              marginBottom: 6,
-              animation: `heroFadeUp 0.5s 0.18s ${EASE} both`,
-            }}
-          >
-            {t("hero.h1")}
-          </div>
-
-          {/* The big scrambling service word */}
-          <div
-            className="hero-service"
-            style={{
-              fontFamily: "var(--font-poppins)",
-              fontWeight: 800,
-              fontSize: "clamp(58px, 8.5vw, 106px)",
-              letterSpacing: "-0.055em",
-              lineHeight: 0.92,
-              textTransform: "uppercase",
-              color: "var(--fg)",
-              whiteSpace: "nowrap",
-              animation: `heroFadeUp 0.55s 0.26s ${EASE} both`,
-              // Blue underscore on the active word
-              borderBottom: "5px solid #2563eb",
-              display: "inline-block",
-              paddingBottom: 6,
-            }}
-          >
-            {display}
-          </div>
+        <div style={{ marginBottom: 24 }}>
+          {[t("hero.h1"), t("hero.h2")].map((line, i) => (
+            <div
+              key={i}
+              className="hero-headline"
+              style={{
+                fontFamily: "var(--font-poppins)",
+                fontWeight: 700,
+                fontSize: "clamp(36px, 5.5vw, 80px)",
+                letterSpacing: "-0.05em",
+                lineHeight: 1.05,
+                textTransform: "uppercase",
+                color: "var(--fg)",
+                display: "block",
+                animation: `heroFadeUp 0.55s ${0.15 + i * 0.12}s ${EASE} both`,
+              }}
+            >
+              {line}
+            </div>
+          ))}
         </div>
 
-        {/* ── Subtitle ── */}
         <p
           className="hero-subtitle"
           style={{
             fontFamily: "var(--font-inter)",
             fontWeight: 400,
-            fontSize: 17,
-            letterSpacing: "-0.5px",
-            lineHeight: 1.65,
+            fontSize: 18,
+            letterSpacing: "-0.7px",
+            lineHeight: 1.6,
             color: "var(--fg-secondary)",
-            maxWidth: 460,
-            marginBottom: 28,
-            animation: `heroFadeUp 0.6s 0.36s ${EASE} both`,
+            maxWidth: 480,
+            marginBottom: 16,
+            animation: `heroFadeUp 0.6s 0.35s ${EASE} both`,
           }}
         >
           {t("hero.subtitle")}
         </p>
 
-        {/* ── Stats row — replaces boring proof text ── */}
-        <div
+        <p
           style={{
-            display: "flex",
-            alignItems: "flex-start",
-            gap: 0,
-            marginBottom: 36,
-            animation: `heroFadeUp 0.6s 0.44s ${EASE} both`,
+            fontFamily: "var(--font-inter)",
+            fontWeight: 500,
+            fontSize: 11,
+            letterSpacing: "0.08em",
+            textTransform: "uppercase",
+            color: "var(--fg-muted)",
+            marginBottom: 32,
+            animation: `heroFadeUp 0.6s 0.42s ${EASE} both`,
           }}
         >
-          {stats.map((s, i) => (
-            <div key={s.label} style={{ display: "flex", alignItems: "flex-start", gap: 0 }}>
-              {i > 0 && (
-                <div
-                  style={{
-                    width: 1,
-                    height: 38,
-                    background: "rgba(0,0,0,0.12)",
-                    alignSelf: "center",
-                    margin: "0 28px",
-                    flexShrink: 0,
-                  }}
-                />
-              )}
-              <div>
-                <div
-                  style={{
-                    fontFamily: "var(--font-poppins)",
-                    fontWeight: 700,
-                    fontSize: "clamp(22px, 2.2vw, 30px)",
-                    letterSpacing: "-0.04em",
-                    lineHeight: 1,
-                    color: "var(--fg)",
-                    marginBottom: 3,
-                  }}
-                >
-                  {s.value}
-                </div>
-                <div
-                  style={{
-                    fontFamily: "var(--font-inter)",
-                    fontWeight: 500,
-                    fontSize: 10,
-                    letterSpacing: "0.1em",
-                    textTransform: "uppercase",
-                    color: "var(--fg-muted)",
-                  }}
-                >
-                  {s.label}
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
+          {t("hero.proof")}
+        </p>
 
-        {/* ── CTA — blue primary ── */}
         <div
           className="hero-cta"
-          style={{
-            display: "flex",
-            gap: 12,
-            flexWrap: "wrap",
-            marginBottom: 64,
-            animation: `heroFadeUp 0.6s 0.52s ${EASE} both`,
-          }}
+          style={{ display: "flex", gap: 12, flexWrap: "wrap", marginBottom: 48, animation: `heroFadeUp 0.6s 0.5s ${EASE} both` }}
         >
           <MagneticButton
             href="https://calendly.com/adefilasamuel929/30min"
@@ -229,8 +149,8 @@ export default function Hero() {
               fontFamily: "var(--font-inter)",
               fontWeight: 600,
               fontSize: 14,
-              color: "#ffffff",
-              background: "#2563eb",
+              color: "var(--white)",
+              background: "var(--fg)",
               padding: "14px 28px",
               borderRadius: 0,
               textDecoration: "none",
@@ -244,7 +164,6 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* ── Full-width marquee (unchanged) ── */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}

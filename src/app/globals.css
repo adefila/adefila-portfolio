@@ -462,11 +462,6 @@ html {
     padding-top: 0 !important;
   }
 
-  /* Hero cycling word: smaller font on very small screens */
-  .hero-service {
-    font-size: 44px !important;
-    letter-spacing: -0.04em !important;
-  }
 
   /* Benefits grid cards: tighter padding on mobile */
   .benefits-grid > div {
