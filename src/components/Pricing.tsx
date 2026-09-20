@@ -2,36 +2,6 @@
 import { Check, ArrowUpRight } from "lucide-react";
 import { useLang } from "@/context/LangContext";
 
-function PricingStarterIcon({ c }: { c: string }) {
-  return (
-    <svg width="40" height="40" viewBox="0 0 44 44" fill="none" aria-hidden>
-      <rect x="5"  y="28" width="9" height="12" rx="2" fill={c}/>
-      <rect x="17" y="18" width="9" height="22" rx="2" fill={c}/>
-      <rect x="29" y="8"  width="9" height="32" rx="2" fill={c}/>
-    </svg>
-  );
-}
-
-function PricingProIcon({ c }: { c: string }) {
-  return (
-    <svg width="40" height="40" viewBox="0 0 44 44" fill="none" aria-hidden>
-      <path d="M22 3 L40 19 L22 42 L4 19 Z"
-        fill="none" stroke={c} strokeWidth="2.5" strokeLinejoin="round"/>
-    </svg>
-  );
-}
-
-function PricingCustomIcon({ c }: { c: string }) {
-  const d = "M22,22 C18,14 6,14 6,22 C6,30 18,30 22,22 C26,14 38,14 38,22 C38,30 26,30 22,22 Z";
-  return (
-    <svg width="40" height="40" viewBox="0 0 44 44" fill="none" aria-hidden>
-      <path d={d} fill="none" stroke={c} strokeWidth="2.5" strokeLinecap="round"/>
-    </svg>
-  );
-}
-
-const PLAN_ICONS = [PricingStarterIcon, PricingProIcon, PricingCustomIcon];
-
 const PLANS_BASE = [
   { usdPrice: 500,  featured: false, featureCount: 5, planKey: "plan0" },
   { usdPrice: 2000, featured: true,  featureCount: 6, planKey: "plan1" },
@@ -120,9 +90,6 @@ export default function Pricing() {
         }}
       >
         {plans.map((plan, i) => {
-          const Icon = PLAN_ICONS[i];
-          const iconColor = plan.featured ? "#ffffff" : "#7c3aed";
-          const chipBg = plan.featured ? "rgba(255,255,255,0.1)" : "#ede9fe";
           return (
           <div
             key={plan.name}
@@ -134,14 +101,6 @@ export default function Pricing() {
               animation: `fadeUp 0.5s ${0.1 + i * 0.08}s ${E} both`,
             }}
           >
-            <div style={{
-              marginBottom: 20, display: "inline-flex",
-              alignItems: "center", justifyContent: "center",
-              width: 60, height: 60, background: chipBg, borderRadius: 12,
-            }}>
-              <Icon c={iconColor}/>
-            </div>
-
             <p style={{
               fontFamily: "var(--font-inter)",
               fontWeight: 700,

@@ -306,11 +306,15 @@ export default function About() {
           {t("about.photoLabel")}
         </p>
 
-        {/* Viewport — clips overflow and fades edges */}
+        {/* Cubic 3D perspective wrapper */}
+        <div style={{ perspective: "700px", perspectiveOrigin: "50% 40%" }}>
+        {/* Viewport — clips overflow, fades edges, tilted on the 3D plane */}
         <div style={{
           overflow: "hidden",
-          WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%)",
-          maskImage: "linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%)",
+          transform: "rotateX(10deg) scale(1.02)",
+          transformStyle: "preserve-3d",
+          WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)",
+          maskImage: "linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)",
         }}>
           {/* The scrolling strip — doubled for seamless loop */}
           <div
@@ -344,6 +348,7 @@ export default function About() {
               </div>
             ))}
           </div>
+        </div>
         </div>
       </motion.div>
 
