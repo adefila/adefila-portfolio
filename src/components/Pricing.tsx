@@ -59,7 +59,7 @@ export default function Pricing() {
           </p>
           <h2 style={{
             fontFamily: "var(--font-poppins)", fontWeight: 700,
-            fontSize: "clamp(26px, 3.2vw, 44px)", letterSpacing: "-1px",
+            fontSize: "clamp(28px, 3.5vw, 48px)", letterSpacing: "-1px",
             lineHeight: 1.08, textTransform: "uppercase", color: "var(--fg)",
           }}>
             {t("pricing.h2a")}{" "}

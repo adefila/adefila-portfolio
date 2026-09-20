@@ -125,7 +125,12 @@ export default function Footer() {
                 textWrap: "balance",
               }}
             >
-              {t("footer.cta")}
+              {(() => {
+                const s = t("footer.cta");
+                const mid = s.indexOf(". ");
+                if (mid < 0) return s;
+                return <>{s.slice(0, mid + 1)}<br />{s.slice(mid + 2)}</>;
+              })()}
             </motion.h2>
             <motion.p
               initial={{ opacity: 0, y: 10 }}
