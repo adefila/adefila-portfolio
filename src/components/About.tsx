@@ -1,9 +1,13 @@
-﻿"use client";
+"use client";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight, X, Download } from "lucide-react";
 import MagneticButton from "./MagneticButton";
 import { useLang } from "@/context/LangContext";
+
+const PHOTO_W = 380;
+const PHOTO_H = 300;
+const PHOTO_GAP = 16;
 
 const techStacks = ["Figma", "Framer", "Webflow", "WordPress", "Shopify", "React", "Claude"];
 
@@ -23,6 +27,30 @@ const photos = [
   { id: 4, src: "/gallery/photo-4.jpeg" },
   { id: 5, src: "/gallery/photo-5.jpeg" },
 ];
+
+const ONE_SET_PX = photos.length * (PHOTO_W + PHOTO_GAP);
+
+const MARQUEE_CSS = `
+  @keyframes photo-marquee {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-${ONE_SET_PX}px); }
+  }
+  .photo-strip {
+    animation: photo-marquee ${photos.length * 5}s linear infinite;
+  }
+  .photo-strip:hover {
+    animation-play-state: paused;
+  }
+  .photo-strip-img {
+    filter: grayscale(100%) contrast(1.05);
+    transform: scale(1);
+    transition: filter 0.45s ease, transform 0.5s cubic-bezier(0.22,1,0.36,1);
+  }
+  .photo-strip-img:hover {
+    filter: grayscale(0%) contrast(1);
+    transform: scale(1.04);
+  }
+`;
 
 function TechTag({ label }: { label: string }) {
   const [hovered, setHovered] = useState(false);
@@ -51,53 +79,14 @@ function TechTag({ label }: { label: string }) {
   );
 }
 
-const CAROUSEL_GAP = 0;
-
 export default function About() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-10%" });
   const { t } = useLang();
-  const [photoIndex, setPhotoIndex] = useState(0);
   const [lightbox, setLightbox] = useState<number | null>(null);
-  const carouselRef = useRef<HTMLDivElement>(null);
-  const [slideWidth, setSlideWidth] = useState(0);
-  const [isMobile, setIsMobile] = useState(false);
-  const directionRef = useRef(1);
-
-  useEffect(() => {
-    const update = () => {
-      const mobile = window.innerWidth < 768;
-      setIsMobile(mobile);
-      if (carouselRef.current) {
-        const w = carouselRef.current.clientWidth;
-        const visible = mobile ? 1 : 3;
-        setSlideWidth(w / visible);
-      }
-    };
-    update();
-    window.addEventListener("resize", update);
-    return () => window.removeEventListener("resize", update);
-  }, []);
-
-  const visibleCount = isMobile ? 1 : 3;
-  const maxIndex = photos.length - visibleCount;
-
-  const prev = () => setPhotoIndex((p) => Math.max(0, p - 1));
-  const next = () => setPhotoIndex((p) => Math.min(maxIndex, p + 1));
 
   const lbPrev = () => setLightbox((p) => (p !== null ? (p - 1 + photos.length) % photos.length : 0));
   const lbNext = () => setLightbox((p) => (p !== null ? (p + 1) % photos.length : 0));
-
-  useEffect(() => {
-    const id = setInterval(() => {
-      setPhotoIndex((p) => {
-        if (p >= maxIndex) directionRef.current = -1;
-        if (p <= 0) directionRef.current = 1;
-        return Math.max(0, Math.min(maxIndex, p + directionRef.current));
-      });
-    }, 4500);
-    return () => clearInterval(id);
-  }, [maxIndex]);
 
   useEffect(() => {
     if (lightbox === null) return;
@@ -113,13 +102,10 @@ export default function About() {
   return (
     <section
       id="about"
-      style={{
-        width: "100%",
-        maxWidth: 1200,
-        margin: "0 auto",
-        padding: "80px 20px",
-      }}
+      style={{ width: "100%", maxWidth: 1200, margin: "0 auto", padding: "80px 20px" }}
     >
+      <style>{MARQUEE_CSS}</style>
+
       <motion.p
         ref={ref}
         initial={{ opacity: 0, y: 10 }}
@@ -188,17 +174,15 @@ export default function About() {
             transition={{ duration: 0.5, delay: 0.25 }}
             style={{ marginTop: 40 }}
           >
-            <p
-              style={{
-                fontFamily: "var(--font-inter)",
-                fontWeight: 700,
-                fontSize: 11,
-                letterSpacing: "4px",
-                textTransform: "uppercase",
-                color: "var(--accent-purple)",
-                marginBottom: 16,
-              }}
-            >
+            <p style={{
+              fontFamily: "var(--font-inter)",
+              fontWeight: 700,
+              fontSize: 11,
+              letterSpacing: "4px",
+              textTransform: "uppercase",
+              color: "var(--accent-purple)",
+              marginBottom: 16,
+            }}>
               {t("about.techLabel")}
             </p>
             <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
@@ -208,7 +192,7 @@ export default function About() {
             </div>
           </motion.div>
 
-          {/* CV download. magnetic button matching Book a Call style */}
+          {/* CV download */}
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -256,73 +240,46 @@ export default function About() {
           transition={{ duration: 0.5, delay: 0.2 }}
           style={{ flex: 1, minWidth: 260 }}
         >
-          <p
-            style={{
-              fontFamily: "var(--font-inter)",
-              fontWeight: 700,
-              fontSize: 11,
-              letterSpacing: "4px",
-              textTransform: "uppercase",
-              color: "var(--accent-purple)",
-              marginBottom: 24,
-            }}
-          >
+          <p style={{
+            fontFamily: "var(--font-inter)",
+            fontWeight: 700,
+            fontSize: 11,
+            letterSpacing: "4px",
+            textTransform: "uppercase",
+            color: "var(--accent-purple)",
+            marginBottom: 24,
+          }}>
             {t("about.historyLabel")}
           </p>
           <div style={{ display: "flex", flexDirection: "column" }}>
             {workHistory.map((job, i) => (
-              <div
-                key={i}
-                style={{
-                  padding: "20px 0",
-                  borderBottom: "1px solid rgba(0,0,0,0.08)",
-                }}
-              >
-                <p
-                  style={{
-                    fontFamily: "var(--font-inter)",
-                    fontSize: 11,
-                    color: "var(--fg-muted)",
-                    marginBottom: 6,
-                    letterSpacing: "0.02em",
-                    textTransform: "uppercase",
-                  }}
-                >
+              <div key={i} style={{ padding: "20px 0", borderBottom: "1px solid rgba(0,0,0,0.08)" }}>
+                <p style={{
+                  fontFamily: "var(--font-inter)",
+                  fontSize: 11,
+                  color: "var(--fg-muted)",
+                  marginBottom: 6,
+                  letterSpacing: "0.02em",
+                  textTransform: "uppercase",
+                }}>
                   {job.period}
                 </p>
-                <p
-                  style={{
-                    fontFamily: "var(--font-inter)",
-                    fontWeight: 600,
-                    fontSize: 14,
-                    color: "var(--fg)",
-                    marginBottom: 2,
-                    letterSpacing: "-0.3px",
-                    textTransform: "uppercase",
-                  }}
-                >
+                <p style={{
+                  fontFamily: "var(--font-inter)",
+                  fontWeight: 600,
+                  fontSize: 14,
+                  color: "var(--fg)",
+                  marginBottom: 2,
+                  letterSpacing: "-0.3px",
+                  textTransform: "uppercase",
+                }}>
                   {job.role}
                 </p>
-                <p
-                  style={{
-                    fontFamily: "var(--font-inter)",
-                    fontSize: 13,
-                    color: "var(--fg-secondary)",
-                    letterSpacing: "-0.2px",
-                  }}
-                >
+                <p style={{ fontFamily: "var(--font-inter)", fontSize: 13, color: "var(--fg-secondary)", letterSpacing: "-0.2px" }}>
                   {job.company}
-                  {"location" in job && (
-                    <span style={{
-                      fontFamily: "var(--font-inter)",
-                      fontSize: 11,
-                      color: "var(--fg-muted)",
-                      letterSpacing: "0.01em",
-                      marginLeft: 6,
-                    }}>
-                      · {job.location}
-                    </span>
-                  )}
+                  <span style={{ fontFamily: "var(--font-inter)", fontSize: 11, color: "var(--fg-muted)", letterSpacing: "0.01em", marginLeft: 6 }}>
+                    · {job.location}
+                  </span>
                 </p>
               </div>
             ))}
@@ -330,120 +287,63 @@ export default function About() {
         </motion.div>
       </div>
 
-      {/* Photo carousel */}
+      {/* Photo marquee strip */}
       <motion.div
-        className="about-carousel"
         initial={{ opacity: 0, y: 20 }}
         animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.5, delay: 0.35 }}
         style={{ marginTop: 64 }}
       >
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 20 }}>
-          <p
+        <p style={{
+          fontFamily: "var(--font-inter)",
+          fontWeight: 700,
+          fontSize: 11,
+          letterSpacing: "4px",
+          textTransform: "uppercase",
+          color: "var(--accent-purple)",
+          marginBottom: 20,
+        }}>
+          {t("about.photoLabel")}
+        </p>
+
+        {/* Viewport — clips overflow and fades edges */}
+        <div style={{
+          overflow: "hidden",
+          WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%)",
+          maskImage: "linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%)",
+        }}>
+          {/* The scrolling strip — doubled for seamless loop */}
+          <div
+            className="photo-strip"
             style={{
-              fontFamily: "var(--font-inter)",
-              fontWeight: 700,
-              fontSize: 11,
-              letterSpacing: "4px",
-              textTransform: "uppercase",
-              color: "var(--accent-purple)",
+              display: "flex",
+              gap: PHOTO_GAP,
+              width: "max-content",
             }}
           >
-            {t("about.photoLabel")}
-          </p>
-          <div style={{ display: "flex", gap: 8 }}>
-            <button
-              aria-label="Previous photo"
-              onClick={prev}
-              disabled={photoIndex === 0}
-              style={{
-                width: 36,
-                height: 36,
-                borderRadius: 0,
-                border: "1px solid rgba(0,0,0,0.12)",
-                background: photoIndex === 0 ? "rgba(0,0,0,0.03)" : "var(--white)",
-                cursor: photoIndex === 0 ? "not-allowed" : "pointer",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                opacity: photoIndex === 0 ? 0.4 : 1,
-                transition: "opacity 0.2s",
-              }}
-            >
-              <ChevronLeft size={16} strokeWidth={2} />
-            </button>
-            <button
-              aria-label="Next photo"
-              onClick={next}
-              disabled={photoIndex >= maxIndex}
-              style={{
-                width: 36,
-                height: 36,
-                borderRadius: 0,
-                border: "1px solid rgba(0,0,0,0.12)",
-                background: photoIndex >= maxIndex ? "rgba(0,0,0,0.03)" : "var(--white)",
-                cursor: photoIndex >= maxIndex ? "not-allowed" : "pointer",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                opacity: photoIndex >= maxIndex ? 0.4 : 1,
-                transition: "opacity 0.2s",
-              }}
-            >
-              <ChevronRight size={16} strokeWidth={2} />
-            </button>
-          </div>
-        </div>
-
-        <div ref={carouselRef} style={{ overflow: "hidden" }}>
-          <motion.div
-            animate={{ x: slideWidth > 0 ? -(photoIndex * (slideWidth + CAROUSEL_GAP)) : 0 }}
-            transition={{ type: "spring", stiffness: 280, damping: 36, mass: 0.9 }}
-            style={{ display: "flex", gap: CAROUSEL_GAP, willChange: "transform" }}
-          >
-            {photos.map((photo, i) => (
+            {[...photos, ...photos].map((photo, i) => (
               <div
-                key={photo.id}
-                onClick={() => setLightbox(i)}
+                key={i}
+                onClick={() => setLightbox(i % photos.length)}
                 style={{
                   flexShrink: 0,
-                  width: slideWidth > 0 ? slideWidth : "calc(33.333%)",
-                  height: isMobile ? 280 : 400,
-                  borderRadius: 0,
-                  background: "rgba(0,0,0,0.06)",
+                  width: PHOTO_W,
+                  height: PHOTO_H,
                   overflow: "hidden",
                   cursor: "zoom-in",
+                  background: "rgba(0,0,0,0.06)",
                 }}
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={photo.src}
-                  alt={`Gallery photo ${photo.id}`}
-                  style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", filter: "grayscale(100%) contrast(1.05)" }}
+                  alt={`Gallery photo ${(i % photos.length) + 1}`}
+                  className="photo-strip-img"
+                  style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
                 />
               </div>
             ))}
-          </motion.div>
-        </div>
-
-        <div style={{ display: "flex", gap: 6, justifyContent: "center", marginTop: 16 }}>
-          {Array.from({ length: maxIndex + 1 }).map((_, i) => (
-            <button
-              key={i}
-              aria-label={`Go to photo ${i + 1}`}
-              onClick={() => setPhotoIndex(i)}
-              style={{
-                width: photoIndex === i ? 20 : 6,
-                height: 6,
-                borderRadius: 0,
-                background: photoIndex === i ? "var(--fg)" : "rgba(0,0,0,0.15)",
-                border: "none",
-                cursor: "pointer",
-                padding: 0,
-                transition: "width 0.4s cubic-bezier(0.16,1,0.3,1), background 0.3s ease",
-              }}
-            />
-          ))}
+          </div>
         </div>
       </motion.div>
 
@@ -470,19 +370,11 @@ export default function About() {
               aria-label="Close photo viewer"
               onClick={() => setLightbox(null)}
               style={{
-                position: "absolute",
-                top: 20,
-                right: 20,
-                width: 40,
-                height: 40,
-                borderRadius: 0,
-                background: "rgba(255,255,255,0.12)",
-                border: "none",
-                cursor: "pointer",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                color: "#fff",
+                position: "absolute", top: 20, right: 20,
+                width: 40, height: 40, borderRadius: 0,
+                background: "rgba(255,255,255,0.12)", border: "none",
+                cursor: "pointer", display: "flex", alignItems: "center",
+                justifyContent: "center", color: "#fff",
               }}
             >
               <X size={18} />
@@ -492,18 +384,11 @@ export default function About() {
               aria-label="Previous photo"
               onClick={(e) => { e.stopPropagation(); lbPrev(); }}
               style={{
-                position: "absolute",
-                left: 20,
-                width: 44,
-                height: 44,
-                borderRadius: 0,
-                background: "rgba(255,255,255,0.12)",
-                border: "none",
-                cursor: "pointer",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                color: "#fff",
+                position: "absolute", left: 20,
+                width: 44, height: 44, borderRadius: 0,
+                background: "rgba(255,255,255,0.12)", border: "none",
+                cursor: "pointer", display: "flex", alignItems: "center",
+                justifyContent: "center", color: "#fff",
               }}
             >
               <ChevronLeft size={22} />
@@ -530,35 +415,22 @@ export default function About() {
               aria-label="Next photo"
               onClick={(e) => { e.stopPropagation(); lbNext(); }}
               style={{
-                position: "absolute",
-                right: 20,
-                width: 44,
-                height: 44,
-                borderRadius: 0,
-                background: "rgba(255,255,255,0.12)",
-                border: "none",
-                cursor: "pointer",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                color: "#fff",
+                position: "absolute", right: 20,
+                width: 44, height: 44, borderRadius: 0,
+                background: "rgba(255,255,255,0.12)", border: "none",
+                cursor: "pointer", display: "flex", alignItems: "center",
+                justifyContent: "center", color: "#fff",
               }}
             >
               <ChevronRight size={22} />
             </button>
 
-            <p
-              style={{
-                position: "absolute",
-                bottom: 20,
-                left: "50%",
-                transform: "translateX(-50%)",
-                fontFamily: "var(--font-inter)",
-                fontSize: 12,
-                color: "rgba(255,255,255,0.5)",
-                letterSpacing: "1px",
-              }}
-            >
+            <p style={{
+              position: "absolute", bottom: 20,
+              left: "50%", transform: "translateX(-50%)",
+              fontFamily: "var(--font-inter)", fontSize: 12,
+              color: "rgba(255,255,255,0.5)", letterSpacing: "1px",
+            }}>
               {lightbox + 1} / {photos.length}
             </p>
           </motion.div>
