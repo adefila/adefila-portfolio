@@ -2,7 +2,7 @@
 import { motion } from "framer-motion";
 import { CalendarDays } from "lucide-react";
 import Image from "next/image";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import MagneticButton from "./MagneticButton";
 import { useLang } from "@/context/LangContext";
 
@@ -17,25 +17,18 @@ const slides = [
 
 const track = [...slides, ...slides];
 
-const FEATURED = slides[0];
-
 export default function Hero() {
   const { t } = useLang();
   const sectionRef = useRef<HTMLElement>(null);
-  const cardRef = useRef<HTMLDivElement>(null);
+  const [blob, setBlob] = useState({ x: -9999, y: -9999 });
 
   const onMouseMove = (e: React.MouseEvent) => {
-    if (!sectionRef.current || !cardRef.current) return;
+    if (!sectionRef.current) return;
     const rect = sectionRef.current.getBoundingClientRect();
-    const x = (e.clientX - rect.left) / rect.width - 0.5;
-    const y = (e.clientY - rect.top) / rect.height - 0.5;
-    cardRef.current.style.transform = `perspective(1000px) rotateY(${x * 14}deg) rotateX(${-y * 10}deg)`;
+    setBlob({ x: e.clientX - rect.left, y: e.clientY - rect.top });
   };
 
-  const onMouseLeave = () => {
-    if (!cardRef.current) return;
-    cardRef.current.style.transform = "perspective(1000px) rotateY(0deg) rotateX(0deg)";
-  };
+  const onMouseLeave = () => setBlob({ x: -9999, y: -9999 });
 
   return (
     <section
@@ -44,178 +37,140 @@ export default function Hero() {
       className="hero-section"
       onMouseMove={onMouseMove}
       onMouseLeave={onMouseLeave}
-      style={{ paddingTop: 120, paddingBottom: 0, width: "100%", overflow: "hidden" }}
+      style={{ paddingTop: 120, paddingBottom: 0, width: "100%", overflow: "hidden", position: "relative" }}
     >
-      <div style={{ maxWidth: 1200, margin: "0 auto", paddingLeft: 20, paddingRight: 20 }}>
-        <div className="hero-layout">
+      {/* Dot-grid background */}
+      <div
+        aria-hidden
+        style={{
+          position: "absolute",
+          inset: 0,
+          backgroundImage: "radial-gradient(circle, rgba(0,0,0,0.07) 1px, transparent 1px)",
+          backgroundSize: "28px 28px",
+          pointerEvents: "none",
+          zIndex: 0,
+        }}
+      />
 
-          {/* ── Left column ── */}
-          <div className="hero-left">
+      {/* Cursor glow blob */}
+      <div
+        aria-hidden
+        style={{
+          position: "absolute",
+          width: 520,
+          height: 520,
+          borderRadius: "50%",
+          background: "radial-gradient(circle, rgba(15,15,15,0.09) 0%, transparent 68%)",
+          transform: `translate(${blob.x - 260}px, ${blob.y - 260}px)`,
+          transition: "transform 0.1s ease-out",
+          pointerEvents: "none",
+          zIndex: 1,
+          mixBlendMode: "multiply",
+        }}
+      />
+
+      <div style={{ maxWidth: 1200, margin: "0 auto", paddingLeft: 20, paddingRight: 20, position: "relative", zIndex: 2 }}>
+
+        <div
+          className="hero-badge"
+          style={{ display: "inline-flex", alignItems: "center", gap: 6, marginBottom: 32, animation: `heroFadeUp 0.6s 0.1s ${EASE} both` }}
+        >
+          <span style={{ position: "relative", width: 8, height: 8, flexShrink: 0, display: "inline-flex", alignItems: "center", justifyContent: "center" }}>
+            <span style={{ position: "absolute", inset: 0, borderRadius: "50%", background: "var(--accent-green)", animation: "pulseRipple 2s ease-out infinite" }} />
+            <span style={{ width: 8, height: 8, borderRadius: "50%", background: "var(--accent-green)", display: "block", position: "relative", zIndex: 1 }} />
+          </span>
+          <span style={{ fontFamily: "var(--font-inter)", fontWeight: 600, fontSize: 11, letterSpacing: "0.08em", textTransform: "uppercase", color: "#006b2e" }}>
+            {t("hero.badge")}
+          </span>
+          <span style={{ width: 3, height: 3, borderRadius: "50%", background: "var(--fg-muted)", display: "inline-block" }} />
+          <span style={{ fontFamily: "var(--font-inter)", fontWeight: 500, fontSize: 11, letterSpacing: "0.06em", textTransform: "uppercase", color: "var(--fg-secondary)" }}>
+            {t("hero.badge2")}
+          </span>
+        </div>
+
+        <div style={{ marginBottom: 24 }}>
+          {[t("hero.h1"), t("hero.h2")].map((line, i) => (
             <div
-              className="hero-badge"
-              style={{ display: "inline-flex", alignItems: "center", gap: 6, marginBottom: 32, animation: `heroFadeUp 0.6s 0.1s ${EASE} both` }}
-            >
-              <span style={{ position: "relative", width: 8, height: 8, flexShrink: 0, display: "inline-flex", alignItems: "center", justifyContent: "center" }}>
-                <span style={{ position: "absolute", inset: 0, borderRadius: "50%", background: "var(--accent-green)", animation: "pulseRipple 2s ease-out infinite" }} />
-                <span style={{ width: 8, height: 8, borderRadius: "50%", background: "var(--accent-green)", display: "block", position: "relative", zIndex: 1 }} />
-              </span>
-              <span style={{ fontFamily: "var(--font-inter)", fontWeight: 600, fontSize: 11, letterSpacing: "0.08em", textTransform: "uppercase", color: "#006b2e" }}>
-                {t("hero.badge")}
-              </span>
-              <span style={{ width: 3, height: 3, borderRadius: "50%", background: "var(--fg-muted)", display: "inline-block" }} />
-              <span style={{ fontFamily: "var(--font-inter)", fontWeight: 500, fontSize: 11, letterSpacing: "0.06em", textTransform: "uppercase", color: "var(--fg-secondary)" }}>
-                {t("hero.badge2")}
-              </span>
-            </div>
-
-            <div style={{ marginBottom: 24 }}>
-              {[t("hero.h1"), t("hero.h2")].map((line, i) => (
-                <div
-                  key={i}
-                  className="hero-headline"
-                  style={{
-                    fontFamily: "var(--font-poppins)",
-                    fontWeight: 700,
-                    fontSize: "clamp(36px, 4.5vw, 72px)",
-                    letterSpacing: "-0.04em",
-                    lineHeight: 1.0,
-                    textTransform: "uppercase",
-                    color: "var(--fg)",
-                    display: "block",
-                    animation: `heroFadeUp 0.55s ${0.15 + i * 0.12}s ${EASE} both`,
-                  }}
-                >
-                  {line}
-                </div>
-              ))}
-            </div>
-
-            <p
-              className="hero-subtitle"
+              key={i}
+              className="hero-headline"
               style={{
-                fontFamily: "var(--font-inter)",
-                fontWeight: 400,
-                fontSize: 16,
-                letterSpacing: "-0.3px",
-                lineHeight: 1.65,
-                color: "var(--fg-secondary)",
-                maxWidth: 420,
-                textWrap: "balance" as const,
-                marginBottom: 16,
-                animation: `heroFadeUp 0.6s 0.35s ${EASE} both`,
-              }}
-            >
-              {t("hero.subtitle")}
-            </p>
-
-            <p
-              style={{
-                fontFamily: "var(--font-inter)",
-                fontWeight: 500,
-                fontSize: 11,
-                letterSpacing: "0.08em",
+                fontFamily: "var(--font-poppins)",
+                fontWeight: 700,
+                fontSize: "clamp(48px, 8vw, 112px)",
+                letterSpacing: "-0.04em",
+                lineHeight: 1.0,
                 textTransform: "uppercase",
-                color: "var(--fg-muted)",
-                marginBottom: 32,
-                animation: `heroFadeUp 0.6s 0.42s ${EASE} both`,
+                color: "var(--fg)",
+                display: "block",
+                animation: `heroFadeUp 0.55s ${0.15 + i * 0.12}s ${EASE} both`,
               }}
             >
-              {t("hero.proof")}
-            </p>
-
-            <div
-              className="hero-cta"
-              style={{ display: "flex", gap: 12, flexWrap: "wrap", marginBottom: 48, animation: `heroFadeUp 0.6s 0.5s ${EASE} both` }}
-            >
-              <MagneticButton
-                href="https://calendly.com/adefilasamuel929/30min"
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{
-                  fontFamily: "var(--font-inter)",
-                  fontWeight: 600,
-                  fontSize: 14,
-                  color: "var(--white)",
-                  background: "var(--fg)",
-                  padding: "14px 28px",
-                  borderRadius: 0,
-                  textDecoration: "none",
-                  letterSpacing: "-0.2px",
-                  alignItems: "center",
-                  gap: 8,
-                }}
-              >
-                {t("hero.cta")} <CalendarDays size={15} strokeWidth={2} />
-              </MagneticButton>
+              {line}
             </div>
-          </div>
+          ))}
+        </div>
 
-          {/* ── Right column — floating card ── */}
-          <div className="hero-right" style={{ animation: `heroFadeUp 0.7s 0.3s ${EASE} both` }}>
-            <motion.div
-              animate={{ y: [0, -14, 0] }}
-              transition={{ duration: 5, ease: "easeInOut", repeat: Infinity }}
-            >
-              <div
-                ref={cardRef}
-                style={{
-                  width: 460,
-                  maxWidth: "100%",
-                  height: 340,
-                  background: "#111",
-                  border: "1px solid rgba(255,255,255,0.06)",
-                  borderRadius: 0,
-                  overflow: "hidden",
-                  position: "relative",
-                  transition: "transform 0.25s cubic-bezier(0.22,1,0.36,1), box-shadow 0.25s",
-                  transformStyle: "preserve-3d",
-                  boxShadow: "0 32px 80px rgba(0,0,0,0.18), 0 8px 24px rgba(0,0,0,0.12)",
-                }}
-              >
-                <Image
-                  src={FEATURED.img}
-                  alt={FEATURED.title}
-                  fill
-                  priority
-                  sizes="460px"
-                  style={{ objectFit: "cover", objectPosition: "top center", filter: "grayscale(20%) brightness(0.8)" }}
-                />
-                <div style={{ position: "absolute", inset: 0, background: "rgba(0,0,0,0.35)" }} />
+        <p
+          className="hero-subtitle"
+          style={{
+            fontFamily: "var(--font-inter)",
+            fontWeight: 400,
+            fontSize: 16,
+            letterSpacing: "-0.3px",
+            lineHeight: 1.65,
+            color: "var(--fg-secondary)",
+            maxWidth: 560,
+            textWrap: "balance" as const,
+            marginBottom: 16,
+            animation: `heroFadeUp 0.6s 0.35s ${EASE} both`,
+          }}
+        >
+          {t("hero.subtitle")}
+        </p>
 
-                {/* Tag */}
-                <div style={{
-                  position: "absolute", top: 20, left: 20,
-                  background: "rgba(255,255,255,0.1)",
-                  backdropFilter: "blur(8px)",
-                  border: "1px solid rgba(255,255,255,0.15)",
-                  padding: "5px 12px",
-                }}>
-                  <span style={{ fontFamily: "var(--font-inter)", fontSize: 10, fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(255,255,255,0.8)" }}>
-                    Featured Work
-                  </span>
-                </div>
+        <p
+          style={{
+            fontFamily: "var(--font-inter)",
+            fontWeight: 500,
+            fontSize: 11,
+            letterSpacing: "0.08em",
+            textTransform: "uppercase",
+            color: "var(--fg-muted)",
+            marginBottom: 32,
+            animation: `heroFadeUp 0.6s 0.42s ${EASE} both`,
+          }}
+        >
+          {t("hero.proof")}
+        </p>
 
-                {/* Caption */}
-                <div style={{
-                  position: "absolute", bottom: 0, left: 0, right: 0,
-                  padding: "24px",
-                  background: "linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 100%)",
-                }}>
-                  <p style={{ fontFamily: "var(--font-poppins)", fontWeight: 700, fontSize: 15, letterSpacing: "-0.3px", textTransform: "uppercase", color: "#fff", margin: 0, lineHeight: 1.2 }}>
-                    {FEATURED.title}
-                  </p>
-                  <p style={{ fontFamily: "var(--font-inter)", fontSize: 11, letterSpacing: "0.5px", color: "rgba(255,255,255,0.55)", margin: "5px 0 0" }}>
-                    {FEATURED.meta}
-                  </p>
-                </div>
-              </div>
-            </motion.div>
-          </div>
-
+        <div
+          className="hero-cta"
+          style={{ display: "flex", gap: 12, flexWrap: "wrap", marginBottom: 48, animation: `heroFadeUp 0.6s 0.5s ${EASE} both` }}
+        >
+          <MagneticButton
+            href="https://calendly.com/adefilasamuel929/30min"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              fontFamily: "var(--font-inter)",
+              fontWeight: 600,
+              fontSize: 14,
+              color: "var(--white)",
+              background: "var(--fg)",
+              padding: "14px 28px",
+              borderRadius: 0,
+              textDecoration: "none",
+              letterSpacing: "-0.2px",
+              alignItems: "center",
+              gap: 8,
+            }}
+          >
+            {t("hero.cta")} <CalendarDays size={15} strokeWidth={2} />
+          </MagneticButton>
         </div>
       </div>
 
-      {/* ── Full-width marquee ── */}
+      {/* Full-width marquee */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -225,6 +180,8 @@ export default function Hero() {
           width: "100%",
           overflow: "hidden",
           paddingBottom: 80,
+          position: "relative",
+          zIndex: 2,
           WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)",
           maskImage: "linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)",
         }}
