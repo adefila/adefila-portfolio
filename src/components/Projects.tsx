@@ -1,248 +1,147 @@
 "use client";
 import { ArrowUpRight } from "lucide-react";
 import { useState } from "react";
-import Link from "next/link";
 import Image from "next/image";
 import { useLang } from "@/context/LangContext";
 
 const projects = [
   {
     title: "The Initial",
-    tag: "AI",
-    meta: "Figma to Framer",
-    year: "2025",
+    desc: "AI-powered creative agency site. Figma designs translated to pixel-perfect Framer with custom interactions and CMS.",
+    meta: "Figma to Framer · 2025",
     href: "https://the-initial.com/",
-    accent: "#7c3aed",
     screenshot: "/projects/the-initial.png",
-    caseStudy: "/case-study/the-initial",
   },
   {
     title: "BindHQ",
-    tag: "SaaS",
-    meta: "Template Customization",
-    year: "2026",
+    desc: "Insurance management SaaS. Template customised to match their design system with complex navigation and data-dense layouts.",
+    meta: "Template Customization · 2026",
     href: "https://www.bindhq.com/",
-    accent: "#0073e6",
     screenshot: "/projects/bindhq.png",
   },
   {
     title: "VPA London",
-    tag: "Talent",
-    meta: "Framer Development",
-    year: "2025",
+    desc: "Talent agency portfolio built in Framer with editorial typography, smooth scroll, and a roster filtering system.",
+    meta: "Framer Development · 2025",
     href: "https://www.vpalondon.co.uk/",
-    accent: "#d4a853",
     screenshot: "/projects/vpa-london.png",
   },
   {
     title: "Upside ESG",
-    tag: "ESG",
-    meta: "Framer Dev & Integrations",
-    year: "2026",
+    desc: "ESG reporting platform with live data integrations, custom chart components, and a resource library built in Framer.",
+    meta: "Framer Dev & Integrations · 2026",
     href: "https://upside-esg.com/",
-    accent: "#00ab4a",
     screenshot: "/projects/upside-esg.png",
-    caseStudy: "/case-study/upside-esg",
   },
   {
     title: "Alyssa Corso",
-    tag: "Portfolio",
-    meta: "Framer Development",
-    year: "2026",
+    desc: "Personal portfolio for a healthcare SEO consultant. Clean, conversion-focused layout with case study pages.",
+    meta: "Framer Development · 2026",
     href: "https://alyssacorso.com/",
-    accent: "#e05a8a",
     screenshot: "/projects/alyssa-corso.png",
   },
   {
     title: "Emalbu",
-    tag: "HTML → Framer",
-    meta: "Website Migration",
-    year: "2026",
+    desc: "Full HTML-to-Framer migration for a professional services firm — preserving brand identity while modernising the stack.",
+    meta: "Website Migration · 2026",
     href: "https://emalbu.com/",
-    accent: "#c0a060",
     screenshot: "/projects/emalbu.png",
   },
 ];
 
 const SPRING = "cubic-bezier(0.22, 1, 0.36, 1)";
-const E = SPRING;
 
-
-function ProjectCard({
-  project,
-  index,
-}: {
-  project: (typeof projects)[0];
-  index: number;
-}) {
+function ProjectCard({ project, index }: { project: (typeof projects)[0]; index: number }) {
   const [hovered, setHovered] = useState(false);
 
-  const displayUrl = project.href.replace(/^https?:\/\//, "").replace(/\/$/, "");
-  const cardHref = "caseStudy" in project && project.caseStudy ? project.caseStudy as string : project.href;
-  const cardIsExternal = !("caseStudy" in project && project.caseStudy);
-
   return (
-    <div style={{ display: "flex", flexDirection: "column", animation: `fadeUp 0.5s ${0.08 + index * 0.07}s ${E} both` }}>
-      {/* Project card */}
-      <Link
-        href={cardHref}
-        target={cardIsExternal ? "_blank" : undefined}
-        rel={cardIsExternal ? "noopener noreferrer" : undefined}
-        onMouseEnter={() => setHovered(true)}
-        onMouseLeave={() => setHovered(false)}
+    <div
+      style={{ display: "flex", flexDirection: "column", animation: `fadeUp 0.5s ${0.08 + index * 0.07}s ${SPRING} both` }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
+      {/* Screenshot on white */}
+      <a
+        href={project.href}
+        target="_blank"
+        rel="noopener noreferrer"
         style={{
           display: "block",
           position: "relative",
           width: "100%",
           aspectRatio: "1200/630",
           overflow: "hidden",
-          background: "#0f0f0f",
+          background: "#fff",
+          border: "1px solid rgba(0,0,0,0.07)",
           textDecoration: "none",
           cursor: "pointer",
         }}
       >
-        {/* Screenshot background */}
         <Image
           src={project.screenshot}
           alt={project.title}
           fill
           sizes="(max-width: 640px) 100vw, 50vw"
-          style={{ objectFit: "cover", objectPosition: "top" }}
-          quality={75}
+          style={{
+            objectFit: "cover",
+            objectPosition: "top",
+            transform: hovered ? "scale(1.03)" : "scale(1)",
+            transition: `transform 0.55s ${SPRING}`,
+          }}
+          quality={80}
           priority={index < 2}
         />
+      </a>
 
-        {/* Dark overlay — always present to ensure legibility */}
-        <div style={{
-          position: "absolute", inset: 0,
-          background: "rgba(0,0,0,0.45)",
-          transition: "background 0.4s ease",
-        }} />
-
-        {/* Accent color wash — layered on hover */}
-        <div style={{
-          position: "absolute", inset: 0,
-          background: `linear-gradient(135deg, ${project.accent}55 0%, transparent 65%)`,
-          opacity: hovered ? 1 : 0,
-          transition: "opacity 0.4s ease",
-        }} />
-
-        {/* Top bar — tag + URL */}
-        <div style={{
-          position: "absolute", top: 0, left: 0, right: 0, zIndex: 2,
-          display: "flex", alignItems: "center", justifyContent: "space-between",
-          padding: "18px 20px",
-        }}>
-          <span style={{
-            fontFamily: "var(--font-inter)", fontWeight: 700, fontSize: 10,
-            letterSpacing: "2.5px", textTransform: "uppercase",
-            color: project.accent,
-            border: `1px solid ${project.accent}55`,
-            padding: "4px 10px",
-          }}>
-            {project.tag}
-          </span>
-          <span style={{
-            fontFamily: "var(--font-inter)", fontSize: 10,
-            letterSpacing: "0.3px", color: "rgba(255,255,255,0.35)",
-          }}>
-            {displayUrl}
-          </span>
-        </div>
-
-        {/* Bottom bar — meta */}
-        <div style={{
-          position: "absolute", bottom: 0, left: 0, right: 0, zIndex: 2,
-          display: "flex", alignItems: "center", justifyContent: "space-between",
-          padding: "18px 20px",
-          borderTop: "1px solid rgba(255,255,255,0.06)",
-        }}>
-          <span style={{
-            fontFamily: "var(--font-inter)", fontSize: 10,
-            letterSpacing: "1.5px", textTransform: "uppercase",
-            color: "rgba(255,255,255,0.4)",
-          }}>
-            {project.meta}
-          </span>
-          <span style={{
-            fontFamily: "var(--font-inter)", fontSize: 10,
-            letterSpacing: "1px", color: "rgba(255,255,255,0.25)",
-          }}>
-            {project.year}
-          </span>
-        </div>
-
-        {/* Arrow button */}
-        <button
-          onClick={(e) => { e.preventDefault(); e.stopPropagation(); window.open(project.href, "_blank", "noopener,noreferrer"); }}
-          aria-label={`Open ${project.title}`}
-          style={{
-            position: "absolute", top: 14, right: 14, zIndex: 4,
-            width: 36, height: 36,
-            background: hovered ? project.accent : "rgba(255,255,255,0.1)",
-            display: "flex", alignItems: "center", justifyContent: "center",
-            transition: `background 0.25s ease, transform 0.3s ${SPRING}`,
-            transform: hovered ? "scale(1.08)" : "scale(1)",
-            border: "none", cursor: "pointer", padding: 0,
-          }}
-        >
-          <ArrowUpRight size={16} strokeWidth={2} color="#fff" />
-        </button>
-      </Link>
-
-      {/* Info below card */}
-      <div style={{ paddingTop: 18 }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 6, flexWrap: "wrap" }}>
+      {/* Info below */}
+      <div style={{ paddingTop: 20 }}>
+        <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: 12, marginBottom: 8 }}>
           <h3 style={{
-            fontFamily: "var(--font-poppins)", fontWeight: 600,
-            fontSize: "clamp(14px, 1.1vw, 16px)", letterSpacing: "-0.3px",
+            fontFamily: "var(--font-poppins)", fontWeight: 700,
+            fontSize: "clamp(15px, 1.2vw, 18px)", letterSpacing: "-0.4px",
             textTransform: "uppercase", color: "var(--fg)",
-            lineHeight: 1.2, margin: 0,
+            lineHeight: 1.15, margin: 0,
           }}>
             {project.title}
           </h3>
-          <span style={{
-            fontFamily: "var(--font-inter)", fontWeight: 700,
-            fontSize: 9, letterSpacing: "1.8px", textTransform: "uppercase",
-            color: "var(--accent-purple)",
-            background: "rgba(109,40,217,0.08)",
-            border: "1px solid rgba(109,40,217,0.18)",
-            padding: "3px 7px", flexShrink: 0,
-          }}>
-            {project.tag}
-          </span>
+          <a
+            href={project.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`Visit ${project.title}`}
+            style={{
+              flexShrink: 0,
+              width: 32, height: 32,
+              display: "flex", alignItems: "center", justifyContent: "center",
+              background: hovered ? "var(--fg)" : "transparent",
+              border: "1px solid rgba(0,0,0,0.15)",
+              transition: `background 0.25s ease`,
+              color: hovered ? "#fff" : "var(--fg)",
+            }}
+          >
+            <ArrowUpRight size={14} strokeWidth={2} />
+          </a>
         </div>
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12 }}>
-          <p style={{
-            fontFamily: "var(--font-inter)", fontWeight: 400,
-            fontSize: 11, letterSpacing: "0.4px",
-            textTransform: "uppercase", color: "var(--fg-secondary)", margin: 0,
-          }}>
-            {project.meta} &nbsp;·&nbsp; {project.year}
-          </p>
-          {"caseStudy" in project && project.caseStudy && (
-            <Link
-              href={project.caseStudy as string}
-              onClick={(e) => e.stopPropagation()}
-              style={{
-                fontFamily: "var(--font-inter)", fontWeight: 700,
-                fontSize: 10, letterSpacing: "1.5px",
-                textTransform: "uppercase", color: "var(--accent-purple)",
-                textDecoration: "none",
-                borderBottom: "1px solid rgba(109,40,217,0.3)",
-                paddingBottom: 1, flexShrink: 0, whiteSpace: "nowrap",
-              }}
-            >
-              Case Study →
-            </Link>
-          )}
-        </div>
+
+        <p style={{
+          fontFamily: "var(--font-inter)", fontWeight: 400,
+          fontSize: 13, lineHeight: 1.6, letterSpacing: "-0.1px",
+          color: "var(--fg-secondary)", margin: "0 0 10px",
+        }}>
+          {project.desc}
+        </p>
+
+        <p style={{
+          fontFamily: "var(--font-inter)", fontWeight: 500,
+          fontSize: 10, letterSpacing: "1.2px",
+          textTransform: "uppercase", color: "var(--fg-muted)", margin: 0,
+        }}>
+          {project.meta}
+        </p>
       </div>
     </div>
   );
 }
-
-const E2 = "cubic-bezier(0.22,1,0.36,1)";
 
 export default function Projects() {
   const { t } = useLang();
@@ -254,17 +153,16 @@ export default function Projects() {
     >
       <style>{`
         @media (max-width: 640px) {
-          .projects-card-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
+          .projects-card-grid { grid-template-columns: 1fr !important; gap: 48px !important; }
         }
       `}</style>
 
-      {/* Header */}
       <div style={{ marginBottom: 48 }}>
         <p style={{
           fontFamily: "var(--font-inter)", fontWeight: 700,
           fontSize: 11, letterSpacing: "4px", textTransform: "uppercase",
           color: "var(--accent-purple)", marginBottom: 16,
-          animation: `fadeUp 0.5s 0.05s ${E2} both`,
+          animation: `fadeUp 0.5s 0.05s ${SPRING} both`,
         }}>
           {t("projects.eyebrow")}
         </p>
@@ -272,16 +170,15 @@ export default function Projects() {
           fontFamily: "var(--font-poppins)", fontWeight: 700,
           fontSize: "clamp(28px, 3.5vw, 48px)", letterSpacing: "-1px",
           lineHeight: 1, textTransform: "uppercase", color: "var(--fg)",
-          animation: `fadeUp 0.5s 0.12s ${E2} both`,
+          animation: `fadeUp 0.5s 0.12s ${SPRING} both`,
         }}>
           {t("projects.h1")}
         </h2>
       </div>
 
-      {/* 2×3 card grid */}
       <div
         className="projects-card-grid"
-        style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "56px 40px" }}
+        style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "64px 40px" }}
       >
         {projects.map((project, i) => (
           <ProjectCard key={project.title} project={project} index={i} />
