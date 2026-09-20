@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
@@ -10,8 +10,8 @@ const EASE = [0.22, 1, 0.36, 1] as [number, number, number, number];
 
 const DELIVERABLES = [
   "Framer site build from Figma",
-  "ESG data dashboard — Framer CMS integrations",
-  "Responsive layout — mobile, tablet, desktop",
+  "ESG data dashboard. Framer CMS integrations",
+  "Responsive layout. mobile, tablet, desktop",
   "Scroll-triggered animations and micro-interactions",
   "Third-party integrations (API hooks, form routing)",
   "SEO metadata and Open Graph",
@@ -24,28 +24,28 @@ const PROCESS_STEPS = [
     n: "01",
     title: "Kick-off & Scope",
     dur: "Day 1",
-    desc: "One call, 45 minutes. They had a dense Figma file, a clear brand system, and one hard requirement — the ESG dashboard needed to pull live data. We scoped what could ship in 14 days and what was phase two.",
-    detail: "Started with the homepage and dashboard — the two pages that mattered most for their investor demo.",
+    desc: "One call, 45 minutes. They had a dense Figma file, a clear brand system, and one hard requirement. the ESG dashboard needed to pull live data. We scoped what could ship in 14 days and what was phase two.",
+    detail: "Started with the homepage and dashboard. the two pages that mattered most for their investor demo.",
   },
   {
     n: "02",
     title: "Component Audit",
     dur: "Days 1–3",
-    desc: "Before writing a single line in Framer, I mapped every repeating component in the Figma file. Upside ESG had a tight design system — consistent spacing, a small token set, and a handful of data card patterns that needed to stay pixel-perfect at every breakpoint.",
+    desc: "Before writing a single line in Framer, I mapped every repeating component in the Figma file. Upside ESG had a tight design system. consistent spacing, a small token set, and a handful of data card patterns that needed to stay pixel-perfect at every breakpoint.",
     detail: "Identified 4 components that were underspecified for mobile. Resolved with the design team before build started.",
   },
   {
     n: "03",
     title: "Framer Build",
     dur: "Days 4–12",
-    desc: "Built the homepage, dashboard views, and product pages in Framer. The CMS integration for the ESG metric cards required a custom component approach — each data point had to be editable by the client team without touching code.",
+    desc: "Built the homepage, dashboard views, and product pages in Framer. The CMS integration for the ESG metric cards required a custom component approach. each data point had to be editable by the client team without touching code.",
     detail: "The data visualisation cards were the most complex piece. Used Framer's override API to bind live CMS values to chart states.",
   },
   {
     n: "04",
     title: "QA & Launch",
     dur: "Days 13–14",
-    desc: "Full device matrix — Chrome, Safari, Firefox on desktop, plus iOS Safari and Android Chrome. Two rounds of feedback, both turned around within 24 hours. Launched to upside-esg.com.",
+    desc: "Full device matrix. Chrome, Safari, Firefox on desktop, plus iOS Safari and Android Chrome. Two rounds of feedback, both turned around within 24 hours. Launched to upside-esg.com.",
     detail: "Recorded a Loom for the content team covering CMS editing, form integrations, and how to update the ESG metrics.",
   },
 ];
@@ -170,7 +170,7 @@ export default function UpsideESGCaseStudy() {
                 lineHeight: 1.7, color: "var(--fg-secondary)",
               }}>
                 Upside ESG is a SaaS platform helping companies measure, manage, and report their ESG performance.
-                They needed a marketing site that could hold its own next to enterprise software — clean, credible,
+                They needed a marketing site that could hold its own next to enterprise software. clean, credible,
                 and technically solid enough to impress both the sustainability teams and the IT buyers making the call.
               </p>
             </div>
@@ -185,7 +185,7 @@ export default function UpsideESGCaseStudy() {
                 lineHeight: 1.75, color: "var(--fg-secondary)", marginBottom: 32,
               }}>
                 Build the site from a finished Figma file. Integrate with their CMS so the team can update ESG metrics
-                and case study content without a developer. Ship in 14 days — they had a product demo scheduled.
+                and case study content without a developer. Ship in 14 days. they had a product demo scheduled.
               </p>
               <p style={{
                 fontFamily: "var(--font-inter)", fontWeight: 700, fontSize: 9,

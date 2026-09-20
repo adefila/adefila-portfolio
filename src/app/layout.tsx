@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import { Inter, Poppins } from "next/font/google";
 import "./globals.css";
 
@@ -17,9 +17,9 @@ const poppins = Poppins({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://adefilasamuel.com"),
-  title: "Samuel Adefila — Framer Developer | 14-Day Builds for Founders",
+  title: "Samuel Adefila. Framer Developer | 14-Day Builds for Founders",
   description:
-    "Samuel Adefila is a Framer developer and designer. He takes projects from brief to live in 14 days — 50+ projects shipped, Top Rated on Upwork with 100% Job Success. Book a free call.",
+    "Samuel Adefila is a Framer developer and designer. He takes projects from brief to live in 14 days. 50+ projects shipped, Top Rated on Upwork with 100% Job Success. Book a free call.",
   keywords: [
     "Framer developer",
     "Figma to Framer",
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     "Samuel Adefila",
   ],
   openGraph: {
-    title: "Samuel Adefila — Framer Developer",
+    title: "Samuel Adefila. Framer Developer",
     description:
       "50+ Framer sites shipped for founders and teams. Brief to live in 14 days. Top Rated on Upwork, 100% Job Success. Book a call.",
     type: "website",
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Samuel Adefila — Framer Developer",
+    title: "Samuel Adefila. Framer Developer",
     description:
       "50+ Framer sites. Brief to live in 14 days. Top Rated on Upwork. Book a free call.",
   },
@@ -74,15 +74,15 @@ const jsonLd = {
       "@type": "WebSite",
       "@id": "https://adefilasamuel.com/#website",
       url: "https://adefilasamuel.com",
-      name: "Samuel Adefila — Framer Developer & UI/UX Designer",
+      name: "Samuel Adefila. Framer Developer & UI/UX Designer",
       description:
-        "Portfolio of Samuel Adefila — 50+ Framer sites built for founders and teams. Brief to live in 14 days.",
+        "Portfolio of Samuel Adefila. 50+ Framer sites built for founders and teams. Brief to live in 14 days.",
       author: { "@id": "https://adefilasamuel.com/#person" },
     },
     {
       "@type": "ProfessionalService",
       "@id": "https://adefilasamuel.com/#service",
-      name: "Samuel Adefila — Web Design & Development",
+      name: "Samuel Adefila. Web Design & Development",
       url: "https://adefilasamuel.com",
       provider: { "@id": "https://adefilasamuel.com/#person" },
       serviceType: [

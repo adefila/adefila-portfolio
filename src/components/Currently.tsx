@@ -163,7 +163,7 @@ export default function Currently() {
                 fontSize: "clamp(18px, 2vw, 26px)", letterSpacing: "-0.5px",
                 color: "#ffffff", lineHeight: 1.15, marginBottom: 6,
               }}>
-                {spotify?.title || "—"}
+                {spotify?.title || "..."}
               </p>
               <p style={{
                 fontFamily: "var(--font-inter)", fontSize: 13,

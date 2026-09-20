@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import { motion, useInView } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 import { ArrowUpRight, Send } from "lucide-react";
@@ -244,7 +244,7 @@ export default function ContactForm() {
           >
             <CopyEmailRow />
             {[
-              { label: "Upwork", value: "Samuel Adefila — Top Rated", href: "https://upwork.com/freelancers/adefilasamuel" },
+              { label: "Upwork", value: "Samuel Adefila. Top Rated", href: "https://upwork.com/freelancers/adefilasamuel" },
               { label: "LinkedIn", value: "linkedin.com/in/adefila-samuel", href: "https://www.linkedin.com/in/adefila-samuel-144448201/" },
             ].map((item) => (
               <a
@@ -436,7 +436,7 @@ export default function ContactForm() {
                 />
               </div>
 
-              {/* Honeypot — hidden from real users, bots fill it */}
+              {/* Honeypot. hidden from real users, bots fill it */}
               <div style={{ position: "absolute", left: "-9999px", top: 0, height: 0, overflow: "hidden" }} aria-hidden="true">
                 <input
                   type="text"

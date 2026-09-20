@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight, X, Download } from "lucide-react";
@@ -8,12 +8,12 @@ import { useLang } from "@/context/LangContext";
 const techStacks = ["Figma", "Framer", "Webflow", "WordPress", "Shopify", "React", "Claude"];
 
 const workHistory = [
-  { period: "Sep 2025 – Present", role: "Framer Developer", company: "Klimt and Design", location: "Los Angeles, CA — Remote" },
-  { period: "Aug 2025 – May 2026", role: "UX Designer", company: "Virvly", location: "Dubai, UAE — Remote" },
-  { period: "Oct 2024 – Sep 2025", role: "UI/UX Designer & Project Manager", company: "Trust-Tai Agency", location: "Murfreesboro, TN — Remote" },
-  { period: "Sep 2023 – Sep 2025", role: "Lead Product Designer", company: "BookedEZ LLC", location: "Atlanta, GA — Remote" },
-  { period: "Oct 2024 – Jul 2025", role: "Framer Developer", company: "Hitpay", location: "Singapore — Remote" },
-  { period: "Jan 2021 – Jul 2021", role: "Intern WordPress Developer", company: "Davis Enterprises", location: "United States — Remote" },
+  { period: "Sep 2025 – Present", role: "Framer Developer", company: "Klimt and Design", location: "Los Angeles, CA. Remote" },
+  { period: "Aug 2025 – May 2026", role: "UX Designer", company: "Virvly", location: "Dubai, UAE. Remote" },
+  { period: "Oct 2024 – Sep 2025", role: "UI/UX Designer & Project Manager", company: "Trust-Tai Agency", location: "Murfreesboro, TN. Remote" },
+  { period: "Sep 2023 – Sep 2025", role: "Lead Product Designer", company: "BookedEZ LLC", location: "Atlanta, GA. Remote" },
+  { period: "Oct 2024 – Jul 2025", role: "Framer Developer", company: "Hitpay", location: "Singapore. Remote" },
+  { period: "Jan 2021 – Jul 2021", role: "Intern WordPress Developer", company: "Davis Enterprises", location: "United States. Remote" },
 ];
 
 const photos = [
@@ -208,7 +208,7 @@ export default function About() {
             </div>
           </motion.div>
 
-          {/* CV download — magnetic button matching Book a Call style */}
+          {/* CV download. magnetic button matching Book a Call style */}
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}

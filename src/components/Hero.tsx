@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import { motion } from "framer-motion";
 import { CalendarDays } from "lucide-react";
 import Image from "next/image";
@@ -9,7 +9,7 @@ const EASE = "cubic-bezier(0.22, 1, 0.36, 1)";
 
 const slides = [
   { title: "Elite Property", meta: "Framer Development · 2025", img: "/projects/elite-property.png" },
-  { title: "Jamal Muse — Personal Portfolio", meta: "Claude to Framer · 2025", img: "/projects/jamal.png" },
+  { title: "Jamal Muse. Personal Portfolio", meta: "Claude to Framer · 2025", img: "/projects/jamal.png" },
   { title: "Nature", meta: "Web Design · 2025", img: "/projects/nature.png" },
   { title: "Virvly", meta: "Framer Development · 2025", img: "/projects/virvly.png" },
 ];

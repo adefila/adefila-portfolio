@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
@@ -10,7 +10,7 @@ const EASE = [0.22, 1, 0.36, 1] as [number, number, number, number];
 
 const DELIVERABLES = [
   "Framer site build from Figma",
-  "Responsive layout — mobile, tablet, desktop",
+  "Responsive layout. mobile, tablet, desktop",
   "Scroll-triggered animations and page transitions",
   "AI-themed micro-interactions",
   "SEO metadata and Open Graph",
@@ -23,21 +23,21 @@ const PROCESS_STEPS = [
     n: "01",
     title: "Kick-off Call",
     dur: "Day 1",
-    desc: "30 minutes. The client had a complete Figma file and a clear direction — they wanted the site to feel like an AI product without leaning on the usual futuristic clichés. The brief: modern, clean, a little unexpected.",
-    detail: "The design had several animation concepts that weren't spec'd. We agreed to treat them as direction, not spec — I'd make calls in the build and flag anything that felt off.",
+    desc: "30 minutes. The client had a complete Figma file and a clear direction. they wanted the site to feel like an AI product without leaning on the usual futuristic clichés. The brief: modern, clean, a little unexpected.",
+    detail: "The design had several animation concepts that weren't spec'd. We agreed to treat them as direction, not spec. I'd make calls in the build and flag anything that felt off.",
   },
   {
     n: "02",
     title: "Figma Review",
     dur: "Days 1–2",
-    desc: "The Figma file was well-structured but had a few gaps in the interactive states — hover effects, active menu states, and the hero animation were left to interpretation. I documented my read of each and got sign-off before starting.",
+    desc: "The Figma file was well-structured but had a few gaps in the interactive states. hover effects, active menu states, and the hero animation were left to interpretation. I documented my read of each and got sign-off before starting.",
     detail: "Better to spend 2 hours clarifying than 2 days rebuilding.",
   },
   {
     n: "03",
     title: "Framer Build",
     dur: "Days 3–12",
-    desc: "Built the homepage and key product pages first. The hero animation — a typewriter-style prompt that cycles through AI use cases — was done as a custom Framer component. Live preview link shared on Day 4.",
+    desc: "Built the homepage and key product pages first. The hero animation. a typewriter-style prompt that cycles through AI use cases. was done as a custom Framer component. Live preview link shared on Day 4.",
     detail: "The client requested two changes during the build phase: one to the hero copy cycling speed, one to the card hover behaviour. Both done same day.",
   },
   {
@@ -168,7 +168,7 @@ export default function TheInitialCaseStudy() {
                 fontFamily: "var(--font-inter)", fontWeight: 400, fontSize: 17,
                 lineHeight: 1.7, color: "var(--fg-secondary)",
               }}>
-                The Initial is an AI product company that needed a site that could hold its own — modern without the
+                The Initial is an AI product company that needed a site that could hold its own. modern without the
                 generic AI aesthetic, and technically polished enough to earn trust with a technical audience.
                 The design was done; the job was to make it feel as good in Framer as it looked in Figma.
               </p>
@@ -183,7 +183,7 @@ export default function TheInitialCaseStudy() {
                 fontFamily: "var(--font-inter)", fontWeight: 400, fontSize: 15,
                 lineHeight: 1.75, color: "var(--fg-secondary)", marginBottom: 32,
               }}>
-                Take the finished Figma file and build it in Framer — preserving the animation intent without
+                Take the finished Figma file and build it in Framer. preserving the animation intent without
                 making the site feel over-engineered. All interactions smooth on mobile. 14-day deadline.
               </p>
               <p style={{
