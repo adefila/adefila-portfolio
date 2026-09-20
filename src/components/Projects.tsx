@@ -139,24 +139,6 @@ function ProjectCard({
           </span>
         </div>
 
-        {/* Center — project name */}
-        <div style={{
-          position: "absolute", inset: 0, zIndex: 2,
-          display: "flex", alignItems: "center", justifyContent: "center",
-        }}>
-          <h3 style={{
-            fontFamily: "var(--font-poppins)", fontWeight: 700,
-            fontSize: "clamp(22px, 3vw, 38px)",
-            letterSpacing: "-1.5px", lineHeight: 1,
-            textTransform: "uppercase", color: "#fff",
-            margin: 0, textAlign: "center",
-            transform: hovered ? "translateY(-4px)" : "translateY(0)",
-            transition: `transform 0.4s ${SPRING}`,
-          }}>
-            {project.title}
-          </h3>
-        </div>
-
         {/* Bottom bar — meta */}
         <div style={{
           position: "absolute", bottom: 0, left: 0, right: 0, zIndex: 2,
@@ -197,25 +179,54 @@ function ProjectCard({
         </button>
       </Link>
 
-      {/* Info below card — meta only, title already shown in card */}
-      {"caseStudy" in project && project.caseStudy && (
-        <div style={{ paddingTop: 12 }}>
-          <Link
-            href={project.caseStudy as string}
-            onClick={(e) => e.stopPropagation()}
-            style={{
-              fontFamily: "var(--font-inter)", fontWeight: 700,
-              fontSize: 10, letterSpacing: "1.5px",
-              textTransform: "uppercase", color: "var(--accent-purple)",
-              textDecoration: "none",
-              borderBottom: "1px solid rgba(109,40,217,0.3)",
-              paddingBottom: 1,
-            }}
-          >
-            Case Study →
-          </Link>
+      {/* Info below card */}
+      <div style={{ paddingTop: 18 }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 6, flexWrap: "wrap" }}>
+          <h3 style={{
+            fontFamily: "var(--font-poppins)", fontWeight: 600,
+            fontSize: "clamp(14px, 1.1vw, 16px)", letterSpacing: "-0.3px",
+            textTransform: "uppercase", color: "var(--fg)",
+            lineHeight: 1.2, margin: 0,
+          }}>
+            {project.title}
+          </h3>
+          <span style={{
+            fontFamily: "var(--font-inter)", fontWeight: 700,
+            fontSize: 9, letterSpacing: "1.8px", textTransform: "uppercase",
+            color: "var(--accent-purple)",
+            background: "rgba(109,40,217,0.08)",
+            border: "1px solid rgba(109,40,217,0.18)",
+            padding: "3px 7px", flexShrink: 0,
+          }}>
+            {project.tag}
+          </span>
         </div>
-      )}
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12 }}>
+          <p style={{
+            fontFamily: "var(--font-inter)", fontWeight: 400,
+            fontSize: 11, letterSpacing: "0.4px",
+            textTransform: "uppercase", color: "var(--fg-secondary)", margin: 0,
+          }}>
+            {project.meta} &nbsp;·&nbsp; {project.year}
+          </p>
+          {"caseStudy" in project && project.caseStudy && (
+            <Link
+              href={project.caseStudy as string}
+              onClick={(e) => e.stopPropagation()}
+              style={{
+                fontFamily: "var(--font-inter)", fontWeight: 700,
+                fontSize: 10, letterSpacing: "1.5px",
+                textTransform: "uppercase", color: "var(--accent-purple)",
+                textDecoration: "none",
+                borderBottom: "1px solid rgba(109,40,217,0.3)",
+                paddingBottom: 1, flexShrink: 0, whiteSpace: "nowrap",
+              }}
+            >
+              Case Study →
+            </Link>
+          )}
+        </div>
+      </div>
     </div>
   );
 }
