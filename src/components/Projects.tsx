@@ -60,37 +60,42 @@ function ProjectCard({ project, index }: { project: (typeof projects)[0]; index:
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-      {/* Screenshot on white */}
+      {/* Screenshot floating on white canvas */}
       <a
         href={project.href}
         target="_blank"
         rel="noopener noreferrer"
         style={{
           display: "block",
+          background: "#f5f5f5",
+          border: "1px solid rgba(0,0,0,0.06)",
+          padding: "24px 24px 0",
+          textDecoration: "none",
+          cursor: "pointer",
+          overflow: "hidden",
+        }}
+      >
+        <div style={{
           position: "relative",
           width: "100%",
           aspectRatio: "1200/630",
           overflow: "hidden",
-          background: "#fff",
-          border: "1px solid rgba(0,0,0,0.07)",
-          textDecoration: "none",
-          cursor: "pointer",
-        }}
-      >
-        <Image
-          src={project.screenshot}
-          alt={project.title}
-          fill
-          sizes="(max-width: 640px) 100vw, 50vw"
-          style={{
-            objectFit: "cover",
-            objectPosition: "top",
-            transform: hovered ? "scale(1.03)" : "scale(1)",
-            transition: `transform 0.55s ${SPRING}`,
-          }}
-          quality={80}
-          priority={index < 2}
-        />
+          boxShadow: hovered
+            ? "0 16px 48px rgba(0,0,0,0.14)"
+            : "0 8px 24px rgba(0,0,0,0.08)",
+          transform: hovered ? "translateY(-4px) scale(1.01)" : "translateY(0) scale(1)",
+          transition: `transform 0.5s ${SPRING}, box-shadow 0.5s ${SPRING}`,
+        }}>
+          <Image
+            src={project.screenshot}
+            alt={project.title}
+            fill
+            sizes="(max-width: 640px) 100vw, 50vw"
+            style={{ objectFit: "cover", objectPosition: "top" }}
+            quality={80}
+            priority={index < 2}
+          />
+        </div>
       </a>
 
       {/* Info below */}
