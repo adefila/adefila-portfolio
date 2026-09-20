@@ -1,6 +1,5 @@
 "use client";
 import { ArrowUpRight } from "lucide-react";
-import { useState } from "react";
 import Image from "next/image";
 import { useLang } from "@/context/LangContext";
 
@@ -52,14 +51,8 @@ const projects = [
 const SPRING = "cubic-bezier(0.22, 1, 0.36, 1)";
 
 function ProjectCard({ project, index }: { project: (typeof projects)[0]; index: number }) {
-  const [hovered, setHovered] = useState(false);
-
   return (
-    <div
-      style={{ display: "flex", flexDirection: "column", animation: `fadeUp 0.5s ${0.08 + index * 0.07}s ${SPRING} both` }}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-    >
+    <div style={{ display: "flex", flexDirection: "column", animation: `fadeUp 0.5s ${0.08 + index * 0.07}s ${SPRING} both` }}>
       {/* Screenshot floating on white canvas */}
       <a
         href={project.href}
@@ -67,7 +60,7 @@ function ProjectCard({ project, index }: { project: (typeof projects)[0]; index:
         rel="noopener noreferrer"
         style={{
           display: "block",
-          background: "#f5f5f5",
+          background: "#fff",
           border: "1px solid rgba(0,0,0,0.06)",
           padding: "24px 24px 0",
           textDecoration: "none",
@@ -80,11 +73,7 @@ function ProjectCard({ project, index }: { project: (typeof projects)[0]; index:
           width: "100%",
           aspectRatio: "1200/630",
           overflow: "hidden",
-          boxShadow: hovered
-            ? "0 16px 48px rgba(0,0,0,0.14)"
-            : "0 8px 24px rgba(0,0,0,0.08)",
-          transform: hovered ? "translateY(-4px) scale(1.01)" : "translateY(0) scale(1)",
-          transition: `transform 0.5s ${SPRING}, box-shadow 0.5s ${SPRING}`,
+          boxShadow: "0 8px 32px rgba(0,0,0,0.08)",
         }}>
           <Image
             src={project.screenshot}
@@ -118,10 +107,9 @@ function ProjectCard({ project, index }: { project: (typeof projects)[0]; index:
               flexShrink: 0,
               width: 32, height: 32,
               display: "flex", alignItems: "center", justifyContent: "center",
-              background: hovered ? "var(--fg)" : "transparent",
+              background: "transparent",
               border: "1px solid rgba(0,0,0,0.15)",
-              transition: `background 0.25s ease`,
-              color: hovered ? "#fff" : "var(--fg)",
+              color: "var(--fg)",
             }}
           >
             <ArrowUpRight size={14} strokeWidth={2} />
