@@ -2,6 +2,7 @@
 import { ArrowUpRight } from "lucide-react";
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { useLang } from "@/context/LangContext";
 
 const projects = [
@@ -12,6 +13,7 @@ const projects = [
     year: "2025",
     href: "https://the-initial.com/",
     accent: "#7c3aed",
+    screenshot: "/projects/the-initial.png",
     caseStudy: "/case-study/the-initial",
   },
   {
@@ -21,6 +23,7 @@ const projects = [
     year: "2026",
     href: "https://www.bindhq.com/",
     accent: "#0073e6",
+    screenshot: "/projects/bindhq.png",
   },
   {
     title: "VPA London",
@@ -29,6 +32,7 @@ const projects = [
     year: "2025",
     href: "https://www.vpalondon.co.uk/",
     accent: "#d4a853",
+    screenshot: "/projects/vpa-london.png",
   },
   {
     title: "Upside ESG",
@@ -37,6 +41,7 @@ const projects = [
     year: "2026",
     href: "https://upside-esg.com/",
     accent: "#00ab4a",
+    screenshot: "/projects/upside-esg.png",
     caseStudy: "/case-study/upside-esg",
   },
   {
@@ -46,6 +51,7 @@ const projects = [
     year: "2026",
     href: "https://alyssacorso.com/",
     accent: "#e05a8a",
+    screenshot: "/projects/alyssa-corso.png",
   },
   {
     title: "Emalbu",
@@ -54,6 +60,7 @@ const projects = [
     year: "2026",
     href: "https://emalbu.com/",
     accent: "#c0a060",
+    screenshot: "/projects/emalbu.png",
   },
 ];
 
@@ -94,27 +101,31 @@ function ProjectCard({
           cursor: "pointer",
         }}
       >
-        {/* Accent color wash — slides up on hover */}
+        {/* Screenshot background */}
+        <Image
+          src={project.screenshot}
+          alt={project.title}
+          fill
+          sizes="(max-width: 640px) 100vw, 50vw"
+          style={{ objectFit: "cover", objectPosition: "top" }}
+          quality={75}
+          priority={index < 2}
+        />
+
+        {/* Dark overlay — always present to ensure legibility */}
         <div style={{
           position: "absolute", inset: 0,
-          background: `linear-gradient(135deg, ${project.accent}22 0%, transparent 60%)`,
+          background: "rgba(0,0,0,0.45)",
+          transition: "background 0.4s ease",
+        }} />
+
+        {/* Accent color wash — layered on hover */}
+        <div style={{
+          position: "absolute", inset: 0,
+          background: `linear-gradient(135deg, ${project.accent}55 0%, transparent 65%)`,
           opacity: hovered ? 1 : 0,
           transition: "opacity 0.4s ease",
         }} />
-
-        {/* Large number — background texture */}
-        <span style={{
-          position: "absolute",
-          bottom: -16, right: 12,
-          fontFamily: "var(--font-poppins)", fontWeight: 700,
-          fontSize: "clamp(100px, 14vw, 160px)",
-          letterSpacing: "-8px", lineHeight: 1,
-          color: "rgba(255,255,255,0.04)",
-          userSelect: "none", pointerEvents: "none",
-          transition: `color 0.4s ease`,
-        }}>
-          {String(index + 1).padStart(2, "0")}
-        </span>
 
         {/* Top bar — tag + URL */}
         <div style={{
