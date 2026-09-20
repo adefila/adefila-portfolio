@@ -1,6 +1,6 @@
 "use client";
 import { ArrowUpRight } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { useLang } from "@/context/LangContext";
 
@@ -11,7 +11,7 @@ const projects = [
     meta: "Figma to Framer",
     year: "2025",
     href: "https://the-initial.com/",
-    preview: "https://framerusercontent.com/assets/n3sAZpPxdXvBqAdluBlIy6oqgs.svg",
+    accent: "#7c3aed",
     caseStudy: "/case-study/the-initial",
   },
   {
@@ -20,7 +20,7 @@ const projects = [
     meta: "Template Customization",
     year: "2026",
     href: "https://www.bindhq.com/",
-    preview: "https://framerusercontent.com/images/8UlogeRvnNxYazVcp56Y4cn7Zx4.png",
+    accent: "#0073e6",
   },
   {
     title: "VPA London",
@@ -28,7 +28,7 @@ const projects = [
     meta: "Framer Development",
     year: "2025",
     href: "https://www.vpalondon.co.uk/",
-    preview: "https://framerusercontent.com/images/r8WJbImis5H4OlUHf3Iinr5R0fI.png",
+    accent: "#d4a853",
   },
   {
     title: "Upside ESG",
@@ -36,7 +36,7 @@ const projects = [
     meta: "Framer Dev & Integrations",
     year: "2026",
     href: "https://upside-esg.com/",
-    preview: "https://framerusercontent.com/images/3e0RYZS2y2GDKCPfHll3oOfNf8w.png",
+    accent: "#00ab4a",
     caseStudy: "/case-study/upside-esg",
   },
   {
@@ -45,6 +45,7 @@ const projects = [
     meta: "Framer Development",
     year: "2026",
     href: "https://alyssacorso.com/",
+    accent: "#e05a8a",
   },
   {
     title: "Emalbu",
@@ -52,16 +53,13 @@ const projects = [
     meta: "Website Migration",
     year: "2026",
     href: "https://emalbu.com/",
-    preview: "https://framerusercontent.com/assets/cwo9tTjQjvZKnI5Af9MWoLy3hw.png",
+    accent: "#c0a060",
   },
 ];
 
 const SPRING = "cubic-bezier(0.22, 1, 0.36, 1)";
 const E = SPRING;
 
-function screenshotUrl(href: string) {
-  return `https://image.thum.io/get/width/1200/crop/750/noanimate/${href}`;
-}
 
 function ProjectCard({
   project,
@@ -70,15 +68,7 @@ function ProjectCard({
   project: (typeof projects)[0];
   index: number;
 }) {
-  const [loaded, setLoaded] = useState(false);
-  const [errored, setErrored] = useState(false);
   const [hovered, setHovered] = useState(false);
-
-  useEffect(() => {
-    if (loaded || errored) return;
-    const t = setTimeout(() => setErrored(true), 12000);
-    return () => clearTimeout(t);
-  }, [loaded, errored]);
 
   const displayUrl = project.href.replace(/^https?:\/\//, "").replace(/\/$/, "");
   const cardHref = "caseStudy" in project && project.caseStudy ? project.caseStudy as string : project.href;
@@ -86,7 +76,7 @@ function ProjectCard({
 
   return (
     <div style={{ display: "flex", flexDirection: "column", animation: `fadeUp 0.5s ${0.08 + index * 0.07}s ${E} both` }}>
-      {/* Screenshot card */}
+      {/* Project card */}
       <Link
         href={cardHref}
         target={cardIsExternal ? "_blank" : undefined}
@@ -99,135 +89,111 @@ function ProjectCard({
           width: "100%",
           aspectRatio: "1200/630",
           overflow: "hidden",
-          background: "#e8e8e8",
+          background: "#0f0f0f",
           textDecoration: "none",
           cursor: "pointer",
         }}
       >
-        {/* Browser chrome — slides in from top on hover */}
-        <div
-          style={{
-            position: "absolute",
-            top: 0, left: 0, right: 0,
-            zIndex: 3,
-            height: 40,
-            background: "rgba(18,18,18,0.94)",
-            backdropFilter: "blur(10px)",
-            display: "flex",
-            alignItems: "center",
-            gap: 10,
-            padding: "0 14px",
-            transform: hovered ? "translateY(0)" : "translateY(-100%)",
-            transition: `transform 0.38s ${SPRING}`,
-          }}
-        >
-          {/* Window dots */}
-          <div style={{ display: "flex", gap: 5, flexShrink: 0 }}>
-            {["#ff5f57", "#febc2e", "#28c840"].map((c, i) => (
-              <span key={i} style={{ width: 10, height: 10, borderRadius: "50%", background: c, display: "block" }} />
-            ))}
-          </div>
-          {/* URL bar */}
-          <div style={{
-            flex: 1,
-            height: 22,
-            background: "rgba(255,255,255,0.09)",
-            borderRadius: 4,
-            display: "flex",
-            alignItems: "center",
-            padding: "0 10px",
-            gap: 6,
-          }}>
-            <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
-              <circle cx="5" cy="5" r="4.5" stroke="rgba(255,255,255,0.35)" />
-              <ellipse cx="5" cy="5" rx="2" ry="4.5" stroke="rgba(255,255,255,0.35)" />
-              <line x1="0.5" y1="3" x2="9.5" y2="3" stroke="rgba(255,255,255,0.35)" />
-              <line x1="0.5" y1="7" x2="9.5" y2="7" stroke="rgba(255,255,255,0.35)" />
-            </svg>
-            <span style={{
-              fontFamily: "var(--font-inter)",
-              fontSize: 11,
-              color: "rgba(255,255,255,0.6)",
-              letterSpacing: "0.2px",
-            }}>
-              {displayUrl}
-            </span>
-          </div>
-        </div>
-
-        {/* Shimmer while loading */}
-        {!loaded && !errored && (
-          <div style={{
-            position: "absolute", inset: 0,
-            background: "linear-gradient(90deg, #e0e0e0 25%, #ebebeb 50%, #e0e0e0 75%)",
-            backgroundSize: "200% 100%",
-            animation: "shimmer 1.4s infinite",
-          }} />
-        )}
-
-        {/* Screenshot image — shifts & zooms on hover */}
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={"preview" in project && project.preview ? project.preview : screenshotUrl(project.href)}
-          alt={project.title}
-          onLoad={() => setLoaded(true)}
-          onError={() => setErrored(true)}
-          style={{
-            position: "absolute", inset: 0,
-            width: "100%", height: "100%",
-            objectFit: "cover",
-            objectPosition: "preview" in project && project.preview ? "center" : "top center",
-            opacity: loaded ? 1 : 0,
-            transition: `opacity 0.4s ease, transform 0.45s ${SPRING}`,
-            transform: hovered ? "scale(1.05) translateY(6px)" : "scale(1) translateY(0)",
-          }}
-        />
-
-        {/* Fallback */}
-        {errored && (
-          <div style={{
-            position: "absolute", inset: 0,
-            display: "flex", alignItems: "center", justifyContent: "center",
-            background: "#f0f0f0",
-          }}>
-            <span style={{
-              fontFamily: "var(--font-poppins)", fontWeight: 700,
-              fontSize: 48, color: "rgba(0,0,0,0.07)", letterSpacing: "-2px",
-            }}>
-              {String(index + 1).padStart(2, "0")}
-            </span>
-          </div>
-        )}
-
-        {/* Overlay tint on hover */}
+        {/* Accent color wash — slides up on hover */}
         <div style={{
-          position: "absolute", inset: 0, zIndex: 1,
-          background: hovered ? "rgba(0,0,0,0.08)" : "rgba(0,0,0,0)",
-          transition: `background 0.3s ease`,
+          position: "absolute", inset: 0,
+          background: `linear-gradient(135deg, ${project.accent}22 0%, transparent 60%)`,
+          opacity: hovered ? 1 : 0,
+          transition: "opacity 0.4s ease",
         }} />
 
-        {/* Arrow button — always opens live site; button avoids nested <a> */}
+        {/* Large number — background texture */}
+        <span style={{
+          position: "absolute",
+          bottom: -16, right: 12,
+          fontFamily: "var(--font-poppins)", fontWeight: 700,
+          fontSize: "clamp(100px, 14vw, 160px)",
+          letterSpacing: "-8px", lineHeight: 1,
+          color: "rgba(255,255,255,0.04)",
+          userSelect: "none", pointerEvents: "none",
+          transition: `color 0.4s ease`,
+        }}>
+          {String(index + 1).padStart(2, "0")}
+        </span>
+
+        {/* Top bar — tag + URL */}
+        <div style={{
+          position: "absolute", top: 0, left: 0, right: 0, zIndex: 2,
+          display: "flex", alignItems: "center", justifyContent: "space-between",
+          padding: "18px 20px",
+        }}>
+          <span style={{
+            fontFamily: "var(--font-inter)", fontWeight: 700, fontSize: 10,
+            letterSpacing: "2.5px", textTransform: "uppercase",
+            color: project.accent,
+            border: `1px solid ${project.accent}55`,
+            padding: "4px 10px",
+          }}>
+            {project.tag}
+          </span>
+          <span style={{
+            fontFamily: "var(--font-inter)", fontSize: 10,
+            letterSpacing: "0.3px", color: "rgba(255,255,255,0.35)",
+          }}>
+            {displayUrl}
+          </span>
+        </div>
+
+        {/* Center — project name */}
+        <div style={{
+          position: "absolute", inset: 0, zIndex: 2,
+          display: "flex", alignItems: "center", justifyContent: "center",
+        }}>
+          <h3 style={{
+            fontFamily: "var(--font-poppins)", fontWeight: 700,
+            fontSize: "clamp(22px, 3vw, 38px)",
+            letterSpacing: "-1.5px", lineHeight: 1,
+            textTransform: "uppercase", color: "#fff",
+            margin: 0, textAlign: "center",
+            transform: hovered ? "translateY(-4px)" : "translateY(0)",
+            transition: `transform 0.4s ${SPRING}`,
+          }}>
+            {project.title}
+          </h3>
+        </div>
+
+        {/* Bottom bar — meta */}
+        <div style={{
+          position: "absolute", bottom: 0, left: 0, right: 0, zIndex: 2,
+          display: "flex", alignItems: "center", justifyContent: "space-between",
+          padding: "18px 20px",
+          borderTop: "1px solid rgba(255,255,255,0.06)",
+        }}>
+          <span style={{
+            fontFamily: "var(--font-inter)", fontSize: 10,
+            letterSpacing: "1.5px", textTransform: "uppercase",
+            color: "rgba(255,255,255,0.4)",
+          }}>
+            {project.meta}
+          </span>
+          <span style={{
+            fontFamily: "var(--font-inter)", fontSize: 10,
+            letterSpacing: "1px", color: "rgba(255,255,255,0.25)",
+          }}>
+            {project.year}
+          </span>
+        </div>
+
+        {/* Arrow button */}
         <button
           onClick={(e) => { e.preventDefault(); e.stopPropagation(); window.open(project.href, "_blank", "noopener,noreferrer"); }}
           aria-label={`Open ${project.title}`}
           style={{
             position: "absolute", top: 14, right: 14, zIndex: 4,
             width: 36, height: 36,
-            background: hovered ? "#fff" : "var(--fg)",
+            background: hovered ? project.accent : "rgba(255,255,255,0.1)",
             display: "flex", alignItems: "center", justifyContent: "center",
             transition: `background 0.25s ease, transform 0.3s ${SPRING}`,
-            transform: hovered ? "scale(1.1)" : "scale(1)",
-            border: "none",
-            cursor: "pointer",
-            padding: 0,
+            transform: hovered ? "scale(1.08)" : "scale(1)",
+            border: "none", cursor: "pointer", padding: 0,
           }}
         >
-          <ArrowUpRight
-            size={16}
-            strokeWidth={2}
-            color={hovered ? "#0f0f0f" : "#fff"}
-            style={{ transition: "color 0.25s ease" }}
-          />
+          <ArrowUpRight size={16} strokeWidth={2} color="#fff" />
         </button>
       </Link>
 
@@ -302,10 +268,6 @@ export default function Projects() {
       style={{ width: "100%", maxWidth: 1200, margin: "0 auto", padding: "80px 20px" }}
     >
       <style>{`
-        @keyframes shimmer {
-          0%   { background-position: 200% 0; }
-          100% { background-position: -200% 0; }
-        }
         @media (max-width: 640px) {
           .projects-card-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
         }
