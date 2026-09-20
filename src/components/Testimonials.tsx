@@ -5,16 +5,67 @@ import { ChevronLeft, ChevronRight, Play, X } from "lucide-react";
 import { useLang } from "@/context/LangContext";
 
 
+// avatar: path to client headshot  (e.g. "/testimonials/alyssa.jpg")
+// logo:   path to company logo     (e.g. "/testimonials/hitpay-logo.png")
+// Leave both null → shows styled initials placeholder
 const testimonialMeta = [
-  { name: "Davonte Wheeler",     role: "CEO · BookedEZ LLC",                    key: "", video: "/davonte-wheeler.mp4" },
-  { name: "Nitin",               role: "HitPay App",                            key: "testimonials.t0" },
-  { name: "Alyssa Corso",        role: "SEO Consultant for Healthcare Startups", key: "testimonials.t1" },
-  { name: "Johnno Van Den Brink",role: "The Initial Agency",                    key: "testimonials.t2" },
-  { name: "Layo",                role: "Content Writer",                        key: "testimonials.t3" },
-  { name: "Michal Kouril",       role: "Leadopo",                               key: "testimonials.t4" },
-  { name: "Raffaello Cuccuini",  role: "Humanity",                              key: "testimonials.t5" },
-  { name: "Heather Burns",       role: "Upside ESG",                            key: "testimonials.t6" },
+  { name: "Davonte Wheeler",     role: "CEO · BookedEZ LLC",                    key: "",                 video: "/davonte-wheeler.mp4", avatar: null as string|null, logo: null as string|null },
+  { name: "Nitin",               role: "HitPay App",                            key: "testimonials.t0",  avatar: null as string|null, logo: null as string|null },
+  { name: "Alyssa Corso",        role: "SEO Consultant for Healthcare Startups", key: "testimonials.t1", avatar: null as string|null, logo: null as string|null },
+  { name: "Johnno Van Den Brink",role: "The Initial Agency",                    key: "testimonials.t2",  avatar: null as string|null, logo: null as string|null },
+  { name: "Layo",                role: "Content Writer",                        key: "testimonials.t3",  avatar: null as string|null, logo: null as string|null },
+  { name: "Michal Kouril",       role: "Leadopo",                               key: "testimonials.t4",  avatar: null as string|null, logo: null as string|null },
+  { name: "Raffaello Cuccuini",  role: "Humanity",                              key: "testimonials.t5",  avatar: null as string|null, logo: null as string|null },
+  { name: "Heather Burns",       role: "Upside ESG",                            key: "testimonials.t6",  avatar: null as string|null, logo: null as string|null },
 ];
+
+const AVATAR_COLORS = ["#7c3aed","#0073e6","#d4a853","#00ab4a","#e05a8a","#c0a060","#6366f1","#0891b2"];
+
+function getInitials(name: string) {
+  const parts = name.trim().split(" ");
+  return parts.length === 1
+    ? parts[0][0]
+    : parts[0][0] + parts[parts.length - 1][0];
+}
+
+function Avatar({ name, avatar, logo, size = 44 }: { name: string; avatar: string|null; logo: string|null; size?: number }) {
+  const color = AVATAR_COLORS[Math.abs(name.split("").reduce((a, c) => a + c.charCodeAt(0), 0)) % AVATAR_COLORS.length];
+  if (avatar) {
+    return (
+      // eslint-disable-next-line @next/next/no-img-element
+      <img
+        src={avatar}
+        alt={name}
+        style={{ width: size, height: size, borderRadius: "50%", objectFit: "cover", flexShrink: 0, border: "2px solid rgba(0,0,0,0.06)" }}
+      />
+    );
+  }
+  if (logo) {
+    return (
+      // eslint-disable-next-line @next/next/no-img-element
+      <img
+        src={logo}
+        alt={name}
+        style={{ width: size, height: size, borderRadius: 8, objectFit: "contain", flexShrink: 0, background: "#f5f5f5", padding: 4, border: "1px solid rgba(0,0,0,0.06)" }}
+      />
+    );
+  }
+  return (
+    <div style={{
+      width: size, height: size, borderRadius: "50%",
+      background: color, flexShrink: 0,
+      display: "flex", alignItems: "center", justifyContent: "center",
+    }}>
+      <span style={{
+        fontFamily: "var(--font-inter)", fontWeight: 700,
+        fontSize: size * 0.36, color: "#fff", letterSpacing: "0.5px",
+        textTransform: "uppercase", userSelect: "none",
+      }}>
+        {getInitials(name)}
+      </span>
+    </div>
+  );
+}
 
 export default function Testimonials() {
   const ref = useRef(null);
@@ -295,21 +346,24 @@ export default function Testimonials() {
                         {t(item.key)}
                       </p>
                     </div>
-                    <div>
-                      <p style={{
-                        fontFamily: "var(--font-inter)", fontWeight: 700, fontSize: 13,
-                        textTransform: "uppercase", letterSpacing: "0.5px",
-                        color: "var(--fg)", marginBottom: 4,
-                      }}>
-                        {item.name}
-                      </p>
-                      <p style={{
-                        fontFamily: "var(--font-inter)", fontWeight: 400, fontSize: 11,
-                        textTransform: "uppercase", letterSpacing: "0.5px",
-                        color: "var(--fg-secondary)",
-                      }}>
-                        {item.role}
-                      </p>
+                    <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+                      <Avatar name={item.name} avatar={item.avatar ?? null} logo={item.logo ?? null} size={44} />
+                      <div>
+                        <p style={{
+                          fontFamily: "var(--font-inter)", fontWeight: 700, fontSize: 13,
+                          textTransform: "uppercase", letterSpacing: "0.5px",
+                          color: "var(--fg)", marginBottom: 3,
+                        }}>
+                          {item.name}
+                        </p>
+                        <p style={{
+                          fontFamily: "var(--font-inter)", fontWeight: 400, fontSize: 11,
+                          textTransform: "uppercase", letterSpacing: "0.5px",
+                          color: "var(--fg-secondary)",
+                        }}>
+                          {item.role}
+                        </p>
+                      </div>
                     </div>
                   </div>
                 )}
