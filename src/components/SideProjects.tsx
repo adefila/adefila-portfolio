@@ -34,7 +34,7 @@ const PROJECTS_BASE = [
   },
 ];
 
-const STEP_DURATION = 9000;
+const STEP_DURATION = 14000;
 const EASE = [0.22, 1, 0.36, 1] as [number, number, number, number];
 
 export default function SideProjects() {
