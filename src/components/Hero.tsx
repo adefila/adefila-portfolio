@@ -1,267 +1,345 @@
 "use client";
-import { motion } from "framer-motion";
 import { CalendarDays } from "lucide-react";
-import Image from "next/image";
 import MagneticButton from "./MagneticButton";
 import { useLang } from "@/context/LangContext";
 
-// CSS easing for hero animations (used in animation shorthand)
 const EASE = "cubic-bezier(0.22, 1, 0.36, 1)";
 
-const slides = [
-  { title: "Elite Property", meta: "Framer Development · 2025", img: "/projects/elite-property.png" },
-  { title: "Jamal Muse — Personal Portfolio", meta: "Claude to Framer · 2025", img: "/projects/jamal.png" },
-  { title: "Nature", meta: "Web Design · 2025", img: "/projects/nature.png" },
-  { title: "Virvly", meta: "Framer Development · 2025", img: "/projects/virvly.png" },
+const cards = [
+  { title: "The Initial",  tag: "AI",        meta: "Figma to Framer",           year: "2025", accent: "#7c3aed" },
+  { title: "BindHQ",       tag: "SaaS",       meta: "Template Customization",    year: "2026", accent: "#0073e6" },
+  { title: "Upside ESG",   tag: "ESG",        meta: "Framer Dev & Integrations", year: "2026", accent: "#00ab4a" },
+  { title: "VPA London",   tag: "Talent",     meta: "Framer Development",        year: "2025", accent: "#d4a853" },
 ];
-
-// Duplicate for seamless infinite loop
-const track = [...slides, ...slides];
 
 export default function Hero() {
   const { t } = useLang();
+
   return (
-    <section id="hero" className="hero-section" style={{ paddingTop: 120, paddingBottom: 0, width: "100%", overflow: "hidden" }}>
+    <section
+      id="hero"
+      className="hero-section"
+      style={{ paddingTop: 120, paddingBottom: 100, width: "100%", overflow: "hidden" }}
+    >
       <style>{`
-        @keyframes marquee {
-          0%   { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
-        }
-        .marquee-track {
-          animation: marquee 32s linear infinite;
-          will-change: transform;
-        }
-        .marquee-track:hover {
-          animation-play-state: paused;
+        @media (max-width: 768px) {
+          .hero-two-col { grid-template-columns: 1fr !important; }
+          .hero-stack-col { display: none !important; }
         }
       `}</style>
 
-      <div style={{ maxWidth: 1200, margin: "0 auto", paddingLeft: 20, paddingRight: 20 }}>
-            {/* Available badge — plain HTML + CSS animation so it's visible before JS hydrates */}
-            <div
-              className="hero-badge"
-              style={{ display: "inline-flex", alignItems: "center", gap: 6, marginBottom: 32, animation: `heroFadeUp 0.6s 0.1s ${EASE} both` }}
-            >
-              {/* Ripple dot: two layers so the outer span animates scale+opacity (compositor-only) */}
-              <span style={{ position: "relative", width: 8, height: 8, flexShrink: 0, display: "inline-flex", alignItems: "center", justifyContent: "center" }}>
-                <span
-                  style={{
-                    position: "absolute",
-                    inset: 0,
-                    borderRadius: "50%",
-                    background: "var(--accent-green)",
-                    animation: "pulseRipple 2s ease-out infinite",
-                  }}
-                />
-                <span
-                  style={{
-                    width: 8,
-                    height: 8,
-                    borderRadius: "50%",
-                    background: "var(--accent-green)",
-                    display: "block",
-                    position: "relative",
-                    zIndex: 1,
-                  }}
-                />
-              </span>
-              <span
-                style={{
-                  fontFamily: "var(--font-inter)",
-                  fontWeight: 600,
-                  fontSize: 11,
-                  letterSpacing: "0.08em",
-                  textTransform: "uppercase",
-                  color: "#006b2e",
-                }}
-              >
-                {t("hero.badge")}
-              </span>
-              <span
-                style={{
-                  width: 3,
-                  height: 3,
-                  borderRadius: "50%",
-                  background: "var(--fg-muted)",
-                  display: "inline-block",
-                }}
-              />
-              <span
-                style={{
-                  fontFamily: "var(--font-inter)",
-                  fontWeight: 500,
-                  fontSize: 11,
-                  letterSpacing: "0.06em",
-                  textTransform: "uppercase",
-                  color: "var(--fg-secondary)",
-                }}
-              >
-                {t("hero.badge2")}
-              </span>
-            </div>
-
-            {/* Main headline — CSS animation per line */}
-            <div style={{ marginBottom: 24 }}>
-              {[t("hero.h1"), t("hero.h2")].map((line, i) => (
-                <div
-                  key={i}
-                  className="hero-headline"
-                  style={{
-                    fontFamily: "var(--font-poppins)",
-                    fontWeight: 700,
-                    fontSize: "clamp(36px, 5.5vw, 80px)",
-                    letterSpacing: "-0.05em",
-                    lineHeight: 1.05,
-                    textTransform: "uppercase",
-                    color: "var(--fg)",
-                    display: "block",
-                    animation: `heroFadeUp 0.55s ${0.15 + i * 0.12}s ${EASE} both`,
-                  }}
-                >
-                  {line}
-                </div>
-              ))}
-            </div>
-
-            {/* Subtitle — CSS animation; this is the LCP element */}
-            <p
-              className="hero-subtitle"
-              style={{
-                fontFamily: "var(--font-inter)",
-                fontWeight: 400,
-                fontSize: 18,
-                letterSpacing: "-0.7px",
-                lineHeight: 1.6,
-                color: "var(--fg-secondary)",
-                maxWidth: 480,
-                marginBottom: 16,
-                animation: `heroFadeUp 0.6s 0.35s ${EASE} both`,
-              }}
-            >
-              {t("hero.subtitle")}
-            </p>
-
-            {/* Trust proof row */}
-            <p
-              style={{
-                fontFamily: "var(--font-inter)",
-                fontWeight: 500,
-                fontSize: 11,
-                letterSpacing: "0.08em",
-                textTransform: "uppercase",
-                color: "var(--fg-muted)",
-                marginBottom: 32,
-                animation: `heroFadeUp 0.6s 0.42s ${EASE} both`,
-              }}
-            >
-              {t("hero.proof")}
-            </p>
-
-            {/* CTA buttons — CSS animation */}
-            <div
-              className="hero-cta"
-              style={{ display: "flex", gap: 12, flexWrap: "wrap", marginBottom: 48, animation: `heroFadeUp 0.6s 0.5s ${EASE} both` }}
-            >
-              <MagneticButton
-                href="https://calendly.com/adefilasamuel929/30min"
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{
-                  fontFamily: "var(--font-inter)",
-                  fontWeight: 600,
-                  fontSize: 14,
-                  color: "var(--white)",
-                  background: "var(--fg)",
-                  padding: "14px 28px",
-                  borderRadius: 0,
-                  textDecoration: "none",
-                  letterSpacing: "-0.2px",
-                  alignItems: "center",
-                  gap: 8,
-                }}
-              >
-                {t("hero.cta")} <CalendarDays size={15} strokeWidth={2} />
-              </MagneticButton>
-            </div>
-      </div>
-      {/* Full-width project marquee — keep motion for opacity fade-in */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.6, delay: 0.7 }}
-        className="hero-marquee-wrap"
+      <div
+        className="hero-two-col"
         style={{
-          width: "100%",
-          overflow: "hidden",
-          paddingBottom: 80,
-          WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)",
-          maskImage: "linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)",
+          maxWidth: 1200,
+          margin: "0 auto",
+          paddingLeft: 20,
+          paddingRight: 20,
+          display: "grid",
+          gridTemplateColumns: "55fr 45fr",
+          gap: "0 60px",
+          alignItems: "center",
+          minHeight: 500,
         }}
       >
-        <div className="marquee-track" style={{ display: "flex", gap: 20, width: "max-content" }}>
-          {track.map((slide, i) => (
-            <div
-              key={i}
-              className="marquee-card"
+        {/* ── LEFT: copy ── */}
+        <div>
+          {/* Availability badge */}
+          <div
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 6,
+              marginBottom: 32,
+              animation: `heroFadeUp 0.6s 0.1s ${EASE} both`,
+            }}
+          >
+            <span style={{ position: "relative", width: 8, height: 8, flexShrink: 0, display: "inline-flex", alignItems: "center", justifyContent: "center" }}>
+              <span style={{ position: "absolute", inset: 0, borderRadius: "50%", background: "var(--accent-green)", animation: "pulseRipple 2s ease-out infinite" }} />
+              <span style={{ width: 8, height: 8, borderRadius: "50%", background: "var(--accent-green)", display: "block", position: "relative", zIndex: 1 }} />
+            </span>
+            <span style={{ fontFamily: "var(--font-inter)", fontWeight: 600, fontSize: 11, letterSpacing: "0.08em", textTransform: "uppercase", color: "#006b2e" }}>
+              {t("hero.badge")}
+            </span>
+            <span style={{ width: 3, height: 3, borderRadius: "50%", background: "var(--fg-muted)", display: "inline-block" }} />
+            <span style={{ fontFamily: "var(--font-inter)", fontWeight: 500, fontSize: 11, letterSpacing: "0.06em", textTransform: "uppercase", color: "var(--fg-secondary)" }}>
+              {t("hero.badge2")}
+            </span>
+          </div>
+
+          {/* Headline */}
+          <div style={{ marginBottom: 24 }}>
+            {[t("hero.h1"), t("hero.h2")].map((line, i) => (
+              <div
+                key={i}
+                className="hero-headline"
+                style={{
+                  fontFamily: "var(--font-poppins)",
+                  fontWeight: 700,
+                  fontSize: "clamp(32px, 4.8vw, 72px)",
+                  letterSpacing: "-0.05em",
+                  lineHeight: 1.05,
+                  textTransform: "uppercase",
+                  color: "var(--fg)",
+                  display: "block",
+                  animation: `heroFadeUp 0.55s ${0.15 + i * 0.12}s ${EASE} both`,
+                }}
+              >
+                {line}
+              </div>
+            ))}
+          </div>
+
+          {/* Subtitle */}
+          <p
+            className="hero-subtitle"
+            style={{
+              fontFamily: "var(--font-inter)",
+              fontWeight: 400,
+              fontSize: 17,
+              letterSpacing: "-0.5px",
+              lineHeight: 1.65,
+              color: "var(--fg-secondary)",
+              maxWidth: 420,
+              marginBottom: 16,
+              animation: `heroFadeUp 0.6s 0.35s ${EASE} both`,
+            }}
+          >
+            {t("hero.subtitle")}
+          </p>
+
+          {/* Trust proof */}
+          <p
+            style={{
+              fontFamily: "var(--font-inter)",
+              fontWeight: 500,
+              fontSize: 11,
+              letterSpacing: "0.08em",
+              textTransform: "uppercase",
+              color: "var(--fg-muted)",
+              marginBottom: 36,
+              animation: `heroFadeUp 0.6s 0.42s ${EASE} both`,
+            }}
+          >
+            {t("hero.proof")}
+          </p>
+
+          {/* CTA */}
+          <div
+            className="hero-cta"
+            style={{ display: "flex", gap: 12, flexWrap: "wrap", animation: `heroFadeUp 0.6s 0.5s ${EASE} both` }}
+          >
+            <MagneticButton
+              href="https://calendly.com/adefilasamuel929/30min"
+              target="_blank"
+              rel="noopener noreferrer"
               style={{
-                flexShrink: 0,
-                width: 600,
-                height: 380,
-                background: "#111",
-                border: "1px solid rgba(255,255,255,0.06)",
+                fontFamily: "var(--font-inter)",
+                fontWeight: 600,
+                fontSize: 14,
+                color: "var(--white)",
+                background: "var(--fg)",
+                padding: "14px 28px",
                 borderRadius: 0,
-                overflow: "hidden",
-                position: "relative",
-                transition: "transform 0.4s cubic-bezier(0.22,1,0.36,1), box-shadow 0.4s",
-                transformStyle: "preserve-3d",
-              }}
-              onMouseMove={(e) => {
-                const rect = e.currentTarget.getBoundingClientRect();
-                const x = (e.clientX - rect.left) / rect.width - 0.5;
-                const y = (e.clientY - rect.top) / rect.height - 0.5;
-                e.currentTarget.style.transform = `perspective(900px) rotateY(${x * 10}deg) rotateX(${-y * 7}deg) scale(1.03)`;
-                e.currentTarget.style.boxShadow = `${-x * 12}px ${-y * 12}px 32px rgba(0,0,0,0.3)`;
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = "perspective(900px) rotateY(0deg) rotateX(0deg) scale(1)";
-                e.currentTarget.style.boxShadow = "none";
+                textDecoration: "none",
+                letterSpacing: "-0.2px",
+                alignItems: "center",
+                gap: 8,
               }}
             >
-              {slide.img ? (
-                <>
-                  <Image
-                    src={slide.img}
-                    alt={slide.title}
-                    fill
-                    sizes="(max-width: 768px) 300px, 600px"
-                    priority={i < 2}
-                    style={{ objectFit: "cover", objectPosition: "top center", filter: "grayscale(30%) brightness(0.75)", mixBlendMode: "luminosity" }}
-                  />
-                  {/* Dark overlay for cohesion */}
-                  <div style={{ position: "absolute", inset: 0, background: "rgba(0,0,0,0.45)" }} />
-                  {/* Caption */}
-                  <div style={{
-                    position: "absolute", bottom: 0, left: 0, right: 0,
-                    padding: "20px 24px",
-                    background: "linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 100%)",
-                  }}>
-                    <p style={{
-                      fontFamily: "var(--font-poppins)", fontWeight: 700,
-                      fontSize: 14, letterSpacing: "-0.3px", textTransform: "uppercase",
-                      color: "#fff", margin: 0, lineHeight: 1.2,
-                    }}>{slide.title}</p>
-                    <p style={{
-                      fontFamily: "var(--font-inter)", fontSize: 11,
-                      letterSpacing: "0.5px", color: "rgba(255,255,255,0.55)",
-                      margin: "4px 0 0",
-                    }}>{slide.meta}</p>
-                  </div>
-                </>
-              ) : null}
-            </div>
-          ))}
+              {t("hero.cta")} <CalendarDays size={15} strokeWidth={2} />
+            </MagneticButton>
+          </div>
         </div>
-      </motion.div>
+
+        {/* ── RIGHT: isometric card stack ── */}
+        <div
+          className="hero-stack-col"
+          style={{ position: "relative", height: 520, overflow: "visible" }}
+        >
+          {/*
+            Outer wrapper applies the radial mask — fades edges to transparent
+            so the stack dissolves into the page background on all sides.
+          */}
+          <div
+            style={{
+              position: "absolute",
+              inset: "-10% -15%",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              WebkitMaskImage:
+                "radial-gradient(ellipse 72% 70% at 48% 52%, black 22%, rgba(0,0,0,0.6) 48%, transparent 72%)",
+              maskImage:
+                "radial-gradient(ellipse 72% 70% at 48% 52%, black 22%, rgba(0,0,0,0.6) 48%, transparent 72%)",
+            }}
+          >
+            {/*
+              Inner wrapper applies the isometric perspective rotation.
+              Cards are stacked inside with absolute positioning + offset.
+            */}
+            <div
+              style={{
+                position: "relative",
+                width: 380,
+                height: 250,
+                transform:
+                  "perspective(1100px) rotateX(20deg) rotateY(-24deg) rotateZ(2deg)",
+                transformStyle: "preserve-3d",
+                animation: `heroFadeUp 0.9s 0.55s ${EASE} both`,
+              }}
+            >
+              {cards.map((card, i) => {
+                const isFront = i === 0;
+                return (
+                  <div
+                    key={card.title}
+                    style={{
+                      position: "absolute",
+                      width: "100%",
+                      height: "100%",
+                      // Each successive card sits further "back" — shifted down-right
+                      top: i * 26,
+                      left: i * 20,
+                      background: "#0f0f0f",
+                      border: "1px solid rgba(255,255,255,0.07)",
+                      overflow: "hidden",
+                      opacity: isFront ? 1 : 1 - i * 0.22,
+                      zIndex: cards.length - i,
+                      // Only the front card casts a shadow
+                      boxShadow: isFront
+                        ? "0 40px 100px rgba(0,0,0,0.28), 0 12px 32px rgba(0,0,0,0.18)"
+                        : "none",
+                    }}
+                  >
+                    {/* Accent colour wash — corner gradient */}
+                    <div
+                      style={{
+                        position: "absolute",
+                        inset: 0,
+                        background: `linear-gradient(135deg, ${card.accent}20 0%, transparent 55%)`,
+                        pointerEvents: "none",
+                      }}
+                    />
+
+                    {/* Ghost number — background texture */}
+                    <span
+                      style={{
+                        position: "absolute",
+                        bottom: -10,
+                        right: 8,
+                        fontFamily: "var(--font-poppins)",
+                        fontWeight: 700,
+                        fontSize: 120,
+                        letterSpacing: "-6px",
+                        lineHeight: 1,
+                        color: "rgba(255,255,255,0.03)",
+                        userSelect: "none",
+                        pointerEvents: "none",
+                      }}
+                    >
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+
+                    {/* Top bar — tag + year */}
+                    <div
+                      style={{
+                        position: "absolute",
+                        top: 0,
+                        left: 0,
+                        right: 0,
+                        zIndex: 2,
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "space-between",
+                        padding: "15px 18px",
+                      }}
+                    >
+                      <span
+                        style={{
+                          fontFamily: "var(--font-inter)",
+                          fontWeight: 700,
+                          fontSize: 9,
+                          letterSpacing: "2.2px",
+                          textTransform: "uppercase",
+                          color: card.accent,
+                          border: `1px solid ${card.accent}50`,
+                          padding: "3px 8px",
+                        }}
+                      >
+                        {card.tag}
+                      </span>
+                      <span
+                        style={{
+                          fontFamily: "var(--font-inter)",
+                          fontSize: 9,
+                          letterSpacing: "1px",
+                          color: "rgba(255,255,255,0.25)",
+                        }}
+                      >
+                        {card.year}
+                      </span>
+                    </div>
+
+                    {/* Centred title */}
+                    <div
+                      style={{
+                        position: "absolute",
+                        inset: 0,
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        padding: "0 22px",
+                      }}
+                    >
+                      <h3
+                        style={{
+                          fontFamily: "var(--font-poppins)",
+                          fontWeight: 700,
+                          fontSize: "clamp(16px, 2vw, 22px)",
+                          letterSpacing: "-0.04em",
+                          lineHeight: 1.1,
+                          textTransform: "uppercase",
+                          color: isFront ? "#ffffff" : "rgba(255,255,255,0.7)",
+                          textAlign: "center",
+                          margin: 0,
+                        }}
+                      >
+                        {card.title}
+                      </h3>
+                    </div>
+
+                    {/* Bottom bar — meta */}
+                    <div
+                      style={{
+                        position: "absolute",
+                        bottom: 0,
+                        left: 0,
+                        right: 0,
+                        zIndex: 2,
+                        padding: "13px 18px",
+                        borderTop: "1px solid rgba(255,255,255,0.05)",
+                      }}
+                    >
+                      <span
+                        style={{
+                          fontFamily: "var(--font-inter)",
+                          fontSize: 9,
+                          letterSpacing: "1.4px",
+                          textTransform: "uppercase",
+                          color: "rgba(255,255,255,0.32)",
+                        }}
+                      >
+                        {card.meta}
+                      </span>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
   );
 }
