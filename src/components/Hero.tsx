@@ -114,7 +114,7 @@ export default function Hero() {
             letterSpacing: "-0.7px",
             lineHeight: 1.6,
             color: "var(--fg-secondary)",
-            maxWidth: 480,
+            maxWidth: 600,
             textWrap: "balance" as const,
             marginBottom: 16,
             animation: `heroFadeUp 0.6s 0.35s ${EASE} both`,
