@@ -91,9 +91,9 @@ export default function Hero() {
               style={{
                 fontFamily: "var(--font-poppins)",
                 fontWeight: 700,
-                fontSize: "clamp(36px, 5.5vw, 80px)",
-                letterSpacing: "-0.05em",
-                lineHeight: 1.05,
+                fontSize: "clamp(48px, 8vw, 112px)",
+                letterSpacing: "-0.04em",
+                lineHeight: 1.0,
                 textTransform: "uppercase",
                 color: "var(--fg)",
                 display: "block",
