@@ -222,7 +222,7 @@ export default function Navbar() {
               gap: 8,
             }}
           >
-            Contact Me
+            {t("nav.contact")}
           </MagneticButton>
 
           {/* Mobile hamburger */}
@@ -330,7 +330,7 @@ export default function Navbar() {
                   textTransform: "uppercase",
                 }}
               >
-                Contact Me
+                {t("nav.contact")}
               </a>
             </motion.div>
 
