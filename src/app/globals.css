@@ -1,5 +1,19 @@
 @import "tailwindcss";
 
+@keyframes marquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.marquee-track {
+  animation: marquee 32s linear infinite;
+  will-change: transform;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
 :root {
   --bg: #F7F7F7;
   --fg: #0f0f0f;
@@ -446,6 +460,12 @@ html {
   .whyme-stats-col {
     gap: 16px !important;
     padding-top: 0 !important;
+  }
+
+  /* Hero cycling word: smaller font on very small screens */
+  .hero-service {
+    font-size: 44px !important;
+    letter-spacing: -0.04em !important;
   }
 
   /* Benefits grid cards: tighter padding on mobile */

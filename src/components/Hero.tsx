@@ -71,21 +71,6 @@ export default function Hero() {
       className="hero-section"
       style={{ paddingTop: 120, paddingBottom: 0, width: "100%", overflow: "hidden" }}
     >
-      <style>{`
-        @keyframes marquee {
-          0%   { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
-        }
-        .marquee-track {
-          animation: marquee 32s linear infinite;
-          will-change: transform;
-        }
-        .marquee-track:hover { animation-play-state: paused; }
-        @media (max-width: 540px) {
-          .hero-service { font-size: 44px !important; letter-spacing: -0.04em !important; }
-        }
-      `}</style>
-
       <div style={{ maxWidth: 1200, margin: "0 auto", paddingLeft: 20, paddingRight: 20 }}>
 
         {/* ── Badge ── */}
