@@ -1,7 +1,70 @@
 "use client";
 import { useRef, useEffect, useState } from "react";
-import { ChevronsRight, Tag, CircleDot, TrendingUp } from "lucide-react";
 import { useLang } from "@/context/LangContext";
+
+const IC = {
+  top: "#ede9fe", left: "#ddd6fe", right: "#c4b5fd",
+  stroke: "#7c3aed", fill: "#7c3aed", sw: 1.5,
+};
+
+function IsoSpeedIcon() {
+  return (
+    <svg width="52" height="48" viewBox="0 0 52 48" fill="none" aria-hidden>
+      <path d="M26 6 L44 15 L26 24 L8 15 Z" fill={IC.top} stroke={IC.stroke} strokeWidth={IC.sw} strokeLinejoin="round"/>
+      <path d="M8 15 L8 34 L26 43 L26 24 Z" fill={IC.left} stroke={IC.stroke} strokeWidth={IC.sw} strokeLinejoin="round"/>
+      <path d="M26 24 L26 43 L44 34 L44 15 Z" fill={IC.right} stroke={IC.stroke} strokeWidth={IC.sw} strokeLinejoin="round"/>
+      <polyline points="21,17 26,11 31,17" fill="none" stroke={IC.fill} strokeWidth={IC.sw} strokeLinecap="round" strokeLinejoin="round"/>
+      <polyline points="21,20 26,14 31,20" fill="none" stroke={IC.fill} strokeWidth={IC.sw} strokeLinecap="round" strokeLinejoin="round"/>
+    </svg>
+  );
+}
+
+function IsoAudienceIcon() {
+  return (
+    <svg width="52" height="48" viewBox="0 0 52 48" fill="none" aria-hidden>
+      <path d="M26 6 L44 15 L26 24 L8 15 Z" fill={IC.top} stroke={IC.stroke} strokeWidth={IC.sw} strokeLinejoin="round"/>
+      <path d="M8 15 L8 34 L26 43 L26 24 Z" fill={IC.left} stroke={IC.stroke} strokeWidth={IC.sw} strokeLinejoin="round"/>
+      <path d="M26 24 L26 43 L44 34 L44 15 Z" fill={IC.right} stroke={IC.stroke} strokeWidth={IC.sw} strokeLinejoin="round"/>
+      <ellipse cx="20" cy="11" rx="2" ry="1.2" fill={IC.fill}/>
+      <line x1="20" y1="12.2" x2="20" y2="19" stroke={IC.fill} strokeWidth={IC.sw} strokeLinecap="round"/>
+      <line x1="17" y1="15" x2="23" y2="15" stroke={IC.fill} strokeWidth={IC.sw} strokeLinecap="round"/>
+      <ellipse cx="32" cy="11" rx="2" ry="1.2" fill={IC.fill}/>
+      <line x1="32" y1="12.2" x2="32" y2="19" stroke={IC.fill} strokeWidth={IC.sw} strokeLinecap="round"/>
+      <line x1="29" y1="15" x2="35" y2="15" stroke={IC.fill} strokeWidth={IC.sw} strokeLinecap="round"/>
+    </svg>
+  );
+}
+
+function IsoOwnershipIcon() {
+  return (
+    <svg width="52" height="48" viewBox="0 0 52 48" fill="none" aria-hidden>
+      <path d="M26 6 L44 15 L26 24 L8 15 Z" fill={IC.top} stroke={IC.stroke} strokeWidth={IC.sw} strokeLinejoin="round"/>
+      <path d="M8 15 L8 34 L26 43 L26 24 Z" fill={IC.left} stroke={IC.stroke} strokeWidth={IC.sw} strokeLinejoin="round"/>
+      <path d="M26 24 L26 43 L44 34 L44 15 Z" fill={IC.right} stroke={IC.stroke} strokeWidth={IC.sw} strokeLinejoin="round"/>
+      <ellipse cx="26" cy="10" rx="2.5" ry="1.5" fill={IC.fill}/>
+      <line x1="26" y1="11.5" x2="26" y2="20" stroke={IC.fill} strokeWidth={IC.sw} strokeLinecap="round"/>
+      <line x1="22" y1="15" x2="30" y2="15" stroke={IC.fill} strokeWidth={IC.sw} strokeLinecap="round"/>
+    </svg>
+  );
+}
+
+function IsoToolsIcon() {
+  return (
+    <svg width="52" height="48" viewBox="0 0 52 48" fill="none" aria-hidden>
+      <path d="M26 6 L44 15 L26 24 L8 15 Z" fill={IC.top} stroke={IC.stroke} strokeWidth={IC.sw} strokeLinejoin="round"/>
+      <path d="M8 15 L8 34 L26 43 L26 24 Z" fill={IC.left} stroke={IC.stroke} strokeWidth={IC.sw} strokeLinejoin="round"/>
+      <path d="M26 24 L26 43 L44 34 L44 15 Z" fill={IC.right} stroke={IC.stroke} strokeWidth={IC.sw} strokeLinejoin="round"/>
+      <line x1="18" y1="15" x2="34" y2="15" stroke={IC.fill} strokeWidth={IC.sw} strokeLinecap="round"/>
+      <line x1="26" y1="9" x2="26" y2="21" stroke={IC.fill} strokeWidth={IC.sw} strokeLinecap="round"/>
+      <circle cx="18" cy="15" r="1.8" fill={IC.fill}/>
+      <circle cx="34" cy="15" r="1.8" fill={IC.fill}/>
+      <circle cx="26" cy="9" r="1.8" fill={IC.fill}/>
+      <circle cx="26" cy="21" r="1.8" fill={IC.fill}/>
+    </svg>
+  );
+}
+
+const BENEFIT_ISO_ICONS = [IsoSpeedIcon, IsoAudienceIcon, IsoOwnershipIcon, IsoToolsIcon];
 
 const STAT_VALUES = [
   { value: 50, suffix: "+" },
@@ -32,8 +95,6 @@ function CountUp({ target, suffix, inView }: { target: number; suffix: string; i
   return <>{count}{suffix}</>;
 }
 
-const BENEFIT_ICONS = [ChevronsRight, Tag, CircleDot, TrendingUp];
-
 export default function WhyMe() {
   const statsRef = useRef<HTMLDivElement>(null);
   const [inView, setInView] = useState(false);
@@ -52,7 +113,7 @@ export default function WhyMe() {
   }, []);
 
   const stats = STAT_VALUES.map((s, i) => ({ ...s, label: t(`whyme.stat${i}`) }));
-  const benefits = BENEFIT_ICONS.map((Icon, i) => ({
+  const benefits = BENEFIT_ISO_ICONS.map((Icon, i) => ({
     Icon,
     title: t(`whyme.b${i}.title`),
     desc: t(`whyme.b${i}.desc`),
@@ -136,15 +197,16 @@ export default function WhyMe() {
               animation: `fadeUp 0.4s ${0.15 + i * 0.07}s ${E} both`,
             }}
           >
-            <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 12 }}>
-              <Icon size={16} strokeWidth={1.5} color="var(--fg-secondary)" />
-              <h3 style={{
-                fontFamily: "var(--font-inter)", fontWeight: 700, fontSize: 14,
-                letterSpacing: "0.3px", textTransform: "uppercase", color: "var(--fg)", lineHeight: 1,
-              }}>
-                {title}
-              </h3>
+            <div style={{ marginBottom: 16 }}>
+              <Icon />
             </div>
+            <h3 style={{
+              fontFamily: "var(--font-inter)", fontWeight: 700, fontSize: 14,
+              letterSpacing: "0.3px", textTransform: "uppercase", color: "var(--fg)", lineHeight: 1,
+              marginBottom: 12,
+            }}>
+              {title}
+            </h3>
             <p style={{
               fontFamily: "var(--font-inter)", fontWeight: 400, fontSize: 15,
               letterSpacing: "-0.2px", lineHeight: 1.6, color: "var(--fg-secondary)",
