@@ -125,15 +125,21 @@ export default function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.6, delay: 0.7 }}
-        className="hero-marquee-wrap"
-        style={{
-          width: "100%",
-          overflow: "hidden",
-          paddingBottom: 80,
-          WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)",
-          maskImage: "linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)",
-        }}
+        style={{ width: "100%", paddingBottom: 80 }}
       >
+        {/* Cubic perspective wrapper — tilts the whole strip on a 3D plane */}
+        <div style={{ perspective: "900px", perspectiveOrigin: "50% 0%" }}>
+        <div
+          className="hero-marquee-wrap"
+          style={{
+            width: "100%",
+            overflow: "hidden",
+            transform: "rotateX(10deg) scale(1.03)",
+            transformStyle: "preserve-3d",
+            WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)",
+            maskImage: "linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)",
+          }}
+        >
         <div className="marquee-track" style={{ display: "flex", gap: 20, width: "max-content" }}>
           {track.map((slide, i) => (
             <div
@@ -183,6 +189,8 @@ export default function Hero() {
               ) : null}
             </div>
           ))}
+        </div>
+        </div>
         </div>
       </motion.div>
     </section>
