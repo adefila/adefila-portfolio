@@ -4,24 +4,71 @@ import { useLang } from "@/context/LangContext";
 
 const IC = { stroke: "#7c3aed", sw: 1.5 };
 
+const ICON_CSS = `
+  @keyframes bolt-draw {
+    0%,10%  { stroke-dashoffset:115; opacity:0; }
+    40%     { stroke-dashoffset:0;   opacity:1; }
+    60%     { stroke-dashoffset:0;   opacity:1; }
+    65%     { stroke-dashoffset:0;   opacity:0.1; }
+    71%     { stroke-dashoffset:0;   opacity:1; }
+    76%     { stroke-dashoffset:0;   opacity:0.1; }
+    82%     { stroke-dashoffset:0;   opacity:1; }
+    92%,100%{ stroke-dashoffset:0;   opacity:0; }
+  }
+  @keyframes sonar {
+    0%   { transform:scale(0.08); opacity:1; }
+    100% { transform:scale(1);    opacity:0; }
+  }
+  @keyframes shackle-open {
+    0%,35%   { transform:translateY(0); }
+    55%,75%  { transform:translateY(-7px); }
+    92%,100% { transform:translateY(0); }
+  }
+  @keyframes slide1 {
+    0%,8%    { transform:translateX(0); }
+    38%      { transform:translateX(-10px); }
+    72%      { transform:translateX(6px); }
+    95%,100% { transform:translateX(0); }
+  }
+  @keyframes slide2 {
+    0%,8%    { transform:translateX(0); }
+    42%      { transform:translateX(14px); }
+    76%      { transform:translateX(-4px); }
+    95%,100% { transform:translateX(0); }
+  }
+  @keyframes slide3 {
+    0%,8%    { transform:translateX(0); }
+    35%      { transform:translateX(-10px); }
+    68%      { transform:translateX(5px); }
+    95%,100% { transform:translateX(0); }
+  }
+`;
+
 function IsoSpeedIcon() {
   return (
     <svg width="48" height="48" viewBox="0 0 48 48" fill="none" aria-hidden>
-      <polygon
-        points="28,4 12,26 22,26 18,44 36,22 26,22"
+      <path
+        d="M28,4 L12,26 L22,26 L18,44 L36,22 L26,22 Z"
         fill="none" stroke={IC.stroke} strokeWidth={IC.sw}
         strokeLinejoin="round" strokeLinecap="round"
+        style={{ strokeDasharray: 115, animation: "bolt-draw 3s cubic-bezier(0.4,0,0.2,1) infinite" }}
       />
     </svg>
   );
 }
 
 function IsoAudienceIcon() {
+  const ringStyle = (delay: string): React.CSSProperties => ({
+    transformBox: "fill-box" as React.CSSProperties["transformBox"],
+    transformOrigin: "center",
+    animation: `sonar 2.4s ease-out infinite ${delay}`,
+  });
   return (
     <svg width="48" height="48" viewBox="0 0 48 48" fill="none" aria-hidden>
       <circle cx="24" cy="24" r="4" stroke={IC.stroke} strokeWidth={IC.sw}/>
-      <circle cx="24" cy="24" r="11" stroke={IC.stroke} strokeWidth={IC.sw}/>
-      <circle cx="24" cy="24" r="18" stroke={IC.stroke} strokeWidth={IC.sw}/>
+      <circle cx="24" cy="24" r="11" stroke={IC.stroke} strokeWidth={IC.sw} opacity="0.4"/>
+      <circle cx="24" cy="24" r="18" fill="none" stroke={IC.stroke} strokeWidth="1" style={ringStyle("0s")}/>
+      <circle cx="24" cy="24" r="18" fill="none" stroke={IC.stroke} strokeWidth="1" style={ringStyle("1.2s")}/>
     </svg>
   );
 }
@@ -30,7 +77,11 @@ function IsoOwnershipIcon() {
   return (
     <svg width="48" height="48" viewBox="0 0 48 48" fill="none" aria-hidden>
       <rect x="10" y="22" width="28" height="22" rx="3" stroke={IC.stroke} strokeWidth={IC.sw}/>
-      <path d="M16 22 L16 16 Q24 6 32 16 L32 22" stroke={IC.stroke} strokeWidth={IC.sw} strokeLinecap="round" fill="none"/>
+      <path
+        d="M16 22 L16 16 Q24 6 32 16 L32 22"
+        stroke={IC.stroke} strokeWidth={IC.sw} strokeLinecap="round" fill="none"
+        style={{ animation: "shackle-open 3.2s cubic-bezier(0.4,0,0.2,1) infinite" }}
+      />
       <circle cx="24" cy="33" r="3" stroke={IC.stroke} strokeWidth={IC.sw}/>
       <line x1="24" y1="36" x2="24" y2="40" stroke={IC.stroke} strokeWidth={IC.sw} strokeLinecap="round"/>
     </svg>
@@ -43,9 +94,12 @@ function IsoToolsIcon() {
       <line x1="8" y1="14" x2="40" y2="14" stroke={IC.stroke} strokeWidth={IC.sw} strokeLinecap="round"/>
       <line x1="8" y1="24" x2="40" y2="24" stroke={IC.stroke} strokeWidth={IC.sw} strokeLinecap="round"/>
       <line x1="8" y1="34" x2="40" y2="34" stroke={IC.stroke} strokeWidth={IC.sw} strokeLinecap="round"/>
-      <circle cx="28" cy="14" r="4" fill="var(--white, #fff)" stroke={IC.stroke} strokeWidth={IC.sw}/>
-      <circle cx="16" cy="24" r="4" fill="var(--white, #fff)" stroke={IC.stroke} strokeWidth={IC.sw}/>
-      <circle cx="32" cy="34" r="4" fill="var(--white, #fff)" stroke={IC.stroke} strokeWidth={IC.sw}/>
+      <circle cx="28" cy="14" r="5" fill="var(--white,#fff)" stroke={IC.stroke} strokeWidth={IC.sw}
+        style={{ animation: "slide1 3.2s cubic-bezier(0.4,0,0.2,1) infinite 0s" }}/>
+      <circle cx="16" cy="24" r="5" fill="var(--white,#fff)" stroke={IC.stroke} strokeWidth={IC.sw}
+        style={{ animation: "slide2 3.2s cubic-bezier(0.4,0,0.2,1) infinite 0.5s" }}/>
+      <circle cx="32" cy="34" r="5" fill="var(--white,#fff)" stroke={IC.stroke} strokeWidth={IC.sw}
+        style={{ animation: "slide3 3.2s cubic-bezier(0.4,0,0.2,1) infinite 1s" }}/>
     </svg>
   );
 }
@@ -111,6 +165,7 @@ export default function WhyMe() {
       id="benefits"
       style={{ width: "100%", maxWidth: 1200, margin: "0 auto", padding: "80px 20px" }}
     >
+      <style>{ICON_CSS}</style>
       {/* Top row: heading left, stats right */}
       <div
         className="whyme-top-row"
