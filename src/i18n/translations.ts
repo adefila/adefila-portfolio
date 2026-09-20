@@ -254,7 +254,7 @@ export const T: Record<string, Record<LangCode, string>> = {
     pt: "SIGA-ME EM",               zh: "关注我",                     ja: "フォローはこちら",           yo: "TẸ̀LEМ Í LÓRí",
   },
   "footer.tagline": {
-    en: "Framer developer. Brief to live in 14 days.",
+    en: "Product designer & developer — things that ship in 14 days.",
     fr: "Développeur Framer & Web créant des sites rapides et beaux.",
     es: "Desarrollador Framer & Web creando sitios rápidos y hermosos.",
     de: "Framer & Web-Entwickler, der schnelle, schöne Websites baut.",
@@ -322,7 +322,7 @@ export const T: Record<string, Record<LangCode, string>> = {
     pt: "SITES QUE CONVERTEM.",    zh: "能够转化的网站。",           ja: "コンバージョンするサイト。", yo: "ÀWỌN OJÚEWÉ TÓ YÁRA.",
   },
   "hero.subtitle": {
-    en: "Senior Framer developer & product designer. 48+ projects shipped — open to full-time roles and select freelance.",
+    en: "Senior product designer & Framer developer — 48+ projects shipped, open to full-time roles and select freelance work.",
     fr: "Développeur & designer Framer. Du brief au lancement en 14 jours — pour les fondateurs qui en ont fini avec les agences lentes.",
     es: "Desarrollador y diseñador Framer. Del brief al lanzamiento en 14 días — para fundadores hartos de agencias lentas y presupuestos inflados.",
     de: "Framer-Entwickler & Designer. Vom Brief bis live in 14 Tagen — für Gründer, die aufgehört haben, auf träge Agenturen zu warten.",
@@ -332,7 +332,7 @@ export const T: Record<string, Record<LangCode, string>> = {
     yo: "Olùgbéjáde & aṣàpẹẹrẹ Framer. Láti àkọsílẹ̀ sí ìfilọ́lẹ̀ ní ọjọ́ 14 — fún àwọn adárí tó ti rẹ̀ àwọn ilé-iṣẹ́ tó lọrا.",
   },
   "hero.proof": {
-    en: "Top Rated on Upwork  ·  48+ Projects Shipped  ·  Open to Full-Time Roles",
+    en: "Top Rated on Upwork — 48+ Projects Shipped — Open to Full-Time Roles",
     fr: "Top Rated sur Upwork  ·  50+ projets livrés  ·  100% de succès",
     es: "Top Rated en Upwork  ·  50+ proyectos entregados  ·  100% de éxito",
     de: "Top Rated auf Upwork  ·  50+ Projekte geliefert  ·  100% Erfolgsquote",
@@ -360,11 +360,11 @@ export const T: Record<string, Record<LangCode, string>> = {
     pt: "PREÇOS CLAROS.", zh: "清晰报价。",         ja: "明確な価格。",        yo: "ÈTÒ TÓ KEDERE.",
   },
   "pricing.h2b": {
-    en: "CLEAR NUMBER. NO SURPRISES.", fr: "PAS DE MAUVAISES SURPRISES.", es: "SIN SORPRESAS.", de: "KEINE ÜBERRASCHUNGEN.",
+    en: "CLEAR NUMBER — NO SURPRISES.", fr: "PAS DE MAUVAISES SURPRISES.", es: "SIN SORPRESAS.", de: "KEINE ÜBERRASCHUNGEN.",
     pt: "SEM SURPRESAS.",              zh: "无隐藏费用。",                  ja: "驚きなし。",         yo: "KÒ SÍ ÌYÀLẸ́NÚ.",
   },
   "pricing.desc": {
-    en: "Pricing is scoped per project — no hourly billing, no retainers you didn't ask for. Book a call and you'll leave with an exact number and exactly what's included.",
+    en: "Every project is scoped upfront — no hourly billing, no retainers you didn't ask for. Book a call and you'll leave with a number and exactly what's included.",
     fr: "Les tarifs sont définis par projet — pas de facturation horaire, pas de forfaits non demandés. Réservez un appel et vous repartirez avec un chiffre précis.",
     es: "El precio se define por proyecto — sin facturación por hora, sin retenciones. Agenda una llamada y sabrás exactamente cuánto cuesta y qué incluye.",
     de: "Die Preise werden projektbezogen festgelegt — keine Stundenabrechnung, keine unerwünschten Retainer. Buchen Sie ein Gespräch und erhalten Sie eine genaue Zahl.",
@@ -378,7 +378,7 @@ export const T: Record<string, Record<LangCode, string>> = {
     pt: "Agendar chamada",  zh: "预约通话",               ja: "通話を予約",           yo: "Sọ̀rọ̀ fún mi",
   },
   "pricing.disclaimer": {
-    en: "All prices are starting points — final quote depends on scope. Book a free 30-min call and you'll have a number before you leave.",
+    en: "All prices are starting points — final quote depends on scope. Book a free 30-min call and you'll leave with a number.",
     fr: "Tous les prix sont des points de départ. Réservez un appel gratuit de 30 min et vous repartirez avec un chiffre précis.",
     es: "Todos los precios son puntos de partida. Agenda una llamada gratuita de 30 minutos y tendrás un número exacto.",
     de: "Alle Preise sind Ausgangspunkte. Buchen Sie ein kostenloses 30-minütiges Gespräch und erhalten Sie eine genaue Zahl.",
@@ -390,7 +390,7 @@ export const T: Record<string, Record<LangCode, string>> = {
 
   // ── Footer ───────────────────────────────────────────────────────────
   "footer.cta": {
-    en: "LET'S BUILD SOMETHING WORTH LAUNCHING.",
+    en: "LET'S BUILD SOMETHING — WORTH REMEMBERING.",
     fr: "CRÉONS QUELQUE CHOSE QUI MÉRITE D'ÊTRE VU.",
     es: "CONSTRUYAMOS ALGO QUE VALGA LA PENA VER.",
     de: "LASS UNS ETWAS BAUEN, DAS DEN LAUNCH VERDIENT.",
@@ -400,7 +400,7 @@ export const T: Record<string, Record<LangCode, string>> = {
     yo: "JẸ́ KÁ KÒ NǸKAN TÓ TÓ ÀTẸ̀JÁDÈRẹ.",
   },
   "footer.ctaDesc": {
-    en: "Tell me what you're building. In one call I'll give you the scope, the timeline, and the exact price — no agencies, no back-and-forth, no surprises.",
+    en: "Tell me what you're building — one call and you'll leave with the scope, timeline, and an exact price. No agencies, no back-and-forth, no surprises.",
     fr: "Dites-moi ce que vous construisez. En un appel, je vous donne le périmètre, le calendrier et le prix exact — sans agences, sans allers-retours, sans surprises.",
     es: "Cuéntame qué estás construyendo. En una llamada te doy el alcance, el plazo y el precio exacto — sin agencias, sin idas y venidas, sin sorpresas.",
     de: "Sagen Sie mir, was Sie bauen. In einem Anruf erhalten Sie Umfang, Zeitplan und genauen Preis — keine Agenturen, kein Hin und Her, keine Überraschungen.",
@@ -428,7 +428,7 @@ export const T: Record<string, Record<LangCode, string>> = {
     ja: "十分見ましたか？",               yo: "Ti rí tó bí?",
   },
   "midcta.desc": {
-    en: "Most clients decide within the first scroll. One call gets you the scope, the timeline, and the exact price.",
+    en: "Most clients decide within the first scroll — one call gets you the scope, the timeline, and an exact price.",
     fr: "Un seul appel suffit pour obtenir le cadre, le calendrier et le prix exact.",
     es: "Una llamada y obtienes el alcance, el cronograma y el precio exacto.",
     de: "Ein Anruf genügt — Umfang, Zeitplan und Fixpreis.",
@@ -444,13 +444,13 @@ export const T: Record<string, Record<LangCode, string>> = {
     pt: "O QUE VOCÊ GANHA", zh: "您将获得什么",           ja: "あなたが得るもの",    yo: "OHUN TÍ O JÈ",
   },
   "whyme.h1": {
-    en: "Most sites look fine.",             fr: "La plupart des sites sont corrects.",
+    en: "Most sites are forgettable.",             fr: "La plupart des sites sont corrects.",
     es: "La mayoría de los sitios se ven bien.",  de: "Die meisten Seiten sehen gut aus.",
     pt: "A maioria dos sites parece boa.",    zh: "大多数网站看起来不错。",
     ja: "ほとんどのサイトは見た目が良い。",        yo: "Ọpọlọpọ àwọn ìdí dára láti wo.",
   },
   "whyme.h1b": {
-    en: "Yours will actually convert.",        fr: "Le vôtre convertira vraiment.",
+    en: "Yours won't be.",        fr: "Le vôtre convertira vraiment.",
     es: "El tuyo realmente convertirá.",       de: "Ihrer wird wirklich konvertieren.",
     pt: "O seu vai realmente converter.",      zh: "您的将真正实现转化。",
     ja: "あなたのは実際にコンバージョンします。",   yo: "Tirẹ yóò yípadà ní ìgbàgbọ́.",
@@ -512,7 +512,7 @@ export const T: Record<string, Record<LangCode, string>> = {
     ja: "一人担当。完全な責任。",                  yo: "ÈNÌYÀN ÌNÁ. ÌJÀ PÍPÉ.",
   },
   "whyme.b2.desc": {
-    en: "One point of contact from first call to launch. No handoffs, no gaps, no 'let me check with the team.'",
+    en: "One point of contact — first call to launch. No handoffs, no gaps, no 'let me check with the team.'",
     fr: "Un seul interlocuteur du premier appel au lancement. Pas de transferts, pas de lacunes, pas de 'je dois vérifier avec l'équipe'.",
     es: "Un solo punto de contacto desde la primera llamada hasta el lanzamiento. Sin transferencias, sin brechas.",
     de: "Ein Ansprechpartner vom ersten Gespräch bis zum Launch. Keine Übergaben, keine Lücken, kein 'Ich frage mal das Team'.",
