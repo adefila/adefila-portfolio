@@ -22,6 +22,7 @@ const testimonialMeta: TestimonialItem[] = [
   { type: "text",  name: "Michal Kouril",       role: "Leadopo",                                key: "testimonials.t4",  avatar: null, logo: null },
   { type: "text",  name: "Raffaello Cuccuini",  role: "Humanity",                               key: "testimonials.t5",  avatar: null, logo: null },
   { type: "text",  name: "Heather Burns",       role: "Upside ESG",                             key: "testimonials.t6",  avatar: null, logo: null },
+  { type: "text",  name: "Kevin N.",            role: "The Tech Unit",                          key: "testimonials.t7",  avatar: null, logo: null },
 ];
 
 function UpworkCard() {

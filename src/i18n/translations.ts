@@ -747,6 +747,16 @@ export const T: Record<string, Record<LangCode, string>> = {
     ja: "Samuelは素晴らしい仕事をしてくれました！信頼でき、知識豊富で、辛抱強く、親切です。強くお勧めします。",
     yo: "Samuel ṣe iṣẹ́ tó tayọ! Ó ní ìgbẹ́kẹ̀lé, ìmọ̀, sùúrù àti ìtọ́jú. Mo gbédègbéyọ̀ rẹ̀ pẹ̀lú gbogbo ọkàn mi.",
   },
+  "testimonials.t7": {
+    en: "I hired Samuel for our company's client rebranding and it was a success. He was responsive and very professional. I recommend him.",
+    fr: "J'ai engagé Samuel pour le rebranding client de notre entreprise et c'était un succès. Il était réactif et très professionnel. Je le recommande.",
+    es: "Contraté a Samuel para el rebranding de un cliente de nuestra empresa y fue un éxito. Era receptivo y muy profesional. Lo recomiendo.",
+    de: "Ich habe Samuel für das Rebranding eines Kunden unseres Unternehmens engagiert und es war ein Erfolg. Er war reaktionsschnell und sehr professionell. Ich empfehle ihn.",
+    pt: "Contratei Samuel para o rebranding de um cliente da nossa empresa e foi um sucesso. Ele foi responsivo e muito profissional. Eu o recomendo.",
+    zh: "我聘请Samuel为我们公司的客户进行品牌重塑，取得了成功。他反应迅速、非常专业。我推荐他。",
+    ja: "会社のクライアントのリブランディングにSamuelを採用し、成功しました。迅速に対応し、非常にプロフェッショナルでした。おすすめします。",
+    yo: "Mo gbàṣẹ Samuel fún ìmújú-àtúnṣe àmì ìdánimọ̀ alàájò ilé-iṣẹ́ wa, ó sì jẹ́ àṣeyọrí. Ó jẹ́ olóhùn-ìdáhùn àti olójúìṣẹ́ gíga. Mo gbédègbéyọ̀ rẹ̀.",
+  },
 
   // ── About ─────────────────────────────────────────────────────────────
   "about.eyebrow": {
