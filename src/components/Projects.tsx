@@ -133,13 +133,6 @@ const designProjects: Project[] = [
     href: "#",
     screenshot: "/projects/design/chat-app.jpg",
   },
-  {
-    title: "RetroRiches",
-    desc: "Thrift shopping app exploration — a curated vintage marketplace with playful branding, product discovery flow, and a smooth swipe-to-save experience.",
-    meta: "App Exploration · 2024",
-    href: "#",
-    video: "/retro-riches.mov",
-  },
 ];
 
 const SPRING = "cubic-bezier(0.22, 1, 0.36, 1)";
