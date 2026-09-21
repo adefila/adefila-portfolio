@@ -1,9 +1,10 @@
 "use client";
 import { ArrowUpRight } from "lucide-react";
+import { useState } from "react";
 import Image from "next/image";
 import { useLang } from "@/context/LangContext";
 
-const projects = [
+const devProjects = [
   {
     title: "The Initial",
     desc: "AI-powered creative agency site. Figma designs translated to pixel-perfect Framer with custom interactions and CMS.",
@@ -46,14 +47,31 @@ const projects = [
     href: "https://emalbu.com/",
     screenshot: "/projects/emalbu.png",
   },
+  {
+    title: "Leadopo",
+    desc: "Lead generation and pipeline management platform. Custom Framer build with dynamic CMS and conversion-optimised flows.",
+    meta: "Framer Development · 2026",
+    href: "https://leadopo.com/",
+    screenshot: "/projects/Leadopo.png",
+  },
+  {
+    title: "Rusty Wears",
+    desc: "Streetwear brand e-commerce experience. Bold visual identity translated into a high-converting Framer storefront.",
+    meta: "Framer Development · 2026",
+    href: "https://rustywears.com/",
+    screenshot: "/projects/rusty wears.png",
+  },
 ];
+
+const designProjects: typeof devProjects = [];
 
 const SPRING = "cubic-bezier(0.22, 1, 0.36, 1)";
 
-function ProjectCard({ project, index }: { project: (typeof projects)[0]; index: number }) {
+type Tab = "dev" | "design";
+
+function ProjectCard({ project, index }: { project: (typeof devProjects)[0]; index: number }) {
   return (
-    <div style={{ display: "flex", flexDirection: "column", animation: `fadeUp 0.5s ${0.08 + index * 0.07}s ${SPRING} both` }}>
-      {/* Screenshot floating on white canvas */}
+    <div style={{ display: "flex", flexDirection: "column", animation: `fadeUp 0.45s ${0.05 + index * 0.06}s ${SPRING} both` }}>
       <a
         href={project.href}
         target="_blank"
@@ -87,7 +105,6 @@ function ProjectCard({ project, index }: { project: (typeof projects)[0]; index:
         </div>
       </a>
 
-      {/* Info below */}
       <div style={{ paddingTop: 20 }}>
         <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: 12, marginBottom: 8 }}>
           <h3 style={{
@@ -104,11 +121,9 @@ function ProjectCard({ project, index }: { project: (typeof projects)[0]; index:
             rel="noopener noreferrer"
             aria-label={`Visit ${project.title}`}
             style={{
-              flexShrink: 0,
-              width: 32, height: 32,
+              flexShrink: 0, width: 32, height: 32,
               display: "flex", alignItems: "center", justifyContent: "center",
-              background: "transparent",
-              border: "1px solid rgba(0,0,0,0.15)",
+              background: "transparent", border: "1px solid rgba(0,0,0,0.15)",
               color: "var(--fg)",
             }}
           >
@@ -136,8 +151,59 @@ function ProjectCard({ project, index }: { project: (typeof projects)[0]; index:
   );
 }
 
+function TabBar({ active, onChange }: { active: Tab; onChange: (t: Tab) => void }) {
+  const tabs: { key: Tab; label: string; count: number }[] = [
+    { key: "dev",    label: "Development",    count: devProjects.length },
+    { key: "design", label: "Product Design", count: designProjects.length },
+  ];
+  return (
+    <div style={{ display: "flex", gap: 0, borderBottom: "1px solid rgba(0,0,0,0.1)", marginBottom: 48 }}>
+      {tabs.map((tab) => {
+        const isActive = active === tab.key;
+        return (
+          <button
+            key={tab.key}
+            onClick={() => onChange(tab.key)}
+            style={{
+              background: "none", border: "none", cursor: "pointer",
+              padding: "12px 0", marginRight: 32,
+              display: "flex", alignItems: "center", gap: 8,
+              position: "relative",
+              borderBottom: isActive ? "2px solid var(--fg)" : "2px solid transparent",
+              marginBottom: -1,
+              transition: "border-color 0.2s ease",
+            }}
+          >
+            <span style={{
+              fontFamily: "var(--font-inter)", fontWeight: 700,
+              fontSize: 11, letterSpacing: "2px", textTransform: "uppercase",
+              color: isActive ? "var(--fg)" : "var(--fg-muted)",
+              transition: "color 0.2s ease",
+            }}>
+              {tab.label}
+            </span>
+            <span style={{
+              fontFamily: "var(--font-inter)", fontWeight: 600, fontSize: 10,
+              color: isActive ? "var(--accent-purple)" : "var(--fg-muted)",
+              background: isActive ? "rgba(109,40,217,0.08)" : "rgba(0,0,0,0.05)",
+              border: isActive ? "1px solid rgba(109,40,217,0.2)" : "1px solid transparent",
+              padding: "2px 7px",
+              transition: "all 0.2s ease",
+            }}>
+              {tab.count}
+            </span>
+          </button>
+        );
+      })}
+    </div>
+  );
+}
+
 export default function Projects() {
   const { t } = useLang();
+  const [activeTab, setActiveTab] = useState<Tab>("dev");
+
+  const list = activeTab === "dev" ? devProjects : designProjects;
 
   return (
     <section
@@ -150,7 +216,7 @@ export default function Projects() {
         }
       `}</style>
 
-      <div style={{ marginBottom: 48 }}>
+      <div style={{ marginBottom: 40 }}>
         <p style={{
           fontFamily: "var(--font-inter)", fontWeight: 700,
           fontSize: 11, letterSpacing: "4px", textTransform: "uppercase",
@@ -169,14 +235,38 @@ export default function Projects() {
         </h2>
       </div>
 
-      <div
-        className="projects-card-grid"
-        style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "64px 40px" }}
-      >
-        {projects.map((project, i) => (
-          <ProjectCard key={project.title} project={project} index={i} />
-        ))}
-      </div>
+      <TabBar active={activeTab} onChange={setActiveTab} />
+
+      {list.length === 0 ? (
+        <div style={{
+          padding: "80px 0", textAlign: "center",
+          animation: `fadeUp 0.4s ${SPRING} both`,
+        }}>
+          <p style={{
+            fontFamily: "var(--font-inter)", fontWeight: 700, fontSize: 11,
+            letterSpacing: "3px", textTransform: "uppercase",
+            color: "var(--accent-purple)", marginBottom: 16,
+          }}>
+            COMING SOON
+          </p>
+          <p style={{
+            fontFamily: "var(--font-inter)", fontSize: 15, color: "var(--fg-secondary)",
+            lineHeight: 1.65, maxWidth: 400, margin: "0 auto",
+          }}>
+            Product design case studies are being prepared. Check back soon.
+          </p>
+        </div>
+      ) : (
+        <div
+          key={activeTab}
+          className="projects-card-grid"
+          style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "64px 40px" }}
+        >
+          {list.map((project, i) => (
+            <ProjectCard key={project.title} project={project} index={i} />
+          ))}
+        </div>
+      )}
     </section>
   );
 }
