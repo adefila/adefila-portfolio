@@ -77,6 +77,7 @@ function HamburgerIcon({ open }: { open: boolean }) {
 export default function Navbar() {
   const [active, setActive] = useState("");
   const [scrolled, setScrolled] = useState(false);
+  const [shrunk, setShrunk] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const { t } = useLang();
   const navLinks = useMemo(
@@ -85,8 +86,11 @@ export default function Navbar() {
   );
 
   useEffect(() => {
+    const isDesktop = () => window.innerWidth >= 769;
     const onScroll = () => {
-      setScrolled(window.scrollY > 60);
+      const down = window.scrollY > 60;
+      setScrolled(down);
+      setShrunk(down && isDesktop());
       // getBoundingClientRect is accurate regardless of lazy-loaded layout shifts
       const trigger = window.innerHeight * 0.45;
       let current = "hero";
@@ -101,9 +105,16 @@ export default function Navbar() {
         history.replaceState(null, "", hash || window.location.pathname);
       }
     };
+    const onResize = () => {
+      if (!isDesktop()) setShrunk(false);
+    };
     window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onResize, { passive: true });
     onScroll();
-    return () => window.removeEventListener("scroll", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onResize);
+    };
   }, []);
 
   // Lock body scroll when menu is open
@@ -133,7 +144,7 @@ export default function Navbar() {
       >
         <div
           style={{
-            width: "calc(100% - 48px)",
+            width: shrunk ? "calc(100% - 120px)" : "calc(100% - 48px)",
             maxWidth: 1200,
             display: "flex",
             alignItems: "center",
@@ -149,7 +160,7 @@ export default function Navbar() {
             borderRadius: 0,
             padding: "12px 12px 12px 28px",
             pointerEvents: "auto",
-            transition: "background 0.4s, border 0.3s",
+            transition: "background 0.4s, border 0.3s, width 0.5s cubic-bezier(0.22, 1, 0.36, 1)",
           }}
         >
           <Link
