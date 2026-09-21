@@ -52,14 +52,14 @@ const devProjects = [
     desc: "Lead generation and pipeline management platform. Custom Framer build with dynamic CMS and conversion-optimised flows.",
     meta: "Framer Development · 2026",
     href: "https://www.leadopo.com/",
-    screenshot: "/projects/Leadopo.png",
+    screenshot: "/projects/leadopo.png",
   },
   {
     title: "Rusty Wears",
     desc: "Streetwear brand e-commerce experience. Bold visual identity translated into a high-converting Framer storefront.",
     meta: "Framer Development · 2026",
     href: "https://rustywears.framer.website/",
-    screenshot: "/projects/rusty wears.png",
+    screenshot: "/projects/rusty-wears.png",
   },
 ];
 
@@ -153,11 +153,11 @@ function ProjectCard({ project, index }: { project: (typeof devProjects)[0]; ind
 
 function TabBar({ active, onChange }: { active: Tab; onChange: (t: Tab) => void }) {
   const tabs: { key: Tab; label: string; count: number }[] = [
-    { key: "dev",    label: "Development",    count: devProjects.length },
+    { key: "dev",    label: "Website Development", count: devProjects.length },
     { key: "design", label: "Product Design", count: designProjects.length },
   ];
   return (
-    <div style={{ display: "flex", gap: 0, borderBottom: "1px solid rgba(0,0,0,0.1)", marginBottom: 48 }}>
+    <div style={{ display: "flex", gap: 0, borderBottom: "1px solid rgba(0,0,0,0.1)" }}>
       {tabs.map((tab) => {
         const isActive = active === tab.key;
         return (
@@ -216,26 +216,31 @@ export default function Projects() {
         }
       `}</style>
 
-      <div style={{ marginBottom: 40 }}>
-        <p style={{
-          fontFamily: "var(--font-inter)", fontWeight: 700,
-          fontSize: 11, letterSpacing: "4px", textTransform: "uppercase",
-          color: "var(--accent-purple)", marginBottom: 16,
-          animation: `fadeUp 0.5s 0.05s ${SPRING} both`,
-        }}>
-          {t("projects.eyebrow")}
-        </p>
-        <h2 style={{
-          fontFamily: "var(--font-poppins)", fontWeight: 700,
-          fontSize: "clamp(28px, 3.5vw, 48px)", letterSpacing: "-1px",
-          lineHeight: 1, textTransform: "uppercase", color: "var(--fg)",
-          animation: `fadeUp 0.5s 0.12s ${SPRING} both`,
-        }}>
-          {t("projects.h1")}
-        </h2>
+      <div style={{
+        display: "flex", alignItems: "flex-end",
+        justifyContent: "space-between", gap: 24,
+        flexWrap: "wrap", marginBottom: 48,
+      }}>
+        <div>
+          <p style={{
+            fontFamily: "var(--font-inter)", fontWeight: 700,
+            fontSize: 11, letterSpacing: "4px", textTransform: "uppercase",
+            color: "var(--accent-purple)", marginBottom: 16,
+            animation: `fadeUp 0.5s 0.05s ${SPRING} both`,
+          }}>
+            {t("projects.eyebrow")}
+          </p>
+          <h2 style={{
+            fontFamily: "var(--font-poppins)", fontWeight: 700,
+            fontSize: "clamp(28px, 3.5vw, 48px)", letterSpacing: "-1px",
+            lineHeight: 1, textTransform: "uppercase", color: "var(--fg)",
+            animation: `fadeUp 0.5s 0.12s ${SPRING} both`,
+          }}>
+            {t("projects.h1")}
+          </h2>
+        </div>
+        <TabBar active={activeTab} onChange={setActiveTab} />
       </div>
-
-      <TabBar active={activeTab} onChange={setActiveTab} />
 
       {list.length === 0 ? (
         <div style={{
