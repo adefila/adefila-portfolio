@@ -51,14 +51,14 @@ const devProjects = [
     title: "Leadopo",
     desc: "Lead generation and pipeline management platform. Custom Framer build with dynamic CMS and conversion-optimised flows.",
     meta: "Framer Development · 2026",
-    href: "https://leadopo.com/",
+    href: "https://www.leadopo.com/",
     screenshot: "/projects/Leadopo.png",
   },
   {
     title: "Rusty Wears",
     desc: "Streetwear brand e-commerce experience. Bold visual identity translated into a high-converting Framer storefront.",
     meta: "Framer Development · 2026",
-    href: "https://rustywears.com/",
+    href: "https://rustywears.framer.website/",
     screenshot: "/projects/rusty wears.png",
   },
 ];
