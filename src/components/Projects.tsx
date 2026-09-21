@@ -71,6 +71,20 @@ const devProjects: Project[] = [
     href: "https://rustywears.framer.website/",
     screenshot: "/projects/rusty-wears.png",
   },
+  {
+    title: "The Prime Media",
+    desc: "Digital media agency site built in Framer — bold editorial layout, motion-forward sections, and a content-first structure for a Canadian creative studio.",
+    meta: "Framer Development · 2025",
+    href: "https://theprimemedia.ca/",
+    screenshot: "/projects/the-prime-media.png",
+  },
+  {
+    title: "Jamal Muse",
+    desc: "Personal brand and portfolio for a creative professional. Designed in Claude and brought to life in Framer with smooth transitions and a refined typographic system.",
+    meta: "Claude to Framer · 2025",
+    href: "https://www.jamalmuse.com/",
+    screenshot: "/projects/jamal.png",
+  },
 ];
 
 const designProjects: Project[] = [
@@ -192,29 +206,16 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
       )}
 
       <div style={{ paddingTop: 20 }}>
-        <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: 12, marginBottom: 8 }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap" }}>
-            <h3 style={{
-              fontFamily: "var(--font-poppins)", fontWeight: 700,
-              fontSize: "clamp(15px, 1.2vw, 18px)", letterSpacing: "-0.4px",
-              textTransform: "uppercase", color: "var(--fg)",
-              lineHeight: 1.15, margin: 0,
-            }}>
-              {project.title}
-            </h3>
-            {project.badge && (
-              <span style={{
-                fontFamily: "var(--font-inter)", fontWeight: 700, fontSize: 9,
-                letterSpacing: "1.5px", textTransform: "uppercase",
-                color: project.badge === "In Development" ? "#d97706" : "#16a34a",
-                background: project.badge === "In Development" ? "rgba(217,119,6,0.08)" : "rgba(22,163,74,0.08)",
-                border: `1px solid ${project.badge === "In Development" ? "rgba(217,119,6,0.25)" : "rgba(22,163,74,0.25)"}`,
-                padding: "3px 8px", borderRadius: 999, whiteSpace: "nowrap",
-              }}>
-                {project.badge}
-              </span>
-            )}
-          </div>
+        {/* Title row */}
+        <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: 12, marginBottom: 10 }}>
+          <h3 style={{
+            fontFamily: "var(--font-poppins)", fontWeight: 700,
+            fontSize: "clamp(15px, 1.2vw, 18px)", letterSpacing: "-0.4px",
+            textTransform: "uppercase", color: "var(--fg)",
+            lineHeight: 1.15, margin: 0,
+          }}>
+            {project.title}
+          </h3>
           {hasLink && (
             <a
               href={project.href}
@@ -233,20 +234,40 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
           )}
         </div>
 
+        {/* Tags row — parsed from meta + optional badge */}
+        <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginBottom: 12 }}>
+          {project.meta.split(" · ").map((tag) => (
+            <span key={tag} style={{
+              fontFamily: "var(--font-inter)", fontWeight: 500, fontSize: 10,
+              letterSpacing: "0.8px", textTransform: "uppercase",
+              color: "var(--fg-secondary)",
+              background: "rgba(0,0,0,0.04)",
+              border: "1px solid rgba(0,0,0,0.08)",
+              padding: "3px 9px",
+            }}>
+              {tag}
+            </span>
+          ))}
+          {project.badge && (
+            <span style={{
+              fontFamily: "var(--font-inter)", fontWeight: 600, fontSize: 10,
+              letterSpacing: "0.8px", textTransform: "uppercase",
+              color: project.badge === "In Development" ? "#d97706" : "#16a34a",
+              background: project.badge === "In Development" ? "rgba(217,119,6,0.08)" : "rgba(22,163,74,0.08)",
+              border: `1px solid ${project.badge === "In Development" ? "rgba(217,119,6,0.25)" : "rgba(22,163,74,0.25)"}`,
+              padding: "3px 9px",
+            }}>
+              {project.badge}
+            </span>
+          )}
+        </div>
+
         <p style={{
           fontFamily: "var(--font-inter)", fontWeight: 400,
           fontSize: 13, lineHeight: 1.6, letterSpacing: "-0.1px",
-          color: "var(--fg-secondary)", margin: "0 0 10px",
+          color: "var(--fg-secondary)", margin: 0,
         }}>
           {project.desc}
-        </p>
-
-        <p style={{
-          fontFamily: "var(--font-inter)", fontWeight: 500,
-          fontSize: 10, letterSpacing: "1.2px",
-          textTransform: "uppercase", color: "var(--fg-muted)", margin: 0,
-        }}>
-          {project.meta}
         </p>
       </div>
     </div>
