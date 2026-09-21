@@ -8,6 +8,7 @@ type Project = {
   title: string;
   desc: string;
   meta: string;
+  tags: string[];
   href: string;
   screenshot?: string;
   video?: string;
@@ -19,6 +20,7 @@ const devProjects: Project[] = [
     title: "The Initial",
     desc: "AI-powered creative agency site. Figma designs translated to pixel-perfect Framer with custom interactions and CMS.",
     meta: "Figma to Framer · 2025",
+    tags: ["Creative Agency", "Framer"],
     href: "https://the-initial.com/",
     screenshot: "/projects/the-initial.png",
   },
@@ -26,6 +28,7 @@ const devProjects: Project[] = [
     title: "BindHQ",
     desc: "Insurance management SaaS. Template customised to match their design system with complex navigation and data-dense layouts.",
     meta: "Template Customization · 2026",
+    tags: ["B2B SaaS", "InsurTech"],
     href: "https://www.bindhq.com/",
     screenshot: "/projects/bindhq.png",
   },
@@ -33,6 +36,7 @@ const devProjects: Project[] = [
     title: "VPA London",
     desc: "Talent agency portfolio built in Framer with editorial typography, smooth scroll, and a roster filtering system.",
     meta: "Framer Development · 2025",
+    tags: ["Talent Agency", "Portfolio"],
     href: "https://www.vpalondon.co.uk/",
     screenshot: "/projects/vpa-london.png",
   },
@@ -40,6 +44,7 @@ const devProjects: Project[] = [
     title: "Upside ESG",
     desc: "ESG reporting platform with live data integrations, custom chart components, and a resource library built in Framer.",
     meta: "Framer Dev & Integrations · 2026",
+    tags: ["B2B SaaS", "ESG Platform"],
     href: "https://upside-esg.com/",
     screenshot: "/projects/upside-esg.png",
   },
@@ -47,6 +52,7 @@ const devProjects: Project[] = [
     title: "Alyssa Corso",
     desc: "Personal portfolio for a healthcare SEO consultant. Clean, conversion-focused layout with case study pages.",
     meta: "Framer Development · 2026",
+    tags: ["Personal Brand", "Consulting"],
     href: "https://alyssacorso.com/",
     screenshot: "/projects/alyssa-corso.png",
   },
@@ -54,6 +60,7 @@ const devProjects: Project[] = [
     title: "Emalbu",
     desc: "Full HTML-to-Framer migration for a professional services firm — preserving brand identity while modernising the stack.",
     meta: "Website Migration · 2026",
+    tags: ["Professional Services", "Migration"],
     href: "https://emalbu.com/",
     screenshot: "/projects/emalbu.png",
   },
@@ -61,6 +68,7 @@ const devProjects: Project[] = [
     title: "Leadopo",
     desc: "Lead generation and pipeline management platform. Custom Framer build with dynamic CMS and conversion-optimised flows.",
     meta: "Framer Development · 2026",
+    tags: ["B2B SaaS", "Lead Gen"],
     href: "https://www.leadopo.com/",
     screenshot: "/projects/leadopo.png",
   },
@@ -68,6 +76,7 @@ const devProjects: Project[] = [
     title: "Rusty Wears",
     desc: "Streetwear brand e-commerce experience. Bold visual identity translated into a high-converting Framer storefront.",
     meta: "Framer Development · 2026",
+    tags: ["E-commerce", "Fashion"],
     href: "https://rustywears.framer.website/",
     screenshot: "/projects/rusty-wears.png",
   },
@@ -75,6 +84,7 @@ const devProjects: Project[] = [
     title: "The Prime Media",
     desc: "Digital media agency site built in Framer — bold editorial layout, motion-forward sections, and a content-first structure for a Canadian creative studio.",
     meta: "Framer Development · 2025",
+    tags: ["Creative Agency", "Media"],
     href: "https://theprimemedia.ca/",
     screenshot: "/projects/the-prime-media.png",
   },
@@ -82,6 +92,7 @@ const devProjects: Project[] = [
     title: "Jamal Muse",
     desc: "Personal brand and portfolio for a creative professional. Designed in Claude and brought to life in Framer with smooth transitions and a refined typographic system.",
     meta: "Claude to Framer · 2025",
+    tags: ["Personal Brand", "Portfolio"],
     href: "https://www.jamalmuse.com/",
     screenshot: "/projects/jamal.png",
   },
@@ -92,6 +103,7 @@ const designProjects: Project[] = [
     title: "BookedEZ",
     desc: "Event booking platform connecting organizers, vendors, and attendees. Full dark-mode mobile app with profile management, membership tiers, and seamless booking flow.",
     meta: "UI/UX Design · 2024",
+    tags: ["Marketplace", "Mobile App"],
     href: "#",
     screenshot: "/projects/design/bookedez.jpg",
     badge: "Live on Stores",
@@ -100,6 +112,7 @@ const designProjects: Project[] = [
     title: "Student Material Directory",
     desc: "ReadHub — a document-sharing platform for students to discover, upload, and access academic resources filtered by subject, author, and tags.",
     meta: "App Interface Design · 2024",
+    tags: ["EdTech", "Mobile App"],
     href: "#",
     screenshot: "/projects/design/readhub.jpg",
   },
@@ -107,6 +120,7 @@ const designProjects: Project[] = [
     title: "Crypto App",
     desc: "Fintech onboarding experience with a bold 3D brand identity, YC-backed credibility badge, and streamlined Google / Apple sign-in flows on a deep-purple canvas.",
     meta: "App Interface Design · 2024",
+    tags: ["Fintech", "Mobile App"],
     href: "#",
     screenshot: "/projects/design/crypto-app.jpg",
   },
@@ -114,6 +128,7 @@ const designProjects: Project[] = [
     title: "Health Monitoring App",
     desc: "Well-being dashboard tracking sleep patterns, mood, and daily steps. Clean, data-forward interface with emoji-based mood logging and donut-chart KPIs.",
     meta: "App Interface Design · 2024",
+    tags: ["HealthTech", "Mobile App"],
     href: "#",
     screenshot: "/projects/design/health-app.jpg",
   },
@@ -121,6 +136,7 @@ const designProjects: Project[] = [
     title: "Invoice Maker",
     desc: "Quick Invoice Maker — professional invoice, estimate, waybill, and letterhead generator for SMEs. Activity feed with paid/unpaid/overdue filters.",
     meta: "UI/UX Design · 2024",
+    tags: ["B2B SaaS", "Mobile App"],
     href: "#",
     screenshot: "/projects/design/invoice-maker.jpg",
     badge: "Live on Stores",
@@ -129,6 +145,7 @@ const designProjects: Project[] = [
     title: "Neetly",
     desc: "AI Assistant chat interface with a minimal layout designed for natural conversation flows, voice input, and rich message attachments.",
     meta: "UI/UX Design · Under Development",
+    tags: ["AI Product", "Mobile App"],
     href: "#",
     screenshot: "/projects/design/neetly.jpg",
     badge: "In Development",
@@ -137,6 +154,7 @@ const designProjects: Project[] = [
     title: "Daily News App",
     desc: "News aggregation app with topic-filtered horizontal feeds, trending story cards, and a focused distraction-free article reading view.",
     meta: "App Interface Exploration · 2024",
+    tags: ["Media", "Mobile App"],
     href: "#",
     screenshot: "/projects/design/news-app.jpg",
   },
@@ -144,6 +162,7 @@ const designProjects: Project[] = [
     title: "Community Chat Interface",
     desc: "Multi-user messaging interface with online-status indicators, unread badges, and a friendly empty-state to guide first-time users.",
     meta: "Chat Interface Exploration · 2024",
+    tags: ["Social", "Mobile App"],
     href: "#",
     screenshot: "/projects/design/chat-app.jpg",
   },
@@ -206,16 +225,44 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
       )}
 
       <div style={{ paddingTop: 20 }}>
-        {/* Title row */}
-        <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: 12, marginBottom: 10 }}>
-          <h3 style={{
-            fontFamily: "var(--font-poppins)", fontWeight: 700,
-            fontSize: "clamp(15px, 1.2vw, 18px)", letterSpacing: "-0.4px",
-            textTransform: "uppercase", color: "var(--fg)",
-            lineHeight: 1.15, margin: 0,
-          }}>
-            {project.title}
-          </h3>
+        {/* Title + inline tags row */}
+        <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: 12, marginBottom: 12 }}>
+          <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: 8, flex: 1, minWidth: 0 }}>
+            <h3 style={{
+              fontFamily: "var(--font-poppins)", fontWeight: 700,
+              fontSize: "clamp(15px, 1.2vw, 18px)", letterSpacing: "-0.4px",
+              textTransform: "uppercase", color: "var(--fg)",
+              lineHeight: 1.15, margin: 0, flexShrink: 0,
+            }}>
+              {project.title}
+            </h3>
+            {project.tags.map((tag) => (
+              <span key={tag} style={{
+                fontFamily: "var(--font-inter)", fontWeight: 500, fontSize: 10,
+                letterSpacing: "0.8px", textTransform: "uppercase",
+                color: "var(--fg-secondary)",
+                background: "rgba(0,0,0,0.04)",
+                border: "1px solid rgba(0,0,0,0.08)",
+                padding: "3px 9px",
+                whiteSpace: "nowrap",
+              }}>
+                {tag}
+              </span>
+            ))}
+            {project.badge && (
+              <span style={{
+                fontFamily: "var(--font-inter)", fontWeight: 600, fontSize: 10,
+                letterSpacing: "0.8px", textTransform: "uppercase",
+                color: project.badge === "In Development" ? "#d97706" : "#16a34a",
+                background: project.badge === "In Development" ? "rgba(217,119,6,0.08)" : "rgba(22,163,74,0.08)",
+                border: `1px solid ${project.badge === "In Development" ? "rgba(217,119,6,0.25)" : "rgba(22,163,74,0.25)"}`,
+                padding: "3px 9px",
+                whiteSpace: "nowrap",
+              }}>
+                {project.badge}
+              </span>
+            )}
+          </div>
           {hasLink && (
             <a
               href={project.href}
@@ -234,40 +281,20 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
           )}
         </div>
 
-        {/* Tags row — parsed from meta + optional badge */}
-        <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginBottom: 12 }}>
-          {project.meta.split(" · ").map((tag) => (
-            <span key={tag} style={{
-              fontFamily: "var(--font-inter)", fontWeight: 500, fontSize: 10,
-              letterSpacing: "0.8px", textTransform: "uppercase",
-              color: "var(--fg-secondary)",
-              background: "rgba(0,0,0,0.04)",
-              border: "1px solid rgba(0,0,0,0.08)",
-              padding: "3px 9px",
-            }}>
-              {tag}
-            </span>
-          ))}
-          {project.badge && (
-            <span style={{
-              fontFamily: "var(--font-inter)", fontWeight: 600, fontSize: 10,
-              letterSpacing: "0.8px", textTransform: "uppercase",
-              color: project.badge === "In Development" ? "#d97706" : "#16a34a",
-              background: project.badge === "In Development" ? "rgba(217,119,6,0.08)" : "rgba(22,163,74,0.08)",
-              border: `1px solid ${project.badge === "In Development" ? "rgba(217,119,6,0.25)" : "rgba(22,163,74,0.25)"}`,
-              padding: "3px 9px",
-            }}>
-              {project.badge}
-            </span>
-          )}
-        </div>
-
         <p style={{
           fontFamily: "var(--font-inter)", fontWeight: 400,
           fontSize: 13, lineHeight: 1.6, letterSpacing: "-0.1px",
           color: "var(--fg-secondary)", margin: 0,
         }}>
           {project.desc}
+        </p>
+
+        <p style={{
+          fontFamily: "var(--font-inter)", fontWeight: 500,
+          fontSize: 11, letterSpacing: "0.06em", textTransform: "uppercase",
+          color: "var(--fg-muted)", margin: "10px 0 0",
+        }}>
+          {project.meta}
         </p>
       </div>
     </div>
