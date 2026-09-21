@@ -14,14 +14,14 @@ type TestimonialItem =
 // Leave both null → shows styled initials placeholder
 const testimonialMeta: TestimonialItem[] = [
   { type: "video", name: "Davonte Wheeler",     role: "CEO · BookedEZ LLC",                     video: "/davonte-wheeler.mp4", avatar: null, logo: null },
-  { type: "text",  name: "Nitin",               role: "HitPay App",                             key: "testimonials.t0",  avatar: null, logo: null },
-  { type: "text",  name: "Alyssa Corso",        role: "SEO Consultant for Healthcare Startups", key: "testimonials.t1",  avatar: null, logo: null },
+  { type: "text",  name: "Nitin",               role: "HitPay App",                             key: "testimonials.t0",  avatar: "/nitin.png",        logo: null },
+  { type: "text",  name: "Alyssa Corso",        role: "SEO Consultant for Healthcare Startups", key: "testimonials.t1",  avatar: "/alyssa-corso.png", logo: null },
   { type: "text",  name: "Johnno Van Den Brink",role: "The Initial Agency",                     key: "testimonials.t2",  avatar: null, logo: null },
   { type: "upwork" },
   { type: "text",  name: "Layo",                role: "Content Writer",                         key: "testimonials.t3",  avatar: null, logo: null },
   { type: "text",  name: "Michal Kouril",       role: "Leadopo",                                key: "testimonials.t4",  avatar: null, logo: null },
   { type: "text",  name: "Raffaello Cuccuini",  role: "Humanity",                               key: "testimonials.t5",  avatar: null, logo: null },
-  { type: "text",  name: "Heather Burns",       role: "Upside ESG",                             key: "testimonials.t6",  avatar: null, logo: null },
+  { type: "text",  name: "Heather Burns",       role: "Upside ESG",                             key: "testimonials.t6",  avatar: "/heather-burns.webp", logo: null },
   { type: "text",  name: "Kevin N.",            role: "The Tech Unit",                          key: "testimonials.t7",  avatar: null, logo: null },
 ];
 
