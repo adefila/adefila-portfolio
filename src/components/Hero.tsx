@@ -8,9 +8,9 @@ import { useLang } from "@/context/LangContext";
 const EASE = "cubic-bezier(0.22, 1, 0.36, 1)";
 
 const slides = [
-  { title: "Elite Property", meta: "Framer Development · 2025", img: "/projects/elite-property.png" },
+  { title: "Elite Property", meta: "Framer Development · 2025", img: "/projects/elite-property.webp" },
   { title: "Jamal Muse. Personal Portfolio", meta: "Claude to Framer · 2025", img: "/projects/jamal.png" },
-  { title: "Nature", meta: "Web Design · 2025", img: "/projects/nature.png" },
+  { title: "Nature", meta: "Web Design · 2025", img: "/projects/nature.webp" },
   { title: "Virvly", meta: "Framer Development · 2025", img: "/projects/virvly.png" },
 ];
 
