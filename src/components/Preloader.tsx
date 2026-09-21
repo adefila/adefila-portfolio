@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 
 const SPRING = [0.22, 1, 0.36, 1] as [number, number, number, number];
 const EXIT   = [0.76, 0, 0.24, 1] as [number, number, number, number];
@@ -8,15 +8,22 @@ const EXIT   = [0.76, 0, 0.24, 1] as [number, number, number, number];
 export default function Preloader() {
   const [visible, setVisible] = useState(true);
   const [count, setCount]     = useState(0);
+  const reducedMotion          = useReducedMotion();
 
   useEffect(() => {
+    // Respect prefers-reduced-motion: skip animation, dismiss quickly
+    if (reducedMotion) {
+      setCount(100);
+      const t = setTimeout(() => setVisible(false), 400);
+      return () => clearTimeout(t);
+    }
+
     const duration = 1900;
     const start    = performance.now();
 
     const tick = (ts: number) => {
       const progress = Math.min((ts - start) / duration, 1);
-      // ease-out cubic so the counter accelerates then slows at 100
-      const eased = 1 - Math.pow(1 - progress, 3);
+      const eased    = 1 - Math.pow(1 - progress, 3);
       setCount(Math.round(eased * 100));
       if (progress < 1) {
         requestAnimationFrame(tick);
@@ -27,15 +34,20 @@ export default function Preloader() {
 
     const id = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(id);
-  }, []);
+  }, [reducedMotion]);
 
   return (
     <AnimatePresence>
       {visible && (
         <motion.div
           key="preloader"
-          exit={{ y: "-100%" }}
-          transition={{ duration: 0.78, ease: EXIT }}
+          role="status"
+          aria-label="Loading portfolio"
+          exit={reducedMotion ? { opacity: 0 } : { y: "-100%" }}
+          transition={reducedMotion
+            ? { duration: 0.2 }
+            : { duration: 0.78, ease: EXIT }
+          }
           style={{
             position: "fixed",
             inset: 0,
@@ -48,10 +60,11 @@ export default function Preloader() {
             pointerEvents: "all",
           }}
         >
-          {/* Centre: name + bar */}
+          {/* Centre: name + progress bar */}
           <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 20 }}>
             <motion.p
-              initial={{ opacity: 0, y: 14 }}
+              aria-hidden="true"
+              initial={reducedMotion ? false : { opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.55, ease: SPRING }}
               style={{
@@ -68,9 +81,14 @@ export default function Preloader() {
               Samuel Adefila
             </motion.p>
 
-            {/* Loading bar */}
+            {/* Progress bar — announced to screen readers */}
             <motion.div
-              initial={{ opacity: 0 }}
+              role="progressbar"
+              aria-valuenow={count}
+              aria-valuemin={0}
+              aria-valuemax={100}
+              aria-label="Loading"
+              initial={reducedMotion ? false : { opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.15, duration: 0.3 }}
               style={{
@@ -82,16 +100,20 @@ export default function Preloader() {
             >
               <motion.div
                 initial={{ scaleX: 0 }}
-                animate={{ scaleX: 1 }}
-                transition={{ duration: 1.9, ease: SPRING }}
+                animate={{ scaleX: reducedMotion ? 1 : 1 }}
+                transition={reducedMotion
+                  ? { duration: 0 }
+                  : { duration: 1.9, ease: SPRING }
+                }
                 style={{ height: "100%", background: "#fff", transformOrigin: "left" }}
               />
             </motion.div>
           </div>
 
-          {/* Ghost counter — bottom right */}
+          {/* Ghost counter — purely decorative, hidden from assistive tech */}
           <motion.span
-            initial={{ opacity: 0 }}
+            aria-hidden="true"
+            initial={reducedMotion ? false : { opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2, duration: 0.4 }}
             style={{
@@ -111,9 +133,10 @@ export default function Preloader() {
             {count}
           </motion.span>
 
-          {/* Label — bottom left */}
+          {/* Decorative label — hidden from assistive tech */}
           <motion.p
-            initial={{ opacity: 0 }}
+            aria-hidden="true"
+            initial={reducedMotion ? false : { opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3, duration: 0.5 }}
             style={{
