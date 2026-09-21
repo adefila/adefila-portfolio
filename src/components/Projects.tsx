@@ -6,6 +6,7 @@ import { useLang } from "@/context/LangContext";
 
 type Project = {
   title: string;
+  alt: string;
   desc: string;
   meta: string;
   tags: string[];
@@ -18,6 +19,7 @@ type Project = {
 const devProjects: Project[] = [
   {
     title: "The Initial",
+    alt: "The Initial creative agency website — AI-powered Framer build with custom interactions",
     desc: "AI-powered creative agency site. Figma designs translated to pixel-perfect Framer with custom interactions and CMS.",
     meta: "Figma to Framer · 2025",
     tags: ["Creative Agency", "Framer"],
@@ -26,6 +28,7 @@ const devProjects: Project[] = [
   },
   {
     title: "BindHQ",
+    alt: "BindHQ insurance management SaaS website — template customisation for complex data layouts",
     desc: "Insurance management SaaS. Template customised to match their design system with complex navigation and data-dense layouts.",
     meta: "Template Customization · 2026",
     tags: ["B2B SaaS", "InsurTech"],
@@ -34,6 +37,7 @@ const devProjects: Project[] = [
   },
   {
     title: "VPA London",
+    alt: "VPA London talent agency portfolio — editorial typography and roster filtering in Framer",
     desc: "Talent agency portfolio built in Framer with editorial typography, smooth scroll, and a roster filtering system.",
     meta: "Framer Development · 2025",
     tags: ["Talent Agency", "Portfolio"],
@@ -42,6 +46,7 @@ const devProjects: Project[] = [
   },
   {
     title: "Upside ESG",
+    alt: "Upside ESG reporting platform — live data integrations and custom charts built in Framer",
     desc: "ESG reporting platform with live data integrations, custom chart components, and a resource library built in Framer.",
     meta: "Framer Dev & Integrations · 2026",
     tags: ["B2B SaaS", "ESG Platform"],
@@ -50,6 +55,7 @@ const devProjects: Project[] = [
   },
   {
     title: "Alyssa Corso",
+    alt: "Alyssa Corso personal portfolio — healthcare SEO consultant website built in Framer",
     desc: "Personal portfolio for a healthcare SEO consultant. Clean, conversion-focused layout with case study pages.",
     meta: "Framer Development · 2026",
     tags: ["Personal Brand", "Consulting"],
@@ -58,6 +64,7 @@ const devProjects: Project[] = [
   },
   {
     title: "Emalbu",
+    alt: "Emalbu professional services website — HTML to Framer migration preserving brand identity",
     desc: "Full HTML-to-Framer migration for a professional services firm — preserving brand identity while modernising the stack.",
     meta: "Website Migration · 2026",
     tags: ["Professional Services", "Migration"],
@@ -66,6 +73,7 @@ const devProjects: Project[] = [
   },
   {
     title: "Leadopo",
+    alt: "Leadopo lead generation platform — custom Framer build with dynamic CMS and pipeline flows",
     desc: "Lead generation and pipeline management platform. Custom Framer build with dynamic CMS and conversion-optimised flows.",
     meta: "Framer Development · 2026",
     tags: ["B2B SaaS", "Lead Gen"],
@@ -74,6 +82,7 @@ const devProjects: Project[] = [
   },
   {
     title: "Rusty Wears",
+    alt: "Rusty Wears streetwear e-commerce storefront — bold visual identity built in Framer",
     desc: "Streetwear brand e-commerce experience. Bold visual identity translated into a high-converting Framer storefront.",
     meta: "Framer Development · 2026",
     tags: ["E-commerce", "Fashion"],
@@ -82,6 +91,7 @@ const devProjects: Project[] = [
   },
   {
     title: "The Prime Media",
+    alt: "The Prime Media digital agency site — motion-forward editorial Framer build for Canadian studio",
     desc: "Digital media agency site built in Framer — bold editorial layout, motion-forward sections, and a content-first structure for a Canadian creative studio.",
     meta: "Framer Development · 2025",
     tags: ["Creative Agency", "Media"],
@@ -90,6 +100,7 @@ const devProjects: Project[] = [
   },
   {
     title: "Jamal Muse",
+    alt: "Jamal Muse personal brand portfolio — Claude designed, built in Framer with refined typography",
     desc: "Personal brand and portfolio for a creative professional. Designed in Claude and brought to life in Framer with smooth transitions and a refined typographic system.",
     meta: "Claude to Framer · 2025",
     tags: ["Personal Brand", "Portfolio"],
@@ -101,6 +112,7 @@ const devProjects: Project[] = [
 const designProjects: Project[] = [
   {
     title: "BookedEZ",
+    alt: "BookedEZ event booking mobile app UI — dark-mode design with profile management and booking flow",
     desc: "Event booking platform connecting organizers, vendors, and attendees. Full dark-mode mobile app with profile management, membership tiers, and seamless booking flow.",
     meta: "UI/UX Design · 2024",
     tags: ["Marketplace", "Mobile App"],
@@ -110,6 +122,7 @@ const designProjects: Project[] = [
   },
   {
     title: "Student Material Directory",
+    alt: "ReadHub student material directory app — document sharing platform with subject and tag filtering",
     desc: "ReadHub — a document-sharing platform for students to discover, upload, and access academic resources filtered by subject, author, and tags.",
     meta: "App Interface Design · 2024",
     tags: ["EdTech", "Mobile App"],
@@ -118,6 +131,7 @@ const designProjects: Project[] = [
   },
   {
     title: "Crypto App",
+    alt: "Crypto fintech onboarding app UI — bold 3D brand identity with Google and Apple sign-in flows",
     desc: "Fintech onboarding experience with a bold 3D brand identity, YC-backed credibility badge, and streamlined Google / Apple sign-in flows on a deep-purple canvas.",
     meta: "App Interface Design · 2024",
     tags: ["Fintech", "Mobile App"],
@@ -126,6 +140,7 @@ const designProjects: Project[] = [
   },
   {
     title: "Health Monitoring App",
+    alt: "Health monitoring app UI — well-being dashboard with sleep tracking, mood logging and step counter",
     desc: "Well-being dashboard tracking sleep patterns, mood, and daily steps. Clean, data-forward interface with emoji-based mood logging and donut-chart KPIs.",
     meta: "App Interface Design · 2024",
     tags: ["HealthTech", "Mobile App"],
@@ -134,6 +149,7 @@ const designProjects: Project[] = [
   },
   {
     title: "Invoice Maker",
+    alt: "Quick Invoice Maker app UI — invoice and estimate generator for SMEs with payment status filters",
     desc: "Quick Invoice Maker — professional invoice, estimate, waybill, and letterhead generator for SMEs. Activity feed with paid/unpaid/overdue filters.",
     meta: "UI/UX Design · 2024",
     tags: ["B2B SaaS", "Mobile App"],
@@ -143,6 +159,7 @@ const designProjects: Project[] = [
   },
   {
     title: "Neetly",
+    alt: "Neetly AI assistant chat interface — minimal conversation UI with voice input and rich attachments",
     desc: "AI Assistant chat interface with a minimal layout designed for natural conversation flows, voice input, and rich message attachments.",
     meta: "UI/UX Design · Under Development",
     tags: ["AI Product", "Mobile App"],
@@ -152,6 +169,7 @@ const designProjects: Project[] = [
   },
   {
     title: "Daily News App",
+    alt: "Daily news aggregation app UI — topic-filtered feeds with trending stories and distraction-free reading",
     desc: "News aggregation app with topic-filtered horizontal feeds, trending story cards, and a focused distraction-free article reading view.",
     meta: "App Interface Exploration · 2024",
     tags: ["Media", "Mobile App"],
@@ -160,6 +178,7 @@ const designProjects: Project[] = [
   },
   {
     title: "Community Chat Interface",
+    alt: "Community chat interface UI — multi-user messaging with online status indicators and unread badges",
     desc: "Multi-user messaging interface with online-status indicators, unread badges, and a friendly empty-state to guide first-time users.",
     meta: "Chat Interface Exploration · 2024",
     tags: ["Social", "Mobile App"],
@@ -201,12 +220,19 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
       {project.screenshot && (
         <Image
           src={project.screenshot}
-          alt={project.title}
+          alt={project.alt}
           fill
-          sizes="(max-width: 640px) 100vw, 50vw"
-          style={{ objectFit: "cover", objectPosition: "top" }}
-          quality={80}
-          priority={index < 2}
+          sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 600px"
+          style={{
+            objectFit: "cover",
+            objectPosition: "top center",
+            filter: hovered
+              ? "contrast(1.05) saturate(1.1) brightness(1.02)"
+              : "contrast(1.03) saturate(1.06)",
+            transition: `filter 0.4s cubic-bezier(0.22, 1, 0.36, 1)`,
+          }}
+          quality={90}
+          priority={index < 4}
         />
       )}
     </div>
