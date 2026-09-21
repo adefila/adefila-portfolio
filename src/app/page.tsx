@@ -1,3 +1,4 @@
+import Preloader from "@/components/Preloader";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import Projects from "@/components/Projects";
@@ -23,6 +24,7 @@ export default function Home() {
         width: "100%",
       }}
     >
+      <Preloader />
       <Navbar />
       <Hero />
       <Projects />
