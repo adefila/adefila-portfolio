@@ -4,7 +4,17 @@ import { useState } from "react";
 import Image from "next/image";
 import { useLang } from "@/context/LangContext";
 
-const devProjects = [
+type Project = {
+  title: string;
+  desc: string;
+  meta: string;
+  href: string;
+  screenshot?: string;
+  video?: string;
+  badge?: string;
+};
+
+const devProjects: Project[] = [
   {
     title: "The Initial",
     desc: "AI-powered creative agency site. Figma designs translated to pixel-perfect Framer with custom interactions and CMS.",
@@ -63,78 +73,184 @@ const devProjects = [
   },
 ];
 
-const designProjects: typeof devProjects = [];
+const designProjects: Project[] = [
+  {
+    title: "BookedEZ",
+    desc: "Event booking platform connecting organizers, vendors, and attendees. Full dark-mode mobile app with profile management, membership tiers, and seamless booking flow.",
+    meta: "UI/UX Design · 2024",
+    href: "#",
+    screenshot: "/projects/design/bookedez.jpg",
+    badge: "Live on Stores",
+  },
+  {
+    title: "Student Material Directory",
+    desc: "ReadHub — a document-sharing platform for students to discover, upload, and access academic resources filtered by subject, author, and tags.",
+    meta: "App Interface Design · 2024",
+    href: "#",
+    screenshot: "/projects/design/readhub.jpg",
+  },
+  {
+    title: "Crypto App",
+    desc: "Fintech onboarding experience with a bold 3D brand identity, YC-backed credibility badge, and streamlined Google / Apple sign-in flows on a deep-purple canvas.",
+    meta: "App Interface Design · 2024",
+    href: "#",
+    screenshot: "/projects/design/crypto-app.jpg",
+  },
+  {
+    title: "Health Monitoring App",
+    desc: "Well-being dashboard tracking sleep patterns, mood, and daily steps. Clean, data-forward interface with emoji-based mood logging and donut-chart KPIs.",
+    meta: "App Interface Design · 2024",
+    href: "#",
+    screenshot: "/projects/design/health-app.jpg",
+  },
+  {
+    title: "Invoice Maker",
+    desc: "Quick Invoice Maker — professional invoice, estimate, waybill, and letterhead generator for SMEs. Activity feed with paid/unpaid/overdue filters.",
+    meta: "UI/UX Design · 2024",
+    href: "#",
+    screenshot: "/projects/design/invoice-maker.jpg",
+    badge: "Live on Stores",
+  },
+  {
+    title: "Neetly",
+    desc: "AI Assistant chat interface with a minimal layout designed for natural conversation flows, voice input, and rich message attachments.",
+    meta: "UI/UX Design · Under Development",
+    href: "#",
+    screenshot: "/projects/design/neetly.jpg",
+    badge: "In Development",
+  },
+  {
+    title: "Daily News App",
+    desc: "News aggregation app with topic-filtered horizontal feeds, trending story cards, and a focused distraction-free article reading view.",
+    meta: "App Interface Exploration · 2024",
+    href: "#",
+    screenshot: "/projects/design/news-app.jpg",
+  },
+  {
+    title: "Community Chat Interface",
+    desc: "Multi-user messaging interface with online-status indicators, unread badges, and a friendly empty-state to guide first-time users.",
+    meta: "Chat Interface Exploration · 2024",
+    href: "#",
+    screenshot: "/projects/design/chat-app.jpg",
+  },
+  {
+    title: "RetroRiches",
+    desc: "Thrift shopping app exploration — a curated vintage marketplace with playful branding, product discovery flow, and a smooth swipe-to-save experience.",
+    meta: "App Exploration · 2024",
+    href: "#",
+    video: "/retro-riches.mov",
+  },
+];
 
 const SPRING = "cubic-bezier(0.22, 1, 0.36, 1)";
 
 type Tab = "dev" | "design";
 
-function ProjectCard({ project, index }: { project: (typeof devProjects)[0]; index: number }) {
+function ProjectCard({ project, index }: { project: Project; index: number }) {
   const [hovered, setHovered] = useState(false);
+  const hasLink = project.href && project.href !== "#";
+  const mediaStyle: React.CSSProperties = {
+    display: "block",
+    background: "#fff",
+    border: "1px solid rgba(0,0,0,0.06)",
+    padding: project.video ? "0" : "24px 24px 0",
+    textDecoration: "none",
+    cursor: hasLink ? "pointer" : "default",
+    overflow: "hidden",
+    transform: hovered ? "translateY(-6px)" : "translateY(0)",
+    boxShadow: hovered ? "0 16px 48px rgba(0,0,0,0.10)" : "0 2px 8px rgba(0,0,0,0.04)",
+    transition: `transform 0.35s ${SPRING}, box-shadow 0.35s ${SPRING}`,
+  };
+
+  const mediaContent = project.video ? (
+    <div style={{ position: "relative", width: "100%", aspectRatio: "9/16", overflow: "hidden" }}>
+      <video
+        src={project.video}
+        autoPlay muted loop playsInline
+        style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "top", display: "block" }}
+      />
+    </div>
+  ) : project.screenshot ? (
+    <div style={{
+      position: "relative", width: "100%",
+      aspectRatio: "1200/630", overflow: "hidden",
+      boxShadow: "0 8px 32px rgba(0,0,0,0.08)",
+    }}>
+      <Image
+        src={project.screenshot}
+        alt={project.title}
+        fill
+        sizes="(max-width: 640px) 100vw, 50vw"
+        style={{ objectFit: "cover", objectPosition: "top" }}
+        quality={80}
+        priority={index < 2}
+      />
+    </div>
+  ) : null;
+
   return (
     <div style={{ display: "flex", flexDirection: "column", animation: `fadeUp 0.45s ${0.05 + index * 0.06}s ${SPRING} both` }}>
-      <a
-        href={project.href}
-        target="_blank"
-        rel="noopener noreferrer"
-        onMouseEnter={() => setHovered(true)}
-        onMouseLeave={() => setHovered(false)}
-        style={{
-          display: "block",
-          background: "#fff",
-          border: "1px solid rgba(0,0,0,0.06)",
-          padding: "24px 24px 0",
-          textDecoration: "none",
-          cursor: "pointer",
-          overflow: "hidden",
-          transform: hovered ? "translateY(-6px)" : "translateY(0)",
-          boxShadow: hovered ? "0 16px 48px rgba(0,0,0,0.10)" : "0 2px 8px rgba(0,0,0,0.04)",
-          transition: `transform 0.35s ${SPRING}, box-shadow 0.35s ${SPRING}`,
-        }}
-      >
-        <div style={{
-          position: "relative",
-          width: "100%",
-          aspectRatio: "1200/630",
-          overflow: "hidden",
-          boxShadow: "0 8px 32px rgba(0,0,0,0.08)",
-        }}>
-          <Image
-            src={project.screenshot}
-            alt={project.title}
-            fill
-            sizes="(max-width: 640px) 100vw, 50vw"
-            style={{ objectFit: "cover", objectPosition: "top" }}
-            quality={80}
-            priority={index < 2}
-          />
+      {hasLink ? (
+        <a
+          href={project.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          onMouseEnter={() => setHovered(true)}
+          onMouseLeave={() => setHovered(false)}
+          style={mediaStyle}
+        >
+          {mediaContent}
+        </a>
+      ) : (
+        <div
+          onMouseEnter={() => setHovered(true)}
+          onMouseLeave={() => setHovered(false)}
+          style={mediaStyle}
+        >
+          {mediaContent}
         </div>
-      </a>
+      )}
 
       <div style={{ paddingTop: 20 }}>
         <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: 12, marginBottom: 8 }}>
-          <h3 style={{
-            fontFamily: "var(--font-poppins)", fontWeight: 700,
-            fontSize: "clamp(15px, 1.2vw, 18px)", letterSpacing: "-0.4px",
-            textTransform: "uppercase", color: "var(--fg)",
-            lineHeight: 1.15, margin: 0,
-          }}>
-            {project.title}
-          </h3>
-          <a
-            href={project.href}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={`Visit ${project.title}`}
-            style={{
-              flexShrink: 0, width: 32, height: 32,
-              display: "flex", alignItems: "center", justifyContent: "center",
-              background: "transparent", border: "1px solid rgba(0,0,0,0.15)",
-              color: "var(--fg)",
-            }}
-          >
-            <ArrowUpRight size={14} strokeWidth={2} />
-          </a>
+          <div style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap" }}>
+            <h3 style={{
+              fontFamily: "var(--font-poppins)", fontWeight: 700,
+              fontSize: "clamp(15px, 1.2vw, 18px)", letterSpacing: "-0.4px",
+              textTransform: "uppercase", color: "var(--fg)",
+              lineHeight: 1.15, margin: 0,
+            }}>
+              {project.title}
+            </h3>
+            {project.badge && (
+              <span style={{
+                fontFamily: "var(--font-inter)", fontWeight: 700, fontSize: 9,
+                letterSpacing: "1.5px", textTransform: "uppercase",
+                color: project.badge === "In Development" ? "#d97706" : "#16a34a",
+                background: project.badge === "In Development" ? "rgba(217,119,6,0.08)" : "rgba(22,163,74,0.08)",
+                border: `1px solid ${project.badge === "In Development" ? "rgba(217,119,6,0.25)" : "rgba(22,163,74,0.25)"}`,
+                padding: "3px 8px", borderRadius: 999, whiteSpace: "nowrap",
+              }}>
+                {project.badge}
+              </span>
+            )}
+          </div>
+          {hasLink && (
+            <a
+              href={project.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`Visit ${project.title}`}
+              style={{
+                flexShrink: 0, width: 32, height: 32,
+                display: "flex", alignItems: "center", justifyContent: "center",
+                background: "transparent", border: "1px solid rgba(0,0,0,0.15)",
+                color: "var(--fg)",
+              }}
+            >
+              <ArrowUpRight size={14} strokeWidth={2} />
+            </a>
+          )}
         </div>
 
         <p style={{
@@ -158,9 +274,9 @@ function ProjectCard({ project, index }: { project: (typeof devProjects)[0]; ind
 }
 
 function TabBar({ active, onChange }: { active: Tab; onChange: (t: Tab) => void }) {
-  const tabs: { key: Tab; label: string; count: number }[] = [
+  const tabs: { key: Tab; label: string; count: number; }[] = [
     { key: "dev",    label: "Website Development", count: devProjects.length },
-    { key: "design", label: "Product Design", count: designProjects.length },
+    { key: "design", label: "Product Design",       count: designProjects.length },
   ];
   return (
     <div style={{ display: "flex", gap: 0, borderBottom: "1px solid rgba(0,0,0,0.1)" }}>
