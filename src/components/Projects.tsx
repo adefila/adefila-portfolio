@@ -70,12 +70,15 @@ const SPRING = "cubic-bezier(0.22, 1, 0.36, 1)";
 type Tab = "dev" | "design";
 
 function ProjectCard({ project, index }: { project: (typeof devProjects)[0]; index: number }) {
+  const [hovered, setHovered] = useState(false);
   return (
     <div style={{ display: "flex", flexDirection: "column", animation: `fadeUp 0.45s ${0.05 + index * 0.06}s ${SPRING} both` }}>
       <a
         href={project.href}
         target="_blank"
         rel="noopener noreferrer"
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
         style={{
           display: "block",
           background: "#fff",
@@ -84,6 +87,9 @@ function ProjectCard({ project, index }: { project: (typeof devProjects)[0]; ind
           textDecoration: "none",
           cursor: "pointer",
           overflow: "hidden",
+          transform: hovered ? "translateY(-6px)" : "translateY(0)",
+          boxShadow: hovered ? "0 16px 48px rgba(0,0,0,0.10)" : "0 2px 8px rgba(0,0,0,0.04)",
+          transition: `transform 0.35s ${SPRING}, box-shadow 0.35s ${SPRING}`,
         }}
       >
         <div style={{

@@ -1,23 +1,111 @@
 ﻿"use client";
 import { motion, useInView, AnimatePresence } from "framer-motion";
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, useCallback } from "react";
 import { ChevronLeft, ChevronRight, Play, X } from "lucide-react";
 import { useLang } from "@/context/LangContext";
 
+type TestimonialItem =
+  | { type: "video"; name: string; role: string; video: string; avatar: string|null; logo: string|null }
+  | { type: "text";  name: string; role: string; key: string;   avatar: string|null; logo: string|null }
+  | { type: "upwork" };
 
 // avatar: path to client headshot  (e.g. "/testimonials/alyssa.jpg")
 // logo:   path to company logo     (e.g. "/testimonials/hitpay-logo.png")
 // Leave both null → shows styled initials placeholder
-const testimonialMeta = [
-  { name: "Davonte Wheeler",     role: "CEO · BookedEZ LLC",                    key: "",                 video: "/davonte-wheeler.mp4", avatar: null as string|null, logo: null as string|null },
-  { name: "Nitin",               role: "HitPay App",                            key: "testimonials.t0",  avatar: null as string|null, logo: null as string|null },
-  { name: "Alyssa Corso",        role: "SEO Consultant for Healthcare Startups", key: "testimonials.t1", avatar: null as string|null, logo: null as string|null },
-  { name: "Johnno Van Den Brink",role: "The Initial Agency",                    key: "testimonials.t2",  avatar: null as string|null, logo: null as string|null },
-  { name: "Layo",                role: "Content Writer",                        key: "testimonials.t3",  avatar: null as string|null, logo: null as string|null },
-  { name: "Michal Kouril",       role: "Leadopo",                               key: "testimonials.t4",  avatar: null as string|null, logo: null as string|null },
-  { name: "Raffaello Cuccuini",  role: "Humanity",                              key: "testimonials.t5",  avatar: null as string|null, logo: null as string|null },
-  { name: "Heather Burns",       role: "Upside ESG",                            key: "testimonials.t6",  avatar: null as string|null, logo: null as string|null },
+const testimonialMeta: TestimonialItem[] = [
+  { type: "video", name: "Davonte Wheeler",     role: "CEO · BookedEZ LLC",                     video: "/davonte-wheeler.mp4", avatar: null, logo: null },
+  { type: "text",  name: "Nitin",               role: "HitPay App",                             key: "testimonials.t0",  avatar: null, logo: null },
+  { type: "text",  name: "Alyssa Corso",        role: "SEO Consultant for Healthcare Startups", key: "testimonials.t1",  avatar: null, logo: null },
+  { type: "text",  name: "Johnno Van Den Brink",role: "The Initial Agency",                     key: "testimonials.t2",  avatar: null, logo: null },
+  { type: "upwork" },
+  { type: "text",  name: "Layo",                role: "Content Writer",                         key: "testimonials.t3",  avatar: null, logo: null },
+  { type: "text",  name: "Michal Kouril",       role: "Leadopo",                                key: "testimonials.t4",  avatar: null, logo: null },
+  { type: "text",  name: "Raffaello Cuccuini",  role: "Humanity",                               key: "testimonials.t5",  avatar: null, logo: null },
+  { type: "text",  name: "Heather Burns",       role: "Upside ESG",                             key: "testimonials.t6",  avatar: null, logo: null },
 ];
+
+function UpworkCard() {
+  return (
+    <div style={{
+      background: "#fff",
+      border: "1px solid rgba(0,0,0,0.07)",
+      minHeight: 400,
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "space-between",
+      padding: "32px 28px",
+    }}>
+      {/* Upwork wordmark */}
+      <div>
+        <svg width="120" height="32" viewBox="0 0 120 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Upwork">
+          <path d="M24.587 19.24c-1.952 0-3.733-.782-5.055-2.053l.374-1.76.017-.08c.29-1.63 1.2-4.366 4.664-4.366 2.45 0 4.443 2.002 4.443 4.13 0 2.13-1.993 4.13-4.443 4.13zm0-11.24c-3.842 0-6.853 2.594-7.932 6.44-.912-1.716-1.595-3.77-2.002-5.894H11v7.186C11 17.94 9.56 19.38 7.353 19.38c-2.208 0-3.648-1.44-3.648-3.648V9h-3.7v7.186C0 20.22 2.652 23 7.353 23c4.7 0 7.352-2.78 7.352-6.814V15.13c.51 1.06 1.143 2.1 1.903 3.04L14.76 23h3.76l1.24-5.848C21.254 18.932 22.85 19.68 24.587 19.68c4.323 0 7.413-3.205 7.413-7.04C32 8.81 28.91 8 24.587 8z" fill="#14a800"/>
+          <path d="M40.5 8.5v8.25c0 2.071-1.179 3.25-3.25 3.25-2.07 0-3.25-1.179-3.25-3.25V8.5H30v8.25C30 20.679 32.321 23 36.25 23c3.929 0 6.25-2.321 6.25-6.25V8.5H40.5z" fill="#222222"/>
+          <path d="M51.5 8.25C49.07 8.25 47 9.5 46 11.5V8.5h-3v19h3V20.5c1 2 3.07 3.25 5.5 3.25C55.8 23.75 59 20.55 59 16s-3.2-7.75-7.5-7.75zm-.5 12.5c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z" fill="#222222"/>
+          <path d="M64 8.5l-5 15h3.25l1-3h6.5l1 3H74l-5-15h-5zm.5 9l2-6 2 6h-4z" fill="#222222"/>
+          <path d="M87.5 8.5l-4 8-4-8H76l6 14.5-3 6.5h3.25L91 8.5h-3.5z" fill="#222222"/>
+          <path d="M100 8.5l-4.75 6.25L91.5 8.5H88l6 7.75L88 23h3.5l4.75-6.25L101 23h3.5l-6-6.75 6-7.75H100z" fill="#222222"/>
+        </svg>
+      </div>
+
+      {/* Center stats */}
+      <div style={{ textAlign: "center", flex: 1, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 16 }}>
+        {/* Top Rated badge */}
+        <div style={{
+          display: "inline-flex", alignItems: "center", gap: 7,
+          background: "#f0fae5", border: "1.5px solid #14a800",
+          borderRadius: 999, padding: "7px 16px",
+        }}>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <circle cx="8" cy="8" r="8" fill="#14a800"/>
+            <path d="M4.5 8.5l2.5 2.5 4.5-5" stroke="#fff" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+          <span style={{
+            fontFamily: "var(--font-inter)", fontWeight: 700, fontSize: 13,
+            color: "#14a800", letterSpacing: "0.3px",
+          }}>
+            Top Rated
+          </span>
+        </div>
+
+        {/* Job Success Score */}
+        <div>
+          <p style={{
+            fontFamily: "var(--font-poppins)", fontWeight: 800,
+            fontSize: "clamp(52px, 7vw, 72px)",
+            lineHeight: 1, color: "#222", letterSpacing: "-3px",
+            marginBottom: 4,
+          }}>
+            100%
+          </p>
+          <p style={{
+            fontFamily: "var(--font-inter)", fontWeight: 600, fontSize: 12,
+            color: "rgba(0,0,0,0.45)", letterSpacing: "2px", textTransform: "uppercase",
+          }}>
+            Job Success Score
+          </p>
+        </div>
+
+        {/* Stars */}
+        <div style={{ display: "flex", gap: 3 }}>
+          {[1,2,3,4,5].map(s => (
+            <svg key={s} width="16" height="16" viewBox="0 0 16 16" fill="#14a800">
+              <path d="M8 1l1.85 3.75L14 5.5l-3 2.92.71 4.13L8 10.4l-3.71 2.15L5 8.42 2 5.5l4.15-.75L8 1z"/>
+            </svg>
+          ))}
+        </div>
+      </div>
+
+      {/* Footer */}
+      <p style={{
+        fontFamily: "var(--font-inter)", fontWeight: 500, fontSize: 11,
+        color: "rgba(0,0,0,0.35)", letterSpacing: "1.5px", textTransform: "uppercase",
+        textAlign: "center",
+      }}>
+        Verified on Upwork
+      </p>
+    </div>
+  );
+}
 
 const AVATAR_COLORS = ["#7c3aed","#0073e6","#d4a853","#00ab4a","#e05a8a","#c0a060","#6366f1","#0891b2"];
 
@@ -67,16 +155,34 @@ function Avatar({ name, avatar, logo, size = 44 }: { name: string; avatar: strin
   );
 }
 
+const AUTOPLAY_DELAY = 6000;
+
 export default function Testimonials() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-10%" });
   const [page, setPage] = useState(0);
   const [videoOpen, setVideoOpen] = useState(false);
   const modalVideoRef = useRef<HTMLVideoElement>(null);
+  const autoTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const { t } = useLang();
   const perPage = 2;
   const totalPages = Math.ceil(testimonialMeta.length / perPage);
   const visible = testimonialMeta.slice(page * perPage, page * perPage + perPage);
+
+  const goPage = useCallback((next: number) => {
+    setPage(next);
+    if (autoTimer.current) clearTimeout(autoTimer.current);
+  }, []);
+
+  // Autoplay
+  useEffect(() => {
+    if (videoOpen) return;
+    if (autoTimer.current) clearTimeout(autoTimer.current);
+    autoTimer.current = setTimeout(() => {
+      setPage(p => (p + 1) % totalPages);
+    }, AUTOPLAY_DELAY);
+    return () => { if (autoTimer.current) clearTimeout(autoTimer.current); };
+  }, [page, videoOpen, totalPages]);
 
   // Close modal on Escape
   useEffect(() => {
@@ -154,40 +260,24 @@ export default function Testimonials() {
           <div style={{ display: "flex", gap: 8, alignSelf: "flex-end" }}>
             <button
               aria-label="Previous testimonials"
-              onClick={() => setPage((p) => Math.max(0, p - 1))}
-              disabled={page === 0}
+              onClick={() => goPage((page - 1 + totalPages) % totalPages)}
               style={{
-                width: 44,
-                height: 44,
-                borderRadius: 0,
+                width: 44, height: 44, borderRadius: 0,
                 border: "1px solid rgba(0,0,0,0.15)",
-                background: page === 0 ? "rgba(0,0,0,0.04)" : "var(--white)",
-                cursor: page === 0 ? "not-allowed" : "pointer",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                opacity: page === 0 ? 0.4 : 1,
-                transition: "opacity 0.2s",
+                background: "var(--white)", cursor: "pointer",
+                display: "flex", alignItems: "center", justifyContent: "center",
               }}
             >
               <ChevronLeft size={18} strokeWidth={2} />
             </button>
             <button
               aria-label="Next testimonials"
-              onClick={() => setPage((p) => Math.min(totalPages - 1, p + 1))}
-              disabled={page === totalPages - 1}
+              onClick={() => goPage((page + 1) % totalPages)}
               style={{
-                width: 44,
-                height: 44,
-                borderRadius: 0,
+                width: 44, height: 44, borderRadius: 0,
                 border: "1px solid rgba(0,0,0,0.15)",
-                background: page === totalPages - 1 ? "rgba(0,0,0,0.04)" : "var(--white)",
-                cursor: page === totalPages - 1 ? "not-allowed" : "pointer",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                opacity: page === totalPages - 1 ? 0.4 : 1,
-                transition: "opacity 0.2s",
+                background: "var(--white)", cursor: "pointer",
+                display: "flex", alignItems: "center", justifyContent: "center",
               }}
             >
               <ChevronRight size={18} strokeWidth={2} />
@@ -259,7 +349,9 @@ export default function Testimonials() {
                   gap: 20,
                 }}
               >
-                {"video" in item && item.video ? (
+                {item.type === "upwork" ? (
+                  <UpworkCard />
+                ) : item.type === "video" ? (
                   /* ── Video testimonial card ── */
                   <>
                     {/* Silent preview — plays muted in the card */}
