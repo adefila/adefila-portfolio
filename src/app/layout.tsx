@@ -42,6 +42,9 @@ export const metadata: Metadata = {
     description:
       "50+ Framer sites. Brief to live in 14 days. Top Rated on Upwork. Book a free call.",
   },
+  alternates: {
+    canonical: "https://adefilasamuel.com",
+  },
 };
 
 import Cursor from "@/components/Cursor";
