@@ -39,9 +39,9 @@ export default function Hero() {
           </span>
         </div>
 
-        <div style={{ marginBottom: 24 }}>
+        <h1 style={{ marginBottom: 24, fontSize: "inherit", fontWeight: "inherit" }}>
           {[t("hero.h1"), t("hero.h2")].map((line, i) => (
-            <div
+            <span
               key={i}
               className="hero-headline"
               style={{
@@ -56,10 +56,10 @@ export default function Hero() {
                 animation: `heroFadeUp 0.55s ${0.15 + i * 0.12}s ${EASE} both`,
               }}
             >
-              {line}
-            </div>
+              {line}{i === 0 ? " " : ""}
+            </span>
           ))}
-        </div>
+        </h1>
 
         <p
           className="hero-subtitle"
