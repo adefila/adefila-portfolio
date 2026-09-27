@@ -5,7 +5,7 @@ import { ArrowUpRight, Send } from "lucide-react";
 import { useLang } from "@/context/LangContext";
 import { trackEvent } from "@/lib/gtag";
 
-const EMAIL = "adefilasamuel929@gmail.com";
+const EMAIL = "samuel@adefilasamuel.com";
 
 function CopyEmailRow() {
   const [copied, setCopied] = useState(false);

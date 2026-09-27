@@ -88,14 +88,14 @@ export default function FAQ() {
           >
             {t("faq.desc")}{" "}
             <a
-              href="mailto:adefilasamuel929@gmail.com"
+              href="mailto:samuel@adefilasamuel.com"
               style={{
                 color: "var(--accent-purple)",
                 fontWeight: 500,
                 textDecoration: "none",
               }}
             >
-              adefilasamuel929@gmail.com
+              samuel@adefilasamuel.com
             </a>
           </motion.p>
 

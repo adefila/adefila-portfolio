@@ -1057,14 +1057,14 @@ export const T: Record<string, Record<LangCode, string>> = {
     ja: "24時間以内にご連絡します。",                  yo: "Màá padà sí ọ ní àárọ̀ wákàtí 24.",
   },
   "contact.error": {
-    en: "Something went wrong. try emailing me directly at adefilasamuel929@gmail.com",
-    fr: "Quelque chose s'est mal passé. essayez de m'envoyer un email directement à adefilasamuel929@gmail.com",
-    es: "Algo salió mal. intenta enviarme un email directamente a adefilasamuel929@gmail.com",
-    de: "Etwas ist schiefgelaufen. versuchen Sie, mir direkt eine E-Mail zu senden: adefilasamuel929@gmail.com",
-    pt: "Algo deu errado. tente me enviar um email diretamente para adefilasamuel929@gmail.com",
-    zh: "出现错误。请直接发邮件至 adefilasamuel929@gmail.com",
-    ja: "エラーが発生しました。adefilasamuel929@gmail.com に直接メールしてください",
-    yo: "Nǹkan kan kò tọ́. gbìyànjú fí ímeèlì ránṣẹ́ sí adefilasamuel929@gmail.com",
+    en: "Something went wrong. try emailing me directly at samuel@adefilasamuel.com",
+    fr: "Quelque chose s'est mal passé. essayez de m'envoyer un email directement à samuel@adefilasamuel.com",
+    es: "Algo salió mal. intenta enviarme un email directamente a samuel@adefilasamuel.com",
+    de: "Etwas ist schiefgelaufen. versuchen Sie, mir direkt eine E-Mail zu senden: samuel@adefilasamuel.com",
+    pt: "Algo deu errado. tente me enviar um email diretamente para samuel@adefilasamuel.com",
+    zh: "出现错误。请直接发邮件至 samuel@adefilasamuel.com",
+    ja: "エラーが発生しました。samuel@adefilasamuel.com に直接メールしてください",
+    yo: "Nǹkan kan kò tọ́. gbìyànjú fí ímeèlì ránṣẹ́ sí samuel@adefilasamuel.com",
   },
 
   // ── Featured Projects ─────────────────────────────────────────────────

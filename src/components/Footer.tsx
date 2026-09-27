@@ -5,7 +5,7 @@ import MagneticButton from "./MagneticButton";
 import { useLang } from "@/context/LangContext";
 import { useState, useEffect } from "react";
 
-const FOOTER_EMAIL = "adefilasamuel929@gmail.com";
+const FOOTER_EMAIL = "samuel@adefilasamuel.com";
 
 function FooterCopyEmail() {
   const [copied, setCopied] = useState(false);
