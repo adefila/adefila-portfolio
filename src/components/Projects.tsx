@@ -18,6 +18,15 @@ type Project = {
 
 const devProjects: Project[] = [
   {
+    title: "Calder Health",
+    alt: "Calder Health telehealth website — personalised online care with licensed providers, built in Next.js",
+    desc: "Telehealth website for personalised online care. Built in Next.js with a custom design system, calm healthcare visuals, and a content editor so the team can update pages without code.",
+    meta: "Next.js Development · 2026",
+    tags: ["HealthTech", "Telehealth"],
+    href: "https://calder-health.vercel.app/",
+    screenshot: "/projects/calder-health.webp",
+  },
+  {
     title: "The Initial",
     alt: "The Initial creative agency website — AI-powered Framer build with custom interactions",
     desc: "AI-powered creative agency site. Figma designs translated to pixel-perfect Framer with custom interactions and CMS.",
