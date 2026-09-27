@@ -112,7 +112,7 @@ export default function Contact() {
                 BOOK A FREE CALL
               </a>
               <a
-                href="mailto:adefilasamuel929@gmail.com"
+                href="mailto:samuel@adefilasamuel.com"
                 style={{
                   display: "inline-flex",
                   alignItems: "center",
@@ -127,7 +127,7 @@ export default function Contact() {
                 }}
               >
                 <Mail size={16} strokeWidth={1.5} />
-                adefilasamuel929@gmail.com
+                samuel@adefilasamuel.com
               </a>
             </motion.div>
           </div>

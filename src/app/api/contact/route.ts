@@ -22,9 +22,12 @@ function allowed(ip: string): boolean {
   return true;
 }
 
+// One professional address for everything: enquiries arrive here, confirmations are sent
+// from here, and client replies come back here. adefilasamuel.com is verified with Resend.
+const CONTACT_EMAIL = "samuel@adefilasamuel.com";
 const FROM_NAME = "Samuel Adefila";
-const FROM_ADDRESS = process.env.RESEND_FROM_ADDRESS ?? "onboarding@resend.dev";
-const TO_ADDRESS = "adefilasamuel929@gmail.com";
+const FROM_ADDRESS = CONTACT_EMAIL;
+const TO_ADDRESS = CONTACT_EMAIL;
 
 const SITE = "https://adefilasamuel.com";
 const UPWORK = "https://upwork.com/freelancers/adefilasamuel";
