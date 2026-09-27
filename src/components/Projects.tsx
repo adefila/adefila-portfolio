@@ -8,7 +8,8 @@ type Project = {
   title: string;
   alt: string;
   desc: string;
-  meta: string;
+  // Shown at the end of the tag row. Empty when the project is still in progress.
+  year: string;
   tags: string[];
   href: string;
   screenshot?: string;
@@ -21,8 +22,8 @@ const devProjects: Project[] = [
     title: "Calder Health",
     alt: "Calder Health telehealth website — personalised online care with licensed providers, built in Next.js",
     desc: "Telehealth website for personalised online care. Built in Next.js with a custom design system, calm healthcare visuals, and a content editor so the team can update pages without code.",
-    meta: "Next.js Development · 2026",
-    tags: ["HealthTech", "Telehealth"],
+    year: "2026",
+    tags: ["HealthTech", "Next.js Build"],
     href: "https://calder-health.vercel.app/",
     screenshot: "/projects/calder-health.webp",
   },
@@ -30,8 +31,8 @@ const devProjects: Project[] = [
     title: "The Initial",
     alt: "The Initial creative agency website — AI-powered Framer build with custom interactions",
     desc: "AI-powered creative agency site. Figma designs translated to pixel-perfect Framer with custom interactions and CMS.",
-    meta: "Figma to Framer · 2025",
-    tags: ["Creative Agency", "Framer"],
+    year: "2025",
+    tags: ["Creative Agency", "Figma to Framer"],
     href: "https://the-initial.com/",
     screenshot: "/projects/the-initial.png",
   },
@@ -39,8 +40,8 @@ const devProjects: Project[] = [
     title: "BindHQ",
     alt: "BindHQ insurance management SaaS website — template customisation for complex data layouts",
     desc: "Insurance management SaaS. Template customised to match their design system with complex navigation and data-dense layouts.",
-    meta: "Template Customization · 2026",
-    tags: ["B2B SaaS", "InsurTech"],
+    year: "2026",
+    tags: ["InsurTech", "Template Customization"],
     href: "https://www.bindhq.com/",
     screenshot: "/projects/bindhq.png",
   },
@@ -48,8 +49,8 @@ const devProjects: Project[] = [
     title: "VPA London",
     alt: "VPA London talent agency portfolio — editorial typography and roster filtering in Framer",
     desc: "Talent agency portfolio built in Framer with editorial typography, smooth scroll, and a roster filtering system.",
-    meta: "Framer Development · 2025",
-    tags: ["Talent Agency", "Portfolio"],
+    year: "2025",
+    tags: ["Talent Agency", "Framer Build"],
     href: "https://www.vpalondon.co.uk/",
     screenshot: "/projects/vpa-london.png",
   },
@@ -57,8 +58,8 @@ const devProjects: Project[] = [
     title: "Upside ESG",
     alt: "Upside ESG reporting platform — live data integrations and custom charts built in Framer",
     desc: "ESG reporting platform with live data integrations, custom chart components, and a resource library built in Framer.",
-    meta: "Framer Dev & Integrations · 2026",
-    tags: ["B2B SaaS", "ESG Platform"],
+    year: "2026",
+    tags: ["ESG SaaS", "Framer + Integrations"],
     href: "https://upside-esg.com/",
     screenshot: "/projects/upside-esg.png",
   },
@@ -66,8 +67,8 @@ const devProjects: Project[] = [
     title: "Alyssa Corso",
     alt: "Alyssa Corso personal portfolio — healthcare SEO consultant website built in Framer",
     desc: "Personal portfolio for a healthcare SEO consultant. Clean, conversion-focused layout with case study pages.",
-    meta: "Framer Development · 2026",
-    tags: ["Personal Brand", "Consulting"],
+    year: "2026",
+    tags: ["Personal Brand", "Framer Build"],
     href: "https://alyssacorso.com/",
     screenshot: "/projects/alyssa-corso.png",
   },
@@ -75,8 +76,8 @@ const devProjects: Project[] = [
     title: "Emalbu",
     alt: "Emalbu professional services website — HTML to Framer migration preserving brand identity",
     desc: "Full HTML-to-Framer migration for a professional services firm — preserving brand identity while modernising the stack.",
-    meta: "Website Migration · 2026",
-    tags: ["Professional Services", "Migration"],
+    year: "2026",
+    tags: ["Professional Services", "HTML to Framer"],
     href: "https://emalbu.com/",
     screenshot: "/projects/emalbu.png",
   },
@@ -84,8 +85,8 @@ const devProjects: Project[] = [
     title: "Leadopo",
     alt: "Leadopo lead generation platform — custom Framer build with dynamic CMS and pipeline flows",
     desc: "Lead generation and pipeline management platform. Custom Framer build with dynamic CMS and conversion-optimised flows.",
-    meta: "Framer Development · 2026",
-    tags: ["B2B SaaS", "Lead Gen"],
+    year: "2026",
+    tags: ["Lead Gen SaaS", "Framer Build"],
     href: "https://www.leadopo.com/",
     screenshot: "/projects/leadopo.png",
   },
@@ -93,8 +94,8 @@ const devProjects: Project[] = [
     title: "Rusty Wears",
     alt: "Rusty Wears streetwear e-commerce storefront — bold visual identity built in Framer",
     desc: "Streetwear brand e-commerce experience. Bold visual identity translated into a high-converting Framer storefront.",
-    meta: "Framer Development · 2026",
-    tags: ["E-commerce", "Fashion"],
+    year: "2026",
+    tags: ["E-commerce", "Framer Build"],
     href: "https://rustywears.framer.website/",
     screenshot: "/projects/rusty-wears.png",
   },
@@ -102,8 +103,8 @@ const devProjects: Project[] = [
     title: "The Prime Media",
     alt: "The Prime Media digital agency site — motion-forward editorial Framer build for Canadian studio",
     desc: "Digital media agency site built in Framer — bold editorial layout, motion-forward sections, and a content-first structure for a Canadian creative studio.",
-    meta: "Framer Development · 2025",
-    tags: ["Creative Agency", "Media"],
+    year: "2025",
+    tags: ["Media Agency", "Framer Build"],
     href: "https://theprimemedia.ca/",
     screenshot: "/projects/the-prime-media.png",
   },
@@ -111,8 +112,8 @@ const devProjects: Project[] = [
     title: "Jamal Muse",
     alt: "Jamal Muse personal brand portfolio — Claude designed, built in Framer with refined typography",
     desc: "Personal brand and portfolio for a creative professional. Designed in Claude and brought to life in Framer with smooth transitions and a refined typographic system.",
-    meta: "Claude to Framer · 2025",
-    tags: ["Personal Brand", "Portfolio"],
+    year: "2025",
+    tags: ["Personal Brand", "Claude to Framer"],
     href: "https://www.jamalmuse.com/",
     screenshot: "/projects/jamal.png",
   },
@@ -123,8 +124,8 @@ const designProjects: Project[] = [
     title: "BookedEZ",
     alt: "BookedEZ event booking mobile app UI — dark-mode design with profile management and booking flow",
     desc: "Event booking platform connecting organizers, vendors, and attendees. Full dark-mode mobile app with profile management, membership tiers, and seamless booking flow.",
-    meta: "UI/UX Design · 2024",
-    tags: ["Marketplace", "Mobile App"],
+    year: "2024",
+    tags: ["Events Marketplace", "UI/UX Design"],
     href: "#",
     screenshot: "/projects/design/bookedez.jpg",
     badge: "Live on Stores",
@@ -133,8 +134,8 @@ const designProjects: Project[] = [
     title: "Student Material Directory",
     alt: "ReadHub student material directory app — document sharing platform with subject and tag filtering",
     desc: "ReadHub — a document-sharing platform for students to discover, upload, and access academic resources filtered by subject, author, and tags.",
-    meta: "App Interface Design · 2024",
-    tags: ["EdTech", "Mobile App"],
+    year: "2024",
+    tags: ["EdTech", "App Design"],
     href: "#",
     screenshot: "/projects/design/readhub.jpg",
   },
@@ -142,8 +143,8 @@ const designProjects: Project[] = [
     title: "Crypto App",
     alt: "Crypto fintech onboarding app UI — bold 3D brand identity with Google and Apple sign-in flows",
     desc: "Fintech onboarding experience with a bold 3D brand identity, YC-backed credibility badge, and streamlined Google / Apple sign-in flows on a deep-purple canvas.",
-    meta: "App Interface Design · 2024",
-    tags: ["Fintech", "Mobile App"],
+    year: "2024",
+    tags: ["Fintech", "App Design"],
     href: "#",
     screenshot: "/projects/design/crypto-app.jpg",
   },
@@ -151,8 +152,8 @@ const designProjects: Project[] = [
     title: "Health Monitoring App",
     alt: "Health monitoring app UI — well-being dashboard with sleep tracking, mood logging and step counter",
     desc: "Well-being dashboard tracking sleep patterns, mood, and daily steps. Clean, data-forward interface with emoji-based mood logging and donut-chart KPIs.",
-    meta: "App Interface Design · 2024",
-    tags: ["HealthTech", "Mobile App"],
+    year: "2024",
+    tags: ["HealthTech", "App Design"],
     href: "#",
     screenshot: "/projects/design/health-app.jpg",
   },
@@ -160,8 +161,8 @@ const designProjects: Project[] = [
     title: "Invoice Maker",
     alt: "Quick Invoice Maker app UI — invoice and estimate generator for SMEs with payment status filters",
     desc: "Quick Invoice Maker — professional invoice, estimate, waybill, and letterhead generator for SMEs. Activity feed with paid/unpaid/overdue filters.",
-    meta: "UI/UX Design · 2024",
-    tags: ["B2B SaaS", "Mobile App"],
+    year: "2024",
+    tags: ["B2B SaaS", "UI/UX Design"],
     href: "#",
     screenshot: "/projects/design/invoice-maker.jpg",
     badge: "Live on Stores",
@@ -170,8 +171,8 @@ const designProjects: Project[] = [
     title: "Neetly",
     alt: "Neetly AI assistant chat interface — minimal conversation UI with voice input and rich attachments",
     desc: "AI Assistant chat interface with a minimal layout designed for natural conversation flows, voice input, and rich message attachments.",
-    meta: "UI/UX Design · Under Development",
-    tags: ["AI Product", "Mobile App"],
+    year: "",
+    tags: ["AI Product", "UI/UX Design"],
     href: "#",
     screenshot: "/projects/design/neetly.jpg",
     badge: "In Development",
@@ -180,8 +181,8 @@ const designProjects: Project[] = [
     title: "Daily News App",
     alt: "Daily news aggregation app UI — topic-filtered feeds with trending stories and distraction-free reading",
     desc: "News aggregation app with topic-filtered horizontal feeds, trending story cards, and a focused distraction-free article reading view.",
-    meta: "App Interface Exploration · 2024",
-    tags: ["Media", "Mobile App"],
+    year: "2024",
+    tags: ["Media", "Concept Design"],
     href: "#",
     screenshot: "/projects/design/news-app.jpg",
   },
@@ -189,8 +190,8 @@ const designProjects: Project[] = [
     title: "Community Chat Interface",
     alt: "Community chat interface UI — multi-user messaging with online status indicators and unread badges",
     desc: "Multi-user messaging interface with online-status indicators, unread badges, and a friendly empty-state to guide first-time users.",
-    meta: "Chat Interface Exploration · 2024",
-    tags: ["Social", "Mobile App"],
+    year: "2024",
+    tags: ["Social", "Concept Design"],
     href: "#",
     screenshot: "/projects/design/chat-app.jpg",
   },
@@ -297,6 +298,14 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
                 {project.badge}
               </span>
             )}
+            {project.year && (
+              <span style={{
+                fontFamily: "var(--font-inter)", fontWeight: 500, fontSize: 11,
+                letterSpacing: "0.06em", color: "var(--fg-muted)", whiteSpace: "nowrap",
+              }}>
+                {project.year}
+              </span>
+            )}
           </div>
           {hasLink && (
             <a
@@ -322,14 +331,6 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
           color: "var(--fg-secondary)", margin: 0,
         }}>
           {project.desc}
-        </p>
-
-        <p style={{
-          fontFamily: "var(--font-inter)", fontWeight: 500,
-          fontSize: 11, letterSpacing: "0.06em", textTransform: "uppercase",
-          color: "var(--fg-muted)", margin: "10px 0 0",
-        }}>
-          {project.meta}
         </p>
       </div>
     </div>
