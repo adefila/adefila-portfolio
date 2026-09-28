@@ -161,11 +161,11 @@ export default function Hero() {
                 const rect = e.currentTarget.getBoundingClientRect();
                 const x = (e.clientX - rect.left) / rect.width - 0.5;
                 const y = (e.clientY - rect.top) / rect.height - 0.5;
-                e.currentTarget.style.transform = `perspective(900px) rotateY(${x * 10}deg) rotateX(${-y * 7}deg) scale(1.03)`;
+                e.currentTarget.style.transform = `perspective(900px) rotateY(${x * 10}deg) rotateX(${-y * 7}deg)`;
                 e.currentTarget.style.boxShadow = `${-x * 12}px ${-y * 12}px 32px rgba(0,0,0,0.15)`;
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.transform = "perspective(900px) rotateY(0deg) rotateX(0deg) scale(1)";
+                e.currentTarget.style.transform = "perspective(900px) rotateY(0deg) rotateX(0deg)";
                 e.currentTarget.style.boxShadow = "none";
               }}
             >

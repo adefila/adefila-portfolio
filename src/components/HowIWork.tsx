@@ -247,8 +247,8 @@ export default function HowIWork() {
                   outline: "none",
                 }}
               >
-                {/* Step number + duration badge */}
-                <div style={{ display: "flex", alignItems: "center", gap: 7, marginBottom: 6 }}>
+                {/* Step number, with the duration badge underneath it */}
+                <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", gap: 6, marginBottom: 8 }}>
                   <span style={{
                     fontFamily: "var(--font-poppins)", fontWeight: 700, fontSize: 11,
                     letterSpacing: "2px",
@@ -263,6 +263,7 @@ export default function HowIWork() {
                       ? purpleC
                       : isDark ? "rgba(255,255,255,0.07)" : "rgba(0,0,0,0.06)",
                     padding: "2px 6px",
+                    whiteSpace: "nowrap",
                     transition: `all 0.3s ease`,
                   }}>{step.duration}</span>
                 </div>

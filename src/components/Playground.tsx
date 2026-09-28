@@ -76,7 +76,7 @@ export default function Playground() {
               initial={{ opacity: 0, y: 20, scale: 0.97 }}
               animate={inView ? { opacity: 1, y: 0, scale: 1 } : {}}
               transition={{ duration: 0.5, delay: 0.1 + i * 0.07, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
-              whileHover={{ y: -6, scale: 1.02, transition: { duration: 0.25 } }}
+              whileHover={{ y: -6, transition: { duration: 0.25 } }}
               style={{
                 background: shot.bg,
                 borderRadius: "var(--radius-sm)",

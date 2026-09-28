@@ -43,12 +43,10 @@ const MARQUEE_CSS = `
   }
   .photo-strip-img {
     filter: grayscale(100%) contrast(1.05);
-    transform: scale(1);
-    transition: filter 0.45s ease, transform 0.5s cubic-bezier(0.22,1,0.36,1);
+    transition: filter 0.45s ease;
   }
   .photo-strip-img:hover {
     filter: grayscale(0%) contrast(1);
-    transform: scale(1.04);
   }
 `;
 

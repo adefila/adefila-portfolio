@@ -223,7 +223,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
         position: "relative", width: "100%",
         aspectRatio: "1200/630", overflow: "hidden",
         boxShadow: "0 8px 32px rgba(0,0,0,0.08)",
-        transform: hovered ? "translateY(-6px) scale(1.01)" : "translateY(0) scale(1)",
+        transform: hovered ? "translateY(-6px)" : "translateY(0)",
         transition: `transform 0.4s ${SPRING}`,
       }}
     >
