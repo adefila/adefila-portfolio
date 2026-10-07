@@ -117,6 +117,15 @@ const devProjects: Project[] = [
     href: "https://www.jamalmuse.com/",
     screenshot: "/projects/jamal.png",
   },
+  {
+    title: "Talon Tyres",
+    alt: "Talon Tyres performance tyre brand website — 3D car hero and product configurator built in Next.js",
+    desc: "Performance tyre brand site built in Next.js. A 3D car hero made with Three.js, a set builder that helps drivers pick the right tyres, and a bold motorsport look.",
+    year: "2026",
+    tags: ["Automotive", "Next.js + 3D"],
+    href: "https://talon-tyres.vercel.app/",
+    screenshot: "/projects/talon-tyres.webp",
+  },
 ];
 
 const designProjects: Project[] = [
