@@ -2,7 +2,7 @@
 import { readFileSync } from "fs";
 import { join } from "path";
 
-export const alt = "Samuel Adefila. Framer Developer & UI/UX Designer";
+export const alt = "Samuel Adefila, web developer and Framer designer";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 

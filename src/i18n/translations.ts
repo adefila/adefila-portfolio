@@ -322,7 +322,7 @@ export const T: Record<string, Record<LangCode, string>> = {
     pt: "SITES QUE CONVERTEM.",    zh: "能够转化的网站。",           ja: "コンバージョンするサイト。", yo: "ÀWỌN OJÚEWÉ TÓ YÁRA.",
   },
   "hero.subtitle": {
-    en: "Framer developer & product designer. From brief to launch in 14 days. for founders done waiting on slow agencies.",
+    en: "Web developer & Framer designer. From brief to launch in 14 days. for founders done waiting on slow agencies.",
     fr: "Développeur & designer Framer. Du brief au lancement en 14 jours. pour les fondateurs qui en ont fini avec les agences lentes.",
     es: "Desarrollador y diseñador Framer. Del brief al lanzamiento en 14 días. para fundadores hartos de agencias lentas y presupuestos inflados.",
     de: "Framer-Entwickler & Designer. Vom Brief bis live in 14 Tagen. für Gründer, die aufgehört haben, auf träge Agenturen zu warten.",

@@ -17,10 +17,13 @@ const poppins = Poppins({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://adefilasamuel.com"),
-  title: "Samuel Adefila. Framer Developer | 14-Day Builds for Founders",
+  title: "Samuel Adefila | Web Developer & Framer Designer",
   description:
-    "Samuel Adefila is a Framer developer and designer. He takes projects from brief to live in 14 days. 50+ projects shipped, Top Rated on Upwork with 100% Job Success. Book a free call.",
+    "Samuel Adefila is a web developer and Framer designer in Nigeria, building websites for founders and small businesses worldwide. Brief to live in 14 days. Top Rated on Upwork.",
   keywords: [
+    "web developer",
+    "freelance web developer",
+    "web developer Nigeria",
     "Framer developer",
     "Figma to Framer",
     "custom Framer website",
@@ -30,7 +33,7 @@ export const metadata: Metadata = {
     "Samuel Adefila",
   ],
   openGraph: {
-    title: "Samuel Adefila. Framer Developer",
+    title: "Samuel Adefila | Web Developer & Framer Designer",
     description:
       "50+ Framer sites shipped for founders and teams. Brief to live in 14 days. Top Rated on Upwork, 100% Job Success. Book a call.",
     type: "website",
@@ -38,7 +41,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Samuel Adefila. Framer Developer",
+    title: "Samuel Adefila | Web Developer & Framer Designer",
     description:
       "50+ Framer sites. Brief to live in 14 days. Top Rated on Upwork. Book a free call.",
   },
@@ -59,10 +62,13 @@ const jsonLd = {
       "@type": "Person",
       "@id": "https://adefilasamuel.com/#person",
       name: "Samuel Adefila",
+      alternateName: "Adefila Samuel",
       url: "https://adefilasamuel.com",
-      jobTitle: "Framer Developer & UI/UX Designer",
+      jobTitle: "Web Developer & Framer Designer",
       description:
-        "Framer developer and designer. Takes projects from brief to live in 14 days with Framer, Shopify, and Webflow. Top Rated on Upwork with 100% Job Success.",
+        "Web developer and Framer designer based in Nigeria. Takes projects from brief to live in 14 days with Framer, Webflow, Shopify and Next.js. Top Rated on Upwork with 100% Job Success.",
+      homeLocation: { "@type": "Country", name: "Nigeria" },
+      knowsAbout: ["Web development", "Website design", "Framer", "Webflow", "Shopify", "Next.js", "UI/UX design"],
       sameAs: [
         "https://www.linkedin.com/in/adefila-samuel-144448201/",
         "https://x.com/adeyemiS_",
@@ -77,7 +83,7 @@ const jsonLd = {
       "@type": "WebSite",
       "@id": "https://adefilasamuel.com/#website",
       url: "https://adefilasamuel.com",
-      name: "Samuel Adefila. Framer Developer & UI/UX Designer",
+      name: "Samuel Adefila | Web Developer & Framer Designer",
       description:
         "Portfolio of Samuel Adefila. 50+ Framer sites built for founders and teams. Brief to live in 14 days.",
       author: { "@id": "https://adefilasamuel.com/#person" },
