@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowLeft, ArrowUpRight, CalendarDays } from "lucide-react";
+import { ArrowLeft, ArrowUpRight } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Page not found | Samuel Adefila",
@@ -98,14 +98,6 @@ export default function NotFound() {
             <Link href="/#work" style={{ ...button, background: "transparent", color: "var(--fg)", border: "1px solid rgba(0,0,0,0.15)" }}>
               See my work <ArrowUpRight size={15} strokeWidth={2} />
             </Link>
-            <a
-              href="https://calendly.com/adefilasamuel929/30min"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{ ...button, background: "transparent", color: "var(--fg)", border: "1px solid rgba(0,0,0,0.15)" }}
-            >
-              Book a call <CalendarDays size={15} strokeWidth={2} />
-            </a>
           </div>
         </div>
       </section>
