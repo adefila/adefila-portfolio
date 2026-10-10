@@ -3,6 +3,7 @@ import { ArrowUpRight } from "lucide-react";
 import { useState } from "react";
 import Image from "next/image";
 import { useLang } from "@/context/LangContext";
+import { studyForTitle } from "@/data/caseStudies";
 
 type Project = {
   title: string;
@@ -341,6 +342,19 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
         }}>
           {project.desc}
         </p>
+        {studyForTitle(project.title) && (
+          <a
+            href={`/work/${studyForTitle(project.title)!.slug}`}
+            style={{
+              display: "inline-flex", alignItems: "center", gap: 6, marginTop: 12,
+              fontFamily: "var(--font-inter)", fontWeight: 600, fontSize: 12,
+              letterSpacing: "0.04em", textTransform: "uppercase", color: "var(--fg)",
+              textDecoration: "none", borderBottom: "1px solid var(--fg)", paddingBottom: 2,
+            }}
+          >
+            Read case study <ArrowUpRight size={12} strokeWidth={2} />
+          </a>
+        )}
       </div>
     </div>
   );

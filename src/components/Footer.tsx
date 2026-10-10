@@ -106,7 +106,7 @@ export default function Footer() {
           }}
         >
           {/* Left: headline + subheading */}
-          <div style={{ flex: "1 1 480px", maxWidth: 600 }}>
+          <div style={{ flex: "1 1 480px", maxWidth: 820, minWidth: 0 }}>
             <motion.h2
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -115,7 +115,8 @@ export default function Footer() {
               style={{
                 fontFamily: "var(--font-poppins)",
                 fontWeight: 700,
-                fontSize: "clamp(32px, 4vw, 56px)",
+                // Sized so "LET'S BUILD SOMETHING." fits on one line at any width.
+                fontSize: "clamp(20px, 7.4vw, 56px)",
                 letterSpacing: "-1px",
                 lineHeight: 1.05,
                 textTransform: "uppercase",
@@ -127,7 +128,12 @@ export default function Footer() {
                 const s = t("footer.cta");
                 const mid = s.indexOf(". ");
                 if (mid < 0) return s;
-                return <>{s.slice(0, mid + 1)}<br />{s.slice(mid + 2)}</>;
+                return (
+                  <>
+                    <span style={{ display: "block", whiteSpace: "nowrap" }}>{s.slice(0, mid + 1)}</span>
+                    <span style={{ display: "block", whiteSpace: "nowrap" }}>{s.slice(mid + 2)}</span>
+                  </>
+                );
               })()}
             </motion.h2>
             <motion.p

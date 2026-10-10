@@ -477,3 +477,10 @@ html {
     margin-bottom: 40px !important;
   }
 }
+
+/* Case study pages */
+@media (max-width: 760px) {
+  .cs-row { grid-template-columns: minmax(0, 1fr) !important; gap: 16px !important; }
+  .cs-facts { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+  .cs-results { grid-template-columns: minmax(0, 1fr) !important; }
+}

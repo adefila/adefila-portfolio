@@ -1,6 +1,7 @@
 "use client";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState, useMemo } from "react";
 import MagneticButton from "./MagneticButton";
 import { useLang } from "@/context/LangContext";
@@ -80,9 +81,12 @@ export default function Navbar() {
   const [shrunk, setShrunk] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const { t } = useLang();
+  // Off the home page (case studies, 404) the section links lead back to home.
+  const onHome = usePathname() === "/";
+  const base = onHome ? "" : "/";
   const navLinks = useMemo(
-    () => NAV_HREFS.map(({ key, href }) => ({ label: t(key), href })),
-    [t],
+    () => NAV_HREFS.map(({ key, href }) => ({ label: t(key), href: `${base}${href}` })),
+    [t, base],
   );
 
   useEffect(() => {
@@ -99,6 +103,7 @@ export default function Navbar() {
         if (el && el.getBoundingClientRect().top <= trigger) current = id;
       }
       setActive(current === "hero" ? "" : current);
+      if (window.location.pathname !== "/") return;
       // Sync URL hash to current section without pushing a history entry
       const hash = current === "hero" ? "" : `#${current}`;
       if (window.location.hash !== hash) {
@@ -164,7 +169,7 @@ export default function Navbar() {
           }}
         >
           <Link
-            href="#hero"
+            href={onHome ? "#hero" : "/"}
             style={{
               fontFamily: "var(--font-inter)",
               fontWeight: 700,
@@ -182,7 +187,7 @@ export default function Navbar() {
           {/* Desktop nav links */}
           <div className="nav-links" style={{ display: "flex", gap: 2 }}>
             {navLinks.map(({ label, href }) => {
-              const id = href.slice(1);
+              const id = href.split("#")[1];
               const isActive = active === id;
               return (
                 <a
@@ -215,7 +220,7 @@ export default function Navbar() {
 
           {/* Desktop CTA */}
           <MagneticButton
-            href="#contact"
+            href={`${base}#contact`}
             onClick={() => trackEvent("cta_click", { location: "navbar" })}
             className="nav-cta nav-cta-desktop"
             style={{
@@ -279,7 +284,7 @@ export default function Navbar() {
             {/* Nav links */}
             <nav style={{ width: "100%" }}>
               {navLinks.map(({ label, href }, i) => {
-                const id = href.slice(1);
+                const id = href.split("#")[1];
                 const isActive = active === id;
                 return (
                   <motion.div
@@ -323,7 +328,7 @@ export default function Navbar() {
               style={{ marginTop: 40 }}
             >
               <a
-                href="#contact"
+                href={`${base}#contact`}
                 onClick={close}
                 style={{
                   display: "inline-flex",
