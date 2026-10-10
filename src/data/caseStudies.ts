@@ -54,60 +54,46 @@ export interface CaseStudy {
 }
 
 export const caseStudies: CaseStudy[] = [
+  // Drafts waiting for details from "Case study details.txt". Fill in, then set published: true.
   {
-    slug: "talon-tyres",
-    title: "Talon Tyres",
+    slug: "upside-esg",
+    title: "Upside ESG",
     published: false,
-    summary: "A performance tyre brand website with a 3D car hero and a set builder that helps drivers choose the right tyres.",
+    summary: "An ESG reporting platform website with live data integrations, custom chart components and a resource library, built in Framer.",
     year: "2026",
-    tags: ["Automotive", "Next.js + 3D"],
-    // TODO: client name, or "Concept project"
-    role: "Design and development",
-    // TODO: timeline
-    stack: ["Next.js", "React", "Three.js", "React Three Fiber", "Framer Motion"],
-    liveUrl: "https://talon-tyres.vercel.app/",
-    cover: "/projects/talon-tyres.webp",
-    brief: [
-      "Tyres all look alike in a product grid, so the brand needed a site that feels as fast as the products are meant to be, and that helps a driver pick the right set without phoning a shop.",
-      // TODO: anything the client asked for in their own words
-    ],
-    built: [
-      "The home page opens on a 3D car built with Three.js, so the first thing a visitor sees is the product doing its job. Around it, a bold motorsport look: dark backgrounds, red accents and big condensed type.",
-      "A set builder walks drivers through their car and how they drive, then suggests a set they can take to a store.",
-    ],
-    features: [
-      "3D car hero rendered in the browser with React Three Fiber",
-      "Product range split into performance, all-season and off-road",
-      "Build your set configurator",
-      "Technology, blog, FAQ and contact pages",
-    ],
-    // results: [{ value: "", label: "" }],
+    tags: ["ESG SaaS", "Framer + Integrations"],
+    liveUrl: "https://upside-esg.com/",
+    cover: "/projects/upside-esg.png",
   },
   {
-    slug: "calder-health",
-    title: "Calder Health",
+    slug: "the-initial",
+    title: "The Initial",
     published: false,
-    summary: "A telehealth website for personalised online care, with a content editor so the team can update pages without code.",
+    summary: "An AI-powered creative agency website, taken from Figma designs to pixel-perfect Framer with custom interactions and a CMS.",
+    year: "2025",
+    tags: ["Creative Agency", "Figma to Framer"],
+    liveUrl: "https://the-initial.com/",
+    cover: "/projects/the-initial.png",
+  },
+  {
+    slug: "bindhq",
+    title: "BindHQ",
+    published: false,
+    summary: "An insurance management SaaS website, with a template customised to their design system, complex navigation and data-dense layouts.",
     year: "2026",
-    tags: ["HealthTech", "Next.js Build"],
-    // TODO: client name, or "Concept project"
-    role: "Design and development",
-    // TODO: timeline
-    stack: ["Next.js", "Custom CSS design system", "Decap CMS"],
-    liveUrl: "https://calder-health.vercel.app/",
-    cover: "/projects/calder-health.webp",
-    brief: [
-      "People looking for care online want to feel safe before they book. The site had to be calm, clear and trustworthy, and the team needed to change pages themselves without waiting on a developer.",
-    ],
-    built: [
-      "A custom design system in plain CSS keeps every page consistent: soft colours, generous spacing and simple type, so nothing feels clinical or pushy.",
-      "The content lives in Decap CMS, so the team edits text, services and providers in a simple dashboard and the site updates on its own.",
-    ],
-    features: [
-      "Service and provider pages built from one design system",
-      "Content editor (Decap CMS) for non-technical staff",
-      "Fast, mobile-first pages",
-    ],
+    tags: ["InsurTech", "Template Customization"],
+    liveUrl: "https://www.bindhq.com/",
+    cover: "/projects/bindhq.png",
+  },
+  {
+    slug: "the-prime-media",
+    title: "The Prime Media",
+    published: false,
+    summary: "A digital media agency website built in Framer for a Canadian creative studio, with a bold editorial layout and motion-forward sections.",
+    year: "2025",
+    tags: ["Media Agency", "Framer Build"],
+    liveUrl: "https://theprimemedia.ca/",
+    cover: "/projects/the-prime-media.png",
   },
 ];
 
