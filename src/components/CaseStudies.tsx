@@ -94,11 +94,14 @@ export default function CaseStudies() {
             <p style={{
               fontFamily: "var(--font-poppins)", fontWeight: 700,
               fontSize: c.metricIsKey ? "clamp(26px, 2.6vw, 34px)" : "clamp(44px, 4.4vw, 60px)",
-              letterSpacing: "-0.04em", lineHeight: 1, color: "var(--accent-purple)", marginBottom: 10,
+              letterSpacing: "-0.04em", lineHeight: 1, color: "var(--fg)", textTransform: "uppercase", marginBottom: 12,
             }}>
               {c.metricIsKey ? t(c.metric) : c.metric}
             </p>
-            <p style={{ fontFamily: "var(--font-inter)", fontWeight: 600, fontSize: 14, color: "var(--fg)", lineHeight: 1.4, marginBottom: 24 }}>
+            <p style={{
+              fontFamily: "var(--font-inter)", fontWeight: 400, fontSize: 13, letterSpacing: "0.02em",
+              textTransform: "uppercase", color: "var(--fg-secondary)", lineHeight: 1.4, marginBottom: 24,
+            }}>
               {t(`cases.${c.id}.metricLabel`)}
             </p>
 
@@ -116,21 +119,28 @@ export default function CaseStudies() {
             {/* Client's own words */}
             <div style={{ marginTop: "auto", paddingTop: 24 }}>
               {c.quoteKey ? (
-                <figure style={{ margin: 0, background: "var(--bg)", padding: "16px 18px", borderLeft: "2px solid var(--accent-purple)" }}>
-                  <blockquote style={{ margin: 0, fontFamily: "var(--font-inter)", fontSize: 13, lineHeight: 1.6, color: "var(--fg)", fontStyle: "italic" }}>
+                <figure style={{ margin: 0, borderTop: "1px solid rgba(0,0,0,0.08)", paddingTop: 20 }}>
+                  <blockquote style={{ margin: 0, fontFamily: "var(--font-inter)", fontSize: 14, lineHeight: 1.65, color: "var(--fg-secondary)", letterSpacing: "-0.2px" }}>
                     &ldquo;{t(c.quoteKey)}&rdquo;
                   </blockquote>
-                  <figcaption style={{ marginTop: 10, fontFamily: "var(--font-inter)", fontSize: 11, fontWeight: 600, letterSpacing: "0.5px", textTransform: "uppercase", color: "var(--fg-secondary)" }}>
-                    {c.quoteBy}
+                  <figcaption style={{ marginTop: 14 }}>
+                    <span style={{ display: "block", fontFamily: "var(--font-inter)", fontWeight: 700, fontSize: 13, textTransform: "uppercase", letterSpacing: "0.5px", color: "var(--fg)", marginBottom: 3 }}>
+                      {c.quoteBy?.split(" · ")[0]}
+                    </span>
+                    <span style={{ display: "block", fontFamily: "var(--font-inter)", fontSize: 11, textTransform: "uppercase", letterSpacing: "0.5px", color: "var(--fg-secondary)" }}>
+                      {c.quoteBy?.split(" · ")[1]}
+                    </span>
                   </figcaption>
                 </figure>
               ) : c.videoLink ? (
-                <a href="#testimonials" className="case-video-link">
-                  <span style={{ width: 32, height: 32, borderRadius: "50%", background: "var(--accent-purple)", display: "inline-flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-                    <Play size={13} fill="#fff" color="#fff" style={{ marginLeft: 2 }} />
-                  </span>
-                  <span className="case-video-text">{t("cases.watch")}</span>
-                </a>
+                <div style={{ borderTop: "1px solid rgba(0,0,0,0.08)", paddingTop: 20 }}>
+                  <a href="#testimonials" className="case-video-link">
+                    <span style={{ width: 32, height: 32, borderRadius: "50%", background: "var(--fg)", display: "inline-flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                      <Play size={13} fill="#fff" color="#fff" style={{ marginLeft: 2 }} />
+                    </span>
+                    <span className="case-video-text">{t("cases.watch")}</span>
+                  </a>
+                </div>
               ) : null}
             </div>
           </article>

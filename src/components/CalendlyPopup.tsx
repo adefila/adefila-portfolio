@@ -1,99 +1,130 @@
 "use client";
-import { useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
+import { ArrowUpRight, X } from "lucide-react";
+import { useLang } from "@/context/LangContext";
+import { useNextStartMonth } from "@/lib/availability";
 import { trackEvent } from "@/lib/gtag";
 
-// Opens every Calendly link on the page in Calendly's own popup, so visitors book
-// without leaving the site, and reports finished bookings to Google Analytics as
-// book_call_scheduled. Calendly's script is fetched the first time someone points
-// at or taps a booking link, so it costs nothing on page load. If it can't load,
-// the link opens Calendly in a new tab as before.
-const SCRIPT = "https://assets.calendly.com/assets/external/widget.js";
-// Site colours for the booking page (Calendly applies these on paid plans)
+// Every Calendly link on the page opens this booking window instead of a new tab:
+// a panel in the site's own style (photo, title, availability, square close button)
+// with Calendly's scheduling page embedded inside. Finished bookings are reported to
+// Google Analytics as book_call_scheduled. Modifier-clicks still open a new tab, and
+// the header links to Calendly directly in case the embed is slow or blocked.
 const THEME = "hide_gdpr_banner=1&background_color=f7f7f7&text_color=0f0f0f&primary_color=6d28d9";
-const themed = (href: string) => href + (href.includes("?") ? "&" : "?") + THEME;
-const STYLES = "https://assets.calendly.com/assets/external/widget.css";
-
-type CalendlyApi = { initPopupWidget: (opts: { url: string }) => void };
-declare global {
-  interface Window {
-    Calendly?: CalendlyApi;
-  }
-}
-
-let loading: Promise<CalendlyApi> | null = null;
-function loadCalendly(): Promise<CalendlyApi> {
-  if (window.Calendly) return Promise.resolve(window.Calendly);
-  if (loading) return loading;
-  loading = new Promise<CalendlyApi>((resolve, reject) => {
-    const css = document.createElement("link");
-    css.rel = "stylesheet";
-    css.href = STYLES;
-    document.head.appendChild(css);
-    const js = document.createElement("script");
-    js.src = SCRIPT;
-    js.async = true;
-    js.onload = () => (window.Calendly ? resolve(window.Calendly) : reject(new Error("Calendly missing")));
-    js.onerror = () => reject(new Error("Calendly failed to load"));
-    document.head.appendChild(js);
-  }).catch((err) => {
-    loading = null; // let a later click try again
-    throw err;
-  });
-  return loading;
-}
 
 const calendlyLink = (target: EventTarget | null) =>
   (target as Element | null)?.closest?.('a[href*="calendly.com"]') as HTMLAnchorElement | null;
 
 export default function CalendlyPopup() {
+  const { t, lang } = useLang();
+  const nextStart = useNextStartMonth(lang);
+  const [url, setUrl] = useState<string | null>(null);
+  const [loaded, setLoaded] = useState(false);
+  const lastLocation = useRef("page");
+  const closeRef = useRef<HTMLButtonElement>(null);
+
   useEffect(() => {
-    let lastLocation = "page";
-
-    // Warm up the script as soon as someone shows intent
-    const warm = (e: Event) => {
-      if (calendlyLink(e.target)) loadCalendly().catch(() => {});
-    };
-
     const onClick = (e: MouseEvent) => {
       const link = calendlyLink(e.target);
-      if (!link) return;
-      // Let new-tab / new-window clicks behave normally
+      if (!link || link.closest(".booking-panel")) return;
       if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
       e.preventDefault();
       const area = link.closest("[data-track-location], section[id], footer, nav");
-      lastLocation = area?.getAttribute("data-track-location") || area?.id || area?.tagName.toLowerCase() || "page";
-      const fallback = setTimeout(() => window.open(link.href, "_blank", "noopener"), 4000);
-      loadCalendly()
-        .then((api) => {
-          clearTimeout(fallback);
-          api.initPopupWidget({ url: themed(link.href) });
-        })
-        .catch(() => {
-          clearTimeout(fallback);
-          window.open(link.href, "_blank", "noopener");
-        });
+      lastLocation.current = area?.getAttribute("data-track-location") || area?.id || area?.tagName.toLowerCase() || "page";
+      setLoaded(false);
+      setUrl(link.href);
     };
-
     const onMessage = (e: MessageEvent) => {
       if (e.origin !== "https://calendly.com") return;
       if (e.data?.event === "calendly.event_scheduled") {
-        trackEvent("book_call_scheduled", { location: lastLocation });
+        trackEvent("book_call_scheduled", { location: lastLocation.current });
       }
     };
-
-    document.addEventListener("pointerover", warm, { passive: true });
-    document.addEventListener("touchstart", warm, { passive: true });
-    document.addEventListener("focusin", warm);
     document.addEventListener("click", onClick);
     window.addEventListener("message", onMessage);
     return () => {
-      document.removeEventListener("pointerover", warm);
-      document.removeEventListener("touchstart", warm);
-      document.removeEventListener("focusin", warm);
       document.removeEventListener("click", onClick);
       window.removeEventListener("message", onMessage);
     };
   }, []);
 
-  return null;
+  // While open: no page scroll behind it, Esc closes, focus starts on the close button
+  useEffect(() => {
+    if (!url) return;
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") setUrl(null); };
+    document.addEventListener("keydown", onKey);
+    closeRef.current?.focus();
+    return () => {
+      document.body.style.overflow = prevOverflow;
+      document.removeEventListener("keydown", onKey);
+    };
+  }, [url]);
+
+  if (!url) return null;
+  const join = url.includes("?") ? "&" : "?";
+  const src = `${url}${join}embed_domain=${encodeURIComponent(window.location.host)}&embed_type=Inline&${THEME}`;
+
+  return (
+    <div className="booking-overlay" onClick={(e) => { if (e.target === e.currentTarget) setUrl(null); }}>
+      <div className="booking-panel" role="dialog" aria-modal="true" aria-labelledby="booking-title">
+        <header className="booking-header">
+          <div style={{ display: "flex", alignItems: "center", gap: 12, minWidth: 0 }}>
+            <Image
+              src="/samuel-portrait.webp"
+              alt=""
+              width={40}
+              height={40}
+              style={{ width: 40, height: 40, borderRadius: "50%", objectFit: "cover", objectPosition: "50% 25%", flexShrink: 0 }}
+            />
+            <div style={{ minWidth: 0 }}>
+              <p id="booking-title" style={{ fontFamily: "var(--font-poppins)", fontWeight: 700, fontSize: 16, letterSpacing: "-0.3px", textTransform: "uppercase", color: "var(--fg)", lineHeight: 1.2 }}>
+                {t("common.bookCall")}
+              </p>
+              <p style={{ display: "flex", alignItems: "center", gap: 6, fontFamily: "var(--font-inter)", fontSize: 11, fontWeight: 600, letterSpacing: "0.06em", textTransform: "uppercase", color: "var(--fg-secondary)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+                <span style={{ width: 6, height: 6, borderRadius: "50%", background: "var(--accent-green)", flexShrink: 0 }} />
+                {t("hero.badge")} · {t("hero.badge2").replace("{date}", nextStart)}
+              </p>
+            </div>
+          </div>
+          <div style={{ display: "flex", alignItems: "center", gap: 16, flexShrink: 0 }}>
+            <a href={url} target="_blank" rel="noopener noreferrer" className="case-link booking-newtab">
+              {t("booking.newTab")} <ArrowUpRight size={12} strokeWidth={2} />
+            </a>
+            <button ref={closeRef} type="button" className="booking-close" onClick={() => setUrl(null)} aria-label={t("booking.close")}>
+              <X size={16} strokeWidth={2} />
+            </button>
+          </div>
+        </header>
+
+        <div className="booking-body">
+          {!loaded && (
+            <div className="booking-loading" aria-live="polite">
+              <div style={{ display: "flex", gap: 24, width: "min(640px, 90%)" }}>
+                <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: 12 }}>
+                  <span className="skeleton-light" style={{ height: 18, width: "60%" }} />
+                  <span className="skeleton-light" style={{ height: 12, width: "40%" }} />
+                  <span className="skeleton-light" style={{ height: 120, width: "100%", marginTop: 12 }} />
+                </div>
+                <div className="booking-loading-cal" style={{ flex: 1.3, display: "grid", gridTemplateColumns: "repeat(7, 1fr)", gap: 8 }}>
+                  {Array.from({ length: 35 }, (_, i) => <span key={i} className="skeleton-light" style={{ aspectRatio: "1", borderRadius: "50%" }} />)}
+                </div>
+              </div>
+              <p style={{ fontFamily: "var(--font-inter)", fontSize: 12, fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", color: "var(--fg-muted)", marginTop: 28 }}>
+                {t("booking.loading")}
+              </p>
+            </div>
+          )}
+          <iframe
+            src={src}
+            title={t("common.bookCall")}
+            onLoad={() => setLoaded(true)}
+            style={{ position: "absolute", inset: 0, width: "100%", height: "100%", border: 0, opacity: loaded ? 1 : 0, transition: "opacity 0.3s" }}
+          />
+        </div>
+      </div>
+    </div>
+  );
 }
