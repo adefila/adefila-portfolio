@@ -77,6 +77,46 @@ html {
 }
 
 /* Hero entrance — CSS-driven so SSR content is visible before JS hydration */
+/* Hero: copy on the left, portrait on the right; stacks below 900px */
+.hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr);
+  gap: 56px;
+  align-items: center;
+}
+
+@media (max-width: 900px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .hero-portrait {
+    justify-self: start !important;
+    max-width: 360px !important;
+    margin-left: 24px;
+  }
+  .hero-glow {
+    top: auto !important;
+    bottom: 0 !important;
+    right: auto !important;
+    left: 0;
+    width: 360px !important;
+    height: 360px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-portrait {
+    max-width: calc(100% - 40px) !important;
+  }
+  .hero-tag {
+    font-size: 11px !important;
+    padding: 8px 12px !important;
+  }
+  .hero-tag-top { left: -20px !important; }
+  .hero-tag-bottom { right: -20px !important; }
+}
+
 @keyframes heroFadeUp {
   from { opacity: 0; transform: translateY(10px); }
   to   { opacity: 1; transform: translateY(0); }
