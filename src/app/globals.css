@@ -166,7 +166,15 @@ html {
   white-space: nowrap;
   transition: opacity 0.2s ease;
 }
-.clients-cell:hover .clients-wordmark {
+.clients-logo {
+  display: block;
+  max-width: 78%;
+  height: auto;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+}
+.clients-cell:hover .clients-wordmark,
+.clients-cell:hover .clients-logo {
   opacity: 1;
 }
 @media (max-width: 768px) {
@@ -178,6 +186,9 @@ html {
   }
   .clients-wordmark {
     font-size: 16px;
+  }
+  .clients-logo {
+    transform: scale(0.8);
   }
   .clients-section {
     padding-bottom: 8px !important;
