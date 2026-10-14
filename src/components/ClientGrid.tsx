@@ -1,10 +1,11 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import Image from "next/image";
 import { useLang } from "@/context/LangContext";
 
 // logo: one-colour SVG under /public/clients; aspect is its width / height.
+// The brand-colour version sits next to it as "<name>-color.svg" and fades in on hover.
 // Without a logo, the client's name is shown as a wordmark.
 type Client = { name: string; logo?: string; aspect?: number };
 
@@ -41,6 +42,8 @@ export default function ClientGrid() {
   const { t } = useLang();
   const reducedMotion = useReducedMotion();
   const [sets, setSets] = useState<number[]>(() => Array(CELLS).fill(0));
+  // The cell under the cursor holds its logo so the colour hover isn't swapped away
+  const hoveredCell = useRef<number | null>(null);
 
   useEffect(() => {
     if (reducedMotion) return;
@@ -48,6 +51,7 @@ export default function ClientGrid() {
     const id = setInterval(() => {
       const cell = SWAP_ORDER[step % CELLS];
       step++;
+      if (cell === hoveredCell.current) return;
       setSets((prev) => prev.map((s, i) => (i === cell ? (s + 1) % SETS : s)));
     }, SWAP_EVERY_MS);
     return () => clearInterval(id);
@@ -76,7 +80,12 @@ export default function ClientGrid() {
           {sets.map((set, cell) => {
             const client = CLIENTS[cell + set * CELLS];
             return (
-              <li key={cell} className="clients-cell">
+              <li
+                key={cell}
+                className="clients-cell"
+                onMouseEnter={() => { hoveredCell.current = cell; }}
+                onMouseLeave={() => { hoveredCell.current = null; }}
+              >
                 <AnimatePresence mode="popLayout" initial={false}>
                   <motion.span
                     key={client.name}
@@ -87,14 +96,25 @@ export default function ClientGrid() {
                     style={{ display: "flex", alignItems: "center", justifyContent: "center", width: "100%", height: "100%" }}
                   >
                     {client.logo && client.aspect ? (
-                      <Image
-                        src={client.logo}
-                        alt={client.name}
-                        unoptimized
-                        className="clients-logo"
-                        width={Math.round(logoHeight(client.aspect) * client.aspect)}
-                        height={logoHeight(client.aspect)}
-                      />
+                      <span className="clients-logo-wrap">
+                        <Image
+                          src={client.logo}
+                          alt={client.name}
+                          unoptimized
+                          className="clients-logo"
+                          width={Math.round(logoHeight(client.aspect) * client.aspect)}
+                          height={logoHeight(client.aspect)}
+                        />
+                        <Image
+                          src={client.logo.replace(/\.svg$/, "-color.svg")}
+                          alt=""
+                          aria-hidden="true"
+                          unoptimized
+                          className="clients-logo-color"
+                          width={Math.round(logoHeight(client.aspect) * client.aspect)}
+                          height={logoHeight(client.aspect)}
+                        />
+                      </span>
                     ) : (
                       <span className="clients-wordmark">{client.name}</span>
                     )}
