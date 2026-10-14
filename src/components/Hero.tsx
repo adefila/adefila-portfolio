@@ -5,7 +5,7 @@ import { ArrowDown, CalendarDays, Star } from "lucide-react";
 import Image from "next/image";
 import MagneticButton from "./MagneticButton";
 import { useLang } from "@/context/LangContext";
-import { useNextStartMonth } from "@/lib/availability";
+import { SPOTS_OPEN, useNextStartMonth } from "@/lib/availability";
 
 const EASE = "cubic-bezier(0.22, 1, 0.36, 1)";
 const SPRING = [0.22, 1, 0.36, 1] as [number, number, number, number];
@@ -106,7 +106,7 @@ export default function Hero() {
               <span style={{ width: 8, height: 8, borderRadius: "50%", background: "var(--accent-green)", display: "block", position: "relative", zIndex: 1 }} />
             </span>
             <span style={{ fontFamily: "var(--font-inter)", fontWeight: 600, fontSize: 11, letterSpacing: "0.08em", textTransform: "uppercase", color: "#006b2e" }}>
-              {t("hero.badge")}
+              {t("hero.badge").replace("{count}", String(SPOTS_OPEN))}
             </span>
             <span style={{ width: 3, height: 3, borderRadius: "50%", background: "var(--fg-muted)", display: "inline-block" }} />
             <span style={{ fontFamily: "var(--font-inter)", fontWeight: 500, fontSize: 11, letterSpacing: "0.06em", textTransform: "uppercase", color: "var(--fg-secondary)" }}>

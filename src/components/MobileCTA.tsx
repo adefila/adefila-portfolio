@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { CalendarDays } from "lucide-react";
 import { useLang } from "@/context/LangContext";
-import { useNextStartMonth } from "@/lib/availability";
+import { SPOTS_OPEN, useNextStartMonth } from "@/lib/availability";
 
 // Phones only (hidden on wider screens in globals.css). Slides up once the hero's
 // own "Book a call" button has scrolled away, and steps aside while the contact
@@ -56,7 +56,7 @@ export default function MobileCTA() {
       <div style={{ flex: 1, minWidth: 0 }}>
         <p style={{ fontFamily: "var(--font-inter)", fontWeight: 700, fontSize: 12, color: "var(--fg)", lineHeight: 1.3, display: "flex", alignItems: "center", gap: 6 }}>
           <span style={{ width: 7, height: 7, borderRadius: "50%", background: "var(--accent-green)", flexShrink: 0 }} />
-          {t("hero.badge")}
+          {t("hero.badge").replace("{count}", String(SPOTS_OPEN))}
         </p>
         <p style={{ fontFamily: "var(--font-inter)", fontSize: 11, color: "var(--fg-secondary)", lineHeight: 1.3, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
           {t("hero.badge2").replace("{date}", nextStart)}

@@ -322,8 +322,9 @@ export const T: Record<string, Record<LangCode, string>> = {
 
   // ── Hero ─────────────────────────────────────────────────────────────
   "hero.badge": {
-    en: "2 spots open",            fr: "2 places disponibles",    es: "2 plazas disponibles",    de: "2 Plätze frei",
-    pt: "2 vagas disponíveis",     zh: "2个名额开放",              ja: "残り2枠",                  yo: "àyè 2 ṣí",
+    // {count} is SPOTS_OPEN in src/lib/availability.ts
+    en: "{count} spots open",            fr: "{count} places disponibles",    es: "{count} plazas disponibles",    de: "{count} Plätze frei",
+    pt: "{count} vagas disponíveis",     zh: "{count}个名额开放",              ja: "残り{count}枠",                  yo: "àyè {count} ṣí",
   },
   "hero.badge2": {
     // {date} is filled in by nextStartMonth() in src/lib/availability.ts
