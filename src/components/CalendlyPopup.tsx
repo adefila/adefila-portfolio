@@ -8,6 +8,9 @@ import { trackEvent } from "@/lib/gtag";
 // at or taps a booking link, so it costs nothing on page load. If it can't load,
 // the link opens Calendly in a new tab as before.
 const SCRIPT = "https://assets.calendly.com/assets/external/widget.js";
+// Site colours for the booking page (Calendly applies these on paid plans)
+const THEME = "hide_gdpr_banner=1&background_color=f7f7f7&text_color=0f0f0f&primary_color=6d28d9";
+const themed = (href: string) => href + (href.includes("?") ? "&" : "?") + THEME;
 const STYLES = "https://assets.calendly.com/assets/external/widget.css";
 
 type CalendlyApi = { initPopupWidget: (opts: { url: string }) => void };
@@ -63,7 +66,7 @@ export default function CalendlyPopup() {
       loadCalendly()
         .then((api) => {
           clearTimeout(fallback);
-          api.initPopupWidget({ url: link.href });
+          api.initPopupWidget({ url: themed(link.href) });
         })
         .catch(() => {
           clearTimeout(fallback);

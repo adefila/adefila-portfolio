@@ -79,7 +79,7 @@ export default function Teardown() {
               <input className="teardown-input" required type="email" name="email" autoComplete="email" placeholder="your@email.com" aria-label="Email" value={form.email} onChange={set("email")} />
               <input className="teardown-input" required name="url" inputMode="url" autoComplete="url" placeholder={t("teardown.url")} aria-label={t("teardown.url")} value={form.url} onChange={set("url")} />
               <button type="submit" disabled={status === "sending"} className="teardown-submit">
-                {status === "sending" ? t("teardown.sending") : t("teardown.cta")} <ArrowRight size={15} strokeWidth={2} />
+                {status === "sending" ? t("teardown.sending") : t("teardown.cta")} <ArrowRight size={14} strokeWidth={2} />
               </button>
               {status === "error" && (
                 <p role="alert" style={{ fontFamily: "var(--font-inter)", fontSize: 13, color: "#fca5a5" }}>{t("teardown.error")}</p>

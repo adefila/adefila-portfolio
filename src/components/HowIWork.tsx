@@ -351,8 +351,8 @@ export default function HowIWork() {
               >
                 <div>
                   <p style={{
-                    fontFamily: "var(--font-inter)", fontWeight: 700, fontSize: 11,
-                    letterSpacing: "3px", textTransform: "uppercase",
+                    fontFamily: "var(--font-inter)", fontWeight: 700, fontSize: 10,
+                    letterSpacing: "2.5px", textTransform: "uppercase",
                     color: purple, marginBottom: 12,
                   }}>
                     What to expect

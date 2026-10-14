@@ -129,7 +129,7 @@ export default function CaseStudies() {
                   <span style={{ width: 32, height: 32, borderRadius: "50%", background: "var(--accent-purple)", display: "inline-flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
                     <Play size={13} fill="#fff" color="#fff" style={{ marginLeft: 2 }} />
                   </span>
-                  {t("cases.watch")}
+                  <span className="case-video-text">{t("cases.watch")}</span>
                 </a>
               ) : null}
             </div>

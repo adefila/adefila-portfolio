@@ -651,6 +651,27 @@ export const T: Record<string, Record<LangCode, string>> = {
     ja: "エラーが発生しました。samuel@adefilasamuel.com までご連絡ください。",
     yo: "Nǹkan kan ṣẹlẹ̀. Kọ ímeèlì sí samuel@adefilasamuel.com dípò rẹ̀.",
   },
+  // Promises shown under the pricing cards
+  "pricing.guarantee1": {
+    en: "Fixed price, agreed before we start. No surprises.",
+    fr: "Prix fixe, validé avant de commencer. Aucune surprise.",
+    es: "Precio fijo, acordado antes de empezar. Sin sorpresas.",
+    de: "Festpreis, vor Projektstart vereinbart. Keine Überraschungen.",
+    pt: "Preço fixo, combinado antes de começar. Sem surpresas.",
+    zh: "固定价格，开工前确定。没有意外。",
+    ja: "固定価格。着手前に合意します。追加費用なし。",
+    yo: "Iye owó tí kò yí padà, tí a fohùn ṣọ̀kan sí kí a tó bẹ̀rẹ̀. Kò sí ìyàlẹ́nu.",
+  },
+  "pricing.guarantee2": {
+    en: "Revisions until you're happy, within the agreed scope.",
+    fr: "Des révisions jusqu'à votre satisfaction, dans le périmètre convenu.",
+    es: "Revisiones hasta que quedes satisfecho, dentro del alcance acordado.",
+    de: "Überarbeitungen, bis du zufrieden bist, im vereinbarten Umfang.",
+    pt: "Revisões até você ficar satisfeito, dentro do escopo combinado.",
+    zh: "在约定范围内修改，直到你满意为止。",
+    ja: "合意した範囲内で、ご満足いただけるまで修正します。",
+    yo: "Àtúnṣe títí inú rẹ yóò fi dùn, láàárín ààlà iṣẹ́ tí a fohùn sí.",
+  },
   "hero.downloadCv": {
     en: "DOWNLOAD CV",             fr: "TÉLÉCHARGER CV",          es: "DESCARGAR CV",            de: "CV HERUNTERLADEN",
     pt: "BAIXAR CV",               zh: "下载简历",                 ja: "履歴書を取得",              yo: "GBOYE CV",

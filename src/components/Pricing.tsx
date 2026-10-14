@@ -193,13 +193,14 @@ export default function Pricing() {
                 alignItems: "center",
                 justifyContent: "center",
                 gap: 6,
-                padding: "13px 20px",
+                padding: "14px 20px",
                 background: plan.featured ? "var(--accent-purple)" : "var(--fg)",
                 color: "#fff",
                 fontFamily: "var(--font-inter)",
                 fontWeight: 600,
+                lineHeight: "20px",
                 fontSize: 13,
-                letterSpacing: "0.3px",
+                letterSpacing: "0.5px",
                 textDecoration: "none",
                 textTransform: "uppercase",
                 transition: "opacity 0.2s",
@@ -218,11 +219,11 @@ export default function Pricing() {
       {/* Add-ons strip */}
       <div
         className="addons-grid"
+        data-reveal
         style={{
           display: "grid", gridTemplateColumns: "repeat(4, 1fr)",
           gap: 1, background: "rgba(0,0,0,0.06)",
           border: "1px solid rgba(0,0,0,0.06)", borderTop: "none",
-          animation: `fadeIn 0.5s 0.35s ${E} both`,
         }}
       >
         {addons.map((addon, i) => (
@@ -259,10 +260,21 @@ export default function Pricing() {
         ))}
       </div>
 
-      <p style={{
+      {/* Promises: the risk-reversal right where people decide */}
+      <ul data-reveal className="pricing-guarantees">
+        {["pricing.guarantee1", "pricing.guarantee2"].map((key) => (
+          <li key={key}>
+            <span aria-hidden="true" className="pricing-guarantee-icon">
+              <Check size={12} strokeWidth={3} color="#fff" />
+            </span>
+            {t(key)}
+          </li>
+        ))}
+      </ul>
+
+      <p data-reveal style={{
         fontFamily: "var(--font-inter)", fontSize: 12,
         color: "var(--fg-muted)", marginTop: 16, letterSpacing: "-0.1px",
-        animation: `fadeIn 0.5s 0.45s ${E} both`,
       }}>
         {t("pricing.disclaimer")}
       </p>
