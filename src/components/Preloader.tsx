@@ -9,6 +9,8 @@ export default function Preloader() {
   const [visible, setVisible] = useState(true);
   const [count, setCount]     = useState(0);
   const reducedMotion          = useReducedMotion();
+  // Reduced motion skips the count-up and shows the bar as complete
+  const shown                  = reducedMotion ? 100 : count;
 
   useEffect(() => {
     // Only show once per tab session — reloads go straight to the page
@@ -22,7 +24,6 @@ export default function Preloader() {
 
     // Respect prefers-reduced-motion: skip animation, dismiss quickly
     if (reducedMotion) {
-      setCount(100);
       const t = setTimeout(() => setVisible(false), 400);
       return () => clearTimeout(t);
     }
@@ -94,7 +95,7 @@ export default function Preloader() {
             {/* Progress bar — announced to screen readers */}
             <motion.div
               role="progressbar"
-              aria-valuenow={count}
+              aria-valuenow={shown}
               aria-valuemin={0}
               aria-valuemax={100}
               aria-label="Loading"
@@ -140,7 +141,7 @@ export default function Preloader() {
               userSelect: "none",
             }}
           >
-            {count}
+            {shown}
           </motion.span>
 
           {/* Decorative label — hidden from assistive tech */}
