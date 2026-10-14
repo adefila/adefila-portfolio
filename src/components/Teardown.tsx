@@ -1,21 +1,47 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import { ArrowRight, Check, Video } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { useLang } from "@/context/LangContext";
 import { trackEvent } from "@/lib/gtag";
+import RevealWords, { revealDelayAfter } from "./RevealWords";
+import FormSuccess from "./FormSuccess";
 
-// "Not ready to book?" offer: a free ~5-minute Loom review of the visitor's site.
-// Goes through /api/contact like the main form, so it lands in Samuel's inbox and
-// in Lead Finder, with the same spam checks (honeypot + minimum fill time).
-type Status = "idle" | "sending" | "done" | "error";
+// "Not ready to call?" offer: a free ~5-minute Loom review of the visitor's site.
+// Laid out like the Contact section and posts to /api/contact like the main form,
+// so it lands in Samuel's inbox and in Lead Finder with the same spam checks
+// (honeypot + minimum fill time) and shows the same success screen.
+type Status = "idle" | "sending" | "success" | "error";
+const EMPTY = { name: "", email: "", url: "" };
+
+const labelStyle: React.CSSProperties = {
+  fontFamily: "var(--font-inter)", fontSize: 10, letterSpacing: "2px",
+  textTransform: "uppercase", color: "var(--fg-muted)", display: "block", marginBottom: 6,
+};
+const inputStyle: React.CSSProperties = {
+  width: "100%", padding: "14px 16px", fontFamily: "var(--font-inter)", fontSize: 16,
+  letterSpacing: "-0.2px", color: "var(--fg)", background: "var(--bg)",
+  border: "1px solid rgba(0,0,0,0.12)", outline: "none", borderRadius: 0,
+  appearance: "none", WebkitAppearance: "none", transition: "border-color 0.18s",
+};
+const focus = (e: React.FocusEvent<HTMLInputElement>) => (e.target.style.borderColor = "var(--accent-purple)");
+const blur = (e: React.FocusEvent<HTMLInputElement>) => (e.target.style.borderColor = "rgba(0,0,0,0.12)");
 
 export default function Teardown() {
   const { t } = useLang();
-  const [form, setForm] = useState({ name: "", email: "", url: "" });
+  const [form, setForm] = useState(EMPTY);
   const [honey, setHoney] = useState("");
   const [status, setStatus] = useState<Status>("idle");
+  const [countdown, setCountdown] = useState(5);
   const loadedAt = useRef(0);
   useEffect(() => { loadedAt.current = Date.now(); }, []);
+
+  // Same as the contact form: show the success screen, count down, then reset
+  useEffect(() => {
+    if (status !== "success") return;
+    const interval = setInterval(() => setCountdown((c) => c - 1), 1000);
+    const reset = setTimeout(() => { setStatus("idle"); setForm(EMPTY); }, 5000);
+    return () => { clearInterval(interval); clearTimeout(reset); };
+  }, [status]);
 
   const set = (k: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement>) =>
     setForm((f) => ({ ...f, [k]: e.target.value }));
@@ -37,7 +63,8 @@ export default function Teardown() {
         }),
       });
       if (!res.ok) throw new Error(String(res.status));
-      setStatus("done");
+      setCountdown(5);
+      setStatus("success");
       trackEvent("generate_lead", { service: "teardown" });
     } catch {
       setStatus("error");
@@ -45,45 +72,77 @@ export default function Teardown() {
   };
 
   return (
-    <section id="teardown" data-track-location="teardown" style={{ width: "100%", maxWidth: 1200, margin: "0 auto", padding: "0 20px 80px" }}>
-      <div data-reveal className="teardown-box grid-texture grid-texture-dark">
-        <div style={{ flex: "1 1 380px" }}>
-          <p style={{ display: "flex", alignItems: "center", gap: 8, fontFamily: "var(--font-inter)", fontWeight: 700, fontSize: 11, letterSpacing: "3px", textTransform: "uppercase", color: "rgba(255,255,255,0.7)", marginBottom: 14 }}>
-            <Video size={14} strokeWidth={2} /> {t("teardown.eyebrow")}
+    <section id="teardown" data-track-location="teardown" className="teardown-section">
+      <div className="teardown-grid">
+        {/* Left: same header pattern as every other section */}
+        <div>
+          <p data-reveal style={{
+            fontFamily: "var(--font-inter)", fontWeight: 700, fontSize: 11,
+            letterSpacing: "4px", textTransform: "uppercase",
+            color: "var(--accent-purple)", marginBottom: 16,
+          }}>
+            {t("teardown.label")}
           </p>
-          <h3 style={{ fontFamily: "var(--font-poppins)", fontWeight: 700, fontSize: "clamp(22px, 2.4vw, 32px)", letterSpacing: "-0.6px", lineHeight: 1.1, textTransform: "uppercase", color: "#fff", marginBottom: 14, textWrap: "balance" as const }}>
-            {t("teardown.title")}
-          </h3>
-          <p style={{ fontFamily: "var(--font-inter)", fontSize: 15, lineHeight: 1.65, color: "rgba(255,255,255,0.72)", maxWidth: 460 }}>
+          <h2 style={{
+            fontFamily: "var(--font-poppins)", fontWeight: 700,
+            fontSize: "clamp(28px, 3.5vw, 48px)", letterSpacing: "-1px",
+            lineHeight: 1.05, textTransform: "uppercase", color: "var(--fg)", marginBottom: 20,
+          }}>
+            <RevealWords text={t("teardown.h1")} />{" "}
+            <span style={{ color: "rgb(163,163,163)" }}><RevealWords text={t("teardown.h1b")} delay={revealDelayAfter(t("teardown.h1"))} /></span>
+          </h2>
+          <p data-reveal style={{
+            fontFamily: "var(--font-inter)", fontWeight: 400, fontSize: 15,
+            letterSpacing: "-0.3px", lineHeight: 1.7, color: "var(--fg-secondary)", maxWidth: 440,
+          }}>
             {t("teardown.desc")}
           </p>
         </div>
 
-        <div style={{ flex: "1 1 340px" }}>
-          {status === "done" ? (
-            <p role="status" style={{ display: "flex", gap: 12, alignItems: "flex-start", fontFamily: "var(--font-inter)", fontSize: 15, lineHeight: 1.6, color: "#fff", background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.14)", padding: 20 }}>
-              <span style={{ width: 24, height: 24, borderRadius: "50%", background: "var(--accent-green)", display: "inline-flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-                <Check size={14} color="#fff" strokeWidth={3} />
-              </span>
-              {t("teardown.success")}
-            </p>
+        {/* Right: form, styled exactly like the contact form */}
+        <div data-reveal>
+          {status === "success" ? (
+            <FormSuccess title={t("teardown.successTitle")} desc={t("teardown.successDesc")} resetLabel={`Form resets in ${countdown}s`} />
           ) : (
-            <form onSubmit={submit} style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+            <form onSubmit={submit} style={{ display: "flex", flexDirection: "column", gap: 12 }}>
               {/* Honeypot: hidden from people, filled by bots */}
               <input
                 type="text" name="company" tabIndex={-1} autoComplete="off" aria-hidden="true"
                 value={honey} onChange={(e) => setHoney(e.target.value)}
                 style={{ position: "absolute", left: -9999, width: 1, height: 1, opacity: 0 }}
               />
-              <input className="teardown-input" required name="name" autoComplete="name" placeholder={t("contact.ph.name")} aria-label={t("contact.ph.name")} value={form.name} onChange={set("name")} />
-              <input className="teardown-input" required type="email" name="email" autoComplete="email" placeholder="your@email.com" aria-label="Email" value={form.email} onChange={set("email")} />
-              <input className="teardown-input" required name="url" inputMode="url" autoComplete="url" placeholder={t("teardown.url")} aria-label={t("teardown.url")} value={form.url} onChange={set("url")} />
-              <button type="submit" disabled={status === "sending"} className="teardown-submit">
-                {status === "sending" ? t("teardown.sending") : t("teardown.cta")} <ArrowRight size={14} strokeWidth={2} />
-              </button>
+              <div className="form-row" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
+                <div>
+                  <label htmlFor="teardown-name" style={labelStyle}>{t("contact.label.name")} *</label>
+                  <input id="teardown-name" required autoComplete="name" placeholder={t("contact.ph.name")} value={form.name} onChange={set("name")} style={inputStyle} onFocus={focus} onBlur={blur} />
+                </div>
+                <div>
+                  <label htmlFor="teardown-email" style={labelStyle}>{t("contact.label.email")} *</label>
+                  <input id="teardown-email" required type="email" autoComplete="email" placeholder="your@email.com" value={form.email} onChange={set("email")} style={inputStyle} onFocus={focus} onBlur={blur} />
+                </div>
+              </div>
+              <div>
+                <label htmlFor="teardown-url" style={labelStyle}>{t("teardown.urlLabel")} *</label>
+                <input id="teardown-url" required inputMode="url" autoComplete="url" placeholder={t("teardown.url")} value={form.url} onChange={set("url")} style={inputStyle} onFocus={focus} onBlur={blur} />
+              </div>
               {status === "error" && (
-                <p role="alert" style={{ fontFamily: "var(--font-inter)", fontSize: 13, color: "#fca5a5" }}>{t("teardown.error")}</p>
+                <p role="alert" style={{ fontFamily: "var(--font-inter)", fontSize: 13, color: "#e53e3e" }}>{t("teardown.error")}</p>
               )}
+              <button
+                type="submit"
+                disabled={status === "sending"}
+                style={{
+                  display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 8,
+                  padding: "14px 26px", background: "var(--fg)", color: "#fff",
+                  fontFamily: "var(--font-inter)", fontWeight: 600, lineHeight: "20px", fontSize: 13,
+                  letterSpacing: "0.5px", textTransform: "uppercase", border: "none", borderRadius: 0,
+                  cursor: status === "sending" ? "not-allowed" : "pointer",
+                  opacity: status === "sending" ? 0.6 : 1, transition: "opacity 0.2s", alignSelf: "flex-start",
+                }}
+              >
+                {status === "sending" ? t("teardown.sending") : t("teardown.cta")}
+                {status !== "sending" && <ArrowRight size={14} strokeWidth={2} />}
+              </button>
             </form>
           )}
         </div>

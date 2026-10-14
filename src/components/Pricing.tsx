@@ -16,7 +16,6 @@ const ADDONS_BASE = [
   { addonKey: "addon3", usdPrice: 500,  perMonth: false },
 ];
 
-const E = "cubic-bezier(0.22,1,0.36,1)"; // spring
 
 export default function Pricing() {
   const { t, formatPrice, currency } = useLang();
