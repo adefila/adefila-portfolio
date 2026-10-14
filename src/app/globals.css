@@ -13,6 +13,8 @@ html[data-preloader-seen] .preloader {
   --fg-label: #1a1a1a;
   --accent-green: rgb(0, 171, 74);
   --accent-purple: #6d28d9;
+  /* Accent purple for text on dark backgrounds (passes contrast on #0f0f0f) */
+  --accent-purple-light: #a78bfa;
   --accent-teal: rgb(12, 237, 230);
   --dark-bg: #0f0f0f;
   --card-bg: rgb(235, 234, 230);
@@ -77,6 +79,30 @@ html {
 }
 
 /* Hero entrance — CSS-driven so SSR content is visible before JS hydration */
+/* Faint square grid behind a section's content (light and dark variants) */
+.grid-texture {
+  position: relative;
+  isolation: isolate;
+}
+.grid-texture::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(15,15,15,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15,15,15,0.05) 1px, transparent 1px);
+  background-size: 56px 56px;
+  -webkit-mask-image: radial-gradient(ellipse 65% 75% at 50% 40%, black 0%, transparent 75%);
+  mask-image: radial-gradient(ellipse 65% 75% at 50% 40%, black 0%, transparent 75%);
+}
+.grid-texture-dark::before {
+  background-image:
+    linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px);
+}
+
 /* Hero: copy on the left, portrait on the right; stacks below 900px */
 .hero-grid {
   display: grid;

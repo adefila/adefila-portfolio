@@ -1,6 +1,7 @@
 "use client";
 import { Check, ArrowUpRight } from "lucide-react";
 import { useLang } from "@/context/LangContext";
+import RevealWords, { revealDelayAfter } from "./RevealWords";
 
 const PLANS_BASE = [
   { usdPrice: 500,  featured: false, featureCount: 5, planKey: "plan0" },
@@ -62,8 +63,8 @@ export default function Pricing() {
             fontSize: "clamp(28px, 3.5vw, 48px)", letterSpacing: "-1px",
             lineHeight: 1.08, textTransform: "uppercase", color: "var(--fg)",
           }}>
-            {t("pricing.h2a")}{" "}
-            <span style={{ color: "rgb(163,163,163)" }}>{t("pricing.h2b")}</span>
+            <RevealWords text={t("pricing.h2a")} />{" "}
+            <span style={{ color: "var(--accent-purple)" }}><RevealWords text={t("pricing.h2b")} delay={revealDelayAfter(t("pricing.h2a"))} /></span>
           </h2>
         </div>
 

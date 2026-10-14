@@ -3,6 +3,7 @@ import { motion, AnimatePresence, useInView } from "framer-motion";
 import { useRef, useState, useEffect, useCallback } from "react";
 import { ArrowUpRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { useLang } from "@/context/LangContext";
+import RevealWords, { revealDelayAfter } from "./RevealWords";
 
 const PROJECTS_BASE = [
   {
@@ -84,8 +85,10 @@ export default function SideProjects() {
   return (
     <section
       id="side-projects"
-      style={{ width: "100%", maxWidth: 1200, margin: "0 auto", padding: "80px 20px" }}
+      className="section-dark grid-texture grid-texture-dark"
+      style={{ width: "100%", background: "var(--dark-bg)", position: "relative" }}
     >
+    <div style={{ position: "relative", zIndex: 1, maxWidth: 1200, margin: "0 auto", padding: "96px 20px" }}>
       {/* Header */}
       <div
         ref={ref}
@@ -95,7 +98,7 @@ export default function SideProjects() {
           alignItems: "flex-end",
           flexWrap: "wrap",
           marginBottom: 40,
-          borderBottom: "1px solid rgba(0,0,0,0.08)",
+          borderBottom: "1px solid rgba(255,255,255,0.1)",
           paddingBottom: 28,
         }}
       >
@@ -103,7 +106,7 @@ export default function SideProjects() {
           <p style={{
             fontFamily: "var(--font-inter)", fontWeight: 700, fontSize: 11,
             letterSpacing: "4px", textTransform: "uppercase",
-            color: "var(--accent-purple)", marginBottom: 12,
+            color: "var(--accent-purple-light)", marginBottom: 12,
           }}>
             {t("sideprojects.eyebrow")}
           </p>
@@ -111,10 +114,10 @@ export default function SideProjects() {
             fontFamily: "var(--font-poppins)", fontWeight: 700,
             fontSize: "clamp(22px, 2.6vw, 36px)",
             letterSpacing: "-1px", lineHeight: 1.08,
-            textTransform: "uppercase", color: "var(--fg)",
+            textTransform: "uppercase", color: "#fff",
           }}>
-            {t("sideprojects.h1")}{" "}
-            <span style={{ color: "rgb(163,163,163)" }}>{t("sideprojects.h1b")}</span>
+            <RevealWords text={t("sideprojects.h1")} />{" "}
+            <span style={{ color: "var(--accent-purple-light)" }}><RevealWords text={t("sideprojects.h1b")} delay={revealDelayAfter(t("sideprojects.h1"))} /></span>
           </h2>
         </div>
 
@@ -122,21 +125,21 @@ export default function SideProjects() {
         <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
           <span style={{
             fontFamily: "var(--font-inter)", fontSize: 12, fontWeight: 500,
-            color: "var(--fg-secondary)", letterSpacing: "0.5px",
+            color: "rgba(255,255,255,0.68)", letterSpacing: "0.5px",
           }}>
             {String(active + 1).padStart(2, "0")} / {String(projects.length).padStart(2, "0")}
           </span>
           <div style={{ display: "flex", gap: 6 }}>
             <button onClick={prev} aria-label="Previous project" style={{
-              width: 40, height: 40, border: "1px solid rgba(0,0,0,0.15)",
-              background: "var(--white)", cursor: "pointer",
+              width: 40, height: 40, border: "1px solid rgba(255,255,255,0.2)",
+              background: "transparent", color: "#fff", cursor: "pointer",
               display: "flex", alignItems: "center", justifyContent: "center",
             }}>
               <ChevronLeft size={16} strokeWidth={2} />
             </button>
             <button onClick={next} aria-label="Next project" style={{
-              width: 40, height: 40, border: "1px solid rgba(0,0,0,0.15)",
-              background: "var(--white)", cursor: "pointer",
+              width: 40, height: 40, border: "1px solid rgba(255,255,255,0.2)",
+              background: "transparent", color: "#fff", cursor: "pointer",
               display: "flex", alignItems: "center", justifyContent: "center",
             }}>
               <ChevronRight size={16} strokeWidth={2} />
@@ -158,7 +161,7 @@ export default function SideProjects() {
           style={{
             display: "grid",
             gridTemplateColumns: "1fr 1fr",
-            border: "1px solid rgba(0,0,0,0.08)",
+            border: "1px solid rgba(255,255,255,0.1)",
             overflow: "hidden",
           }}
         >
@@ -166,20 +169,20 @@ export default function SideProjects() {
           <div className="sp-text" style={{
             padding: "44px 36px",
             display: "flex", flexDirection: "column", justifyContent: "center", gap: 20,
-            borderRight: "1px solid rgba(0,0,0,0.08)",
+            borderRight: "1px solid rgba(255,255,255,0.1)",
           }}>
             <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
               <span style={{
                 fontFamily: "var(--font-inter)", fontWeight: 700, fontSize: 11,
-                letterSpacing: "3px", color: "rgba(0,0,0,0.45)",
+                letterSpacing: "3px", color: "rgba(255,255,255,0.5)",
               }}>
                 {String(active + 1).padStart(2, "0")}
               </span>
               <span style={{
                 fontFamily: "var(--font-inter)", fontWeight: 700, fontSize: 10,
                 letterSpacing: "2.5px", textTransform: "uppercase",
-                color: project.accent,
-                border: `1px solid ${project.accent}40`,
+                color: "#fff",
+                background: project.accent,
                 padding: "3px 9px",
               }}>
                 {project.label}
@@ -190,7 +193,7 @@ export default function SideProjects() {
               fontFamily: "var(--font-poppins)", fontWeight: 700,
               fontSize: "clamp(16px, 1.6vw, 22px)",
               letterSpacing: "-0.8px", lineHeight: 1.1,
-              textTransform: "uppercase", color: "var(--fg)", margin: 0,
+              textTransform: "uppercase", color: "#fff", margin: 0,
             }}>
               {project.name}
             </h3>
@@ -198,7 +201,7 @@ export default function SideProjects() {
             <p style={{
               fontFamily: "var(--font-inter)", fontWeight: 400,
               fontSize: 14, lineHeight: 1.7,
-              color: "var(--fg-secondary)", letterSpacing: "-0.2px", margin: 0,
+              color: "rgba(255,255,255,0.68)", letterSpacing: "-0.2px", margin: 0,
             }}>
               {project.tagline}
             </p>
@@ -207,9 +210,9 @@ export default function SideProjects() {
               {project.stack.map((tech) => (
                 <span key={tech} style={{
                   fontFamily: "var(--font-inter)", fontWeight: 500, fontSize: 11,
-                  letterSpacing: "0.3px", color: "var(--fg-secondary)",
-                  background: "rgba(0,0,0,0.04)",
-                  border: "1px solid rgba(0,0,0,0.08)", padding: "4px 10px",
+                  letterSpacing: "0.3px", color: "rgba(255,255,255,0.68)",
+                  background: "rgba(255,255,255,0.06)",
+                  border: "1px solid rgba(255,255,255,0.1)", padding: "4px 10px",
                 }}>
                   {tech}
                 </span>
@@ -225,8 +228,8 @@ export default function SideProjects() {
                   display: "inline-flex", alignItems: "center", gap: 6,
                   fontFamily: "var(--font-inter)", fontWeight: 600,
                   fontSize: 11, letterSpacing: "1px", textTransform: "uppercase",
-                  color: "var(--fg)", textDecoration: "none",
-                  borderBottom: "1px solid var(--fg)", paddingBottom: 2,
+                  color: "#fff", textDecoration: "none",
+                  borderBottom: "1px solid #fff", paddingBottom: 2,
                   width: "fit-content",
                 }}
               >
@@ -260,14 +263,14 @@ export default function SideProjects() {
         {/* Thin progress track */}
         <div style={{
           width: "100%", height: 2,
-          background: "rgba(0,0,0,0.08)",
+          background: "rgba(255,255,255,0.1)",
           marginBottom: 16, overflow: "hidden",
         }}>
           <div
             ref={fillRef}
             style={{
               height: "100%",
-              background: "var(--fg)",
+              background: "#fff",
               width: "0%",
             }}
           />
@@ -283,7 +286,7 @@ export default function SideProjects() {
               style={{
                 width: i === active ? 24 : 8, height: 8,
                 border: "none", cursor: "pointer", padding: 0,
-                background: i === active ? "var(--fg)" : "rgba(0,0,0,0.15)",
+                background: i === active ? "#fff" : "rgba(255,255,255,0.2)",
                 transition: "width 0.3s ease, background 0.2s",
               }}
             />
@@ -298,7 +301,7 @@ export default function SideProjects() {
           }
           .sp-text {
             border-right: none !important;
-            border-bottom: 1px solid rgba(0,0,0,0.08);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
             padding: 32px 24px !important;
           }
           .sp-video {
@@ -316,6 +319,7 @@ export default function SideProjects() {
           }
         }
       `}</style>
+    </div>
     </section>
   );
 }

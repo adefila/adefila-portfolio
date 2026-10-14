@@ -11,8 +11,7 @@ export default function MidCTA() {
     <section
       style={{
         width: "100%",
-        borderTop: "1px solid rgba(0,0,0,0.08)",
-        borderBottom: "1px solid rgba(0,0,0,0.08)",
+        background: "var(--accent-purple)",
       }}
     >
       <div
@@ -20,7 +19,7 @@ export default function MidCTA() {
         style={{
           maxWidth: 1200,
           margin: "0 auto",
-          padding: "56px 20px",
+          padding: "72px 20px",
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
@@ -38,7 +37,7 @@ export default function MidCTA() {
               letterSpacing: "-0.6px",
               lineHeight: 1.1,
               textTransform: "uppercase",
-              color: "var(--fg)",
+              color: "#fff",
               marginBottom: 10,
             }}
           >
@@ -51,7 +50,7 @@ export default function MidCTA() {
               fontSize: 15,
               letterSpacing: "-0.3px",
               lineHeight: 1.6,
-              color: "var(--fg-secondary)",
+              color: "rgba(255,255,255,0.82)",
               maxWidth: 400,
             }}
           >
@@ -70,9 +69,9 @@ export default function MidCTA() {
             fontSize: 13,
             letterSpacing: "0.5px",
             textTransform: "uppercase",
-            color: "var(--fg)",
-            background: "transparent",
-            border: "1px solid rgba(0,0,0,0.22)",
+            color: "var(--accent-purple)",
+            background: "#fff",
+            border: "1px solid #fff",
             padding: "13px 26px",
             textDecoration: "none",
             flexShrink: 0,
@@ -84,9 +83,9 @@ export default function MidCTA() {
             e.currentTarget.style.color = "#fff";
           }}
           onMouseLeave={(e: React.MouseEvent<HTMLAnchorElement>) => {
-            e.currentTarget.style.background = "transparent";
-            e.currentTarget.style.borderColor = "rgba(0,0,0,0.22)";
-            e.currentTarget.style.color = "var(--fg)";
+            e.currentTarget.style.background = "#fff";
+            e.currentTarget.style.borderColor = "#fff";
+            e.currentTarget.style.color = "var(--accent-purple)";
           }}
         >
           {t("common.bookCall")} <CalendarDays size={14} strokeWidth={2} />

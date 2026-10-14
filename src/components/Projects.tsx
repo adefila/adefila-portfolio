@@ -3,6 +3,7 @@ import { ArrowUpRight } from "lucide-react";
 import { useState } from "react";
 import Image from "next/image";
 import { useLang } from "@/context/LangContext";
+import RevealWords from "./RevealWords";
 
 type Project = {
   title: string;
@@ -15,11 +16,14 @@ type Project = {
   screenshot?: string;
   video?: string;
   badge?: string;
+  // Soft tint from the project's own brand colours, shown behind the screenshot
+  bg?: string;
 };
 
 const devProjects: Project[] = [
   {
     title: "Calder Health",
+    bg: "#dde7da",
     alt: "Calder Health telehealth website — personalised online care with licensed providers, built in Next.js",
     desc: "Telehealth website for personalised online care. Built in Next.js with a custom design system, calm healthcare visuals, and a content editor so the team can update pages without code.",
     year: "2026",
@@ -29,6 +33,7 @@ const devProjects: Project[] = [
   },
   {
     title: "The Initial",
+    bg: "#d3e6e8",
     alt: "The Initial creative agency website — AI-powered Framer build with custom interactions",
     desc: "AI-powered creative agency site. Figma designs translated to pixel-perfect Framer with custom interactions and CMS.",
     year: "2025",
@@ -38,6 +43,7 @@ const devProjects: Project[] = [
   },
   {
     title: "BindHQ",
+    bg: "#eadfd6",
     alt: "BindHQ insurance management SaaS website — template customisation for complex data layouts",
     desc: "Insurance management SaaS. Template customised to match their design system with complex navigation and data-dense layouts.",
     year: "2026",
@@ -47,6 +53,7 @@ const devProjects: Project[] = [
   },
   {
     title: "VPA London",
+    bg: "#f0d9d4",
     alt: "VPA London talent agency portfolio — editorial typography and roster filtering in Framer",
     desc: "Talent agency portfolio built in Framer with editorial typography, smooth scroll, and a roster filtering system.",
     year: "2025",
@@ -56,6 +63,7 @@ const devProjects: Project[] = [
   },
   {
     title: "Upside ESG",
+    bg: "#e1e3f0",
     alt: "Upside ESG reporting platform — live data integrations and custom charts built in Framer",
     desc: "ESG reporting platform with live data integrations, custom chart components, and a resource library built in Framer.",
     year: "2026",
@@ -65,6 +73,7 @@ const devProjects: Project[] = [
   },
   {
     title: "Alyssa Corso",
+    bg: "#efe5e1",
     alt: "Alyssa Corso personal portfolio — healthcare SEO consultant website built in Framer",
     desc: "Personal portfolio for a healthcare SEO consultant. Clean, conversion-focused layout with case study pages.",
     year: "2026",
@@ -74,6 +83,7 @@ const devProjects: Project[] = [
   },
   {
     title: "Emalbu",
+    bg: "#e2e2e2",
     alt: "Emalbu professional services website — HTML to Framer migration preserving brand identity",
     desc: "Full HTML-to-Framer migration for a professional services firm — preserving brand identity while modernising the stack.",
     year: "2026",
@@ -83,6 +93,7 @@ const devProjects: Project[] = [
   },
   {
     title: "Leadopo",
+    bg: "#d6e0fb",
     alt: "Leadopo lead generation platform — custom Framer build with dynamic CMS and pipeline flows",
     desc: "Lead generation and pipeline management platform. Custom Framer build with dynamic CMS and conversion-optimised flows.",
     year: "2026",
@@ -92,6 +103,7 @@ const devProjects: Project[] = [
   },
   {
     title: "Rusty Wears",
+    bg: "#f0e2d9",
     alt: "Rusty Wears streetwear e-commerce storefront — bold visual identity built in Framer",
     desc: "Streetwear brand e-commerce experience. Bold visual identity translated into a high-converting Framer storefront.",
     year: "2026",
@@ -101,6 +113,7 @@ const devProjects: Project[] = [
   },
   {
     title: "The Prime Media",
+    bg: "#dbe5f5",
     alt: "The Prime Media digital agency site — motion-forward editorial Framer build for Canadian studio",
     desc: "Digital media agency site built in Framer — bold editorial layout, motion-forward sections, and a content-first structure for a Canadian creative studio.",
     year: "2025",
@@ -110,6 +123,7 @@ const devProjects: Project[] = [
   },
   {
     title: "Jamal Muse",
+    bg: "#d6ebe3",
     alt: "Jamal Muse personal brand portfolio — Claude designed, built in Framer with refined typography",
     desc: "Personal brand and portfolio for a creative professional. Designed in Claude and brought to life in Framer with smooth transitions and a refined typographic system.",
     year: "2025",
@@ -119,6 +133,7 @@ const devProjects: Project[] = [
   },
   {
     title: "Talon Tyres",
+    bg: "#dcdbe6",
     alt: "Talon Tyres performance tyre brand website — 3D car hero and product configurator built in Next.js",
     desc: "Performance tyre brand site built in Next.js. A 3D car hero made with Three.js, a set builder that helps drivers pick the right tyres, and a bold motorsport look.",
     year: "2026",
@@ -131,6 +146,7 @@ const devProjects: Project[] = [
 const designProjects: Project[] = [
   {
     title: "BookedEZ",
+    bg: "#e4e3ea",
     alt: "BookedEZ event booking mobile app UI — dark-mode design with profile management and booking flow",
     desc: "Event booking platform connecting organizers, vendors, and attendees. Full dark-mode mobile app with profile management, membership tiers, and seamless booking flow.",
     year: "2024",
@@ -141,6 +157,7 @@ const designProjects: Project[] = [
   },
   {
     title: "Student Material Directory",
+    bg: "#ececec",
     alt: "ReadHub student material directory app — document sharing platform with subject and tag filtering",
     desc: "ReadHub — a document-sharing platform for students to discover, upload, and access academic resources filtered by subject, author, and tags.",
     year: "2024",
@@ -150,6 +167,7 @@ const designProjects: Project[] = [
   },
   {
     title: "Crypto App",
+    bg: "#e3dff0",
     alt: "Crypto fintech onboarding app UI — bold 3D brand identity with Google and Apple sign-in flows",
     desc: "Fintech onboarding experience with a bold 3D brand identity, YC-backed credibility badge, and streamlined Google / Apple sign-in flows on a deep-purple canvas.",
     year: "2024",
@@ -159,6 +177,7 @@ const designProjects: Project[] = [
   },
   {
     title: "Health Monitoring App",
+    bg: "#e5eaf0",
     alt: "Health monitoring app UI — well-being dashboard with sleep tracking, mood logging and step counter",
     desc: "Well-being dashboard tracking sleep patterns, mood, and daily steps. Clean, data-forward interface with emoji-based mood logging and donut-chart KPIs.",
     year: "2024",
@@ -168,6 +187,7 @@ const designProjects: Project[] = [
   },
   {
     title: "Invoice Maker",
+    bg: "#e8e3ef",
     alt: "Quick Invoice Maker app UI — invoice and estimate generator for SMEs with payment status filters",
     desc: "Quick Invoice Maker — professional invoice, estimate, waybill, and letterhead generator for SMEs. Activity feed with paid/unpaid/overdue filters.",
     year: "2024",
@@ -178,6 +198,7 @@ const designProjects: Project[] = [
   },
   {
     title: "Neetly",
+    bg: "#e8e2f6",
     alt: "Neetly AI assistant chat interface — minimal conversation UI with voice input and rich attachments",
     desc: "AI Assistant chat interface with a minimal layout designed for natural conversation flows, voice input, and rich message attachments.",
     year: "",
@@ -188,6 +209,7 @@ const designProjects: Project[] = [
   },
   {
     title: "Daily News App",
+    bg: "#dde6e6",
     alt: "Daily news aggregation app UI — topic-filtered feeds with trending stories and distraction-free reading",
     desc: "News aggregation app with topic-filtered horizontal feeds, trending story cards, and a focused distraction-free article reading view.",
     year: "2024",
@@ -197,6 +219,7 @@ const designProjects: Project[] = [
   },
   {
     title: "Community Chat Interface",
+    bg: "#ebe7f0",
     alt: "Community chat interface UI — multi-user messaging with online status indicators and unread badges",
     desc: "Multi-user messaging interface with online-status indicators, unread badges, and a friendly empty-state to guide first-time users.",
     year: "2024",
@@ -216,7 +239,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
 
   const cardStyle: React.CSSProperties = {
     display: "block",
-    background: "#fff",
+    background: project.bg ?? "#fff",
     border: "1px solid rgba(0,0,0,0.06)",
     padding: "24px 24px 0",
     textDecoration: "none",
@@ -248,7 +271,8 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
             filter: hovered
               ? "contrast(1.05) saturate(1.1) brightness(1.02)"
               : "contrast(1.03) saturate(1.06)",
-            transition: `filter 0.4s cubic-bezier(0.22, 1, 0.36, 1)`,
+            transform: hovered ? "scale(1.04)" : "scale(1)",
+            transition: `filter 0.4s ${SPRING}, transform 0.7s ${SPRING}`,
           }}
           quality={90}
           priority={index < 4}
@@ -429,9 +453,8 @@ export default function Projects() {
             fontFamily: "var(--font-poppins)", fontWeight: 700,
             fontSize: "clamp(28px, 3.5vw, 48px)", letterSpacing: "-1px",
             lineHeight: 1, textTransform: "uppercase", color: "var(--fg)",
-            animation: `fadeUp 0.5s 0.12s ${SPRING} both`,
           }}>
-            {t("projects.h1")}
+            <RevealWords text={t("projects.h1")} />
           </h2>
         </div>
         <TabBar active={activeTab} onChange={setActiveTab} />

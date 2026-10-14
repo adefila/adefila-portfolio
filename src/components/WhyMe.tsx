@@ -1,6 +1,7 @@
 "use client";
 import { useRef, useEffect, useState } from "react";
 import { useLang } from "@/context/LangContext";
+import RevealWords, { revealDelayAfter } from "./RevealWords";
 
 // Icons draw on a 48-unit grid and show at 20px in a 32px box, so lines are thick in grid units.
 const IC = { stroke: "#7c3aed", sw: 4 };
@@ -197,8 +198,8 @@ export default function WhyMe() {
             fontSize: "clamp(28px, 3.5vw, 48px)", letterSpacing: "-1px",
             lineHeight: 1.05, textTransform: "uppercase", color: "var(--fg)",
           }}>
-            {t("whyme.h1")}{" "}
-            <span style={{ color: "rgb(163,163,163)" }}>{t("whyme.h1b")}</span>
+            <RevealWords text={t("whyme.h1")} />{" "}
+            <span style={{ color: "var(--accent-purple)" }}><RevealWords text={t("whyme.h1b")} delay={revealDelayAfter(t("whyme.h1"))} /></span>
           </h2>
         </div>
 
