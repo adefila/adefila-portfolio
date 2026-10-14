@@ -61,7 +61,7 @@ export default function Pricing() {
           <h2 style={{
             fontFamily: "var(--font-poppins)", fontWeight: 700,
             fontSize: "clamp(28px, 3.5vw, 48px)", letterSpacing: "-1px",
-            lineHeight: 1.08, textTransform: "uppercase", color: "var(--fg)",
+            lineHeight: 1.05, textTransform: "uppercase", color: "var(--fg)",
           }}>
             <RevealWords text={t("pricing.h2a")} />{" "}
             <span style={{ color: "rgb(163,163,163)" }}><RevealWords text={t("pricing.h2b")} delay={revealDelayAfter(t("pricing.h2a"))} /></span>

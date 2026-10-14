@@ -88,7 +88,7 @@ export default function SideProjects() {
       className="section-dark grid-texture grid-texture-dark"
       style={{ width: "100%", background: "var(--dark-bg)", position: "relative" }}
     >
-    <div style={{ position: "relative", zIndex: 1, maxWidth: 1200, margin: "0 auto", padding: "96px 20px" }}>
+    <div className="side-projects-inner" style={{ position: "relative", zIndex: 1, maxWidth: 1200, margin: "0 auto", padding: "80px 20px" }}>
       {/* Header */}
       <div
         ref={ref}
@@ -106,14 +106,14 @@ export default function SideProjects() {
           <p style={{
             fontFamily: "var(--font-inter)", fontWeight: 700, fontSize: 11,
             letterSpacing: "4px", textTransform: "uppercase",
-            color: "var(--accent-purple)", marginBottom: 12,
+            color: "var(--accent-purple)", marginBottom: 16,
           }}>
             {t("sideprojects.eyebrow")}
           </p>
           <h2 style={{
             fontFamily: "var(--font-poppins)", fontWeight: 700,
-            fontSize: "clamp(22px, 2.6vw, 36px)",
-            letterSpacing: "-1px", lineHeight: 1.08,
+            fontSize: "clamp(28px, 3.5vw, 48px)",
+            letterSpacing: "-1px", lineHeight: 1.05,
             textTransform: "uppercase", color: "#fff",
           }}>
             <RevealWords text={t("sideprojects.h1")} />{" "}

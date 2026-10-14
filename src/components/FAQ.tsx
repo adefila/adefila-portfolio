@@ -55,7 +55,7 @@ export default function FAQ() {
             style={{
               fontFamily: "var(--font-poppins)",
               fontWeight: 700,
-              fontSize: "clamp(28px, 3vw, 48px)",
+              fontSize: "clamp(28px, 3.5vw, 48px)",
               letterSpacing: "-1px",
               lineHeight: 1.05,
               textTransform: "uppercase",

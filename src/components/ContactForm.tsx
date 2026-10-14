@@ -202,9 +202,9 @@ export default function ContactForm() {
             style={{
               fontFamily: "var(--font-poppins)",
               fontWeight: 700,
-              fontSize: "clamp(26px, 3vw, 40px)",
+              fontSize: "clamp(28px, 3.5vw, 48px)",
               letterSpacing: "-1px",
-              lineHeight: 1.08,
+              lineHeight: 1.05,
               textTransform: "uppercase",
               color: "var(--fg)",
               marginBottom: 20,

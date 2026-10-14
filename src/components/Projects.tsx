@@ -451,7 +451,7 @@ export default function Projects() {
           <h2 style={{
             fontFamily: "var(--font-poppins)", fontWeight: 700,
             fontSize: "clamp(28px, 3.5vw, 48px)", letterSpacing: "-1px",
-            lineHeight: 1, textTransform: "uppercase", color: "var(--fg)",
+            lineHeight: 1.05, textTransform: "uppercase", color: "var(--fg)",
           }}>
             <RevealWords text={t("projects.h1")} />
           </h2>

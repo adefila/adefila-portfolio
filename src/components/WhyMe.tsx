@@ -281,7 +281,7 @@ export default function WhyMe() {
         className="services-grid whyme-services"
         style={{
           borderTop: "1px solid rgba(0,0,0,0.08)",
-          display: "grid", gridTemplateColumns: "repeat(2, 1fr)", marginBottom: 64,
+          display: "grid", gridTemplateColumns: "repeat(2, 1fr)",
         }}
       >
         {services.map((s, i) => (
