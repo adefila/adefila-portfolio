@@ -16,6 +16,8 @@ import ContactForm from "@/components/ContactForm";
 import Footer from "@/components/Footer";
 import ScrollReveal from "@/components/ScrollReveal";
 import ClickTracking from "@/components/ClickTracking";
+import MobileCTA from "@/components/MobileCTA";
+import CalendlyPopup from "@/components/CalendlyPopup";
 
 export default function Home() {
   return (
@@ -30,6 +32,7 @@ export default function Home() {
       <Preloader />
       <ScrollReveal />
       <ClickTracking />
+      <CalendlyPopup />
       <Navbar />
       <Hero />
       <ClientGrid />
@@ -45,6 +48,7 @@ export default function Home() {
       <FAQ />
       <ContactForm />
       <Footer />
+      <MobileCTA />
     </main>
   );
 }

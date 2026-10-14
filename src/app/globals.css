@@ -208,6 +208,39 @@ html[data-reveal-ready] [data-reveal]:not([data-revealed]) {
   .skeleton { animation: none; }
 }
 
+/* Phone-only "Book a call" bar (MobileCTA.tsx) */
+.mobile-cta {
+  display: none;
+}
+@media (max-width: 768px) {
+  .mobile-cta {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 190;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
+    background: var(--white);
+    border-top: 1px solid rgba(0,0,0,0.08);
+    box-shadow: 0 -8px 24px rgba(15,15,15,0.08);
+    transform: translateY(110%);
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .mobile-cta.is-visible {
+    transform: translateY(0);
+  }
+  /* Lift the floating language switcher above the bar while it's showing */
+  .lang-switcher {
+    transition: bottom 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  html[data-mobile-cta] .lang-switcher {
+    bottom: 88px !important;
+  }
+}
+
 /* Faint square grid behind a section's content (light and dark variants) */
 .grid-texture {
   position: relative;
