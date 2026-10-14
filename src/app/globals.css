@@ -603,11 +603,6 @@ html[data-reveal-ready] [data-reveal]:not([data-revealed]) {
 
 /* ── Elite details ── */
 
-/* Hide native cursor on pointer devices only */
-@media (hover: hover) {
-  * { cursor: none !important; }
-}
-
 /* Project row hover handled entirely via inline styles in Projects.tsx */
 
 /* CTA Book button hover */
