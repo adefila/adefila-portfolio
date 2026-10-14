@@ -241,14 +241,14 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.3, ease: SPRING }}
           style={{ position: "relative", width: "100%", maxWidth: 420, justifySelf: "end" }}
         >
-          <div style={{ position: "relative", width: "100%", aspectRatio: "3 / 4", overflow: "hidden", background: "var(--card-bg)" }}>
+          <div style={{ position: "relative", width: "100%", aspectRatio: "5 / 6", overflow: "hidden", background: "#fff" }}>
             <Image
-              src="/gallery/photo-1.jpeg"
+              src="/samuel-portrait.webp"
               alt="Samuel Adefila"
               fill
               priority
               sizes="(max-width: 768px) 90vw, 420px"
-              style={{ objectFit: "cover", objectPosition: "50% 20%" }}
+              style={{ objectFit: "cover", objectPosition: "50% 30%" }}
             />
           </div>
 
