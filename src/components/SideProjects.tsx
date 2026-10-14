@@ -279,7 +279,7 @@ export default function SideProjects() {
         </div>
 
         {/* Dot indicators */}
-        <div style={{ display: "flex", gap: 8, justifyContent: "center" }}>
+        <div style={{ display: "flex", gap: 0, justifyContent: "center" }}>
           {projects.map((_, i) => (
             <button
               key={i}
@@ -287,7 +287,9 @@ export default function SideProjects() {
               aria-label={`Go to project ${i + 1}`}
               style={{
                 width: i === active ? 24 : 8, height: 8,
-                border: "none", cursor: "pointer", padding: 0,
+                // 8px dot inside a 24px tap area
+                border: "none", cursor: "pointer", padding: 8,
+                boxSizing: "content-box", backgroundClip: "content-box",
                 background: i === active ? "#fff" : "rgba(255,255,255,0.2)",
                 transition: "width 0.3s ease, background 0.2s",
               }}

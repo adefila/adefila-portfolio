@@ -3,6 +3,8 @@ import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import ClientGrid from "@/components/ClientGrid";
 import Projects from "@/components/Projects";
+import CaseStudies from "@/components/CaseStudies";
+import Teardown from "@/components/Teardown";
 import MidCTA from "@/components/MidCTA";
 import WhyMe from "@/components/WhyMe";
 import HowIWork from "@/components/HowIWork";
@@ -15,6 +17,9 @@ import FAQ from "@/components/FAQ";
 import ContactForm from "@/components/ContactForm";
 import Footer from "@/components/Footer";
 import ScrollReveal from "@/components/ScrollReveal";
+import ClickTracking from "@/components/ClickTracking";
+import MobileCTA from "@/components/MobileCTA";
+import CalendlyPopup from "@/components/CalendlyPopup";
 
 export default function Home() {
   return (
@@ -28,14 +33,18 @@ export default function Home() {
     >
       <Preloader />
       <ScrollReveal />
+      <ClickTracking />
+      <CalendlyPopup />
       <Navbar />
       <Hero />
       <ClientGrid />
       <Projects />
+      <CaseStudies />
       <MidCTA />
       <WhyMe />
       <HowIWork />
       <Pricing />
+      <Teardown />
       <Testimonials />
       <About />
       <Currently />
@@ -43,6 +52,7 @@ export default function Home() {
       <FAQ />
       <ContactForm />
       <Footer />
+      <MobileCTA />
     </main>
   );
 }

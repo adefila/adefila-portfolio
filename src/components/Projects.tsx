@@ -275,7 +275,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
             transition: `filter 0.4s ${SPRING}, transform 0.7s ${SPRING}`,
           }}
           quality={90}
-          priority={index < 4}
+          loading={index < 2 ? "eager" : "lazy"}
         />
       )}
     </div>

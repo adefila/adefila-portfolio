@@ -25,7 +25,7 @@ export default function LanguageSwitcher() {
   }, [open]);
 
   return (
-    <div ref={ref} style={{ position: "fixed", bottom: 28, right: 28, zIndex: 5000 }}>
+    <div ref={ref} className="lang-switcher" style={{ position: "fixed", bottom: 28, right: 28, zIndex: 5000 }}>
       <AnimatePresence>
         {open && (
           <motion.div

@@ -5,6 +5,7 @@ import { ArrowDown, CalendarDays, Star } from "lucide-react";
 import Image from "next/image";
 import MagneticButton from "./MagneticButton";
 import { useLang } from "@/context/LangContext";
+import { useNextStartMonth } from "@/lib/availability";
 
 const EASE = "cubic-bezier(0.22, 1, 0.36, 1)";
 const SPRING = [0.22, 1, 0.36, 1] as [number, number, number, number];
@@ -59,7 +60,8 @@ const tagStyle: React.CSSProperties = {
 };
 
 export default function Hero() {
-  const { t } = useLang();
+  const { t, lang } = useLang();
+  const nextStart = useNextStartMonth(lang);
   const words = t("hero.h2.words").split("|");
 
   return (
@@ -108,7 +110,7 @@ export default function Hero() {
             </span>
             <span style={{ width: 3, height: 3, borderRadius: "50%", background: "var(--fg-muted)", display: "inline-block" }} />
             <span style={{ fontFamily: "var(--font-inter)", fontWeight: 500, fontSize: 11, letterSpacing: "0.06em", textTransform: "uppercase", color: "var(--fg-secondary)" }}>
-              {t("hero.badge2")}
+              {t("hero.badge2").replace("{date}", nextStart)}
             </span>
           </div>
 
@@ -234,19 +236,18 @@ export default function Hero() {
         </div>
 
         {/* Portrait with floating proof tags */}
-        <motion.div
+        {/* CSS fade (not JS) so the portrait — the page's main image — shows without waiting for scripts */}
+        <div
           className="hero-portrait"
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.3, ease: SPRING }}
-          style={{ position: "relative", width: "100%", maxWidth: 420, justifySelf: "end" }}
+          style={{ position: "relative", width: "100%", maxWidth: 420, justifySelf: "end", animation: `heroFadeUp 0.6s 0.1s ${EASE} both` }}
         >
           <div style={{ position: "relative", width: "100%", aspectRatio: "5 / 6", overflow: "hidden", background: "#fff" }}>
             <Image
               src="/samuel-portrait.webp"
               alt="Samuel Adefila"
               fill
-              priority
+              loading="eager"
+              fetchPriority="high"
               sizes="(max-width: 768px) 90vw, 420px"
               style={{ objectFit: "cover", objectPosition: "50% 30%" }}
             />
@@ -271,7 +272,7 @@ export default function Hero() {
             <span style={{ width: 8, height: 8, borderRadius: "50%", background: "var(--accent-green)" }} />
             {t("hero.tagShipped")}
           </motion.div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

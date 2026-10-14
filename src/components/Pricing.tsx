@@ -185,6 +185,7 @@ export default function Pricing() {
 
             <a
               href="https://calendly.com/adefilasamuel929/30min"
+              data-track-label={plan.name}
               target="_blank"
               rel="noopener noreferrer"
               style={{

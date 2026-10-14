@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 
 const SPRING = [0.22, 1, 0.36, 1] as [number, number, number, number];
-const EXIT   = [0.76, 0, 0.24, 1] as [number, number, number, number];
 
 export default function Preloader() {
   const [visible, setVisible] = useState(true);
@@ -28,7 +27,7 @@ export default function Preloader() {
       return () => clearTimeout(t);
     }
 
-    const duration = 1900;
+    const duration = 700;
     const start    = performance.now();
 
     const tick = (ts: number) => {
@@ -38,7 +37,9 @@ export default function Preloader() {
       if (progress < 1) {
         requestAnimationFrame(tick);
       } else {
-        setTimeout(() => setVisible(false), 280);
+        // CSS slides the overlay away on its own (see .preloader in globals.css);
+        // this just removes it from the page once that has finished
+        setTimeout(() => setVisible(false), 700);
       }
     };
 
@@ -54,11 +55,6 @@ export default function Preloader() {
           className="preloader"
           role="status"
           aria-label="Loading portfolio"
-          exit={reducedMotion ? { opacity: 0 } : { y: "-100%" }}
-          transition={reducedMotion
-            ? { duration: 0.2 }
-            : { duration: 0.78, ease: EXIT }
-          }
           style={{
             position: "fixed",
             inset: 0,
@@ -109,15 +105,7 @@ export default function Preloader() {
                 overflow: "hidden",
               }}
             >
-              <motion.div
-                initial={{ scaleX: 0 }}
-                animate={{ scaleX: reducedMotion ? 1 : 1 }}
-                transition={reducedMotion
-                  ? { duration: 0 }
-                  : { duration: 1.9, ease: SPRING }
-                }
-                style={{ height: "100%", background: "#fff", transformOrigin: "left" }}
-              />
+              <div className="preloader-bar" style={{ height: "100%", background: "#fff", transformOrigin: "left" }} />
             </motion.div>
           </div>
 

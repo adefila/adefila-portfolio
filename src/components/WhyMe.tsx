@@ -122,7 +122,7 @@ const BENEFIT_ISO_ICONS = [IsoSpeedIcon, IsoAudienceIcon, IsoOwnershipIcon, IsoT
 const STAT_VALUES = [
   { value: 50, suffix: "+" },
   { value: 100, suffix: "%" },
-  { value: 5, suffix: "+" },
+  { value: 6, suffix: "+" }, // since 2020, matches the About section
 ];
 
 

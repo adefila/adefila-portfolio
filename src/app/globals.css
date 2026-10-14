@@ -5,11 +5,34 @@ html[data-preloader-seen] .preloader {
   display: none !important;
 }
 
+/* Preloader timing lives in CSS so it leaves on time even on slow phones,
+   where scripts can take seconds to start. Bar fills, then the overlay slides up. */
+.preloader {
+  animation: preloader-out 0.55s cubic-bezier(0.76, 0, 0.24, 1) 0.85s forwards;
+}
+.preloader-bar {
+  animation: preloader-fill 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@keyframes preloader-out {
+  to { transform: translateY(-100%); visibility: hidden; }
+}
+@keyframes preloader-fill {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .preloader { animation: preloader-fade 0.2s 0.3s forwards; }
+  .preloader-bar { animation: none; }
+}
+@keyframes preloader-fade {
+  to { opacity: 0; visibility: hidden; }
+}
+
 :root {
   --bg: #F7F7F7;
   --fg: #0f0f0f;
   --fg-secondary: #545c68;
-  --fg-muted: #9ca3af;
+  --fg-muted: #6b7280;
   --fg-label: #1a1a1a;
   --accent-green: rgb(0, 171, 74);
   --accent-purple: #6d28d9;
@@ -183,6 +206,143 @@ html[data-reveal-ready] [data-reveal]:not([data-revealed]) {
 }
 @media (prefers-reduced-motion: reduce) {
   .skeleton { animation: none; }
+}
+
+/* Phone-only "Book a call" bar (MobileCTA.tsx) */
+.mobile-cta {
+  display: none;
+}
+@media (max-width: 768px) {
+  .mobile-cta {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 190;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
+    background: var(--white);
+    border-top: 1px solid rgba(0,0,0,0.08);
+    box-shadow: 0 -8px 24px rgba(15,15,15,0.08);
+    transform: translateY(110%);
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .mobile-cta.is-visible {
+    transform: translateY(0);
+  }
+  /* Lift the floating language switcher above the bar while it's showing */
+  .lang-switcher {
+    transition: bottom 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  html[data-mobile-cta] .lang-switcher {
+    bottom: 88px !important;
+  }
+}
+
+/* Case studies: three result cards */
+.cases-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.case-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--white);
+  border: 1px solid rgba(0,0,0,0.07);
+  padding: 28px;
+}
+.case-link,
+.case-video-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-inter);
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--fg);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.case-video-link {
+  gap: 10px;
+  font-size: 12px;
+}
+.case-link:hover,
+.case-video-link:hover {
+  color: var(--accent-purple);
+}
+@media (max-width: 900px) {
+  .cases-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Free teardown offer: dark band with the form on the right */
+.teardown-box {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 40px;
+  background: var(--dark-bg);
+  padding: 48px;
+}
+.teardown-input {
+  width: 100%;
+  padding: 14px 16px;
+  font-family: var(--font-inter);
+  font-size: 16px;
+  color: #fff;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.16);
+  border-radius: 0;
+  outline: none;
+  transition: border-color 0.18s;
+}
+.teardown-input::placeholder {
+  color: rgba(255,255,255,0.5);
+}
+.teardown-input:focus {
+  border-color: var(--accent-purple);
+}
+.teardown-submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 15px 24px;
+  font-family: var(--font-inter);
+  font-weight: 600;
+  font-size: 14px;
+  color: #fff;
+  background: var(--accent-purple);
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.teardown-submit:hover {
+  background: #5b21b6;
+}
+.teardown-submit:disabled {
+  opacity: 0.7;
+  cursor: wait;
+}
+@media (max-width: 768px) {
+  .teardown-box {
+    padding: 32px 20px;
+    gap: 28px;
+  }
+  #results {
+    padding-top: 64px !important;
+    padding-bottom: 64px !important;
+  }
+  #teardown {
+    padding-bottom: 64px !important;
+  }
 }
 
 /* Faint square grid behind a section's content (light and dark variants) */
