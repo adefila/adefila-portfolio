@@ -1,7 +1,7 @@
 ﻿"use client";
 import { motion, AnimatePresence } from "framer-motion";
-import { useRef, useState, useEffect, useCallback } from "react";
-import { ChevronLeft, ChevronRight, Play, X } from "lucide-react";
+import { useRef, useState, useEffect } from "react";
+import { Play, X } from "lucide-react";
 import { useLang } from "@/context/LangContext";
 
 type TestimonialItem =
@@ -151,17 +151,11 @@ function Avatar({ name, avatar, logo, size = 44 }: { name: string; avatar: strin
 }
 
 export default function Testimonials() {
-  const [page, setPage] = useState(0);
   const [videoOpen, setVideoOpen] = useState(false);
   const modalVideoRef = useRef<HTMLVideoElement>(null);
   const { t } = useLang();
-  const perPage = 2;
-  const totalPages = Math.ceil(testimonialMeta.length / perPage);
-  const visible = testimonialMeta.slice(page * perPage, page * perPage + perPage);
-
-  const goPage = useCallback((next: number) => {
-    setPage(next);
-  }, []);
+  const video = testimonialMeta.find((m) => m.type === "video");
+  const quotes = testimonialMeta.filter((m): m is Extract<TestimonialItem, { type: "text" }> => m.type === "text");
 
   // Close modal on Escape
   useEffect(() => {
@@ -189,79 +183,39 @@ export default function Testimonials() {
     >
       <div style={{ maxWidth: 1200, margin: "0 auto" }}>
         {/* Header row */}
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "flex-start",
-            marginBottom: 40,
-            flexWrap: "wrap",
-            gap: 24,
-          }}
-        >
-          <div>
-            <motion.p
-              data-reveal
-              style={{
-                fontFamily: "var(--font-inter)",
-                fontWeight: 700,
-                fontSize: 11,
-                letterSpacing: "4px",
-                textTransform: "uppercase",
-                color: "var(--accent-purple)",
-                marginBottom: 16,
-              }}
-            >
-              {t("testimonials.eyebrow")}
-            </motion.p>
-            <motion.h2
-              data-reveal
-              style={{
-                fontFamily: "var(--font-poppins)",
-                fontWeight: 700,
-                fontSize: "clamp(28px, 3.5vw, 48px)",
-                letterSpacing: "-1px",
-                lineHeight: 1.05,
-                textTransform: "uppercase",
-                color: "var(--fg)",
-              }}
-            >
-              {t("testimonials.h1")}
-            </motion.h2>
-          </div>
-
-          {/* Nav arrows */}
-          <div style={{ display: "flex", gap: 8, alignSelf: "flex-end" }}>
-            <button
-              aria-label="Previous testimonials"
-              onClick={() => goPage((page - 1 + totalPages) % totalPages)}
-              style={{
-                width: 44, height: 44, borderRadius: 0,
-                border: "1px solid rgba(0,0,0,0.15)",
-                background: "var(--white)", cursor: "pointer",
-                display: "flex", alignItems: "center", justifyContent: "center",
-              }}
-            >
-              <ChevronLeft size={18} strokeWidth={2} />
-            </button>
-            <button
-              aria-label="Next testimonials"
-              onClick={() => goPage((page + 1) % totalPages)}
-              style={{
-                width: 44, height: 44, borderRadius: 0,
-                border: "1px solid rgba(0,0,0,0.15)",
-                background: "var(--white)", cursor: "pointer",
-                display: "flex", alignItems: "center", justifyContent: "center",
-              }}
-            >
-              <ChevronRight size={18} strokeWidth={2} />
-            </button>
-          </div>
+        <div style={{ marginBottom: 40 }}>
+          <motion.p
+            data-reveal
+            style={{
+              fontFamily: "var(--font-inter)",
+              fontWeight: 700,
+              fontSize: 11,
+              letterSpacing: "4px",
+              textTransform: "uppercase",
+              color: "var(--accent-purple)",
+              marginBottom: 16,
+            }}
+          >
+            {t("testimonials.eyebrow")}
+          </motion.p>
+          <motion.h2
+            data-reveal
+            style={{
+              fontFamily: "var(--font-poppins)",
+              fontWeight: 700,
+              fontSize: "clamp(28px, 3.5vw, 48px)",
+              letterSpacing: "-1px",
+              lineHeight: 1.05,
+              textTransform: "uppercase",
+              color: "var(--fg)",
+            }}
+          >
+            {t("testimonials.h1")}
+          </motion.h2>
         </div>
 
-        {/* Main content: stat card + testimonials */}
-        <div className="testimonials-grid" style={{ display: "grid", gridTemplateColumns: "240px 1fr", gap: 0, alignItems: "stretch" }}>
-          {/* Left: purple stat card */}
+        {/* Featured row: stat, video testimonial, Upwork record */}
+        <div className="testimonials-grid" style={{ display: "grid", gridTemplateColumns: "240px 1.4fr 1fr", gap: 0, alignItems: "stretch" }}>
           <div
             className="testimonials-stat-card"
             data-reveal
@@ -302,141 +256,106 @@ export default function Testimonials() {
             </p>
           </div>
 
-          {/* Right: two testimonial cards */}
-          <div className="testimonials-cards" data-reveal style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 0 }}>
-            {visible.map((item, i) => (
-              <motion.div
-                key={`${page}-${i}`}
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: i * 0.08 }}
-                className="testimonial-card"
+          {video && video.type === "video" && (
+            <div data-reveal className="testimonial-card testimonial-video" style={{ position: "relative", overflow: "hidden", background: "#111", minHeight: 400 }}>
+              {/* Silent preview — plays muted in the card */}
+              <video
+                src={video.video}
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="none"
+                style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }}
+              />
+              <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(0,0,0,0.65) 30%, rgba(0,0,0,0.12) 100%)" }} />
+              <div style={{ position: "relative", zIndex: 1, padding: 28, display: "flex", flexDirection: "column", justifyContent: "space-between", height: "100%", minHeight: "inherit", pointerEvents: "none" }}>
+                <span style={{
+                  display: "inline-block", alignSelf: "flex-start",
+                  fontFamily: "var(--font-inter)", fontWeight: 700, fontSize: 10,
+                  letterSpacing: "3px", textTransform: "uppercase",
+                  color: "#fff", border: "1px solid rgba(255,255,255,0.4)",
+                  padding: "4px 10px",
+                }}>
+                  Video Testimonial
+                </span>
+                <div>
+                  <p style={{ fontFamily: "var(--font-inter)", fontWeight: 700, fontSize: 13, textTransform: "uppercase", letterSpacing: "0.5px", color: "#fff", marginBottom: 4 }}>
+                    {video.name}
+                  </p>
+                  <p style={{ fontFamily: "var(--font-inter)", fontWeight: 400, fontSize: 11, textTransform: "uppercase", letterSpacing: "0.5px", color: "rgba(255,255,255,0.85)" }}>
+                    {video.role}
+                  </p>
+                </div>
+              </div>
+              {/* Play button — full-card overlay button, accessibility-tree-safe */}
+              <button
+                onClick={() => setVideoOpen(true)}
+                aria-label={`Play video testimonial from ${video.name}`}
                 style={{
-                  position: "relative",
-                  overflow: "hidden",
-                  background: "var(--white)",
-                  border: "1px solid rgba(0,0,0,0.07)",
-                  borderLeft: i === 0 ? "none" : "1px solid rgba(0,0,0,0.07)",
-                  minHeight: 400,
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "space-between",
-                  gap: 20,
+                  position: "absolute", inset: 0, zIndex: 2,
+                  width: "100%", height: "100%",
+                  background: "none", border: "none", cursor: "pointer",
+                  display: "flex", alignItems: "center", justifyContent: "center",
                 }}
               >
-                {item.type === "upwork" ? (
-                  <UpworkCard />
-                ) : item.type === "video" ? (
-                  /* ── Video testimonial card ── */
-                  <>
-                    {/* Silent preview — plays muted in the card */}
-                    <video
-                      src={item.video}
-                      autoPlay
-                      muted
-                      loop
-                      playsInline
-                      preload="none"
-                      style={{
-                        position: "absolute", inset: 0,
-                        width: "100%", height: "100%",
-                        objectFit: "cover",
-                      }}
-                    />
-                    {/* Subtle dark vignette */}
-                    <div style={{
-                      position: "absolute", inset: 0,
-                      background: "linear-gradient(to top, rgba(0,0,0,0.65) 30%, rgba(0,0,0,0.12) 100%)",
-                    }} />
-                    {/* Name / role at the bottom */}
-                    <div style={{ position: "relative", zIndex: 1, padding: 28, display: "flex", flexDirection: "column", justifyContent: "space-between", height: "100%", minHeight: 400, pointerEvents: "none" }}>
-                      <span style={{
-                        display: "inline-block", alignSelf: "flex-start",
-                        fontFamily: "var(--font-inter)", fontWeight: 700, fontSize: 10,
-                        letterSpacing: "3px", textTransform: "uppercase",
-                        color: "#fff", border: "1px solid rgba(255,255,255,0.4)",
-                        padding: "4px 10px",
-                      }}>
-                        Video Testimonial
-                      </span>
-                      <div>
-                        <p style={{
-                          fontFamily: "var(--font-inter)", fontWeight: 700, fontSize: 13,
-                          textTransform: "uppercase", letterSpacing: "0.5px",
-                          color: "#fff", marginBottom: 4,
-                        }}>
-                          {item.name}
-                        </p>
-                        <p style={{
-                          fontFamily: "var(--font-inter)", fontWeight: 400, fontSize: 11,
-                          textTransform: "uppercase", letterSpacing: "0.5px",
-                          color: "rgba(255,255,255,0.85)",
-                        }}>
-                          {item.role}
-                        </p>
-                      </div>
-                    </div>
-                    {/* Play button — full-card overlay button, accessibility-tree-safe */}
-                    <button
-                      onClick={() => setVideoOpen(true)}
-                      aria-label={`Play video testimonial from ${item.name}`}
-                      style={{
-                        position: "absolute", inset: 0, zIndex: 2,
-                        width: "100%", height: "100%",
-                        background: "none", border: "none", cursor: "pointer",
-                        display: "flex", alignItems: "center", justifyContent: "center",
-                      }}
-                    >
-                      <div style={{
-                        width: 56, height: 56, borderRadius: "50%",
-                        background: "rgba(255,255,255,0.18)",
-                        backdropFilter: "blur(6px)",
-                        border: "1px solid rgba(255,255,255,0.35)",
-                        display: "flex", alignItems: "center", justifyContent: "center",
-                        transition: "background 0.2s, transform 0.2s",
-                        pointerEvents: "none",
-                      }}>
-                        <Play size={22} fill="#fff" color="#fff" style={{ marginLeft: 3 }} />
-                      </div>
-                    </button>
-                  </>
-                ) : (
-                  /* ── Text testimonial card ── */
-                  <div style={{ padding: 28, display: "flex", flexDirection: "column", justifyContent: "space-between", height: "100%", gap: 20 }}>
+                <div style={{
+                  width: 64, height: 64, borderRadius: "50%",
+                  background: "rgba(255,255,255,0.18)",
+                  backdropFilter: "blur(6px)",
+                  border: "1px solid rgba(255,255,255,0.35)",
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                  pointerEvents: "none",
+                }}>
+                  <Play size={24} fill="#fff" color="#fff" style={{ marginLeft: 3 }} />
+                </div>
+              </button>
+            </div>
+          )}
+
+          <div data-reveal className="testimonial-card testimonial-upwork">
+            <UpworkCard />
+          </div>
+        </div>
+      </div>
+
+      {/* Every written testimonial, scrolling slowly; pauses on hover */}
+      <div className="testimonials-marquee" data-reveal>
+        <div className="testimonials-track">
+          {[0, 1].map((copy) => (
+            <div key={copy} className="testimonials-set" aria-hidden={copy === 1 ? true : undefined}>
+              {quotes.map((item) => (
+                <figure key={item.name} className="quote-card">
+                  <div aria-label="5 out of 5 stars" role="img" style={{ display: "flex", gap: 2, marginBottom: 16 }}>
+                    {[0, 1, 2, 3, 4].map((s) => (
+                      <svg key={s} width="14" height="14" viewBox="0 0 16 16" fill="#f5a524" aria-hidden="true">
+                        <path d="M8 1l1.85 3.75L14 5.5l-3 2.92.71 4.13L8 10.4l-3.71 2.15L5 8.42 2 5.5l4.15-.75L8 1z" />
+                      </svg>
+                    ))}
+                  </div>
+                  <blockquote style={{
+                    fontFamily: "var(--font-inter)", fontWeight: 400,
+                    fontSize: 15, lineHeight: 1.65,
+                    color: "var(--fg-secondary)", letterSpacing: "-0.2px",
+                    margin: 0, flex: 1,
+                  }}>
+                    {t(item.key)}
+                  </blockquote>
+                  <figcaption style={{ display: "flex", alignItems: "center", gap: 12, marginTop: 24 }}>
+                    <Avatar name={item.name} avatar={item.avatar ?? null} logo={item.logo ?? null} size={40} />
                     <div>
-                      <p style={{ fontSize: 96, color: "var(--fg)", opacity: 0.1, lineHeight: 0.8, marginBottom: 8, fontFamily: "var(--font-poppins)", fontWeight: 700 }}>&ldquo;</p>
-                      <p style={{
-                        fontFamily: "var(--font-inter)", fontWeight: 400,
-                        fontSize: 15, lineHeight: 1.65,
-                        color: "var(--fg-secondary)", letterSpacing: "-0.2px",
-                      }}>
-                        {t(item.key)}
+                      <p style={{ fontFamily: "var(--font-inter)", fontWeight: 700, fontSize: 13, textTransform: "uppercase", letterSpacing: "0.5px", color: "var(--fg)", marginBottom: 3 }}>
+                        {item.name}
+                      </p>
+                      <p style={{ fontFamily: "var(--font-inter)", fontWeight: 400, fontSize: 11, textTransform: "uppercase", letterSpacing: "0.5px", color: "var(--fg-secondary)" }}>
+                        {item.role}
                       </p>
                     </div>
-                    <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-                      <Avatar name={item.name} avatar={item.avatar ?? null} logo={item.logo ?? null} size={44} />
-                      <div>
-                        <p style={{
-                          fontFamily: "var(--font-inter)", fontWeight: 700, fontSize: 13,
-                          textTransform: "uppercase", letterSpacing: "0.5px",
-                          color: "var(--fg)", marginBottom: 3,
-                        }}>
-                          {item.name}
-                        </p>
-                        <p style={{
-                          fontFamily: "var(--font-inter)", fontWeight: 400, fontSize: 11,
-                          textTransform: "uppercase", letterSpacing: "0.5px",
-                          color: "var(--fg-secondary)",
-                        }}>
-                          {item.role}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                )}
-              </motion.div>
-            ))}
-          </div>
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
+          ))}
         </div>
       </div>
 

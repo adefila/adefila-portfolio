@@ -443,6 +443,11 @@ export const T: Record<string, Record<LangCode, string>> = {
     en: "SCHEDULE FREE CALL", fr: "PLANIFIER UN APPEL",  es: "PROGRAMAR LLAMADA",   de: "ANRUF PLANEN",
     pt: "AGENDAR CHAMADA",    zh: "预约通话",              ja: "通話を予約",            yo: "ṢÈTÒ ÌPÈPE",
   },
+  // "or email me" link under the mid-page call to action
+  "midcta.email": {
+    en: "or email me",             fr: "ou écrivez-moi",          es: "o escríbeme",             de: "oder schreib mir",
+    pt: "ou me mande um e-mail",   zh: "或给我发邮件",             ja: "またはメールで",            yo: "tàbí fi ímeèlì ránṣẹ́ sí mi",
+  },
   "common.bookCall": {
     en: "BOOK A FREE CALL",   fr: "RÉSERVER UN APPEL",   es: "AGENDAR LLAMADA",     de: "ANRUF BUCHEN",
     pt: "AGENDAR CHAMADA",    zh: "预约免费通话",           ja: "無料通話を予約",        yo: "PADE NÍNÚ ÌPÈ",
@@ -450,7 +455,7 @@ export const T: Record<string, Record<LangCode, string>> = {
 
   // ── Mid-page CTA ─────────────────────────────────────────────────────
   "midcta.headline": {
-    en: "Seen enough?",                fr: "Vu assez?",
+    en: "Seen enough?",                fr: "Vous en avez assez vu ?",
     es: "¿Ya viste suficiente?",       de: "Genug gesehen?",
     pt: "Já viu o suficiente?",        zh: "看够了吗？",
     ja: "十分見ましたか？",               yo: "Ti rí tó bí?",
