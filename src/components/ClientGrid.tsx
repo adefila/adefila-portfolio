@@ -33,9 +33,10 @@ const logoHeight = (aspect: number) => Math.round(Math.min(LOGO_MAX_HEIGHT, Math
 
 const CELLS = 4;
 const SETS = CLIENTS.length / CELLS;
-// Cells swap one at a time in this order so the grid never changes all at once
-const SWAP_ORDER = [0, 2, 1, 3];
-const SWAP_EVERY_MS = 1800;
+// Every few seconds all four cells change in a wave, first to last, each a
+// beat after the one before it.
+const WAVE_EVERY_MS = 3200;
+const WAVE_STAGGER_MS = 160;
 const SPRING = [0.22, 1, 0.36, 1] as [number, number, number, number];
 
 export default function ClientGrid() {
@@ -47,14 +48,20 @@ export default function ClientGrid() {
 
   useEffect(() => {
     if (reducedMotion) return;
-    let step = 0;
+    const timers: ReturnType<typeof setTimeout>[] = [];
     const id = setInterval(() => {
-      const cell = SWAP_ORDER[step % CELLS];
-      step++;
-      if (cell === hoveredCell.current) return;
-      setSets((prev) => prev.map((s, i) => (i === cell ? (s + 1) % SETS : s)));
-    }, SWAP_EVERY_MS);
-    return () => clearInterval(id);
+      timers.length = 0; // the last wave's timers have all fired by now
+      for (let cell = 0; cell < CELLS; cell++) {
+        timers.push(setTimeout(() => {
+          if (cell === hoveredCell.current) return;
+          setSets((prev) => prev.map((s, i) => (i === cell ? (s + 1) % SETS : s)));
+        }, cell * WAVE_STAGGER_MS));
+      }
+    }, WAVE_EVERY_MS);
+    return () => {
+      clearInterval(id);
+      timers.forEach(clearTimeout);
+    };
   }, [reducedMotion]);
 
   return (
