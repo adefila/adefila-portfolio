@@ -32,7 +32,7 @@ function RotatingWord({ words }: { words: string[] }) {
           initial={false}
           animate={{ y: i === active ? "0%" : i < active ? "-110%" : "110%", opacity: i === active ? 1 : 0 }}
           transition={{ duration: 0.6, ease: SPRING }}
-          style={{ gridArea: "1 / 1", whiteSpace: "nowrap" }}
+          style={{ gridArea: "1 / 1", whiteSpace: "nowrap", color: "var(--accent-purple)" }}
         >
           {word}
         </motion.span>
