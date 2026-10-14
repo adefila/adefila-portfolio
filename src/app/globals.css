@@ -117,6 +117,49 @@ html {
   .hero-tag-bottom { right: -20px !important; }
 }
 
+/* Client grid under the hero: 4 across, 2x2 on phones */
+.clients-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid rgba(15,15,15,0.08);
+  border-left: 1px solid rgba(15,15,15,0.08);
+}
+.clients-cell {
+  position: relative;
+  height: 112px;
+  overflow: hidden;
+  border-right: 1px solid rgba(15,15,15,0.08);
+  border-bottom: 1px solid rgba(15,15,15,0.08);
+  background: rgba(255,255,255,0.5);
+}
+.clients-wordmark {
+  font-family: var(--font-poppins);
+  font-weight: 600;
+  font-size: 20px;
+  letter-spacing: -0.03em;
+  color: var(--fg);
+  opacity: 0.7;
+  white-space: nowrap;
+  transition: opacity 0.2s ease;
+}
+.clients-cell:hover .clients-wordmark {
+  opacity: 1;
+}
+@media (max-width: 768px) {
+  .clients-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .clients-cell {
+    height: 88px;
+  }
+  .clients-wordmark {
+    font-size: 16px;
+  }
+  .clients-section {
+    padding-bottom: 8px !important;
+  }
+}
+
 @keyframes heroFadeUp {
   from { opacity: 0; transform: translateY(10px); }
   to   { opacity: 1; transform: translateY(0); }

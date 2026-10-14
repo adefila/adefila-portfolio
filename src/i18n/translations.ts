@@ -369,6 +369,10 @@ export const T: Record<string, Record<LangCode, string>> = {
     en: "50+ sites shipped",       fr: "50+ sites livrés",        es: "50+ sitios entregados",   de: "50+ Websites geliefert",
     pt: "50+ sites entregues",     zh: "已交付 50+ 网站",           ja: "50件以上のサイトを納品",     yo: "50+ ojúewé tí a pé",
   },
+  "clients.label": {
+    en: "Trusted by founders & teams at",   fr: "Ils m'ont fait confiance",      es: "Confían en mí",                de: "Vertrauen von Gründern & Teams bei",
+    pt: "Confiado por fundadores e equipes", zh: "合作过的创始人与团队",          ja: "創業者・チームからの信頼",       yo: "Àwọn tó gbẹ́kẹ̀lé mi",
+  },
   "hero.downloadCv": {
     en: "DOWNLOAD CV",             fr: "TÉLÉCHARGER CV",          es: "DESCARGAR CV",            de: "CV HERUNTERLADEN",
     pt: "BAIXAR CV",               zh: "下载简历",                 ja: "履歴書を取得",              yo: "GBOYE CV",

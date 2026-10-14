@@ -1,6 +1,7 @@
 import Preloader from "@/components/Preloader";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
+import ClientGrid from "@/components/ClientGrid";
 import Projects from "@/components/Projects";
 import MidCTA from "@/components/MidCTA";
 import WhyMe from "@/components/WhyMe";
@@ -27,6 +28,7 @@ export default function Home() {
       <Preloader />
       <Navbar />
       <Hero />
+      <ClientGrid />
       <Projects />
       <MidCTA />
       <WhyMe />
