@@ -77,6 +77,30 @@ html {
 }
 
 /* Hero entrance — CSS-driven so SSR content is visible before JS hydration */
+/* Faint square grid behind a section's content (light and dark variants) */
+.grid-texture {
+  position: relative;
+  isolation: isolate;
+}
+.grid-texture::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(15,15,15,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15,15,15,0.05) 1px, transparent 1px);
+  background-size: 56px 56px;
+  -webkit-mask-image: radial-gradient(ellipse 65% 75% at 50% 40%, black 0%, transparent 75%);
+  mask-image: radial-gradient(ellipse 65% 75% at 50% 40%, black 0%, transparent 75%);
+}
+.grid-texture-dark::before {
+  background-image:
+    linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px);
+}
+
 /* Hero: copy on the left, portrait on the right; stacks below 900px */
 .hero-grid {
   display: grid;
@@ -115,6 +139,49 @@ html {
   }
   .hero-tag-top { left: -20px !important; }
   .hero-tag-bottom { right: -20px !important; }
+}
+
+/* Client grid under the hero: 4 across, 2x2 on phones */
+.clients-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid rgba(15,15,15,0.08);
+  border-left: 1px solid rgba(15,15,15,0.08);
+}
+.clients-cell {
+  position: relative;
+  height: 112px;
+  overflow: hidden;
+  border-right: 1px solid rgba(15,15,15,0.08);
+  border-bottom: 1px solid rgba(15,15,15,0.08);
+  background: rgba(255,255,255,0.5);
+}
+.clients-wordmark {
+  font-family: var(--font-poppins);
+  font-weight: 600;
+  font-size: 20px;
+  letter-spacing: -0.03em;
+  color: var(--fg);
+  opacity: 0.7;
+  white-space: nowrap;
+  transition: opacity 0.2s ease;
+}
+.clients-cell:hover .clients-wordmark {
+  opacity: 1;
+}
+@media (max-width: 768px) {
+  .clients-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .clients-cell {
+    height: 88px;
+  }
+  .clients-wordmark {
+    font-size: 16px;
+  }
+  .clients-section {
+    padding-bottom: 8px !important;
+  }
 }
 
 @keyframes heroFadeUp {

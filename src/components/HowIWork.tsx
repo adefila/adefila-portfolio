@@ -1,6 +1,7 @@
 "use client";
 import { useRef, useEffect, useState, useCallback } from "react";
 import { useLang } from "@/context/LangContext";
+import RevealWords, { revealDelayAfter } from "./RevealWords";
 
 const STEP_DURATION = 4000;
 const E = "cubic-bezier(0.22,1,0.36,1)";
@@ -163,12 +164,12 @@ export default function HowIWork() {
               lineHeight: 1.1, textTransform: "uppercase",
               color: fg, transition: `color ${TRANS}`,
             }}>
-              {t("process.h1")}{" "}
+              <RevealWords text={t("process.h1")} />{" "}
               <span style={{
                 color: isDark ? "rgba(255,255,255,0.45)" : "rgba(0,0,0,0.35)",
                 transition: `color ${TRANS}`,
               }}>
-                {t("process.h1b")}
+                <RevealWords text={t("process.h1b")} delay={revealDelayAfter(t("process.h1"))} />
               </span>
             </h2>
           </div>

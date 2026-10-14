@@ -4,6 +4,7 @@ import { useRef, useState, useEffect } from "react";
 import { ArrowUpRight, Send } from "lucide-react";
 import { useLang } from "@/context/LangContext";
 import { trackEvent } from "@/lib/gtag";
+import RevealWords, { revealDelayAfter } from "./RevealWords";
 
 const EMAIL = "samuel@adefilasamuel.com";
 
@@ -169,6 +170,7 @@ export default function ContactForm() {
   return (
     <section
       id="contact"
+      className="grid-texture"
       style={{
         width: "100%",
         maxWidth: 1200,
@@ -214,9 +216,9 @@ export default function ContactForm() {
               marginBottom: 20,
             }}
           >
-            {t("contact.h1")}{" "}
+            <RevealWords text={t("contact.h1")} />{" "}
             <span style={{ color: "rgb(163,163,163)" }}>
-              {t("contact.h1b")}
+              <RevealWords text={t("contact.h1b")} delay={revealDelayAfter(t("contact.h1"))} />
             </span>
           </motion.h2>
 

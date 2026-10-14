@@ -2,6 +2,7 @@
 import { motion, AnimatePresence, useInView } from "framer-motion";
 import { useState, useRef } from "react";
 import { useLang } from "@/context/LangContext";
+import RevealWords, { revealDelayAfter } from "./RevealWords";
 
 export default function FAQ() {
   const ref = useRef(null);
@@ -68,9 +69,9 @@ export default function FAQ() {
               marginBottom: 20,
             }}
           >
-            {t("faq.h1")}
+            <RevealWords text={t("faq.h1")} />
             <br />
-            {t("faq.h2")}
+            <RevealWords text={t("faq.h2")} delay={revealDelayAfter(t("faq.h1"))} />
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 10 }}
