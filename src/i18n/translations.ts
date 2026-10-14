@@ -986,7 +986,7 @@ export const T: Record<string, Record<LangCode, string>> = {
     ja: "まさにこうやって進めます。",               yo: "bẹ́ẹ̀ ni a ṣe é gan-an.",
   },
   "process.desc": {
-    en: "Most projects are live in 14 days. Day 1 is a call, Day 2 you have a wireframe, Day 14 you're live. That's the schedule. Not a rough estimate.",
+    en: "Most projects are live in 14 days. Day 1 is a call, by Day 4 you've signed off the design, Day 14 you're live. That's the schedule. Not a rough estimate.",
     fr: "La plupart des projets sont livrés en 14 jours. Le délai est serré parce que le processus l'est. Sans ambiguïté, sans attente, sans surprises.",
     es: "La mayoría de proyectos se entregan en 14 días. El plazo es ajustado porque el proceso lo es. Sin ambigüedad, sin esperas, sin sorpresas.",
     de: "Die meisten Projekte gehen in 14 Tagen live. Der Zeitplan ist eng, weil der Prozess eng ist. Keine Unklarheiten, kein Warten, keine Überraschungen.",
@@ -1434,16 +1434,16 @@ export const T: Record<string, Record<LangCode, string>> = {
     pt: "ENTRE EM CONTATO", zh: "联系我",           ja: "お問い合わせ",        yo: "KAN SÍ MI",
   },
   "contact.h1": {
-    en: "NOT READY FOR A CALL?",           fr: "PAS PRÊT POUR UN APPEL?",
-    es: "¿NO LISTO PARA UNA LLAMADA?",     de: "NOCH NICHT BEREIT FÜR EIN GESPRÄCH?",
-    pt: "NÃO PRONTO PARA UMA CHAMADA?",   zh: "还没准备好通话？",
-    ja: "まだ通話の準備はできていませんか？", yo: "ṢÉ O ṢÌ ṢETÁN FÚN ÌPÈ?",
+    en: "HAVE A PROJECT IN MIND?",         fr: "UN PROJET EN TÊTE ?",
+    es: "¿TIENES UN PROYECTO EN MENTE?",   de: "EIN PROJEKT IM KOPF?",
+    pt: "TEM UM PROJETO EM MENTE?",        zh: "有项目想法？",
+    ja: "プロジェクトをお考えですか？",      yo: "ṢÉ O NÍ IṢẸ́ KAN LỌ́KÀN?",
   },
   "contact.h1b": {
-    en: "JUST DROP A MESSAGE.",            fr: "ENVOYEZ UN MESSAGE.",
-    es: "SOLO ENVÍA UN MENSAJE.",          de: "EINFACH EINE NACHRICHT SCHICKEN.",
-    pt: "APENAS ENVIE UMA MENSAGEM.",      zh: "直接发条消息。",
-    ja: "メッセージを送るだけ。",            yo: "FI ÌFIRANṢẸ́ RÁNṢẸ́ NÌKAN.",
+    en: "TELL ME ABOUT IT.",               fr: "PARLEZ-M'EN.",
+    es: "CUÉNTAMELO.",                     de: "ERZÄHLEN SIE MIR DAVON.",
+    pt: "ME CONTE SOBRE ELE.",             zh: "跟我聊聊。",
+    ja: "ぜひ聞かせてください。",            yo: "SỌ FÚN MI NÍPA RẸ̀.",
   },
   "contact.desc": {
     en: "Tell me what you're working on and I'll come back to you within 24 hours with an honest take on whether I can help. And what that would look like.",

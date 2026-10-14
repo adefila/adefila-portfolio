@@ -13,6 +13,7 @@ const PROJECTS_BASE = [
     stack: ["Claude API", "Next.js"],
     href: "https://cvcraftai.vercel.app/",
     video: "/Cvcraft.mp4",
+    poster: "/side-projects/Cvcraft-poster.webp",
     taglineKey: "sideprojects.p0.tagline",
   },
   {
@@ -22,6 +23,7 @@ const PROJECTS_BASE = [
     stack: ["Next.js", "FFmpeg WASM"],
     href: "https://video-compressor-bay.vercel.app/",
     video: "/video-compressor.mp4",
+    poster: "/side-projects/video-compressor-poster.webp",
     taglineKey: "sideprojects.p1.tagline",
   },
   {
@@ -31,6 +33,7 @@ const PROJECTS_BASE = [
     stack: ["Chrome Extension", "Recall.ai", "Claude AI"],
     href: "#",
     video: "/MeetBot.mp4",
+    poster: "/side-projects/MeetBot-poster.webp",
     taglineKey: "sideprojects.p2.tagline",
   },
 ];
@@ -241,12 +244,14 @@ export default function SideProjects() {
 
           {/* Video — only mount the element once section is visible */}
           <div className="sp-video" style={{
-            position: "relative", overflow: "hidden", minHeight: 360, background: "#111",
+            position: "relative", overflow: "hidden", minHeight: 360,
+            background: `#111 url(${project.poster}) center / cover no-repeat`,
           }}>
             {inView && (
               <video
                 key={project.video}
                 src={project.video}
+                poster={project.poster}
                 autoPlay muted loop playsInline preload="none"
                 style={{
                   position: "absolute", inset: 0,

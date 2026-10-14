@@ -77,25 +77,13 @@ export default function BookShelf() {
 
   return (
     <div ref={ref} style={{ width: "100%", position: "relative", overflow: "visible" }}>
-      {/* Ambient light bg */}
-      <div
-        style={{
-          position: "absolute",
-          top: 0,
-          left: "20%",
-          right: "20%",
-          height: 80,
-          background: "radial-gradient(ellipse, rgba(109,40,217,0.06) 0%, transparent 70%)",
-          pointerEvents: "none",
-        }}
-      />
-
       {/* Scrollable scene */}
       <div style={{ overflowX: "auto", overflowY: "visible", paddingTop: isMobile ? 48 : 64, paddingBottom: 0 }}>
         <div
           style={{
             display: "flex",
             alignItems: "flex-end",
+            justifyContent: "center",
             gap: 6,
             padding: "0 28px",
             width: "max-content",
@@ -297,7 +285,7 @@ export default function BookShelf() {
                             fontFamily: "var(--font-inter)",
                             fontSize: 8,
                             fontWeight: 700,
-                            letterSpacing: "1.5px",
+                            letterSpacing: isMobile ? "0.5px" : "1.5px",
                             textTransform: "uppercase",
                             color: book.accentColor,
                           }}
