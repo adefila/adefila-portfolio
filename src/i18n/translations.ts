@@ -269,6 +269,22 @@ export const T: Record<string, Record<LangCode, string>> = {
     en: "CURRENTLY",                fr: "EN CE MOMENT",              es: "ACTUALMENTE",              de: "AKTUELL",
     pt: "ATUALMENTE",               zh: "当前",                       ja: "いま",                      yo: "NÍ BÁYÌÍ",
   },
+  "currently.nowPlaying": {
+    en: "Now playing",             fr: "En écoute",               es: "Sonando ahora",           de: "Läuft gerade",
+    pt: "Tocando agora",           zh: "正在播放",                  ja: "再生中",                    yo: "Ń dún báyìí",
+  },
+  "currently.recent": {
+    en: "Recently played",         fr: "Écouté récemment",        es: "Escuchado recientemente", de: "Zuletzt gehört",
+    pt: "Ouvido recentemente",     zh: "最近播放",                  ja: "最近の再生",                yo: "Tí mo gbọ́ láìpẹ́",
+  },
+  "currently.listen": {
+    en: "Listen on Spotify",       fr: "Écouter sur Spotify",     es: "Escuchar en Spotify",     de: "Auf Spotify hören",
+    pt: "Ouvir no Spotify",        zh: "在 Spotify 上收听",          ja: "Spotifyで聴く",             yo: "Gbọ́ lórí Spotify",
+  },
+  "currently.reading": {
+    en: "Currently reading",       fr: "Lecture en cours",        es: "Leyendo ahora",           de: "Lese gerade",
+    pt: "Lendo agora",             zh: "正在阅读",                  ja: "読書中",                    yo: "Ohun tí mo ń kà",
+  },
 
   // ── Nav ──────────────────────────────────────────────────────────────
   "nav.work": {
