@@ -190,13 +190,14 @@ export default function About() {
               style={{
                 fontFamily: "var(--font-inter)",
                 fontWeight: 600,
+                lineHeight: "20px",
                 fontSize: 13,
                 letterSpacing: "0.5px",
                 textTransform: "uppercase",
                 color: "var(--fg)",
                 background: "transparent",
                 border: "1px solid rgba(0,0,0,0.2)",
-                padding: "11px 22px",
+                padding: "13px 25px",
                 textDecoration: "none",
                 alignItems: "center",
                 gap: 8,
@@ -304,7 +305,7 @@ export default function About() {
           letterSpacing: "4px",
           textTransform: "uppercase",
           color: "var(--accent-purple)",
-          marginBottom: 20,
+          marginBottom: 24,
         }}>
           {t("about.photoLabel")}
         </p>

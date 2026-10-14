@@ -23,6 +23,16 @@ function allowed(ip: string): boolean {
   return true;
 }
 
+// ── Input hygiene ─────────────────────────────────────────────────────────────
+// Everything a visitor types is untrusted. It goes into HTML emails sent from
+// Samuel's own address (including a confirmation to whatever email they enter),
+// so it is length-capped, and escaped before it touches any HTML.
+const clean = (v: unknown, max: number) => (typeof v === "string" ? v.trim().slice(0, max) : "");
+const escapeHtml = (v: string) =>
+  v.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+const oneLine = (v: string) => v.replace(/[\r\n]+/g, " ");
+const EMAIL_RE = /^[^\s@<>"']+@[^\s@<>"']+\.[^\s@<>"']+$/;
+
 // One professional address for everything: enquiries arrive here, confirmations are sent
 // from here, and client replies come back here. adefilasamuel.com is verified with Resend.
 const CONTACT_EMAIL = "samuel@adefilasamuel.com";
@@ -62,7 +72,13 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Too many submissions. Try again later." }, { status: 429 });
     }
 
-    const { name, email, service, budget, message, _h, _t } = await req.json();
+    const body = await req.json();
+    const { _h, _t } = body;
+    const name = oneLine(clean(body.name, 100));
+    const email = clean(body.email, 200);
+    const service = oneLine(clean(body.service, 100));
+    const budget = oneLine(clean(body.budget, 100));
+    const message = clean(body.message, 5000);
 
     // Honeypot: bots fill the hidden field, humans leave it empty
     if (_h) {
@@ -77,8 +93,23 @@ export async function POST(req: Request) {
     if (!name || !email || !message) {
       return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
     }
+    if (!EMAIL_RE.test(email)) {
+      return NextResponse.json({ error: "Invalid email" }, { status: 400 });
+    }
 
     const firstName = name.split(" ")[0];
+
+    // HTML-safe copies for the email bodies
+    const h = {
+      name: escapeHtml(name),
+      email: escapeHtml(email),
+      emailUrl: encodeURIComponent(email),
+      service: escapeHtml(service),
+      budget: escapeHtml(budget),
+      message: escapeHtml(message),
+      messagePreview: escapeHtml(message.length > 300 ? message.slice(0, 300) + "…" : message),
+      firstName: escapeHtml(firstName),
+    };
 
     // ── 1. Notify Samuel ────────────────────────────────────────────────────
     const resend = getResend();
@@ -104,7 +135,7 @@ export async function POST(req: Request) {
     <td style="background:#0f0f0f;padding:40px 48px 36px;">
       <p style="margin:0 0 20px;font-family:Arial,sans-serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.4);">PORTFOLIO · CONTACT FORM</p>
       <h1 style="margin:0 0 6px;font-family:Arial,sans-serif;font-size:32px;font-weight:700;color:#ffffff;letter-spacing:-0.5px;line-height:1.1;">NEW ENQUIRY</h1>
-      <p style="margin:0;font-family:Arial,sans-serif;font-size:14px;color:rgba(255,255,255,0.45);letter-spacing:0.3px;">from <strong style="color:rgba(255,255,255,0.75);font-weight:600;">${name}</strong></p>
+      <p style="margin:0;font-family:Arial,sans-serif;font-size:14px;color:rgba(255,255,255,0.45);letter-spacing:0.3px;">from <strong style="color:rgba(255,255,255,0.75);font-weight:600;">${h.name}</strong></p>
     </td>
   </tr>
 
@@ -112,14 +143,14 @@ export async function POST(req: Request) {
   <tr>
     <td style="background:#ffffff;padding:40px 48px 8px;">
       <table width="100%" cellpadding="0" cellspacing="0">
-        ${row("Name", name)}
-        ${row("Email", `<a href="mailto:${email}" style="color:#0f0f0f;text-decoration:underline;">${email}</a>`)}
-        ${service ? row("Service", service) : ""}
-        ${budget  ? row("Budget",  budget)  : ""}
+        ${row("Name", h.name)}
+        ${row("Email", `<a href="mailto:${h.emailUrl}" style="color:#0f0f0f;text-decoration:underline;">${h.email}</a>`)}
+        ${service ? row("Service", h.service) : ""}
+        ${budget  ? row("Budget",  h.budget)  : ""}
         <tr>
           <td style="padding:20px 0 0;">
             <p style="margin:0 0 10px;font-family:Arial,sans-serif;font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:#b0b0b0;">Message</p>
-            <p style="margin:0;font-family:Arial,sans-serif;font-size:15px;color:#333333;line-height:1.75;white-space:pre-wrap;">${message}</p>
+            <p style="margin:0;font-family:Arial,sans-serif;font-size:15px;color:#333333;line-height:1.75;white-space:pre-wrap;">${h.message}</p>
           </td>
         </tr>
       </table>
@@ -129,8 +160,8 @@ export async function POST(req: Request) {
   <!-- CTA -->
   <tr>
     <td style="background:#ffffff;padding:32px 48px 48px;">
-      <a href="mailto:${email}?subject=Re%3A Your project enquiry" style="display:inline-block;background:#0f0f0f;color:#ffffff;font-family:Arial,sans-serif;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:16px 32px;text-decoration:none;">
-        REPLY TO ${name.toUpperCase()} &rarr;
+      <a href="mailto:${h.emailUrl}?subject=Re%3A Your project enquiry" style="display:inline-block;background:#0f0f0f;color:#ffffff;font-family:Arial,sans-serif;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:16px 32px;text-decoration:none;">
+        REPLY TO ${escapeHtml(name.toUpperCase())} &rarr;
       </a>
     </td>
   </tr>
@@ -188,7 +219,7 @@ export async function POST(req: Request) {
   <!-- Body -->
   <tr>
     <td style="background:#ffffff;padding:44px 48px 12px;">
-      <p style="margin:0 0 10px;font-family:Arial,sans-serif;font-size:22px;font-weight:700;color:#0f0f0f;letter-spacing:-0.3px;">Hey ${firstName},</p>
+      <p style="margin:0 0 10px;font-family:Arial,sans-serif;font-size:22px;font-weight:700;color:#0f0f0f;letter-spacing:-0.3px;">Hey ${h.firstName},</p>
       <p style="margin:0 0 16px;font-family:Arial,sans-serif;font-size:15px;color:#555555;line-height:1.75;">
         I've received your message and will review it shortly. I typically get back within <strong style="color:#0f0f0f;">24–48 hours</strong> on business days.
       </p>
@@ -216,15 +247,15 @@ export async function POST(req: Request) {
         </tr>
         ${service ? `<tr><td style="padding:10px 0;border-bottom:1px solid #f3f3f3;">
           <p style="margin:0 0 2px;font-family:Arial,sans-serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#c0c0c0;">Service</p>
-          <p style="margin:0;font-family:Arial,sans-serif;font-size:14px;color:#0f0f0f;font-weight:500;">${service}</p>
+          <p style="margin:0;font-family:Arial,sans-serif;font-size:14px;color:#0f0f0f;font-weight:500;">${h.service}</p>
         </td></tr>` : ""}
         ${budget ? `<tr><td style="padding:10px 0;border-bottom:1px solid #f3f3f3;">
           <p style="margin:0 0 2px;font-family:Arial,sans-serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#c0c0c0;">Budget</p>
-          <p style="margin:0;font-family:Arial,sans-serif;font-size:14px;color:#0f0f0f;font-weight:500;">${budget}</p>
+          <p style="margin:0;font-family:Arial,sans-serif;font-size:14px;color:#0f0f0f;font-weight:500;">${h.budget}</p>
         </td></tr>` : ""}
         <tr><td style="padding:14px 0 0;">
           <p style="margin:0 0 6px;font-family:Arial,sans-serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#c0c0c0;">Message</p>
-          <p style="margin:0;font-family:Arial,sans-serif;font-size:14px;color:#666666;line-height:1.7;white-space:pre-wrap;">${message.length > 300 ? message.slice(0, 300) + "…" : message}</p>
+          <p style="margin:0;font-family:Arial,sans-serif;font-size:14px;color:#666666;line-height:1.7;white-space:pre-wrap;">${h.messagePreview}</p>
         </td></tr>
       </table>
     </td>

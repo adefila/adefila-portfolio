@@ -56,7 +56,7 @@ export default function Currently() {
             letterSpacing: "4px",
             textTransform: "uppercase",
             color: "var(--accent-purple)",
-            marginBottom: 32,
+            marginBottom: 24,
           }}
         >
           {t("currently.label")}

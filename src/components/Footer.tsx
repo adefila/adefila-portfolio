@@ -106,7 +106,7 @@ export default function Footer() {
           }}
         >
           {/* Left: headline + subheading */}
-          <div style={{ flex: "1 1 480px", maxWidth: 600 }}>
+          <div style={{ flex: "1 1 560px" }}>
             <motion.h2
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -127,7 +127,8 @@ export default function Footer() {
                 const s = t("footer.cta");
                 const mid = s.indexOf(". ");
                 if (mid < 0) return s;
-                return <>{s.slice(0, mid + 1)}<br />{s.slice(mid + 2)}</>;
+                // Each sentence on its own line, kept whole on desktop (see .footer-cta-line)
+                return <><span className="footer-cta-line">{s.slice(0, mid + 1)}</span><br /><span className="footer-cta-line">{s.slice(mid + 2)}</span></>;
               })()}
             </motion.h2>
             <motion.p
@@ -168,13 +169,15 @@ export default function Footer() {
                 gap: 8,
                 fontFamily: "var(--font-inter)",
                 fontWeight: 600,
-                fontSize: 14,
+                textTransform: "uppercase",
+                lineHeight: "20px",
+                fontSize: 13,
                 color: "var(--accent-purple)",
                 background: "var(--white)",
-                padding: "14px 28px",
+                padding: "14px 26px",
                 borderRadius: 0,
                 textDecoration: "none",
-                letterSpacing: "-0.2px",
+                letterSpacing: "0.5px",
                 whiteSpace: "nowrap",
               }}
             >

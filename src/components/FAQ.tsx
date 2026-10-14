@@ -72,7 +72,7 @@ export default function FAQ() {
             style={{
               fontFamily: "var(--font-inter)",
               fontWeight: 400,
-              fontSize: 14,
+              fontSize: 15,
               letterSpacing: "-0.3px",
               lineHeight: 1.7,
               color: "var(--fg-secondary)",
