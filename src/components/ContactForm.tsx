@@ -11,14 +11,11 @@ const EMAIL = "samuel@adefilasamuel.com";
 function CopyEmailRow() {
   const [copied, setCopied] = useState(false);
   const [hovered, setHovered] = useState(false);
-  const [canHover, setCanHover] = useState(false);
-
-  useEffect(() => {
-    setCanHover(window.matchMedia("(hover: hover)").matches);
-  }, []);
+  // Checked at the moment of the event: copy-on-click only on devices with a real hover
+  const canHover = () => window.matchMedia("(hover: hover)").matches;
 
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    if (!canHover) return;
+    if (!canHover()) return;
     e.preventDefault();
     navigator.clipboard.writeText(EMAIL).then(() => {
       setCopied(true);
@@ -30,7 +27,7 @@ function CopyEmailRow() {
     <a
       href={`mailto:${EMAIL}`}
       onClick={handleClick}
-      onMouseEnter={() => canHover && setHovered(true)}
+      onMouseEnter={() => canHover() && setHovered(true)}
       onMouseLeave={() => { setHovered(false); }}
       style={{
         display: "flex",
@@ -106,13 +103,6 @@ export default function ContactForm() {
 
   useEffect(() => { loadedAt.current = Date.now(); }, []);
 
-  useEffect(() => {
-    if (status !== "success") return;
-    setCountdown(5);
-    const interval = setInterval(() => setCountdown((c) => c - 1), 1000);
-    const reset = setTimeout(() => { setStatus("idle"); setForm({ name: "", email: "", service: "", budget: "", message: "" }); }, 5000);
-    return () => { clearInterval(interval); clearTimeout(reset); };
-  }, [status]);
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -120,6 +110,14 @@ export default function ContactForm() {
     budget: "",
     message: "",
   });
+
+  // After a successful send, count down and reset the form (countdown starts at 5 in handleSubmit)
+  useEffect(() => {
+    if (status !== "success") return;
+    const interval = setInterval(() => setCountdown((c) => c - 1), 1000);
+    const reset = setTimeout(() => { setStatus("idle"); setForm({ name: "", email: "", service: "", budget: "", message: "" }); }, 5000);
+    return () => { clearInterval(interval); clearTimeout(reset); };
+  }, [status]);
 
   const set = (k: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) =>
     setForm((f) => ({ ...f, [k]: e.target.value }));
@@ -135,6 +133,7 @@ export default function ContactForm() {
         body: JSON.stringify({ ...form, _t: loadedAt.current, _h: honey }),
       });
       if (res.ok) {
+        setCountdown(5);
         setStatus("success");
         trackEvent("generate_lead", {
           service: form.service || "unspecified",

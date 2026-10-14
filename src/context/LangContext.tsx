@@ -76,11 +76,14 @@ export function LangProvider({ children }: { children: React.ReactNode }) {
   const [lang, setLangState] = useState<LangCode>("en");
   const [currency, setCurrencyState] = useState<CurrencyCode>("USD");
 
+  // Read the saved/detected language after hydration: the page is pre-rendered in English,
+  // so reading localStorage during render would mismatch the server HTML.
   useEffect(() => {
     try {
       const savedLang = localStorage.getItem("sam-lang") as LangCode | null;
       const savedCurr = localStorage.getItem("sam-currency") as CurrencyCode | null;
       if (savedLang && LANGUAGES.find((l) => l.code === savedLang)) {
+        // eslint-disable-next-line react-hooks/set-state-in-effect -- intentional post-hydration sync, see above
         setLangState(savedLang);
         if (savedCurr && CURRENCIES.find((c) => c.code === savedCurr)) setCurrencyState(savedCurr);
         return;

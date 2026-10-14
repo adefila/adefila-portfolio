@@ -3,21 +3,18 @@ import { motion } from "framer-motion";
 import { ArrowUpRight, CalendarDays } from "lucide-react";
 import MagneticButton from "./MagneticButton";
 import { useLang } from "@/context/LangContext";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 const FOOTER_EMAIL = "samuel@adefilasamuel.com";
 
 function FooterCopyEmail() {
   const [copied, setCopied] = useState(false);
   const [hovered, setHovered] = useState(false);
-  const [canHover, setCanHover] = useState(false);
-
-  useEffect(() => {
-    setCanHover(window.matchMedia("(hover: hover)").matches);
-  }, []);
+  // Checked at the moment of the event: copy-on-click only on devices with a real hover
+  const canHover = () => window.matchMedia("(hover: hover)").matches;
 
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    if (!canHover) return;
+    if (!canHover()) return;
     e.preventDefault();
     navigator.clipboard.writeText(FOOTER_EMAIL).then(() => {
       setCopied(true);
@@ -29,7 +26,7 @@ function FooterCopyEmail() {
     <a
       href={`mailto:${FOOTER_EMAIL}`}
       onClick={handleClick}
-      onMouseEnter={() => canHover && setHovered(true)}
+      onMouseEnter={() => canHover() && setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       style={{
         display: "inline-flex",

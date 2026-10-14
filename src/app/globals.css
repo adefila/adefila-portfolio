@@ -68,18 +68,6 @@ body {
   overflow-x: hidden;
 }
 
-/* Ticker scrolling */
-@keyframes ticker {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
-
-.ticker-track {
-  animation: ticker 30s linear infinite;
-  display: flex;
-  white-space: nowrap;
-}
-
 /* Cursor */
 .custom-cursor {
   position: fixed;
