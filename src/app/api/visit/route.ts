@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { sendToLeadFinder } from "@/lib/leadfinder";
+import { checkLeadFinder, sendToLeadFinder } from "@/lib/leadfinder";
 
 // Page views from VisitBeacon. Forwarded to Lead Finder with the visitor's IP, so it can tell
 // when a company (not a home or phone connection) is looking at the site. No cookies.
@@ -13,4 +13,10 @@ export async function POST(req: Request) {
     referrer: typeof body.referrer === "string" ? body.referrer.slice(0, 200) : "",
   });
   return new NextResponse(null, { status: 204 });
+}
+
+// Health check: /api/visit?check=1 shows whether enquiries can reach Lead Finder.
+export async function GET(req: Request) {
+  if (new URL(req.url).searchParams.get("check") !== "1") return new NextResponse(null, { status: 404 });
+  return NextResponse.json(await checkLeadFinder());
 }
