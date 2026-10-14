@@ -5,11 +5,34 @@ html[data-preloader-seen] .preloader {
   display: none !important;
 }
 
+/* Preloader timing lives in CSS so it leaves on time even on slow phones,
+   where scripts can take seconds to start. Bar fills, then the overlay slides up. */
+.preloader {
+  animation: preloader-out 0.55s cubic-bezier(0.76, 0, 0.24, 1) 0.85s forwards;
+}
+.preloader-bar {
+  animation: preloader-fill 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@keyframes preloader-out {
+  to { transform: translateY(-100%); visibility: hidden; }
+}
+@keyframes preloader-fill {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .preloader { animation: preloader-fade 0.2s 0.3s forwards; }
+  .preloader-bar { animation: none; }
+}
+@keyframes preloader-fade {
+  to { opacity: 0; visibility: hidden; }
+}
+
 :root {
   --bg: #F7F7F7;
   --fg: #0f0f0f;
   --fg-secondary: #545c68;
-  --fg-muted: #9ca3af;
+  --fg-muted: #6b7280;
   --fg-label: #1a1a1a;
   --accent-green: rgb(0, 171, 74);
   --accent-purple: #6d28d9;

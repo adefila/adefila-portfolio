@@ -1,11 +1,11 @@
 ﻿"use client";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useInView } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 import { Play, X } from "lucide-react";
 import { useLang } from "@/context/LangContext";
 
 type TestimonialItem =
-  | { type: "video"; name: string; role: string; video: string; avatar: string|null; logo: string|null }
+  | { type: "video"; name: string; role: string; video: string; preview: string; poster: string; avatar: string|null; logo: string|null }
   | { type: "text";  name: string; role: string; key: string;   avatar: string|null; logo: string|null }
   | { type: "upwork" };
 
@@ -13,7 +13,7 @@ type TestimonialItem =
 // logo:   path to company logo     (e.g. "/testimonials/hitpay-logo.png")
 // Leave both null → shows styled initials placeholder
 const testimonialMeta: TestimonialItem[] = [
-  { type: "video", name: "Davonte Wheeler",     role: "CEO · BookedEZ LLC",                     video: "/davonte-wheeler.mp4", avatar: null, logo: null },
+  { type: "video", name: "Davonte Wheeler",     role: "CEO · BookedEZ LLC",                     video: "/davonte-wheeler.mp4", preview: "/davonte-wheeler-preview.mp4", poster: "/davonte-wheeler-poster.jpg", avatar: null, logo: null },
   { type: "text",  name: "Nitin",               role: "HitPay App",                             key: "testimonials.t0",  avatar: "/nitin.png",        logo: null },
   { type: "text",  name: "Alyssa Corso",        role: "SEO Consultant for Healthcare Startups", key: "testimonials.t1",  avatar: "/alyssa-corso.png", logo: null },
   { type: "text",  name: "Johnno Van Den Brink",role: "The Initial Agency",                     key: "testimonials.t2",  avatar: null, logo: null },
@@ -153,6 +153,9 @@ function Avatar({ name, avatar, logo, size = 44 }: { name: string; avatar: strin
 export default function Testimonials() {
   const [videoOpen, setVideoOpen] = useState(false);
   const modalVideoRef = useRef<HTMLVideoElement>(null);
+  // The card's silent preview only downloads once the section is close to the screen
+  const videoCardRef = useRef<HTMLDivElement>(null);
+  const videoNear = useInView(videoCardRef, { once: true, margin: "400px 0px" });
   const { t } = useLang();
   const video = testimonialMeta.find((m) => m.type === "video");
   const quotes = testimonialMeta.filter((m): m is Extract<TestimonialItem, { type: "text" }> => m.type === "text");
@@ -257,10 +260,11 @@ export default function Testimonials() {
           </div>
 
           {video && video.type === "video" && (
-            <div data-reveal className="testimonial-card testimonial-video" style={{ position: "relative", overflow: "hidden", background: "#111", minHeight: 400 }}>
-              {/* Silent preview — plays muted in the card */}
+            <div ref={videoCardRef} data-reveal className="testimonial-card testimonial-video" style={{ position: "relative", overflow: "hidden", background: "#111", minHeight: 400 }}>
+              {/* Silent 8-second preview loops in the card; the full video plays in the modal */}
               <video
-                src={video.video}
+                src={videoNear ? video.preview : undefined}
+                poster={video.poster}
                 autoPlay
                 muted
                 loop
@@ -390,7 +394,7 @@ export default function Testimonials() {
             >
               <video
                 ref={modalVideoRef}
-                src="/davonte-wheeler.mp4"
+                src={video && video.type === "video" ? video.video : undefined}
                 controls
                 playsInline
                 style={{ width: "100%", height: "100%", display: "block", objectFit: "contain" }}
