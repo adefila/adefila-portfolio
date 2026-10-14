@@ -199,7 +199,7 @@ export default function WhyMe() {
             lineHeight: 1.05, textTransform: "uppercase", color: "var(--fg)",
           }}>
             <RevealWords text={t("whyme.h1")} />{" "}
-            <span style={{ color: "var(--accent-purple)" }}><RevealWords text={t("whyme.h1b")} delay={revealDelayAfter(t("whyme.h1"))} /></span>
+            <span style={{ color: "rgb(163,163,163)" }}><RevealWords text={t("whyme.h1b")} delay={revealDelayAfter(t("whyme.h1"))} /></span>
           </h2>
         </div>
 

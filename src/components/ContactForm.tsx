@@ -217,7 +217,7 @@ export default function ContactForm() {
             }}
           >
             <RevealWords text={t("contact.h1")} />{" "}
-            <span style={{ color: "var(--accent-purple)" }}>
+            <span style={{ color: "rgb(163,163,163)" }}>
               <RevealWords text={t("contact.h1b")} delay={revealDelayAfter(t("contact.h1"))} />
             </span>
           </motion.h2>

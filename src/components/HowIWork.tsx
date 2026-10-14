@@ -154,7 +154,7 @@ export default function HowIWork() {
             <p style={{
               fontFamily: "var(--font-inter)", fontWeight: 700, fontSize: 11,
               letterSpacing: "4px", textTransform: "uppercase",
-              color: isDark ? "var(--accent-purple-light)" : purple, marginBottom: 10,
+              color: purple, marginBottom: 10,
             }}>
               {t("process.eyebrow")}
             </p>
@@ -166,7 +166,7 @@ export default function HowIWork() {
             }}>
               <RevealWords text={t("process.h1")} />{" "}
               <span style={{
-                color: isDark ? "var(--accent-purple-light)" : purple,
+                color: isDark ? "rgba(255,255,255,0.45)" : "rgba(0,0,0,0.35)",
                 transition: `color ${TRANS}`,
               }}>
                 <RevealWords text={t("process.h1b")} delay={revealDelayAfter(t("process.h1"))} />

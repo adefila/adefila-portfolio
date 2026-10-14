@@ -71,7 +71,7 @@ export default function FAQ() {
           >
             <RevealWords text={t("faq.h1")} />
             <br />
-            <span style={{ color: "var(--accent-purple)" }}><RevealWords text={t("faq.h2")} delay={revealDelayAfter(t("faq.h1"))} /></span>
+            <RevealWords text={t("faq.h2")} delay={revealDelayAfter(t("faq.h1"))} />
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 10 }}

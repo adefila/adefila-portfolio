@@ -106,7 +106,7 @@ export default function SideProjects() {
           <p style={{
             fontFamily: "var(--font-inter)", fontWeight: 700, fontSize: 11,
             letterSpacing: "4px", textTransform: "uppercase",
-            color: "var(--accent-purple-light)", marginBottom: 12,
+            color: "var(--accent-purple)", marginBottom: 12,
           }}>
             {t("sideprojects.eyebrow")}
           </p>
@@ -117,7 +117,7 @@ export default function SideProjects() {
             textTransform: "uppercase", color: "#fff",
           }}>
             <RevealWords text={t("sideprojects.h1")} />{" "}
-            <span style={{ color: "var(--accent-purple-light)" }}><RevealWords text={t("sideprojects.h1b")} delay={revealDelayAfter(t("sideprojects.h1"))} /></span>
+            <span style={{ color: "rgb(163,163,163)" }}><RevealWords text={t("sideprojects.h1b")} delay={revealDelayAfter(t("sideprojects.h1"))} /></span>
           </h2>
         </div>
 
