@@ -1,5 +1,5 @@
 ﻿"use client";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 import { ArrowUpRight, Send } from "lucide-react";
 import { useLang } from "@/context/LangContext";
@@ -97,8 +97,6 @@ type Status = "idle" | "submitting" | "success" | "error";
 const EASE = [0.22, 1, 0.36, 1] as [number, number, number, number];
 
 export default function ContactForm() {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-10%" });
   const { t } = useLang();
 
   const [status, setStatus] = useState<Status>("idle");
@@ -184,11 +182,9 @@ export default function ContactForm() {
         style={{ display: "grid", gridTemplateColumns: "1fr 1.4fr", gap: 80, alignItems: "start" }}
       >
         {/* Left: copy */}
-        <div ref={ref}>
+        <div>
           <motion.p
-            initial={{ opacity: 0, y: 10 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5 }}
+            data-reveal
             style={{
               fontFamily: "var(--font-inter)",
               fontWeight: 700,
@@ -202,9 +198,7 @@ export default function ContactForm() {
             {t("contact.eyebrow")}
           </motion.p>
           <motion.h2
-            initial={{ opacity: 0, y: 10 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5, delay: 0.06, ease: EASE }}
+            data-reveal
             style={{
               fontFamily: "var(--font-poppins)",
               fontWeight: 700,
@@ -223,9 +217,7 @@ export default function ContactForm() {
           </motion.h2>
 
           <motion.p
-            initial={{ opacity: 0, y: 10 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5, delay: 0.14 }}
+            data-reveal
             style={{
               fontFamily: "var(--font-inter)",
               fontSize: 15,
@@ -239,9 +231,7 @@ export default function ContactForm() {
           </motion.p>
 
           <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5, delay: 0.2 }}
+            data-reveal
             style={{ display: "flex", flexDirection: "column" }}
           >
             <CopyEmailRow />
@@ -279,9 +269,7 @@ export default function ContactForm() {
 
         {/* Right: form */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5, delay: 0.12, ease: EASE }}
+          data-reveal
         >
           {status === "success" ? (
             <motion.div

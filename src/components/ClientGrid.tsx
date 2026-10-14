@@ -83,6 +83,7 @@ export default function ClientGrid() {
               <li
                 key={cell}
                 className="clients-cell"
+                data-reveal
                 onMouseEnter={() => { hoveredCell.current = cell; }}
                 onMouseLeave={() => { hoveredCell.current = null; }}
               >

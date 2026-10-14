@@ -3,7 +3,6 @@ import { CalendarDays } from "lucide-react";
 import { useLang } from "@/context/LangContext";
 import MagneticButton from "./MagneticButton";
 
-const E = "cubic-bezier(0.22,1,0.36,1)";
 
 export default function MidCTA() {
   const { t } = useLang();
@@ -16,7 +15,7 @@ export default function MidCTA() {
     >
       <div
         className="midcta-inner"
-        style={{
+        data-reveal style={{
           maxWidth: 1200,
           margin: "0 auto",
           padding: "72px 20px",
@@ -25,7 +24,6 @@ export default function MidCTA() {
           justifyContent: "space-between",
           flexWrap: "wrap",
           gap: 32,
-          animation: `fadeUp 0.5s 0.08s ${E} both`,
         }}
       >
         <div style={{ flex: "1 1 340px" }}>

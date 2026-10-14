@@ -102,7 +102,7 @@ export default function SideProjects() {
           paddingBottom: 28,
         }}
       >
-        <div style={{ flex: "1 1 300px" }}>
+        <div data-reveal style={{ flex: "1 1 300px" }}>
           <p style={{
             fontFamily: "var(--font-inter)", fontWeight: 700, fontSize: 11,
             letterSpacing: "4px", textTransform: "uppercase",
@@ -149,6 +149,7 @@ export default function SideProjects() {
       </div>
 
       {/* Single project view */}
+      <div data-reveal>
       <AnimatePresence mode="wait" custom={dir}>
         <motion.div
           key={active}
@@ -257,6 +258,7 @@ export default function SideProjects() {
           </div>
         </motion.div>
       </AnimatePresence>
+      </div>
 
       {/* Progress bar + dots */}
       <div style={{ marginTop: 20 }}>

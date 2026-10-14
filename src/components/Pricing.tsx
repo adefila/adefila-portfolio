@@ -50,7 +50,7 @@ export default function Pricing() {
           borderBottom: "1px solid rgba(0,0,0,0.08)", paddingBottom: 40,
         }}
       >
-        <div style={{ flex: "1 1 360px", animation: `fadeUp 0.5s 0.05s ${E} both` }}>
+        <div data-reveal style={{ flex: "1 1 360px" }}>
           <p style={{
             fontFamily: "var(--font-inter)", fontWeight: 700, fontSize: 11,
             letterSpacing: "4px", textTransform: "uppercase",
@@ -68,11 +68,10 @@ export default function Pricing() {
           </h2>
         </div>
 
-        <p style={{
+        <p data-reveal style={{
           flex: "1 1 280px",
           fontFamily: "var(--font-inter)", fontWeight: 400, fontSize: 15,
           lineHeight: 1.7, color: "var(--fg-secondary)", letterSpacing: "-0.3px",
-          animation: `fadeUp 0.5s 0.14s ${E} both`,
         }}>
           {t("pricing.desc")}
         </p>
@@ -90,16 +89,15 @@ export default function Pricing() {
           marginBottom: 1,
         }}
       >
-        {plans.map((plan, i) => {
+        {plans.map((plan) => {
           return (
           <div
             key={plan.name}
-            style={{
+            data-reveal style={{
               display: "flex", flexDirection: "column",
               padding: "32px 28px",
               background: plan.featured ? "var(--fg)" : "var(--bg)",
               position: "relative",
-              animation: `fadeUp 0.5s ${0.1 + i * 0.08}s ${E} both`,
             }}
           >
             <p style={{

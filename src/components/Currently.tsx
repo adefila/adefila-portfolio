@@ -1,6 +1,6 @@
 "use client";
-import { motion, useInView } from "framer-motion";
-import { useRef, useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
 import { Music, ExternalLink } from "lucide-react";
 import { useLang } from "@/context/LangContext";
 import BookShelf from "./BookShelf";
@@ -14,11 +14,8 @@ interface SpotifyData {
   songUrl?: string;
 }
 
-const EASE = [0.22, 1, 0.36, 1] as [number, number, number, number];
 
 export default function Currently() {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-10%" });
   const [spotify, setSpotify] = useState<SpotifyData | null>(null);
   const { t } = useLang();
 
@@ -48,10 +45,7 @@ export default function Currently() {
 
         {/* Section label */}
         <motion.p
-          ref={ref}
-          initial={{ opacity: 0, y: 10 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5 }}
+          data-reveal
           style={{
             fontFamily: "var(--font-inter)",
             fontWeight: 700,
@@ -81,9 +75,7 @@ export default function Currently() {
             href={spotify?.songUrl || "https://open.spotify.com"}
             target="_blank"
             rel="noopener noreferrer"
-            initial={{ opacity: 0, x: -16 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.55, delay: 0.08, ease: EASE }}
+            data-reveal
             style={{
               background: "#0f0f0f",
               padding: "40px 36px",
@@ -190,9 +182,7 @@ export default function Currently() {
 
           {/* RIGHT — reading panel */}
           <motion.div
-            initial={{ opacity: 0, x: 16 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.55, delay: 0.14, ease: EASE }}
+            data-reveal
             style={{
               background: "var(--card-bg)",
               padding: "40px 36px 32px",

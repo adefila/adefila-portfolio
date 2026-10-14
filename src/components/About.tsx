@@ -1,6 +1,6 @@
 "use client";
-import { motion, useInView, AnimatePresence } from "framer-motion";
-import { useRef, useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight, X, Download } from "lucide-react";
 import MagneticButton from "./MagneticButton";
 import { useLang } from "@/context/LangContext";
@@ -78,8 +78,6 @@ function TechTag({ label }: { label: string }) {
 }
 
 export default function About() {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-10%" });
   const { t } = useLang();
   const [lightbox, setLightbox] = useState<number | null>(null);
 
@@ -105,10 +103,7 @@ export default function About() {
       <style>{MARQUEE_CSS}</style>
 
       <motion.p
-        ref={ref}
-        initial={{ opacity: 0, y: 10 }}
-        animate={inView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.5 }}
+        data-reveal
         style={{
           fontFamily: "var(--font-inter)",
           fontWeight: 700,
@@ -126,9 +121,7 @@ export default function About() {
         {/* Left: Bio */}
         <div style={{ flex: 2, minWidth: 300 }}>
           <motion.h2
-            initial={{ opacity: 0, y: 10 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5, delay: 0.05 }}
+            data-reveal
             style={{
               fontFamily: "var(--font-poppins)",
               fontWeight: 700,
@@ -145,9 +138,7 @@ export default function About() {
           </motion.h2>
 
           <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5, delay: 0.15 }}
+            data-reveal
             style={{
               fontFamily: "var(--font-inter)",
               fontWeight: 400,
@@ -167,9 +158,7 @@ export default function About() {
 
           {/* Tech stacks */}
           <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5, delay: 0.25 }}
+            data-reveal
             style={{ marginTop: 40 }}
           >
             <p style={{
@@ -192,9 +181,7 @@ export default function About() {
 
           {/* CV download */}
           <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5, delay: 0.32 }}
+            data-reveal
             style={{ marginTop: 32 }}
           >
             <MagneticButton
@@ -233,9 +220,7 @@ export default function About() {
 
         {/* Right: Work history */}
         <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5, delay: 0.2 }}
+          data-reveal
           style={{ flex: 1, minWidth: 260 }}
         >
           <p style={{
@@ -287,9 +272,7 @@ export default function About() {
 
       {/* Photo marquee strip */}
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={inView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.5, delay: 0.35 }}
+        data-reveal
         style={{ marginTop: 64 }}
       >
         <p style={{

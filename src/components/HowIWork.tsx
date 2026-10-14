@@ -150,7 +150,7 @@ export default function HowIWork() {
           marginBottom: 48, borderBottom: `1px solid ${border}`,
           paddingBottom: 32, transition: `border-color ${TRANS}`,
         }}>
-          <div style={{ flex: "1 1 320px" }}>
+          <div data-reveal style={{ flex: "1 1 320px" }}>
             <p style={{
               fontFamily: "var(--font-inter)", fontWeight: 700, fontSize: 11,
               letterSpacing: "4px", textTransform: "uppercase",
@@ -173,13 +173,15 @@ export default function HowIWork() {
               </span>
             </h2>
           </div>
+          <div data-reveal style={{ flex: "1 1 260px", maxWidth: 420 }}>
           <p style={{
-            flex: "1 1 260px", fontFamily: "var(--font-inter)", fontWeight: 400,
+            fontFamily: "var(--font-inter)", fontWeight: 400,
             fontSize: 15, lineHeight: 1.65, letterSpacing: "-0.2px",
             color: fgSub, transition: `color ${TRANS}`, maxWidth: 420,
           }}>
             {t("process.desc")}
           </p>
+          </div>
         </div>
 
         {/* Timeline track — decorative, aria-hidden */}
@@ -224,6 +226,7 @@ export default function HowIWork() {
           role="tablist"
           aria-label="Process steps"
           onKeyDown={handleTablistKeyDown}
+          data-reveal
           style={{ display: "flex", gap: 6 }}
           className="process-tabs"
         >

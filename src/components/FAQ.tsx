@@ -1,12 +1,10 @@
 "use client";
-import { motion, AnimatePresence, useInView } from "framer-motion";
-import { useState, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState } from "react";
 import { useLang } from "@/context/LangContext";
 import RevealWords, { revealDelayAfter } from "./RevealWords";
 
 export default function FAQ() {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-10%" });
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const { t } = useLang();
 
@@ -37,11 +35,9 @@ export default function FAQ() {
         }}
       >
         {/* Left: sticky header block */}
-        <div ref={ref} className="faq-left" style={{ position: "sticky", top: 120 }}>
+        <div className="faq-left" style={{ position: "sticky", top: 120 }}>
           <motion.p
-            initial={{ opacity: 0, y: 10 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5 }}
+            data-reveal
             style={{
               fontFamily: "var(--font-inter)",
               fontWeight: 700,
@@ -55,9 +51,7 @@ export default function FAQ() {
             {t("faq.eyebrow")}
           </motion.p>
           <motion.h2
-            initial={{ opacity: 0, y: 10 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5, delay: 0.06 }}
+            data-reveal
             style={{
               fontFamily: "var(--font-poppins)",
               fontWeight: 700,
@@ -74,9 +68,7 @@ export default function FAQ() {
             <RevealWords text={t("faq.h2")} delay={revealDelayAfter(t("faq.h1"))} />
           </motion.h2>
           <motion.p
-            initial={{ opacity: 0, y: 10 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5, delay: 0.14 }}
+            data-reveal
             style={{
               fontFamily: "var(--font-inter)",
               fontWeight: 400,
@@ -109,9 +101,7 @@ export default function FAQ() {
             return (
               <motion.div
                 key={i}
-                initial={{ opacity: 0, y: 12 }}
-                animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.4, delay: 0.05 + i * 0.04 }}
+                data-reveal
                 style={{
                   borderBottom: "1px solid rgba(0,0,0,0.07)",
                   background: isOpen ? "rgba(109,40,217,0.025)" : "transparent",
