@@ -317,19 +317,31 @@ export const T: Record<string, Record<LangCode, string>> = {
     en: "I DESIGN & BUILD",         fr: "JE CONÇOIS ET CRÉE",      es: "DISEÑO Y CONSTRUYO",      de: "ICH GESTALTE UND BAUE",
     pt: "EU PROJETO E CONSTRUO",   zh: "我设计并构建",              ja: "デザインして構築する",      yo: "MO ṢEÈDÀ ATI KÒ",
   },
-  "hero.h2": {
-    en: "SITES THAT CONVERT.",         fr: "DES SITES QUI CONVERTISSENT.", es: "SITIOS WEB QUE CONVIERTEN.", de: "WEBSITES DIE KONVERTIEREN.",
-    pt: "SITES QUE CONVERTEM.",    zh: "能够转化的网站。",           ja: "コンバージョンするサイト。", yo: "ÀWỌN OJÚEWÉ TÓ YÁRA.",
+  // Second headline line = prefix + a word that cycles through the "|"-separated list.
+  // zh/ja put the verb first, so the whole line cycles there (empty prefix).
+  "hero.h2.prefix": {
+    en: "SITES THAT",              fr: "DES SITES QUI",           es: "SITIOS WEB QUE",          de: "WEBSITES, DIE",
+    pt: "SITES QUE",               zh: "",                         ja: "",                         yo: "ÀWỌN OJÚEWÉ TÓ",
+  },
+  "hero.h2.words": {
+    en: "CONVERT.|SELL.|GROW.",
+    fr: "CONVERTISSENT.|VENDENT.|GRANDISSENT.",
+    es: "CONVIERTEN.|VENDEN.|CRECEN.",
+    de: "KONVERTIEREN.|VERKAUFEN.|WACHSEN.",
+    pt: "CONVERTEM.|VENDEM.|CRESCEM.",
+    zh: "能够转化的网站。|能够卖货的网站。|助力增长的网站。",
+    ja: "成果が出るサイト。|売れるサイト。|成長するサイト。",
+    yo: "YÁRA.",
   },
   "hero.subtitle": {
-    en: "Web developer & Framer designer. From brief to launch in 14 days. for founders done waiting on slow agencies.",
-    fr: "Développeur & designer Framer. Du brief au lancement en 14 jours. pour les fondateurs qui en ont fini avec les agences lentes.",
-    es: "Desarrollador y diseñador Framer. Del brief al lanzamiento en 14 días. para fundadores hartos de agencias lentas y presupuestos inflados.",
-    de: "Framer-Entwickler & Designer. Vom Brief bis live in 14 Tagen. für Gründer, die aufgehört haben, auf träge Agenturen zu warten.",
-    pt: "Desenvolvedor e designer Framer. Do brief ao lançamento em 14 dias. para fundadores cansados de agências lentas e prazos inflados.",
+    en: "Web developer & Framer designer. From brief to launch in 14 days, for founders done waiting on slow agencies.",
+    fr: "Développeur & designer Framer. Du brief au lancement en 14 jours, pour les fondateurs qui en ont fini avec les agences lentes.",
+    es: "Desarrollador y diseñador Framer. Del brief al lanzamiento en 14 días, para fundadores hartos de agencias lentas y presupuestos inflados.",
+    de: "Framer-Entwickler & Designer. Vom Brief bis live in 14 Tagen, für Gründer, die aufgehört haben, auf träge Agenturen zu warten.",
+    pt: "Desenvolvedor e designer Framer. Do brief ao lançamento em 14 dias, para fundadores cansados de agências lentas e prazos inflados.",
     zh: "Framer开发者与设计师。从简报到上线14天。为那些厌倦了慢速代理机构的创始人服务。",
     ja: "Framer開発者＆デザイナー。ブリーフからライブまで14日。遅いエージェンシーに嫌気が差した創業者のために。",
-    yo: "Olùgbéjáde & aṣàpẹẹrẹ Framer. Láti àkọsílẹ̀ sí ìfilọ́lẹ̀ ní ọjọ́ 14. fún àwọn adárí tó ti rẹ̀ àwọn ilé-iṣẹ́ tó lọrا.",
+    yo: "Olùgbéjáde & aṣàpẹẹrẹ Framer. Láti àkọsílẹ̀ sí ìfilọ́lẹ̀ ní ọjọ́ 14, fún àwọn adárí tó ti rẹ̀ àwọn ilé-iṣẹ́ tó lọrا.",
   },
   "hero.proof": {
     en: "Top Rated on Upwork  ·  50+ Projects Shipped  ·  100% Job Success",
@@ -344,6 +356,18 @@ export const T: Record<string, Record<LangCode, string>> = {
   "hero.cta": {
     en: "BOOK A FREE CALL",        fr: "RÉSERVER UN APPEL",       es: "AGENDAR LLAMADA",         de: "ANRUF BUCHEN",
     pt: "AGENDAR CHAMADA",         zh: "预约免费通话",              ja: "無料通話を予約",            yo: "PADE NÍNÚ ÌPÈ",
+  },
+  "hero.ctaWork": {
+    en: "SEE MY WORK",             fr: "VOIR MES PROJETS",        es: "VER MI TRABAJO",          de: "MEINE ARBEITEN",
+    pt: "VER MEU TRABALHO",        zh: "查看作品",                  ja: "実績を見る",                yo: "WO IṢẸ́ MI",
+  },
+  "hero.tagTopRated": {
+    en: "Top Rated · Upwork",      fr: "Top Rated · Upwork",      es: "Top Rated · Upwork",      de: "Top Rated · Upwork",
+    pt: "Top Rated · Upwork",      zh: "Upwork 顶级认证",           ja: "Upwork Top Rated",         yo: "Top Rated · Upwork",
+  },
+  "hero.tagShipped": {
+    en: "50+ sites shipped",       fr: "50+ sites livrés",        es: "50+ sitios entregados",   de: "50+ Websites geliefert",
+    pt: "50+ sites entregues",     zh: "已交付 50+ 网站",           ja: "50件以上のサイトを納品",     yo: "50+ ojúewé tí a pé",
   },
   "hero.downloadCv": {
     en: "DOWNLOAD CV",             fr: "TÉLÉCHARGER CV",          es: "DESCARGAR CV",            de: "CV HERUNTERLADEN",
