@@ -1,20 +1,5 @@
 @import "tailwindcss";
 
-@keyframes marquee {
-  0%   { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
-
-
-.marquee-track {
-  animation: marquee 32s linear infinite;
-  will-change: transform;
-}
-
-.marquee-track:hover {
-  animation-play-state: paused;
-}
-
 :root {
   --bg: #F7F7F7;
   --fg: #0f0f0f;
@@ -180,10 +165,6 @@ html {
 
 /* Tablet 769–1024 */
 @media (max-width: 1024px) and (min-width: 769px) {
-  .marquee-card {
-    width: 460px !important;
-    height: 290px !important;
-  }
   .projects-grid {
     grid-template-columns: repeat(2, 1fr) !important;
   }
@@ -295,23 +276,13 @@ html {
     padding: 24px !important;
   }
 
-  /* Hero marquee cards: shrink on mobile */
-  .marquee-card {
-    width: 300px !important;
-    height: 190px !important;
-  }
-
   /* Hero top padding */
   .hero-section {
     padding-top: 96px !important;
+    padding-bottom: 48px !important;
   }
 
-  /* Hero marquee: less bottom breathing room before projects on mobile */
-  .hero-marquee-wrap {
-    padding-bottom: 32px !important;
-  }
-
-  /* Projects: less top padding on mobile since marquee already has some */
+  /* Projects: less top padding on mobile */
   #work {
     padding-top: 32px !important;
   }
