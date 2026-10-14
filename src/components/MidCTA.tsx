@@ -1,8 +1,10 @@
 "use client";
 import { CalendarDays } from "lucide-react";
+import Image from "next/image";
 import { useLang } from "@/context/LangContext";
 import MagneticButton from "./MagneticButton";
 
+const EMAIL = "samuel@adefilasamuel.com";
 
 export default function MidCTA() {
   const { t } = useLang();
@@ -27,6 +29,25 @@ export default function MidCTA() {
         }}
       >
         <div style={{ flex: "1 1 340px" }}>
+          {/* Who you'd be talking to, and whether there's room */}
+          <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 20 }}>
+            <span style={{ position: "relative", flexShrink: 0 }}>
+              <Image
+                src="/samuel-portrait.webp"
+                alt="Samuel Adefila"
+                width={52}
+                height={52}
+                style={{ width: 52, height: 52, borderRadius: "50%", objectFit: "cover", objectPosition: "50% 25%", border: "2px solid rgba(255,255,255,0.9)", display: "block" }}
+              />
+              <span
+                aria-hidden="true"
+                style={{ position: "absolute", right: 1, bottom: 1, width: 12, height: 12, borderRadius: "50%", background: "var(--accent-green)", border: "2px solid var(--accent-purple)" }}
+              />
+            </span>
+            <p style={{ fontFamily: "var(--font-inter)", fontWeight: 600, fontSize: 11, letterSpacing: "0.08em", textTransform: "uppercase", color: "rgba(255,255,255,0.9)", lineHeight: 1.6 }}>
+              {t("hero.badge")} <span aria-hidden="true">·</span> {t("hero.badge2")}
+            </p>
+          </div>
           <p
             style={{
               fontFamily: "var(--font-poppins)",
@@ -39,7 +60,7 @@ export default function MidCTA() {
               marginBottom: 10,
             }}
           >
-            Seen enough?
+            {t("midcta.headline")}
           </p>
           <p
             style={{
@@ -49,45 +70,58 @@ export default function MidCTA() {
               letterSpacing: "-0.3px",
               lineHeight: 1.6,
               color: "rgba(255,255,255,0.82)",
-              maxWidth: 400,
+              maxWidth: 420,
             }}
           >
-            Most clients decide within the first scroll. One call gets you the scope, the timeline, and the exact price.
+            {t("midcta.desc")}
           </p>
         </div>
-        <MagneticButton
-          href="https://calendly.com/adefilasamuel929/30min"
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{
-            alignItems: "center",
-            gap: 8,
-            fontFamily: "var(--font-inter)",
-            fontWeight: 600,
-            fontSize: 13,
-            letterSpacing: "0.5px",
-            textTransform: "uppercase",
-            color: "var(--accent-purple)",
-            background: "#fff",
-            border: "1px solid #fff",
-            padding: "13px 26px",
-            textDecoration: "none",
-            flexShrink: 0,
-            transition: "background 0.2s ease, border-color 0.2s ease, color 0.2s ease",
-          }}
-          onMouseEnter={(e: React.MouseEvent<HTMLAnchorElement>) => {
-            e.currentTarget.style.background = "var(--fg)";
-            e.currentTarget.style.borderColor = "var(--fg)";
-            e.currentTarget.style.color = "#fff";
-          }}
-          onMouseLeave={(e: React.MouseEvent<HTMLAnchorElement>) => {
-            e.currentTarget.style.background = "#fff";
-            e.currentTarget.style.borderColor = "#fff";
-            e.currentTarget.style.color = "var(--accent-purple)";
-          }}
-        >
-          {t("common.bookCall")} <CalendarDays size={14} strokeWidth={2} />
-        </MagneticButton>
+        <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", gap: 14, flexShrink: 0 }}>
+          <MagneticButton
+            href="https://calendly.com/adefilasamuel929/30min"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              alignItems: "center",
+              gap: 8,
+              fontFamily: "var(--font-inter)",
+              fontWeight: 600,
+              fontSize: 13,
+              letterSpacing: "0.5px",
+              textTransform: "uppercase",
+              color: "var(--accent-purple)",
+              background: "#fff",
+              border: "1px solid #fff",
+              padding: "13px 26px",
+              textDecoration: "none",
+              transition: "background 0.2s ease, border-color 0.2s ease, color 0.2s ease",
+            }}
+            onMouseEnter={(e: React.MouseEvent<HTMLAnchorElement>) => {
+              e.currentTarget.style.background = "var(--fg)";
+              e.currentTarget.style.borderColor = "var(--fg)";
+              e.currentTarget.style.color = "#fff";
+            }}
+            onMouseLeave={(e: React.MouseEvent<HTMLAnchorElement>) => {
+              e.currentTarget.style.background = "#fff";
+              e.currentTarget.style.borderColor = "#fff";
+              e.currentTarget.style.color = "var(--accent-purple)";
+            }}
+          >
+            {t("common.bookCall")} <CalendarDays size={14} strokeWidth={2} />
+          </MagneticButton>
+          <a
+            href={`mailto:${EMAIL}`}
+            style={{
+              fontFamily: "var(--font-inter)",
+              fontSize: 13,
+              color: "rgba(255,255,255,0.85)",
+              textDecoration: "underline",
+              textUnderlineOffset: 3,
+            }}
+          >
+            {t("midcta.email")}
+          </a>
+        </div>
       </div>
     </section>
   );

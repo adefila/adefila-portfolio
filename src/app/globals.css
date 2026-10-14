@@ -101,6 +101,77 @@ html[data-reveal-ready] [data-reveal]:not([data-revealed]) {
   }
 }
 
+/* Testimonials: every written quote in one slow, endless strip.
+   Two identical sets side by side; the track slides by one set and loops. */
+.testimonials-marquee {
+  margin: 24px -20px 0;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(to right, transparent 0, black 6%, black 94%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0, black 6%, black 94%, transparent 100%);
+}
+.testimonials-track {
+  display: flex;
+  width: max-content;
+  animation: testimonials-scroll 70s linear infinite;
+}
+.testimonials-marquee:hover .testimonials-track {
+  animation-play-state: paused;
+}
+.testimonials-set {
+  display: flex;
+  gap: 16px;
+  padding-right: 16px;
+}
+@keyframes testimonials-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.quote-card {
+  width: 380px;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  background: var(--white);
+  border: 1px solid rgba(0,0,0,0.07);
+  padding: 28px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .testimonials-marquee {
+    overflow-x: auto;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+  .testimonials-track {
+    animation: none;
+  }
+  .testimonials-set[aria-hidden] {
+    display: none;
+  }
+}
+@media (max-width: 768px) {
+  .quote-card {
+    width: 300px;
+    padding: 24px;
+  }
+}
+
+/* About: the current role's timeline dot pulses gently */
+.timeline-dot-current::after {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 1px solid var(--accent-purple);
+  animation: timeline-pulse 2.4s ease-out infinite;
+}
+@keyframes timeline-pulse {
+  from { transform: scale(0.6); opacity: 0.9; }
+  to   { transform: scale(1.6); opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .timeline-dot-current::after { animation: none; opacity: 0; }
+}
+
 /* Faint square grid behind a section's content (light and dark variants) */
 .grid-texture {
   position: relative;
@@ -343,10 +414,6 @@ html[data-reveal-ready] [data-reveal]:not([data-revealed]) {
   .faq-grid {
     gap: 0 40px !important;
   }
-  /* Testimonials: stack cards to 1-col at tablet to avoid cramped 2-col */
-  .testimonials-cards {
-    grid-template-columns: 1fr !important;
-  }
 }
 
 /* Mid breakpoint: testimonials grid narrows around 900px */
@@ -415,9 +482,6 @@ html[data-reveal-ready] [data-reveal]:not([data-revealed]) {
 
   /* Testimonials grid → stacked */
   .testimonials-grid {
-    grid-template-columns: 1fr !important;
-  }
-  .testimonials-cards {
     grid-template-columns: 1fr !important;
   }
   .testimonials-title {
@@ -536,9 +600,15 @@ html[data-reveal-ready] [data-reveal]:not([data-revealed]) {
     padding-top: 12px !important;
   }
 
-  /* Testimonial cards: don't force 400px on mobile */
+  /* Testimonial cards: shorter on mobile, but keep the video watchable */
   .testimonial-card {
     min-height: 200px !important;
+  }
+  .testimonial-video {
+    min-height: 300px !important;
+  }
+  .testimonial-upwork > div {
+    min-height: 300px !important;
   }
 
   /* Footer CTA: reduce padding on mobile */

@@ -234,18 +234,39 @@ export default function About() {
           }}>
             {t("about.historyLabel")}
           </p>
-          <div style={{ display: "flex", flexDirection: "column" }}>
-            {workHistory.map((job, i) => (
-              <div key={i} style={{ padding: "20px 0", borderBottom: "1px solid rgba(0,0,0,0.08)" }}>
+          {/* Timeline: a line down the left with a dot per role; the current role is highlighted */}
+          <ol style={{ position: "relative", listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column" }}>
+            <span aria-hidden="true" style={{ position: "absolute", left: 5, top: 28, bottom: 28, width: 1, background: "rgba(0,0,0,0.12)" }} />
+            {workHistory.map((job, i) => {
+              const current = job.period.endsWith("Present");
+              return (
+              <li key={i} style={{ position: "relative", padding: "20px 0 20px 32px" }}>
+                <span
+                  aria-hidden="true"
+                  className={current ? "timeline-dot timeline-dot-current" : "timeline-dot"}
+                  style={{
+                    position: "absolute", left: 0, top: 24,
+                    width: 11, height: 11, borderRadius: "50%",
+                    background: current ? "var(--accent-purple)" : "var(--bg)",
+                    border: `2px solid ${current ? "var(--accent-purple)" : "rgba(0,0,0,0.25)"}`,
+                  }}
+                />
                 <p style={{
                   fontFamily: "var(--font-inter)",
                   fontSize: 11,
-                  color: "var(--fg-muted)",
+                  color: current ? "var(--accent-purple)" : "var(--fg-muted)",
+                  fontWeight: current ? 600 : 400,
                   marginBottom: 6,
                   letterSpacing: "0.02em",
                   textTransform: "uppercase",
+                  display: "flex", alignItems: "center", gap: 8,
                 }}>
                   {job.period}
+                  {current && (
+                    <span style={{ fontSize: 9, fontWeight: 700, letterSpacing: "0.12em", color: "#fff", background: "var(--accent-purple)", padding: "2px 6px" }}>
+                      Now
+                    </span>
+                  )}
                 </p>
                 <p style={{
                   fontFamily: "var(--font-inter)",
@@ -264,9 +285,10 @@ export default function About() {
                     · {job.location}
                   </span>
                 </p>
-              </div>
-            ))}
-          </div>
+              </li>
+              );
+            })}
+          </ol>
         </motion.div>
       </div>
 
