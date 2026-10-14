@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { ArrowUpRight, X } from "lucide-react";
 import { useLang } from "@/context/LangContext";
-import { useNextStartMonth } from "@/lib/availability";
+import { SPOTS_OPEN, useNextStartMonth } from "@/lib/availability";
 import { trackEvent } from "@/lib/gtag";
 
 // Every Calendly link on the page opens this booking window instead of a new tab:
@@ -85,7 +85,7 @@ export default function CalendlyPopup() {
               </p>
               <p style={{ display: "flex", alignItems: "center", gap: 6, fontFamily: "var(--font-inter)", fontSize: 11, fontWeight: 600, letterSpacing: "0.06em", textTransform: "uppercase", color: "var(--fg-secondary)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
                 <span style={{ width: 6, height: 6, borderRadius: "50%", background: "var(--accent-green)", flexShrink: 0 }} />
-                {t("hero.badge")} · {t("hero.badge2").replace("{date}", nextStart)}
+                {t("hero.badge").replace("{count}", String(SPOTS_OPEN))} · {t("hero.badge2").replace("{date}", nextStart)}
               </p>
             </div>
           </div>

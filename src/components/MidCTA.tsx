@@ -2,7 +2,7 @@
 import { CalendarDays } from "lucide-react";
 import Image from "next/image";
 import { useLang } from "@/context/LangContext";
-import { useNextStartMonth } from "@/lib/availability";
+import { SPOTS_OPEN, useNextStartMonth } from "@/lib/availability";
 import MagneticButton from "./MagneticButton";
 
 const EMAIL = "samuel@adefilasamuel.com";
@@ -48,7 +48,7 @@ export default function MidCTA() {
               />
             </span>
             <p style={{ fontFamily: "var(--font-inter)", fontWeight: 600, fontSize: 11, letterSpacing: "0.08em", textTransform: "uppercase", color: "rgba(255,255,255,0.9)", lineHeight: 1.6 }}>
-              {t("hero.badge")} <span aria-hidden="true">·</span> {t("hero.badge2").replace("{date}", nextStart)}
+              {t("hero.badge").replace("{count}", String(SPOTS_OPEN))} <span aria-hidden="true">·</span> {t("hero.badge2").replace("{date}", nextStart)}
             </p>
           </div>
           <p
