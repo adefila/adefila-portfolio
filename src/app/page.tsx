@@ -3,6 +3,8 @@ import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import ClientGrid from "@/components/ClientGrid";
 import Projects from "@/components/Projects";
+import CaseStudies from "@/components/CaseStudies";
+import Teardown from "@/components/Teardown";
 import MidCTA from "@/components/MidCTA";
 import WhyMe from "@/components/WhyMe";
 import HowIWork from "@/components/HowIWork";
@@ -37,10 +39,12 @@ export default function Home() {
       <Hero />
       <ClientGrid />
       <Projects />
+      <CaseStudies />
       <MidCTA />
       <WhyMe />
       <HowIWork />
       <Pricing />
+      <Teardown />
       <Testimonials />
       <About />
       <Currently />
