@@ -11,6 +11,15 @@ export default function Preloader() {
   const reducedMotion          = useReducedMotion();
 
   useEffect(() => {
+    // Only show once per tab session — reloads go straight to the page
+    let seen = false;
+    try {
+      seen = sessionStorage.getItem("preloader-seen") !== null;
+      sessionStorage.setItem("preloader-seen", "1");
+    } catch {}
+    // Already hidden by the html[data-preloader-seen] rule in globals.css
+    if (seen) return;
+
     // Respect prefers-reduced-motion: skip animation, dismiss quickly
     if (reducedMotion) {
       setCount(100);
@@ -41,6 +50,7 @@ export default function Preloader() {
       {visible && (
         <motion.div
           key="preloader"
+          className="preloader"
           role="status"
           aria-label="Loading portfolio"
           exit={reducedMotion ? { opacity: 0 } : { y: "-100%" }}

@@ -123,10 +123,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${poppins.variable}`}>
+    <html lang="en" className={`${inter.variable} ${poppins.variable}`} suppressHydrationWarning>
       <head>
         <meta name="theme-color" content="#0f0f0f" />
         <meta name="color-scheme" content="light" />
+        {/* Runs before first paint: skip the preloader after its first showing in
+            this tab, and make a reload start from the hero instead of the
+            section hash the navbar wrote into the URL while scrolling. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `try{if(sessionStorage.getItem("preloader-seen"))document.documentElement.setAttribute("data-preloader-seen","");history.scrollRestoration="manual";var n=performance.getEntriesByType("navigation")[0];if(n&&n.type==="reload"){if(location.hash)history.replaceState(null,"",location.pathname+location.search);var toHero=function(){scrollTo({top:0,left:0,behavior:"instant"})};toHero();addEventListener("DOMContentLoaded",toHero);addEventListener("load",toHero)}}catch(e){}`,
+          }}
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
