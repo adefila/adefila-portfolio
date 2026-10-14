@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
+import { sendToLeadFinder } from "@/lib/leadfinder";
 
 // Instantiated inside the handler so missing env vars don't crash the build
 function getResend() {
@@ -256,6 +257,15 @@ export async function POST(req: Request) {
     } catch (clientEmailErr) {
       console.warn("[contact] client confirmation skipped:", clientEmailErr);
     }
+
+    // ── 3. Add to Lead Finder (leads.adefilasamuel.com) with a drafted reply ──
+    await sendToLeadFinder("/api/capture", {
+      name,
+      email,
+      budget: budget && budget !== "unspecified" ? budget : "",
+      message: `${service && service !== "unspecified" ? `Service: ${service}. ` : ""}${message}`,
+      page: "adefilasamuel.com contact form",
+    });
 
     return NextResponse.json({ ok: true });
   } catch (err) {

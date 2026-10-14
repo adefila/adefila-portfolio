@@ -51,6 +51,7 @@ export const metadata: Metadata = {
 };
 
 import Cursor from "@/components/Cursor";
+import VisitBeacon from "@/components/VisitBeacon";
 import { LangProvider } from "@/context/LangContext";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { GoogleAnalytics } from "@next/third-parties/google";
@@ -137,6 +138,7 @@ export default function RootLayout({
           {children}
           <LanguageSwitcher />
         </LangProvider>
+        <VisitBeacon />
       </body>
       <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID!} />
     </html>
