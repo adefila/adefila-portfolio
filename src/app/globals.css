@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
+/* Set by the inline script in layout.tsx once the preloader has played this session */
+html[data-preloader-seen] .preloader {
+  display: none !important;
+}
+
 :root {
   --bg: #F7F7F7;
   --fg: #0f0f0f;
