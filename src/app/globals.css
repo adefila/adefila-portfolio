@@ -77,6 +77,30 @@ html {
 }
 
 /* Hero entrance — CSS-driven so SSR content is visible before JS hydration */
+/* Section titles: even out line lengths so no word is left alone on the last line */
+section h2 {
+  text-wrap: balance;
+}
+
+/* Scroll reveal: elements with data-reveal fade up once they scroll into view.
+   ScrollReveal.tsx marks them data-revealed and sets --reveal-delay to stagger
+   groups. Only active once layout.tsx's head script sets data-reveal-ready. */
+html[data-reveal-ready] [data-reveal] {
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay, 0s),
+    transform 0.8s cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay, 0s);
+}
+html[data-reveal-ready] [data-reveal]:not([data-revealed]) {
+  opacity: 0;
+  transform: translateY(24px);
+}
+@media (prefers-reduced-motion: reduce) {
+  html[data-reveal-ready] [data-reveal]:not([data-revealed]) {
+    opacity: 1;
+    transform: none;
+  }
+}
+
 /* Faint square grid behind a section's content (light and dark variants) */
 .grid-texture {
   position: relative;
@@ -347,29 +371,14 @@ html {
   .whyme-services {
     margin-bottom: 0 !important;
   }
-  #benefits {
-    padding-top: 60px !important;
-    padding-bottom: 60px !important;
+  /* Every section gets the same vertical rhythm on phones */
+  #work, #benefits, #process, #pricing, #testimonials, #about, #faq, #contact,
+  .side-projects-inner {
+    padding-top: 64px !important;
+    padding-bottom: 64px !important;
   }
-  #process {
-    padding-top: 60px !important;
-    padding-bottom: 60px !important;
-  }
-  #testimonials {
-    padding-top: 60px !important;
-    padding-bottom: 60px !important;
-  }
-  #work {
-    padding-top: 60px !important;
-    padding-bottom: 60px !important;
-  }
-  #about {
-    padding-top: 60px !important;
-    padding-bottom: 60px !important;
-  }
-  #faq {
-    padding-top: 60px !important;
-    padding-bottom: 60px !important;
+  #currently {
+    padding-bottom: 64px !important;
   }
 
   /* Benefits 2-col → 1-col */
@@ -498,10 +507,7 @@ html {
   }
 
   /* Side projects: 3-col → 1-col on mobile */
-  #side-projects {
-    padding-top: 60px !important;
-    padding-bottom: 60px !important;
-  }
+
   .side-projects-grid {
     grid-template-columns: 1fr !important;
   }

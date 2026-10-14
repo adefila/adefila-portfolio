@@ -1,5 +1,5 @@
 ﻿"use client";
-import { motion, useInView, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useRef, useState, useEffect, useCallback } from "react";
 import { ChevronLeft, ChevronRight, Play, X } from "lucide-react";
 import { useLang } from "@/context/LangContext";
@@ -151,8 +151,6 @@ function Avatar({ name, avatar, logo, size = 44 }: { name: string; avatar: strin
 }
 
 export default function Testimonials() {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-10%" });
   const [page, setPage] = useState(0);
   const [videoOpen, setVideoOpen] = useState(false);
   const modalVideoRef = useRef<HTMLVideoElement>(null);
@@ -192,7 +190,6 @@ export default function Testimonials() {
       <div style={{ maxWidth: 1200, margin: "0 auto" }}>
         {/* Header row */}
         <div
-          ref={ref}
           style={{
             display: "flex",
             justifyContent: "space-between",
@@ -204,9 +201,7 @@ export default function Testimonials() {
         >
           <div>
             <motion.p
-              initial={{ opacity: 0, y: 10 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5 }}
+              data-reveal
               style={{
                 fontFamily: "var(--font-inter)",
                 fontWeight: 700,
@@ -220,9 +215,7 @@ export default function Testimonials() {
               {t("testimonials.eyebrow")}
             </motion.p>
             <motion.h2
-              initial={{ opacity: 0, y: 10 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: 0.06 }}
+              data-reveal
               style={{
                 fontFamily: "var(--font-poppins)",
                 fontWeight: 700,
@@ -271,6 +264,7 @@ export default function Testimonials() {
           {/* Left: purple stat card */}
           <div
             className="testimonials-stat-card"
+            data-reveal
             style={{
               background: "var(--accent-purple)",
               borderRadius: 0,
@@ -309,7 +303,7 @@ export default function Testimonials() {
           </div>
 
           {/* Right: two testimonial cards */}
-          <div className="testimonials-cards" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 0 }}>
+          <div className="testimonials-cards" data-reveal style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 0 }}>
             {visible.map((item, i) => (
               <motion.div
                 key={`${page}-${i}`}

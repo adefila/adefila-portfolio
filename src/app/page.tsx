@@ -14,6 +14,7 @@ import SideProjects from "@/components/SideProjects";
 import FAQ from "@/components/FAQ";
 import ContactForm from "@/components/ContactForm";
 import Footer from "@/components/Footer";
+import ScrollReveal from "@/components/ScrollReveal";
 
 export default function Home() {
   return (
@@ -26,6 +27,7 @@ export default function Home() {
       }}
     >
       <Preloader />
+      <ScrollReveal />
       <Navbar />
       <Hero />
       <ClientGrid />

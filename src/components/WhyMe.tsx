@@ -125,7 +125,6 @@ const STAT_VALUES = [
   { value: 5, suffix: "+" },
 ];
 
-const E = "cubic-bezier(0.22,1,0.36,1)";
 
 function CountUp({ target, suffix, inView }: { target: number; suffix: string; inView: boolean }) {
   const [count, setCount] = useState(target);
@@ -185,7 +184,7 @@ export default function WhyMe() {
         style={{ display: "flex", gap: 80, alignItems: "flex-start", flexWrap: "wrap", marginBottom: 64 }}
       >
         {/* Left: label + heading */}
-        <div style={{ flex: "1 1 400px", animation: `fadeUp 0.55s 0.05s ${E} both` }}>
+        <div data-reveal style={{ flex: "1 1 400px" }}>
           <p style={{
             fontFamily: "var(--font-inter)", fontWeight: 700, fontSize: 11,
             letterSpacing: "4px", textTransform: "uppercase",
@@ -213,10 +212,9 @@ export default function WhyMe() {
             <div
               key={i}
               className="whyme-stat"
-              style={{
+              data-reveal style={{
                 display: "flex", alignItems: "center", gap: 16,
                 borderBottom: "1px solid rgba(0,0,0,0.07)", paddingBottom: 24,
-                animation: `fadeUp 0.5s ${0.1 + i * 0.08}s ${E} both`,
               }}
             >
               <span style={{
@@ -246,9 +244,8 @@ export default function WhyMe() {
         {benefits.map(({ Icon, title, desc }, i) => (
           <div
             key={i}
-            style={{
+            data-reveal style={{
               borderTop: "1px solid rgba(0,0,0,0.1)", padding: "32px 0",
-              animation: `fadeUp 0.4s ${0.15 + i * 0.07}s ${E} both`,
             }}
           >
             <div style={{
@@ -284,19 +281,18 @@ export default function WhyMe() {
         className="services-grid whyme-services"
         style={{
           borderTop: "1px solid rgba(0,0,0,0.08)",
-          display: "grid", gridTemplateColumns: "repeat(2, 1fr)", marginBottom: 64,
+          display: "grid", gridTemplateColumns: "repeat(2, 1fr)",
         }}
       >
         {services.map((s, i) => (
           <div
             key={i}
-            style={{
+            data-reveal style={{
               display: "flex", alignItems: "center", gap: 20,
               paddingTop: 28, paddingBottom: 28,
               paddingLeft: i % 2 !== 0 ? 32 : 0,
               borderBottom: "1px solid rgba(0,0,0,0.08)",
               borderRight: (i + 1) % 2 !== 0 ? "1px solid rgba(0,0,0,0.08)" : "none",
-              animation: `fadeUp 0.4s ${0.2 + i * 0.05}s ${E} both`,
             }}
           >
             <span style={{ fontFamily: "var(--font-inter)", fontWeight: 400, fontSize: 13, color: "var(--fg-muted)", flexShrink: 0 }}>

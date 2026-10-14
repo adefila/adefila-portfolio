@@ -282,7 +282,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
   );
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", animation: `fadeUp 0.45s ${0.05 + index * 0.06}s ${SPRING} both` }}>
+    <div data-reveal style={{ display: "flex", flexDirection: "column" }}>
       {hasLink ? (
         <a href={project.href} target="_blank" rel="noopener noreferrer" style={cardStyle}>
           {imageInner}
@@ -441,18 +441,17 @@ export default function Projects() {
         flexWrap: "wrap", marginBottom: 48,
       }}>
         <div>
-          <p style={{
+          <p data-reveal style={{
             fontFamily: "var(--font-inter)", fontWeight: 700,
             fontSize: 11, letterSpacing: "4px", textTransform: "uppercase",
             color: "var(--accent-purple)", marginBottom: 16,
-            animation: `fadeUp 0.5s 0.05s ${SPRING} both`,
           }}>
             {t("projects.eyebrow")}
           </p>
           <h2 style={{
             fontFamily: "var(--font-poppins)", fontWeight: 700,
             fontSize: "clamp(28px, 3.5vw, 48px)", letterSpacing: "-1px",
-            lineHeight: 1, textTransform: "uppercase", color: "var(--fg)",
+            lineHeight: 1.05, textTransform: "uppercase", color: "var(--fg)",
           }}>
             <RevealWords text={t("projects.h1")} />
           </h2>
@@ -461,9 +460,8 @@ export default function Projects() {
       </div>
 
       {list.length === 0 ? (
-        <div style={{
+        <div data-reveal style={{
           padding: "80px 0", textAlign: "center",
-          animation: `fadeUp 0.4s ${SPRING} both`,
         }}>
           <p style={{
             fontFamily: "var(--font-inter)", fontWeight: 700, fontSize: 11,
