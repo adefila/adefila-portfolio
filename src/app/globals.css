@@ -166,7 +166,35 @@ html {
   white-space: nowrap;
   transition: opacity 0.2s ease;
 }
+/* Grey logo by default; the brand-colour copy fades in over it on hover */
+.clients-logo-wrap {
+  position: relative;
+  display: block;
+  max-width: 78%;
+}
+.clients-logo,
+.clients-logo-color {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  transition: opacity 0.3s ease;
+}
+.clients-logo {
+  opacity: 0.7;
+}
+.clients-logo-color {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  opacity: 0;
+}
 .clients-cell:hover .clients-wordmark {
+  opacity: 1;
+}
+.clients-cell:hover .clients-logo {
+  opacity: 0;
+}
+.clients-cell:hover .clients-logo-color {
   opacity: 1;
 }
 @media (max-width: 768px) {
@@ -178,6 +206,9 @@ html {
   }
   .clients-wordmark {
     font-size: 16px;
+  }
+  .clients-logo-wrap {
+    transform: scale(0.8);
   }
   .clients-section {
     padding-bottom: 8px !important;
