@@ -828,7 +828,10 @@ html[data-reveal-ready] [data-reveal]:not([data-revealed]) {
   /* Currently panels: 2-col → 1-col on mobile */
   .currently-grid,
   .currently-panels {
-    grid-template-columns: 1fr !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+  .reading-panel {
+    padding: 28px 20px 24px !important;
   }
 
   /* Contact: 2-col → 1-col on mobile */

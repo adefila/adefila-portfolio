@@ -208,6 +208,7 @@ export default function Currently() {
           {/* RIGHT — reading panel */}
           <motion.div
             data-reveal
+            className="reading-panel"
             style={{
               background: "var(--card-bg)",
               padding: "40px 36px 32px",

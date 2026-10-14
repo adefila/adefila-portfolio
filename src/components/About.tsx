@@ -16,8 +16,8 @@ const workHistory = [
   { period: "Sep 2025 – Oct 2026", role: "Framer Developer", company: "Klimt and Design", location: "Los Angeles, CA. Remote" },
   { period: "Aug 2025 – May 2026", role: "UX Designer", company: "Virvly", location: "Dubai, UAE. Remote" },
   { period: "Oct 2024 – Sep 2025", role: "UI/UX Designer & Project Manager", company: "Trust-Tai Agency", location: "Murfreesboro, TN. Remote" },
-  { period: "Sep 2023 – Sep 2025", role: "Lead Product Designer", company: "BookedEZ LLC", location: "Atlanta, GA. Remote" },
   { period: "Oct 2024 – Jul 2025", role: "Framer Developer", company: "Hitpay", location: "Singapore. Remote" },
+  { period: "Sep 2023 – Sep 2025", role: "Lead Product Designer", company: "BookedEZ LLC", location: "Atlanta, GA. Remote" },
   { period: "Jan 2021 – Jul 2021", role: "Intern WordPress Developer", company: "Davis Enterprises", location: "United States. Remote" },
 ];
 

@@ -93,7 +93,7 @@ export default function Footer() {
       >
         <div
           style={{
-            maxWidth: 1200,
+            maxWidth: 1160,
             margin: "0 auto",
             display: "flex",
             alignItems: "center",
@@ -196,7 +196,7 @@ export default function Footer() {
         <div
           className="footer-bar-inner"
           style={{
-            maxWidth: 1200,
+            maxWidth: 1160,
             margin: "0 auto",
             display: "flex",
             justifyContent: "space-between",

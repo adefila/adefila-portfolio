@@ -18,11 +18,11 @@ const testimonialMeta: TestimonialItem[] = [
   { type: "text",  name: "Alyssa Corso",        role: "SEO Consultant for Healthcare Startups", key: "testimonials.t1",  avatar: "/alyssa-corso.png", logo: null },
   { type: "text",  name: "Johnno Van Den Brink",role: "The Initial Agency",                     key: "testimonials.t2",  avatar: null, logo: null },
   { type: "upwork" },
-  { type: "text",  name: "Layo",                role: "Content Writer",                         key: "testimonials.t3",  avatar: null, logo: null },
   { type: "text",  name: "Michal Kouril",       role: "Leadopo",                                key: "testimonials.t4",  avatar: null, logo: null },
   { type: "text",  name: "Raffaello Cuccuini",  role: "Humanity",                               key: "testimonials.t5",  avatar: null, logo: null },
   { type: "text",  name: "Heather Burns",       role: "Upside ESG",                             key: "testimonials.t6",  avatar: "/heather-burns.webp", logo: null },
   { type: "text",  name: "Kevin N.",            role: "The Tech Unit",                          key: "testimonials.t7",  avatar: null, logo: null },
+  { type: "text",  name: "Layo",                role: "Content Writer",                         key: "testimonials.t3",  avatar: null, logo: null },
 ];
 
 function UpworkCard() {
@@ -184,7 +184,7 @@ export default function Testimonials() {
       id="testimonials"
       style={{ width: "100%", padding: "80px 20px", background: "var(--bg)" }}
     >
-      <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+      <div style={{ maxWidth: 1160, margin: "0 auto" }}>
         {/* Header row */}
         <div style={{ marginBottom: 40 }}>
           <motion.p
