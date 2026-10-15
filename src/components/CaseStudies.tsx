@@ -32,7 +32,7 @@ const CASES: Case[] = [
   },
   {
     id: "bookedez", client: "BookedEZ", logo: "/clients/bookedez-color.svg", logoAspect: 5.08,
-    metric: "cases.bookedez.metric", metricIsKey: true, videoLink: true,
+    metric: "$10K+", videoLink: true,
   },
 ];
 

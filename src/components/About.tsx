@@ -40,12 +40,18 @@ const workHistory: { period: string; role: string; company: string; location: st
   {
     period: "Sep 2023 – Sep 2025", role: "Lead Product Designer", company: "BookedEZ LLC", location: "Atlanta, GA. Remote",
     points: [
-      "Owned the product design for an event booking platform connecting organizers, vendors and attendees.",
-      "Designed the full dark-mode mobile app: profiles, membership tiers and the booking flow.",
-      "Saw the app through to launch. It is now live on the app stores.",
+      "Directed the redesign of the core booking flows, increasing conversion by 20%.",
+      "Ran user research, wireframing and usability testing for continuous product improvement.",
+      "Mentored junior designers and led design reviews across teams.",
     ],
   },
-  { period: "Jan 2021 – Jul 2021", role: "Intern WordPress Developer", company: "Davis Enterprises", location: "United States. Remote" },
+  {
+    period: "Jan 2021 – Jul 2021", role: "Intern WordPress Developer", company: "Davis Enterprises", location: "United States. Remote",
+    points: [
+      "Helped build and update client websites with WordPress and Elementor.",
+      "Worked with cross-functional teams on real-world design challenges.",
+    ],
+  },
 ];
 
 const photos = [
