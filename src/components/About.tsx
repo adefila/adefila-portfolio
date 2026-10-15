@@ -11,13 +11,40 @@ const PHOTO_GAP = 16;
 
 const techStacks = ["Figma", "Framer", "Webflow", "WordPress", "Shopify", "React", "Claude"];
 
-const workHistory = [
+// `points` are optional: a few short lines about what the role involved.
+const workHistory: { period: string; role: string; company: string; location: string; points?: string[] }[] = [
   { period: "Oct 2026 – Present", role: "Freelance Web Developer & Framer Designer", company: "Self-employed", location: "Remote" },
-  { period: "Sep 2025 – Oct 2026", role: "Framer Developer", company: "Klimt and Design", location: "Los Angeles, CA. Remote" },
-  { period: "Aug 2025 – May 2026", role: "UX Designer", company: "Virvly", location: "Dubai, UAE. Remote" },
-  { period: "Oct 2024 – Sep 2025", role: "UI/UX Designer & Project Manager", company: "Trust-Tai Agency", location: "Murfreesboro, TN. Remote" },
-  { period: "Oct 2024 – Jul 2025", role: "Framer Developer", company: "Hitpay", location: "Singapore. Remote" },
-  { period: "Sep 2023 – Sep 2025", role: "Lead Product Designer", company: "BookedEZ LLC", location: "Atlanta, GA. Remote" },
+  {
+    period: "Sep 2025 – Oct 2026", role: "Framer Developer", company: "Klimt and Design", location: "Los Angeles, CA. Remote",
+    points: [
+      "Turned design concepts into pixel-perfect, user-friendly websites in Framer.",
+      "Worked with designers to make sure functionality and usability matched what clients expected.",
+    ],
+  },
+  {
+    period: "Oct 2024 – Sep 2025", role: "UI/UX Designer & Project Manager", company: "Trust-Tai Agency", location: "Murfreesboro, TN. Remote",
+    points: [
+      "Led multidisciplinary teams on client projects spanning UI/UX design, branding and development.",
+      "Managed client communication and project timelines, delivering on time.",
+      "Introduced agile practices that made the team 25% more efficient.",
+    ],
+  },
+  {
+    period: "Oct 2024 – Jul 2025", role: "Framer Developer", company: "Hitpay", location: "Singapore. Remote",
+    points: [
+      "Built high-fidelity prototypes in Framer to speed up user testing and developer handoff.",
+      "Worked with design and product teams to improve the experience across core payment tools.",
+      "Streamlined design workflows, cutting time-to-ship by 30%.",
+    ],
+  },
+  {
+    period: "Sep 2023 – Sep 2025", role: "Lead Product Designer", company: "BookedEZ LLC", location: "Atlanta, GA. Remote",
+    points: [
+      "Owned the product design for an event booking platform connecting organizers, vendors and attendees.",
+      "Designed the full dark-mode mobile app: profiles, membership tiers and the booking flow.",
+      "Saw the app through to launch. It is now live on the app stores.",
+    ],
+  },
   { period: "Jan 2021 – Jul 2021", role: "Intern WordPress Developer", company: "Davis Enterprises", location: "United States. Remote" },
 ];
 
@@ -287,6 +314,23 @@ export default function About() {
                     · {job.location}
                   </span>
                 </p>
+                {job.points?.length ? (
+                  <ul style={{ listStyle: "none", margin: "10px 0 0", padding: 0, display: "grid", gap: 6 }}>
+                    {job.points.map((point) => (
+                      <li
+                        key={point}
+                        style={{
+                          position: "relative", paddingLeft: 14,
+                          fontFamily: "var(--font-inter)", fontSize: 13, lineHeight: 1.55,
+                          color: "var(--fg-secondary)", letterSpacing: "-0.1px",
+                        }}
+                      >
+                        <span aria-hidden="true" style={{ position: "absolute", left: 0, top: 8, width: 5, height: 1.5, background: "rgba(0,0,0,0.35)" }} />
+                        {point}
+                      </li>
+                    ))}
+                  </ul>
+                ) : null}
               </li>
               );
             })}
