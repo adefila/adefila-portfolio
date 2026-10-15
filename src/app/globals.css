@@ -220,12 +220,15 @@ html[data-reveal-ready] [data-reveal]:not([data-revealed]) {
   .mobile-cta.is-visible {
     transform: translateY(0);
   }
-  /* Lift the floating language switcher above the bar while it's showing */
+  /* Hide the floating language switcher while the bar is showing, so it never covers the page.
+     It comes back at the top of the page and near the contact form and footer. */
   .lang-switcher {
-    transition: bottom 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    transition: opacity 0.25s ease, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
   }
   html[data-mobile-cta] .lang-switcher {
-    bottom: 88px !important;
+    opacity: 0;
+    transform: translateY(16px);
+    pointer-events: none;
   }
 }
 
@@ -435,11 +438,10 @@ html[data-reveal-ready] [data-reveal]:not([data-revealed]) {
   .skeleton-light { animation: none; }
 }
 
-/* Footer headline: "LET'S BUILD SOMETHING." / "WORTH REMEMBERING." stay one line each on desktop */
-@media (min-width: 900px) {
-  .footer-cta-line {
-    white-space: nowrap;
-  }
+/* Footer headline: "LET'S BUILD SOMETHING." / "WORTH REMEMBERING." stay one line each at every size
+   (the font scales with the screen in Footer.tsx so they fit) */
+.footer-cta-line {
+  white-space: nowrap;
 }
 
 /* Faint square grid behind a section's content (light and dark variants) */

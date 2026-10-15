@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: "Page not found | Samuel Adefila",
@@ -24,26 +26,11 @@ const button = {
 
 export default function NotFound() {
   return (
-    <main style={{ background: "var(--bg)", minHeight: "100vh", width: "100%", display: "flex", flexDirection: "column" }}>
-      <header style={{ maxWidth: 1200, width: "100%", margin: "0 auto", padding: "28px 20px 0" }}>
-        <Link
-          href="/"
-          style={{
-            fontFamily: "var(--font-inter)",
-            fontWeight: 700,
-            fontSize: 15,
-            letterSpacing: "1px",
-            textTransform: "uppercase",
-            color: "var(--fg)",
-            textDecoration: "none",
-          }}
-        >
-          Samuel
-        </Link>
-      </header>
+    <main style={{ background: "var(--bg)", minHeight: "100vh", width: "100%", overflowX: "hidden", display: "flex", flexDirection: "column" }}>
+      <Navbar />
 
       <section style={{ flex: 1, display: "flex", alignItems: "center", width: "100%" }}>
-        <div style={{ maxWidth: 1200, width: "100%", margin: "0 auto", padding: "64px 20px 96px" }}>
+        <div style={{ maxWidth: 1200, width: "100%", margin: "0 auto", padding: "160px 20px 120px" }}>
           <div style={{ display: "inline-flex", alignItems: "center", gap: 8, marginBottom: 28, animation: `heroFadeUp 0.6s 0.05s ${EASE} both` }}>
             <span style={{ position: "relative", width: 8, height: 8, display: "inline-flex" }}>
               <span style={{ position: "absolute", inset: 0, borderRadius: "50%", background: "var(--accent-green)", animation: "pulseRipple 2s ease-out infinite" }} />
@@ -102,9 +89,7 @@ export default function NotFound() {
         </div>
       </section>
 
-      <footer style={{ maxWidth: 1200, width: "100%", margin: "0 auto", padding: "0 20px 28px", fontFamily: "var(--font-inter)", fontSize: 12, color: "var(--fg-muted)" }}>
-        <a href="mailto:samuel@adefilasamuel.com" style={{ color: "inherit", textDecoration: "none" }}>samuel@adefilasamuel.com</a>
-      </footer>
+      <Footer />
     </main>
   );
 }

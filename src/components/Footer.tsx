@@ -112,7 +112,8 @@ export default function Footer() {
               style={{
                 fontFamily: "var(--font-poppins)",
                 fontWeight: 700,
-                fontSize: "clamp(32px, 4vw, 56px)",
+                // Scales with the screen so each sentence fits on one line (see .footer-cta-line)
+                fontSize: "clamp(20px, 7.4vw, 56px)",
                 letterSpacing: "-1px",
                 lineHeight: 1.05,
                 textTransform: "uppercase",
