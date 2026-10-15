@@ -41,38 +41,6 @@ export const CURRENCIES: Currency[] = [
 
 export const T: Record<string, Record<LangCode, string>> = {
   // ── Social Proof ticker ──────────────────────────────────────────────
-  "social.item0": {
-    en: "TOP RATED ON UPWORK",      fr: "TOP RATED SUR UPWORK",      es: "TOP RATED EN UPWORK",      de: "TOP RATED AUF UPWORK",
-    pt: "TOP RATED NO UPWORK",      zh: "Upwork 顶级认证",             ja: "UpworkトップRated",          yo: "ÀMÀ GÍGA LÓ UPWORK",
-  },
-  "social.item1": {
-    en: "50+ PROJECTS SHIPPED",     fr: "50+ PROJETS LIVRÉS",        es: "50+ PROYECTOS ENTREGADOS", de: "50+ PROJEKTE GELIEFERT",
-    pt: "50+ PROJETOS ENTREGUES",   zh: "50+ 项目已交付",              ja: "50以上のプロジェクト納品",   yo: "ÀWỌ̀N IṢẸ́ 50+ TÍ A PÉ",
-  },
-  "social.item2": {
-    en: "100% JOB SUCCESS",         fr: "100% DE SUCCÈS",            es: "100% DE ÉXITO",            de: "100% JOB-ERFOLG",
-    pt: "100% DE SUCESSO",          zh: "100% 工作成功率",             ja: "100% 成功率",               yo: "100% ÀṢEYỌRÍ IṢẸ́",
-  },
-  "social.item3": {
-    en: "FRAMER DEVELOPER",         fr: "DÉVELOPPEUR FRAMER",        es: "DESARROLLADOR FRAMER",     de: "FRAMER-ENTWICKLER",
-    pt: "DESENVOLVEDOR FRAMER",     zh: "Framer 开发者",              ja: "Framer開発者",              yo: "OLÙGBÉJÁDE FRAMER",
-  },
-  "social.item4": {
-    en: "5★ CLIENT RATING",         fr: "NOTE CLIENTS 5★",           es: "CALIFICACIÓN 5★",          de: "5★ KUNDENBEWERTUNG",
-    pt: "AVALIAÇÃO 5★",             zh: "5星客户评分",                 ja: "5★クライアント評価",        yo: "ÌṢÌ ONÍBÀÁRÀ 5★",
-  },
-  "social.item5": {
-    en: "FIGMA TO FRAMER",          fr: "FIGMA VERS FRAMER",         es: "FIGMA A FRAMER",           de: "FIGMA ZU FRAMER",
-    pt: "FIGMA PARA FRAMER",        zh: "Figma 转 Framer",            ja: "FigmaからFramer",           yo: "FIGMA SÍ FRAMER",
-  },
-  "social.item6": {
-    en: "SHOPIFY · WEBFLOW",        fr: "SHOPIFY · WEBFLOW",         es: "SHOPIFY · WEBFLOW",        de: "SHOPIFY · WEBFLOW",
-    pt: "SHOPIFY · WEBFLOW",        zh: "Shopify · Webflow",         ja: "Shopify · Webflow",        yo: "SHOPIFY · WEBFLOW",
-  },
-  "social.item7": {
-    en: "WORKS GLOBALLY",           fr: "DISPONIBLE PARTOUT",        es: "TRABAJO A NIVEL GLOBAL",   de: "WELTWEIT TÄTIG",
-    pt: "TRABALHO GLOBAL",          zh: "全球服务",                    ja: "グローバル対応",             yo: "N ṢIṢẸ́ KÁÀKIRI AYÉ",
-  },
 
   // ── Projects section ──────────────────────────────────────────────────
   "projects.eyebrow": {
@@ -562,26 +530,6 @@ export const T: Record<string, Record<LangCode, string>> = {
     ja: "2023年から2025年まで、ダークモードのモバイルアプリ全体（プロフィール、会員プラン、予約フロー）をデザインしました。",
     yo: "Mo ṣe àpẹẹrẹ gbogbo áàpù alágbèéká onídúdú (àkọsílẹ̀ ara ẹni, ìpele ọmọ ẹgbẹ́ àti ọ̀nà ìforúkọsílẹ̀) láti 2023 sí 2025.",
   },
-  "teardown.eyebrow": {
-    en: "Not ready to book a call?",
-    fr: "Pas prêt à réserver un appel ?",
-    es: "¿Aún no quieres agendar una llamada?",
-    de: "Noch nicht bereit für einen Anruf?",
-    pt: "Ainda não quer agendar uma chamada?",
-    zh: "还没准备好预约通话？",
-    ja: "まだ通話を予約する段階ではない？",
-    yo: "Ṣé o kò tíì ṣetán fún ìpè?",
-  },
-  "teardown.title": {
-    en: "Get a free 5-minute video teardown of your website.",
-    fr: "Recevez une analyse vidéo gratuite de 5 minutes de votre site.",
-    es: "Recibe un análisis en video gratis de 5 minutos de tu sitio.",
-    de: "Hol dir eine kostenlose 5-Minuten-Videoanalyse deiner Website.",
-    pt: "Receba uma análise em vídeo gratuita de 5 minutos do seu site.",
-    zh: "免费获取一段 5 分钟的网站视频诊断。",
-    ja: "あなたのサイトを5分の動画で無料診断します。",
-    yo: "Gba àyẹ̀wò fídíò ìṣẹ́jú 5 ọ̀fẹ́ fún ojúewé rẹ.",
-  },
   "teardown.desc": {
     en: "I'll record a short Loom walking through what's costing you leads and how I'd fix it. In your inbox within 48 hours.",
     fr: "J'enregistre une courte vidéo Loom sur ce qui vous fait perdre des prospects et comment je le corrigerais. Dans votre boîte mail sous 48 heures.",
@@ -621,16 +569,6 @@ export const T: Record<string, Record<LangCode, string>> = {
     zh: "发送中…",
     ja: "送信中…",
     yo: "Ń fi ránṣẹ́…",
-  },
-  "teardown.success": {
-    en: "Got it. Your teardown will be in your inbox within 48 hours.",
-    fr: "C'est noté. Votre analyse arrivera sous 48 heures.",
-    es: "Recibido. Tu análisis llegará en 48 horas.",
-    de: "Erhalten. Deine Analyse kommt innerhalb von 48 Stunden.",
-    pt: "Recebido. Sua análise chega em até 48 horas.",
-    zh: "已收到。你的诊断视频将在 48 小时内送达。",
-    ja: "受け付けました。48時間以内に診断動画をお送りします。",
-    yo: "A ti gbà á. Àyẹ̀wò rẹ yóò dé láàárín wákàtí 48.",
   },
   "teardown.error": {
     en: "Something went wrong. Email samuel@adefilasamuel.com instead.",
@@ -820,10 +758,6 @@ export const T: Record<string, Record<LangCode, string>> = {
   },
 
   // ── Common CTAs ──────────────────────────────────────────────────────
-  "common.scheduleCall": {
-    en: "SCHEDULE FREE CALL", fr: "PLANIFIER UN APPEL",  es: "PROGRAMAR LLAMADA",   de: "ANRUF PLANEN",
-    pt: "AGENDAR CHAMADA",    zh: "预约通话",              ja: "通話を予約",            yo: "ṢÈTÒ ÌPÈPE",
-  },
   // "or email me" link under the mid-page call to action
   "midcta.email": {
     en: "or email me",             fr: "ou écrivez-moi",          es: "o escríbeme",             de: "oder schreib mir",
@@ -1482,38 +1416,6 @@ export const T: Record<string, Record<LangCode, string>> = {
   },
 
   // ── Featured Projects ─────────────────────────────────────────────────
-  "featured.eyebrow": {
-    en: "RECENT PROJECTS",  fr: "PROJETS RÉCENTS",  es: "PROYECTOS RECIENTES", de: "AKTUELLE PROJEKTE",
-    pt: "PROJETOS RECENTES", zh: "近期项目",           ja: "最近のプロジェクト",    yo: "ÀWỌN IṢẸ́ ÀÌPẸ́",
-  },
-  "featured.h1": {
-    en: "FEATURED PROJECTS",  fr: "PROJETS PHARES",   es: "PROYECTOS DESTACADOS", de: "AUSGEWÄHLTE PROJEKTE",
-    pt: "PROJETOS EM DESTAQUE", zh: "精选项目",           ja: "注目プロジェクト",       yo: "ÀWỌN IṢẸ́ PATÀKÌ",
-  },
-  "featured.viewAll": {
-    en: "VIEW ALL",   fr: "VOIR TOUT",    es: "VER TODO",   de: "ALLE ANSEHEN",
-    pt: "VER TODOS",  zh: "查看全部",      ja: "すべて見る",   yo: "WÒ GBOGBO",
-  },
-  "featured.p0.desc": {
-    en: "A seamless booking experience for service-based businesses, available on both major app stores.",
-    fr: "Une expérience de réservation transparente pour les entreprises de services, disponible sur les deux principales boutiques d'applications.",
-    es: "Una experiencia de reserva fluida para negocios de servicios, disponible en las dos principales tiendas de aplicaciones.",
-    de: "Ein nahtloses Buchungserlebnis für dienstleistungsbasierte Unternehmen, in beiden großen App-Stores verfügbar.",
-    pt: "Uma experiência de reserva perfeita para empresas baseadas em serviços, disponível nas duas principais lojas de aplicativos.",
-    zh: "为服务型企业提供无缝预订体验，可在两大主流应用商店获取。",
-    ja: "サービスビジネス向けのシームレスな予約体験。両主要アプリストアで提供。",
-    yo: "Ìrírí ìpín tó rọrùn fún àwọn iṣowó tó ń pèsè iṣẹ́, tó wà ní àwọn ilé itajà ohun èlò méjèjì.",
-  },
-  "featured.p1.desc": {
-    en: "A next-generation payment platform built on Framer with seamless user experience.",
-    fr: "Une plateforme de paiement nouvelle génération construite sur Framer avec une expérience utilisateur fluide.",
-    es: "Una plataforma de pago de próxima generación construida en Framer con una experiencia de usuario fluida.",
-    de: "Eine Zahlungsplattform der nächsten Generation, auf Framer aufgebaut, mit nahtloser Benutzererfahrung.",
-    pt: "Uma plataforma de pagamento de próxima geração construída no Framer com experiência de usuário perfeita.",
-    zh: "基于Framer构建的下一代支付平台，拥有无缝用户体验。",
-    ja: "Framerで構築された次世代決済プラットフォーム。シームレスなユーザー体験。",
-    yo: "Pẹpẹ ìsanwó ìran tó ń bọ̀ tí a kọ́ lórí Framer pẹ̀lú ìrírí olùmúlò tó rọrùn.",
-  },
 
   // ── Side Projects ─────────────────────────────────────────────────────
   "sideprojects.eyebrow": {
@@ -1529,16 +1431,6 @@ export const T: Record<string, Record<LangCode, string>> = {
     es: "PORQUE LO NECESITABA.",  de: "WEIL ICH ES BRAUCHTE.",
     pt: "PORQUE PRECISEI DISSO.", zh: "因为我需要它。",
     ja: "必要だったから。",           yo: "NÍTORÍ MO NÍLÒ RẸ̀.",
-  },
-  "sideprojects.desc": {
-    en: "Not client work. Three things I built because I ran into the problem myself.",
-    fr: "Pas des projets clients. Trois choses que j'ai construites parce que j'ai rencontré le problème moi-même.",
-    es: "No es trabajo de clientes. Tres cosas que construí porque me encontré con el problema yo mismo.",
-    de: "Keine Kundenprojekte. Drei Dinge, die ich gebaut habe, weil ich das Problem selbst erlebt habe.",
-    pt: "Não é trabalho de cliente. Três coisas que construí porque eu mesmo encontrei o problema.",
-    zh: "不是客户项目。三件因为我自己遇到问题而构建的东西。",
-    ja: "クライアントの仕事ではありません。自分自身で問題に直面したから作った3つのもの。",
-    yo: "Kì í ṣe iṣẹ́ oníbàárà. Àwọn nǹkan mẹ́ta tí mo kọ́ nítorí pé mo pàdé ìṣòro náà fúnra mi.",
   },
   "sideprojects.p0.tagline": {
     en: "I kept getting ghosted after applying. Turned out my CV wasn't making it past ATS. Built this to fix that. It rewrites your CV and lets you run it through an HR simulator before you send it.",
