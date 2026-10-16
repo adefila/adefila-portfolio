@@ -6,6 +6,7 @@ import Image from "next/image";
 import MagneticButton from "./MagneticButton";
 import { useLang } from "@/context/LangContext";
 import { SPOTS_OPEN, useNextStartMonth } from "@/lib/availability";
+import { BOOKING_URL } from "@/lib/booking";
 
 const EASE = "cubic-bezier(0.22, 1, 0.36, 1)";
 const SPRING = [0.22, 1, 0.36, 1] as [number, number, number, number];
@@ -183,7 +184,7 @@ export default function Hero() {
             style={{ display: "flex", gap: 12, flexWrap: "wrap", animation: `heroFadeUp 0.6s 0.5s ${EASE} both` }}
           >
             <MagneticButton
-              href="https://calendly.com/adefilasamuel929/30min"
+              href={BOOKING_URL}
               target="_blank"
               rel="noopener noreferrer"
               style={{

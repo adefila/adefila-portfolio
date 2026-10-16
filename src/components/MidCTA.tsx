@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useLang } from "@/context/LangContext";
 import { SPOTS_OPEN, useNextStartMonth } from "@/lib/availability";
 import MagneticButton from "./MagneticButton";
+import { BOOKING_URL } from "@/lib/booking";
 
 const EMAIL = "samuel@adefilasamuel.com";
 
@@ -81,7 +82,7 @@ export default function MidCTA() {
         </div>
         <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", gap: 14, flexShrink: 0 }}>
           <MagneticButton
-            href="https://calendly.com/adefilasamuel929/30min"
+            href={BOOKING_URL}
             target="_blank"
             rel="noopener noreferrer"
             style={{

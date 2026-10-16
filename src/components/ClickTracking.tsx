@@ -1,10 +1,11 @@
 "use client";
 import { useEffect } from "react";
 import { trackEvent } from "@/lib/gtag";
+import { isBookingHref } from "@/lib/booking";
 
 // Sends a Google Analytics event for every lead-intent click on the page, so you can
 // see which section's button actually brings in calls and emails:
-//   book_call_click  — any link to Calendly
+//   book_call_click  — any link to the booking page (Cal.com)
 //   email_click      — any mailto: link
 //   upwork_click     — any link to the Upwork profile
 // `location` is the nearest data-track-location, else the section's id. Add
@@ -15,7 +16,7 @@ export default function ClickTracking() {
       const link = (e.target as Element | null)?.closest?.("a[href]");
       if (!link) return;
       const href = link.getAttribute("href") ?? "";
-      const name = href.includes("calendly.com")
+      const name = isBookingHref(href)
         ? "book_call_click"
         : href.startsWith("mailto:")
           ? "email_click"

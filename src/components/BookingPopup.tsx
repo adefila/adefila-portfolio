@@ -5,39 +5,52 @@ import { ArrowUpRight, X } from "lucide-react";
 import { useLang } from "@/context/LangContext";
 import { SPOTS_OPEN, useNextStartMonth } from "@/lib/availability";
 import { trackEvent } from "@/lib/gtag";
+import { BOOKING_HOST, isBookingHref } from "@/lib/booking";
 
-// Every Calendly link on the page opens this booking window instead of a new tab:
-// a panel in the site's own style (photo, title, availability, square close button)
-// with Calendly's scheduling page embedded inside. Finished bookings are reported to
-// Google Analytics as book_call_scheduled. Modifier-clicks still open a new tab, and
-// the header links to Calendly directly in case the embed is slow or blocked.
-const THEME = "hide_gdpr_banner=1&background_color=f7f7f7&text_color=0f0f0f&primary_color=6d28d9";
+// Every booking link on the page opens this window instead of a new tab: a panel in the
+// site's own style (photo, title, availability, square close button) with the Cal.com
+// booking page embedded inside. Finished bookings are reported to Google Analytics as
+// book_call_scheduled. Modifier-clicks still open a new tab, and the header links to the
+// booking page directly in case the embed is slow or blocked.
+// Colours (purple accent) are set in the Cal.com account's appearance settings; the embed
+// only chooses the light theme and the month view.
+const EMBED = "embed=true&embedType=inline&theme=light&layout=month_view";
 
-const calendlyLink = (target: EventTarget | null) =>
-  (target as Element | null)?.closest?.('a[href*="calendly.com"]') as HTMLAnchorElement | null;
+const bookingLink = (target: EventTarget | null) => {
+  const link = (target as Element | null)?.closest?.("a[href]") as HTMLAnchorElement | null;
+  return link && isBookingHref(link.href) ? link : null;
+};
 
-export default function CalendlyPopup() {
+export default function BookingPopup() {
   const { t, lang } = useLang();
   const nextStart = useNextStartMonth(lang);
   const [url, setUrl] = useState<string | null>(null);
   const [loaded, setLoaded] = useState(false);
   const lastLocation = useRef("page");
+  const booked = useRef(false); // one event per opened window, however many messages Cal.com sends
   const closeRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     const onClick = (e: MouseEvent) => {
-      const link = calendlyLink(e.target);
+      const link = bookingLink(e.target);
       if (!link || link.closest(".booking-panel")) return;
       if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
       e.preventDefault();
       const area = link.closest("[data-track-location], section[id], footer, nav");
       lastLocation.current = area?.getAttribute("data-track-location") || area?.id || area?.tagName.toLowerCase() || "page";
       setLoaded(false);
+      booked.current = false;
       setUrl(link.href);
     };
     const onMessage = (e: MessageEvent) => {
-      if (e.origin !== "https://calendly.com") return;
-      if (e.data?.event === "calendly.event_scheduled") {
+      // The Cal.com embed reports a finished booking as a "bookingSuccessful" action.
+      let host = "";
+      try { host = new URL(e.origin).hostname; } catch { return; }
+      if (host !== BOOKING_HOST && !host.endsWith(`.${BOOKING_HOST}`)) return;
+      let text = "";
+      try { text = typeof e.data === "string" ? e.data : JSON.stringify(e.data); } catch { return; }
+      if (text.includes("bookingSuccessful") && !booked.current) {
+        booked.current = true;
         trackEvent("book_call_scheduled", { location: lastLocation.current });
       }
     };
@@ -65,7 +78,7 @@ export default function CalendlyPopup() {
 
   if (!url) return null;
   const join = url.includes("?") ? "&" : "?";
-  const src = `${url}${join}embed_domain=${encodeURIComponent(window.location.host)}&embed_type=Inline&${THEME}`;
+  const src = `${url}${join}${EMBED}`;
 
   return (
     <div className="booking-overlay" onClick={(e) => { if (e.target === e.currentTarget) setUrl(null); }}>

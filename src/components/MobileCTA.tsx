@@ -4,6 +4,7 @@ import Image from "next/image";
 import { CalendarDays } from "lucide-react";
 import { useLang } from "@/context/LangContext";
 import { SPOTS_OPEN, useNextStartMonth } from "@/lib/availability";
+import { BOOKING_URL } from "@/lib/booking";
 
 // Phones only (hidden on wider screens in globals.css). Slides up once the hero's
 // own "Book a call" button has scrolled away, and steps aside while the contact
@@ -63,7 +64,7 @@ export default function MobileCTA() {
         </p>
       </div>
       <a
-        href="https://calendly.com/adefilasamuel929/30min"
+        href={BOOKING_URL}
         target="_blank"
         rel="noopener noreferrer"
         tabIndex={show ? 0 : -1}

@@ -661,7 +661,7 @@ export const T: Record<string, Record<LangCode, string>> = {
     ja: "48時間以内に診断動画をメールでお送りします。",
     yo: "Àyẹ̀wò fídíò rẹ yóò dé ímeèlì rẹ láàárín wákàtí 48.",
   },
-  // Booking window (CalendlyPopup.tsx)
+  // Booking window (BookingPopup.tsx)
   "booking.loading": {
     en: "Loading calendar…",
     fr: "Chargement du calendrier…",

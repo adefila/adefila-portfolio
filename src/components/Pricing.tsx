@@ -2,6 +2,7 @@
 import { Check, ArrowUpRight } from "lucide-react";
 import { useLang } from "@/context/LangContext";
 import RevealWords, { revealDelayAfter } from "./RevealWords";
+import { BOOKING_URL } from "@/lib/booking";
 
 const PLANS_BASE = [
   { usdPrice: 500,  featured: false, featureCount: 5, planKey: "plan0" },
@@ -183,7 +184,7 @@ export default function Pricing() {
             </div>
 
             <a
-              href="https://calendly.com/adefilasamuel929/30min"
+              href={BOOKING_URL}
               data-track-label={plan.name}
               target="_blank"
               rel="noopener noreferrer"

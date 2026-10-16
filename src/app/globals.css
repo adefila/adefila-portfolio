@@ -336,7 +336,7 @@ html[data-reveal-ready] [data-reveal]:not([data-revealed]) {
   }
 }
 
-/* Booking window (CalendlyPopup.tsx): site-styled panel with Calendly embedded,
+/* Booking window (BookingPopup.tsx): site-styled panel with the Cal.com booking page embedded,
    over a heavily blurred page */
 .booking-overlay {
   position: fixed;

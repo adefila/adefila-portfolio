@@ -4,6 +4,7 @@ import { ArrowUpRight, CalendarDays } from "lucide-react";
 import MagneticButton from "./MagneticButton";
 import { useLang } from "@/context/LangContext";
 import { useState } from "react";
+import { BOOKING_URL } from "@/lib/booking";
 
 const FOOTER_EMAIL = "samuel@adefilasamuel.com";
 
@@ -157,7 +158,7 @@ export default function Footer() {
             style={{ display: "flex", flexDirection: "column", gap: 12, flexShrink: 0 }}
           >
             <MagneticButton
-              href="https://calendly.com/adefilasamuel929/30min"
+              href={BOOKING_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="btn-cta"

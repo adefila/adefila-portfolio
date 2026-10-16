@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 import { sendToLeadFinder } from "@/lib/leadfinder";
+import { BOOKING_URL } from "@/lib/booking";
 
 // Instantiated inside the handler so missing env vars don't crash the build
 function getResend() {
@@ -43,7 +44,7 @@ const TO_ADDRESS = CONTACT_EMAIL;
 const SITE = "https://adefilasamuel.com";
 const UPWORK = "https://upwork.com/freelancers/adefilasamuel";
 const LINKEDIN = "https://www.linkedin.com/in/adefila-samuel-144448201/";
-const CALENDLY = "https://calendly.com/adefilasamuel929/30min";
+const BOOKING = BOOKING_URL;
 
 const linkBtn = (href: string, label: string) =>
   `<td style="padding-right:8px;padding-bottom:8px;">
@@ -227,11 +228,11 @@ export async function POST(req: Request) {
         If your project is time-sensitive, booking a call is the fastest path — I can give you a clear direction in 30 minutes.
       </p>
 
-      <!-- Calendly CTA -->
+      <!-- Booking CTA -->
       <table cellpadding="0" cellspacing="0" style="margin-bottom:44px;">
         <tr>
           <td style="background:#0f0f0f;padding:16px 36px;">
-            <a href="${CALENDLY}" style="font-family:Arial,sans-serif;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#ffffff;text-decoration:none;white-space:nowrap;">
+            <a href="${BOOKING}" style="font-family:Arial,sans-serif;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#ffffff;text-decoration:none;white-space:nowrap;">
               BOOK A FREE 30-MIN CALL &rarr;
             </a>
           </td>
