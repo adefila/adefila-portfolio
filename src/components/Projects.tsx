@@ -418,11 +418,21 @@ function TabBar({ active, onChange }: { active: Tab; onChange: (t: Tab) => void 
   );
 }
 
+// Real client work with results leads; the rest is one click away.
+const LEAD_WITH = ["The Initial", "Upside ESG", "BindHQ", "VPA London", "Leadopo", "The Prime Media"];
+const FIRST_SHOWN = 6;
+const byLead = (a: Project, b: Project) => {
+  const ia = LEAD_WITH.indexOf(a.title), ib = LEAD_WITH.indexOf(b.title);
+  return (ia < 0 ? 99 : ia) - (ib < 0 ? 99 : ib);
+};
+
 export default function Projects() {
   const { t } = useLang();
   const [activeTab, setActiveTab] = useState<Tab>("dev");
+  const [showAll, setShowAll] = useState(false);
 
-  const list = activeTab === "dev" ? devProjects : designProjects;
+  const list = activeTab === "dev" ? [...devProjects].sort(byLead) : designProjects;
+  const shown = showAll ? list : list.slice(0, FIRST_SHOWN);
 
   return (
     <section
@@ -456,7 +466,7 @@ export default function Projects() {
             <RevealWords text={t("projects.h1")} />
           </h2>
         </div>
-        <TabBar active={activeTab} onChange={setActiveTab} />
+        <TabBar active={activeTab} onChange={tab => { setActiveTab(tab); setShowAll(false); }} />
       </div>
 
       {list.length === 0 ? (
@@ -483,9 +493,25 @@ export default function Projects() {
           className="projects-card-grid"
           style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "64px 40px" }}
         >
-          {list.map((project, i) => (
+          {shown.map((project, i) => (
             <ProjectCard key={project.title} project={project} index={i} />
           ))}
+        </div>
+      )}
+
+      {list.length > FIRST_SHOWN && (
+        <div style={{ display: "flex", justifyContent: "center", marginTop: 56 }}>
+          <button
+            type="button"
+            onClick={() => setShowAll(v => !v)}
+            style={{
+              fontFamily: "var(--font-inter)", fontWeight: 600, fontSize: 13, letterSpacing: "0.06em",
+              textTransform: "uppercase", color: "var(--fg)", background: "transparent",
+              border: "1px solid rgba(0,0,0,0.15)", padding: "14px 24px", cursor: "pointer",
+            }}
+          >
+            {showAll ? "Show fewer projects" : `Show all ${list.length} projects`}
+          </button>
         </div>
       )}
     </section>

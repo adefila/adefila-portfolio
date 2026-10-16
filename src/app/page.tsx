@@ -11,8 +11,6 @@ import HowIWork from "@/components/HowIWork";
 import Pricing from "@/components/Pricing";
 import Testimonials from "@/components/Testimonials";
 import About from "@/components/About";
-import Currently from "@/components/Currently";
-import SideProjects from "@/components/SideProjects";
 import FAQ from "@/components/FAQ";
 import ContactForm from "@/components/ContactForm";
 import Footer from "@/components/Footer";
@@ -47,8 +45,6 @@ export default function Home() {
       <Teardown />
       <Testimonials />
       <About />
-      <Currently />
-      <SideProjects />
       <FAQ />
       <ContactForm />
       <Footer />

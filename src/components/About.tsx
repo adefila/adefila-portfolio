@@ -13,16 +13,22 @@ const techStacks = ["Figma", "Framer", "Webflow", "WordPress", "Shopify", "React
 
 // `points` are optional: a few short lines about what the role involved.
 const workHistory: { period: string; role: string; company: string; location: string; points?: string[] }[] = [
-  { period: "Oct 2026 – Present", role: "Freelance Web Developer & Framer Designer", company: "Self-employed", location: "Remote" },
   {
-    period: "Sep 2025 – Oct 2026", role: "Framer Developer", company: "Klimt and Design", location: "Los Angeles, CA. Remote",
+    period: "2020 – Present", role: "Freelance Web Developer & Framer Designer", company: "Self-employed", location: "Remote",
+    points: [
+      "50+ websites for founders, agencies and small businesses.",
+      "Top Rated on Upwork with 100% Job Success.",
+    ],
+  },
+  {
+    period: "Sep 2025 – Oct 2026", role: "Framer Developer (Contract)", company: "Klimt and Design", location: "Los Angeles, CA. Remote",
     points: [
       "Turned design concepts into pixel-perfect, user-friendly websites in Framer.",
       "Worked with designers to make sure functionality and usability matched what clients expected.",
     ],
   },
   {
-    period: "Oct 2024 – Sep 2025", role: "UI/UX Designer & Project Manager", company: "Trust-Tai Agency", location: "Murfreesboro, TN. Remote",
+    period: "Oct 2024 – Sep 2025", role: "UI/UX Designer & Project Manager (Full-time)", company: "Trust-Tai Agency", location: "Murfreesboro, TN. Remote",
     points: [
       "Led multidisciplinary teams on client projects spanning UI/UX design, branding and development.",
       "Managed client communication and project timelines, delivering on time.",
@@ -30,7 +36,7 @@ const workHistory: { period: string; role: string; company: string; location: st
     ],
   },
   {
-    period: "Oct 2024 – Jul 2025", role: "Framer Developer", company: "Hitpay", location: "Singapore. Remote",
+    period: "Oct 2024 – Jul 2025", role: "Framer Developer (Contract)", company: "Hitpay", location: "Singapore. Remote",
     points: [
       "Built high-fidelity prototypes in Framer to speed up user testing and developer handoff.",
       "Worked with design and product teams to improve the experience across core payment tools.",
@@ -38,7 +44,7 @@ const workHistory: { period: string; role: string; company: string; location: st
     ],
   },
   {
-    period: "Sep 2023 – Sep 2025", role: "Lead Product Designer", company: "BookedEZ LLC", location: "Atlanta, GA. Remote",
+    period: "Sep 2023 – Sep 2025", role: "Lead Product Designer (Full-time)", company: "BookedEZ LLC", location: "Atlanta, GA. Remote",
     points: [
       "Directed the redesign of the core booking flows, increasing conversion by 20%.",
       "Ran user research, wireframing and usability testing for continuous product improvement.",
@@ -111,9 +117,13 @@ function TechTag({ label }: { label: string }) {
   );
 }
 
+// The first roles show; the rest open on request, so the page stays short.
+const HISTORY_SHOWN = 3;
+
 export default function About() {
   const { t } = useLang();
   const [lightbox, setLightbox] = useState<number | null>(null);
+  const [fullHistory, setFullHistory] = useState(false);
 
   const lbPrev = () => setLightbox((p) => (p !== null ? (p - 1 + photos.length) % photos.length : 0));
   const lbNext = () => setLightbox((p) => (p !== null ? (p + 1) % photos.length : 0));
@@ -272,7 +282,7 @@ export default function About() {
           {/* Timeline: a line down the left with a dot per role; the current role is highlighted */}
           <ol style={{ position: "relative", listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column" }}>
             <span aria-hidden="true" style={{ position: "absolute", left: 5, top: 28, bottom: 28, width: 1, background: "rgba(0,0,0,0.12)" }} />
-            {workHistory.map((job, i) => {
+            {(fullHistory ? workHistory : workHistory.slice(0, HISTORY_SHOWN)).map((job, i) => {
               const current = job.period.endsWith("Present");
               return (
               <li key={i} style={{ position: "relative", padding: "20px 0 20px 32px" }}>
@@ -341,6 +351,20 @@ export default function About() {
               );
             })}
           </ol>
+          {workHistory.length > HISTORY_SHOWN && (
+            <button
+              type="button"
+              onClick={() => setFullHistory(v => !v)}
+              aria-expanded={fullHistory}
+              style={{
+                marginTop: 8, marginLeft: 32, background: "transparent", border: 0, padding: "4px 0", cursor: "pointer",
+                fontFamily: "var(--font-inter)", fontWeight: 600, fontSize: 12, letterSpacing: "0.08em", textTransform: "uppercase",
+                color: "var(--accent-purple)", borderBottom: "1px solid currentColor",
+              }}
+            >
+              {fullHistory ? "Show less" : `Show full history (${workHistory.length - HISTORY_SHOWN} more)`}
+            </button>
+          )}
         </motion.div>
       </div>
 
