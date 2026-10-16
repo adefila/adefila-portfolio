@@ -5,16 +5,56 @@ import { ArrowUpRight, X } from "lucide-react";
 import { useLang } from "@/context/LangContext";
 import { SPOTS_OPEN, useNextStartMonth } from "@/lib/availability";
 import { trackEvent } from "@/lib/gtag";
-import { BOOKING_HOST, isBookingHref } from "@/lib/booking";
+import { isBookingHref } from "@/lib/booking";
 
 // Every booking link on the page opens this window instead of a new tab: a panel in the
 // site's own style (photo, title, availability, square close button) with the Cal.com
-// booking page embedded inside. Finished bookings are reported to Google Analytics as
-// book_call_scheduled. Modifier-clicks still open a new tab, and the header links to the
-// booking page directly in case the embed is slow or blocked.
-// Colours (purple accent) are set in the Cal.com account's appearance settings; the embed
-// only chooses the light theme and the month view.
-const EMBED = "embed=true&embedType=inline&theme=light&layout=month_view";
+// booking page inside. It uses Cal.com's own embed script, which sizes the calendar to its
+// content (no empty bands), takes the site's purple and white, and reports a finished
+// booking, sent to Google Analytics as book_call_scheduled. Modifier-clicks still open a
+// new tab, and the header links to the booking page directly in case the embed is blocked.
+const NS = "booking";
+const ORIGIN = "https://app.cal.com";
+
+type CalApi = (...args: unknown[]) => void;
+type CalGlobal = CalApi & { ns?: Record<string, CalApi>; loaded?: boolean; q?: unknown[] };
+declare global { interface Window { Cal?: CalGlobal } }
+
+// The component hands its handlers to the embed events, which are registered once.
+const hooks = { ready: () => {}, booked: () => {} };
+
+// Cal.com's standard loader: queues calls until the script has arrived.
+function loadCal(): CalApi {
+  if (!window.Cal) {
+    const d = document;
+    const push = (a: { q?: unknown[] }, ar: unknown) => { (a.q ||= []).push(ar); };
+    const cal = function (...ar: unknown[]) {
+      const c = window.Cal as CalGlobal;
+      if (!c.loaded) {
+        c.ns = {};
+        c.q = c.q || [];
+        d.head.appendChild(d.createElement("script")).src = `${ORIGIN}/embed/embed.js`;
+        c.loaded = true;
+      }
+      if (ar[0] === "init") {
+        const api = function (...a: unknown[]) { push(api as unknown as { q?: unknown[] }, a); } as CalApi;
+        const namespace = ar[1];
+        if (typeof namespace === "string") {
+          c.ns![namespace] = c.ns![namespace] || api;
+          push(c.ns![namespace] as unknown as { q?: unknown[] }, ar);
+          push(c as unknown as { q?: unknown[] }, ["initNamespace", namespace]);
+        } else push(c as unknown as { q?: unknown[] }, ar);
+        return;
+      }
+      push(c as unknown as { q?: unknown[] }, ar);
+    } as CalGlobal;
+    window.Cal = cal;
+    window.Cal("init", NS, { origin: ORIGIN });
+    window.Cal.ns![NS]("on", { action: "linkReady", callback: () => hooks.ready() });
+    window.Cal.ns![NS]("on", { action: "bookingSuccessful", callback: () => hooks.booked() });
+  }
+  return window.Cal.ns![NS];
+}
 
 const bookingLink = (target: EventTarget | null) => {
   const link = (target as Element | null)?.closest?.("a[href]") as HTMLAnchorElement | null;
@@ -26,9 +66,11 @@ export default function BookingPopup() {
   const nextStart = useNextStartMonth(lang);
   const [url, setUrl] = useState<string | null>(null);
   const [loaded, setLoaded] = useState(false);
+  const [slow, setSlow] = useState(false);
   const lastLocation = useRef("page");
-  const booked = useRef(false); // one event per opened window, however many messages Cal.com sends
+  const booked = useRef(false); // one event per opened window
   const closeRef = useRef<HTMLButtonElement>(null);
+  const embedRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const onClick = (e: MouseEvent) => {
@@ -39,27 +81,12 @@ export default function BookingPopup() {
       const area = link.closest("[data-track-location], section[id], footer, nav");
       lastLocation.current = area?.getAttribute("data-track-location") || area?.id || area?.tagName.toLowerCase() || "page";
       setLoaded(false);
+      setSlow(false);
       booked.current = false;
       setUrl(link.href);
     };
-    const onMessage = (e: MessageEvent) => {
-      // The Cal.com embed reports a finished booking as a "bookingSuccessful" action.
-      let host = "";
-      try { host = new URL(e.origin).hostname; } catch { return; }
-      if (host !== BOOKING_HOST && !host.endsWith(`.${BOOKING_HOST}`)) return;
-      let text = "";
-      try { text = typeof e.data === "string" ? e.data : JSON.stringify(e.data); } catch { return; }
-      if (text.includes("bookingSuccessful") && !booked.current) {
-        booked.current = true;
-        trackEvent("book_call_scheduled", { location: lastLocation.current });
-      }
-    };
     document.addEventListener("click", onClick);
-    window.addEventListener("message", onMessage);
-    return () => {
-      document.removeEventListener("click", onClick);
-      window.removeEventListener("message", onMessage);
-    };
+    return () => document.removeEventListener("click", onClick);
   }, []);
 
   // While open: no page scroll behind it, Esc closes, focus starts on the close button
@@ -76,9 +103,33 @@ export default function BookingPopup() {
     };
   }, [url]);
 
+  // Put the calendar into the window each time it opens
+  useEffect(() => {
+    if (!url || !embedRef.current) return;
+    hooks.ready = () => setLoaded(true);
+    hooks.booked = () => {
+      if (booked.current) return;
+      booked.current = true;
+      trackEvent("book_call_scheduled", { location: lastLocation.current });
+    };
+    const calLink = new URL(url).pathname.replace(/^\//, "");
+    const cal = loadCal();
+    cal("inline", { elementOrSelector: embedRef.current, calLink, config: { layout: "month_view", theme: "light" } });
+    cal("ui", {
+      theme: "light",
+      layout: "month_view",
+      hideEventTypeDetails: false,
+      cssVarsPerTheme: { light: { "cal-brand": "#6d28d9", "cal-bg": "#ffffff" } },
+    });
+    const slowTimer = setTimeout(() => setSlow(true), 12000);
+    return () => {
+      clearTimeout(slowTimer);
+      hooks.ready = () => {};
+      hooks.booked = () => {};
+    };
+  }, [url]);
+
   if (!url) return null;
-  const join = url.includes("?") ? "&" : "?";
-  const src = `${url}${join}${EMBED}`;
 
   return (
     <div className="booking-overlay" onClick={(e) => { if (e.target === e.currentTarget) setUrl(null); }}>
@@ -126,16 +177,13 @@ export default function BookingPopup() {
                 </div>
               </div>
               <p style={{ fontFamily: "var(--font-inter)", fontSize: 12, fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", color: "var(--fg-muted)", marginTop: 28 }}>
-                {t("booking.loading")}
+                {slow ? (
+                  <a href={url} target="_blank" rel="noopener noreferrer" style={{ color: "var(--accent-purple)" }}>{t("booking.newTab")}</a>
+                ) : t("booking.loading")}
               </p>
             </div>
           )}
-          <iframe
-            src={src}
-            title={t("common.bookCall")}
-            onLoad={() => setLoaded(true)}
-            style={{ position: "absolute", inset: 0, width: "100%", height: "100%", border: 0, opacity: loaded ? 1 : 0, transition: "opacity 0.3s" }}
-          />
+          <div ref={embedRef} className="booking-embed" style={{ opacity: loaded ? 1 : 0 }} />
         </div>
       </div>
     </div>

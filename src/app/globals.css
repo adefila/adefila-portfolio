@@ -353,7 +353,8 @@ html[data-reveal-ready] [data-reveal]:not([data-revealed]) {
 }
 .booking-panel {
   width: min(1040px, 100%);
-  height: min(760px, calc(100vh - 48px));
+  /* As tall as the calendar needs, never taller than the screen; the body scrolls past that */
+  max-height: calc(100vh - 48px);
   display: flex;
   flex-direction: column;
   background: var(--bg);
@@ -388,7 +389,13 @@ html[data-reveal-ready] [data-reveal]:not([data-revealed]) {
 .booking-body {
   position: relative;
   flex: 1;
-  min-height: 0;
+  min-height: min(560px, calc(100vh - 160px));
+  overflow-y: auto;
+  background: var(--white);
+}
+.booking-embed {
+  width: 100%;
+  transition: opacity 0.3s;
 }
 .booking-loading {
   position: absolute;
@@ -417,6 +424,10 @@ html[data-reveal-ready] [data-reveal]:not([data-revealed]) {
     width: 100%;
     height: 100%;
     height: 100dvh;
+    max-height: none;
+  }
+  .booking-body {
+    min-height: 0;
   }
   .booking-newtab {
     display: none !important;
