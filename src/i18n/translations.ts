@@ -347,6 +347,16 @@ export const T: Record<string, Record<LangCode, string>> = {
     en: "SEE MY WORK",             fr: "VOIR MES PROJETS",        es: "VER MI TRABAJO",          de: "MEINE ARBEITEN",
     pt: "VER MEU TRABALHO",        zh: "查看作品",                  ja: "実績を見る",                yo: "WO IṢẸ́ MI",
   },
+  "hero.localLink": {
+    en: "Run a clinic, salon or trades business? See how I help",
+    fr: "Vous gérez un cabinet, un salon ou une entreprise artisanale ? Voyez comment je peux aider",
+    es: "¿Tienes una clínica, un salón o un negocio de oficios? Mira cómo puedo ayudarte",
+    de: "Sie führen eine Praxis, einen Salon oder einen Handwerksbetrieb? So helfe ich",
+    pt: "Tem uma clínica, um salão ou um negócio de serviços? Veja como posso ajudar",
+    zh: "经营诊所、沙龙或维修服务？看看我能如何帮忙",
+    ja: "クリニック、サロン、工事業を経営されていますか？私のサポート内容はこちら",
+    yo: "Ṣé o ní ilé ìwòsàn, ṣọ́ọ̀bù ìrun tàbí iṣẹ́ ọwọ́? Wo bí mo ṣe lè ràn ọ́ lọ́wọ́",
+  },
   "hero.tagTopRated": {
     en: "Top Rated · Upwork",      fr: "Top Rated · Upwork",      es: "Top Rated · Upwork",      de: "Top Rated · Upwork",
     pt: "Top Rated · Upwork",      zh: "Upwork 顶级认证",           ja: "Upwork Top Rated",         yo: "Top Rated · Upwork",

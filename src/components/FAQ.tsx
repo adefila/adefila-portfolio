@@ -37,13 +37,13 @@ const tokens = (s: string) =>
 
 type Faq = { q: string; a: string; i: number };
 
-function rank(query: string, faqs: Faq[]): { hit: Faq; score: number }[] {
+function rank(query: string, faqs: Faq[], synonyms: Record<number, string[]>): { hit: Faq; score: number }[] {
   const words = tokens(query);
   if (!words.length) return [];
   const stems = words.map(stem);
   const scored = faqs.map((f) => {
     const q = fold(f.q), a = fold(f.a);
-    const syn = (SYNONYMS[f.i] ?? []).map(stem);
+    const syn = (synonyms[f.i] ?? []).map(stem);
     let score = 0;
     stems.forEach((s) => {
       if (q.includes(s)) score += 3;
@@ -67,7 +67,8 @@ function highlight(text: string, query: string) {
 
 const EASE = [0.22, 1, 0.36, 1] as [number, number, number, number];
 
-export default function FAQ() {
+// `synonyms` is for pages that replace the questions (see /local-business): everyday words per question number.
+export default function FAQ({ synonyms = SYNONYMS }: { synonyms?: Record<number, string[]> }) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const [query, setQuery] = useState("");
   const [shown, setShown] = useState<number | null>(null); // a related question picked in the reply
@@ -86,7 +87,7 @@ export default function FAQ() {
     return () => clearTimeout(timer);
   }, [query]);
   const asked = query.trim() ? settled : ""; // clearing the box clears the reply at once
-  const results = useMemo(() => (asked.length >= 3 ? rank(asked, faqs) : []), [asked, faqs]);
+  const results = useMemo(() => (asked.length >= 3 ? rank(asked, faqs, synonyms) : []), [asked, faqs, synonyms]);
   const best = shown !== null ? faqs.find((f) => f.i === shown) : results[0]?.hit;
   const related = results.map((r) => r.hit).filter((f) => f.i !== best?.i).slice(0, 2);
   const noMatch = asked.length >= 3 && results.length === 0;

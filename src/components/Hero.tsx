@@ -1,7 +1,7 @@
 ﻿"use client";
 import { useEffect, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
-import { ArrowDown, CalendarDays, Star } from "lucide-react";
+import { ArrowDown, ArrowRight, CalendarDays, Star } from "lucide-react";
 import Image from "next/image";
 import MagneticButton from "./MagneticButton";
 import { useLang } from "@/context/LangContext";
@@ -60,7 +60,7 @@ const tagStyle: React.CSSProperties = {
   whiteSpace: "nowrap",
 };
 
-export default function Hero() {
+export default function Hero({ workHref = "#work", altHref = "/local-business" }: { workHref?: string; altHref?: string }) {
   const { t, lang } = useLang();
   const nextStart = useNextStartMonth(lang);
   const words = t("hero.h2.words").split("|");
@@ -206,7 +206,7 @@ export default function Hero() {
               {t("hero.cta")} <CalendarDays size={15} strokeWidth={2} />
             </MagneticButton>
             <MagneticButton
-              href="#work"
+              href={workHref}
               style={{
                 fontFamily: "var(--font-inter)",
                 fontWeight: 600,
@@ -238,6 +238,19 @@ export default function Hero() {
               {t("hero.ctaWork")} <ArrowDown size={15} strokeWidth={2} />
             </MagneticButton>
           </div>
+          {/* For business owners arriving from outreach: their own, jargon-free page */}
+          <a
+            href={altHref}
+            data-track-location="hero_local"
+            style={{
+              display: "inline-flex", alignItems: "center", gap: 6, marginTop: 20,
+              fontFamily: "var(--font-inter)", fontSize: 14, color: "var(--fg-secondary)",
+              textDecoration: "none", borderBottom: "1px solid rgba(0,0,0,0.2)", paddingBottom: 2,
+              animation: `heroFadeUp 0.6s 0.6s ${EASE} both`,
+            }}
+          >
+            {t("hero.localLink")} <ArrowRight size={14} strokeWidth={2} />
+          </a>
         </div>
 
         {/* Portrait with floating proof tags */}

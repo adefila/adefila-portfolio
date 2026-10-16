@@ -17,6 +17,8 @@ const NAV_HREFS = [
   { key: "nav.faq",          href: "#faq"          },
 ];
 
+const SECTION_PAGES = ["/", "/local-business"];
+
 const SECTION_IDS = ["hero", "work", "benefits", "process", "pricing", "testimonials", "about", "faq", "contact"];
 
 const EASE = [0.22, 1, 0.36, 1] as [number, number, number, number];
@@ -81,8 +83,9 @@ export default function Navbar() {
   const [shrunk, setShrunk] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const { t } = useLang();
-  // Off the home page (case studies, 404) the section links lead back to home.
-  const onHome = usePathname() === "/";
+  // Pages built from the homepage sections scroll in place; elsewhere (case studies, 404)
+  // the section links lead back to home.
+  const onHome = SECTION_PAGES.includes(usePathname());
   const base = onHome ? "" : "/";
   const navLinks = useMemo(
     () => NAV_HREFS.map(({ key, href }) => ({ label: t(key), href: `${base}${href}` })),

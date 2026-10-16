@@ -146,3 +146,11 @@ export function LangProvider({ children }: { children: React.ReactNode }) {
 }
 
 export const useLang = () => useContext(LangContext);
+
+// Swaps the wording of specific keys for everything inside it, so another page (e.g.
+// /local-business) can reuse the homepage sections as-is with its own copy.
+export function CopyOverride({ copy, children }: { copy: Record<string, string>; children: React.ReactNode }) {
+  const parent = useLang();
+  const t = (key: string) => copy[key] ?? parent.t(key);
+  return <LangContext.Provider value={{ ...parent, t }}>{children}</LangContext.Provider>;
+}
