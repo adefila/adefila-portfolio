@@ -157,6 +157,7 @@ export default function FAQ() {
                   data-reveal
                   style={{
                     borderBottom: "1px solid rgba(0,0,0,0.07)",
+                    padding: "0 14px",
                     background: isOpen ? "rgba(109,40,217,0.025)" : "transparent",
                     transition: "background 0.25s ease",
                   }}
@@ -164,7 +165,7 @@ export default function FAQ() {
                   <button
                     onClick={() => toggle(faq.i)}
                     aria-expanded={isOpen}
-                    style={{ display: "flex", alignItems: "center", justifyContent: "space-between", width: "100%", padding: "14px 0", background: "none", border: "none", cursor: "pointer", gap: 20, textAlign: "left" }}
+                    style={{ display: "flex", alignItems: "center", justifyContent: "space-between", width: "100%", padding: isOpen ? "14px 0 6px" : "14px 0", background: "none", border: "none", cursor: "pointer", gap: 20, textAlign: "left" }}
                   >
                     <div style={{ display: "flex", alignItems: "center", gap: 14, minWidth: 0, flex: 1 }}>
                       <span style={{ fontFamily: "var(--font-inter)", fontSize: 10, letterSpacing: "0.5px", color: isOpen ? "var(--accent-purple)" : "rgba(0,0,0,0.2)", flexShrink: 0, transition: "color 0.2s", fontVariantNumeric: "tabular-nums", minWidth: 20 }}>
@@ -192,7 +193,7 @@ export default function FAQ() {
                         transition={{ duration: 0.3, ease: EASE }}
                         style={{ overflow: "hidden" }}
                       >
-                        <p style={{ ...body, fontSize: 14, margin: 0, paddingBottom: 16, paddingLeft: 34, paddingRight: 12 }}>
+                        <p style={{ ...body, fontSize: 14, margin: 0, paddingBottom: 14, paddingLeft: 34, paddingRight: 28 }}>
                           {faq.a}
                         </p>
                       </motion.div>
