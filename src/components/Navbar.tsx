@@ -77,7 +77,8 @@ function HamburgerIcon({ open }: { open: boolean }) {
   );
 }
 
-export default function Navbar() {
+// `hide`: section links to leave out on pages that do not have that section (e.g. ["#about"]).
+export default function Navbar({ hide = [] }: { hide?: string[] }) {
   const [active, setActive] = useState("");
   const [scrolled, setScrolled] = useState(false);
   const [shrunk, setShrunk] = useState(false);
@@ -87,9 +88,10 @@ export default function Navbar() {
   // the section links lead back to home.
   const onHome = SECTION_PAGES.includes(usePathname());
   const base = onHome ? "" : "/";
+  const hidden = hide.join(","); // a string, so the list below only recomputes when its contents change
   const navLinks = useMemo(
-    () => NAV_HREFS.map(({ key, href }) => ({ label: t(key), href: `${base}${href}` })),
-    [t, base],
+    () => NAV_HREFS.filter(({ href }) => !hidden.split(",").includes(href)).map(({ key, href }) => ({ label: t(key), href: `${base}${href}` })),
+    [t, base, hidden],
   );
 
   useEffect(() => {

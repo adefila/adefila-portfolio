@@ -7,7 +7,6 @@ import WhyMe from "@/components/WhyMe";
 import HowIWork from "@/components/HowIWork";
 import Pricing from "@/components/Pricing";
 import Testimonials from "@/components/Testimonials";
-import About from "@/components/About";
 import FAQ from "@/components/FAQ";
 import ContactForm from "@/components/ContactForm";
 import Footer from "@/components/Footer";
@@ -207,7 +206,7 @@ export default function LocalBusinessPage() {
       <ClickTracking />
       <BookingPopup />
       <CopyOverride copy={COPY}>
-        <Navbar />
+        <Navbar hide={["#about"]} />
         <Hero altHref="/" />
         <ClientGrid />
         <Systems />
@@ -225,7 +224,6 @@ export default function LocalBusinessPage() {
           </div>
         </div>
         <Testimonials />
-        <About gallery={false} />
         <FAQ synonyms={FAQ_WORDS} />
         <ContactForm variant="local" />
         <Footer />
