@@ -1,6 +1,6 @@
 "use client";
 import { motion, AnimatePresence } from "framer-motion";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
 import { ArrowUpRight, CornerDownLeft, X } from "lucide-react";
 import { useLang } from "@/context/LangContext";
@@ -78,11 +78,25 @@ export default function FAQ() {
     [t],
   );
 
-  const asked = query.trim();
+  // The reply follows what they type, after a short pause so half-typed words don't flash
+  // "not covered" while they are still typing
+  const [settled, setSettled] = useState("");
+  useEffect(() => {
+    const timer = setTimeout(() => setSettled(query.trim()), 450);
+    return () => clearTimeout(timer);
+  }, [query]);
+  const asked = query.trim() ? settled : ""; // clearing the box clears the reply at once
   const results = useMemo(() => (asked.length >= 3 ? rank(asked, faqs) : []), [asked, faqs]);
   const best = shown !== null ? faqs.find((f) => f.i === shown) : results[0]?.hit;
   const related = results.map((r) => r.hit).filter((f) => f.i !== best?.i).slice(0, 2);
   const noMatch = asked.length >= 3 && results.length === 0;
+
+  // The reply grows under the box as they type; keep it on screen
+  const replyRef = useRef<HTMLDivElement>(null);
+  const hasReply = asked.length >= 3;
+  useEffect(() => {
+    if (hasReply) replyRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  }, [hasReply, best?.i, noMatch]);
 
   const toggle = (i: number) => setOpenIndex(openIndex === i ? null : i);
 
@@ -104,7 +118,7 @@ export default function FAQ() {
         className="faq-grid"
         style={{ display: "grid", gridTemplateColumns: "1fr 1.1fr", gap: "0 80px", alignItems: "start" }}
       >
-        {/* Left: heading, and the box where visitors type their own question */}
+        {/* Left: heading */}
         <div className="faq-left" style={{ position: "sticky", top: 120 }}>
           <motion.p
             data-reveal
@@ -129,8 +143,67 @@ export default function FAQ() {
               samuel@adefilasamuel.com
             </a>
           </motion.p>
+        </div>
 
-          <motion.div data-reveal style={{ background: "var(--white)", border: "1px solid rgba(0,0,0,0.08)", padding: 16 }}>
+        {/* Right: the list, then a box to type your own question; the reply fills in underneath as you type */}
+        <div>
+          {/* Full list: compact rows */}
+          <div style={{ borderTop: "1px solid rgba(0,0,0,0.07)" }}>
+            {faqs.map((faq, n) => {
+              const isOpen = openIndex === faq.i;
+              return (
+                <motion.div
+                  key={faq.i}
+                  data-reveal
+                  style={{
+                    borderBottom: "1px solid rgba(0,0,0,0.07)",
+                    background: isOpen ? "rgba(109,40,217,0.025)" : "transparent",
+                    transition: "background 0.25s ease",
+                  }}
+                >
+                  <button
+                    onClick={() => toggle(faq.i)}
+                    aria-expanded={isOpen}
+                    style={{ display: "flex", alignItems: "center", justifyContent: "space-between", width: "100%", padding: "14px 0", background: "none", border: "none", cursor: "pointer", gap: 20, textAlign: "left" }}
+                  >
+                    <div style={{ display: "flex", alignItems: "center", gap: 14, minWidth: 0, flex: 1 }}>
+                      <span style={{ fontFamily: "var(--font-inter)", fontSize: 10, letterSpacing: "0.5px", color: isOpen ? "var(--accent-purple)" : "rgba(0,0,0,0.2)", flexShrink: 0, transition: "color 0.2s", fontVariantNumeric: "tabular-nums", minWidth: 20 }}>
+                        {String(n + 1).padStart(2, "0")}
+                      </span>
+                      <span style={{ fontFamily: "var(--font-inter)", fontWeight: 600, fontSize: 13, letterSpacing: "0.3px", color: isOpen ? "var(--accent-purple)" : "var(--fg)", textTransform: "uppercase", transition: "color 0.2s" }}>
+                        {faq.q}
+                      </span>
+                    </div>
+                    <motion.span
+                      animate={{ rotate: isOpen ? 45 : 0 }}
+                      transition={{ duration: 0.22 }}
+                      style={{ fontSize: 20, color: isOpen ? "var(--accent-purple)" : "var(--fg)", flexShrink: 0, lineHeight: 1, display: "inline-block", transition: "color 0.2s" }}
+                    >
+                      +
+                    </motion.span>
+                  </button>
+
+                  <AnimatePresence initial={false}>
+                    {isOpen && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3, ease: EASE }}
+                        style={{ overflow: "hidden" }}
+                      >
+                        <p style={{ ...body, fontSize: 14, margin: 0, paddingBottom: 16, paddingLeft: 34, paddingRight: 12 }}>
+                          {faq.a}
+                        </p>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </motion.div>
+              );
+            })}
+          </div>
+
+          <motion.div data-reveal style={{ background: "var(--white)", border: "1px solid rgba(0,0,0,0.08)", padding: 16, marginTop: 28 }}>
             <label htmlFor="faq-ask" style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 12, cursor: "text" }}>
               <Image
                 src="/samuel-portrait.webp"
@@ -182,11 +255,7 @@ export default function FAQ() {
               )}
             </div>
           </motion.div>
-        </div>
-
-        {/* Right: the reply to a typed question, then the full list */}
-        <div>
-          <div aria-live="polite">
+          <div ref={replyRef} aria-live="polite">
             <AnimatePresence mode="popLayout" initial={false}>
               {asked.length >= 3 && (
                 <motion.div
@@ -195,7 +264,7 @@ export default function FAQ() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -6 }}
                   transition={{ duration: 0.3, ease: EASE }}
-                  style={{ marginBottom: 32, display: "grid", gap: 10 }}
+                  style={{ marginTop: 20, display: "grid", gap: 10 }}
                 >
                   {/* What they typed */}
                   <div style={{ justifySelf: "end", maxWidth: "86%", background: "var(--fg)", color: "#fff", padding: "10px 14px", fontFamily: "var(--font-inter)", fontSize: 14, lineHeight: 1.5, wordBreak: "break-word" }}>
@@ -264,61 +333,6 @@ export default function FAQ() {
             </AnimatePresence>
           </div>
 
-          {/* Full list: compact rows */}
-          <div style={{ borderTop: "1px solid rgba(0,0,0,0.07)" }}>
-            {faqs.map((faq, n) => {
-              const isOpen = openIndex === faq.i;
-              return (
-                <motion.div
-                  key={faq.i}
-                  data-reveal
-                  style={{
-                    borderBottom: "1px solid rgba(0,0,0,0.07)",
-                    background: isOpen ? "rgba(109,40,217,0.025)" : "transparent",
-                    transition: "background 0.25s ease",
-                  }}
-                >
-                  <button
-                    onClick={() => toggle(faq.i)}
-                    aria-expanded={isOpen}
-                    style={{ display: "flex", alignItems: "center", justifyContent: "space-between", width: "100%", padding: "14px 0", background: "none", border: "none", cursor: "pointer", gap: 20, textAlign: "left" }}
-                  >
-                    <div style={{ display: "flex", alignItems: "center", gap: 14, minWidth: 0, flex: 1 }}>
-                      <span style={{ fontFamily: "var(--font-inter)", fontSize: 10, letterSpacing: "0.5px", color: isOpen ? "var(--accent-purple)" : "rgba(0,0,0,0.2)", flexShrink: 0, transition: "color 0.2s", fontVariantNumeric: "tabular-nums", minWidth: 20 }}>
-                        {String(n + 1).padStart(2, "0")}
-                      </span>
-                      <span style={{ fontFamily: "var(--font-inter)", fontWeight: 600, fontSize: 13, letterSpacing: "0.3px", color: isOpen ? "var(--accent-purple)" : "var(--fg)", textTransform: "uppercase", transition: "color 0.2s" }}>
-                        {faq.q}
-                      </span>
-                    </div>
-                    <motion.span
-                      animate={{ rotate: isOpen ? 45 : 0 }}
-                      transition={{ duration: 0.22 }}
-                      style={{ fontSize: 20, color: isOpen ? "var(--accent-purple)" : "var(--fg)", flexShrink: 0, lineHeight: 1, display: "inline-block", transition: "color 0.2s" }}
-                    >
-                      +
-                    </motion.span>
-                  </button>
-
-                  <AnimatePresence initial={false}>
-                    {isOpen && (
-                      <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: "auto", opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.3, ease: EASE }}
-                        style={{ overflow: "hidden" }}
-                      >
-                        <p style={{ ...body, fontSize: 14, margin: 0, paddingBottom: 16, paddingLeft: 34, paddingRight: 12 }}>
-                          {faq.a}
-                        </p>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </motion.div>
-              );
-            })}
-          </div>
         </div>
       </div>
     </section>
