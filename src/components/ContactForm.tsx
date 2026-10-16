@@ -111,6 +111,16 @@ export default function ContactForm() {
     message: "",
   });
 
+  // The FAQ's "send my question" button fills in the message
+  useEffect(() => {
+    const onPrefill = (e: Event) => {
+      const message = (e as CustomEvent<{ message?: string }>).detail?.message;
+      if (message) setForm((f) => ({ ...f, message }));
+    };
+    window.addEventListener("prefill-contact", onPrefill);
+    return () => window.removeEventListener("prefill-contact", onPrefill);
+  }, []);
+
   // After a successful send, count down and reset the form (countdown starts at 5 in handleSubmit)
   useEffect(() => {
     if (status !== "success") return;
