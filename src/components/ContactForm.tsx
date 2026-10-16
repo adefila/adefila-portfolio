@@ -90,11 +90,29 @@ const budgets = [
   "$3,000+",
 ];
 
+// The small-business page asks different questions: what would help most, and a rough budget in its own ranges.
+const LOCAL_SERVICES = [
+  "Online booking + reminders",
+  "Quote requests to my phone",
+  "Review requests",
+  "A new or better website",
+  "A bit of everything",
+  "Not sure yet",
+];
+
+const LOCAL_BUDGETS = [
+  "Under $500",
+  "$500 – $2,000",
+  "$2,000 – $3,000",
+  "Not sure yet",
+];
+
 type Status = "idle" | "submitting" | "success" | "error";
 
 
-export default function ContactForm() {
+export default function ContactForm({ variant = "default" }: { variant?: "default" | "local" }) {
   const { t } = useLang();
+  const local = variant === "local";
 
   const [status, setStatus] = useState<Status>("idle");
   const [countdown, setCountdown] = useState(5);
@@ -109,6 +127,7 @@ export default function ContactForm() {
     service: "",
     budget: "",
     message: "",
+    business: "",
   });
 
   // The FAQ's "send my question" button fills in the message
@@ -125,7 +144,7 @@ export default function ContactForm() {
   useEffect(() => {
     if (status !== "success") return;
     const interval = setInterval(() => setCountdown((c) => c - 1), 1000);
-    const reset = setTimeout(() => { setStatus("idle"); setForm({ name: "", email: "", service: "", budget: "", message: "" }); }, 5000);
+    const reset = setTimeout(() => { setStatus("idle"); setForm({ name: "", email: "", service: "", budget: "", message: "", business: "" }); }, 5000);
     return () => { clearInterval(interval); clearTimeout(reset); };
   }, [status]);
 
@@ -140,7 +159,13 @@ export default function ContactForm() {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...form, _t: loadedAt.current, _h: honey }),
+        // The small-business page tells you where the enquiry came from and which business it is
+        body: JSON.stringify({
+          ...form,
+          message: local ? `[Small business page]${form.business ? ` Business: ${form.business}.` : ""} ${form.message}` : form.message,
+          _t: loadedAt.current,
+          _h: honey,
+        }),
       });
       if (res.ok) {
         setCountdown(5);
@@ -148,8 +173,9 @@ export default function ContactForm() {
         trackEvent("generate_lead", {
           service: form.service || "unspecified",
           budget: form.budget || "unspecified",
+          form: local ? "local_business" : "main",
         });
-        setForm({ name: "", email: "", service: "", budget: "", message: "" });
+        setForm({ name: "", email: "", service: "", budget: "", message: "", business: "" });
       } else {
         setStatus("error");
       }
@@ -245,7 +271,8 @@ export default function ContactForm() {
           >
             <CopyEmailRow />
             {[
-              { label: "Upwork", value: "Samuel Adefila. Top Rated", href: "https://upwork.com/freelancers/adefilasamuel" },
+              // Upwork means little to a clinic or a plumber, so the small-business page leaves it out
+              ...(local ? [] : [{ label: "Upwork", value: "Samuel Adefila. Top Rated", href: "https://upwork.com/freelancers/adefilasamuel" }]),
               { label: "LinkedIn", value: "linkedin.com/in/adefila-samuel", href: "https://www.linkedin.com/in/adefila-samuel-144448201/" },
             ].map((item) => (
               <a
@@ -320,6 +347,26 @@ export default function ContactForm() {
                 </div>
               </div>
 
+              {/* Small-business page only: which business */}
+              {local && (
+                <div>
+                  <label htmlFor="contact-business" style={{ fontFamily: "var(--font-inter)", fontSize: 10, letterSpacing: "2px", textTransform: "uppercase", color: "var(--fg-muted)", display: "block", marginBottom: 6 }}>
+                    {t("contact.label.business")}
+                  </label>
+                  <input
+                    id="contact-business"
+                    type="text"
+                    placeholder={t("contact.ph.business")}
+                    value={form.business}
+                    onChange={set("business")}
+                    maxLength={120}
+                    style={inputStyle}
+                    onFocus={(e) => (e.target.style.borderColor = "var(--accent-purple)")}
+                    onBlur={(e) => (e.target.style.borderColor = "rgba(0,0,0,0.12)")}
+                  />
+                </div>
+              )}
+
               {/* Service + Budget */}
               <div className="form-row" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
                 <div>
@@ -334,8 +381,8 @@ export default function ContactForm() {
                     onFocus={(e) => (e.target.style.borderColor = "var(--accent-purple)")}
                     onBlur={(e) => (e.target.style.borderColor = "rgba(0,0,0,0.12)")}
                   >
-                    <option value="">Select service</option>
-                    {services.map((s) => <option key={s} value={s}>{s}</option>)}
+                    <option value="">{local ? "Choose one" : "Select service"}</option>
+                    {(local ? LOCAL_SERVICES : services).map((s) => <option key={s} value={s}>{s}</option>)}
                   </select>
                 </div>
                 <div>
@@ -350,8 +397,8 @@ export default function ContactForm() {
                     onFocus={(e) => (e.target.style.borderColor = "var(--accent-purple)")}
                     onBlur={(e) => (e.target.style.borderColor = "rgba(0,0,0,0.12)")}
                   >
-                    <option value="">Select budget</option>
-                    {budgets.map((b) => <option key={b} value={b}>{b}</option>)}
+                    <option value="">{local ? "Choose a range" : "Select budget"}</option>
+                    {(local ? LOCAL_BUDGETS : budgets).map((b) => <option key={b} value={b}>{b}</option>)}
                   </select>
                 </div>
               </div>

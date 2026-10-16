@@ -120,7 +120,8 @@ function TechTag({ label }: { label: string }) {
 // The first roles show; the rest open on request, so the page stays short.
 const HISTORY_SHOWN = 3;
 
-export default function About() {
+// `gallery` is off on pages that don't want the photo strip (see /local-business).
+export default function About({ gallery = true }: { gallery?: boolean }) {
   const { t } = useLang();
   const [lightbox, setLightbox] = useState<number | null>(null);
   const [fullHistory, setFullHistory] = useState(false);
@@ -368,6 +369,8 @@ export default function About() {
         </motion.div>
       </div>
 
+      {gallery && (
+        <>
       {/* Photo marquee strip */}
       <motion.div
         data-reveal
@@ -520,6 +523,8 @@ export default function About() {
           </motion.div>
         )}
       </AnimatePresence>
+        </>
+      )}
     </section>
   );
 }

@@ -38,6 +38,8 @@ const COPY: Record<string, string> = {
   "hero.subtitle": "I set up simple systems for clinics, salons and trades: online booking with reminders, quote requests straight to your phone, and automatic review requests. Live in two weeks.",
   "hero.ctaWork": "SEE WHAT I SET UP",
   "clients.label": "BUSINESSES I'VE BUILT FOR",
+  "hero.proof": "50+ Projects Delivered  ·  Fixed Price  ·  Live In Two Weeks",
+  "hero.tagTopRated": "Fixed price · 2 weeks",
   "hero.localLink": "Building a startup or product? See my main portfolio",
 
   // What you get
@@ -92,10 +94,52 @@ const COPY: Record<string, string> = {
   "faq.q6": "", "faq.q7": "", "faq.q8": "", "faq.q9": "",
   "faq.ask.placeholder": "e.g. Will it work with my calendar?",
 
+  // Pricing: the same price points as the main site, described as what a business owner gets
+  "pricing.eyebrow": "WHAT IT COSTS",
+  "pricing.h2a": "FIXED PRICE.",
+  "pricing.h2b": "NO SURPRISES.",
+  "pricing.desc": "Every setup has one fixed price, agreed on a free call before any work starts. You pay 70% to start and 30% when it's live. No hourly billing and no monthly fees you didn't ask for.",
+  "pricing.cta": "Book a free call",
+  "pricing.disclaimer": "All prices are starting points. Your fixed price is confirmed on a free 15-minute call, with no obligation.",
+  "pricing.plan0.label": "START SMALL",
+  "pricing.plan0.name": "One System",
+  "pricing.plan0.desc": "One thing fixed well: online booking with reminders, or quote requests straight to your phone.",
+  "pricing.plan0.f0": "Online booking with text and email reminders, or a quote form",
+  "pricing.plan0.f1": "Works with your current calendar and phone",
+  "pricing.plan0.f2": "Looks right and loads fast on any phone",
+  "pricing.plan0.f3": "A short video showing you and your team how to use it",
+  "pricing.plan0.f4": "Live within 2 weeks",
+  "pricing.plan1.label": "FULL SETUP",
+  "pricing.plan1.name": "Complete Setup",
+  "pricing.plan1.desc": "Everything working together: a clear website, booking, reminders, quote requests and review requests.",
+  "pricing.plan1.f0": "A clear, fast website for your business",
+  "pricing.plan1.f1": "Online booking with reminders",
+  "pricing.plan1.f2": "Quote and enquiry form that goes to your phone",
+  "pricing.plan1.f3": "Automatic Google review requests",
+  "pricing.plan1.f4": "A short video for you and your team",
+  "pricing.plan1.f5": "Live within 2 weeks",
+  "pricing.plan2.label": "SELL ONLINE",
+  "pricing.plan2.name": "Setup + Online Orders",
+  "pricing.plan2.desc": "For shops, bakeries and studios that also want to take orders, deposits or payments online.",
+  "pricing.plan2.f0": "Everything in Complete Setup",
+  "pricing.plan2.f1": "Online orders or deposit payments",
+  "pricing.plan2.f2": "Product or service pages that make it easy to buy",
+  "pricing.plan2.f3": "Order and booking alerts straight to your phone",
+  "pricing.plan2.f4": "Live within 2 weeks",
+  "pricing.addon0": "Move your existing website",
+  "pricing.addon1": "Monthly care and changes",
+  "pricing.addon2": "Add booking or reviews to your current site",
+  "pricing.addon3": "Google Business Profile tune-up",
+
   // Contact
   "contact.h1": "WANT FEWER MISSED CALLS?",
   "contact.h1b": "TELL ME ABOUT YOUR BUSINESS.",
   "contact.desc": "Tell me how bookings and enquiries work today and I'll come back within 24 hours with an honest take on what would help, and what it would cost.",
+  "contact.label.service": "What would help most?",
+  "contact.label.budget": "Rough budget",
+  "contact.label.message": "Tell me about your business",
+  "contact.label.business": "Business name (and website, if you have one)",
+  "contact.ph.business": "e.g. Bright Smile Dental, brightsmile.com",
   "contact.ph.message": "What does your business do, and what takes up the most time: calls, no-shows, quotes or reviews?",
 };
 
@@ -181,9 +225,9 @@ export default function LocalBusinessPage() {
           </div>
         </div>
         <Testimonials />
-        <About />
+        <About gallery={false} />
         <FAQ synonyms={FAQ_WORDS} />
-        <ContactForm />
+        <ContactForm variant="local" />
         <Footer />
         <MobileCTA />
       </CopyOverride>
