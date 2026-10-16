@@ -18,15 +18,16 @@ const ADDONS_BASE = [
 ];
 
 
-export default function Pricing() {
+// `prices` (USD, one per plan) is for pages with their own price points (see /local-business).
+export default function Pricing({ prices }: { prices?: [number, number, number] }) {
   const { t, formatPrice, currency } = useLang();
 
-  const plans = PLANS_BASE.map(({ planKey, usdPrice, featured, featureCount }) => ({
+  const plans = PLANS_BASE.map(({ planKey, usdPrice: defaultPrice, featured, featureCount }, i) => ({
     label: t(`pricing.${planKey}.label`),
     name: t(`pricing.${planKey}.name`),
     desc: t(`pricing.${planKey}.desc`),
     features: Array.from({ length: featureCount }, (_, i) => t(`pricing.${planKey}.f${i}`)),
-    usdPrice,
+    usdPrice: prices?.[i] ?? defaultPrice,
     featured,
   }));
 

@@ -212,7 +212,7 @@ export default function LocalBusinessPage() {
         <Systems />
         <WhyMe />
         <HowIWork />
-        <Pricing />
+        <Pricing prices={[500, 1500, 2000]} />
         <div style={{ maxWidth: 1200, margin: "-48px auto 0", padding: "0 20px 40px" }}>
           <div data-reveal className="lb-terms">
             {TERMS.map((term) => (
