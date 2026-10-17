@@ -63,7 +63,7 @@ export function TermsStrip() {
     <div style={{ maxWidth: 1200, margin: "-48px auto 0", padding: "0 20px 40px" }}>
       <div data-reveal className="lb-terms">
         {terms.map((term) => (
-          <div key={term.text} style={{ padding: "22px 24px", background: "var(--bg)", display: "grid", gap: 4 }}>
+          <div key={term.text} style={{ padding: "24px", background: "var(--bg)", display: "grid", gap: 4 }}>
             <span style={{ fontFamily: "var(--font-poppins)", fontWeight: 700, fontSize: 28, letterSpacing: "-1px", lineHeight: 1, color: "var(--fg)" }}>{term.big}</span>
             <span style={{ fontFamily: "var(--font-inter)", fontWeight: 600, fontSize: 11, letterSpacing: "0.08em", textTransform: "uppercase", color: "var(--fg-muted)" }}>{term.text}</span>
           </div>
@@ -83,7 +83,7 @@ export function ConceptWork() {
   const { t } = useLang();
   return (
     <section id="concept" style={{ width: "100%", maxWidth: 1200, margin: "0 auto", padding: "0 20px 80px" }}>
-      <div className="lb-head" style={{ marginBottom: 40 }}>
+      <div className="lb-head" style={{ marginBottom: 48 }}>
         <div>
           <p data-reveal style={eyebrowStyle}>{t("lb.concept.eyebrow")}</p>
           <h2 style={h2Style}>
@@ -111,7 +111,7 @@ export function ConceptWork() {
                 <span style={{ ...chip, color: "var(--accent-purple)", borderColor: "rgba(109,40,217,0.3)", background: "rgba(109,40,217,0.06)" }}>{t("lb.concept.label")}</span>
                 <span style={chip}>{t(`lb.concept.${c.key}.type`)}</span>
               </div>
-              <p style={{ ...bodyStyle, marginBottom: 14 }}>{t(`lb.concept.${c.key}.desc`)}</p>
+              <p style={{ ...bodyStyle, marginBottom: 16 }}>{t(`lb.concept.${c.key}.desc`)}</p>
               <a href={c.url} target="_blank" rel="noopener noreferrer" data-track-location={`concept_${c.key}`} className="lb-concept-link">
                 {t("lb.concept.cta")} <ArrowUpRight size={15} strokeWidth={2.2} aria-hidden="true" />
               </a>

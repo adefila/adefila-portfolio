@@ -129,7 +129,7 @@ export default function FAQ({ synonyms = SYNONYMS }: { synonyms?: Record<number,
           </motion.p>
           <motion.h2
             data-reveal
-            style={{ fontFamily: "var(--font-poppins)", fontWeight: 700, fontSize: "clamp(28px, 3.5vw, 48px)", letterSpacing: "-1px", lineHeight: 1.05, textTransform: "uppercase", color: "var(--fg)", marginBottom: 20 }}
+            style={{ fontFamily: "var(--font-poppins)", fontWeight: 700, fontSize: "clamp(28px, 3.5vw, 48px)", letterSpacing: "-1px", lineHeight: 1.05, textTransform: "uppercase", color: "var(--fg)", marginBottom: 16 }}
           >
             <RevealWords text={t("faq.h1")} />
             <br />
@@ -137,7 +137,7 @@ export default function FAQ({ synonyms = SYNONYMS }: { synonyms?: Record<number,
           </motion.h2>
           <motion.p
             data-reveal
-            style={{ ...body, fontSize: 15, letterSpacing: "-0.3px", lineHeight: 1.7, marginBottom: 28 }}
+            style={{ ...body, fontSize: 15, letterSpacing: "-0.3px", lineHeight: 1.7, marginBottom: 0 }}
           >
             {t("faq.desc")}{" "}
             <a href="mailto:samuel@adefilasamuel.com" style={{ color: "var(--accent-purple)", fontWeight: 500, textDecoration: "none" }}>
@@ -166,7 +166,7 @@ export default function FAQ({ synonyms = SYNONYMS }: { synonyms?: Record<number,
                   <button
                     onClick={() => toggle(faq.i)}
                     aria-expanded={isOpen}
-                    style={{ display: "flex", alignItems: "center", justifyContent: "space-between", width: "100%", padding: isOpen ? "14px 0 6px" : "14px 0", background: "none", border: "none", cursor: "pointer", gap: 20, textAlign: "left" }}
+                    style={{ display: "flex", alignItems: "center", justifyContent: "space-between", width: "100%", padding: isOpen ? "16px 0 8px" : "16px 0", background: "none", border: "none", cursor: "pointer", gap: 20, textAlign: "left" }}
                   >
                     <div style={{ display: "flex", alignItems: "center", gap: 14, minWidth: 0, flex: 1 }}>
                       <span style={{ fontFamily: "var(--font-inter)", fontSize: 10, letterSpacing: "0.5px", color: isOpen ? "var(--accent-purple)" : "rgba(0,0,0,0.2)", flexShrink: 0, transition: "color 0.2s", fontVariantNumeric: "tabular-nums", minWidth: 20 }}>
@@ -194,7 +194,7 @@ export default function FAQ({ synonyms = SYNONYMS }: { synonyms?: Record<number,
                         transition={{ duration: 0.3, ease: EASE }}
                         style={{ overflow: "hidden" }}
                       >
-                        <p style={{ ...body, fontSize: 14, margin: 0, paddingBottom: 14, paddingLeft: 34, paddingRight: 28 }}>
+                        <p style={{ ...body, fontSize: 14, margin: 0, paddingBottom: 16, paddingLeft: 34, paddingRight: 28 }}>
                           {faq.a}
                         </p>
                       </motion.div>
@@ -205,7 +205,7 @@ export default function FAQ({ synonyms = SYNONYMS }: { synonyms?: Record<number,
             })}
           </div>
 
-          <motion.div data-reveal style={{ background: "var(--white)", border: "1px solid rgba(0,0,0,0.08)", padding: 16, marginTop: 28 }}>
+          <motion.div data-reveal style={{ background: "var(--white)", border: "1px solid rgba(0,0,0,0.08)", padding: 16, marginTop: 32 }}>
             <label htmlFor="faq-ask" style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 12, cursor: "text" }}>
               <Image
                 src="/samuel-portrait.webp"

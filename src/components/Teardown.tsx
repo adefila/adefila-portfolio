@@ -15,7 +15,7 @@ const EMPTY = { name: "", email: "", url: "" };
 
 const labelStyle: React.CSSProperties = {
   fontFamily: "var(--font-inter)", fontSize: 10, letterSpacing: "2px",
-  textTransform: "uppercase", color: "var(--fg-muted)", display: "block", marginBottom: 6,
+  textTransform: "uppercase", color: "var(--fg-muted)", display: "block", marginBottom: 8,
 };
 const inputStyle: React.CSSProperties = {
   width: "100%", padding: "14px 16px", fontFamily: "var(--font-inter)", fontSize: 16,
@@ -86,7 +86,7 @@ export default function Teardown() {
           <h2 style={{
             fontFamily: "var(--font-poppins)", fontWeight: 700,
             fontSize: "clamp(28px, 3.5vw, 48px)", letterSpacing: "-1px",
-            lineHeight: 1.05, textTransform: "uppercase", color: "var(--fg)", marginBottom: 20,
+            lineHeight: 1.05, textTransform: "uppercase", color: "var(--fg)", marginBottom: 16,
           }}>
             <RevealWords text={t("teardown.h1")} />{" "}
             <span style={{ color: "rgb(163,163,163)" }}><RevealWords text={t("teardown.h1b")} delay={revealDelayAfter(t("teardown.h1"))} /></span>
@@ -104,14 +104,14 @@ export default function Teardown() {
           {status === "success" ? (
             <FormSuccess title={t("teardown.successTitle")} desc={t("teardown.successDesc")} resetLabel={`Form resets in ${countdown}s`} />
           ) : (
-            <form onSubmit={submit} style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+            <form onSubmit={submit} style={{ display: "flex", flexDirection: "column", gap: 16 }}>
               {/* Honeypot: hidden from people, filled by bots */}
               <input
                 type="text" name="company" tabIndex={-1} autoComplete="off" aria-hidden="true"
                 value={honey} onChange={(e) => setHoney(e.target.value)}
                 style={{ position: "absolute", left: -9999, width: 1, height: 1, opacity: 0 }}
               />
-              <div className="form-row" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
+              <div className="form-row" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
                 <div>
                   <label htmlFor="teardown-name" style={labelStyle}>{t("contact.label.name")} *</label>
                   <input id="teardown-name" required autoComplete="name" placeholder={t("contact.ph.name")} value={form.name} onChange={set("name")} style={inputStyle} onFocus={focus} onBlur={blur} />

@@ -315,12 +315,12 @@ html[data-reveal-ready] [data-reveal]:not([data-revealed]) {
   gap: 80px;
   align-items: start;
   border-top: 1px solid rgba(0,0,0,0.08);
-  padding-top: 64px;
+  padding-top: 80px;
 }
 @media (max-width: 900px) {
   .teardown-grid {
     grid-template-columns: 1fr;
-    gap: 40px;
+    gap: 32px;
   }
 }
 @media (max-width: 768px) {
@@ -328,7 +328,7 @@ html[data-reveal-ready] [data-reveal]:not([data-revealed]) {
     padding: 64px 20px !important;
   }
   .teardown-grid {
-    padding-top: 48px;
+    padding-top: 64px;
   }
   #results {
     padding-top: 64px !important;
@@ -706,6 +706,9 @@ html[data-reveal-ready] [data-reveal]:not([data-revealed]) {
     padding-top: 64px !important;
     padding-bottom: 64px !important;
   }
+  #concept {
+    padding-bottom: 64px !important;
+  }
   #currently {
     padding-bottom: 64px !important;
   }
@@ -723,7 +726,16 @@ html[data-reveal-ready] [data-reveal]:not([data-revealed]) {
   }
   .faq-left {
     position: static !important;
-    margin-bottom: 40px;
+    margin-bottom: 32px;
+  }
+
+  .testimonials-head {
+    margin-bottom: 32px !important;
+  }
+
+  .process-head {
+    gap: 16px !important;
+    margin-bottom: 32px !important;
   }
 
   /* Testimonials grid → stacked */
@@ -743,7 +755,7 @@ html[data-reveal-ready] [data-reveal]:not([data-revealed]) {
 
   /* Projects: less top padding on mobile */
   #work {
-    padding-top: 32px !important;
+    padding-top: 48px !important;
   }
 
   /* Hero spacing: tighten element gaps on mobile */
@@ -768,7 +780,7 @@ html[data-reveal-ready] [data-reveal]:not([data-revealed]) {
   /* WhyMe: tighter gap between stats and benefits */
   .whyme-top-row {
     margin-bottom: 32px !important;
-    gap: 32px !important;
+    gap: 24px !important;
   }
 
   /* WhyMe stats: wrap label below number on mobile */
@@ -794,8 +806,8 @@ html[data-reveal-ready] [data-reveal]:not([data-revealed]) {
   .pricing-header {
     gap: 24px !important;
     align-items: flex-start !important;
-    margin-bottom: 36px !important;
-    padding-bottom: 28px !important;
+    margin-bottom: 32px !important;
+    padding-bottom: 24px !important;
   }
 
   /* Currently panels: 2-col → 1-col on mobile */
@@ -809,7 +821,7 @@ html[data-reveal-ready] [data-reveal]:not([data-revealed]) {
   /* Contact: 2-col → 1-col on mobile */
   .contact-grid {
     grid-template-columns: 1fr !important;
-    gap: 40px !important;
+    gap: 32px !important;
   }
   .form-row {
     grid-template-columns: 1fr !important;
@@ -828,7 +840,7 @@ html[data-reveal-ready] [data-reveal]:not([data-revealed]) {
 
   /* Footer CTA: reduce padding on mobile */
   .footer-cta {
-    padding: 48px 20px !important;
+    padding: 64px 20px !important;
   }
 
   /* Footer bar: stack columns full-width on small screens */

@@ -181,7 +181,7 @@ export default function WhyMe() {
       {/* Top row: heading left, stats right */}
       <div
         className="whyme-top-row"
-        style={{ display: "flex", gap: 80, alignItems: "flex-start", flexWrap: "wrap", marginBottom: 64 }}
+        style={{ display: "flex", gap: 80, alignItems: "flex-start", flexWrap: "wrap", marginBottom: 48 }}
       >
         {/* Left: label + heading */}
         <div data-reveal style={{ flex: "1 1 400px" }}>
@@ -289,7 +289,7 @@ export default function WhyMe() {
             key={i}
             data-reveal style={{
               display: "flex", alignItems: "center", gap: 20,
-              paddingTop: 28, paddingBottom: 28,
+              paddingTop: 32, paddingBottom: 32,
               paddingLeft: i % 2 !== 0 ? 32 : 0,
               borderBottom: "1px solid rgba(0,0,0,0.08)",
               borderRight: (i + 1) % 2 !== 0 ? "1px solid rgba(0,0,0,0.08)" : "none",

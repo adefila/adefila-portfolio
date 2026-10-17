@@ -47,8 +47,8 @@ export default function Pricing({ prices }: { prices?: [number, number, number] 
         className="pricing-header"
         style={{
           display: "flex", gap: 80, alignItems: "flex-end",
-          flexWrap: "wrap", marginBottom: 56,
-          borderBottom: "1px solid rgba(0,0,0,0.08)", paddingBottom: 40,
+          flexWrap: "wrap", marginBottom: 48,
+          borderBottom: "1px solid rgba(0,0,0,0.08)", paddingBottom: 32,
         }}
       >
         <div data-reveal style={{ flex: "1 1 360px" }}>
@@ -96,7 +96,7 @@ export default function Pricing({ prices }: { prices?: [number, number, number] 
             key={plan.name}
             data-reveal style={{
               display: "flex", flexDirection: "column",
-              padding: "32px 28px",
+              padding: "32px",
               background: plan.featured ? "var(--fg)" : "var(--bg)",
               position: "relative",
             }}
@@ -162,7 +162,7 @@ export default function Pricing({ prices }: { prices?: [number, number, number] 
               {plan.desc}
             </p>
 
-            <div style={{ display: "flex", flexDirection: "column", gap: 10, flex: 1, marginBottom: 28 }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: 12, flex: 1, marginBottom: 32 }}>
               {plan.features.map((f) => (
                 <div key={f} style={{ display: "flex", alignItems: "flex-start", gap: 10 }}>
                   <Check

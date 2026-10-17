@@ -242,7 +242,7 @@ export default function ContactForm({ variant = "default" }: { variant?: "defaul
               lineHeight: 1.05,
               textTransform: "uppercase",
               color: "var(--fg)",
-              marginBottom: 20,
+              marginBottom: 16,
             }}
           >
             <RevealWords text={t("contact.h1")} />{" "}
@@ -310,11 +310,11 @@ export default function ContactForm({ variant = "default" }: { variant?: "defaul
           {status === "success" ? (
             <FormSuccess title={t("contact.success.title")} desc={t("contact.success.desc")} resetLabel={`Form resets in ${countdown}s`} />
           ) : (
-            <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+            <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: 16 }}>
               {/* Name + Email */}
-              <div className="form-row" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
+              <div className="form-row" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
                 <div>
-                  <label htmlFor="contact-name" style={{ fontFamily: "var(--font-inter)", fontSize: 10, letterSpacing: "2px", textTransform: "uppercase", color: "var(--fg-muted)", display: "block", marginBottom: 6 }}>
+                  <label htmlFor="contact-name" style={{ fontFamily: "var(--font-inter)", fontSize: 10, letterSpacing: "2px", textTransform: "uppercase", color: "var(--fg-muted)", display: "block", marginBottom: 8 }}>
                     {t("contact.label.name")} *
                   </label>
                   <input
@@ -330,7 +330,7 @@ export default function ContactForm({ variant = "default" }: { variant?: "defaul
                   />
                 </div>
                 <div>
-                  <label htmlFor="contact-email" style={{ fontFamily: "var(--font-inter)", fontSize: 10, letterSpacing: "2px", textTransform: "uppercase", color: "var(--fg-muted)", display: "block", marginBottom: 6 }}>
+                  <label htmlFor="contact-email" style={{ fontFamily: "var(--font-inter)", fontSize: 10, letterSpacing: "2px", textTransform: "uppercase", color: "var(--fg-muted)", display: "block", marginBottom: 8 }}>
                     {t("contact.label.email")} *
                   </label>
                   <input
@@ -350,7 +350,7 @@ export default function ContactForm({ variant = "default" }: { variant?: "defaul
               {/* Small-business page only: which business */}
               {local && (
                 <div>
-                  <label htmlFor="contact-business" style={{ fontFamily: "var(--font-inter)", fontSize: 10, letterSpacing: "2px", textTransform: "uppercase", color: "var(--fg-muted)", display: "block", marginBottom: 6 }}>
+                  <label htmlFor="contact-business" style={{ fontFamily: "var(--font-inter)", fontSize: 10, letterSpacing: "2px", textTransform: "uppercase", color: "var(--fg-muted)", display: "block", marginBottom: 8 }}>
                     {t("contact.label.business")}
                   </label>
                   <input
@@ -368,9 +368,9 @@ export default function ContactForm({ variant = "default" }: { variant?: "defaul
               )}
 
               {/* Service + Budget */}
-              <div className="form-row" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
+              <div className="form-row" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
                 <div>
-                  <label htmlFor="contact-service" style={{ fontFamily: "var(--font-inter)", fontSize: 10, letterSpacing: "2px", textTransform: "uppercase", color: "var(--fg-muted)", display: "block", marginBottom: 6 }}>
+                  <label htmlFor="contact-service" style={{ fontFamily: "var(--font-inter)", fontSize: 10, letterSpacing: "2px", textTransform: "uppercase", color: "var(--fg-muted)", display: "block", marginBottom: 8 }}>
                     {t("contact.label.service")}
                   </label>
                   <select
@@ -386,7 +386,7 @@ export default function ContactForm({ variant = "default" }: { variant?: "defaul
                   </select>
                 </div>
                 <div>
-                  <label htmlFor="contact-budget" style={{ fontFamily: "var(--font-inter)", fontSize: 10, letterSpacing: "2px", textTransform: "uppercase", color: "var(--fg-muted)", display: "block", marginBottom: 6 }}>
+                  <label htmlFor="contact-budget" style={{ fontFamily: "var(--font-inter)", fontSize: 10, letterSpacing: "2px", textTransform: "uppercase", color: "var(--fg-muted)", display: "block", marginBottom: 8 }}>
                     {t("contact.label.budget")}
                   </label>
                   <select
@@ -405,7 +405,7 @@ export default function ContactForm({ variant = "default" }: { variant?: "defaul
 
               {/* Message */}
               <div>
-                <label htmlFor="contact-message" style={{ fontFamily: "var(--font-inter)", fontSize: 10, letterSpacing: "2px", textTransform: "uppercase", color: "var(--fg-muted)", display: "block", marginBottom: 6 }}>
+                <label htmlFor="contact-message" style={{ fontFamily: "var(--font-inter)", fontSize: 10, letterSpacing: "2px", textTransform: "uppercase", color: "var(--fg-muted)", display: "block", marginBottom: 8 }}>
                   {t("contact.label.message")} *
                 </label>
                 <textarea

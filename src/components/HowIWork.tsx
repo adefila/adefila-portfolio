@@ -145,7 +145,7 @@ export default function HowIWork() {
       <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 20px" }}>
 
         {/* Header */}
-        <div style={{
+        <div className="process-head" style={{
           display: "flex", gap: 48, alignItems: "flex-end", flexWrap: "wrap",
           marginBottom: 48, borderBottom: `1px solid ${border}`,
           paddingBottom: 32, transition: `border-color ${TRANS}`,
@@ -313,7 +313,7 @@ export default function HowIWork() {
             >
               {/* Left — step detail */}
               <div
-                style={{ padding: "32px 36px", borderRight: `1px solid ${cardBrd}`, transition: `border-color ${TRANS}` }}
+                style={{ padding: "32px", borderRight: `1px solid ${cardBrd}`, transition: `border-color ${TRANS}` }}
                 className="process-card-left"
               >
                 <span
@@ -322,7 +322,7 @@ export default function HowIWork() {
                     fontFamily: "var(--font-poppins)", fontWeight: 700,
                     fontSize: "clamp(64px, 8vw, 96px)", letterSpacing: "-4px",
                     color: fgGhost, display: "block", lineHeight: 1,
-                    marginBottom: 20, userSelect: "none", transition: `color ${TRANS}`,
+                    marginBottom: 24, userSelect: "none", transition: `color ${TRANS}`,
                   }}
                 >
                   {step.n}
@@ -330,7 +330,7 @@ export default function HowIWork() {
                 <h3 style={{
                   fontFamily: "var(--font-poppins)", fontWeight: 700,
                   fontSize: "clamp(18px, 2vw, 26px)", letterSpacing: "-0.4px",
-                  textTransform: "uppercase", color: fg, marginBottom: 14,
+                  textTransform: "uppercase", color: fg, marginBottom: 16,
                   lineHeight: 1.1, transition: `color ${TRANS}`,
                 }}>
                   {step.title}
@@ -346,14 +346,14 @@ export default function HowIWork() {
 
               {/* Right — what to expect + nav */}
               <div
-                style={{ padding: "32px 36px", display: "flex", flexDirection: "column", justifyContent: "space-between" }}
+                style={{ padding: "32px", display: "flex", flexDirection: "column", justifyContent: "space-between" }}
                 className="process-card-right"
               >
                 <div>
                   <p style={{
                     fontFamily: "var(--font-inter)", fontWeight: 700, fontSize: 10,
                     letterSpacing: "2.5px", textTransform: "uppercase",
-                    color: purple, marginBottom: 12,
+                    color: purple, marginBottom: 16,
                   }}>
                     What to expect
                   </p>
@@ -428,9 +428,9 @@ export default function HowIWork() {
           .process-card-left {
             border-right: none !important;
             border-bottom: 1px solid rgba(128,128,128,0.15) !important;
-            padding: 24px 20px !important;
+            padding: 24px !important;
           }
-          .process-card-right { padding: 20px 20px !important; }
+          .process-card-right { padding: 24px !important; }
           .process-tabs button {
             flex: 1 1 calc(50% - 3px) !important;
             min-width: 0 !important;

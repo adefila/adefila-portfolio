@@ -87,7 +87,7 @@ export default function Footer() {
         style={{
           width: "100%",
           background: "var(--accent-purple)",
-          padding: "72px 20px",
+          padding: "80px 20px",
           position: "relative",
           overflow: "hidden",
         }}
@@ -100,7 +100,7 @@ export default function Footer() {
             alignItems: "center",
             justifyContent: "space-between",
             flexWrap: "wrap",
-            gap: 48,
+            gap: 40,
           }}
         >
           {/* Left: headline + subheading */}
@@ -119,7 +119,7 @@ export default function Footer() {
                 lineHeight: 1.05,
                 textTransform: "uppercase",
                 color: "var(--white)",
-                marginBottom: 20,
+                marginBottom: 16,
               }}
             >
               {(() => {
@@ -217,7 +217,7 @@ export default function Footer() {
                 letterSpacing: "1px",
                 textTransform: "uppercase",
                 color: "var(--white)",
-                marginBottom: 12,
+                marginBottom: 16,
               }}
             >
               Samuel
@@ -246,12 +246,12 @@ export default function Footer() {
                 letterSpacing: "2px",
                 textTransform: "uppercase",
                 color: "rgba(255,255,255,0.88)",
-                marginBottom: 14,
+                marginBottom: 16,
               }}
             >
               {t("footer.portfolioLabel")}
             </p>
-            <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
               {portfolioLinks.map((link) => (
                 <a
                   key={link.label}
@@ -284,12 +284,12 @@ export default function Footer() {
                 letterSpacing: "2px",
                 textTransform: "uppercase",
                 color: "rgba(255,255,255,0.88)",
-                marginBottom: 14,
+                marginBottom: 16,
               }}
             >
               {t("footer.followLabel")}
             </p>
-            <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
               {socialLinks.map((link) => (
                 <a
                   key={link.label}

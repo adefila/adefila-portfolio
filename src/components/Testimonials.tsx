@@ -34,7 +34,7 @@ function UpworkCard() {
       display: "flex",
       flexDirection: "column",
       justifyContent: "space-between",
-      padding: "32px 28px",
+      padding: "32px",
     }}>
       {/* Upwork wordmark */}
       <div>
@@ -186,7 +186,7 @@ export default function Testimonials() {
     >
       <div style={{ maxWidth: 1160, margin: "0 auto" }}>
         {/* Header row */}
-        <div style={{ marginBottom: 40 }}>
+        <div className="testimonials-head" style={{ marginBottom: 48 }}>
           <motion.p
             data-reveal
             style={{
@@ -225,7 +225,7 @@ export default function Testimonials() {
             style={{
               background: "var(--accent-purple)",
               borderRadius: 0,
-              padding: "32px 28px",
+              padding: "32px",
               display: "flex",
               flexDirection: "column",
               justifyContent: "flex-end",
@@ -273,7 +273,7 @@ export default function Testimonials() {
                 style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }}
               />
               <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(0,0,0,0.65) 30%, rgba(0,0,0,0.12) 100%)" }} />
-              <div style={{ position: "relative", zIndex: 1, padding: 28, display: "flex", flexDirection: "column", justifyContent: "space-between", height: "100%", minHeight: "inherit", pointerEvents: "none" }}>
+              <div style={{ position: "relative", zIndex: 1, padding: 32, display: "flex", flexDirection: "column", justifyContent: "space-between", height: "100%", minHeight: "inherit", pointerEvents: "none" }}>
                 <span style={{
                   display: "inline-block", alignSelf: "flex-start",
                   fontFamily: "var(--font-inter)", fontWeight: 700, fontSize: 10,
@@ -376,7 +376,7 @@ export default function Testimonials() {
               position: "fixed", inset: 0, zIndex: 1000,
               background: "rgba(0,0,0,0.88)",
               display: "flex", alignItems: "center", justifyContent: "center",
-              padding: 20,
+              padding: 24,
             }}
           >
             <motion.div

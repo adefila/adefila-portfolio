@@ -175,7 +175,7 @@ export default function About({ gallery = true }: { gallery?: boolean }) {
               lineHeight: 1.05,
               textTransform: "uppercase",
               color: "var(--fg)",
-              marginBottom: 32,
+              marginBottom: 16,
               maxWidth: 720,
             }}
           >
@@ -286,7 +286,7 @@ export default function About({ gallery = true }: { gallery?: boolean }) {
             {(fullHistory ? workHistory : workHistory.slice(0, HISTORY_SHOWN)).map((job, i) => {
               const current = job.period.endsWith("Present");
               return (
-              <li key={i} style={{ position: "relative", padding: "20px 0 20px 32px" }}>
+              <li key={i} style={{ position: "relative", padding: "24px 0 24px 32px" }}>
                 <span
                   aria-hidden="true"
                   className={current ? "timeline-dot timeline-dot-current" : "timeline-dot"}
@@ -302,7 +302,7 @@ export default function About({ gallery = true }: { gallery?: boolean }) {
                   fontSize: 11,
                   color: current ? "var(--accent-purple)" : "var(--fg-muted)",
                   fontWeight: current ? 600 : 400,
-                  marginBottom: 6,
+                  marginBottom: 8,
                   letterSpacing: "0.02em",
                   textTransform: "uppercase",
                   display: "flex", alignItems: "center", gap: 8,
@@ -332,7 +332,7 @@ export default function About({ gallery = true }: { gallery?: boolean }) {
                   </span>
                 </p>
                 {job.points?.length ? (
-                  <ul style={{ listStyle: "none", margin: "10px 0 0", padding: 0, display: "grid", gap: 6 }}>
+                  <ul style={{ listStyle: "none", margin: "12px 0 0", padding: 0, display: "grid", gap: 8 }}>
                     {job.points.map((point) => (
                       <li
                         key={point}
