@@ -871,6 +871,7 @@ html[data-reveal-ready] [data-reveal]:not([data-revealed]) {
   background-size: 28px 28px;
   border: 1px solid rgba(0,0,0,0.06);
 }
+.lb-illo-tall { aspect-ratio: 1200 / 900; padding: 10px 24px; }
 .lb-terms { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; background: rgba(0,0,0,0.06); border: 1px solid rgba(0,0,0,0.06); border-top: none; }
 @keyframes lbPop { from { opacity: 0; transform: translateY(10px) scale(0.97); } to { opacity: 1; transform: none; } }
 @media (prefers-reduced-motion: reduce) {
@@ -881,7 +882,253 @@ html[data-reveal-ready] [data-reveal]:not([data-revealed]) {
 }
 @media (max-width: 520px) {
   .lb-illo { aspect-ratio: auto; height: 240px; padding: 20px; }
+  .lb-illo-tall { aspect-ratio: auto; height: 380px; padding: 12px 20px; }
   .lb-terms { grid-template-columns: minmax(0, 1fr); }
 }
 /* Hold the illustrations until their card scrolls in, so the animation is seen. */
 html[data-reveal-ready] [data-reveal]:not([data-revealed]) .lb-illo * { animation-play-state: paused; }
+
+/* ── /local-business: animated illustrations (see components/local/Illustrations.tsx) ───────────────
+   Every scene is one looping timeline (--d). Base styles are the FINISHED picture, so with
+   prefers-reduced-motion (animations off) each card shows its complete state. Animations stay
+   paused until the card has scrolled into view (data-revealed). */
+.il { --d: 9s; position: relative; display: flex; align-items: center; justify-content: center; width: 100%; font-family: var(--font-inter); }
+.il * { box-sizing: border-box; }
+.il b { font-weight: 600; color: var(--fg); }
+.il small { display: block; font-size: 10.5px; line-height: 1.35; color: var(--fg-secondary); }
+.il-card { background: #fff; border: 1px solid rgba(0, 0, 0, 0.08); box-shadow: 0 12px 32px rgba(15, 15, 15, 0.09); }
+.il-title { font-size: 12px; font-weight: 600; color: var(--fg); }
+html[data-reveal-ready] [data-reveal]:not([data-revealed]) .il, html[data-reveal-ready] [data-reveal]:not([data-revealed]) .il * { animation-play-state: paused !important; }
+
+/* The whole scene fades out at the end of each loop so everything can reset unseen */
+.il-loop { animation: ilLoop var(--d) ease-in-out infinite; }
+@keyframes ilLoop { 0% { opacity: 0; } 3.5% { opacity: 1; } 93% { opacity: 1; } 98%, 100% { opacity: 0; } }
+
+/* Typed text: revealed left to right in steps */
+.il-type { display: inline-block; white-space: nowrap; animation-duration: var(--d); animation-iteration-count: infinite; animation-timing-function: steps(24, end); }
+.il-t1 { animation-name: ilT1; }
+.il-t2 { animation-name: ilT2; }
+.il-t3 { white-space: normal; animation-name: ilT3; animation-timing-function: steps(40, end); }
+@keyframes ilT1 { 0%, 4% { clip-path: inset(0 100% 0 0); } 20%, 100% { clip-path: inset(0 0 0 0); } }
+@keyframes ilT2 { 0%, 22% { clip-path: inset(0 100% 0 0); } 32%, 100% { clip-path: inset(0 0 0 0); } }
+@keyframes ilT3 { 0%, 47% { clip-path: inset(0 100% 0 0); } 62%, 100% { clip-path: inset(0 0 0 0); } }
+
+/* ── 1. Booking ── */
+.il-book { max-width: 344px; }
+.il-cal { position: relative; width: 100%; padding: 14px; }
+.il-cal-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 9px; }
+.il-count { position: relative; font-size: 11px; font-weight: 600; color: var(--accent-green); min-width: 52px; text-align: right; }
+.il-count span { display: block; }
+.il-count-a { position: absolute; right: 0; top: 0; opacity: 0; animation: ilCountA var(--d) infinite; }
+.il-count-b { animation: ilCountB var(--d) infinite; }
+@keyframes ilCountA { 0%, 16% { opacity: 1; transform: translateY(0); } 19%, 100% { opacity: 0; transform: translateY(-6px); } }
+@keyframes ilCountB { 0%, 16% { opacity: 0; transform: translateY(6px); } 19%, 100% { opacity: 1; transform: none; } }
+.il-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 5px; }
+.il-day { font-size: 10px; text-align: center; color: var(--fg-muted); }
+.il-cell { position: relative; height: 25px; display: flex; align-items: center; justify-content: center; font-size: 9.5px; font-weight: 600; background: #f4f4f4; color: transparent; }
+.il-cell-on { background: rgba(109, 40, 217, 0.12); color: var(--accent-purple); }
+.il-in { animation: ilPop 0.55s cubic-bezier(0.22, 1, 0.36, 1) backwards; }
+@keyframes ilPop { from { opacity: 0; transform: scale(0.7); } to { opacity: 1; transform: none; } }
+.il-cell-anna { background: var(--accent-green); color: #fff; animation: ilAnna var(--d) infinite; }
+@keyframes ilAnna {
+  0%, 15% { background: #f4f4f4; color: transparent; transform: scale(1); }
+  17% { background: var(--accent-green); color: #fff; transform: scale(1.16); }
+  21%, 100% { background: var(--accent-green); color: #fff; transform: scale(1); }
+}
+.il-cell-anna::after { content: ""; position: absolute; inset: 0; border: 2px solid var(--accent-green); opacity: 0; animation: ilRing var(--d) infinite; }
+@keyframes ilRing { 0%, 15% { opacity: 0; transform: scale(1); } 16.5% { opacity: 0.9; } 27%, 100% { opacity: 0; transform: scale(2); } }
+.il-cursor { position: absolute; left: 52%; top: 52%; z-index: 4; opacity: 0; filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.3)); animation: ilCursor var(--d) cubic-bezier(0.45, 0, 0.2, 1) infinite; }
+@keyframes ilCursor {
+  0% { opacity: 0; transform: translate(86px, 64px); }
+  5% { opacity: 1; transform: translate(80px, 60px); }
+  14% { opacity: 1; transform: translate(0, 0) scale(1); }
+  15.5% { transform: translate(0, 0) scale(0.8); }
+  17.5% { transform: translate(0, 0) scale(1); }
+  23% { opacity: 1; transform: translate(4px, 6px); }
+  30%, 100% { opacity: 0; transform: translate(34px, 40px); }
+}
+.il-toast { position: absolute; right: -6px; bottom: -14px; z-index: 5; display: flex; align-items: center; gap: 9px; padding: 8px 11px; animation: ilToast var(--d) infinite; }
+.il-toast-ico { width: 26px; height: 26px; display: inline-flex; align-items: center; justify-content: center; background: #0f0f0f; color: #fff; }
+.il-toast b { display: block; font-size: 11.5px; }
+.il-toast-check { color: var(--accent-green); }
+@keyframes ilToast {
+  0%, 24% { opacity: 0; transform: translateY(16px) scale(0.94); }
+  30% { opacity: 1; transform: translateY(-3px) scale(1.03); }
+  33%, 100% { opacity: 1; transform: none; }
+}
+
+/* ── 2. Quote ── */
+.il-quote { max-width: 344px; gap: 12px; justify-content: space-between; }
+.il-qform { position: relative; width: 188px; padding: 12px; display: grid; gap: 7px; flex-shrink: 0; }
+.il-field { height: 25px; display: flex; align-items: center; padding: 0 8px; border: 1px solid rgba(0, 0, 0, 0.12); font-size: 11px; color: var(--fg); overflow: hidden; }
+.il-thumbs { display: flex; gap: 5px; }
+.il-thumbs i { width: 32px; height: 26px; border: 1px solid rgba(0, 0, 0, 0.07); animation-duration: var(--d); animation-iteration-count: infinite; animation-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1); }
+.il-th1 { background: linear-gradient(135deg, #cbd5e1, #fff); animation-name: ilTh1; }
+.il-th2 { background: linear-gradient(135deg, #a5b4fc, #fff); animation-name: ilTh2; }
+.il-th3 { background: linear-gradient(135deg, #99f6e4, #fff); animation-name: ilTh3; }
+@keyframes ilTh1 { 0%, 33% { opacity: 0; transform: scale(0) rotate(-10deg); } 37%, 100% { opacity: 1; transform: none; } }
+@keyframes ilTh2 { 0%, 36% { opacity: 0; transform: scale(0) rotate(8deg); } 40%, 100% { opacity: 1; transform: none; } }
+@keyframes ilTh3 { 0%, 39% { opacity: 0; transform: scale(0) rotate(-6deg); } 43%, 100% { opacity: 1; transform: none; } }
+.il-send { position: relative; height: 26px; display: flex; align-items: center; justify-content: center; background: var(--accent-green); color: #fff; font-size: 10.5px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; animation: ilSend var(--d) infinite; }
+.il-send span { position: absolute; display: inline-flex; align-items: center; gap: 4px; }
+.il-send-a { opacity: 0; animation: ilSendA var(--d) infinite; }
+.il-send-b { animation: ilSendB var(--d) infinite; }
+@keyframes ilSend {
+  0%, 45% { background: #0f0f0f; transform: scale(1); }
+  47% { background: var(--accent-purple); transform: scale(0.93); }
+  50% { background: var(--accent-green); transform: scale(1); }
+  100% { background: var(--accent-green); transform: scale(1); }
+}
+@keyframes ilSendA { 0%, 47% { opacity: 1; } 49%, 100% { opacity: 0; } }
+@keyframes ilSendB { 0%, 47% { opacity: 0; transform: translateY(5px); } 51%, 100% { opacity: 1; transform: none; } }
+.il-plane { position: absolute; left: 150px; top: 78px; z-index: 6; color: var(--accent-purple); opacity: 0; animation: ilPlane var(--d) cubic-bezier(0.4, 0, 0.2, 1) infinite; }
+@keyframes ilPlane {
+  0%, 47% { opacity: 0; transform: translate(0, 0) rotate(0) scale(0.7); }
+  49% { opacity: 1; transform: translate(6px, -4px) rotate(-12deg) scale(1); }
+  58% { opacity: 1; transform: translate(112px, -34px) rotate(-18deg) scale(0.9); }
+  60%, 100% { opacity: 0; transform: translate(126px, -40px) rotate(-18deg) scale(0.5); }
+}
+.il-notif { position: relative; width: 122px; padding: 11px; display: grid; gap: 3px; justify-items: start; animation: ilNotif var(--d) infinite; }
+.il-notif b { font-size: 11.5px; line-height: 1.25; }
+.il-notif-ico { position: relative; width: 28px; height: 28px; display: inline-flex; align-items: center; justify-content: center; margin-bottom: 4px; background: #0ea5e9; color: #fff; animation: ilWiggle var(--d) infinite; transform-origin: 50% 20%; }
+.il-badge { position: absolute; top: -4px; right: -4px; width: 10px; height: 10px; border-radius: 50%; background: #ef4444; border: 2px solid #fff; animation: ilBadge var(--d) infinite; }
+.il-reply { margin-top: 3px; font-size: 11px; font-weight: 600; color: var(--accent-purple); }
+.il-reply span { display: inline-block; animation: ilNudge 1.4s ease-in-out infinite; }
+@keyframes ilNotif {
+  0%, 56% { opacity: 0; transform: translateX(22px) scale(0.9); }
+  60% { opacity: 1; transform: translateX(-4px) scale(1.04); }
+  63%, 100% { opacity: 1; transform: none; }
+}
+@keyframes ilWiggle { 0%, 61% { transform: rotate(0); } 63% { transform: rotate(14deg); } 65% { transform: rotate(-12deg); } 67% { transform: rotate(9deg); } 69% { transform: rotate(-6deg); } 71%, 100% { transform: rotate(0); } }
+@keyframes ilBadge { 0%, 62% { transform: scale(0); } 66% { transform: scale(1.35); } 69%, 100% { transform: scale(1); } }
+@keyframes ilNudge { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(4px); } }
+
+/* ── 3. Reviews ── */
+.il-review { max-width: 320px; flex-direction: column; align-items: stretch; gap: 0; }
+.il-sms { position: relative; width: 82%; padding: 11px 13px; border-radius: 16px 16px 16px 4px; animation: ilSms var(--d) infinite; transform-origin: 0 100%; }
+.il-sms p { margin: 0; font-size: 12px; line-height: 1.4; color: var(--fg); animation: ilSmsText var(--d) infinite; }
+.il-sms span { display: block; margin-top: 5px; font-size: 11.5px; font-weight: 600; color: var(--accent-purple); animation: ilSmsText var(--d) infinite; }
+@keyframes ilSms { 0%, 4% { opacity: 0; transform: translateY(10px) scale(0.92); } 9%, 100% { opacity: 1; transform: none; } }
+@keyframes ilSmsText { 0%, 17% { opacity: 0; } 22%, 100% { opacity: 1; } }
+.il-dots { position: absolute; inset: 0; display: flex; align-items: center; gap: 5px; padding-left: 16px; background: #fff; border-radius: inherit; opacity: 0; animation: ilDots var(--d) infinite; pointer-events: none; }
+.il-dots i { width: 6px; height: 6px; border-radius: 50%; background: #a1a1aa; animation: ilBounce 0.9s ease-in-out infinite; }
+.il-dots i:nth-child(2) { animation-delay: 0.15s; }
+.il-dots i:nth-child(3) { animation-delay: 0.3s; }
+@keyframes ilDots { 0%, 16% { opacity: 1; } 21%, 100% { opacity: 0; } }
+@keyframes ilBounce { 0%, 60%, 100% { transform: translateY(0); } 30% { transform: translateY(-4px); } }
+.il-rev { position: relative; width: 88%; align-self: flex-end; margin-top: -6px; padding: 11px 13px; animation: ilRev var(--d) infinite; }
+.il-rev-head { display: flex; align-items: center; gap: 7px; font-size: 12px; }
+.il-av { width: 22px; height: 22px; border-radius: 50%; background: var(--accent-green); color: #fff; display: inline-flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; }
+.il-stars { margin-left: auto; display: inline-flex; gap: 1px; }
+.il-stars svg { color: #f59e0b; animation: ilStar var(--d) infinite backwards; }
+.il-rev p { margin: 7px 0 0; font-size: 11.5px; line-height: 1.4; color: var(--fg-secondary); }
+@keyframes ilRev {
+  0%, 34% { opacity: 0; transform: translateY(26px) rotate(-2deg) scale(0.96); }
+  41% { opacity: 1; transform: translateY(-4px) rotate(0.4deg) scale(1.01); }
+  44%, 100% { opacity: 1; transform: none; }
+}
+@keyframes ilStar { 0%, 44% { color: #d4d4d8; transform: scale(0.7); } 46.5% { color: #f59e0b; transform: scale(1.45); } 50%, 100% { color: #f59e0b; transform: scale(1); } }
+.il-plus { position: absolute; right: 8px; top: 12px; z-index: 3; padding: 4px 9px; font-size: 11px; font-weight: 700; color: #fff; background: var(--accent-green); opacity: 0; animation: ilPlus var(--d) infinite; }
+@keyframes ilPlus { 0%, 62% { opacity: 0; transform: translateY(10px); } 66% { opacity: 1; } 82% { opacity: 1; transform: translateY(-16px); } 88%, 100% { opacity: 0; transform: translateY(-26px); } }
+
+/* ── 4. The phone: a real iPhone mockup. The whole phone shows, then the camera pushes in on
+   "Book now", taps it, pans up to the confirmation and pulls back (the After Effects move).
+   Sizes are in cqw (a hundredth of the phone's width), so the screen scales with the phone. ── */
+.il-site { align-self: stretch; min-height: 0; }
+.il-cam {
+  position: relative; height: 100%; aspect-ratio: 828 / 1709; flex-shrink: 0;
+  container-type: inline-size; will-change: transform;
+  filter: drop-shadow(0 14px 22px rgba(15, 15, 15, 0.22));
+  animation: ilCam var(--d) infinite;
+}
+.il-frame { position: absolute; inset: 0; width: 100%; height: 100%; }
+.il-ui, .il-glare { position: absolute; left: 5.2%; right: 4.8%; top: 8.2%; bottom: 4.5%; }
+.il-ui { overflow: hidden; background: #fff; border-radius: 0 0 4cqw 4cqw; font-family: var(--font-inter); }
+@keyframes ilCam {
+  0%, 20% { transform: translate(0, 0) scale(1); animation-timing-function: cubic-bezier(0.65, 0, 0.35, 1); }
+  38%, 54% { transform: translate(0, -67%) scale(2.4); animation-timing-function: cubic-bezier(0.65, 0, 0.35, 1); }
+  66%, 82% { transform: translate(0, 67%) scale(2.4); animation-timing-function: cubic-bezier(0.65, 0, 0.35, 1); }
+  94%, 100% { transform: translate(0, 0) scale(1); }
+}
+
+/* The page on the phone */
+.il-page { display: grid; gap: 2.6cqw; padding: 3cqw 3.4cqw 0; }
+.il-nav { display: flex; justify-content: space-between; align-items: center; height: 7cqw; }
+.il-nav b { font-family: var(--font-poppins); font-size: 4.8cqw; letter-spacing: -0.02em; }
+.il-nav span { display: grid; gap: 0.8cqw; }
+.il-nav span i { display: block; width: 5cqw; height: 0.55cqw; background: #0f0f0f; }
+.il-hero { display: grid; gap: 1.4cqw; padding: 4.2cqw; background: linear-gradient(135deg, #ede9fe, #dcfce7); }
+.il-hero b { font-family: var(--font-poppins); font-size: 6.6cqw; line-height: 1.1; letter-spacing: -0.02em; }
+.il-hero small { font-size: 3.3cqw; }
+.il-rate { font-size: 3cqw; font-weight: 600; color: #b45309; }
+.il-list { list-style: none; margin: 0; padding: 0; }
+.il-list li { display: flex; justify-content: space-between; padding: 2.4cqw 0; border-bottom: 0.3cqw solid rgba(0, 0, 0, 0.07); font-size: 4cqw; color: var(--fg-secondary); }
+.il-list li b { font-size: 4cqw; }
+.il-slot { display: flex; justify-content: space-between; align-items: center; padding: 3cqw; font-size: 3.6cqw; color: var(--fg-secondary); background: #f0fdf4; border: 0.3cqw solid rgba(0, 171, 74, 0.3); }
+.il-slot b { color: #00873a; }
+.il-team { display: flex; align-items: center; font-size: 3.4cqw; color: var(--fg-secondary); }
+.il-team i { width: 8cqw; height: 8cqw; margin-left: -2cqw; border-radius: 50%; border: 0.6cqw solid #fff; background: linear-gradient(135deg, #c4b5fd, #a7f3d0); }
+.il-team i:first-child { margin-left: 0; }
+.il-team span { margin-left: 2.4cqw; }
+.il-quote-card { padding: 3.4cqw; font-size: 3.6cqw; line-height: 1.4; color: var(--fg); background: #faf5ff; }
+.il-quote-card small { margin-top: 1cqw; font-size: 3cqw; }
+.il-map {
+  position: relative; display: flex; align-items: flex-end; height: 20cqw; padding: 2cqw; font-size: 3cqw; color: var(--fg-secondary);
+  background:
+    repeating-linear-gradient(0deg, rgba(15, 15, 15, 0.05) 0 0.3cqw, transparent 0.3cqw 5cqw),
+    repeating-linear-gradient(90deg, rgba(15, 15, 15, 0.05) 0 0.3cqw, transparent 0.3cqw 5cqw), #eef2f7;
+}
+.il-pin { position: absolute; left: 50%; top: 38%; width: 4.4cqw; height: 4.4cqw; border-radius: 50% 50% 50% 0; background: var(--accent-purple); transform: translate(-50%, -50%) rotate(-45deg); }
+
+/* A sticky Book now bar, like a real mobile site */
+.il-cta-bar { position: absolute; left: 0; right: 0; bottom: 0; padding: 8cqw 3.4cqw 3.4cqw; background: linear-gradient(to top, #fff 68%, rgba(255, 255, 255, 0)); }
+.il-cta { position: relative; display: flex; align-items: center; justify-content: center; height: 10.5cqw; background: var(--accent-green); color: #fff; font-size: 3.8cqw; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; animation: ilCta var(--d) infinite; }
+.il-cta span { position: absolute; display: inline-flex; align-items: center; gap: 1.2cqw; white-space: nowrap; }
+.il-cta-a { opacity: 0; animation: ilCtaA var(--d) infinite; }
+.il-cta-b { animation: ilCtaB var(--d) infinite; }
+.il-touch { position: absolute; left: 50%; top: 50%; width: 9cqw; height: 9cqw; margin: -4.5cqw 0 0 -4.5cqw; border-radius: 50%; background: rgba(15, 15, 15, 0.3); border: 0.4cqw solid rgba(255, 255, 255, 0.85); opacity: 0; pointer-events: none; animation: ilTouch var(--d) infinite; }
+@keyframes ilCta { 0%, 43% { background: var(--accent-purple); transform: scale(1); } 44.5% { transform: scale(0.95); } 47% { background: var(--accent-green); transform: scale(1); } 93% { background: var(--accent-green); } 96%, 100% { background: var(--accent-purple); } }
+@keyframes ilCtaA { 0%, 46% { opacity: 1; } 48%, 93% { opacity: 0; } 96%, 100% { opacity: 1; } }
+@keyframes ilCtaB { 0%, 46% { opacity: 0; transform: translateY(1.4cqw); } 50%, 93% { opacity: 1; transform: none; } 95%, 100% { opacity: 0; } }
+@keyframes ilTouch {
+  0%, 30% { opacity: 0; transform: translate(10cqw, 9cqw) scale(1); }
+  37% { opacity: 0.95; transform: translate(10cqw, 9cqw) scale(1); }
+  42% { opacity: 0.95; transform: translate(0, 0) scale(1); }
+  44% { opacity: 0.95; transform: translate(0, 0) scale(0.78); }
+  46% { opacity: 0.95; transform: translate(0, 0) scale(1); }
+  50%, 100% { opacity: 0; transform: translate(0, 0) scale(2.1); }
+}
+
+/* The confirmation, like an iOS notification */
+.il-banner { position: absolute; top: 2cqw; left: 2.4cqw; right: 2.4cqw; z-index: 5; display: flex; align-items: center; gap: 2.4cqw; padding: 2.2cqw 2.6cqw; border-radius: 4cqw; background: #fafafc; box-shadow: 0 2cqw 5cqw rgba(15, 15, 15, 0.22), 0 0 0 0.3cqw rgba(0, 0, 0, 0.06); animation: ilBanner var(--d) infinite; }
+.il-banner > span:nth-child(2) { flex: 1; min-width: 0; }
+.il-banner b { display: block; font-size: 3.4cqw; line-height: 1.2; }
+.il-banner small { font-size: 3cqw; line-height: 1.25; }
+.il-banner em { align-self: flex-start; font-size: 2.6cqw; font-style: normal; color: var(--fg-muted); }
+.il-app { width: 6.4cqw; height: 6.4cqw; flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center; border-radius: 1.8cqw; background: var(--accent-purple); color: #fff; }
+@keyframes ilBanner { 0%, 58% { opacity: 0; transform: translateY(-160%) scale(0.96); } 63% { opacity: 1; transform: translateY(6%) scale(1.01); } 66%, 82% { opacity: 1; transform: none; } 88%, 100% { opacity: 0; transform: translateY(-160%); } }
+.il-glare { z-index: 6; pointer-events: none; border-radius: 0 0 4cqw 4cqw; background: linear-gradient(115deg, transparent 38%, rgba(255, 255, 255, 0.28) 48%, transparent 58%); background-size: 260% 100%; animation: ilGlare 7s ease-in-out infinite; }
+@keyframes ilGlare { 0% { background-position: 130% 0; } 55%, 100% { background-position: -80% 0; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .il, .il *, .il *::before, .il *::after { animation: none !important; }
+}
+
+/* ── /local-business: concept-work cards (a site shown in a browser frame) ── */
+.lb-concepts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 64px 40px; }
+.lb-browser { display: block; text-decoration: none; background: #fff; border: 1px solid rgba(0, 0, 0, 0.1); box-shadow: 0 18px 40px rgba(15, 15, 15, 0.08); transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.45s ease; }
+.lb-browser:hover { transform: translateY(-4px); box-shadow: 0 26px 52px rgba(15, 15, 15, 0.14); }
+.lb-browser:focus-visible { outline: 3px solid var(--accent-purple); outline-offset: 4px; }
+.lb-browser-bar { display: flex; align-items: center; gap: 6px; height: 30px; padding: 0 12px; background: #f1f1f1; border-bottom: 1px solid rgba(0, 0, 0, 0.08); }
+.lb-browser-bar i { width: 9px; height: 9px; border-radius: 50%; background: #d4d4d4; }
+.lb-browser-bar em { margin-left: 10px; font-family: var(--font-inter); font-size: 11px; font-style: normal; color: var(--fg-muted); }
+.lb-browser-shot { display: block; overflow: hidden; background: #0f0f0f; }
+.lb-browser-shot img { display: block; width: 100%; height: auto; transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1); }
+.lb-browser:hover .lb-browser-shot img { transform: scale(1.04); }
+.lb-concept-link { display: inline-flex; align-items: center; gap: 6px; font-family: var(--font-inter); font-weight: 700; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--fg); text-decoration: none; border-bottom: 1px solid currentColor; padding-bottom: 2px; }
+.lb-concept-link:hover { color: var(--accent-purple); }
+.lb-concept-link:focus-visible { outline: 3px solid var(--accent-purple); outline-offset: 4px; }
+@media (max-width: 860px) { .lb-concepts { grid-template-columns: minmax(0, 1fr); gap: 48px; } }
+@media (prefers-reduced-motion: reduce) { .lb-browser, .lb-browser-shot img { transition: none; } .lb-browser:hover { transform: none; } .lb-browser:hover .lb-browser-shot img { transform: none; } }
+.lb-head { display: flex; gap: 40px 80px; align-items: flex-end; flex-wrap: wrap; justify-content: space-between; padding-bottom: 32px; border-bottom: 1px solid rgba(0, 0, 0, 0.08); }
+.lb-head h2 { margin-bottom: 0; }

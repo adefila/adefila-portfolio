@@ -1,5 +1,5 @@
-﻿export type LangCode = "en" | "fr" | "es" | "de" | "pt" | "zh" | "ja" | "yo";
-export type CurrencyCode = "USD" | "EUR" | "GBP" | "BRL" | "CNY" | "JPY" | "NGN" | "CAD" | "AUD" | "AED";
+﻿export type LangCode = "en" | "fr" | "es" | "de" | "pt" | "zh" | "ja" | "yo" | "nl" | "no";
+export type CurrencyCode = "USD" | "EUR" | "GBP" | "BRL" | "CNY" | "JPY" | "NGN" | "CAD" | "AUD" | "AED" | "NOK";
 
 export interface Language {
   code: LangCode;
@@ -24,6 +24,9 @@ export const LANGUAGES: Language[] = [
   { code: "zh", label: "中文",      flag: "🇨🇳", currency: "CNY" },
   { code: "ja", label: "日本語",    flag: "🇯🇵", currency: "JPY" },
   { code: "yo", label: "Yorùbá",   flag: "🇳🇬", currency: "NGN" },
+  // Dutch and Norwegian are fully translated only on /local-business (see LangContext)
+  { code: "nl", label: "Nederlands", flag: "🇳🇱", currency: "EUR" },
+  { code: "no", label: "Norsk",      flag: "🇳🇴", currency: "NOK" },
 ];
 
 export const CURRENCIES: Currency[] = [
@@ -37,9 +40,11 @@ export const CURRENCIES: Currency[] = [
   { code: "CAD", symbol: "C$",   name: "Canadian Dollar",   rate: 1.36   },
   { code: "AUD", symbol: "A$",   name: "Australian Dollar", rate: 1.54   },
   { code: "AED", symbol: "AED",  name: "UAE Dirham",        rate: 3.67   },
+  { code: "NOK", symbol: "kr ",  name: "Norwegian Krone",   rate: 10.8   },
 ];
 
-export const T: Record<string, Record<LangCode, string>> = {
+// English is required for every entry; the other languages are optional and fall back to English.
+export const T: Record<string, Partial<Record<LangCode, string>> & { en: string }> = {
   // ── Social Proof ticker ──────────────────────────────────────────────
 
   // ── Projects section ──────────────────────────────────────────────────

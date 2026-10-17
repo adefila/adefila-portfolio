@@ -1,148 +1,157 @@
-import { MessageSquareText, Phone, Star } from "lucide-react";
+"use client";
+import Image from "next/image";
+import { CalendarCheck, Check, MessageSquareText, Phone, Send, Star } from "lucide-react";
+import { useLang } from "@/context/LangContext";
 
-// UI-style illustrations for /local-business. Pure markup + CSS animation (lbPop in
-// globals.css), so they render on the server and cost no JavaScript.
+// Animated UI illustrations for /local-business. Each one is a short story that loops: a slot gets
+// booked, a quote request is typed and sent, a review message goes out and a review comes back,
+// a customer books on a phone. Pure markup + CSS timelines (the .il-* rules in globals.css), so
+// they add no animation code. They start when their card scrolls into view. With "reduce motion" on,
+// every element rests in its finished state, which is the complete picture. All decoration:
+// the card text beside each one says the same thing. Their words come from the page's translations.
 
-const card = { background: "var(--white)", border: "1px solid rgba(0,0,0,0.08)", boxShadow: "0 12px 32px rgba(15,15,15,0.08)" } as const;
-const tiny = { fontFamily: "var(--font-inter)", fontSize: 11, lineHeight: 1.35, color: "var(--fg-secondary)", margin: 0 } as const;
-const strong = { fontFamily: "var(--font-inter)", fontSize: 12, fontWeight: 600, lineHeight: 1.3, color: "var(--fg)", margin: 0 } as const;
-const pop = (delay: number) => ({ animation: `lbPop .6s ${delay}s cubic-bezier(0.22, 1, 0.36, 1) both` });
-
-function IconTile({ children, bg }: { children: React.ReactNode; bg: string }) {
-  return (
-    <span style={{ width: 30, height: 30, flexShrink: 0, display: "inline-flex", alignItems: "center", justifyContent: "center", background: bg, color: "#fff" }}>
-      {children}
-    </span>
-  );
-}
-
-function PhoneFrame({ children, width = 230 }: { children: React.ReactNode; width?: number }) {
-  return (
-    <div style={{ width, background: "var(--fg)", padding: 8, borderRadius: 30, boxShadow: "0 30px 60px rgba(15,15,15,0.18)" }}>
-      <div style={{ background: "#f3f3f1", borderRadius: 23, overflow: "hidden", position: "relative" }}>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "10px 18px 6px", fontFamily: "var(--font-inter)", fontSize: 10, fontWeight: 600, color: "var(--fg)" }}>
-          <span>9:41</span>
-          <span style={{ width: 54, height: 14, borderRadius: 10, background: "var(--fg)" }} />
-          <span style={{ letterSpacing: 1 }}>●●●</span>
-        </div>
-        {children}
-      </div>
-    </div>
-  );
-}
-
-const DAYS = ["Mon", "Tue", "Wed", "Thu", "Fri"];
-// [day, row, label, isNew]
-const SLOTS: [number, number, string, boolean][] = [
-  [0, 0, "Ben", false], [0, 2, "Sara", false], [1, 1, "Anna", true], [1, 3, "Tom", false],
-  [2, 0, "Lea", false], [2, 1, "Kofi", false], [3, 2, "Mia", false], [4, 0, "Joe", false], [4, 3, "Ivy", false],
+// ── 1. Booking: a cursor books a slot, the count goes up, a reminder is sent ─────────────────
+// [day, row, name]. Anna is the booking that happens in the loop.
+const SLOTS: [number, number, string][] = [
+  [0, 0, "Ben"], [0, 2, "Sara"], [1, 3, "Tom"], [2, 0, "Lea"], [2, 1, "Kofi"],
+  [3, 2, "Mia"], [4, 0, "Joe"], [4, 3, "Ivy"],
 ];
 
-/** Booking + reminders: a week filling up, with a reminder going out. */
 export function BookingIllustration() {
+  const { t } = useLang();
+  const days = t("il.days").split("|");
   return (
-    <div aria-hidden="true" style={{ position: "relative", width: "100%", maxWidth: 340 }}>
-      <div style={{ ...card, padding: 14 }}>
-        <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 10 }}>
-          <p style={strong}>This week</p>
-          <p style={{ ...tiny, color: "var(--accent-green)", fontWeight: 600 }}>9 booked</p>
+    <div aria-hidden="true" className="il il-book il-loop" style={{ ["--d" as string]: "9s" }}>
+      <div className="il-card il-cal">
+        <div className="il-cal-head">
+          <span className="il-title">{t("il.week")}</span>
+          <span className="il-count">
+            <span className="il-count-a">{t("il.booked8")}</span>
+            <span className="il-count-b">{t("il.booked9")}</span>
+          </span>
         </div>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: 5 }}>
-          {DAYS.map(d => <p key={d} style={{ ...tiny, fontSize: 10, textAlign: "center", color: "var(--fg-muted)" }}>{d}</p>)}
+        <div className="il-grid">
+          {days.map((d) => <span key={d} className="il-day">{d}</span>)}
           {Array.from({ length: 20 }, (_, i) => {
             const day = i % 5, row = Math.floor(i / 5);
             const slot = SLOTS.find(([d, r]) => d === day && r === row);
+            if (day === 1 && row === 1) {
+              return (
+                <span key={i} className="il-cell il-cell-anna">
+                  Anna
+                  <svg className="il-cursor" width="18" height="18" viewBox="0 0 24 24"><path d="M5 3l14 8-6 1.8L9.8 19 5 3z" fill="#fff" stroke="#0f0f0f" strokeWidth="1.6" strokeLinejoin="round" /></svg>
+                </span>
+              );
+            }
             return (
-              <span key={i} style={{
-                height: 24, display: "flex", alignItems: "center", justifyContent: "center",
-                fontFamily: "var(--font-inter)", fontSize: 9.5, fontWeight: 600,
-                background: slot ? (slot[3] ? "var(--accent-green)" : "rgba(109,40,217,0.12)") : "rgba(0,0,0,0.03)",
-                color: slot ? (slot[3] ? "#fff" : "var(--accent-purple)") : "transparent",
-                ...(slot ? pop(0.1 + i * 0.04) : {}),
-              }}>{slot?.[2] ?? "·"}</span>
+              <span key={i} className={slot ? "il-cell il-cell-on il-in" : "il-cell"} style={slot ? { animationDelay: `${0.08 * (i % 9)}s` } : undefined}>
+                {slot?.[2]}
+              </span>
             );
           })}
         </div>
       </div>
-      <div style={{ ...card, position: "absolute", right: -10, bottom: -22, padding: "9px 12px", display: "flex", gap: 9, alignItems: "center", ...pop(0.9) }}>
-        <IconTile bg="var(--fg)"><MessageSquareText size={14} /></IconTile>
-        <div>
-          <p style={strong}>Reminder sent</p>
-          <p style={tiny}>Anna · tomorrow 10:30</p>
-        </div>
+      <div className="il-card il-toast">
+        <span className="il-toast-ico"><MessageSquareText size={14} /></span>
+        <span>
+          <b>{t("il.reminder")}</b>
+          <small>{t("il.reminder.sub")}</small>
+        </span>
+        <Check className="il-toast-check" size={15} strokeWidth={3} />
       </div>
     </div>
   );
 }
 
-/** Quote form: job details + photos land on the owner's phone in one go. */
+// ── 2. Quote: the form types itself, a request flies to the owner's phone ────────────────────
 export function QuoteIllustration() {
+  const { t } = useLang();
   return (
-    <div aria-hidden="true" style={{ position: "relative", width: "100%", maxWidth: 340, display: "flex", gap: 14, alignItems: "center" }}>
-      <div style={{ ...card, padding: 14, flex: 1, display: "grid", gap: 7 }}>
-        <p style={strong}>Get a quote</p>
-        {["Leaking pipe under sink", "Kitchen · ground floor"].map(v => (
-          <span key={v} style={{ ...tiny, border: "1px solid rgba(0,0,0,0.1)", padding: "6px 8px", color: "var(--fg)" }}>{v}</span>
-        ))}
-        <div style={{ display: "flex", gap: 5 }}>
-          {["#cbd5e1", "#a5b4fc", "#99f6e4"].map((c, i) => (
-            <span key={c} style={{ width: 34, height: 28, background: `linear-gradient(135deg, ${c}, #fff)`, border: "1px solid rgba(0,0,0,0.06)", ...pop(0.2 + i * 0.12) }} />
-          ))}
+    <div aria-hidden="true" className="il il-quote il-loop" style={{ ["--d" as string]: "10s" }}>
+      <div className="il-card il-qform">
+        <b className="il-title">{t("il.quote.title")}</b>
+        <div className="il-field"><span className="il-type il-t1">{t("il.quote.f1")}</span></div>
+        <div className="il-field"><span className="il-type il-t2">{t("il.quote.f2")}</span></div>
+        <div className="il-thumbs"><i className="il-th1" /><i className="il-th2" /><i className="il-th3" /></div>
+        <div className="il-send">
+          <span className="il-send-a">{t("il.send")}</span>
+          <span className="il-send-b"><Check size={13} strokeWidth={3} /> {t("il.sent")}</span>
         </div>
-        <span style={{ fontFamily: "var(--font-inter)", fontSize: 10.5, fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.5px", background: "var(--fg)", color: "#fff", textAlign: "center", padding: "7px 0" }}>Send</span>
       </div>
-      <div style={{ ...card, width: 132, borderRadius: 18, padding: 10, display: "grid", gap: 6, ...pop(0.7) }}>
-        <IconTile bg="#0ea5e9"><Phone size={14} /></IconTile>
-        <p style={strong}>New quote request</p>
-        <p style={tiny}>Leaking pipe · 3 photos</p>
-        <span style={{ ...tiny, fontWeight: 600, color: "var(--accent-purple)" }}>Reply →</span>
+      <Send className="il-plane" size={18} strokeWidth={2.2} />
+      <div className="il-card il-notif">
+        <span className="il-notif-ico"><Phone size={15} /><i className="il-badge" /></span>
+        <b>{t("il.notif.title")}</b>
+        <small>{t("il.notif.sub")}</small>
+        <span className="il-reply">{t("il.reply")} <span>→</span></span>
       </div>
     </div>
   );
 }
 
-/** Review requests: a friendly text after the visit, then a new review. */
+// ── 3. Reviews: the text goes out, a review comes back and the stars fill ────────────────────
 export function ReviewIllustration() {
+  const { t } = useLang();
   return (
-    <div aria-hidden="true" style={{ width: "100%", maxWidth: 320, display: "grid", gap: 10 }}>
-      <div style={{ ...card, borderRadius: "16px 16px 16px 4px", padding: "11px 13px", maxWidth: 250, ...pop(0.1) }}>
-        <p style={{ ...tiny, color: "var(--fg)", fontSize: 12 }}>Thanks for coming in today! Would you mind leaving us a quick review?</p>
-        <p style={{ ...tiny, color: "var(--accent-purple)", fontWeight: 600, marginTop: 6 }}>g.page/your-business/review</p>
+    <div aria-hidden="true" className="il il-review il-loop" style={{ ["--d" as string]: "9s" }}>
+      <div className="il-card il-sms">
+        <p>{t("il.sms")}</p>
+        <span>g.page/your-business/review</span>
+        <div className="il-dots"><i /><i /><i /></div>
       </div>
-      <div style={{ ...card, padding: 12, marginLeft: 40, display: "grid", gap: 6, ...pop(0.6) }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-          <span style={{ width: 24, height: 24, borderRadius: "50%", background: "var(--accent-green)", color: "#fff", display: "inline-flex", alignItems: "center", justifyContent: "center", fontFamily: "var(--font-inter)", fontSize: 11, fontWeight: 700 }}>L</span>
-          <p style={strong}>Lisa K.</p>
-          <span style={{ display: "flex", gap: 1, marginLeft: "auto" }}>
-            {[0, 1, 2, 3, 4].map(i => <Star key={i} size={12} fill="#f59e0b" color="#f59e0b" style={pop(0.8 + i * 0.08)} />)}
-          </span>
+      <div className="il-card il-rev">
+        <div className="il-rev-head">
+          <span className="il-av">L</span>
+          <b>Lisa K.</b>
+          <span className="il-stars">{[0, 1, 2, 3, 4].map((i) => <Star key={i} size={13} fill="currentColor" strokeWidth={0} style={{ animationDelay: `${i * 0.22}s` }} />)}</span>
         </div>
-        <p style={tiny}>Lovely team, and booking online took a minute. Will be back!</p>
+        <p><span className="il-type il-t3">{t("il.rev.text")}</span></p>
       </div>
+      <span className="il-plus">{t("il.plus")}</span>
     </div>
   );
 }
 
-/** Website: clear on a phone, with prices, hours and a booking button. */
+// ── 4. Website on a phone: the whole phone shows, the camera pushes in on Book now ──────────
 export function SiteIllustration() {
+  const { t } = useLang();
   return (
-    <div aria-hidden="true" style={{ display: "flex", justifyContent: "center", width: "100%" }}>
-      <PhoneFrame width={170}>
-        <div style={{ padding: "4px 10px 12px", display: "grid", gap: 7 }}>
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-            <span style={{ width: 46, height: 8, background: "var(--fg)" }} />
-            <span style={{ width: 14, height: 8, borderTop: "2px solid var(--fg)", borderBottom: "2px solid var(--fg)" }} />
+    <div aria-hidden="true" className="il il-site" style={{ ["--d" as string]: "12s" }}>
+      <div className="il-cam">
+        <Image className="il-frame" src="/local/iphone-hd.webp" alt="" width={828} height={1709} unoptimized />
+        <div className="il-ui">
+          <div className="il-banner">
+            <span className="il-app"><CalendarCheck size={10} /></span>
+            <span><b>Bright Smile</b><small>{t("il.phone.booked")}</small></span>
+            <em>now</em>
           </div>
-          <div style={{ height: 58, background: "linear-gradient(135deg, rgba(109,40,217,0.18), rgba(0,171,74,0.14))", ...pop(0.15) }} />
-          {[["Check-up", "€60"], ["Cleaning", "€85"], ["Open today", "8–18"]].map(([a, b], i) => (
-            <div key={a} style={{ display: "flex", justifyContent: "space-between", borderBottom: "1px solid rgba(0,0,0,0.07)", paddingBottom: 4, ...pop(0.3 + i * 0.12) }}>
-              <span style={{ ...tiny, fontSize: 10, color: "var(--fg)" }}>{a}</span>
-              <span style={{ ...tiny, fontSize: 10, fontWeight: 600, color: "var(--fg)" }}>{b}</span>
+          <div className="il-page">
+            <div className="il-nav"><b>Bright Smile</b><span><i /><i /><i /></span></div>
+            <div className="il-hero">
+              <b>{t("il.phone.headline")}</b>
+              <small>{t("il.phone.open")}</small>
+              <span className="il-rate">{t("il.phone.rate")}</span>
             </div>
-          ))}
-          <span style={{ fontFamily: "var(--font-inter)", fontSize: 10, fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.5px", background: "var(--accent-purple)", color: "#fff", textAlign: "center", padding: "8px 0", ...pop(0.8) }}>Book now</span>
+            <ul className="il-list">
+              <li><span>{t("il.phone.svc1")}</span><b>$60</b></li>
+              <li><span>{t("il.phone.svc2")}</span><b>$85</b></li>
+              <li><span>{t("il.phone.svc3")}</span><b>$190</b></li>
+            </ul>
+            <div className="il-slot"><span>{t("il.phone.slot")}</span><b>{t("il.time")}</b></div>
+            <div className="il-team"><i /><i /><i /><span>{t("il.phone.team")}</span></div>
+            <div className="il-quote-card">{t("il.phone.quote")}<small>Maria S.</small></div>
+            <div className="il-map"><i className="il-pin" /><small>{t("il.phone.street")}</small></div>
+          </div>
+          <div className="il-cta-bar">
+            <div className="il-cta">
+              <span className="il-cta-a">{t("il.phone.book")}</span>
+              <span className="il-cta-b"><Check size={11} strokeWidth={3} /> {t("il.phone.booked")}</span>
+              <i className="il-touch" />
+            </div>
+          </div>
         </div>
-      </PhoneFrame>
+        <span className="il-glare" />
+      </div>
     </div>
   );
 }

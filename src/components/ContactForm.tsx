@@ -381,8 +381,8 @@ export default function ContactForm({ variant = "default" }: { variant?: "defaul
                     onFocus={(e) => (e.target.style.borderColor = "var(--accent-purple)")}
                     onBlur={(e) => (e.target.style.borderColor = "rgba(0,0,0,0.12)")}
                   >
-                    <option value="">{local ? "Choose one" : "Select service"}</option>
-                    {(local ? LOCAL_SERVICES : services).map((s) => <option key={s} value={s}>{s}</option>)}
+                    <option value="">{local ? t("contact.opt.choose") : "Select service"}</option>
+                    {(local ? LOCAL_SERVICES : services).map((s, i) => <option key={s} value={s}>{local ? t(`contact.svc${i}`) : s}</option>)}
                   </select>
                 </div>
                 <div>
@@ -397,8 +397,8 @@ export default function ContactForm({ variant = "default" }: { variant?: "defaul
                     onFocus={(e) => (e.target.style.borderColor = "var(--accent-purple)")}
                     onBlur={(e) => (e.target.style.borderColor = "rgba(0,0,0,0.12)")}
                   >
-                    <option value="">{local ? "Choose a range" : "Select budget"}</option>
-                    {(local ? LOCAL_BUDGETS : budgets).map((b) => <option key={b} value={b}>{b}</option>)}
+                    <option value="">{local ? t("contact.opt.range") : "Select budget"}</option>
+                    {(local ? LOCAL_BUDGETS : budgets).map((b, i) => <option key={b} value={b}>{local ? t(`contact.bud${i}`) : b}</option>)}
                   </select>
                 </div>
               </div>
