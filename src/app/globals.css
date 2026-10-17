@@ -581,7 +581,7 @@ html[data-reveal-ready] [data-reveal]:not([data-revealed]) {
     transform: scale(0.8);
   }
   .clients-section {
-    padding-bottom: 8px !important;
+    padding-bottom: 16px !important;
   }
 }
 
@@ -760,7 +760,7 @@ html[data-reveal-ready] [data-reveal]:not([data-revealed]) {
 
   /* Hero spacing: tighten element gaps on mobile */
   .hero-badge {
-    margin-bottom: 20px !important;
+    margin-bottom: 16px !important;
   }
   .hero-cta {
     margin-bottom: 32px !important;
@@ -893,6 +893,7 @@ html[data-reveal-ready] [data-reveal]:not([data-revealed]) {
   .lb-grid { grid-template-columns: minmax(0, 1fr); gap: 48px; }
 }
 @media (max-width: 520px) {
+  .lb-sec-head { margin-bottom: 32px !important; }
   .lb-illo { aspect-ratio: auto; height: 240px; padding: 20px; }
   .lb-illo-tall { aspect-ratio: auto; height: 380px; padding: 12px 20px; }
   .lb-terms { grid-template-columns: minmax(0, 1fr); }

@@ -100,7 +100,7 @@ export default function Hero({ workHref = "#work", altHref = "/local-business" }
         <div>
           <div
             className="hero-badge"
-            style={{ display: "inline-flex", alignItems: "center", gap: 6, marginBottom: 32, animation: `heroFadeUp 0.6s 0.1s ${EASE} both` }}
+            style={{ display: "inline-flex", alignItems: "center", gap: 6, marginBottom: 24, animation: `heroFadeUp 0.6s 0.1s ${EASE} both` }}
           >
             <span style={{ position: "relative", width: 8, height: 8, flexShrink: 0, display: "inline-flex", alignItems: "center", justifyContent: "center" }}>
               <span style={{ position: "absolute", inset: 0, borderRadius: "50%", background: "var(--accent-green)", animation: "pulseRipple 2s ease-out infinite" }} />
@@ -181,7 +181,7 @@ export default function Hero({ workHref = "#work", altHref = "/local-business" }
 
           <div
             className="hero-cta"
-            style={{ display: "flex", gap: 12, flexWrap: "wrap", animation: `heroFadeUp 0.6s 0.5s ${EASE} both` }}
+            style={{ display: "flex", gap: 16, flexWrap: "wrap", animation: `heroFadeUp 0.6s 0.5s ${EASE} both` }}
           >
             <MagneticButton
               href={BOOKING_URL}
@@ -243,7 +243,7 @@ export default function Hero({ workHref = "#work", altHref = "/local-business" }
             href={altHref}
             data-track-location="hero_local"
             style={{
-              display: "inline-flex", alignItems: "center", gap: 6, marginTop: 20,
+              display: "inline-flex", alignItems: "center", gap: 6, marginTop: 24,
               fontFamily: "var(--font-inter)", fontSize: 14, color: "var(--fg-secondary)",
               textDecoration: "none", borderBottom: "1px solid rgba(0,0,0,0.2)", paddingBottom: 2,
               animation: `heroFadeUp 0.6s 0.6s ${EASE} both`,

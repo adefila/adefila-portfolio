@@ -26,7 +26,7 @@ export function Systems() {
   const { t } = useLang();
   return (
     <section id="work" style={{ width: "100%", maxWidth: 1200, margin: "0 auto", padding: "80px 20px" }}>
-      <div style={{ marginBottom: 48 }}>
+      <div className="lb-sec-head" style={{ marginBottom: 48 }}>
         <p data-reveal style={eyebrowStyle}>{t("lb.sys.eyebrow")}</p>
         <h2 style={h2Style}>
           <RevealWords text={t("lb.sys.h1")} />{" "}
@@ -37,7 +37,7 @@ export function Systems() {
         {SYSTEMS.map((s) => (
           <article key={s.key} data-reveal>
             <div className={`lb-illo${s.tall ? " lb-illo-tall" : ""}`}>{s.illo}</div>
-            <div style={{ paddingTop: 20 }}>
+            <div style={{ paddingTop: 24 }}>
               <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap", marginBottom: 8 }}>
                 <h3 style={cardTitle}>{t(`lb.sys.${s.key}.title`)}</h3>
                 {s.tags.map((tag) => <span key={tag} style={chip}>{t(`lb.tag.${tag}`)}</span>)}
@@ -60,10 +60,10 @@ export function TermsStrip() {
     { big: t("lb.terms.big2"), text: t("lb.terms.t2") },
   ];
   return (
-    <div style={{ maxWidth: 1200, margin: "-48px auto 0", padding: "0 20px 40px" }}>
+    <div style={{ maxWidth: 1200, margin: "-48px auto 0", padding: "0 20px 32px" }}>
       <div data-reveal className="lb-terms">
         {terms.map((term) => (
-          <div key={term.text} style={{ padding: "24px", background: "var(--bg)", display: "grid", gap: 4 }}>
+          <div key={term.text} style={{ padding: "24px", background: "var(--bg)", display: "grid", gap: 8 }}>
             <span style={{ fontFamily: "var(--font-poppins)", fontWeight: 700, fontSize: 28, letterSpacing: "-1px", lineHeight: 1, color: "var(--fg)" }}>{term.big}</span>
             <span style={{ fontFamily: "var(--font-inter)", fontWeight: 600, fontSize: 11, letterSpacing: "0.08em", textTransform: "uppercase", color: "var(--fg-muted)" }}>{term.text}</span>
           </div>
@@ -83,7 +83,7 @@ export function ConceptWork() {
   const { t } = useLang();
   return (
     <section id="concept" style={{ width: "100%", maxWidth: 1200, margin: "0 auto", padding: "0 20px 80px" }}>
-      <div className="lb-head" style={{ marginBottom: 48 }}>
+      <div className="lb-head lb-sec-head" style={{ marginBottom: 48 }}>
         <div>
           <p data-reveal style={eyebrowStyle}>{t("lb.concept.eyebrow")}</p>
           <h2 style={h2Style}>
@@ -105,7 +105,7 @@ export function ConceptWork() {
                 <Image src={c.image} alt={`${c.name} (${t(`lb.concept.${c.key}.type`)})`} width={1200} height={750} sizes="(max-width: 860px) 100vw, 580px" />
               </span>
             </a>
-            <div style={{ paddingTop: 20 }}>
+            <div style={{ paddingTop: 24 }}>
               <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap", marginBottom: 8 }}>
                 <h3 style={cardTitle}>{c.name}</h3>
                 <span style={{ ...chip, color: "var(--accent-purple)", borderColor: "rgba(109,40,217,0.3)", background: "rgba(109,40,217,0.06)" }}>{t("lb.concept.label")}</span>
