@@ -104,7 +104,7 @@ export default function MidCTA() {
             onMouseEnter={(e: React.MouseEvent<HTMLAnchorElement>) => {
               e.currentTarget.style.background = "var(--fg)";
               e.currentTarget.style.borderColor = "var(--fg)";
-              e.currentTarget.style.color = "#fff";
+              e.currentTarget.style.color = "var(--on-fg)";
             }}
             onMouseLeave={(e: React.MouseEvent<HTMLAnchorElement>) => {
               e.currentTarget.style.background = "#fff";
