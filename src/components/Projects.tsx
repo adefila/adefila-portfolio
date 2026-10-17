@@ -5,6 +5,13 @@ import Image from "next/image";
 import { useLang } from "@/context/LangContext";
 import RevealWords from "./RevealWords";
 
+// Translation keys by project title (the text itself lives in src/i18n/projects.ts)
+const SLUG: Record<string, string> = {
+  "Calder Health": "calder", "The Initial": "initial", BindHQ: "bindhq", "VPA London": "vpa", "Upside ESG": "upside",
+  "Alyssa Corso": "alyssa", Emalbu: "emalbu", Leadopo: "leadopo", "Rusty Wears": "rusty", "The Prime Media": "primemedia",
+  "Jamal Muse": "jamal", "Talon Tyres": "talon", BookedEZ: "bookedez", "Datum Build": "datum",
+};
+
 type Project = {
   title: string;
   alt: string;
@@ -141,9 +148,6 @@ const devProjects: Project[] = [
     href: "https://talon-tyres.vercel.app/",
     screenshot: "/projects/talon-tyres.webp",
   },
-];
-
-const designProjects: Project[] = [
   {
     title: "BookedEZ",
     bg: "#e4e3ea",
@@ -155,6 +159,19 @@ const designProjects: Project[] = [
     screenshot: "/projects/design/bookedez.jpg",
     badge: "Live on Stores",
   },
+  {
+    title: "Datum Build",
+    bg: "#e3e7ee",
+    alt: "Datum Build contractor website concept: bold construction visuals, current projects and a clear Start a project button",
+    desc: "A bold site for a building contractor: current projects up front, the fixed price and weekly report explained, and a clear Start a project button.",
+    year: "2026",
+    tags: ["Construction", "Concept"],
+    href: "https://datum-build.vercel.app/",
+    screenshot: "/local/concept-datum.webp",
+  },
+];
+
+const designProjects: Project[] = [
   {
     title: "Student Material Directory",
     bg: "#ececec",
@@ -231,16 +248,22 @@ const designProjects: Project[] = [
 
 const SPRING = "cubic-bezier(0.22, 1, 0.36, 1)";
 
+// The Product Design tab (and its projects) is kept but hidden. Set to true to bring it back.
+const SHOW_DESIGN_TAB = false;
+
 type Tab = "dev" | "design";
 
 function ProjectCard({ project, index }: { project: Project; index: number }) {
+  const { t } = useLang();
+  const tr = (key: string, fallback: string) => { const v = t(key); return v === key ? fallback : v; };
+  const slug = SLUG[project.title];
   const [hovered, setHovered] = useState(false);
   const hasLink = project.href && project.href !== "#";
 
   const cardStyle: React.CSSProperties = {
     display: "block",
     background: project.bg ?? "#fff",
-    border: "1px solid rgba(0,0,0,0.06)",
+    border: "1px solid rgba(var(--ink), 0.06)",
     padding: "24px 24px 0",
     textDecoration: "none",
     cursor: hasLink ? "pointer" : "default",
@@ -310,12 +333,12 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
                 fontFamily: "var(--font-inter)", fontWeight: 500, fontSize: 10,
                 letterSpacing: "0.8px", textTransform: "uppercase",
                 color: "var(--fg-secondary)",
-                background: "rgba(0,0,0,0.04)",
-                border: "1px solid rgba(0,0,0,0.08)",
+                background: "rgba(var(--ink), 0.04)",
+                border: "1px solid rgba(var(--ink), 0.08)",
                 padding: "3px 9px",
                 whiteSpace: "nowrap",
               }}>
-                {tag}
+                {tr(`projtag.${tag}`, tag)}
               </span>
             ))}
             {project.badge && (
@@ -328,7 +351,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
                 padding: "3px 9px",
                 whiteSpace: "nowrap",
               }}>
-                {project.badge}
+                {tr(`projbadge.${project.badge}`, project.badge)}
               </span>
             )}
             {project.year && (
@@ -349,7 +372,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
               style={{
                 flexShrink: 0, width: 32, height: 32,
                 display: "flex", alignItems: "center", justifyContent: "center",
-                background: "transparent", border: "1px solid rgba(0,0,0,0.15)",
+                background: "transparent", border: "1px solid rgba(var(--ink), 0.15)",
                 color: "var(--fg)",
               }}
             >
@@ -363,7 +386,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
           fontSize: 13, lineHeight: 1.6, letterSpacing: "-0.1px",
           color: "var(--fg-secondary)", margin: 0,
         }}>
-          {project.desc}
+          {slug ? tr(`proj.${slug}.desc`, project.desc) : project.desc}
         </p>
       </div>
     </div>
@@ -373,10 +396,10 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
 function TabBar({ active, onChange }: { active: Tab; onChange: (t: Tab) => void }) {
   const tabs: { key: Tab; label: string; count: number; }[] = [
     { key: "dev",    label: "Website Development", count: devProjects.length },
-    { key: "design", label: "Product Design",       count: designProjects.length },
+    ...(SHOW_DESIGN_TAB ? [{ key: "design" as Tab, label: "Product Design", count: designProjects.length }] : []),
   ];
   return (
-    <div style={{ display: "flex", gap: 0, borderBottom: "1px solid rgba(0,0,0,0.1)" }}>
+    <div style={{ display: "flex", gap: 0, borderBottom: "1px solid rgba(var(--ink), 0.1)" }}>
       {tabs.map((tab) => {
         const isActive = active === tab.key;
         return (
@@ -404,7 +427,7 @@ function TabBar({ active, onChange }: { active: Tab; onChange: (t: Tab) => void 
             <span style={{
               fontFamily: "var(--font-inter)", fontWeight: 600, fontSize: 10,
               color: isActive ? "var(--accent-purple)" : "var(--fg-muted)",
-              background: isActive ? "rgba(109,40,217,0.08)" : "rgba(0,0,0,0.05)",
+              background: isActive ? "rgba(109,40,217,0.08)" : "rgba(var(--ink), 0.05)",
               border: isActive ? "1px solid rgba(109,40,217,0.2)" : "1px solid transparent",
               padding: "2px 7px",
               transition: "all 0.2s ease",
@@ -419,8 +442,9 @@ function TabBar({ active, onChange }: { active: Tab; onChange: (t: Tab) => void 
 }
 
 // Real client work with results leads; the rest is one click away.
-const LEAD_WITH = ["The Initial", "Upside ESG", "BindHQ", "VPA London", "Leadopo", "The Prime Media"];
-const FIRST_SHOWN = 6;
+const LEAD_WITH = ["The Initial", "Upside ESG", "BindHQ", "VPA London", "BookedEZ", "Leadopo", "The Prime Media", "Datum Build"];
+const FIRST_SHOWN = 4;       // desktop: two rows of two
+const FIRST_SHOWN_PHONE = 3; // phones: one fewer, set in CSS below
 const byLead = (a: Project, b: Project) => {
   const ia = LEAD_WITH.indexOf(a.title), ib = LEAD_WITH.indexOf(b.title);
   return (ia < 0 ? 99 : ia) - (ib < 0 ? 99 : ib);
@@ -431,7 +455,7 @@ export default function Projects() {
   const [activeTab, setActiveTab] = useState<Tab>("dev");
   const [showAll, setShowAll] = useState(false);
 
-  const list = activeTab === "dev" ? [...devProjects].sort(byLead) : designProjects;
+  const list = activeTab === "dev" || !SHOW_DESIGN_TAB ? [...devProjects].sort(byLead) : designProjects;
   const shown = showAll ? list : list.slice(0, FIRST_SHOWN);
 
   return (
@@ -442,6 +466,7 @@ export default function Projects() {
       <style>{`
         @media (max-width: 640px) {
           .projects-card-grid { grid-template-columns: 1fr !important; gap: 48px !important; }
+          .projects-card-grid.is-collapsed > :nth-child(n + ${FIRST_SHOWN_PHONE + 1}) { display: none !important; }
         }
       `}</style>
 
@@ -466,7 +491,7 @@ export default function Projects() {
             <RevealWords text={t("projects.h1")} />
           </h2>
         </div>
-        <TabBar active={activeTab} onChange={tab => { setActiveTab(tab); setShowAll(false); }} />
+        {SHOW_DESIGN_TAB && <TabBar active={activeTab} onChange={tab => { setActiveTab(tab); setShowAll(false); }} />}
       </div>
 
       {list.length === 0 ? (
@@ -490,7 +515,7 @@ export default function Projects() {
       ) : (
         <div
           key={activeTab}
-          className="projects-card-grid"
+          className={`projects-card-grid${showAll ? "" : " is-collapsed"}`}
           style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "64px 40px" }}
         >
           {shown.map((project, i) => (
@@ -507,7 +532,7 @@ export default function Projects() {
             style={{
               fontFamily: "var(--font-inter)", fontWeight: 600, fontSize: 13, letterSpacing: "0.06em",
               textTransform: "uppercase", color: "var(--fg)", background: "transparent",
-              border: "1px solid rgba(0,0,0,0.15)", padding: "14px 24px", cursor: "pointer",
+              border: "1px solid rgba(var(--ink), 0.15)", padding: "14px 24px", cursor: "pointer",
             }}
           >
             {showAll ? "Show fewer projects" : `Show all ${list.length} projects`}

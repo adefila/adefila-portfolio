@@ -60,7 +60,7 @@ export default function FAQ() {
         {/* Right: the list, then a box to type your own question; the reply fills in underneath as you type */}
         <div>
           {/* Full list: compact rows */}
-          <div style={{ borderTop: "1px solid rgba(0,0,0,0.07)" }}>
+          <div style={{ borderTop: "1px solid rgba(var(--ink), 0.07)" }}>
             {faqs.map((faq, n) => {
               const isOpen = openIndex === faq.i;
               return (
@@ -68,7 +68,7 @@ export default function FAQ() {
                   key={faq.i}
                   data-reveal
                   style={{
-                    borderBottom: "1px solid rgba(0,0,0,0.07)",
+                    borderBottom: "1px solid rgba(var(--ink), 0.07)",
                     padding: "0 14px",
                     background: isOpen ? "rgba(109,40,217,0.025)" : "transparent",
                     transition: "background 0.25s ease",
@@ -80,7 +80,7 @@ export default function FAQ() {
                     style={{ display: "flex", alignItems: "center", justifyContent: "space-between", width: "100%", padding: isOpen ? "16px 0 8px" : "16px 0", background: "none", border: "none", cursor: "pointer", gap: 20, textAlign: "left" }}
                   >
                     <div style={{ display: "flex", alignItems: "center", gap: 14, minWidth: 0, flex: 1 }}>
-                      <span style={{ fontFamily: "var(--font-inter)", fontSize: 10, letterSpacing: "0.5px", color: isOpen ? "var(--accent-purple)" : "rgba(0,0,0,0.2)", flexShrink: 0, transition: "color 0.2s", fontVariantNumeric: "tabular-nums", minWidth: 20 }}>
+                      <span style={{ fontFamily: "var(--font-inter)", fontSize: 10, letterSpacing: "0.5px", color: isOpen ? "var(--accent-purple)" : "rgba(var(--ink), 0.2)", flexShrink: 0, transition: "color 0.2s", fontVariantNumeric: "tabular-nums", minWidth: 20 }}>
                         {String(n + 1).padStart(2, "0")}
                       </span>
                       <span style={{ fontFamily: "var(--font-inter)", fontWeight: 600, fontSize: 13, letterSpacing: "0.3px", color: isOpen ? "var(--accent-purple)" : "var(--fg)", textTransform: "uppercase", transition: "color 0.2s" }}>

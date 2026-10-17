@@ -95,7 +95,7 @@ export default function MidCTA() {
               letterSpacing: "0.5px",
               textTransform: "uppercase",
               color: "var(--accent-purple)",
-              background: "#fff",
+              background: "var(--surface)",
               border: "1px solid #fff",
               padding: "13px 25px",
               textDecoration: "none",

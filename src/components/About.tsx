@@ -103,8 +103,8 @@ function TechTag({ label }: { label: string }) {
         letterSpacing: "0.5px",
         textTransform: "uppercase",
         color: hovered ? "#fff" : "var(--fg)",
-        background: hovered ? "var(--accent-purple)" : "var(--white)",
-        border: `1px solid ${hovered ? "var(--accent-purple)" : "rgba(0,0,0,0.12)"}`,
+        background: hovered ? "var(--accent-purple)" : "var(--surface)",
+        border: `1px solid ${hovered ? "var(--accent-purple)" : "rgba(var(--ink), 0.12)"}`,
         padding: "8px 16px",
         borderRadius: 0,
         cursor: "default",
@@ -118,10 +118,10 @@ function TechTag({ label }: { label: string }) {
 }
 
 // The first roles show; the rest open on request, so the page stays short.
-const HISTORY_SHOWN = 3;
+const HISTORY_SHOWN = 2;
 
-// `gallery` is off on pages that don't want the photo strip (see /local-business).
-export default function About({ gallery = true }: { gallery?: boolean }) {
+// The photo library is hidden everywhere for now: pass `gallery` to bring it back.
+export default function About({ gallery = false }: { gallery?: boolean }) {
   const { t } = useLang();
   const [lightbox, setLightbox] = useState<number | null>(null);
   const [fullHistory, setFullHistory] = useState(false);
@@ -198,7 +198,6 @@ export default function About({ gallery = true }: { gallery?: boolean }) {
           >
             <p>{t("about.p1")}</p>
             <p>{t("about.p2")}</p>
-            <p>{t("about.p3")}</p>
           </motion.div>
 
           {/* Tech stacks */}
@@ -241,7 +240,7 @@ export default function About({ gallery = true }: { gallery?: boolean }) {
                 textTransform: "uppercase",
                 color: "var(--fg)",
                 background: "transparent",
-                border: "1px solid rgba(0,0,0,0.2)",
+                border: "1px solid rgba(var(--ink), 0.2)",
                 padding: "13px 25px",
                 textDecoration: "none",
                 alignItems: "center",
@@ -255,7 +254,7 @@ export default function About({ gallery = true }: { gallery?: boolean }) {
               }}
               onMouseLeave={(e: React.MouseEvent<HTMLAnchorElement>) => {
                 e.currentTarget.style.background = "transparent";
-                e.currentTarget.style.borderColor = "rgba(0,0,0,0.2)";
+                e.currentTarget.style.borderColor = "rgba(var(--ink), 0.2)";
                 e.currentTarget.style.color = "var(--fg)";
               }}
             >
@@ -282,7 +281,7 @@ export default function About({ gallery = true }: { gallery?: boolean }) {
           </p>
           {/* Timeline: a line down the left with a dot per role; the current role is highlighted */}
           <ol style={{ position: "relative", listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column" }}>
-            <span aria-hidden="true" style={{ position: "absolute", left: 5, top: 28, bottom: 28, width: 1, background: "rgba(0,0,0,0.12)" }} />
+            <span aria-hidden="true" style={{ position: "absolute", left: 5, top: 28, bottom: 28, width: 1, background: "rgba(var(--ink), 0.12)" }} />
             {(fullHistory ? workHistory : workHistory.slice(0, HISTORY_SHOWN)).map((job, i) => {
               const current = job.period.endsWith("Present");
               return (
@@ -294,7 +293,7 @@ export default function About({ gallery = true }: { gallery?: boolean }) {
                     position: "absolute", left: 0, top: 24,
                     width: 11, height: 11, borderRadius: "50%",
                     background: current ? "var(--accent-purple)" : "var(--bg)",
-                    border: `2px solid ${current ? "var(--accent-purple)" : "rgba(0,0,0,0.25)"}`,
+                    border: `2px solid ${current ? "var(--accent-purple)" : "rgba(var(--ink), 0.25)"}`,
                   }}
                 />
                 <p style={{
@@ -342,7 +341,7 @@ export default function About({ gallery = true }: { gallery?: boolean }) {
                           color: "var(--fg-secondary)", letterSpacing: "-0.1px",
                         }}
                       >
-                        <span aria-hidden="true" style={{ position: "absolute", left: 0, top: 8, width: 5, height: 1.5, background: "rgba(0,0,0,0.35)" }} />
+                        <span aria-hidden="true" style={{ position: "absolute", left: 0, top: 8, width: 5, height: 1.5, background: "rgba(var(--ink), 0.35)" }} />
                         {point}
                       </li>
                     ))}
@@ -417,7 +416,7 @@ export default function About({ gallery = true }: { gallery?: boolean }) {
                   height: PHOTO_H,
                   overflow: "hidden",
                   cursor: "zoom-in",
-                  background: "rgba(0,0,0,0.06)",
+                  background: "rgba(var(--ink), 0.06)",
                 }}
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -446,7 +445,7 @@ export default function About({ gallery = true }: { gallery?: boolean }) {
             style={{
               position: "fixed",
               inset: 0,
-              background: "rgba(0,0,0,0.92)",
+              background: "rgba(var(--ink), 0.92)",
               zIndex: 1000,
               display: "flex",
               alignItems: "center",

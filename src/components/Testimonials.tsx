@@ -28,8 +28,8 @@ const testimonialMeta: TestimonialItem[] = [
 function UpworkCard() {
   return (
     <div style={{
-      background: "#fff",
-      border: "1px solid rgba(0,0,0,0.07)",
+      background: "var(--surface)",
+      border: "1px solid rgba(var(--ink), 0.07)",
       minHeight: 400,
       display: "flex",
       flexDirection: "column",
@@ -39,7 +39,7 @@ function UpworkCard() {
       {/* Upwork wordmark */}
       <div>
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/upwork-logo.svg" alt="Upwork" width={140} height={38} style={{ display: "block" }} />
+        <img src="/upwork-logo.svg" alt="Upwork" width={140} height={38} className="logo-invert" style={{ display: "block" }} />
       </div>
 
       {/* Center stats */}
@@ -67,14 +67,14 @@ function UpworkCard() {
           <p style={{
             fontFamily: "var(--font-poppins)", fontWeight: 800,
             fontSize: "clamp(52px, 7vw, 72px)",
-            lineHeight: 1, color: "#222", letterSpacing: "-3px",
+            lineHeight: 1, color: "var(--fg)", letterSpacing: "-3px",
             marginBottom: 4,
           }}>
             100%
           </p>
           <p style={{
             fontFamily: "var(--font-inter)", fontWeight: 600, fontSize: 12,
-            color: "rgba(0,0,0,0.45)", letterSpacing: "2px", textTransform: "uppercase",
+            color: "rgba(var(--ink), 0.45)", letterSpacing: "2px", textTransform: "uppercase",
           }}>
             Job Success Score
           </p>
@@ -93,7 +93,7 @@ function UpworkCard() {
       {/* Footer */}
       <p style={{
         fontFamily: "var(--font-inter)", fontWeight: 500, fontSize: 11,
-        color: "rgba(0,0,0,0.35)", letterSpacing: "1.5px", textTransform: "uppercase",
+        color: "rgba(var(--ink), 0.35)", letterSpacing: "1.5px", textTransform: "uppercase",
         textAlign: "center",
       }}>
         Verified on Upwork
@@ -119,7 +119,7 @@ function Avatar({ name, avatar, logo, size = 44 }: { name: string; avatar: strin
       <img
         src={avatar}
         alt={name}
-        style={{ width: size, height: size, borderRadius: "50%", objectFit: "cover", flexShrink: 0, border: "2px solid rgba(0,0,0,0.06)" }}
+        style={{ width: size, height: size, borderRadius: "50%", objectFit: "cover", flexShrink: 0, border: "2px solid rgba(var(--ink), 0.06)" }}
       />
     );
   }
@@ -129,7 +129,7 @@ function Avatar({ name, avatar, logo, size = 44 }: { name: string; avatar: strin
       <img
         src={logo}
         alt={name}
-        style={{ width: size, height: size, borderRadius: 8, objectFit: "contain", flexShrink: 0, background: "#f5f5f5", padding: 4, border: "1px solid rgba(0,0,0,0.06)" }}
+        style={{ width: size, height: size, borderRadius: 8, objectFit: "contain", flexShrink: 0, background: "#f5f5f5", padding: 4, border: "1px solid rgba(var(--ink), 0.06)" }}
       />
     );
   }
@@ -374,7 +374,7 @@ export default function Testimonials() {
             onClick={() => setVideoOpen(false)}
             style={{
               position: "fixed", inset: 0, zIndex: 1000,
-              background: "rgba(0,0,0,0.88)",
+              background: "rgba(var(--ink), 0.88)",
               display: "flex", alignItems: "center", justifyContent: "center",
               padding: 24,
             }}

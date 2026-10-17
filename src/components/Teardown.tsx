@@ -20,11 +20,11 @@ const labelStyle: React.CSSProperties = {
 const inputStyle: React.CSSProperties = {
   width: "100%", padding: "14px 16px", fontFamily: "var(--font-inter)", fontSize: 16,
   letterSpacing: "-0.2px", color: "var(--fg)", background: "var(--bg)",
-  border: "1px solid rgba(0,0,0,0.12)", outline: "none", borderRadius: 0,
+  border: "1px solid rgba(var(--ink), 0.12)", outline: "none", borderRadius: 0,
   appearance: "none", WebkitAppearance: "none", transition: "border-color 0.18s",
 };
 const focus = (e: React.FocusEvent<HTMLInputElement>) => (e.target.style.borderColor = "var(--accent-purple)");
-const blur = (e: React.FocusEvent<HTMLInputElement>) => (e.target.style.borderColor = "rgba(0,0,0,0.12)");
+const blur = (e: React.FocusEvent<HTMLInputElement>) => (e.target.style.borderColor = "rgba(var(--ink), 0.12)");
 
 export default function Teardown() {
   const { t } = useLang();
@@ -133,7 +133,7 @@ export default function Teardown() {
                 disabled={status === "sending"}
                 style={{
                   display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 8,
-                  padding: "14px 26px", background: "var(--fg)", color: "#fff",
+                  padding: "14px 26px", background: "var(--fg)", color: "var(--on-fg)",
                   fontFamily: "var(--font-inter)", fontWeight: 600, lineHeight: "20px", fontSize: 13,
                   letterSpacing: "0.5px", textTransform: "uppercase", border: "none", borderRadius: 0,
                   cursor: status === "sending" ? "not-allowed" : "pointer",

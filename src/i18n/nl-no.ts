@@ -47,6 +47,7 @@ export const NL_NO: Record<string, { nl: string; no: string }> = {
   "nav.testimonials": { nl: "REVIEWS", no: "REFERANSER" },
   "nav.work": { nl: "WERK", no: "ARBEID" },
   "pricing.from": { nl: "vanaf", no: "fra" },
+  "pricing.addons": { nl: "Extra's", no: "Tillegg" },
   "pricing.guarantee1": { nl: "Vaste prijs, afgesproken vóór we beginnen. Geen verrassingen.", no: "Fastpris, avtalt før vi starter. Ingen overraskelser." },
   "pricing.guarantee2": { nl: "Aanpassingen tot u tevreden bent, binnen de afgesproken omvang.", no: "Endringer til du er fornøyd, innenfor avtalt omfang." },
   "process.eyebrow": { nl: "HET PROCES", no: "PROSESSEN" },

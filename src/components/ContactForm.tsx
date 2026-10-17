@@ -35,7 +35,7 @@ function CopyEmailRow() {
         alignItems: "center",
         justifyContent: "space-between",
         padding: "14px 0",
-        borderBottom: "1px solid rgba(0,0,0,0.07)",
+        borderBottom: "1px solid rgba(var(--ink), 0.07)",
         textDecoration: "none",
       }}
     >
@@ -45,7 +45,7 @@ function CopyEmailRow() {
         </p>
         <p style={{
           fontFamily: "var(--font-inter)", fontSize: 14, color: "var(--fg)", letterSpacing: "-0.2px",
-          borderBottom: `1px solid ${hovered ? "rgba(0,0,0,0.35)" : "transparent"}`,
+          borderBottom: `1px solid ${hovered ? "rgba(var(--ink), 0.35)" : "transparent"}`,
           paddingBottom: 1,
           transition: "border-color 0.2s ease",
           display: "inline",
@@ -192,7 +192,7 @@ export default function ContactForm({ variant = "default" }: { variant?: "defaul
     letterSpacing: "-0.2px",
     color: "var(--fg)",
     background: "var(--bg)",
-    border: "1px solid rgba(0,0,0,0.12)",
+    border: "1px solid rgba(var(--ink), 0.12)",
     outline: "none",
     borderRadius: 0,
     appearance: "none",
@@ -209,7 +209,7 @@ export default function ContactForm({ variant = "default" }: { variant?: "defaul
         maxWidth: 1200,
         margin: "0 auto",
         padding: "80px 20px",
-        borderTop: "1px solid rgba(0,0,0,0.08)",
+        borderTop: "1px solid rgba(var(--ink), 0.08)",
       }}
     >
       <div
@@ -285,7 +285,7 @@ export default function ContactForm({ variant = "default" }: { variant?: "defaul
                   alignItems: "center",
                   justifyContent: "space-between",
                   padding: "14px 0",
-                  borderBottom: "1px solid rgba(0,0,0,0.07)",
+                  borderBottom: "1px solid rgba(var(--ink), 0.07)",
                   textDecoration: "none",
                 }}
               >
@@ -297,7 +297,7 @@ export default function ContactForm({ variant = "default" }: { variant?: "defaul
                     {item.value}
                   </p>
                 </div>
-                <ArrowUpRight size={14} color="rgba(0,0,0,0.25)" strokeWidth={1.5} />
+                <ArrowUpRight size={14} color="rgba(var(--ink), 0.25)" strokeWidth={1.5} />
               </a>
             ))}
           </motion.div>
@@ -326,7 +326,7 @@ export default function ContactForm({ variant = "default" }: { variant?: "defaul
                     onChange={set("name")}
                     style={inputStyle}
                     onFocus={(e) => (e.target.style.borderColor = "var(--accent-purple)")}
-                    onBlur={(e) => (e.target.style.borderColor = "rgba(0,0,0,0.12)")}
+                    onBlur={(e) => (e.target.style.borderColor = "rgba(var(--ink), 0.12)")}
                   />
                 </div>
                 <div>
@@ -342,7 +342,7 @@ export default function ContactForm({ variant = "default" }: { variant?: "defaul
                     onChange={set("email")}
                     style={inputStyle}
                     onFocus={(e) => (e.target.style.borderColor = "var(--accent-purple)")}
-                    onBlur={(e) => (e.target.style.borderColor = "rgba(0,0,0,0.12)")}
+                    onBlur={(e) => (e.target.style.borderColor = "rgba(var(--ink), 0.12)")}
                   />
                 </div>
               </div>
@@ -362,7 +362,7 @@ export default function ContactForm({ variant = "default" }: { variant?: "defaul
                     maxLength={120}
                     style={inputStyle}
                     onFocus={(e) => (e.target.style.borderColor = "var(--accent-purple)")}
-                    onBlur={(e) => (e.target.style.borderColor = "rgba(0,0,0,0.12)")}
+                    onBlur={(e) => (e.target.style.borderColor = "rgba(var(--ink), 0.12)")}
                   />
                 </div>
               )}
@@ -379,7 +379,7 @@ export default function ContactForm({ variant = "default" }: { variant?: "defaul
                     onChange={set("service")}
                     style={{ ...inputStyle, cursor: "pointer" }}
                     onFocus={(e) => (e.target.style.borderColor = "var(--accent-purple)")}
-                    onBlur={(e) => (e.target.style.borderColor = "rgba(0,0,0,0.12)")}
+                    onBlur={(e) => (e.target.style.borderColor = "rgba(var(--ink), 0.12)")}
                   >
                     <option value="">{local ? t("contact.opt.choose") : "Select service"}</option>
                     {(local ? LOCAL_SERVICES : services).map((s, i) => <option key={s} value={s}>{local ? t(`contact.svc${i}`) : s}</option>)}
@@ -395,7 +395,7 @@ export default function ContactForm({ variant = "default" }: { variant?: "defaul
                     onChange={set("budget")}
                     style={{ ...inputStyle, cursor: "pointer" }}
                     onFocus={(e) => (e.target.style.borderColor = "var(--accent-purple)")}
-                    onBlur={(e) => (e.target.style.borderColor = "rgba(0,0,0,0.12)")}
+                    onBlur={(e) => (e.target.style.borderColor = "rgba(var(--ink), 0.12)")}
                   >
                     <option value="">{local ? t("contact.opt.range") : "Select budget"}</option>
                     {(local ? LOCAL_BUDGETS : budgets).map((b, i) => <option key={b} value={b}>{local ? t(`contact.bud${i}`) : b}</option>)}
@@ -417,7 +417,7 @@ export default function ContactForm({ variant = "default" }: { variant?: "defaul
                   onChange={set("message")}
                   style={{ ...inputStyle, resize: "vertical", minHeight: 130 }}
                   onFocus={(e) => (e.target.style.borderColor = "var(--accent-purple)")}
-                  onBlur={(e) => (e.target.style.borderColor = "rgba(0,0,0,0.12)")}
+                  onBlur={(e) => (e.target.style.borderColor = "rgba(var(--ink), 0.12)")}
                 />
               </div>
 
@@ -449,7 +449,7 @@ export default function ContactForm({ variant = "default" }: { variant?: "defaul
                   gap: 8,
                   padding: "14px 26px",
                   background: "var(--fg)",
-                  color: "#fff",
+                  color: "var(--on-fg)",
                   fontFamily: "var(--font-inter)",
                   fontWeight: 600,
                   lineHeight: "20px",

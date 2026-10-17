@@ -44,7 +44,7 @@ export default function Currently() {
       id="currently"
       style={{ width: "100%", maxWidth: 1200, margin: "0 auto", padding: "0 20px 80px" }}
     >
-      <div style={{ borderTop: "1px solid rgba(0,0,0,0.08)", paddingTop: 56 }}>
+      <div style={{ borderTop: "1px solid rgba(var(--ink), 0.08)", paddingTop: 56 }}>
 
         {/* Section label */}
         <motion.p
@@ -69,7 +69,7 @@ export default function Currently() {
             display: "grid",
             gridTemplateColumns: showSpotify ? "1fr 1fr" : "1fr",
             gap: 1,
-            background: "rgba(0,0,0,0.07)",
+            background: "rgba(var(--ink), 0.07)",
           }}
         >
 
@@ -110,7 +110,7 @@ export default function Currently() {
                 }}
               />
             )}
-            <div aria-hidden="true" style={{ position: "absolute", inset: 0, background: "rgba(10,10,10,0.45)", zIndex: -1 }} />
+            <div aria-hidden="true" style={{ position: "absolute", inset: 0, background: "rgba(var(--ink), 0.45)", zIndex: -1 }} />
 
             {/* Top row: status */}
             <div style={{ display: "flex", alignItems: "center", gap: 8 }}>

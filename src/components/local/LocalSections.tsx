@@ -11,7 +11,7 @@ import { BookingIllustration, QuoteIllustration, ReviewIllustration, SiteIllustr
 const eyebrowStyle = { fontFamily: "var(--font-inter)", fontWeight: 700, fontSize: 11, letterSpacing: "4px", textTransform: "uppercase", color: "var(--accent-purple)", marginBottom: 16 } as const;
 const h2Style = { fontFamily: "var(--font-poppins)", fontWeight: 700, fontSize: "clamp(28px, 3.5vw, 48px)", letterSpacing: "-1px", lineHeight: 1.05, textTransform: "uppercase", color: "var(--fg)" } as const;
 const bodyStyle = { fontFamily: "var(--font-inter)", fontSize: 14, lineHeight: 1.65, letterSpacing: "-0.2px", color: "var(--fg-secondary)", margin: 0, maxWidth: 520 } as const;
-const chip = { fontFamily: "var(--font-inter)", fontWeight: 500, fontSize: 10, letterSpacing: "0.8px", textTransform: "uppercase", color: "var(--fg-secondary)", background: "rgba(0,0,0,0.04)", border: "1px solid rgba(0,0,0,0.08)", padding: "3px 9px" } as const;
+const chip = { fontFamily: "var(--font-inter)", fontWeight: 500, fontSize: 10, letterSpacing: "0.8px", textTransform: "uppercase", color: "var(--fg-secondary)", background: "rgba(var(--ink), 0.04)", border: "1px solid rgba(var(--ink), 0.08)", padding: "3px 9px" } as const;
 const cardTitle = { fontFamily: "var(--font-poppins)", fontWeight: 700, fontSize: "clamp(15px, 1.2vw, 18px)", letterSpacing: "-0.4px", textTransform: "uppercase", color: "var(--fg)", margin: 0 } as const;
 
 const SYSTEMS = [

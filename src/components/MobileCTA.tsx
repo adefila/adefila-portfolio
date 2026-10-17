@@ -71,7 +71,7 @@ export default function MobileCTA() {
         style={{
           display: "inline-flex", alignItems: "center", gap: 6, flexShrink: 0,
           fontFamily: "var(--font-inter)", fontWeight: 600, fontSize: 13,
-          color: "var(--white)", background: "var(--fg)",
+          color: "var(--on-fg)", background: "var(--fg)",
           padding: "12px 16px", textDecoration: "none", letterSpacing: "-0.2px",
         }}
       >

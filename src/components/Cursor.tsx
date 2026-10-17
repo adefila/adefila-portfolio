@@ -69,7 +69,7 @@ export default function Cursor() {
         width: 10,
         height: 10,
         borderRadius: "50%",
-        background: "white",
+        background: "var(--surface)",
         pointerEvents: "none",
         zIndex: 9999,
         mixBlendMode: "difference",

@@ -186,7 +186,7 @@ export default function Footer() {
                 lineHeight: "20px",
                 fontSize: 13,
                 color: "var(--accent-purple)",
-                background: "var(--white)",
+                background: "#fff",
                 padding: "14px 26px",
                 borderRadius: 0,
                 textDecoration: "none",

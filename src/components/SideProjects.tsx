@@ -277,7 +277,7 @@ export default function SideProjects() {
             ref={fillRef}
             style={{
               height: "100%",
-              background: "#fff",
+              background: "var(--surface)",
               width: "0%",
             }}
           />

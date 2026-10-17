@@ -275,7 +275,7 @@ export default function BookShelf() {
                         style={{
                           display: "inline-block",
                           padding: "2px 6px",
-                          background: book.id === 2 ? "rgba(0,0,0,0.12)" : "rgba(0,0,0,0.3)",
+                          background: book.id === 2 ? "rgba(var(--ink), 0.12)" : "rgba(var(--ink), 0.3)",
                           borderRadius: 2,
                           alignSelf: "flex-start",
                         }}
@@ -313,7 +313,7 @@ export default function BookShelf() {
                           style={{
                             fontFamily: "var(--font-inter)",
                             fontSize: 9,
-                            color: book.id === 2 ? "rgba(0,0,0,0.5)" : "rgba(255,255,255,0.55)",
+                            color: book.id === 2 ? "rgba(var(--ink), 0.5)" : "rgba(255,255,255,0.55)",
                             letterSpacing: "0.2px",
                           }}
                         >
@@ -357,7 +357,7 @@ export default function BookShelf() {
                           position: "absolute",
                           inset: 0,
                           background:
-                            "repeating-linear-gradient(0deg, transparent, transparent 1px, rgba(0,0,0,0.04) 1px, rgba(0,0,0,0.04) 2px)",
+                            "repeating-linear-gradient(0deg, transparent, transparent 1px, rgba(var(--ink), 0.04) 1px, rgba(var(--ink), 0.04) 2px)",
                         }}
                       />
                     </div>
@@ -377,7 +377,7 @@ export default function BookShelf() {
                     left: "15%",
                     width: "70%",
                     height: 6,
-                    background: "rgba(0,0,0,0.7)",
+                    background: "rgba(var(--ink), 0.7)",
                     filter: "blur(5px)",
                     borderRadius: "50%",
                     pointerEvents: "none",
@@ -396,7 +396,7 @@ export default function BookShelf() {
               background:
                 "linear-gradient(180deg, #dbb070 0%, #c09050 40%, #a07040 100%)",
               boxShadow:
-                "0 4px 20px rgba(0,0,0,0.28), inset 0 1px 0 rgba(255,255,255,0.28), inset 0 -1px 0 rgba(0,0,0,0.2)",
+                "0 4px 20px rgba(var(--ink), 0.28), inset 0 1px 0 rgba(255,255,255,0.28), inset 0 -1px 0 rgba(var(--ink), 0.2)",
               position: "relative",
             }}
           >
@@ -406,7 +406,7 @@ export default function BookShelf() {
                 position: "absolute",
                 inset: 0,
                 background:
-                  "repeating-linear-gradient(90deg, transparent, transparent 70px, rgba(0,0,0,0.035) 70px, rgba(0,0,0,0.035) 72px)",
+                  "repeating-linear-gradient(90deg, transparent, transparent 70px, rgba(var(--ink), 0.035) 70px, rgba(var(--ink), 0.035) 72px)",
               }}
             />
           </div>

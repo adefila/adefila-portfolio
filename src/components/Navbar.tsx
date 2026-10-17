@@ -138,6 +138,7 @@ export default function Navbar({ hide = [] }: { hide?: string[] }) {
   return (
     <>
       <motion.nav
+        className="site-nav"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, ease: EASE }}
@@ -153,6 +154,7 @@ export default function Navbar({ hide = [] }: { hide?: string[] }) {
         }}
       >
         <div
+          className="site-nav-bar"
           style={{
             width: shrunk ? "calc(100% - 120px)" : "calc(100% - 48px)",
             maxWidth: 1200,
@@ -160,13 +162,13 @@ export default function Navbar({ hide = [] }: { hide?: string[] }) {
             alignItems: "center",
             justifyContent: "space-between",
             background: menuOpen
-              ? "var(--fg)"
+              ? "var(--inverse)"
               : scrolled
-              ? "rgba(255,255,255,0.82)"
-              : "var(--white)",
+              ? "rgba(var(--surface-rgb), 0.82)"
+              : "var(--surface)",
             backdropFilter: scrolled && !menuOpen ? "blur(20px)" : "none",
             WebkitBackdropFilter: scrolled && !menuOpen ? "blur(20px)" : "none",
-            border: menuOpen ? "1px solid rgba(255,255,255,0.08)" : "1px solid rgba(0,0,0,0.07)",
+            border: menuOpen ? "1px solid rgba(255,255,255,0.08)" : "1px solid rgba(var(--ink), 0.07)",
             borderRadius: 0,
             padding: "12px 12px 12px 28px",
             pointerEvents: "auto",
@@ -208,7 +210,7 @@ export default function Navbar({ hide = [] }: { hide?: string[] }) {
                     textDecoration: "none",
                     padding: "7px 12px",
                     borderRadius: 0,
-                    background: isActive ? "rgba(0,0,0,0.06)" : "transparent",
+                    background: isActive ? "rgba(var(--ink), 0.06)" : "transparent",
                     transition: "color 0.2s, background 0.2s",
                     display: "inline-block",
                   }}
@@ -232,7 +234,7 @@ export default function Navbar({ hide = [] }: { hide?: string[] }) {
               fontFamily: "var(--font-inter)",
               fontWeight: 600,
               fontSize: 13,
-              color: "var(--white)",
+              color: "var(--on-fg)",
               background: "var(--fg)",
               padding: "10px 20px",
               borderRadius: 0,
@@ -277,7 +279,7 @@ export default function Navbar({ hide = [] }: { hide?: string[] }) {
               position: "fixed",
               inset: 0,
               zIndex: 190,
-              background: "var(--fg)",
+              background: "var(--inverse)",
               display: "flex",
               flexDirection: "column",
               justifyContent: "flex-start",
@@ -344,7 +346,7 @@ export default function Navbar({ hide = [] }: { hide?: string[] }) {
                   lineHeight: "20px",
                   fontSize: 13,
                   color: "var(--fg)",
-                  background: "var(--white)",
+                  background: "var(--surface)",
                   padding: "14px 26px",
                   borderRadius: 0,
                   textDecoration: "none",

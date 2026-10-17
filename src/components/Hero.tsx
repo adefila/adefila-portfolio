@@ -1,7 +1,7 @@
 ﻿"use client";
 import { useEffect, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
-import { ArrowDown, ArrowRight, CalendarDays, Star } from "lucide-react";
+import { ArrowDown, ArrowRight, CalendarDays } from "lucide-react";
 import Image from "next/image";
 import MagneticButton from "./MagneticButton";
 import { useLang } from "@/context/LangContext";
@@ -26,7 +26,7 @@ function RotatingWord({ words }: { words: string[] }) {
   const active = index % words.length;
 
   return (
-    <span style={{ display: "inline-grid", overflow: "hidden", verticalAlign: "bottom", paddingBottom: "0.06em" }}>
+    <span style={{ display: "inline-grid", maxWidth: "100%", overflow: "hidden", verticalAlign: "bottom", paddingBottom: "0.06em" }}>
       {words.map((word, i) => (
         <motion.span
           key={word}
@@ -34,7 +34,7 @@ function RotatingWord({ words }: { words: string[] }) {
           initial={false}
           animate={{ y: i === active ? "0%" : i < active ? "-110%" : "110%", opacity: i === active ? 1 : 0 }}
           transition={{ duration: 0.6, ease: SPRING }}
-          style={{ gridArea: "1 / 1", whiteSpace: "nowrap", color: "var(--accent-purple)" }}
+          style={{ gridArea: "1 / 1", whiteSpace: "normal", overflowWrap: "break-word", color: "var(--accent-purple)" }}
         >
           {word}
         </motion.span>
@@ -43,30 +43,13 @@ function RotatingWord({ words }: { words: string[] }) {
   );
 }
 
-const tagStyle: React.CSSProperties = {
-  position: "absolute",
-  zIndex: 2,
-  display: "inline-flex",
-  alignItems: "center",
-  gap: 8,
-  background: "var(--white)",
-  padding: "10px 14px",
-  boxShadow: "0 10px 30px rgba(15,15,15,0.12)",
-  fontFamily: "var(--font-inter)",
-  fontWeight: 600,
-  fontSize: 12,
-  letterSpacing: "0.02em",
-  color: "var(--fg)",
-  whiteSpace: "nowrap",
-};
-
 export default function Hero({ workHref = "#work", altHref = "/local-business" }: { workHref?: string; altHref?: string }) {
   const { t, lang } = useLang();
   const nextStart = useNextStartMonth(lang);
   const words = t("hero.h2.words").split("|");
 
   return (
-    <section id="hero" className="hero-section" style={{ position: "relative", paddingTop: 120, paddingBottom: 80, width: "100%", overflow: "hidden" }}>
+    <section id="hero" className="hero-section" style={{ position: "relative", paddingTop: 152, paddingBottom: 80, width: "100%", overflow: "hidden" }}>
       {/* Background: faint grid fading out from the top right, plus a soft glow behind the portrait */}
       <div
         aria-hidden="true"
@@ -74,7 +57,7 @@ export default function Hero({ workHref = "#work", altHref = "/local-business" }
           position: "absolute",
           inset: 0,
           backgroundImage:
-            "linear-gradient(rgba(15,15,15,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(15,15,15,0.05) 1px, transparent 1px)",
+            "linear-gradient(rgba(var(--ink), 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(var(--ink), 0.05) 1px, transparent 1px)",
           backgroundSize: "56px 56px",
           WebkitMaskImage: "radial-gradient(ellipse 70% 80% at 75% 35%, black 0%, transparent 75%)",
           maskImage: "radial-gradient(ellipse 70% 80% at 75% 35%, black 0%, transparent 75%)",
@@ -106,7 +89,7 @@ export default function Hero({ workHref = "#work", altHref = "/local-business" }
               <span style={{ position: "absolute", inset: 0, borderRadius: "50%", background: "var(--accent-green)", animation: "pulseRipple 2s ease-out infinite" }} />
               <span style={{ width: 8, height: 8, borderRadius: "50%", background: "var(--accent-green)", display: "block", position: "relative", zIndex: 1 }} />
             </span>
-            <span style={{ fontFamily: "var(--font-inter)", fontWeight: 600, fontSize: 11, letterSpacing: "0.08em", textTransform: "uppercase", color: "#006b2e" }}>
+            <span style={{ fontFamily: "var(--font-inter)", fontWeight: 600, fontSize: 11, letterSpacing: "0.08em", textTransform: "uppercase", color: "var(--accent-green-text)" }}>
               {t("hero.badge").replace("{count}", String(SPOTS_OPEN))}
             </span>
             <span style={{ width: 3, height: 3, borderRadius: "50%", background: "var(--fg-muted)", display: "inline-block" }} />
@@ -133,6 +116,8 @@ export default function Hero({ workHref = "#work", altHref = "/local-business" }
                   textTransform: "uppercase",
                   color: "var(--fg)",
                   display: "block",
+                  maxWidth: "100%",
+                  overflowWrap: "break-word",
                   animation: `heroFadeUp 0.55s ${0.15 + i * 0.12}s ${EASE} both`,
                 }}
               >
@@ -193,7 +178,7 @@ export default function Hero({ workHref = "#work", altHref = "/local-business" }
                 textTransform: "uppercase",
                 lineHeight: "20px",
                 fontSize: 13,
-                color: "var(--white)",
+                color: "var(--on-fg)",
                 background: "var(--fg)",
                 padding: "14px 26px",
                 borderRadius: 0,
@@ -213,7 +198,7 @@ export default function Hero({ workHref = "#work", altHref = "/local-business" }
                 fontSize: 13,
                 color: "var(--fg)",
                 background: "transparent",
-                border: "1px solid rgba(0,0,0,0.2)",
+                border: "1px solid rgba(var(--ink), 0.2)",
                 padding: "13px 25px",
                 lineHeight: "20px",
                 textTransform: "uppercase",
@@ -231,7 +216,7 @@ export default function Hero({ workHref = "#work", altHref = "/local-business" }
               }}
               onMouseLeave={(e: React.MouseEvent<HTMLAnchorElement>) => {
                 e.currentTarget.style.background = "transparent";
-                e.currentTarget.style.borderColor = "rgba(0,0,0,0.2)";
+                e.currentTarget.style.borderColor = "rgba(var(--ink), 0.2)";
                 e.currentTarget.style.color = "var(--fg)";
               }}
             >
@@ -245,7 +230,7 @@ export default function Hero({ workHref = "#work", altHref = "/local-business" }
             style={{
               display: "inline-flex", alignItems: "center", gap: 6, marginTop: 24,
               fontFamily: "var(--font-inter)", fontSize: 14, color: "var(--fg-secondary)",
-              textDecoration: "none", borderBottom: "1px solid rgba(0,0,0,0.2)", paddingBottom: 2,
+              textDecoration: "none", borderBottom: "1px solid rgba(var(--ink), 0.2)", paddingBottom: 2,
               animation: `heroFadeUp 0.6s 0.6s ${EASE} both`,
             }}
           >
@@ -259,7 +244,7 @@ export default function Hero({ workHref = "#work", altHref = "/local-business" }
           className="hero-portrait"
           style={{ position: "relative", width: "100%", maxWidth: 420, justifySelf: "end", animation: `heroFadeUp 0.6s 0.1s ${EASE} both` }}
         >
-          <div style={{ position: "relative", width: "100%", aspectRatio: "5 / 6", overflow: "hidden", background: "#fff" }}>
+          <div className="hero-portrait-box" style={{ position: "relative", width: "100%", aspectRatio: "5 / 6", overflow: "hidden", background: "var(--surface)" }}>
             <Image
               src="/samuel-portrait.webp"
               alt="Samuel Adefila"
@@ -271,25 +256,6 @@ export default function Hero({ workHref = "#work", altHref = "/local-business" }
             />
           </div>
 
-          <motion.div
-            className="hero-tag hero-tag-top"
-            animate={{ y: [0, -6, 0] }}
-            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-            style={{ ...tagStyle, top: 28, left: -32 }}
-          >
-            <Star size={14} strokeWidth={0} fill="#f5a524" />
-            {t("hero.tagTopRated")}
-          </motion.div>
-
-          <motion.div
-            className="hero-tag hero-tag-bottom"
-            animate={{ y: [0, 6, 0] }}
-            transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 0.6 }}
-            style={{ ...tagStyle, bottom: 36, right: -24 }}
-          >
-            <span style={{ width: 8, height: 8, borderRadius: "50%", background: "var(--accent-green)" }} />
-            {t("hero.tagShipped")}
-          </motion.div>
         </div>
       </div>
     </section>

@@ -1,5 +1,6 @@
 "use client";
-import { Check, ArrowUpRight } from "lucide-react";
+import { useState } from "react";
+import { Check, ArrowUpRight, ChevronDown } from "lucide-react";
 import { useLang } from "@/context/LangContext";
 import RevealWords, { revealDelayAfter } from "./RevealWords";
 import { BOOKING_URL } from "@/lib/booking";
@@ -21,6 +22,7 @@ const ADDONS_BASE = [
 // `prices` (USD, one per plan) is for pages with their own price points (see /local-business).
 export default function Pricing({ prices }: { prices?: [number, number, number] }) {
   const { t, formatPrice, currency } = useLang();
+  const [addonsOpen, setAddonsOpen] = useState(false); // phones only: the add-ons start folded away
 
   const plans = PLANS_BASE.map(({ planKey, usdPrice: defaultPrice, featured, featureCount }, i) => ({
     label: t(`pricing.${planKey}.label`),
@@ -49,7 +51,7 @@ export default function Pricing({ prices }: { prices?: [number, number, number] 
         style={{
           display: "flex", gap: 80, alignItems: "flex-end",
           flexWrap: "wrap", marginBottom: 48,
-          borderBottom: "1px solid rgba(0,0,0,0.08)", paddingBottom: 32,
+          borderBottom: "1px solid rgba(var(--ink), 0.08)", paddingBottom: 32,
         }}
       >
         <div data-reveal style={{ flex: "1 1 360px" }}>
@@ -86,8 +88,8 @@ export default function Pricing({ prices }: { prices?: [number, number, number] 
           display: "grid",
           gridTemplateColumns: "repeat(3, 1fr)",
           gap: 1,
-          background: "rgba(0,0,0,0.06)",
-          border: "1px solid rgba(0,0,0,0.06)",
+          background: "rgba(var(--ink), 0.06)",
+          border: "1px solid rgba(var(--ink), 0.06)",
           marginBottom: 1,
         }}
       >
@@ -98,7 +100,7 @@ export default function Pricing({ prices }: { prices?: [number, number, number] 
             data-reveal style={{
               display: "flex", flexDirection: "column",
               padding: "32px",
-              background: plan.featured ? "var(--fg)" : "var(--bg)",
+              background: plan.featured ? "var(--inverse)" : "var(--bg)",
               position: "relative",
             }}
           >
@@ -158,7 +160,7 @@ export default function Pricing({ prices }: { prices?: [number, number, number] 
               letterSpacing: "-0.2px",
               marginBottom: 24,
               paddingBottom: 24,
-              borderBottom: `1px solid ${plan.featured ? "rgba(255,255,255,0.1)" : "rgba(0,0,0,0.07)"}`,
+              borderBottom: `1px solid ${plan.featured ? "rgba(255,255,255,0.1)" : "rgba(var(--ink), 0.07)"}`,
             }}>
               {plan.desc}
             </p>
@@ -197,7 +199,7 @@ export default function Pricing({ prices }: { prices?: [number, number, number] 
                 gap: 6,
                 padding: "14px 20px",
                 background: plan.featured ? "var(--accent-purple)" : "var(--fg)",
-                color: "#fff",
+                color: plan.featured ? "#fff" : "var(--on-fg)",
                 fontFamily: "var(--font-inter)",
                 fontWeight: 600,
                 lineHeight: "20px",
@@ -218,14 +220,23 @@ export default function Pricing({ prices }: { prices?: [number, number, number] 
         })}
       </div>
 
-      {/* Add-ons strip */}
+      {/* Add-ons strip (folded behind a button on phones) */}
+      <button
+        type="button"
+        className="addons-toggle"
+        aria-expanded={addonsOpen}
+        onClick={() => setAddonsOpen((v) => !v)}
+      >
+        {t("pricing.addons")} ({addons.length})
+        <ChevronDown size={16} strokeWidth={2} aria-hidden="true" className={addonsOpen ? "is-open" : ""} />
+      </button>
       <div
-        className="addons-grid"
+        className={`addons-grid${addonsOpen ? " is-open" : ""}`}
         data-reveal
         style={{
           display: "grid", gridTemplateColumns: "repeat(4, 1fr)",
-          gap: 1, background: "rgba(0,0,0,0.06)",
-          border: "1px solid rgba(0,0,0,0.06)", borderTop: "none",
+          gap: 1, background: "rgba(var(--ink), 0.06)",
+          border: "1px solid rgba(var(--ink), 0.06)", borderTop: "none",
         }}
       >
         {addons.map((addon, i) => (

@@ -165,12 +165,12 @@ export default function WhyMe() {
   }, []);
 
   const stats = STAT_VALUES.map((s, i) => ({ ...s, label: t(`whyme.stat${i}`) }));
+  const services = Array.from({ length: 6 }, (_, i) => ({ n: String(i + 1), label: t(`whyme.svc${i + 1}`) }));
   const benefits = BENEFIT_ISO_ICONS.map((Icon, i) => ({
     Icon,
     title: t(`whyme.b${i}.title`),
     desc: t(`whyme.b${i}.desc`),
   }));
-  const services = Array.from({ length: 6 }, (_, i) => ({ n: String(i + 1), label: t(`whyme.svc${i + 1}`) }));
 
   return (
     <section
@@ -214,7 +214,7 @@ export default function WhyMe() {
               className="whyme-stat"
               data-reveal style={{
                 display: "flex", alignItems: "center", gap: 16,
-                borderBottom: "1px solid rgba(0,0,0,0.07)", paddingBottom: 24,
+                borderBottom: "1px solid rgba(var(--ink), 0.07)", paddingBottom: 24,
               }}
             >
               <span style={{
@@ -239,13 +239,13 @@ export default function WhyMe() {
       {/* Benefits 2×2 */}
       <div
         className="benefits-grid"
-        style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "0 80px", marginBottom: 48 }}
+        style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "0 32px", marginBottom: 48 }}
       >
         {benefits.map(({ Icon, title, desc }, i) => (
           <div
             key={i}
             data-reveal style={{
-              borderTop: "1px solid rgba(0,0,0,0.1)", padding: "32px 0",
+              borderTop: "1px solid rgba(var(--ink), 0.1)", padding: "32px 0",
             }}
           >
             <div style={{
@@ -280,8 +280,8 @@ export default function WhyMe() {
       <div
         className="services-grid whyme-services"
         style={{
-          borderTop: "1px solid rgba(0,0,0,0.08)",
-          display: "grid", gridTemplateColumns: "repeat(2, 1fr)",
+          borderTop: "1px solid rgba(var(--ink), 0.08)",
+          display: "grid", gridTemplateColumns: "repeat(3, 1fr)",
         }}
       >
         {services.map((s, i) => (
@@ -290,9 +290,9 @@ export default function WhyMe() {
             data-reveal style={{
               display: "flex", alignItems: "center", gap: 20,
               paddingTop: 32, paddingBottom: 32,
-              paddingLeft: i % 2 !== 0 ? 32 : 0,
-              borderBottom: "1px solid rgba(0,0,0,0.08)",
-              borderRight: (i + 1) % 2 !== 0 ? "1px solid rgba(0,0,0,0.08)" : "none",
+              paddingLeft: i % 3 !== 0 ? 32 : 0,
+              borderBottom: "1px solid rgba(var(--ink), 0.08)",
+              borderRight: (i + 1) % 3 !== 0 ? "1px solid rgba(var(--ink), 0.08)" : "none",
             }}
           >
             <span style={{ fontFamily: "var(--font-inter)", fontWeight: 400, fontSize: 13, color: "var(--fg-muted)", flexShrink: 0 }}>

@@ -1,6 +1,7 @@
 "use client";
 import { useRef, useEffect, useState, useCallback } from "react";
 import { useLang } from "@/context/LangContext";
+import { useThemeDark } from "./ThemeToggle";
 import RevealWords, { revealDelayAfter } from "./RevealWords";
 
 const STEP_DURATION = 4000;
@@ -12,7 +13,9 @@ const DAY_POS = [0, 33.33, 66.66, 100];
 export default function HowIWork() {
   const sectionRef = useRef<HTMLElement>(null);
   const tablistRef = useRef<HTMLDivElement>(null);
-  const [isDark, setIsDark] = useState(false);
+  const [scrollDark, setIsDark] = useState(false);
+  const themeDark = useThemeDark();
+  const isDark = scrollDark || themeDark; // dark theme: always dark; light theme: dark while in view
   const [active, setActive] = useState(0);
   const [displayed, setDisplayed] = useState(0);
   const [fading, setFading] = useState(false);
@@ -121,11 +124,11 @@ export default function HowIWork() {
   const fg      = isDark ? "#ffffff"                : "var(--fg)";
   const fgSub   = isDark ? "rgba(255,255,255,0.80)" : "#4b5563";
   const fgMuted = isDark ? "rgba(255,255,255,0.62)" : "#5c6474";
-  const fgGhost = isDark ? "rgba(255,255,255,0.08)" : "rgba(0,0,0,0.05)";
-  const border  = isDark ? "rgba(255,255,255,0.12)" : "rgba(0,0,0,0.10)";
-  const trackBg = isDark ? "rgba(255,255,255,0.12)" : "rgba(0,0,0,0.10)";
-  const cardBg  = isDark ? "rgba(255,255,255,0.04)" : "rgba(0,0,0,0.03)";
-  const cardBrd = isDark ? "rgba(255,255,255,0.10)" : "rgba(0,0,0,0.09)";
+  const fgGhost = isDark ? "rgba(255,255,255,0.08)" : "rgba(var(--ink), 0.05)";
+  const border  = isDark ? "rgba(255,255,255,0.12)" : "rgba(var(--ink), 0.10)";
+  const trackBg = isDark ? "rgba(255,255,255,0.12)" : "rgba(var(--ink), 0.10)";
+  const cardBg  = isDark ? "rgba(255,255,255,0.04)" : "rgba(var(--ink), 0.03)";
+  const cardBrd = isDark ? "rgba(255,255,255,0.10)" : "rgba(var(--ink), 0.09)";
 
   const panelId = (i: number) => `process-panel-${i}`;
   const tabId   = (i: number) => `process-tab-${i}`;
@@ -166,7 +169,7 @@ export default function HowIWork() {
             }}>
               <RevealWords text={t("process.h1")} />{" "}
               <span style={{
-                color: isDark ? "rgba(255,255,255,0.45)" : "rgba(0,0,0,0.35)",
+                color: isDark ? "rgba(255,255,255,0.45)" : "rgba(var(--ink), 0.35)",
                 transition: `color ${TRANS}`,
               }}>
                 <RevealWords text={t("process.h1b")} delay={revealDelayAfter(t("process.h1"))} />
@@ -265,7 +268,7 @@ export default function HowIWork() {
                     color: isActive ? "#ffffff" : fgMuted,
                     background: isActive
                       ? purpleC
-                      : isDark ? "rgba(255,255,255,0.07)" : "rgba(0,0,0,0.06)",
+                      : isDark ? "rgba(255,255,255,0.07)" : "rgba(var(--ink), 0.06)",
                     padding: "2px 6px",
                     whiteSpace: "nowrap",
                     transition: `all 0.3s ease`,

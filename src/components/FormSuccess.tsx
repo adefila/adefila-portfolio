@@ -13,7 +13,7 @@ export default function FormSuccess({ title, desc, resetLabel }: { title: string
       transition={{ duration: 0.45, ease: EASE }}
       style={{
         padding: "52px 32px",
-        border: "1px solid rgba(0,0,0,0.08)",
+        border: "1px solid rgba(var(--ink), 0.08)",
         textAlign: "center",
         display: "flex",
         flexDirection: "column",
@@ -29,9 +29,9 @@ export default function FormSuccess({ title, desc, resetLabel }: { title: string
       >
         <svg width="160" height="130" viewBox="0 0 160 130" fill="none" xmlns="http://www.w3.org/2000/svg">
           {/* Subtle face fills for depth */}
-          <polygon points="80,10 132,38 80,66 28,38" fill="rgba(0,0,0,0.04)"/>
-          <polygon points="28,38 28,92 80,120 80,66" fill="rgba(0,0,0,0.07)"/>
-          <polygon points="132,38 132,92 80,120 80,66" fill="rgba(0,0,0,0.05)"/>
+          <polygon points="80,10 132,38 80,66 28,38" fill="rgba(var(--ink), 0.04)"/>
+          <polygon points="28,38 28,92 80,120 80,66" fill="rgba(var(--ink), 0.07)"/>
+          <polygon points="132,38 132,92 80,120 80,66" fill="rgba(var(--ink), 0.05)"/>
           {/* Top face edges */}
           <polygon points="80,10 132,38 80,66 28,38" stroke="var(--fg)" strokeWidth="1.8" fill="none"/>
           {/* Left face edges */}
@@ -57,7 +57,7 @@ export default function FormSuccess({ title, desc, resetLabel }: { title: string
       </p>
 
       {/* Countdown bar */}
-      <div style={{ width: "100%", maxWidth: 200, height: 2, background: "rgba(0,0,0,0.07)", borderRadius: 1, overflow: "hidden" }}>
+      <div style={{ width: "100%", maxWidth: 200, height: 2, background: "rgba(var(--ink), 0.07)", borderRadius: 1, overflow: "hidden" }}>
         <motion.div
           initial={{ width: "100%" }}
           animate={{ width: "0%" }}

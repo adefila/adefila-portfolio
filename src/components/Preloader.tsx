@@ -105,7 +105,7 @@ export default function Preloader() {
                 overflow: "hidden",
               }}
             >
-              <div className="preloader-bar" style={{ height: "100%", background: "#fff", transformOrigin: "left" }} />
+              <div className="preloader-bar" style={{ height: "100%", background: "var(--surface)", transformOrigin: "left" }} />
             </motion.div>
           </div>
 

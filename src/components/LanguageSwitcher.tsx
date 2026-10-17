@@ -5,6 +5,7 @@ import { Globe, X } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { useLang } from "@/context/LangContext";
 import { LANGUAGES, CURRENCIES, CurrencyCode } from "@/i18n/translations";
+import ThemeToggle from "./ThemeToggle";
 
 const EASE = [0.22, 1, 0.36, 1] as [number, number, number, number];
 
@@ -42,8 +43,8 @@ export default function LanguageSwitcher() {
               bottom: "calc(100% + 10px)",
               right: 0,
               width: 288,
-              background: "#ffffff",
-              border: "1px solid rgba(0,0,0,0.09)",
+              background: "var(--surface)",
+              border: "1px solid rgba(var(--ink), 0.09)",
               boxShadow: "0 12px 40px rgba(0,0,0,0.14)",
               overflow: "hidden",
             }}
@@ -69,7 +70,7 @@ export default function LanguageSwitcher() {
                   justifyContent: "center",
                   width: 44,
                   height: 44,
-                  background: "rgba(0,0,0,0.06)",
+                  background: "rgba(var(--ink), 0.06)",
                   border: "none",
                   cursor: "pointer",
                   borderRadius: 0,
@@ -95,7 +96,7 @@ export default function LanguageSwitcher() {
                         alignItems: "center",
                         gap: 8,
                         padding: "9px 10px",
-                        background: active ? "var(--fg)" : "rgba(0,0,0,0.03)",
+                        background: active ? "var(--fg)" : "rgba(var(--ink), 0.03)",
                         border: "none",
                         cursor: "pointer",
                         textAlign: "left",
@@ -108,7 +109,7 @@ export default function LanguageSwitcher() {
                           fontFamily: "var(--font-inter)",
                           fontSize: 12,
                           fontWeight: active ? 600 : 400,
-                          color: active ? "#fff" : "var(--fg)",
+                          color: active ? "var(--on-fg)" : "var(--fg)",
                           letterSpacing: "-0.2px",
                           display: "block",
                         }}>
@@ -117,7 +118,7 @@ export default function LanguageSwitcher() {
                         <span style={{
                           fontFamily: "var(--font-inter)",
                           fontSize: 10,
-                          color: active ? "rgba(255,255,255,0.5)" : "var(--fg-muted)",
+                          color: active ? "rgba(var(--surface-rgb), 0.6)" : "var(--fg-muted)",
                           letterSpacing: "0.5px",
                         }}>
                           {l.currency}
@@ -130,7 +131,7 @@ export default function LanguageSwitcher() {
             </div>
 
             {/* Divider */}
-            <div style={{ height: 1, background: "rgba(0,0,0,0.07)", margin: "2px 0" }} />
+            <div style={{ height: 1, background: "rgba(var(--ink), 0.07)", margin: "2px 0" }} />
 
             {/* Currencies */}
             <div style={{ padding: "10px 16px 14px" }}>
@@ -155,13 +156,13 @@ export default function LanguageSwitcher() {
                       title={c.name}
                       style={{
                         padding: "6px 10px",
-                        background: active ? "var(--fg)" : "rgba(0,0,0,0.04)",
+                        background: active ? "var(--fg)" : "rgba(var(--ink), 0.04)",
                         border: "none",
                         cursor: "pointer",
                         fontFamily: "var(--font-inter)",
                         fontSize: 11,
                         fontWeight: 600,
-                        color: active ? "#fff" : "var(--fg-secondary)",
+                        color: active ? "var(--on-fg)" : "var(--fg-secondary)",
                         letterSpacing: "0.3px",
                         transition: "background 0.15s, color 0.15s",
                         flexShrink: 0,
@@ -195,14 +196,14 @@ export default function LanguageSwitcher() {
           alignItems: "center",
           gap: 8,
           padding: "10px 16px",
-          background: open ? "var(--fg)" : "#ffffff",
-          border: "1px solid rgba(0,0,0,0.1)",
+          background: open ? "var(--fg)" : "var(--surface)",
+          border: "1px solid rgba(var(--ink), 0.1)",
           boxShadow: "0 4px 20px rgba(0,0,0,0.1)",
           cursor: "pointer",
           fontFamily: "var(--font-inter)",
           fontSize: 12,
           fontWeight: 600,
-          color: open ? "#fff" : "var(--fg)",
+          color: open ? "var(--on-fg)" : "var(--fg)",
           letterSpacing: "-0.1px",
           transition: "background 0.2s, color 0.2s",
           whiteSpace: "nowrap",
@@ -215,6 +216,7 @@ export default function LanguageSwitcher() {
         <span style={{ opacity: 0.7 }}>{currentCurr.symbol}</span>
         <span>{currentCurr.code}</span>
       </motion.button>
+      <ThemeToggle />
     </div>
   );
 }

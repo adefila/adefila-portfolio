@@ -126,7 +126,13 @@ export default function RootLayout({
     <html lang="en" className={`${inter.variable} ${poppins.variable}`} suppressHydrationWarning>
       <head>
         <meta name="theme-color" content="#0f0f0f" />
-        <meta name="color-scheme" content="light" />
+        <meta name="color-scheme" content="light dark" />
+        {/* Applies the saved colour theme before first paint (same rule as ThemeToggle.tsx): light unless the visitor chose dark, or "match my device" on a dark device. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `try{var p=localStorage.getItem("sam-theme");var d=p==="dark"||(p==="system"&&matchMedia("(prefers-color-scheme: dark)").matches);document.documentElement.setAttribute("data-theme",d?"dark":"light")}catch(e){}`,
+          }}
+        />
         {/* Runs before first paint: enable scroll reveals (ScrollReveal.tsx), skip the preloader after its first showing in
             this tab, and make a reload start from the hero instead of the
             section hash the navbar wrote into the URL while scrolling. */}
