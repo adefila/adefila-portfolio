@@ -225,51 +225,75 @@ html[data-reveal-ready] [data-reveal]:not([data-revealed]) {
 }
 
 /* Case studies: three result cards */
-.cases-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
+/* ── Case studies: one slide at a time (scroll-snap, so swiping, arrows and keys all work) ── */
+.csl-section { width: 100%; max-width: 1200px; margin: 0 auto; padding: 80px 20px; }
+.csl-head { display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 24px 48px; margin-bottom: 48px; }
+.csl-controls { display: flex; align-items: center; gap: 12px; }
+.csl-count { margin-right: 12px; font-family: var(--font-inter); font-size: 13px; letter-spacing: 0.12em; color: var(--fg-muted); font-variant-numeric: tabular-nums; }
+.csl-count strong { font-size: 15px; color: var(--fg); }
+.csl-arrow {
+  width: 48px; height: 48px; display: inline-flex; align-items: center; justify-content: center; cursor: pointer;
+  background: #fff; color: var(--fg); border: 1px solid rgba(0,0,0,0.2); transition: background 0.2s, color 0.2s, border-color 0.2s;
 }
-.case-card {
-  display: flex;
-  flex-direction: column;
-  background: var(--white);
-  border: 1px solid rgba(0,0,0,0.07);
-  padding: 28px;
+.csl-arrow:hover:not(:disabled) { background: var(--fg); color: #fff; border-color: var(--fg); }
+.csl-arrow:disabled { opacity: 0.35; cursor: default; }
+.csl-arrow:focus-visible, .csl-dot:focus-visible, .csl-link:focus-visible, .csl-video:focus-visible { outline: 3px solid var(--accent-purple); outline-offset: 3px; }
+.csl-track {
+  display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; -webkit-overflow-scrolling: touch;
+  background: #fff; border: 1px solid rgba(0,0,0,0.1);
 }
-.case-link,
-.case-video-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-family: var(--font-inter);
-  font-weight: 600;
-  font-size: 11px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  color: var(--fg);
-  text-decoration: none;
-  white-space: nowrap;
-  border-bottom: 1px solid currentColor;
-  padding-bottom: 2px;
+.csl-track::-webkit-scrollbar { display: none; }
+.csl-track:focus-visible { outline: 3px solid var(--accent-purple); outline-offset: 4px; }
+.csl-slide { flex: 0 0 100%; scroll-snap-align: start; display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); min-height: 540px; }
+.csl-visual { position: relative; display: flex; align-items: center; justify-content: center; padding: 80px 40px 40px; overflow: hidden; }
+.csl-logo { position: absolute; top: 28px; left: 32px; z-index: 2; max-width: 45%; filter: invert(1) brightness(1.1); }
+.csl-frame { width: 100%; overflow: hidden; background: #0b0b0b; box-shadow: 0 30px 60px rgba(0,0,0,0.45); }
+.csl-frame-bar { display: flex; align-items: center; gap: 6px; height: 28px; padding: 0 12px; background: #1c1c1f; }
+.csl-frame-bar i { width: 8px; height: 8px; border-radius: 50%; background: #4a4a50; }
+.csl-shot { display: block; width: 100%; height: auto; }
+.csl-cover { position: absolute; inset: 64px 0 0 0; width: 100%; height: calc(100% - 64px); object-fit: contain; }
+.csl-content { display: flex; flex-direction: column; padding: 48px; }
+.csl-metric {
+  margin: 0 0 16px; font-family: var(--font-poppins); font-weight: 700; font-size: clamp(64px, 8vw, 112px); letter-spacing: -0.05em;
+  line-height: 0.9; color: var(--fg); text-transform: uppercase; font-variant-numeric: tabular-nums;
 }
-.case-video-link {
-  gap: 10px;
-  border-bottom: none;
-  padding-bottom: 0;
-}
-.case-video-link .case-video-text {
-  border-bottom: 1px solid currentColor;
-  padding-bottom: 2px;
-}
-.case-link:hover,
-.case-video-link:hover {
-  color: var(--accent-purple);
-}
+.csl-metric-small { font-size: clamp(40px, 4.6vw, 64px); line-height: 1; letter-spacing: -0.04em; }
+.csl-metric-label { max-width: 360px; margin-bottom: 32px; font-family: var(--font-inter); font-size: 13px; letter-spacing: 0.04em; text-transform: uppercase; line-height: 1.5; color: var(--fg-secondary); }
+.csl-story { display: grid; gap: 20px; padding-top: 24px; border-top: 1px solid rgba(0,0,0,0.08); }
+.csl-label { margin-bottom: 6px; font-family: var(--font-inter); font-weight: 700; font-size: 10px; letter-spacing: 2.5px; text-transform: uppercase; color: var(--accent-purple); }
+.csl-body { font-family: var(--font-inter); font-size: 15px; line-height: 1.65; letter-spacing: -0.2px; color: var(--fg-secondary); }
+.csl-foot { margin-top: auto; padding-top: 32px; display: flex; flex-direction: column; align-items: flex-start; gap: 20px; }
+.csl-quote { margin: 0; padding-left: 16px; border-left: 2px solid var(--accent-purple); }
+.csl-quote blockquote { margin: 0; font-family: var(--font-inter); font-size: 14px; line-height: 1.65; letter-spacing: -0.2px; color: var(--fg-secondary); }
+.csl-quote figcaption { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 4px 10px; align-items: baseline; }
+.csl-quote strong { font-family: var(--font-inter); font-weight: 700; font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--fg); }
+.csl-quote span { font-family: var(--font-inter); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--fg-secondary); }
+.csl-link, .csl-video { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-inter); font-weight: 600; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--fg); text-decoration: none; white-space: nowrap; }
+.csl-link { padding-bottom: 3px; border-bottom: 1px solid currentColor; transition: color 0.2s; }
+.csl-link svg { transition: transform 0.25s ease; }
+.csl-link:hover, .csl-video:hover { color: var(--accent-purple); }
+.csl-link:hover svg { transform: translate(2px, -2px); }
+.csl-play { width: 36px; height: 36px; border-radius: 50%; background: var(--fg); display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; transition: transform 0.25s ease; }
+.csl-video:hover .csl-play { transform: scale(1.08); }
+.csl-dots { display: flex; justify-content: center; gap: 8px; margin-top: 24px; }
+.csl-dot { width: 32px; height: 24px; padding: 10px 0; border: 0; cursor: pointer; background: rgba(0,0,0,0.15); background-clip: content-box; transition: width 0.3s ease, background-color 0.3s ease; }
+.csl-dot.is-active { width: 56px; background-color: var(--fg); }
 @media (max-width: 900px) {
-  .cases-grid {
-    grid-template-columns: 1fr;
-  }
+  .csl-slide { grid-template-columns: minmax(0, 1fr); min-height: 0; }
+  .csl-visual { min-height: 300px; padding: 72px 24px 32px; }
+  .csl-content { padding: 32px 24px; }
+}
+@media (max-width: 768px) {
+  .csl-section { padding: 64px 20px; }
+  .csl-head { margin-bottom: 32px; }
+}
+@media (max-width: 520px) {
+  .csl-arrow { width: 44px; height: 44px; }
+  .csl-visual { min-height: 260px; padding: 64px 16px 24px; }
+  .csl-logo { top: 20px; left: 20px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .csl-arrow, .csl-link, .csl-link svg, .csl-play, .csl-dot { transition: none; }
 }
 
 /* Pricing promises under the plan cards */
@@ -329,10 +353,6 @@ html[data-reveal-ready] [data-reveal]:not([data-revealed]) {
   }
   .teardown-grid {
     padding-top: 64px;
-  }
-  #results {
-    padding-top: 64px !important;
-    padding-bottom: 64px !important;
   }
 }
 
@@ -1145,3 +1165,11 @@ html[data-reveal-ready] [data-reveal]:not([data-revealed]) .il, html[data-reveal
 @media (prefers-reduced-motion: reduce) { .lb-browser, .lb-browser-shot img { transition: none; } .lb-browser:hover { transform: none; } .lb-browser:hover .lb-browser-shot img { transform: none; } }
 .lb-head { display: flex; gap: 40px 80px; align-items: flex-end; flex-wrap: wrap; justify-content: space-between; padding-bottom: 32px; border-bottom: 1px solid rgba(0, 0, 0, 0.08); }
 .lb-head h2 { margin-bottom: 0; }
+
+/* Footer text blocks that read as exactly two lines (split at a sentence in Footer.tsx).
+   The tagline never wraps; the longer call-to-action paragraph is kept whole on wide screens and
+   balanced on phones, where two lines would not fit at a readable size. */
+.footer-tag-line { white-space: nowrap; }
+@media (min-width: 901px) { .footer-two-line { white-space: nowrap; } }
+@media (max-width: 900px) { .footer-two-line { text-wrap: balance; } }
+@media (max-width: 400px) { .footer-tag-line { font-size: 12.5px; } }

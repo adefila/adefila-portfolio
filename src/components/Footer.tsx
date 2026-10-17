@@ -77,6 +77,20 @@ const socialLinks = [
   { label: "Instagram", href: "https://www.instagram.com/adeyemi929_" },
 ];
 
+// Splits a paragraph into two lines: at the sentence end nearest its middle, or, for one sentence,
+// at the comma or word break nearest the middle
+function twoLines(text: string, cls: string) {
+  const at = (re: RegExp, shift: (m: RegExpMatchArray) => number) =>
+    [...text.matchAll(re)].map((m) => shift(m)).filter((i) => i > 0 && i < text.trim().length);
+  const ends = at(/[.!?。]s*/g, (m) => (m.index as number) + 1);
+  const soft = at(/[，,、]s*|s+/g, (m) => (m.index as number) + (/[，,、]/.test(m[0][0]) ? 1 : 0));
+  const options = ends.length ? ends : soft;
+  if (!options.length) return text;
+  const mid = text.length / 2;
+  const cut = options.reduce((x, y) => (Math.abs(y - mid) < Math.abs(x - mid) ? y : x));
+  return <><span className={cls}>{text.slice(0, cut).trim()}</span><br /><span className={cls}>{text.slice(cut).trim()}</span></>;
+}
+
 export default function Footer() {
   const { t } = useLang();
   return (
@@ -142,10 +156,10 @@ export default function Footer() {
                 letterSpacing: "-0.3px",
                 lineHeight: 1.65,
                 color: "rgba(255,255,255,0.85)",
-                maxWidth: 460,
+                maxWidth: 760,
               }}
             >
-              {t("footer.ctaDesc")}
+              {twoLines(t("footer.ctaDesc"), "footer-two-line")}
             </motion.p>
           </div>
 
@@ -229,10 +243,9 @@ export default function Footer() {
                 fontSize: 13,
                 color: "rgba(255,255,255,0.8)",
                 lineHeight: 1.6,
-                maxWidth: 200,
               }}
             >
-              {t("footer.tagline")}
+              {twoLines(t("footer.tagline"), "footer-tag-line")}
             </p>
           </div>
 

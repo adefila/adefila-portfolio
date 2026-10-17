@@ -27,17 +27,6 @@ export const metadata: Metadata = {
   alternates: { canonical: "https://adefilasamuel.com/local-business" },
 };
 
-// Everyday words that point at each of the six questions (see the FAQ's "Ask your own question" box).
-// English words; a visitor typing in their own language is matched on the question text instead.
-const FAQ_WORDS: Record<number, string[]> = {
-  0: ["website", "site", "redesign", "new", "existing", "keep", "current", "replace", "need"],
-  1: ["calendar", "google", "outlook", "email", "phone", "software", "integrate", "integration", "system", "already", "tool", "connect", "whatsapp", "sms", "text", "crm", "use"],
-  2: ["technical", "tech", "skills", "learn", "difficult", "complicated", "hard", "easy", "train", "training", "walkthrough", "simple", "staff", "team"],
-  3: ["long", "time", "fast", "quick", "week", "day", "deadline", "live", "ready", "launch", "start", "soon", "urgent", "setup"],
-  4: ["pay", "price", "pricing", "cost", "much", "charge", "fee", "deposit", "upfront", "invoice", "quote", "budget", "cheap", "expensive", "payment", "afford", "percent", "installment"],
-  5: ["change", "later", "update", "edit", "support", "maintenance", "help", "ongoing", "monthly", "after", "fix", "problem", "issue"],
-};
-
 export default function LocalBusinessPage() {
   return (
     <main style={{ background: "var(--bg)", minHeight: "100vh", overflowX: "hidden", width: "100%" }}>
@@ -55,7 +44,7 @@ export default function LocalBusinessPage() {
         <Pricing prices={[500, 1500, 2000]} />
         <TermsStrip />
         <Testimonials />
-        <FAQ synonyms={FAQ_WORDS} />
+        <FAQ />
         <ContactForm variant="local" />
         <Footer />
         <MobileCTA />

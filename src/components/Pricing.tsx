@@ -26,7 +26,8 @@ export default function Pricing({ prices }: { prices?: [number, number, number] 
     label: t(`pricing.${planKey}.label`),
     name: t(`pricing.${planKey}.name`),
     desc: t(`pricing.${planKey}.desc`),
-    features: Array.from({ length: featureCount }, (_, i) => t(`pricing.${planKey}.f${i}`)),
+    // Up to featureCount items; a page that has fewer (or its own list) just stops at the last one it defines
+    features: Array.from({ length: featureCount }, (_, i) => t(`pricing.${planKey}.f${i}`)).filter((f, i) => f !== `pricing.${planKey}.f${i}`),
     usdPrice: prices?.[i] ?? defaultPrice,
     featured,
   }));
