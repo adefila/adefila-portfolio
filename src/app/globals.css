@@ -1304,3 +1304,42 @@ html[data-reveal-ready] [data-reveal]:not([data-revealed]) .il, html[data-reveal
    whatever the language. On narrower layouts the cards stack and need no reserved space. */
 .benefit-title { min-height: 2.6em; display: flex; align-items: flex-start; }
 @media (max-width: 1024px) { .benefit-title { min-height: 0; } }
+
+/* ── Speed: sections below the first screen are not laid out or drawn until the visitor scrolls near them ──
+   The content stays in the page (search engines and in-page search still see it); the browser just skips the
+   rendering work, which was most of the load time on phones. contain-intrinsic-size is the height it assumes
+   until a section has been drawn once (then it remembers the real one), set close to the real heights so the
+   scrollbar and the menu links land in the right place. */
+#work, #results, #concept, #benefits, #process, #pricing, #teardown, #testimonials, #about, #side-projects, #faq, #contact,
+body > footer, main > footer {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 1000px;
+}
+#work { contain-intrinsic-size: auto 1260px; }
+#results { contain-intrinsic-size: auto 870px; }
+#concept { contain-intrinsic-size: auto 770px; }
+#benefits { contain-intrinsic-size: auto 1030px; }
+#process { contain-intrinsic-size: auto 800px; }
+#pricing { contain-intrinsic-size: auto 1030px; }
+#teardown { contain-intrinsic-size: auto 480px; }
+#testimonials { contain-intrinsic-size: auto 1090px; }
+#about { contain-intrinsic-size: auto 1390px; }
+#side-projects { contain-intrinsic-size: auto 780px; }
+#faq { contain-intrinsic-size: auto 620px; }
+#contact { contain-intrinsic-size: auto 680px; }
+body > footer, main > footer { contain-intrinsic-size: auto 560px; }
+@media (max-width: 768px) {
+  #work { contain-intrinsic-size: auto 1400px; }
+  #results { contain-intrinsic-size: auto 1100px; }
+  #concept { contain-intrinsic-size: auto 1210px; }
+  #benefits { contain-intrinsic-size: auto 1520px; }
+  #process { contain-intrinsic-size: auto 1070px; }
+  #pricing { contain-intrinsic-size: auto 1220px; }
+  #teardown { contain-intrinsic-size: auto 740px; }
+  #testimonials { contain-intrinsic-size: auto 1450px; }
+  #about { contain-intrinsic-size: auto 2080px; }
+  #side-projects { contain-intrinsic-size: auto 925px; }
+  #faq { contain-intrinsic-size: auto 870px; }
+  #contact { contain-intrinsic-size: auto 1200px; }
+  body > footer, main > footer { contain-intrinsic-size: auto 940px; }
+}
