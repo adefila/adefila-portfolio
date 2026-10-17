@@ -6,6 +6,7 @@ import {
 } from "@/i18n/translations";
 import { NL_NO } from "@/i18n/nl-no";
 import { PROJECT_COPY } from "@/i18n/projects";
+import { WORK_COPY } from "@/i18n/work-history";
 import { currencyForCountry, languageForCountry } from "@/i18n/geo";
 
 // Dutch and Norwegian exist for the text /local-business reuses from the main site
@@ -13,6 +14,9 @@ for (const [key, v] of Object.entries(NL_NO)) if (T[key]) Object.assign(T[key], 
 
 // Project descriptions, tags and badges for the Projects section
 Object.assign(T, PROJECT_COPY);
+
+// The About section's work history
+Object.assign(T, WORK_COPY);
 
 const BUSINESS_PAGE = "/local-business";
 

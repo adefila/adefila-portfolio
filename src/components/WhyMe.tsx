@@ -259,9 +259,9 @@ export default function WhyMe() {
             }}>
               <Icon />
             </div>
-            <h3 style={{
+            <h3 className="benefit-title" style={{
               fontFamily: "var(--font-inter)", fontWeight: 700, fontSize: 14,
-              letterSpacing: "0.3px", textTransform: "uppercase", color: "var(--fg)", lineHeight: 1,
+              letterSpacing: "0.3px", textTransform: "uppercase", color: "var(--fg)", lineHeight: 1.3,
               marginBottom: 12,
             }}>
               {title}

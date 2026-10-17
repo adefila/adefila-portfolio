@@ -123,6 +123,7 @@ const HISTORY_SHOWN = 2;
 // The photo library is hidden everywhere for now: pass `gallery` to bring it back.
 export default function About({ gallery = false }: { gallery?: boolean }) {
   const { t } = useLang();
+  const tr = (key: string, fallback: string) => { const v = t(key); return v === key ? fallback : v; };
   const [lightbox, setLightbox] = useState<number | null>(null);
   const [fullHistory, setFullHistory] = useState(false);
 
@@ -283,7 +284,7 @@ export default function About({ gallery = false }: { gallery?: boolean }) {
           <ol style={{ position: "relative", listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column" }}>
             <span aria-hidden="true" style={{ position: "absolute", left: 5, top: 28, bottom: 28, width: 1, background: "rgba(var(--ink), 0.12)" }} />
             {(fullHistory ? workHistory : workHistory.slice(0, HISTORY_SHOWN)).map((job, i) => {
-              const current = job.period.endsWith("Present");
+              const current = i === 0; // the first role is the one that is still going
               return (
               <li key={i} style={{ position: "relative", padding: "24px 0 24px 32px" }}>
                 <span
@@ -306,10 +307,10 @@ export default function About({ gallery = false }: { gallery?: boolean }) {
                   textTransform: "uppercase",
                   display: "flex", alignItems: "center", gap: 8,
                 }}>
-                  {job.period}
+                  {tr(`wh${i}.period`, job.period)}
                   {current && (
                     <span style={{ fontSize: 9, fontWeight: 700, letterSpacing: "0.12em", color: "#fff", background: "var(--accent-purple)", padding: "2px 6px" }}>
-                      Now
+                      {t("wh.now")}
                     </span>
                   )}
                 </p>
@@ -322,17 +323,17 @@ export default function About({ gallery = false }: { gallery?: boolean }) {
                   letterSpacing: "-0.3px",
                   textTransform: "uppercase",
                 }}>
-                  {job.role}
+                  {tr(`wh${i}.role`, job.role)}
                 </p>
                 <p style={{ fontFamily: "var(--font-inter)", fontSize: 13, color: "var(--fg-secondary)", letterSpacing: "-0.2px" }}>
-                  {job.company}
+                  {tr(`wh${i}.company`, job.company)}
                   <span style={{ fontFamily: "var(--font-inter)", fontSize: 11, color: "var(--fg-muted)", letterSpacing: "0.01em", marginLeft: 6 }}>
-                    · {job.location}
+                    · {tr(`wh${i}.location`, job.location)}
                   </span>
                 </p>
                 {job.points?.length ? (
                   <ul style={{ listStyle: "none", margin: "12px 0 0", padding: 0, display: "grid", gap: 8 }}>
-                    {job.points.map((point) => (
+                    {job.points.map((point, j) => (
                       <li
                         key={point}
                         style={{
@@ -342,7 +343,7 @@ export default function About({ gallery = false }: { gallery?: boolean }) {
                         }}
                       >
                         <span aria-hidden="true" style={{ position: "absolute", left: 0, top: 8, width: 5, height: 1.5, background: "rgba(var(--ink), 0.35)" }} />
-                        {point}
+                        {tr(`wh${i}.p${j}`, point)}
                       </li>
                     ))}
                   </ul>
@@ -362,7 +363,7 @@ export default function About({ gallery = false }: { gallery?: boolean }) {
                 color: "var(--accent-purple)", borderBottom: "1px solid currentColor",
               }}
             >
-              {fullHistory ? "Show less" : `Show full history (${workHistory.length - HISTORY_SHOWN} more)`}
+              {fullHistory ? t("wh.less") : t("wh.more").replace("{n}", String(workHistory.length - HISTORY_SHOWN))}
             </button>
           )}
         </motion.div>
