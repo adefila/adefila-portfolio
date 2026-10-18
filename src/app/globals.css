@@ -818,7 +818,7 @@ html[data-reveal-ready] [data-reveal]:not([data-revealed]) {
 
   /* Hero top padding */
   .hero-section {
-    padding-top: 120px !important;
+    padding-top: 96px !important;
     padding-bottom: 48px !important;
   }
 
