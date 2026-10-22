@@ -52,6 +52,7 @@ function loadCal(): CalApi {
     window.Cal("init", NS, { origin: ORIGIN });
     window.Cal.ns![NS]("on", { action: "linkReady", callback: () => hooks.ready() });
     window.Cal.ns![NS]("on", { action: "bookingSuccessful", callback: () => hooks.booked() });
+    window.Cal.ns![NS]("on", { action: "bookingSuccessfulV2", callback: () => hooks.booked() });
   }
   return window.Cal.ns![NS];
 }
@@ -83,6 +84,7 @@ export default function BookingPopup() {
       setLoaded(false);
       setSlow(false);
       booked.current = false;
+      trackEvent("booking_popup_open", { location: lastLocation.current });
       setUrl(link.href);
     };
     document.addEventListener("click", onClick);
@@ -106,12 +108,25 @@ export default function BookingPopup() {
   // Put the calendar into the window each time it opens
   useEffect(() => {
     if (!url || !embedRef.current) return;
-    hooks.ready = () => setLoaded(true);
+    hooks.ready = () => {
+      setLoaded(true);
+      trackEvent("booking_calendar_ready", { location: lastLocation.current });
+    };
     hooks.booked = () => {
       if (booked.current) return;
       booked.current = true;
       trackEvent("book_call_scheduled", { location: lastLocation.current });
     };
+    // Second route to the same event: the calendar window posts a message to this page when a booking is made.
+    // Only messages from cal.com itself count, and the one-event-per-window guard stops a double count.
+    const onMessage = (e: MessageEvent) => {
+      let host = "";
+      try { host = new URL(e.origin).hostname; } catch { return; }
+      if (host !== "cal.com" && !host.endsWith(".cal.com")) return;
+      const data = e.data as { originator?: string; type?: string } | null;
+      if (data && data.originator === "CAL" && typeof data.type === "string" && data.type.startsWith("bookingSuccessful")) hooks.booked();
+    };
+    window.addEventListener("message", onMessage);
     const calLink = new URL(url).pathname.replace(/^\//, "");
     const cal = loadCal();
     cal("inline", { elementOrSelector: embedRef.current, calLink, config: { layout: "month_view", theme: "light" } });
@@ -124,6 +139,7 @@ export default function BookingPopup() {
     const slowTimer = setTimeout(() => setSlow(true), 12000);
     return () => {
       clearTimeout(slowTimer);
+      window.removeEventListener("message", onMessage);
       hooks.ready = () => {};
       hooks.booked = () => {};
     };
