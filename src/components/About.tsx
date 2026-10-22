@@ -189,7 +189,7 @@ export default function About({ gallery = false }: { gallery?: boolean }) {
               fontFamily: "var(--font-inter)",
               fontWeight: 400,
               fontSize: 16,
-              letterSpacing: "-0.7px",
+              letterSpacing: "-0.2px",
               lineHeight: 1.7,
               color: "var(--fg-secondary)",
               display: "flex",

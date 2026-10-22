@@ -44,24 +44,6 @@ function UpworkCard() {
 
       {/* Center stats */}
       <div style={{ textAlign: "center", flex: 1, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 16 }}>
-        {/* Top Rated badge */}
-        <div style={{
-          display: "inline-flex", alignItems: "center", gap: 7,
-          background: "#f0fae5", border: "1.5px solid #6FDA44",
-          borderRadius: 999, padding: "7px 16px",
-        }}>
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-            <circle cx="8" cy="8" r="8" fill="#6FDA44"/>
-            <path d="M4.5 8.5l2.5 2.5 4.5-5" stroke="#fff" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
-          <span style={{
-            fontFamily: "var(--font-inter)", fontWeight: 700, fontSize: 13,
-            color: "#5bba00", letterSpacing: "0.3px",
-          }}>
-            Top Rated
-          </span>
-        </div>
-
         {/* Job Success Score */}
         <div>
           <p style={{

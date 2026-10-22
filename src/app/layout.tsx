@@ -1,19 +1,10 @@
 ﻿import type { Metadata } from "next";
-import { Inter, Poppins } from "next/font/google";
+import { Geist } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-  display: "swap",
-});
-
-const poppins = Poppins({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-poppins",
-  display: "swap",
-});
+// One typeface for the whole site. The latin-ext subset covers the accents of French, Spanish, German and Portuguese
+// and the dotted letters and tone marks of Yoruba; Chinese and Japanese fall back to the visitor's system font.
+const geist = Geist({ subsets: ["latin", "latin-ext"], variable: "--font-geist", display: "swap" });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://adefilasamuel.com"),
@@ -123,7 +114,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${poppins.variable}`} suppressHydrationWarning>
+    <html lang="en" className={geist.variable} suppressHydrationWarning>
       <head>
         <meta name="theme-color" content="#0f0f0f" />
         <meta name="color-scheme" content="light dark" />

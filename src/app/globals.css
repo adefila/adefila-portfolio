@@ -40,10 +40,10 @@ html[data-preloader-seen] .preloader {
   --dark-bg: #0f0f0f;
   --card-bg: rgb(235, 234, 230);
   --white: #ffffff;
-  --font-poppins: "Poppins", sans-serif;
-  --font-inter: "Inter", sans-serif;
-  --font-satoshi: "Satoshi", "Inter", sans-serif;
-  --font-bricolage: "Inter", sans-serif;
+  --font-poppins: var(--font-geist), system-ui, -apple-system, "Segoe UI", "Hiragino Sans", "PingFang SC", "Noto Sans CJK JP", "Noto Sans CJK SC", sans-serif;
+  --font-inter: var(--font-geist), system-ui, -apple-system, "Segoe UI", "Hiragino Sans", "PingFang SC", "Noto Sans CJK JP", "Noto Sans CJK SC", sans-serif;
+  --font-satoshi: var(--font-geist), system-ui, -apple-system, "Segoe UI", "Hiragino Sans", "PingFang SC", "Noto Sans CJK JP", "Noto Sans CJK SC", sans-serif;
+  --font-bricolage: var(--font-geist), system-ui, -apple-system, "Segoe UI", "Hiragino Sans", "PingFang SC", "Noto Sans CJK JP", "Noto Sans CJK SC", sans-serif;
   --radius-sm: 0px;
   --radius-md: 0px;
   --radius-lg: 0px;
@@ -288,19 +288,19 @@ html[data-reveal-ready] [data-reveal]:not([data-revealed]) {
 .csl-cover { position: absolute; inset: 64px 0 0 0; width: 100%; height: calc(100% - 64px); object-fit: contain; }
 .csl-content { display: flex; flex-direction: column; padding: 48px; }
 .csl-metric {
-  margin: 0 0 16px; font-family: var(--font-poppins); font-weight: 700; font-size: clamp(64px, 8vw, 112px); letter-spacing: -0.05em;
+  margin: 0 0 16px; font-family: var(--font-poppins); font-weight: 600; font-size: clamp(64px, 8vw, 112px); letter-spacing: -0.05em;
   line-height: 0.9; color: var(--fg); text-transform: uppercase; font-variant-numeric: tabular-nums;
 }
 .csl-metric-small { font-size: clamp(40px, 4.6vw, 64px); line-height: 1; letter-spacing: -0.04em; }
 .csl-metric-label { max-width: 360px; margin-bottom: 32px; font-family: var(--font-inter); font-size: 13px; letter-spacing: 0.04em; text-transform: uppercase; line-height: 1.5; color: var(--fg-secondary); }
 .csl-story { display: grid; gap: 20px; padding-top: 24px; border-top: 1px solid rgba(var(--ink), 0.08); }
-.csl-label { margin-bottom: 6px; font-family: var(--font-inter); font-weight: 700; font-size: 10px; letter-spacing: 2.5px; text-transform: uppercase; color: var(--accent-purple); }
+.csl-label { margin-bottom: 6px; font-family: var(--font-inter); font-weight: 600; font-size: 10px; letter-spacing: 2.5px; text-transform: uppercase; color: var(--accent-purple); }
 .csl-body { font-family: var(--font-inter); font-size: 15px; line-height: 1.65; letter-spacing: -0.2px; color: var(--fg-secondary); }
 .csl-foot { margin-top: auto; padding-top: 32px; display: flex; flex-direction: column; align-items: flex-start; gap: 20px; }
 .csl-quote { margin: 0; padding-left: 16px; border-left: 2px solid var(--accent-purple); }
 .csl-quote blockquote { margin: 0; font-family: var(--font-inter); font-size: 14px; line-height: 1.65; letter-spacing: -0.2px; color: var(--fg-secondary); }
 .csl-quote figcaption { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 4px 10px; align-items: baseline; }
-.csl-quote strong { font-family: var(--font-inter); font-weight: 700; font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--fg); }
+.csl-quote strong { font-family: var(--font-inter); font-weight: 600; font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--fg); }
 .csl-quote span { font-family: var(--font-inter); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--fg-secondary); }
 .csl-link, .csl-video { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-inter); font-weight: 600; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--fg); text-decoration: none; white-space: nowrap; }
 .csl-link { padding-bottom: 3px; border-bottom: 1px solid currentColor; transition: color 0.2s; }
@@ -1092,7 +1092,7 @@ html[data-reveal-ready] [data-reveal]:not([data-revealed]) .il, html[data-reveal
 @keyframes ilTh1 { 0%, 33% { opacity: 0; transform: scale(0) rotate(-10deg); } 37%, 100% { opacity: 1; transform: none; } }
 @keyframes ilTh2 { 0%, 36% { opacity: 0; transform: scale(0) rotate(8deg); } 40%, 100% { opacity: 1; transform: none; } }
 @keyframes ilTh3 { 0%, 39% { opacity: 0; transform: scale(0) rotate(-6deg); } 43%, 100% { opacity: 1; transform: none; } }
-.il-send { position: relative; height: 26px; display: flex; align-items: center; justify-content: center; background: var(--accent-green); color: #fff; font-size: 10.5px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; animation: ilSend var(--d) infinite; }
+.il-send { position: relative; height: 26px; display: flex; align-items: center; justify-content: center; background: var(--accent-green); color: #fff; font-size: 10.5px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; animation: ilSend var(--d) infinite; }
 .il-send span { position: absolute; display: inline-flex; align-items: center; gap: 4px; }
 .il-send-a { opacity: 0; animation: ilSendA var(--d) infinite; }
 .il-send-b { animation: ilSendB var(--d) infinite; }
@@ -1141,7 +1141,7 @@ html[data-reveal-ready] [data-reveal]:not([data-revealed]) .il, html[data-reveal
 @keyframes ilBounce { 0%, 60%, 100% { transform: translateY(0); } 30% { transform: translateY(-4px); } }
 .il-rev { position: relative; width: 88%; align-self: flex-end; margin-top: -6px; padding: 11px 13px; animation: ilRev var(--d) infinite; }
 .il-rev-head { display: flex; align-items: center; gap: 7px; font-size: 12px; }
-.il-av { width: 22px; height: 22px; border-radius: 50%; background: var(--accent-green); color: #fff; display: inline-flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; }
+.il-av { width: 22px; height: 22px; border-radius: 50%; background: var(--accent-green); color: #fff; display: inline-flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 600; }
 .il-stars { margin-left: auto; display: inline-flex; gap: 1px; }
 .il-stars svg { color: #f59e0b; animation: ilStar var(--d) infinite backwards; }
 .il-rev p { margin: 7px 0 0; font-size: 11.5px; line-height: 1.4; color: var(--fg-secondary); }
@@ -1151,7 +1151,7 @@ html[data-reveal-ready] [data-reveal]:not([data-revealed]) .il, html[data-reveal
   44%, 100% { opacity: 1; transform: none; }
 }
 @keyframes ilStar { 0%, 44% { color: #d4d4d8; transform: scale(0.7); } 46.5% { color: #f59e0b; transform: scale(1.45); } 50%, 100% { color: #f59e0b; transform: scale(1); } }
-.il-plus { position: absolute; right: 8px; top: 12px; z-index: 3; padding: 4px 9px; font-size: 11px; font-weight: 700; color: #fff; background: var(--accent-green); opacity: 0; animation: ilPlus var(--d) infinite; }
+.il-plus { position: absolute; right: 8px; top: 12px; z-index: 3; padding: 4px 9px; font-size: 11px; font-weight: 600; color: #fff; background: var(--accent-green); opacity: 0; animation: ilPlus var(--d) infinite; }
 @keyframes ilPlus { 0%, 62% { opacity: 0; transform: translateY(10px); } 66% { opacity: 1; } 82% { opacity: 1; transform: translateY(-16px); } 88%, 100% { opacity: 0; transform: translateY(-26px); } }
 
 /* ── 4. The phone: a real iPhone mockup. The whole phone shows, then the camera pushes in on
@@ -1205,7 +1205,7 @@ html[data-reveal-ready] [data-reveal]:not([data-revealed]) .il, html[data-reveal
 
 /* A sticky Book now bar, like a real mobile site */
 .il-cta-bar { position: absolute; left: 0; right: 0; bottom: 0; padding: 8cqw 3.4cqw 3.4cqw; background: linear-gradient(to top, #fff 68%, rgba(255, 255, 255, 0)); }
-.il-cta { position: relative; display: flex; align-items: center; justify-content: center; height: 10.5cqw; background: var(--accent-green); color: #fff; font-size: 3.8cqw; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; animation: ilCta var(--d) infinite; }
+.il-cta { position: relative; display: flex; align-items: center; justify-content: center; height: 10.5cqw; background: var(--accent-green); color: #fff; font-size: 3.8cqw; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; animation: ilCta var(--d) infinite; }
 .il-cta span { position: absolute; display: inline-flex; align-items: center; gap: 1.2cqw; white-space: nowrap; }
 .il-cta-a { opacity: 0; animation: ilCtaA var(--d) infinite; }
 .il-cta-b { animation: ilCtaB var(--d) infinite; }
@@ -1248,7 +1248,7 @@ html[data-reveal-ready] [data-reveal]:not([data-revealed]) .il, html[data-reveal
 .lb-browser-shot { display: block; overflow: hidden; background: #0f0f0f; }
 .lb-browser-shot img { display: block; width: 100%; height: auto; transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1); }
 .lb-browser:hover .lb-browser-shot img { transform: scale(1.04); }
-.lb-concept-link { display: inline-flex; align-items: center; gap: 6px; font-family: var(--font-inter); font-weight: 700; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--fg); text-decoration: none; border-bottom: 1px solid currentColor; padding-bottom: 2px; }
+.lb-concept-link { display: inline-flex; align-items: center; gap: 6px; font-family: var(--font-inter); font-weight: 600; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--fg); text-decoration: none; border-bottom: 1px solid currentColor; padding-bottom: 2px; }
 .lb-concept-link:hover { color: var(--accent-purple); }
 .lb-concept-link:focus-visible { outline: 3px solid var(--accent-purple); outline-offset: 4px; }
 @media (max-width: 860px) { .lb-concepts { grid-template-columns: minmax(0, 1fr); gap: 48px; } }
@@ -1343,3 +1343,33 @@ body > footer, main > footer { contain-intrinsic-size: auto 560px; }
   #contact { contain-intrinsic-size: auto 1200px; }
   body > footer, main > footer { contain-intrinsic-size: auto 940px; }
 }
+
+/* ── The page as a box: on screens wider than the box, the site sits in a centred 1320px frame with thin side
+   borders, and the empty margins on either side are filled with fine diagonal hatching. Every section stays
+   inside the box. Narrower screens look as they always did. ── */
+@media (min-width: 1200px) {
+  main {
+    max-width: 1320px;
+    margin-left: auto;
+    margin-right: auto;
+    border-left: 1px solid rgba(var(--ink), 0.16);
+    border-right: 1px solid rgba(var(--ink), 0.16);
+  }
+  body {
+    background-image: repeating-linear-gradient(135deg, rgba(var(--ink), 0.10) 0 1px, transparent 1px 9px);
+  }
+}
+
+/* ── Type system: Geist throughout ──
+   Headlines are semibold (600), not bold (700). Geist is already dense and geometric, and in capitals a heavy weight
+   with tight spacing reads as shouting and tires the eye over a long page. 600 keeps the headline strong, a touch
+   of extra air (-0.025em instead of -0.04em) keeps the capitals from crowding, and body text stays at a calm 400. */
+h1, h2 { font-weight: 600 !important; letter-spacing: -0.025em !important; }
+.hero-headline { font-weight: 600 !important; letter-spacing: -0.03em !important; }
+h3 { font-weight: 600 !important; }
+body { font-optical-sizing: auto; text-rendering: optimizeLegibility; }
+
+/* Nothing on the site is heavier than semibold: the inline styles that ask for bold (700) or extra bold (800) are settled at
+   600 so the whole page has one calm top weight instead of a mix of bold and semibold. */
+[style*="font-weight:700"], [style*="font-weight: 700"], [style*="font-weight:800"], [style*="font-weight: 800"] { font-weight: 600 !important; }
+strong, b { font-weight: 600; }
