@@ -65,15 +65,15 @@ export default function ClientGrid() {
   }, [reducedMotion]);
 
   return (
-    <section aria-labelledby="clients-label" style={{ width: "100%", paddingBottom: 32 }} className="clients-section">
+    <section aria-labelledby="clients-label" style={{ width: "100%", paddingTop: 48, paddingBottom: 32 }} className="clients-section">
       <div style={{ maxWidth: 1200, margin: "0 auto", paddingLeft: 20, paddingRight: 20 }}>
         <p
           id="clients-label"
           style={{
-            fontFamily: "var(--font-inter)",
-            fontWeight: 600,
+            fontFamily: "var(--font-mono)",
+            fontWeight: 400,
             fontSize: 11,
-            letterSpacing: "0.2em",
+            letterSpacing: "0.14em",
             textTransform: "uppercase",
             color: "var(--fg-muted)",
             textAlign: "center",

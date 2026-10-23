@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 import { ArrowUpRight, Send } from "lucide-react";
 import { useLang } from "@/context/LangContext";
+import SpecLabel from "./SpecLabel";
 import FormSuccess from "./FormSuccess";
 import { trackEvent } from "@/lib/gtag";
 import RevealWords, { revealDelayAfter } from "./RevealWords";
@@ -35,12 +36,12 @@ function CopyEmailRow() {
         alignItems: "center",
         justifyContent: "space-between",
         padding: "14px 0",
-        borderBottom: "1px solid rgba(var(--ink), 0.07)",
+        borderBottom: "1px solid rgba(var(--ink), 0.14)",
         textDecoration: "none",
       }}
     >
       <div>
-        <p style={{ fontFamily: "var(--font-inter)", fontSize: 10, letterSpacing: "2px", textTransform: "uppercase", color: "var(--fg-muted)", marginBottom: 3 }}>
+        <p style={{ fontFamily: "var(--font-mono)", fontSize: 10, letterSpacing: "2px", textTransform: "uppercase", color: "var(--fg-muted)", marginBottom: 3 }}>
           Email
         </p>
         <p style={{
@@ -54,8 +55,8 @@ function CopyEmailRow() {
         </p>
       </div>
       <span style={{
-        fontFamily: "var(--font-inter)",
-        fontWeight: 600,
+        fontFamily: "var(--font-mono)",
+        fontWeight: 500,
         fontSize: 10,
         letterSpacing: "1.5px",
         textTransform: "uppercase",
@@ -130,6 +131,9 @@ export default function ContactForm({ variant = "default" }: { variant?: "defaul
     business: "",
   });
 
+  // The send button stays off until the three required fields are filled in (name, a real-looking email, a message)
+  const canSend = form.name.trim().length > 0 && /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(form.email.trim()) && form.message.trim().length > 0;
+
   // The FAQ's "send my question" button fills in the message
   useEffect(() => {
     const onPrefill = (e: Event) => {
@@ -192,7 +196,7 @@ export default function ContactForm({ variant = "default" }: { variant?: "defaul
     letterSpacing: "-0.2px",
     color: "var(--fg)",
     background: "var(--bg)",
-    border: "1px solid rgba(var(--ink), 0.12)",
+    border: "1px solid rgba(var(--ink), 0.14)",
     outline: "none",
     borderRadius: 0,
     appearance: "none",
@@ -203,35 +207,20 @@ export default function ContactForm({ variant = "default" }: { variant?: "defaul
   return (
     <section
       id="contact"
-      className="grid-texture"
       style={{
         width: "100%",
         maxWidth: 1200,
         margin: "0 auto",
         padding: "80px 20px",
-        borderTop: "1px solid rgba(var(--ink), 0.08)",
       }}
     >
+      <SpecLabel text={t("contact.eyebrow")} />
       <div
         className="contact-grid"
         style={{ display: "grid", gridTemplateColumns: "1fr 1.4fr", gap: 80, alignItems: "start" }}
       >
         {/* Left: copy */}
         <div>
-          <motion.p
-            data-reveal
-            style={{
-              fontFamily: "var(--font-inter)",
-              fontWeight: 700,
-              fontSize: 11,
-              letterSpacing: "4px",
-              textTransform: "uppercase",
-              color: "var(--accent-purple)",
-              marginBottom: 16,
-            }}
-          >
-            {t("contact.eyebrow")}
-          </motion.p>
           <motion.h2
             data-reveal
             style={{
@@ -285,12 +274,12 @@ export default function ContactForm({ variant = "default" }: { variant?: "defaul
                   alignItems: "center",
                   justifyContent: "space-between",
                   padding: "14px 0",
-                  borderBottom: "1px solid rgba(var(--ink), 0.07)",
+                  borderBottom: "1px solid rgba(var(--ink), 0.14)",
                   textDecoration: "none",
                 }}
               >
                 <div>
-                  <p style={{ fontFamily: "var(--font-inter)", fontSize: 10, letterSpacing: "2px", textTransform: "uppercase", color: "var(--fg-muted)", marginBottom: 3 }}>
+                  <p style={{ fontFamily: "var(--font-mono)", fontSize: 10, letterSpacing: "2px", textTransform: "uppercase", color: "var(--fg-muted)", marginBottom: 3 }}>
                     {item.label}
                   </p>
                   <p style={{ fontFamily: "var(--font-inter)", fontSize: 14, color: "var(--fg)", letterSpacing: "-0.2px" }}>
@@ -306,6 +295,7 @@ export default function ContactForm({ variant = "default" }: { variant?: "defaul
         {/* Right: form */}
         <motion.div
           data-reveal
+          className="corners"
         >
           {status === "success" ? (
             <FormSuccess title={t("contact.success.title")} desc={t("contact.success.desc")} resetLabel={`Form resets in ${countdown}s`} />
@@ -314,7 +304,7 @@ export default function ContactForm({ variant = "default" }: { variant?: "defaul
               {/* Name + Email */}
               <div className="form-row" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
                 <div>
-                  <label htmlFor="contact-name" style={{ fontFamily: "var(--font-inter)", fontSize: 10, letterSpacing: "2px", textTransform: "uppercase", color: "var(--fg-muted)", display: "block", marginBottom: 8 }}>
+                  <label htmlFor="contact-name" style={{ fontFamily: "var(--font-mono)", fontSize: 10, letterSpacing: "2px", textTransform: "uppercase", color: "var(--fg-muted)", display: "block", marginBottom: 8 }}>
                     {t("contact.label.name")} *
                   </label>
                   <input
@@ -326,11 +316,11 @@ export default function ContactForm({ variant = "default" }: { variant?: "defaul
                     onChange={set("name")}
                     style={inputStyle}
                     onFocus={(e) => (e.target.style.borderColor = "var(--accent-purple)")}
-                    onBlur={(e) => (e.target.style.borderColor = "rgba(var(--ink), 0.12)")}
+                    onBlur={(e) => (e.target.style.borderColor = "rgba(var(--ink), 0.14)")}
                   />
                 </div>
                 <div>
-                  <label htmlFor="contact-email" style={{ fontFamily: "var(--font-inter)", fontSize: 10, letterSpacing: "2px", textTransform: "uppercase", color: "var(--fg-muted)", display: "block", marginBottom: 8 }}>
+                  <label htmlFor="contact-email" style={{ fontFamily: "var(--font-mono)", fontSize: 10, letterSpacing: "2px", textTransform: "uppercase", color: "var(--fg-muted)", display: "block", marginBottom: 8 }}>
                     {t("contact.label.email")} *
                   </label>
                   <input
@@ -342,7 +332,7 @@ export default function ContactForm({ variant = "default" }: { variant?: "defaul
                     onChange={set("email")}
                     style={inputStyle}
                     onFocus={(e) => (e.target.style.borderColor = "var(--accent-purple)")}
-                    onBlur={(e) => (e.target.style.borderColor = "rgba(var(--ink), 0.12)")}
+                    onBlur={(e) => (e.target.style.borderColor = "rgba(var(--ink), 0.14)")}
                   />
                 </div>
               </div>
@@ -350,7 +340,7 @@ export default function ContactForm({ variant = "default" }: { variant?: "defaul
               {/* Small-business page only: which business */}
               {local && (
                 <div>
-                  <label htmlFor="contact-business" style={{ fontFamily: "var(--font-inter)", fontSize: 10, letterSpacing: "2px", textTransform: "uppercase", color: "var(--fg-muted)", display: "block", marginBottom: 8 }}>
+                  <label htmlFor="contact-business" style={{ fontFamily: "var(--font-mono)", fontSize: 10, letterSpacing: "2px", textTransform: "uppercase", color: "var(--fg-muted)", display: "block", marginBottom: 8 }}>
                     {t("contact.label.business")}
                   </label>
                   <input
@@ -362,7 +352,7 @@ export default function ContactForm({ variant = "default" }: { variant?: "defaul
                     maxLength={120}
                     style={inputStyle}
                     onFocus={(e) => (e.target.style.borderColor = "var(--accent-purple)")}
-                    onBlur={(e) => (e.target.style.borderColor = "rgba(var(--ink), 0.12)")}
+                    onBlur={(e) => (e.target.style.borderColor = "rgba(var(--ink), 0.14)")}
                   />
                 </div>
               )}
@@ -370,7 +360,7 @@ export default function ContactForm({ variant = "default" }: { variant?: "defaul
               {/* Service + Budget */}
               <div className="form-row" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
                 <div>
-                  <label htmlFor="contact-service" style={{ fontFamily: "var(--font-inter)", fontSize: 10, letterSpacing: "2px", textTransform: "uppercase", color: "var(--fg-muted)", display: "block", marginBottom: 8 }}>
+                  <label htmlFor="contact-service" style={{ fontFamily: "var(--font-mono)", fontSize: 10, letterSpacing: "2px", textTransform: "uppercase", color: "var(--fg-muted)", display: "block", marginBottom: 8 }}>
                     {t("contact.label.service")}
                   </label>
                   <select
@@ -379,14 +369,14 @@ export default function ContactForm({ variant = "default" }: { variant?: "defaul
                     onChange={set("service")}
                     style={{ ...inputStyle, cursor: "pointer" }}
                     onFocus={(e) => (e.target.style.borderColor = "var(--accent-purple)")}
-                    onBlur={(e) => (e.target.style.borderColor = "rgba(var(--ink), 0.12)")}
+                    onBlur={(e) => (e.target.style.borderColor = "rgba(var(--ink), 0.14)")}
                   >
                     <option value="">{local ? t("contact.opt.choose") : "Select service"}</option>
                     {(local ? LOCAL_SERVICES : services).map((s, i) => <option key={s} value={s}>{local ? t(`contact.svc${i}`) : s}</option>)}
                   </select>
                 </div>
                 <div>
-                  <label htmlFor="contact-budget" style={{ fontFamily: "var(--font-inter)", fontSize: 10, letterSpacing: "2px", textTransform: "uppercase", color: "var(--fg-muted)", display: "block", marginBottom: 8 }}>
+                  <label htmlFor="contact-budget" style={{ fontFamily: "var(--font-mono)", fontSize: 10, letterSpacing: "2px", textTransform: "uppercase", color: "var(--fg-muted)", display: "block", marginBottom: 8 }}>
                     {t("contact.label.budget")}
                   </label>
                   <select
@@ -395,7 +385,7 @@ export default function ContactForm({ variant = "default" }: { variant?: "defaul
                     onChange={set("budget")}
                     style={{ ...inputStyle, cursor: "pointer" }}
                     onFocus={(e) => (e.target.style.borderColor = "var(--accent-purple)")}
-                    onBlur={(e) => (e.target.style.borderColor = "rgba(var(--ink), 0.12)")}
+                    onBlur={(e) => (e.target.style.borderColor = "rgba(var(--ink), 0.14)")}
                   >
                     <option value="">{local ? t("contact.opt.range") : "Select budget"}</option>
                     {(local ? LOCAL_BUDGETS : budgets).map((b, i) => <option key={b} value={b}>{local ? t(`contact.bud${i}`) : b}</option>)}
@@ -405,7 +395,7 @@ export default function ContactForm({ variant = "default" }: { variant?: "defaul
 
               {/* Message */}
               <div>
-                <label htmlFor="contact-message" style={{ fontFamily: "var(--font-inter)", fontSize: 10, letterSpacing: "2px", textTransform: "uppercase", color: "var(--fg-muted)", display: "block", marginBottom: 8 }}>
+                <label htmlFor="contact-message" style={{ fontFamily: "var(--font-mono)", fontSize: 10, letterSpacing: "2px", textTransform: "uppercase", color: "var(--fg-muted)", display: "block", marginBottom: 8 }}>
                   {t("contact.label.message")} *
                 </label>
                 <textarea
@@ -417,7 +407,7 @@ export default function ContactForm({ variant = "default" }: { variant?: "defaul
                   onChange={set("message")}
                   style={{ ...inputStyle, resize: "vertical", minHeight: 130 }}
                   onFocus={(e) => (e.target.style.borderColor = "var(--accent-purple)")}
-                  onBlur={(e) => (e.target.style.borderColor = "rgba(var(--ink), 0.12)")}
+                  onBlur={(e) => (e.target.style.borderColor = "rgba(var(--ink), 0.14)")}
                 />
               </div>
 
@@ -441,15 +431,14 @@ export default function ContactForm({ variant = "default" }: { variant?: "defaul
 
               <button
                 type="submit"
-                disabled={status === "submitting"}
+                disabled={status === "submitting" || !canSend}
+                className="btn-primary"
                 style={{
                   display: "inline-flex",
                   alignItems: "center",
                   justifyContent: "center",
                   gap: 8,
                   padding: "14px 26px",
-                  background: "var(--fg)",
-                  color: "var(--on-fg)",
                   fontFamily: "var(--font-inter)",
                   fontWeight: 600,
                   lineHeight: "20px",
@@ -458,8 +447,8 @@ export default function ContactForm({ variant = "default" }: { variant?: "defaul
                   textTransform: "uppercase",
                   border: "none",
                   borderRadius: 0,
-                  cursor: status === "submitting" ? "not-allowed" : "pointer",
-                  opacity: status === "submitting" ? 0.6 : 1,
+                  cursor: status === "submitting" || !canSend ? "not-allowed" : "pointer",
+                  opacity: status === "submitting" ? 0.6 : canSend ? 1 : 0.4,
                   transition: "opacity 0.2s",
                   alignSelf: "flex-start",
                 }}

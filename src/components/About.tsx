@@ -3,7 +3,9 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight, X, Download } from "lucide-react";
 import MagneticButton from "./MagneticButton";
+import Term, { TERM_CSS } from "./Term";
 import { useLang } from "@/context/LangContext";
+import SpecLabel from "./SpecLabel";
 
 const PHOTO_W = 380;
 const PHOTO_H = 300;
@@ -117,15 +119,26 @@ function TechTag({ label }: { label: string }) {
   );
 }
 
-// The first roles show; the rest open on request, so the page stays short.
-const HISTORY_SHOWN = 2;
+// Side projects named inside the text. Hovering a name shows a small card; no big section of their own.
+const SIDE_PROJECTS = [
+  { name: "CVCraft", label: "AI tool", stack: ["Claude API", "Next.js"], href: "https://cvcraftai.vercel.app/" },
+  { name: "Video Compressor", label: "Utility", stack: ["Next.js", "FFmpeg WASM"], href: "https://video-compressor-bay.vercel.app/" },
+  { name: "MeetBot", label: "Chrome extension", stack: ["Recall.ai", "Claude AI"], href: "#" },
+];
+
+// Three recent teams named inside the text (workHistory rows 1 to 3; row 0 is the freelance work the paragraphs are about).
+const RECENT_TEAMS = [1, 2, 3];
+
+// "Teams at {0}, {1} and {2}": the translated sentence with the hoverable names put in place of {0} {1} {2}.
+function fillSentence(template: string, nodes: React.ReactNode[]): React.ReactNode[] {
+  return template.split(/\{(\d)\}/).map((part, i) => (i % 2 === 1 ? <span key={i}>{nodes[Number(part)]}</span> : part));
+}
 
 // The photo library is hidden everywhere for now: pass `gallery` to bring it back.
 export default function About({ gallery = false }: { gallery?: boolean }) {
   const { t } = useLang();
   const tr = (key: string, fallback: string) => { const v = t(key); return v === key ? fallback : v; };
   const [lightbox, setLightbox] = useState<number | null>(null);
-  const [fullHistory, setFullHistory] = useState(false);
 
   const lbPrev = () => setLightbox((p) => (p !== null ? (p - 1 + photos.length) % photos.length : 0));
   const lbNext = () => setLightbox((p) => (p !== null ? (p + 1) % photos.length : 0));
@@ -147,21 +160,9 @@ export default function About({ gallery = false }: { gallery?: boolean }) {
       style={{ width: "100%", maxWidth: 1200, margin: "0 auto", padding: "80px 20px" }}
     >
       <style>{MARQUEE_CSS}</style>
+      <style>{TERM_CSS}</style>
 
-      <motion.p
-        data-reveal
-        style={{
-          fontFamily: "var(--font-inter)",
-          fontWeight: 700,
-          fontSize: 11,
-          letterSpacing: "4px",
-          textTransform: "uppercase",
-          color: "var(--accent-purple)",
-          marginBottom: 16,
-        }}
-      >
-        {t("about.eyebrow")}
-      </motion.p>
+      <SpecLabel text={t("about.eyebrow")} />
 
       <div className="about-columns" style={{ display: "flex", gap: 80, alignItems: "flex-start", flexWrap: "wrap" }}>
         {/* Left: Bio */}
@@ -199,174 +200,98 @@ export default function About({ gallery = false }: { gallery?: boolean }) {
           >
             <p>{t("about.p1")}</p>
             <p>{t("about.p2")}</p>
-          </motion.div>
-
-          {/* Tech stacks */}
-          <motion.div
-            data-reveal
-            style={{ marginTop: 40 }}
-          >
-            <p style={{
-              fontFamily: "var(--font-inter)",
-              fontWeight: 700,
-              fontSize: 11,
-              letterSpacing: "4px",
-              textTransform: "uppercase",
-              color: "var(--accent-purple)",
-              marginBottom: 16,
-            }}>
-              {t("about.techLabel")}
+            <p>
+              {fillSentence(t("about.p3"), RECENT_TEAMS.map((i) => (
+                <Term key={i} tip={(
+                  <>
+                    <b>{tr(`wh${i}.role`, workHistory[i].role)}</b>
+                    <span>{tr(`wh${i}.period`, workHistory[i].period)} · {tr(`wh${i}.location`, workHistory[i].location)}</span>
+                    {workHistory[i].points?.[0] && <span>{tr(`wh${i}.p0`, workHistory[i].points![0])}</span>}
+                  </>
+                )}>
+                  {tr(`wh${i}.company`, workHistory[i].company)}
+                </Term>
+              )))}
             </p>
-            <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
-              {techStacks.map((tech) => (
-                <TechTag key={tech} label={tech} />
-              ))}
-            </div>
-          </motion.div>
-
-          {/* CV download */}
-          <motion.div
-            data-reveal
-            style={{ marginTop: 32 }}
-          >
-            <MagneticButton
-              href="/samuel-adefila-cv.pdf"
-              download
-              style={{
-                fontFamily: "var(--font-inter)",
-                fontWeight: 600,
-                lineHeight: "20px",
-                fontSize: 13,
-                letterSpacing: "0.5px",
-                textTransform: "uppercase",
-                color: "var(--fg)",
-                background: "transparent",
-                border: "1px solid rgba(var(--ink), 0.2)",
-                padding: "13px 25px",
-                textDecoration: "none",
-                alignItems: "center",
-                gap: 8,
-                transition: "background 0.2s ease, border-color 0.2s ease, color 0.2s ease",
-              }}
-              onMouseEnter={(e: React.MouseEvent<HTMLAnchorElement>) => {
-                e.currentTarget.style.background = "var(--fg)";
-                e.currentTarget.style.borderColor = "var(--fg)";
-                e.currentTarget.style.color = "var(--on-fg)";
-              }}
-              onMouseLeave={(e: React.MouseEvent<HTMLAnchorElement>) => {
-                e.currentTarget.style.background = "transparent";
-                e.currentTarget.style.borderColor = "rgba(var(--ink), 0.2)";
-                e.currentTarget.style.color = "var(--fg)";
-              }}
-            >
-              {t("hero.downloadCv")} <Download size={13} strokeWidth={2} />
-            </MagneticButton>
+            <p>
+              {fillSentence(t("about.p4"), SIDE_PROJECTS.map((p) => (
+                <Term key={p.name} tip={(
+                  <>
+                    <b>{p.name}</b>
+                    <span>{p.label} · {p.stack.join(", ")}</span>
+                    {p.href !== "#" && <a href={p.href} target="_blank" rel="noopener noreferrer">{t("about.viewProject")}</a>}
+                  </>
+                )}>
+                  {p.name}
+                </Term>
+              )))}
+            </p>
           </motion.div>
         </div>
 
-        {/* Right: Work history */}
-        <motion.div
-          data-reveal
-          style={{ flex: 1, minWidth: 260 }}
-        >
-          <p style={{
-            fontFamily: "var(--font-inter)",
-            fontWeight: 700,
-            fontSize: 11,
-            letterSpacing: "4px",
-            textTransform: "uppercase",
-            color: "var(--accent-purple)",
-            marginBottom: 24,
-          }}>
-            {t("about.historyLabel")}
-          </p>
-          {/* Timeline: a line down the left with a dot per role; the current role is highlighted */}
-          <ol style={{ position: "relative", listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column" }}>
-            <span aria-hidden="true" style={{ position: "absolute", left: 5, top: 28, bottom: 28, width: 1, background: "rgba(var(--ink), 0.12)" }} />
-            {(fullHistory ? workHistory : workHistory.slice(0, HISTORY_SHOWN)).map((job, i) => {
-              const current = i === 0; // the first role is the one that is still going
-              return (
-              <li key={i} style={{ position: "relative", padding: "24px 0 24px 32px" }}>
-                <span
-                  aria-hidden="true"
-                  className={current ? "timeline-dot timeline-dot-current" : "timeline-dot"}
-                  style={{
-                    position: "absolute", left: 0, top: 24,
-                    width: 11, height: 11, borderRadius: "50%",
-                    background: current ? "var(--accent-purple)" : "var(--bg)",
-                    border: `2px solid ${current ? "var(--accent-purple)" : "rgba(var(--ink), 0.25)"}`,
-                  }}
-                />
-                <p style={{
-                  fontFamily: "var(--font-inter)",
-                  fontSize: 11,
-                  color: current ? "var(--accent-purple)" : "var(--fg-muted)",
-                  fontWeight: current ? 600 : 400,
-                  marginBottom: 8,
-                  letterSpacing: "0.02em",
-                  textTransform: "uppercase",
-                  display: "flex", alignItems: "center", gap: 8,
-                }}>
-                  {tr(`wh${i}.period`, job.period)}
-                  {current && (
-                    <span style={{ fontSize: 9, fontWeight: 700, letterSpacing: "0.12em", color: "#fff", background: "var(--accent-purple)", padding: "2px 6px" }}>
-                      {t("wh.now")}
-                    </span>
-                  )}
-                </p>
-                <p style={{
+        {/* Right: tools and CV */}
+        <div style={{ flex: 1, minWidth: 260 }}>
+            {/* Tech stacks */}
+            <motion.div
+              data-reveal
+              style={{ marginTop: 0 }}
+            >
+              <p style={{
+                fontFamily: "var(--font-mono)",
+                fontWeight: 700,
+                fontSize: 11,
+                letterSpacing: "4px",
+                textTransform: "uppercase",
+                color: "var(--accent-purple)",
+                marginBottom: 16,
+              }}>
+                {t("about.techLabel")}
+              </p>
+              <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+                {techStacks.map((tech) => (
+                  <TechTag key={tech} label={tech} />
+                ))}
+              </div>
+            </motion.div>
+  
+            {/* CV download */}
+            <motion.div
+              data-reveal
+              style={{ marginTop: 32 }}
+            >
+              <MagneticButton
+                href="/samuel-adefila-cv.pdf"
+                download
+              className="btn-ticks"
+                style={{
                   fontFamily: "var(--font-inter)",
                   fontWeight: 600,
-                  fontSize: 14,
-                  color: "var(--fg)",
-                  marginBottom: 2,
-                  letterSpacing: "-0.3px",
+                  lineHeight: "20px",
+                  fontSize: 13,
+                  letterSpacing: "0.5px",
                   textTransform: "uppercase",
-                }}>
-                  {tr(`wh${i}.role`, job.role)}
-                </p>
-                <p style={{ fontFamily: "var(--font-inter)", fontSize: 13, color: "var(--fg-secondary)", letterSpacing: "-0.2px" }}>
-                  {tr(`wh${i}.company`, job.company)}
-                  <span style={{ fontFamily: "var(--font-inter)", fontSize: 11, color: "var(--fg-muted)", letterSpacing: "0.01em", marginLeft: 6 }}>
-                    · {tr(`wh${i}.location`, job.location)}
-                  </span>
-                </p>
-                {job.points?.length ? (
-                  <ul style={{ listStyle: "none", margin: "12px 0 0", padding: 0, display: "grid", gap: 8 }}>
-                    {job.points.map((point, j) => (
-                      <li
-                        key={point}
-                        style={{
-                          position: "relative", paddingLeft: 14,
-                          fontFamily: "var(--font-inter)", fontSize: 13, lineHeight: 1.55,
-                          color: "var(--fg-secondary)", letterSpacing: "-0.1px",
-                        }}
-                      >
-                        <span aria-hidden="true" style={{ position: "absolute", left: 0, top: 8, width: 5, height: 1.5, background: "rgba(var(--ink), 0.35)" }} />
-                        {tr(`wh${i}.p${j}`, point)}
-                      </li>
-                    ))}
-                  </ul>
-                ) : null}
-              </li>
-              );
-            })}
-          </ol>
-          {workHistory.length > HISTORY_SHOWN && (
-            <button
-              type="button"
-              onClick={() => setFullHistory(v => !v)}
-              aria-expanded={fullHistory}
-              style={{
-                marginTop: 8, marginLeft: 32, background: "transparent", border: 0, padding: "4px 0", cursor: "pointer",
-                fontFamily: "var(--font-inter)", fontWeight: 600, fontSize: 12, letterSpacing: "0.08em", textTransform: "uppercase",
-                color: "var(--accent-purple)", borderBottom: "1px solid currentColor",
-              }}
-            >
-              {fullHistory ? t("wh.less") : t("wh.more").replace("{n}", String(workHistory.length - HISTORY_SHOWN))}
-            </button>
-          )}
-        </motion.div>
+                  color: "var(--fg)",
+                  background: "transparent",
+                  border: "1px solid rgba(var(--ink), 0.2)",
+                  padding: "13px 25px",
+                  textDecoration: "none",
+                  alignItems: "center",
+                  gap: 8,
+                  transition: "background 0.2s ease, border-color 0.2s ease, color 0.2s ease",
+                }}
+                onMouseEnter={(e: React.MouseEvent<HTMLAnchorElement>) => {
+                  e.currentTarget.style.background = "var(--btn-bg)"; e.currentTarget.style.borderColor = "var(--btn-bg)"; e.currentTarget.style.color = "#fff";
+                }}
+                onMouseLeave={(e: React.MouseEvent<HTMLAnchorElement>) => {
+                  e.currentTarget.style.background = "transparent";
+                  e.currentTarget.style.borderColor = "rgba(var(--ink), 0.2)";
+                  e.currentTarget.style.color = "var(--fg)";
+                }}
+              >
+                {t("hero.downloadCv")} <Download size={13} strokeWidth={2} />
+              </MagneticButton>
+            </motion.div>
+        </div>
       </div>
 
       {gallery && (
@@ -377,7 +302,7 @@ export default function About({ gallery = false }: { gallery?: boolean }) {
         style={{ marginTop: 64 }}
       >
         <p style={{
-          fontFamily: "var(--font-inter)",
+          fontFamily: "var(--font-mono)",
           fontWeight: 700,
           fontSize: 11,
           letterSpacing: "4px",

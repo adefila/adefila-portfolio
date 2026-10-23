@@ -10,6 +10,7 @@ import FAQ from "@/components/FAQ";
 import ContactForm from "@/components/ContactForm";
 import Footer from "@/components/Footer";
 import ScrollReveal from "@/components/ScrollReveal";
+import SpecNumbers from "@/components/SpecNumbers";
 import ClickTracking from "@/components/ClickTracking";
 import MobileCTA from "@/components/MobileCTA";
 import BookingPopup from "@/components/BookingPopup";
@@ -31,21 +32,32 @@ export default function LocalBusinessPage() {
   return (
     <main style={{ background: "var(--bg)", minHeight: "100vh", overflowX: "hidden", width: "100%" }}>
       <ScrollReveal />
+      <SpecNumbers />
       <ClickTracking />
       <BookingPopup />
       <LocalCopy>
         <Navbar hide={["#about"]} />
         <Hero altHref="/" />
+        <div className="spec-rule" aria-hidden="true" />
         <ClientGrid />
+        <div className="spec-rule" aria-hidden="true" />
         <Systems />
+        <div className="spec-rule" aria-hidden="true" />
         <ConceptWork />
+        <div className="spec-rule" aria-hidden="true" />
         <WhyMe />
+        <div className="spec-rule" aria-hidden="true" />
         <HowIWork />
+        <div className="spec-rule" aria-hidden="true" />
         <Pricing prices={[500, 1500, 2000]} />
         <TermsStrip />
+        <div className="spec-rule" aria-hidden="true" />
         <Testimonials />
+        <div className="spec-rule" aria-hidden="true" />
         <FAQ />
+        <div className="spec-rule" aria-hidden="true" />
         <ContactForm variant="local" />
+        <div className="spec-rule" aria-hidden="true" />
         <Footer />
         <MobileCTA />
       </LocalCopy>

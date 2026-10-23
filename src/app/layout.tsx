@@ -1,10 +1,12 @@
 ﻿import type { Metadata } from "next";
-import { Geist } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
 // One typeface for the whole site. The latin-ext subset covers the accents of French, Spanish, German and Portuguese
 // and the dotted letters and tone marks of Yoruba; Chinese and Japanese fall back to the visitor's system font.
 const geist = Geist({ subsets: ["latin", "latin-ext"], variable: "--font-geist", display: "swap" });
+// The second voice: small technical labels (section numbers, tags, years). Used sparingly.
+const geistMono = Geist_Mono({ subsets: ["latin"], variable: "--font-geist-mono", display: "swap" });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://adefilasamuel.com"),
@@ -114,7 +116,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={geist.variable} suppressHydrationWarning>
+    <html lang="en" className={`${geist.variable} ${geistMono.variable}`} suppressHydrationWarning>
       <head>
         <meta name="theme-color" content="#0f0f0f" />
         <meta name="color-scheme" content="light dark" />

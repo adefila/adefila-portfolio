@@ -2,6 +2,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useMemo, useState } from "react";
 import { useLang } from "@/context/LangContext";
+import SpecLabel from "./SpecLabel";
 import RevealWords, { revealDelayAfter } from "./RevealWords";
 
 type Faq = { q: string; a: string; i: number };
@@ -26,18 +27,13 @@ export default function FAQ() {
       id="faq"
       style={{ width: "100%", maxWidth: 1200, margin: "0 auto", padding: "80px 20px" }}
     >
+      <SpecLabel text={t("faq.eyebrow").replace(/\s*\.\s*/g, "")} />
       <div
         className="faq-grid"
         style={{ display: "grid", gridTemplateColumns: "1fr 1.1fr", gap: "0 80px", alignItems: "start" }}
       >
         {/* Left: heading */}
         <div className="faq-left" style={{ position: "sticky", top: 120 }}>
-          <motion.p
-            data-reveal
-            style={{ fontFamily: "var(--font-inter)", fontWeight: 700, fontSize: 11, letterSpacing: "4px", textTransform: "uppercase", color: "var(--accent-purple)", marginBottom: 16 }}
-          >
-            {t("faq.eyebrow")}
-          </motion.p>
           <motion.h2
             data-reveal
             style={{ fontFamily: "var(--font-poppins)", fontWeight: 700, fontSize: "clamp(28px, 3.5vw, 48px)", letterSpacing: "-1px", lineHeight: 1.05, textTransform: "uppercase", color: "var(--fg)", marginBottom: 16 }}
@@ -60,7 +56,7 @@ export default function FAQ() {
         {/* Right: the list, then a box to type your own question; the reply fills in underneath as you type */}
         <div>
           {/* Full list: compact rows */}
-          <div style={{ borderTop: "1px solid rgba(var(--ink), 0.07)" }}>
+          <div style={{ borderTop: "1px solid rgba(var(--ink), 0.14)" }}>
             {faqs.map((faq, n) => {
               const isOpen = openIndex === faq.i;
               return (
@@ -68,7 +64,7 @@ export default function FAQ() {
                   key={faq.i}
                   data-reveal
                   style={{
-                    borderBottom: "1px solid rgba(var(--ink), 0.07)",
+                    borderBottom: "1px solid rgba(var(--ink), 0.14)",
                     padding: "0 14px",
                     background: isOpen ? "rgba(109,40,217,0.025)" : "transparent",
                     transition: "background 0.25s ease",
@@ -80,7 +76,7 @@ export default function FAQ() {
                     style={{ display: "flex", alignItems: "center", justifyContent: "space-between", width: "100%", padding: isOpen ? "16px 0 8px" : "16px 0", background: "none", border: "none", cursor: "pointer", gap: 20, textAlign: "left" }}
                   >
                     <div style={{ display: "flex", alignItems: "center", gap: 14, minWidth: 0, flex: 1 }}>
-                      <span style={{ fontFamily: "var(--font-inter)", fontSize: 10, letterSpacing: "0.5px", color: isOpen ? "var(--accent-purple)" : "rgba(var(--ink), 0.2)", flexShrink: 0, transition: "color 0.2s", fontVariantNumeric: "tabular-nums", minWidth: 20 }}>
+                      <span style={{ fontFamily: "var(--font-mono)", fontSize: 11, letterSpacing: "0.5px", color: isOpen ? "var(--accent-purple)" : "var(--fg-muted)", flexShrink: 0, transition: "color 0.2s", fontVariantNumeric: "tabular-nums", minWidth: 20 }}>
                         {String(n + 1).padStart(2, "0")}
                       </span>
                       <span style={{ fontFamily: "var(--font-inter)", fontWeight: 600, fontSize: 13, letterSpacing: "0.3px", color: isOpen ? "var(--accent-purple)" : "var(--fg)", textTransform: "uppercase", transition: "color 0.2s" }}>

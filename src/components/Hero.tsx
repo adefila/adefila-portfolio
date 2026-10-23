@@ -64,21 +64,6 @@ export default function Hero({ workHref = "#work", altHref = "/local-business" }
           pointerEvents: "none",
         }}
       />
-      <div
-        aria-hidden="true"
-        className="hero-glow"
-        style={{
-          position: "absolute",
-          top: "8%",
-          right: "6%",
-          width: 520,
-          height: 520,
-          borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(109,40,217,0.12) 0%, rgba(0,171,74,0.05) 40%, rgba(247,247,247,0) 70%)",
-          pointerEvents: "none",
-        }}
-      />
-
       <div className="hero-grid" style={{ position: "relative", zIndex: 1, maxWidth: 1200, margin: "0 auto", paddingLeft: 20, paddingRight: 20 }}>
         <div>
           <div
@@ -89,11 +74,11 @@ export default function Hero({ workHref = "#work", altHref = "/local-business" }
               <span style={{ position: "absolute", inset: 0, borderRadius: "50%", background: "var(--accent-green)", animation: "pulseRipple 2s ease-out infinite" }} />
               <span style={{ width: 8, height: 8, borderRadius: "50%", background: "var(--accent-green)", display: "block", position: "relative", zIndex: 1 }} />
             </span>
-            <span style={{ fontFamily: "var(--font-inter)", fontWeight: 600, fontSize: 11, letterSpacing: "0.08em", textTransform: "uppercase", color: "var(--accent-green-text)" }}>
+            <span style={{ fontFamily: "var(--font-mono)", fontWeight: 500, fontSize: 11, letterSpacing: "0.08em", textTransform: "uppercase", color: "var(--accent-green-text)" }}>
               {t("hero.badge").replace("{count}", String(SPOTS_OPEN))}
             </span>
             <span style={{ width: 3, height: 3, borderRadius: "50%", background: "var(--fg-muted)", display: "inline-block" }} />
-            <span style={{ fontFamily: "var(--font-inter)", fontWeight: 500, fontSize: 11, letterSpacing: "0.06em", textTransform: "uppercase", color: "var(--fg-secondary)" }}>
+            <span style={{ fontFamily: "var(--font-mono)", fontWeight: 400, fontSize: 11, letterSpacing: "0.06em", textTransform: "uppercase", color: "var(--fg-secondary)" }}>
               {t("hero.badge2").replace("{date}", nextStart)}
             </span>
           </div>
@@ -149,20 +134,14 @@ export default function Hero({ workHref = "#work", altHref = "/local-business" }
             {t("hero.subtitle")}
           </p>
 
-          <p
-            style={{
-              fontFamily: "var(--font-inter)",
-              fontWeight: 500,
-              fontSize: 11,
-              letterSpacing: "0.08em",
-              textTransform: "uppercase",
-              color: "var(--fg-muted)",
-              marginBottom: 32,
-              animation: `heroFadeUp 0.6s 0.42s ${EASE} both`,
-            }}
+          <div
+            className="hero-proof"
+            style={{ marginBottom: 32, animation: `heroFadeUp 0.6s 0.42s ${EASE} both` }}
           >
-            {t("hero.proof")}
-          </p>
+            {t("hero.proof").split("·").map((cell) => cell.trim()).filter(Boolean).map((cell) => (
+              <span key={cell} className="spec-cell">{cell}</span>
+            ))}
+          </div>
 
           <div
             className="hero-cta"
@@ -172,14 +151,13 @@ export default function Hero({ workHref = "#work", altHref = "/local-business" }
               href={BOOKING_URL}
               target="_blank"
               rel="noopener noreferrer"
+              className="btn-primary"
               style={{
-                fontFamily: "var(--font-inter)",
-                fontWeight: 600,
+                fontFamily: "var(--font-mono)",
+                fontWeight: 500,
                 textTransform: "uppercase",
                 lineHeight: "20px",
                 fontSize: 13,
-                color: "var(--on-fg)",
-                background: "var(--fg)",
                 padding: "14px 26px",
                 borderRadius: 0,
                 textDecoration: "none",
@@ -192,9 +170,10 @@ export default function Hero({ workHref = "#work", altHref = "/local-business" }
             </MagneticButton>
             <MagneticButton
               href={workHref}
+              className="btn-ticks"
               style={{
-                fontFamily: "var(--font-inter)",
-                fontWeight: 600,
+                fontFamily: "var(--font-mono)",
+                fontWeight: 500,
                 fontSize: 13,
                 color: "var(--fg)",
                 background: "transparent",
@@ -210,9 +189,9 @@ export default function Hero({ workHref = "#work", altHref = "/local-business" }
                 transition: "background 0.2s ease, border-color 0.2s ease, color 0.2s ease",
               }}
               onMouseEnter={(e: React.MouseEvent<HTMLAnchorElement>) => {
-                e.currentTarget.style.background = "var(--fg)";
-                e.currentTarget.style.borderColor = "var(--fg)";
-                e.currentTarget.style.color = "var(--on-fg)";
+                e.currentTarget.style.background = "var(--btn-bg)";
+                e.currentTarget.style.borderColor = "var(--btn-bg)";
+                e.currentTarget.style.color = "#fff";
               }}
               onMouseLeave={(e: React.MouseEvent<HTMLAnchorElement>) => {
                 e.currentTarget.style.background = "transparent";
@@ -244,7 +223,7 @@ export default function Hero({ workHref = "#work", altHref = "/local-business" }
           className="hero-portrait"
           style={{ position: "relative", width: "100%", maxWidth: 420, justifySelf: "end", animation: `heroFadeUp 0.6s 0.1s ${EASE} both` }}
         >
-          <div className="hero-portrait-box" style={{ position: "relative", width: "100%", aspectRatio: "5 / 6", overflow: "hidden", background: "var(--surface)" }}>
+          <div className="hero-portrait-box" style={{ position: "relative", width: "100%", aspectRatio: "5 / 6", overflow: "hidden", background: "var(--surface)", border: "1px solid rgba(var(--ink), 0.2)" }}>
             <Image
               src="/samuel-portrait.webp"
               alt="Samuel Adefila"
@@ -255,7 +234,10 @@ export default function Hero({ workHref = "#work", altHref = "/local-business" }
               style={{ objectFit: "cover", objectPosition: "50% 30%" }}
             />
           </div>
-
+          {/* registration marks around the figure, and a caption */}
+          <span aria-hidden="true" className="fig-corner" style={{ top: -7, left: -7, borderTopWidth: 1, borderLeftWidth: 1 }} />
+          <span aria-hidden="true" className="fig-corner" style={{ top: -7, right: -7, borderTopWidth: 1, borderRightWidth: 1 }} />
+          <p className="fig-caption"><span>Fig. 01</span><span>Samuel Adefila</span></p>
         </div>
       </div>
     </section>

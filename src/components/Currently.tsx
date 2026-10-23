@@ -44,7 +44,7 @@ export default function Currently() {
       id="currently"
       style={{ width: "100%", maxWidth: 1200, margin: "0 auto", padding: "0 20px 80px" }}
     >
-      <div style={{ borderTop: "1px solid rgba(var(--ink), 0.08)", paddingTop: 56 }}>
+      <div style={{ borderTop: "1px solid rgba(var(--ink), 0.14)", paddingTop: 56 }}>
 
         {/* Section label */}
         <motion.p

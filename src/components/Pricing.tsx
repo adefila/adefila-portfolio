@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { Check, ArrowUpRight, ChevronDown } from "lucide-react";
 import { useLang } from "@/context/LangContext";
+import SpecLabel from "./SpecLabel";
 import RevealWords, { revealDelayAfter } from "./RevealWords";
 import { BOOKING_URL } from "@/lib/booking";
 
@@ -45,23 +46,17 @@ export default function Pricing({ prices }: { prices?: [number, number, number] 
       id="pricing"
       style={{ width: "100%", maxWidth: 1200, margin: "0 auto", padding: "80px 20px" }}
     >
+      <SpecLabel text={t("pricing.eyebrow")} />
       {/* Header */}
       <div
         className="pricing-header"
         style={{
           display: "flex", gap: 80, alignItems: "flex-end",
           flexWrap: "wrap", marginBottom: 48,
-          borderBottom: "1px solid rgba(var(--ink), 0.08)", paddingBottom: 32,
+          borderBottom: "1px solid rgba(var(--ink), 0.14)", paddingBottom: 32,
         }}
       >
         <div data-reveal style={{ flex: "1 1 360px" }}>
-          <p style={{
-            fontFamily: "var(--font-inter)", fontWeight: 700, fontSize: 11,
-            letterSpacing: "4px", textTransform: "uppercase",
-            color: "var(--accent-purple)", marginBottom: 16,
-          }}>
-            {t("pricing.eyebrow")}
-          </p>
           <h2 style={{
             fontFamily: "var(--font-poppins)", fontWeight: 700,
             fontSize: "clamp(28px, 3.5vw, 48px)", letterSpacing: "-1px",
@@ -81,6 +76,8 @@ export default function Pricing({ prices }: { prices?: [number, number, number] 
         </p>
       </div>
 
+      {/* The plans and the add-ons strip are one block, framed by the corner marks at its four corners */}
+      <div className="corners">
       {/* Plans */}
       <div
         className="pricing-grid"
@@ -88,9 +85,9 @@ export default function Pricing({ prices }: { prices?: [number, number, number] 
           display: "grid",
           gridTemplateColumns: "repeat(3, 1fr)",
           gap: 1,
-          background: "rgba(var(--ink), 0.06)",
-          border: "1px solid rgba(var(--ink), 0.06)",
-          marginBottom: 1,
+          background: "rgba(var(--ink), 0.14)",
+          border: "1px solid rgba(var(--ink), 0.14)",
+          marginBottom: 0,
         }}
       >
         {plans.map((plan) => {
@@ -105,7 +102,7 @@ export default function Pricing({ prices }: { prices?: [number, number, number] 
             }}
           >
             <p style={{
-              fontFamily: "var(--font-inter)",
+              fontFamily: "var(--font-mono)",
               fontWeight: 700,
               fontSize: 10,
               letterSpacing: "2.5px",
@@ -160,7 +157,7 @@ export default function Pricing({ prices }: { prices?: [number, number, number] 
               letterSpacing: "-0.2px",
               marginBottom: 24,
               paddingBottom: 24,
-              borderBottom: `1px solid ${plan.featured ? "rgba(255,255,255,0.1)" : "rgba(var(--ink), 0.07)"}`,
+              borderBottom: `1px solid ${plan.featured ? "rgba(255,255,255,0.14)" : "rgba(var(--ink), 0.14)"}`,
             }}>
               {plan.desc}
             </p>
@@ -192,14 +189,13 @@ export default function Pricing({ prices }: { prices?: [number, number, number] 
               data-track-label={plan.name}
               target="_blank"
               rel="noopener noreferrer"
+              className="btn-primary"
               style={{
                 display: "inline-flex",
                 alignItems: "center",
                 justifyContent: "center",
                 gap: 6,
                 padding: "14px 20px",
-                background: plan.featured ? "var(--accent-purple)" : "var(--fg)",
-                color: plan.featured ? "#fff" : "var(--on-fg)",
                 fontFamily: "var(--font-inter)",
                 fontWeight: 600,
                 lineHeight: "20px",
@@ -207,10 +203,7 @@ export default function Pricing({ prices }: { prices?: [number, number, number] 
                 letterSpacing: "0.5px",
                 textDecoration: "none",
                 textTransform: "uppercase",
-                transition: "opacity 0.2s",
               }}
-              onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.85")}
-              onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
             >
               {t("pricing.cta")}
               <ArrowUpRight size={14} strokeWidth={2} />
@@ -235,8 +228,8 @@ export default function Pricing({ prices }: { prices?: [number, number, number] 
         data-reveal
         style={{
           display: "grid", gridTemplateColumns: "repeat(4, 1fr)",
-          gap: 1, background: "rgba(var(--ink), 0.06)",
-          border: "1px solid rgba(var(--ink), 0.06)", borderTop: "none",
+          gap: 1, background: "rgba(var(--ink), 0.14)",
+          border: "1px solid rgba(var(--ink), 0.14)", borderTop: "none",
         }}
       >
         {addons.map((addon, i) => (
@@ -260,7 +253,7 @@ export default function Pricing({ prices }: { prices?: [number, number, number] 
               {addon.label}
             </span>
             <span style={{
-              fontFamily: "var(--font-inter)",
+              fontFamily: "var(--font-mono)",
               fontWeight: 600,
               fontSize: 13,
               color: "var(--fg)",
@@ -271,6 +264,7 @@ export default function Pricing({ prices }: { prices?: [number, number, number] 
             </span>
           </div>
         ))}
+      </div>
       </div>
 
       {/* Promises: the risk-reversal right where people decide */}

@@ -3,15 +3,15 @@ import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import { useLang } from "@/context/LangContext";
 import RevealWords from "@/components/RevealWords";
+import SpecLabel from "@/components/SpecLabel";
 import { BookingIllustration, QuoteIllustration, ReviewIllustration, SiteIllustration } from "./Illustrations";
 
 // The sections that belong to /local-business alone. Every word comes from the page's translations
 // (src/i18n/local-business), so they follow the visitor's language like the rest of the page.
 
-const eyebrowStyle = { fontFamily: "var(--font-inter)", fontWeight: 700, fontSize: 11, letterSpacing: "4px", textTransform: "uppercase", color: "var(--accent-purple)", marginBottom: 16 } as const;
 const h2Style = { fontFamily: "var(--font-poppins)", fontWeight: 700, fontSize: "clamp(28px, 3.5vw, 48px)", letterSpacing: "-1px", lineHeight: 1.05, textTransform: "uppercase", color: "var(--fg)" } as const;
 const bodyStyle = { fontFamily: "var(--font-inter)", fontSize: 14, lineHeight: 1.65, letterSpacing: "-0.2px", color: "var(--fg-secondary)", margin: 0, maxWidth: 520 } as const;
-const chip = { fontFamily: "var(--font-inter)", fontWeight: 500, fontSize: 10, letterSpacing: "0.8px", textTransform: "uppercase", color: "var(--fg-secondary)", background: "rgba(var(--ink), 0.04)", border: "1px solid rgba(var(--ink), 0.08)", padding: "3px 9px" } as const;
+const chip = { fontFamily: "var(--font-mono)", fontWeight: 400, fontSize: 10, letterSpacing: "0.8px", textTransform: "uppercase", color: "var(--fg-secondary)", background: "rgba(var(--ink), 0.04)", border: "1px solid rgba(var(--ink), 0.08)", padding: "3px 9px" } as const;
 const cardTitle = { fontFamily: "var(--font-poppins)", fontWeight: 700, fontSize: "clamp(15px, 1.2vw, 18px)", letterSpacing: "-0.4px", textTransform: "uppercase", color: "var(--fg)", margin: 0 } as const;
 
 const SYSTEMS = [
@@ -26,8 +26,8 @@ export function Systems() {
   const { t } = useLang();
   return (
     <section id="work" style={{ width: "100%", maxWidth: 1200, margin: "0 auto", padding: "80px 20px" }}>
+      <SpecLabel text={t("lb.sys.eyebrow")} />
       <div className="lb-sec-head" style={{ marginBottom: 48 }}>
-        <p data-reveal style={eyebrowStyle}>{t("lb.sys.eyebrow")}</p>
         <h2 style={h2Style}>
           <RevealWords text={t("lb.sys.h1")} />{" "}
           <span style={{ color: "rgb(163,163,163)" }}><RevealWords text={t("lb.sys.h2")} delay={0.1} /></span>
@@ -82,10 +82,10 @@ const CONCEPTS = [
 export function ConceptWork() {
   const { t } = useLang();
   return (
-    <section id="concept" style={{ width: "100%", maxWidth: 1200, margin: "0 auto", padding: "0 20px 80px" }}>
+    <section id="concept" style={{ width: "100%", maxWidth: 1200, margin: "0 auto", padding: "80px 20px" }}>
+      <SpecLabel text={t("lb.concept.eyebrow")} />
       <div className="lb-head lb-sec-head" style={{ marginBottom: 48 }}>
         <div>
-          <p data-reveal style={eyebrowStyle}>{t("lb.concept.eyebrow")}</p>
           <h2 style={h2Style}>
             <RevealWords text={t("lb.concept.h1")} />{" "}
             <span style={{ color: "rgb(163,163,163)" }}><RevealWords text={t("lb.concept.h2")} delay={0.1} /></span>

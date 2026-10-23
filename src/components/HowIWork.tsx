@@ -1,6 +1,7 @@
 "use client";
 import { useRef, useEffect, useState, useCallback } from "react";
 import { useLang } from "@/context/LangContext";
+import SpecLabel from "./SpecLabel";
 import { useThemeDark } from "./ThemeToggle";
 import RevealWords, { revealDelayAfter } from "./RevealWords";
 
@@ -125,10 +126,10 @@ export default function HowIWork() {
   const fgSub   = isDark ? "rgba(255,255,255,0.80)" : "#4b5563";
   const fgMuted = isDark ? "rgba(255,255,255,0.62)" : "#5c6474";
   const fgGhost = isDark ? "rgba(255,255,255,0.08)" : "rgba(var(--ink), 0.05)";
-  const border  = isDark ? "rgba(255,255,255,0.12)" : "rgba(var(--ink), 0.10)";
+  const border  = isDark ? "rgba(255,255,255,0.14)" : "rgba(var(--ink), 0.14)";
   const trackBg = isDark ? "rgba(255,255,255,0.12)" : "rgba(var(--ink), 0.10)";
   const cardBg  = isDark ? "rgba(255,255,255,0.04)" : "rgba(var(--ink), 0.03)";
-  const cardBrd = isDark ? "rgba(255,255,255,0.10)" : "rgba(var(--ink), 0.09)";
+  const cardBrd = isDark ? "rgba(255,255,255,0.14)" : "rgba(var(--ink), 0.14)";
 
   const panelId = (i: number) => `process-panel-${i}`;
   const tabId   = (i: number) => `process-tab-${i}`;
@@ -147,6 +148,7 @@ export default function HowIWork() {
     >
       <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 20px" }}>
 
+        <SpecLabel text={t("process.eyebrow")} />
         {/* Header */}
         <div className="process-head" style={{
           display: "flex", gap: 48, alignItems: "flex-end", flexWrap: "wrap",
@@ -154,13 +156,6 @@ export default function HowIWork() {
           paddingBottom: 32, transition: `border-color ${TRANS}`,
         }}>
           <div data-reveal style={{ flex: "1 1 320px" }}>
-            <p style={{
-              fontFamily: "var(--font-inter)", fontWeight: 700, fontSize: 11,
-              letterSpacing: "4px", textTransform: "uppercase",
-              color: purple, marginBottom: 16,
-            }}>
-              {t("process.eyebrow")}
-            </p>
             <h2 style={{
               fontFamily: "var(--font-poppins)", fontWeight: 700,
               fontSize: "clamp(28px, 3.5vw, 48px)", letterSpacing: "-1px",
@@ -354,7 +349,7 @@ export default function HowIWork() {
               >
                 <div>
                   <p style={{
-                    fontFamily: "var(--font-inter)", fontWeight: 700, fontSize: 10,
+                    fontFamily: "var(--font-mono)", fontWeight: 700, fontSize: 10,
                     letterSpacing: "2.5px", textTransform: "uppercase",
                     color: purple, marginBottom: 16,
                   }}>

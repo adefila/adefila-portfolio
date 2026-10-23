@@ -44,7 +44,7 @@ export default function LanguageSwitcher() {
               right: 0,
               width: 288,
               background: "var(--surface)",
-              border: "1px solid rgba(var(--ink), 0.09)",
+              border: "1px solid rgba(var(--ink), 0.14)",
               boxShadow: "0 12px 40px rgba(0,0,0,0.14)",
               overflow: "hidden",
             }}
@@ -197,7 +197,7 @@ export default function LanguageSwitcher() {
           gap: 8,
           padding: "10px 16px",
           background: open ? "var(--fg)" : "var(--surface)",
-          border: "1px solid rgba(var(--ink), 0.1)",
+          border: "1px solid rgba(var(--ink), 0.14)",
           boxShadow: "0 4px 20px rgba(0,0,0,0.1)",
           cursor: "pointer",
           fontFamily: "var(--font-inter)",

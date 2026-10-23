@@ -3,6 +3,7 @@ import { motion, AnimatePresence, useInView } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 import { Play, X } from "lucide-react";
 import { useLang } from "@/context/LangContext";
+import SpecLabel from "./SpecLabel";
 
 type TestimonialItem =
   | { type: "video"; name: string; role: string; video: string; preview: string; poster: string; avatar: string|null; logo: string|null }
@@ -29,7 +30,7 @@ function UpworkCard() {
   return (
     <div style={{
       background: "var(--surface)",
-      border: "1px solid rgba(var(--ink), 0.07)",
+      border: "1px solid rgba(var(--ink), 0.14)",
       minHeight: 400,
       display: "flex",
       flexDirection: "column",
@@ -55,7 +56,7 @@ function UpworkCard() {
             100%
           </p>
           <p style={{
-            fontFamily: "var(--font-inter)", fontWeight: 600, fontSize: 12,
+            fontFamily: "var(--font-mono)", fontWeight: 600, fontSize: 12,
             color: "rgba(var(--ink), 0.45)", letterSpacing: "2px", textTransform: "uppercase",
           }}>
             Job Success Score
@@ -74,7 +75,7 @@ function UpworkCard() {
 
       {/* Footer */}
       <p style={{
-        fontFamily: "var(--font-inter)", fontWeight: 500, fontSize: 11,
+        fontFamily: "var(--font-mono)", fontWeight: 400, fontSize: 11,
         color: "rgba(var(--ink), 0.35)", letterSpacing: "1.5px", textTransform: "uppercase",
         textAlign: "center",
       }}>
@@ -111,7 +112,7 @@ function Avatar({ name, avatar, logo, size = 44 }: { name: string; avatar: strin
       <img
         src={logo}
         alt={name}
-        style={{ width: size, height: size, borderRadius: 8, objectFit: "contain", flexShrink: 0, background: "#f5f5f5", padding: 4, border: "1px solid rgba(var(--ink), 0.06)" }}
+        style={{ width: size, height: size, borderRadius: 8, objectFit: "contain", flexShrink: 0, background: "#f5f5f5", padding: 4, border: "1px solid rgba(var(--ink), 0.14)" }}
       />
     );
   }
@@ -169,20 +170,7 @@ export default function Testimonials() {
       <div style={{ maxWidth: 1160, margin: "0 auto" }}>
         {/* Header row */}
         <div className="testimonials-head" style={{ marginBottom: 48 }}>
-          <motion.p
-            data-reveal
-            style={{
-              fontFamily: "var(--font-inter)",
-              fontWeight: 700,
-              fontSize: 11,
-              letterSpacing: "4px",
-              textTransform: "uppercase",
-              color: "var(--accent-purple)",
-              marginBottom: 16,
-            }}
-          >
-            {t("testimonials.eyebrow")}
-          </motion.p>
+          <SpecLabel text={t("testimonials.eyebrow")} />
           <motion.h2
             data-reveal
             style={{
@@ -228,8 +216,8 @@ export default function Testimonials() {
             </p>
             <p
               style={{
-                fontFamily: "var(--font-inter)",
-                fontWeight: 600,
+                fontFamily: "var(--font-mono)",
+                fontWeight: 500,
                 fontSize: 11,
                 letterSpacing: "1.5px",
                 textTransform: "uppercase",
@@ -258,7 +246,7 @@ export default function Testimonials() {
               <div style={{ position: "relative", zIndex: 1, padding: 32, display: "flex", flexDirection: "column", justifyContent: "space-between", height: "100%", minHeight: "inherit", pointerEvents: "none" }}>
                 <span style={{
                   display: "inline-block", alignSelf: "flex-start",
-                  fontFamily: "var(--font-inter)", fontWeight: 700, fontSize: 10,
+                  fontFamily: "var(--font-mono)", fontWeight: 700, fontSize: 10,
                   letterSpacing: "3px", textTransform: "uppercase",
                   color: "#fff", border: "1px solid rgba(255,255,255,0.4)",
                   padding: "4px 10px",

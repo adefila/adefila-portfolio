@@ -1,16 +1,10 @@
 "use client";
-import { ArrowUpRight } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
+import { createPortal } from "react-dom";
 import Image from "next/image";
 import { useLang } from "@/context/LangContext";
 import RevealWords from "./RevealWords";
-
-// Translation keys by project title (the text itself lives in src/i18n/projects.ts)
-const SLUG: Record<string, string> = {
-  "Calder Health": "calder", "The Initial": "initial", BindHQ: "bindhq", "VPA London": "vpa", "Upside ESG": "upside",
-  "Alyssa Corso": "alyssa", Emalbu: "emalbu", Leadopo: "leadopo", "Rusty Wears": "rusty", "The Prime Media": "primemedia",
-  "Jamal Muse": "jamal", "Talon Tyres": "talon", BookedEZ: "bookedez", "Datum Build": "datum",
-};
+import SpecLabel from "./SpecLabel";
 
 type Project = {
   title: string;
@@ -171,7 +165,8 @@ const devProjects: Project[] = [
   },
 ];
 
-const designProjects: Project[] = [
+// Kept for later; not shown for now.
+export const designProjects: Project[] = [
   {
     title: "Student Material Directory",
     bg: "#ececec",
@@ -246,298 +241,199 @@ const designProjects: Project[] = [
   },
 ];
 
-const SPRING = "cubic-bezier(0.22, 1, 0.36, 1)";
 
-// The Product Design tab (and its projects) is kept but hidden. Set to true to bring it back.
-const SHOW_DESIGN_TAB = false;
-
-type Tab = "dev" | "design";
-
-function ProjectCard({ project, index }: { project: Project; index: number }) {
-  const { t } = useLang();
-  const tr = (key: string, fallback: string) => { const v = t(key); return v === key ? fallback : v; };
-  const slug = SLUG[project.title];
-  const [hovered, setHovered] = useState(false);
-  const hasLink = project.href && project.href !== "#";
-
-  const cardStyle: React.CSSProperties = {
-    display: "block",
-    background: project.bg ?? "#fff",
-    border: "1px solid rgba(var(--ink), 0.06)",
-    padding: "24px 24px 0",
-    textDecoration: "none",
-    cursor: hasLink ? "pointer" : "default",
-    overflow: "hidden",
-  };
-
-  const imageInner = (
-    <div
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      style={{
-        position: "relative", width: "100%",
-        aspectRatio: "1200/630", overflow: "hidden",
-        boxShadow: "0 8px 32px rgba(0,0,0,0.08)",
-        transform: hovered ? "translateY(-6px)" : "translateY(0)",
-        transition: `transform 0.4s ${SPRING}`,
-      }}
-    >
-      {project.screenshot && (
-        <Image
-          src={project.screenshot}
-          alt={project.alt}
-          fill
-          sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 600px"
-          style={{
-            objectFit: "cover",
-            objectPosition: "top center",
-            filter: hovered
-              ? "contrast(1.05) saturate(1.1) brightness(1.02)"
-              : "contrast(1.03) saturate(1.06)",
-            transform: hovered ? "scale(1.04)" : "scale(1)",
-            transition: `filter 0.4s ${SPRING}, transform 0.7s ${SPRING}`,
-          }}
-          quality={90}
-          loading={index < 2 ? "eager" : "lazy"}
-        />
-      )}
-    </div>
-  );
-
-  return (
-    <div data-reveal style={{ display: "flex", flexDirection: "column" }}>
-      {hasLink ? (
-        <a href={project.href} target="_blank" rel="noopener noreferrer" style={cardStyle}>
-          {imageInner}
-        </a>
-      ) : (
-        <div style={cardStyle}>
-          {imageInner}
-        </div>
-      )}
-
-      <div style={{ paddingTop: 20 }}>
-        {/* Title + inline tags row */}
-        <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: 12, marginBottom: 12 }}>
-          <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: 8, flex: 1, minWidth: 0 }}>
-            <h3 style={{
-              fontFamily: "var(--font-poppins)", fontWeight: 700,
-              fontSize: "clamp(15px, 1.2vw, 18px)", letterSpacing: "-0.4px",
-              textTransform: "uppercase", color: "var(--fg)",
-              lineHeight: 1.15, margin: 0, flexShrink: 0,
-            }}>
-              {project.title}
-            </h3>
-            {project.tags.map((tag) => (
-              <span key={tag} style={{
-                fontFamily: "var(--font-inter)", fontWeight: 500, fontSize: 10,
-                letterSpacing: "0.8px", textTransform: "uppercase",
-                color: "var(--fg-secondary)",
-                background: "rgba(var(--ink), 0.04)",
-                border: "1px solid rgba(var(--ink), 0.08)",
-                padding: "3px 9px",
-                whiteSpace: "nowrap",
-              }}>
-                {tr(`projtag.${tag}`, tag)}
-              </span>
-            ))}
-            {project.badge && (
-              <span style={{
-                fontFamily: "var(--font-inter)", fontWeight: 600, fontSize: 10,
-                letterSpacing: "0.8px", textTransform: "uppercase",
-                color: project.badge === "In Development" ? "#d97706" : "#16a34a",
-                background: project.badge === "In Development" ? "rgba(217,119,6,0.08)" : "rgba(22,163,74,0.08)",
-                border: `1px solid ${project.badge === "In Development" ? "rgba(217,119,6,0.25)" : "rgba(22,163,74,0.25)"}`,
-                padding: "3px 9px",
-                whiteSpace: "nowrap",
-              }}>
-                {tr(`projbadge.${project.badge}`, project.badge)}
-              </span>
-            )}
-            {project.year && (
-              <span style={{
-                fontFamily: "var(--font-inter)", fontWeight: 500, fontSize: 11,
-                letterSpacing: "0.06em", color: "var(--fg-muted)", whiteSpace: "nowrap",
-              }}>
-                {project.year}
-              </span>
-            )}
-          </div>
-          {hasLink && (
-            <a
-              href={project.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={`Visit ${project.title}`}
-              style={{
-                flexShrink: 0, width: 32, height: 32,
-                display: "flex", alignItems: "center", justifyContent: "center",
-                background: "transparent", border: "1px solid rgba(var(--ink), 0.15)",
-                color: "var(--fg)",
-              }}
-            >
-              <ArrowUpRight size={14} strokeWidth={2} />
-            </a>
-          )}
-        </div>
-
-        <p style={{
-          fontFamily: "var(--font-inter)", fontWeight: 400,
-          fontSize: 13, lineHeight: 1.6, letterSpacing: "-0.1px",
-          color: "var(--fg-secondary)", margin: 0,
-        }}>
-          {slug ? tr(`proj.${slug}.desc`, project.desc) : project.desc}
-        </p>
-      </div>
-    </div>
-  );
-}
-
-function TabBar({ active, onChange }: { active: Tab; onChange: (t: Tab) => void }) {
-  const tabs: { key: Tab; label: string; count: number; }[] = [
-    { key: "dev",    label: "Website Development", count: devProjects.length },
-    ...(SHOW_DESIGN_TAB ? [{ key: "design" as Tab, label: "Product Design", count: designProjects.length }] : []),
-  ];
-  return (
-    <div style={{ display: "flex", gap: 0, borderBottom: "1px solid rgba(var(--ink), 0.1)" }}>
-      {tabs.map((tab) => {
-        const isActive = active === tab.key;
-        return (
-          <button
-            key={tab.key}
-            onClick={() => onChange(tab.key)}
-            style={{
-              background: "none", border: "none", cursor: "pointer",
-              padding: "12px 0", marginRight: 32,
-              display: "flex", alignItems: "center", gap: 8,
-              position: "relative",
-              borderBottom: isActive ? "2px solid var(--fg)" : "2px solid transparent",
-              marginBottom: -1,
-              transition: "border-color 0.2s ease",
-            }}
-          >
-            <span style={{
-              fontFamily: "var(--font-inter)", fontWeight: 700,
-              fontSize: 11, letterSpacing: "2px", textTransform: "uppercase",
-              color: isActive ? "var(--fg)" : "var(--fg-muted)",
-              transition: "color 0.2s ease",
-            }}>
-              {tab.label}
-            </span>
-            <span style={{
-              fontFamily: "var(--font-inter)", fontWeight: 600, fontSize: 10,
-              color: isActive ? "var(--accent-purple)" : "var(--fg-muted)",
-              background: isActive ? "rgba(109,40,217,0.08)" : "rgba(var(--ink), 0.05)",
-              border: isActive ? "1px solid rgba(109,40,217,0.2)" : "1px solid transparent",
-              padding: "2px 7px",
-              transition: "all 0.2s ease",
-            }}>
-              {tab.count}
-            </span>
-          </button>
-        );
-      })}
-    </div>
-  );
-}
-
-// Real client work with results leads; the rest is one click away.
-const LEAD_WITH = ["The Initial", "Upside ESG", "BindHQ", "VPA London", "BookedEZ", "Leadopo", "The Prime Media", "Datum Build"];
-const FIRST_SHOWN = 4;       // desktop: two rows of two
-const FIRST_SHOWN_PHONE = 3; // phones: one fewer, set in CSS below
+// The work as a large typographic index. Hover a row: the others dim and a screenshot follows the cursor.
+// What leads: the sites built in code, then client work with results; the rest is one click away.
+const LEAD_WITH = ["Talon Tyres", "Calder Health", "Datum Build", "Upside ESG", "The Initial", "BindHQ", "VPA London", "Leadopo", "BookedEZ", "The Prime Media"];
+const INDEX_SHOWN = 6;
 const byLead = (a: Project, b: Project) => {
   const ia = LEAD_WITH.indexOf(a.title), ib = LEAD_WITH.indexOf(b.title);
   return (ia < 0 ? 99 : ia) - (ib < 0 ? 99 : ib);
 };
+const FLOAT_W = 340;
+const FLOAT_H = 178;
+
+const WL_CSS = `
+  .wl-list { list-style: none; margin: 0; padding: 0; border-top: 1px solid rgba(var(--ink), 0.14); }
+  .wl-row { display: grid; grid-template-columns: 48px 1fr auto 56px 28px; align-items: baseline; column-gap: 16px; padding: clamp(12px, 1.3vw, 17px) 0; border-bottom: 1px solid rgba(var(--ink), 0.14); color: var(--fg); text-decoration: none; transition: opacity 0.25s ease; cursor: default; outline: none; }
+  a.wl-row { cursor: pointer; }
+  .wl-list:hover .wl-row { opacity: 0.28; }
+  .wl-list:hover .wl-row:hover, .wl-list .wl-row:focus-visible { opacity: 1; }
+  .wl-n { font-family: var(--font-mono); font-size: 12px; color: var(--fg-muted); }
+  .wl-t { font-family: var(--font-poppins); font-weight: 600; font-size: clamp(18px, 2.6vw, 34px); letter-spacing: -0.03em; line-height: 1; text-transform: uppercase; transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), color 0.2s ease; }
+  .wl-row:hover .wl-t, .wl-row:focus-visible .wl-t { transform: translateX(14px); color: var(--accent-purple); }
+  .wl-k { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--fg-secondary); display: flex; gap: 10px; align-items: baseline; white-space: nowrap; }
+  .wl-k i { font-style: normal; font-family: var(--font-mono); text-transform: none; letter-spacing: 0; color: var(--accent-purple); }
+  .wl-y { font-family: var(--font-mono); font-size: 12px; color: var(--fg-muted); text-align: right; }
+  .wl-a { font-size: 18px; line-height: 1; color: var(--fg-muted); transition: transform 0.3s ease, color 0.2s ease; }
+  .wl-row:hover .wl-a, .wl-row:focus-visible .wl-a { transform: translate(3px, -3px); color: var(--accent-purple); }
+  .wl-more { margin-top: 24px; background: transparent; border: 0; padding: 4px 0; cursor: pointer; font-family: var(--font-inter); font-weight: 600; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent-purple); border-bottom: 1px solid currentColor; }
+  .wl-float { position: fixed; left: 0; top: 0; z-index: 60; width: ${FLOAT_W}px; height: ${FLOAT_H}px; pointer-events: none; will-change: transform; }
+  .wl-float-in { position: absolute; inset: 0; overflow: hidden; background: #111; box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35), 0 4px 14px rgba(0, 0, 0, 0.2); opacity: 0; transform: scale(0.9); transition: opacity 0.2s ease, transform 0.3s cubic-bezier(0.22, 1, 0.36, 1); }
+  .wl-float.is-on .wl-float-in { opacity: 1; transform: scale(1); }
+  .wl-float-in img { opacity: 0; transition: opacity 0.2s ease; }
+  .wl-float-in img.is-on { opacity: 1; }
+  .wl-inline { display: none; }
+  @media (hover: none) {
+    .wl-float { display: none; }
+    .wl-list:hover .wl-row { opacity: 1; }
+    .wl-inline { display: block; grid-column: 2 / -1; margin-top: 12px; position: relative; aspect-ratio: 16 / 8.4; overflow: hidden; background: #111; }
+  }
+  @media (max-width: 760px) {
+    .wl-row { grid-template-columns: 30px 1fr 22px; column-gap: 12px; }
+    .wl-k, .wl-y { display: none; }
+  }
+  @media (prefers-reduced-motion: reduce) { .wl-t, .wl-a, .wl-float-in { transition: none; } }
+`;
 
 export default function Projects() {
   const { t } = useLang();
-  const [activeTab, setActiveTab] = useState<Tab>("dev");
+  const tr = (key: string, fallback: string) => { const v = t(key); return v === key ? fallback : v; };
   const [showAll, setShowAll] = useState(false);
+  const [hover, setHover] = useState<number | null>(null);
+  const [open, setOpen] = useState<number | null>(null); // touch: the row whose preview is open
+  // Screenshots load the first time a row is looked at, not all at once.
+  const [seen, setSeen] = useState<Set<string>>(new Set());
+  const floatRef = useRef<HTMLDivElement>(null);
+  // null while rendering on the server and during hydration, then the page body
+  const host = useSyncExternalStore(() => () => {}, () => document.body, () => null);
+  const pos =useRef({ x: 0, y: 0, tx: 0, ty: 0, init: false });
 
-  const list = activeTab === "dev" || !SHOW_DESIGN_TAB ? [...devProjects].sort(byLead) : designProjects;
-  const shown = showAll ? list : list.slice(0, FIRST_SHOWN);
+  const list = [...devProjects].sort(byLead);
+  const shown = showAll ? list : list.slice(0, INDEX_SHOWN);
+  const hovering = hover !== null;
+
+  // The preview eases toward the cursor and leans a little with its speed.
+  useEffect(() => {
+    if (!hovering) return;
+    const calm = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let id = 0;
+    const frame = () => {
+      const p = pos.current;
+      p.x += (p.tx - p.x) * (calm ? 1 : 0.18);
+      p.y += (p.ty - p.y) * (calm ? 1 : 0.18);
+      const lean = calm ? 0 : Math.max(-8, Math.min(8, (p.tx - p.x) * 0.06));
+      if (floatRef.current) floatRef.current.style.transform = `translate3d(${p.x.toFixed(1)}px, ${p.y.toFixed(1)}px, 0) rotate(${lean.toFixed(2)}deg)`;
+      id = requestAnimationFrame(frame);
+    };
+    id = requestAnimationFrame(frame);
+    return () => cancelAnimationFrame(id);
+  }, [hovering]);
+
+  const aim = (clientX: number, clientY: number) => {
+    const p = pos.current;
+    p.tx = Math.max(16, Math.min(window.innerWidth - FLOAT_W - 16, clientX + 28));
+    p.ty = Math.max(80, Math.min(window.innerHeight - FLOAT_H - 16, clientY - FLOAT_H / 2));
+    if (!p.init) { p.x = p.tx; p.y = p.ty; p.init = true; }
+  };
+  const enter = (i: number, title: string) => {
+    setHover(i);
+    setSeen((prev) => (prev.has(title) ? prev : new Set(prev).add(title)));
+  };
+  const leave = () => { setHover(null); pos.current.init = false; };
 
   return (
     <section
       id="work"
       style={{ width: "100%", maxWidth: 1200, margin: "0 auto", padding: "80px 20px" }}
     >
-      <style>{`
-        @media (max-width: 640px) {
-          .projects-card-grid { grid-template-columns: 1fr !important; gap: 48px !important; }
-          .projects-card-grid.is-collapsed > :nth-child(n + ${FIRST_SHOWN_PHONE + 1}) { display: none !important; }
-        }
-      `}</style>
+      <style>{WL_CSS}</style>
 
-      <div style={{
-        display: "flex", alignItems: "flex-end",
-        justifyContent: "space-between", gap: 24,
-        flexWrap: "wrap", marginBottom: 48,
-      }}>
-        <div>
-          <p data-reveal style={{
-            fontFamily: "var(--font-inter)", fontWeight: 700,
-            fontSize: 11, letterSpacing: "4px", textTransform: "uppercase",
-            color: "var(--accent-purple)", marginBottom: 16,
-          }}>
-            {t("projects.eyebrow")}
-          </p>
-          <h2 style={{
-            fontFamily: "var(--font-poppins)", fontWeight: 700,
-            fontSize: "clamp(28px, 3.5vw, 48px)", letterSpacing: "-1px",
-            lineHeight: 1.05, textTransform: "uppercase", color: "var(--fg)",
-          }}>
-            <RevealWords text={t("projects.h1")} />
-          </h2>
-        </div>
-        {SHOW_DESIGN_TAB && <TabBar active={activeTab} onChange={tab => { setActiveTab(tab); setShowAll(false); }} />}
+      <div style={{ marginBottom: 40 }}>
+        <SpecLabel text={t("projects.eyebrow")} />
+        <h2 style={{
+          fontFamily: "var(--font-poppins)", fontWeight: 700,
+          fontSize: "clamp(28px, 3.5vw, 48px)", letterSpacing: "-1px",
+          lineHeight: 1.05, textTransform: "uppercase", color: "var(--fg)",
+        }}>
+          <RevealWords text={t("projects.h1")} />
+        </h2>
       </div>
 
-      {list.length === 0 ? (
-        <div data-reveal style={{
-          padding: "80px 0", textAlign: "center",
-        }}>
-          <p style={{
-            fontFamily: "var(--font-inter)", fontWeight: 700, fontSize: 11,
-            letterSpacing: "3px", textTransform: "uppercase",
-            color: "var(--accent-purple)", marginBottom: 16,
-          }}>
-            COMING SOON
-          </p>
-          <p style={{
-            fontFamily: "var(--font-inter)", fontSize: 15, color: "var(--fg-secondary)",
-            lineHeight: 1.65, maxWidth: 400, margin: "0 auto",
-          }}>
-            Product design case studies are being prepared. Check back soon.
-          </p>
-        </div>
-      ) : (
-        <div
-          key={activeTab}
-          className={`projects-card-grid${showAll ? "" : " is-collapsed"}`}
-          style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "64px 40px" }}
-        >
-          {shown.map((project, i) => (
-            <ProjectCard key={project.title} project={project} index={i} />
-          ))}
-        </div>
+      <ol className="wl-list" data-reveal onMouseMove={(e) => aim(e.clientX, e.clientY)} onMouseLeave={leave}>
+        {shown.map((proj, i) => {
+          const hasLink = proj.href && proj.href !== "#";
+          const inner = (
+            <>
+              <span className="wl-n">{String(i + 1).padStart(2, "0")}</span>
+              <span className="wl-t">{proj.title}</span>
+              <span className="wl-k">
+                {tr(`projtag.${proj.tags[0]}`, proj.tags[0])}
+                {proj.tags[1] && <i>{`</> ${tr(`projtag.${proj.tags[1]}`, proj.tags[1])}`}</i>}
+              </span>
+              <span className="wl-y">{proj.year}</span>
+              <span className="wl-a" aria-hidden="true">{hasLink ? "↗" : ""}</span>
+              {open === i && proj.screenshot && (
+                <span className="wl-inline">
+                  <Image src={proj.screenshot} alt={proj.alt} fill sizes="100vw" quality={70} style={{ objectFit: "cover", objectPosition: "top center" }} />
+                </span>
+              )}
+            </>
+          );
+          const handlers = {
+            onMouseEnter: () => enter(i, proj.title),
+            onFocus: (e: React.FocusEvent<HTMLElement>) => {
+              enter(i, proj.title);
+              const r = e.currentTarget.getBoundingClientRect();
+              aim(r.left + r.width * 0.55, r.top + r.height / 2);
+            },
+            onBlur: leave,
+          };
+          return (
+            <li key={proj.title}>
+              {hasLink ? (
+                <a
+                  className="wl-row"
+                  href={proj.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  {...handlers}
+                  onClick={(e) => {
+                    // On a touch screen the first tap opens the preview, the second opens the site.
+                    if (window.matchMedia("(hover: none)").matches && open !== i) {
+                      e.preventDefault();
+                      setOpen(i);
+                    }
+                  }}
+                >
+                  {inner}
+                </a>
+              ) : (
+                <div className="wl-row" tabIndex={0} {...handlers} onClick={() => setOpen(open === i ? null : i)}>
+                  {inner}
+                </div>
+              )}
+            </li>
+          );
+        })}
+      </ol>
+
+      {list.length > INDEX_SHOWN && (
+        <button type="button" className="wl-more" onClick={() => setShowAll((v) => !v)}>
+          {showAll ? "Show fewer projects" : `Show all ${list.length} projects`}
+        </button>
       )}
 
-      {list.length > FIRST_SHOWN && (
-        <div style={{ display: "flex", justifyContent: "center", marginTop: 56 }}>
-          <button
-            type="button"
-            onClick={() => setShowAll(v => !v)}
-            style={{
-              fontFamily: "var(--font-inter)", fontWeight: 600, fontSize: 13, letterSpacing: "0.06em",
-              textTransform: "uppercase", color: "var(--fg)", background: "transparent",
-              border: "1px solid rgba(var(--ink), 0.15)", padding: "14px 24px", cursor: "pointer",
-            }}
-          >
-            {showAll ? "Show fewer projects" : `Show all ${list.length} projects`}
-          </button>
-        </div>
+      {/* The preview that follows the cursor. It lives on the page itself (a portal), because the section's
+          content-visibility would otherwise trap a fixed-position element inside the section. */}
+      {host && createPortal(
+        <div ref={floatRef} className={`wl-float${hovering ? " is-on" : ""}`} aria-hidden="true">
+          <div className="wl-float-in">
+            {shown.map((proj, i) => proj.screenshot && (i === hover || seen.has(proj.title)) && (
+              <Image
+                key={proj.title}
+                src={proj.screenshot}
+                alt=""
+                fill
+                sizes="340px"
+                quality={75}
+                className={i === hover ? "is-on" : ""}
+                style={{ objectFit: "cover", objectPosition: "top center" }}
+              />
+            ))}
+          </div>
+        </div>,
+        host,
       )}
     </section>
   );

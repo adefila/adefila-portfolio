@@ -13,6 +13,33 @@ const rows: Record<string, Row> = {
   "wh.less": ["Show less", "Voir moins", "Ver menos", "Weniger anzeigen", "Ver menos", "收起", "閉じる"],
   "wh.more": ["Show full history ({n} more)", "Voir tout le parcours ({n} de plus)", "Ver todo el historial ({n} más)", "Gesamten Werdegang anzeigen ({n} weitere)", "Ver todo o histórico (mais {n})", "查看完整经历（还有 {n} 条）", "経歴をすべて見る（あと{n}件）"],
 
+  // ── About text: recent teams and side projects, as words inside the paragraphs ({0} {1} {2} are the hoverable names)
+  "about.p3": [
+    "Along the way I've worked with teams at {0}, {1} and {2}.",
+    "Au fil du temps, j'ai travaillé avec les équipes de {0}, {1} et {2}.",
+    "Por el camino he trabajado con los equipos de {0}, {1} y {2}.",
+    "Unterwegs habe ich mit den Teams von {0}, {1} und {2} gearbeitet.",
+    "Pelo caminho, trabalhei com as equipes de {0}, {1} e {2}.",
+    "一路走来，我曾与 {0}、{1} 和 {2} 的团队合作。",
+    "これまでに、{0}、{1}、{2}のチームと仕事をしてきました。",
+  ],
+  "about.p4": [
+    "When the tool I need doesn't exist, I build it: {0}, {1} and {2}.",
+    "Quand l'outil dont j'ai besoin n'existe pas, je le crée : {0}, {1} et {2}.",
+    "Cuando la herramienta que necesito no existe, la construyo: {0}, {1} y {2}.",
+    "Wenn es das Werkzeug, das ich brauche, nicht gibt, baue ich es selbst: {0}, {1} und {2}.",
+    "Quando a ferramenta de que preciso não existe, eu a construo: {0}, {1} e {2}.",
+    "当我需要的工具不存在时，我就自己做：{0}、{1} 和 {2}。",
+    "必要なツールがなければ、自分で作ります：{0}、{1}、{2}。",
+  ],
+  "about.viewProject": ["View project", "Voir le projet", "Ver proyecto", "Projekt ansehen", "Ver projeto", "查看项目", "プロジェクトを見る"],
+
+  // ── Work text: group labels and the tooltip link
+  "projects.groupCode": ["Built in code", "Développé en code", "Desarrollado en código", "In Code gebaut", "Feito em código", "代码开发", "コードで構築"],
+  "projects.groupFramer": ["Built in Framer", "Créé avec Framer", "Creado en Framer", "In Framer gebaut", "Feito no Framer", "Framer 搭建", "Framerで構築"],
+  "projects.groupDesign": ["Designed", "Conçu", "Diseñado", "Entworfen", "Desenhado", "设计", "デザイン"],
+  "projects.visit": ["Visit live site", "Voir le site", "Ver el sitio", "Live-Seite ansehen", "Ver o site", "访问网站", "サイトを見る"],
+
   // ── 1. Freelance
   "wh0.period": ["2020 – Present", "2020 – Aujourd'hui", "2020 – Actualidad", "2020 – Heute", "2020 – Atualmente", "2020 年 – 至今", "2020年 – 現在"],
   "wh0.role": ["Freelance Web Developer & Framer Designer", "Développeur web freelance & designer Framer", "Desarrollador web freelance y diseñador Framer", "Freelance Webentwickler & Framer-Designer", "Desenvolvedor web freelancer e designer Framer", "自由职业网页开发者 & Framer 设计师", "フリーランスのWebデベロッパー兼Framerデザイナー"],

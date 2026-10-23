@@ -13,7 +13,7 @@ export default function FormSuccess({ title, desc, resetLabel }: { title: string
       transition={{ duration: 0.45, ease: EASE }}
       style={{
         padding: "52px 32px",
-        border: "1px solid rgba(var(--ink), 0.08)",
+        border: "1px solid rgba(var(--ink), 0.14)",
         textAlign: "center",
         display: "flex",
         flexDirection: "column",

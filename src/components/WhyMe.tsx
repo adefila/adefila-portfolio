@@ -1,6 +1,7 @@
 "use client";
 import { useRef, useEffect, useState } from "react";
 import { useLang } from "@/context/LangContext";
+import SpecLabel from "./SpecLabel";
 import RevealWords, { revealDelayAfter } from "./RevealWords";
 
 // Icons draw on a 48-unit grid and show at 20px in a 32px box, so lines are thick in grid units.
@@ -147,6 +148,31 @@ function CountUp({ target, suffix, inView }: { target: number; suffix: string; i
   return <>{count}{suffix}</>;
 }
 
+const WM_CSS = `
+  .wm-head { max-width: 860px; margin-bottom: 40px; }
+  .wm-stats { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid rgba(var(--ink), 0.14); border-bottom: 1px solid rgba(var(--ink), 0.14); }
+  .wm-stat { display: flex; flex-direction: column; gap: 8px; padding: 28px 32px; }
+  .wm-stat:first-child { padding-left: 0; }
+  .wm-stat + .wm-stat { border-left: 1px solid rgba(var(--ink), 0.14); }
+  .wm-stat-num { font-family: var(--font-satoshi); font-weight: 600; font-size: clamp(36px, 4.6vw, 60px); letter-spacing: -0.04em; line-height: 1; color: var(--fg); }
+  .wm-stat-label { font-family: var(--font-inter); font-size: 12px; letter-spacing: 0.04em; text-transform: uppercase; line-height: 1.4; color: var(--fg-secondary); }
+  .wm-benefits { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0 32px; }
+  .wm-benefit { padding: 32px 0 8px; }
+  .wm-services { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; padding-top: 28px; border-top: 1px solid rgba(var(--ink), 0.14); }
+  .wm-service { display: inline-flex; align-items: baseline; gap: 8px; padding: 9px 14px; border: 1px solid rgba(var(--ink), 0.14); font-family: var(--font-inter); font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--fg); }
+  .wm-service i { font-style: normal; font-size: 10px; color: var(--fg-muted); }
+  @media (max-width: 1024px) { .wm-benefits { grid-template-columns: repeat(2, 1fr); gap: 0 40px; } }
+  @media (max-width: 768px) {
+    .wm-head { margin-bottom: 28px; }
+    .wm-stat { padding: 20px 14px; }
+    .wm-stat:first-child { padding-left: 0; }
+    .wm-stat-label { font-size: 10px; letter-spacing: 0.02em; }
+    .wm-benefits { grid-template-columns: 1fr; }
+    .wm-benefit { padding: 24px 0 4px; }
+    .wm-services { gap: 6px; }
+  }
+`;
+
 export default function WhyMe() {
   const statsRef = useRef<HTMLDivElement>(null);
   const [inView, setInView] = useState(false);
@@ -178,84 +204,38 @@ export default function WhyMe() {
       style={{ width: "100%", maxWidth: 1200, margin: "0 auto", padding: "80px 20px" }}
     >
       <style>{ICON_CSS}</style>
-      {/* Top row: heading left, stats right */}
-      <div
-        className="whyme-top-row"
-        style={{ display: "flex", gap: 80, alignItems: "flex-start", flexWrap: "wrap", marginBottom: 48 }}
-      >
-        {/* Left: label + heading */}
-        <div data-reveal style={{ flex: "1 1 400px" }}>
-          <p style={{
-            fontFamily: "var(--font-inter)", fontWeight: 700, fontSize: 11,
-            letterSpacing: "4px", textTransform: "uppercase",
-            color: "var(--accent-purple)", marginBottom: 16,
-          }}>
-            {t("whyme.eyebrow")}
-          </p>
-          <h2 style={{
-            fontFamily: "var(--font-poppins)", fontWeight: 700,
-            fontSize: "clamp(28px, 3.5vw, 48px)", letterSpacing: "-1px",
-            lineHeight: 1.05, textTransform: "uppercase", color: "var(--fg)",
-          }}>
-            <RevealWords text={t("whyme.h1")} />{" "}
-            <span style={{ color: "rgb(163,163,163)" }}><RevealWords text={t("whyme.h1b")} delay={revealDelayAfter(t("whyme.h1"))} /></span>
-          </h2>
-        </div>
+      <style>{WM_CSS}</style>
 
-        {/* Right: stats */}
-        <div
-          ref={statsRef}
-          className="whyme-stats-col"
-          style={{ flex: "1 1 300px", display: "flex", flexDirection: "column", gap: 32, paddingTop: 8 }}
-        >
-          {stats.map((s, i) => (
-            <div
-              key={i}
-              className="whyme-stat"
-              data-reveal style={{
-                display: "flex", alignItems: "center", gap: 16,
-                borderBottom: "1px solid rgba(var(--ink), 0.07)", paddingBottom: 24,
-              }}
-            >
-              <span style={{
-                fontFamily: "var(--font-satoshi)", fontWeight: 700,
-                fontSize: "clamp(40px, 5vw, 64px)", letterSpacing: "-0.04em",
-                lineHeight: 1, color: "var(--fg)", flexShrink: 0,
-              }}>
-                <CountUp target={s.value} suffix={s.suffix} inView={inView} />
-              </span>
-              <span style={{
-                fontFamily: "var(--font-inter)", fontWeight: 400, fontSize: 13,
-                letterSpacing: "0.02em", textTransform: "uppercase",
-                color: "var(--fg-secondary)", lineHeight: 1.4,
-              }}>
-                {s.label}
-              </span>
-            </div>
-          ))}
-        </div>
+      <SpecLabel text={t("whyme.eyebrow")} />
+      {/* Heading */}
+      <div data-reveal className="wm-head">
+        <h2 style={{
+          fontFamily: "var(--font-poppins)", fontWeight: 700,
+          fontSize: "clamp(28px, 3.5vw, 48px)", letterSpacing: "-1px",
+          lineHeight: 1.05, textTransform: "uppercase", color: "var(--fg)",
+        }}>
+          <RevealWords text={t("whyme.h1")} />{" "}
+          <span style={{ color: "rgb(163,163,163)" }}><RevealWords text={t("whyme.h1b")} delay={revealDelayAfter(t("whyme.h1"))} /></span>
+        </h2>
       </div>
 
-      {/* Benefits 2×2 */}
-      <div
-        className="benefits-grid"
-        style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "0 32px", marginBottom: 48 }}
-      >
+      {/* Stats: one row */}
+      <div ref={statsRef} data-reveal className="wm-stats corners">
+        {stats.map((s, i) => (
+          <div key={i} className="wm-stat">
+            <span className="wm-stat-num"><CountUp target={s.value} suffix={s.suffix} inView={inView} /></span>
+            <span className="wm-stat-label">{s.label}</span>
+          </div>
+        ))}
+      </div>
+
+      {/* Benefits */}
+      <div className="wm-benefits">
         {benefits.map(({ Icon, title, desc }, i) => (
-          <div
-            key={i}
-            data-reveal style={{
-              borderTop: "1px solid rgba(var(--ink), 0.1)", padding: "32px 0",
-            }}
-          >
+          <div key={i} data-reveal className="wm-benefit">
             <div style={{
-              marginBottom: 16,
-              display: "inline-flex",
-              alignItems: "center",
-              justifyContent: "center",
-              width: 32, height: 32,
-              background: "#ede9fe",
-              borderRadius: 8,
+              marginBottom: 16, display: "inline-flex", alignItems: "center", justifyContent: "center",
+              width: 32, height: 32, background: "#ede9fe", borderRadius: 0,
             }}>
               <Icon />
             </div>
@@ -276,36 +256,10 @@ export default function WhyMe() {
         ))}
       </div>
 
-      {/* Services numbered list */}
-      <div
-        className="services-grid whyme-services"
-        style={{
-          borderTop: "1px solid rgba(var(--ink), 0.08)",
-          display: "grid", gridTemplateColumns: "repeat(3, 1fr)",
-        }}
-      >
-        {services.map((s, i) => (
-          <div
-            key={i}
-            data-reveal style={{
-              display: "flex", alignItems: "center", gap: 20,
-              paddingTop: 32, paddingBottom: 32,
-              paddingLeft: i % 3 !== 0 ? 32 : 0,
-              borderBottom: "1px solid rgba(var(--ink), 0.08)",
-              borderRight: (i + 1) % 3 !== 0 ? "1px solid rgba(var(--ink), 0.08)" : "none",
-            }}
-          >
-            <span style={{ fontFamily: "var(--font-inter)", fontWeight: 400, fontSize: 13, color: "var(--fg-muted)", flexShrink: 0 }}>
-              {s.n}
-            </span>
-            <span style={{
-              fontFamily: "var(--font-poppins)", fontWeight: 600,
-              fontSize: "clamp(14px, 1.2vw, 16px)", letterSpacing: "-0.3px",
-              textTransform: "uppercase", color: "var(--fg)",
-            }}>
-              {s.label}
-            </span>
-          </div>
+      {/* Services: one wrapping row of tags instead of a six-cell grid */}
+      <div data-reveal className="wm-services">
+        {services.map((s) => (
+          <span key={s.n} className="wm-service"><i>{s.n.padStart(2, "0")}</i>{s.label}</span>
         ))}
       </div>
     </section>

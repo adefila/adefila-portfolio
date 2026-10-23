@@ -154,7 +154,7 @@ export default function Navbar({ hide = [] }: { hide?: string[] }) {
         }}
       >
         <div
-          className="site-nav-bar"
+          className="site-nav-bar corners"
           style={{
             width: shrunk ? "calc(100% - 120px)" : "calc(100% - 48px)",
             maxWidth: 1200,
@@ -229,13 +229,11 @@ export default function Navbar({ hide = [] }: { hide?: string[] }) {
           <MagneticButton
             href={`${base}#contact`}
             onClick={() => trackEvent("cta_click", { location: "navbar" })}
-            className="nav-cta nav-cta-desktop"
+            className="nav-cta nav-cta-desktop btn-primary"
             style={{
               fontFamily: "var(--font-inter)",
               fontWeight: 600,
               fontSize: 13,
-              color: "var(--on-fg)",
-              background: "var(--fg)",
               padding: "10px 20px",
               borderRadius: 0,
               textDecoration: "none",

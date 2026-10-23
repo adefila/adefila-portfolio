@@ -79,7 +79,7 @@ export default function NotFound() {
           </p>
 
           <div style={{ display: "flex", gap: 12, flexWrap: "wrap", animation: `heroFadeUp 0.6s 0.48s ${EASE} both` }}>
-            <Link href="/" style={{ ...button, background: "var(--fg)", color: "var(--white)" }}>
+            <Link href="/" className="btn-primary" style={{ ...button }}>
               <ArrowLeft size={15} strokeWidth={2} /> Back to home
             </Link>
             <Link href="/#work" style={{ ...button, background: "transparent", color: "var(--fg)", border: "1px solid rgba(0,0,0,0.15)" }}>

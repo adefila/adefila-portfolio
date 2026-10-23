@@ -253,7 +253,7 @@ export default function Footer() {
           <div>
             <p
               style={{
-                fontFamily: "var(--font-inter)",
+                fontFamily: "var(--font-mono)",
                 fontWeight: 600,
                 fontSize: 11,
                 letterSpacing: "2px",
@@ -291,7 +291,7 @@ export default function Footer() {
           <div>
             <p
               style={{
-                fontFamily: "var(--font-inter)",
+                fontFamily: "var(--font-mono)",
                 fontWeight: 600,
                 fontSize: 11,
                 letterSpacing: "2px",

@@ -14,6 +14,7 @@ export default function MidCTA() {
   return (
     <section
       data-track-location="mid_cta"
+      className="corners-in"
       style={{
         width: "100%",
         background: "var(--accent-purple)",
@@ -85,6 +86,7 @@ export default function MidCTA() {
             href={BOOKING_URL}
             target="_blank"
             rel="noopener noreferrer"
+            className="btn-white"
             style={{
               alignItems: "center",
               gap: 8,
@@ -94,22 +96,8 @@ export default function MidCTA() {
               fontSize: 13,
               letterSpacing: "0.5px",
               textTransform: "uppercase",
-              color: "var(--accent-purple)",
-              background: "var(--surface)",
-              border: "1px solid #fff",
-              padding: "13px 25px",
+              padding: "14px 26px",
               textDecoration: "none",
-              transition: "background 0.2s ease, border-color 0.2s ease, color 0.2s ease",
-            }}
-            onMouseEnter={(e: React.MouseEvent<HTMLAnchorElement>) => {
-              e.currentTarget.style.background = "var(--fg)";
-              e.currentTarget.style.borderColor = "var(--fg)";
-              e.currentTarget.style.color = "var(--on-fg)";
-            }}
-            onMouseLeave={(e: React.MouseEvent<HTMLAnchorElement>) => {
-              e.currentTarget.style.background = "#fff";
-              e.currentTarget.style.borderColor = "#fff";
-              e.currentTarget.style.color = "var(--accent-purple)";
             }}
           >
             {t("common.bookCall")} <CalendarDays size={14} strokeWidth={2} />

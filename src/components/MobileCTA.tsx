@@ -68,11 +68,11 @@ export default function MobileCTA() {
         target="_blank"
         rel="noopener noreferrer"
         tabIndex={show ? 0 : -1}
+        className="btn-primary"
         style={{
           display: "inline-flex", alignItems: "center", gap: 6, flexShrink: 0,
           fontFamily: "var(--font-inter)", fontWeight: 600, fontSize: 13,
-          color: "var(--on-fg)", background: "var(--fg)",
-          padding: "12px 16px", textDecoration: "none", letterSpacing: "-0.2px",
+                    padding: "12px 16px", textDecoration: "none", letterSpacing: "-0.2px",
         }}
       >
         {t("common.bookCall")} <CalendarDays size={14} strokeWidth={2} />

@@ -3,6 +3,7 @@ import Image from "next/image";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { ArrowLeft, ArrowRight, ArrowUpRight, Play } from "lucide-react";
 import { useLang } from "@/context/LangContext";
+import SpecLabel from "./SpecLabel";
 import RevealWords, { revealDelayAfter } from "./RevealWords";
 
 // Every claim here comes from the client's own testimonial or the project record —
@@ -112,15 +113,9 @@ export default function CaseStudies() {
 
   return (
     <section id="results" ref={sectionRef} className="csl-section">
+      <SpecLabel text={t("cases.eyebrow")} />
       <div className="csl-head">
         <div>
-          <p data-reveal style={{
-            fontFamily: "var(--font-inter)", fontWeight: 700, fontSize: 11,
-            letterSpacing: "4px", textTransform: "uppercase",
-            color: "var(--accent-purple)", marginBottom: 16,
-          }}>
-            {t("cases.eyebrow")}
-          </p>
           <h2 style={{
             fontFamily: "var(--font-poppins)", fontWeight: 700,
             fontSize: "clamp(28px, 3.5vw, 48px)", letterSpacing: "-1px",
