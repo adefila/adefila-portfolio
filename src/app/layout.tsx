@@ -1,6 +1,7 @@
 ﻿import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { FORCE_DARK } from "@/lib/theme";
 
 // One typeface for the whole site. The latin-ext subset covers the accents of French, Spanish, German and Portuguese
 // and the dotted letters and tone marks of Yoruba; Chinese and Japanese fall back to the visitor's system font.
@@ -119,11 +120,13 @@ export default function RootLayout({
     <html lang="en" className={`${geist.variable} ${geistMono.variable}`} suppressHydrationWarning>
       <head>
         <meta name="theme-color" content="#0f0f0f" />
-        <meta name="color-scheme" content="light dark" />
+        <meta name="color-scheme" content={FORCE_DARK ? "dark" : "light dark"} />
         {/* Applies the saved colour theme before first paint (same rule as ThemeToggle.tsx): light unless the visitor chose dark, or "match my device" on a dark device. */}
         <script
           dangerouslySetInnerHTML={{
-            __html: `try{var p=localStorage.getItem("sam-theme");var d=p==="dark"||(p==="system"&&matchMedia("(prefers-color-scheme: dark)").matches);document.documentElement.setAttribute("data-theme",d?"dark":"light")}catch(e){}`,
+            __html: FORCE_DARK
+              ? `document.documentElement.setAttribute("data-theme","dark")`
+              : `try{var p=localStorage.getItem("sam-theme");var d=p==="dark"||(p==="system"&&matchMedia("(prefers-color-scheme: dark)").matches);document.documentElement.setAttribute("data-theme",d?"dark":"light")}catch(e){}`,
           }}
         />
         {/* Runs before first paint: enable scroll reveals (ScrollReveal.tsx), skip the preloader after its first showing in

@@ -271,9 +271,7 @@ export default function Pricing({ prices }: { prices?: [number, number, number] 
       <ul data-reveal className="pricing-guarantees">
         {["pricing.guarantee1", "pricing.guarantee2"].map((key) => (
           <li key={key}>
-            <span aria-hidden="true" className="pricing-guarantee-icon">
-              <Check size={12} strokeWidth={3} color="#fff" />
-            </span>
+            <span aria-hidden="true" className="pricing-guarantee-icon" />
             {t(key)}
           </li>
         ))}

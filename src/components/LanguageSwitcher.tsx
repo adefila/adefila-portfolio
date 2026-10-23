@@ -6,8 +6,12 @@ import { usePathname } from "next/navigation";
 import { useLang } from "@/context/LangContext";
 import { LANGUAGES, CURRENCIES, CurrencyCode } from "@/i18n/translations";
 import ThemeToggle from "./ThemeToggle";
+import { FORCE_DARK } from "@/lib/theme";
 
 const EASE = [0.22, 1, 0.36, 1] as [number, number, number, number];
+
+// Nigeria: the language stays English, the prices show in naira
+const NIGERIA = { flag: "🇳🇬", label: "Nigeria", note: "English · NGN" };
 
 export default function LanguageSwitcher() {
   const [open, setOpen] = useState(false);
@@ -18,6 +22,7 @@ export default function LanguageSwitcher() {
   const ref = useRef<HTMLDivElement>(null);
 
   const currentLang = LANGUAGES.find((l) => l.code === lang) ?? LANGUAGES[0];
+  const inNigeria = lang === "en" && currency === "NGN";
   const currentCurr = CURRENCIES.find((c) => c.code === currency) ?? CURRENCIES[0];
 
   useEffect(() => {
@@ -85,9 +90,9 @@ export default function LanguageSwitcher() {
             {/* Languages */}
             <div style={{ padding: "10px 16px 10px" }}>
               <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 3 }}>
-                {languages.map((l) => {
-                  const active = lang === l.code;
-                  return (
+                {languages.flatMap((l) => {
+                  const active = lang === l.code && !(l.code === "en" && inNigeria);
+                  const cards = [(
                     <button
                       key={l.code}
                       onClick={() => { setLang(l.code); setOpen(false); }}
@@ -125,7 +130,33 @@ export default function LanguageSwitcher() {
                         </span>
                       </div>
                     </button>
-                  );
+                  )];
+                  if (l.code === "en") {
+                    cards.push(
+                      <button
+                        key="en-ng"
+                        onClick={() => { setLang("en"); setCurrency("NGN"); setOpen(false); }}
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          gap: 8,
+                          padding: "9px 10px",
+                          background: inNigeria ? "var(--fg)" : "rgba(var(--ink), 0.03)",
+                          border: "none",
+                          cursor: "pointer",
+                          textAlign: "left",
+                          transition: "background 0.15s",
+                        }}
+                      >
+                        <span style={{ fontSize: 15, lineHeight: 1 }}>{NIGERIA.flag}</span>
+                        <div>
+                          <span style={{ fontFamily: "var(--font-inter)", fontSize: 12, fontWeight: inNigeria ? 600 : 400, color: inNigeria ? "var(--on-fg)" : "var(--fg)", letterSpacing: "-0.2px", display: "block" }}>{NIGERIA.label}</span>
+                          <span style={{ fontFamily: "var(--font-inter)", fontSize: 10, color: inNigeria ? "rgba(var(--surface-rgb), 0.6)" : "var(--fg-muted)", letterSpacing: "0.5px" }}>{NIGERIA.note}</span>
+                        </div>
+                      </button>,
+                    );
+                  }
+                  return cards;
                 })}
               </div>
             </div>
@@ -210,13 +241,13 @@ export default function LanguageSwitcher() {
         }}
       >
         <Globe size={13} strokeWidth={1.8} />
-        <span>{currentLang.flag}</span>
+        <span>{inNigeria ? NIGERIA.flag : currentLang.flag}</span>
         <span>{currentLang.code.toUpperCase()}</span>
         <span style={{ width: 1, height: 12, background: "currentColor", opacity: 0.2, display: "inline-block" }} />
         <span style={{ opacity: 0.7 }}>{currentCurr.symbol}</span>
         <span>{currentCurr.code}</span>
       </motion.button>
-      <ThemeToggle />
+      {!FORCE_DARK && <ThemeToggle />}
     </div>
   );
 }

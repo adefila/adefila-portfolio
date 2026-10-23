@@ -60,7 +60,7 @@ export function TermsStrip() {
     { big: t("lb.terms.big2"), text: t("lb.terms.t2") },
   ];
   return (
-    <div style={{ maxWidth: 1200, margin: "-48px auto 0", padding: "0 20px 32px" }}>
+    <div className="lb-terms-wrap">
       <div data-reveal className="lb-terms">
         {terms.map((term) => (
           <div key={term.text} style={{ padding: "24px", background: "var(--bg)", display: "grid", gap: 8 }}>

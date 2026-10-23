@@ -353,16 +353,25 @@ html[data-reveal-ready] [data-reveal]:not([data-revealed]) {
   letter-spacing: -0.2px;
   color: var(--fg);
 }
+/* the same glowing green dot as "5 spots open" in the hero */
 .pricing-guarantee-icon {
-  width: 22px;
-  height: 22px;
-  border-radius: 0;
-  background: var(--accent-purple);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  position: relative;
+  width: 8px;
+  height: 8px;
+  margin: 0 5px;
+  border-radius: 50%;
+  background: var(--accent-green);
   flex-shrink: 0;
 }
+.pricing-guarantee-icon::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: var(--accent-green);
+  animation: pulseRipple 2s ease-out infinite;
+}
+@media (prefers-reduced-motion: reduce) { .pricing-guarantee-icon::after { animation: none; opacity: 0; } }
 
 /* Free teardown offer: laid out like the Contact section (header left, form right) */
 .teardown-section {
@@ -1011,7 +1020,10 @@ html[data-reveal-ready] [data-reveal]:not([data-revealed]) {
   border: 1px solid rgba(var(--ink), 0.14);
 }
 .lb-illo-tall { aspect-ratio: 1200 / 900; padding: 10px 24px; }
-.lb-terms { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; background: rgba(var(--ink), 0.06); border: 1px solid rgba(var(--ink), 0.14); border-top: none; }
+/* the strip sits just under the pricing it belongs to (the section's bottom padding is pulled back up), then has the usual room below */
+.lb-terms-wrap { max-width: 1200px; margin: -72px auto 0; padding: 0 20px 120px; }
+.lb-terms { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; background: rgba(var(--ink), 0.14); border: 1px solid rgba(var(--ink), 0.14); }
+@media (max-width: 768px) { .lb-terms-wrap { margin-top: -40px; padding-bottom: 72px; } }
 @keyframes lbPop { from { opacity: 0; transform: translateY(10px) scale(0.97); } to { opacity: 1; transform: none; } }
 @media (prefers-reduced-motion: reduce) {
   .lb-illo * { animation: none !important; }
