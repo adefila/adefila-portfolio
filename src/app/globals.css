@@ -1474,3 +1474,21 @@ strong, b { font-weight: 600; }
   .hero-section { padding-bottom: 72px !important; }
   .clients-section { padding-top: 48px !important; padding-bottom: 48px !important; }
 }
+
+/* ── Nav links: the active page section is marked with corner marks (the same marks as the buttons and frames) ── */
+.nav-link-anim { position: relative; }
+.nav-link-anim::before {
+  content: ""; position: absolute; inset: 1px 8px; pointer-events: none; opacity: 0;
+  --c: rgba(var(--ink), 0.75); --s: 6px;
+  background:
+    linear-gradient(var(--c), var(--c)) 0 0 / var(--s) 1px no-repeat,
+    linear-gradient(var(--c), var(--c)) 0 0 / 1px var(--s) no-repeat,
+    linear-gradient(var(--c), var(--c)) 100% 0 / var(--s) 1px no-repeat,
+    linear-gradient(var(--c), var(--c)) 100% 0 / 1px var(--s) no-repeat,
+    linear-gradient(var(--c), var(--c)) 0 100% / var(--s) 1px no-repeat,
+    linear-gradient(var(--c), var(--c)) 0 100% / 1px var(--s) no-repeat,
+    linear-gradient(var(--c), var(--c)) 100% 100% / var(--s) 1px no-repeat,
+    linear-gradient(var(--c), var(--c)) 100% 100% / 1px var(--s) no-repeat;
+  transition: opacity 0.2s ease, inset 0.2s ease;
+}
+.nav-link-anim.is-active::before { opacity: 1; inset: -1px 6px; }

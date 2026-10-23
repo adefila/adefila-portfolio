@@ -200,7 +200,7 @@ export default function Navbar({ hide = [] }: { hide?: string[] }) {
                 <a
                   key={href}
                   href={href}
-                  className="nav-link-anim"
+                  className={`nav-link-anim${isActive ? " is-active" : ""}`}
                   style={{
                     fontFamily: "var(--font-inter)",
                     fontWeight: 600,
@@ -210,8 +210,8 @@ export default function Navbar({ hide = [] }: { hide?: string[] }) {
                     textDecoration: "none",
                     padding: "7px 12px",
                     borderRadius: 0,
-                    background: isActive ? "rgba(var(--ink), 0.06)" : "transparent",
-                    transition: "color 0.2s, background 0.2s",
+                    background: "transparent",
+                    transition: "color 0.2s",
                     display: "inline-block",
                   }}
                 >
