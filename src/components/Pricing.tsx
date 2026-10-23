@@ -189,7 +189,7 @@ export default function Pricing({ prices }: { prices?: [number, number, number] 
               data-track-label={plan.name}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-primary"
+              className={plan.featured ? "btn-primary" : "btn-primary btn-quiet"}
               style={{
                 display: "inline-flex",
                 alignItems: "center",

@@ -16,9 +16,9 @@ const NIGERIA = { flag: "🇳🇬", label: "Nigeria", note: "English · NGN" };
 export default function LanguageSwitcher() {
   const [open, setOpen] = useState(false);
   const { lang, currency, setLang, setCurrency } = useLang();
-  // Dutch and Norwegian are complete only on /local-business; Yoruba is not translated there
+  // Dutch and Norwegian are complete only on /local-business
   const onBusinessPage = !!usePathname()?.startsWith("/local-business");
-  const languages = LANGUAGES.filter((l) => (l.code === "nl" || l.code === "no" ? onBusinessPage : !(l.code === "yo" && onBusinessPage)));
+  const languages = LANGUAGES.filter((l) => (l.code === "nl" || l.code === "no" ? onBusinessPage : true));
   const ref = useRef<HTMLDivElement>(null);
 
   const currentLang = LANGUAGES.find((l) => l.code === lang) ?? LANGUAGES[0];

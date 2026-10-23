@@ -373,36 +373,6 @@ html[data-reveal-ready] [data-reveal]:not([data-revealed]) {
 }
 @media (prefers-reduced-motion: reduce) { .pricing-guarantee-icon::after { animation: none; opacity: 0; } }
 
-/* Free teardown offer: laid out like the Contact section (header left, form right) */
-.teardown-section {
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 80px 20px;
-}
-.teardown-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
-  gap: 80px;
-  align-items: start;
-  border-top: 1px solid rgba(var(--ink), 0.14);
-  padding-top: 80px;
-}
-@media (max-width: 900px) {
-  .teardown-grid {
-    grid-template-columns: 1fr;
-    gap: 32px;
-  }
-}
-@media (max-width: 768px) {
-  .teardown-section {
-    padding: 64px 20px !important;
-  }
-  .teardown-grid {
-    padding-top: 64px;
-  }
-}
-
 /* Booking window (BookingPopup.tsx): site-styled panel with the Cal.com booking page embedded,
    over a heavily blurred page */
 .booking-overlay {
@@ -796,8 +766,7 @@ html[data-reveal-ready] [data-reveal]:not([data-revealed]) {
   }
 
   /* Every section gets the same vertical rhythm on phones */
-  #work, #benefits, #process, #pricing, #testimonials, #about, #faq, #contact,
-  .side-projects-inner {
+  #work, #benefits, #process, #pricing, #testimonials, #about, #faq, #contact {
     padding-top: 64px !important;
     padding-bottom: 64px !important;
   }
@@ -1339,37 +1308,33 @@ html[data-reveal-ready] [data-reveal]:not([data-revealed]) .il, html[data-reveal
    rendering work, which was most of the load time on phones. contain-intrinsic-size is the height it assumes
    until a section has been drawn once (then it remembers the real one), set close to the real heights so the
    scrollbar and the menu links land in the right place. */
-#work, #results, #concept, #benefits, #process, #pricing, #teardown, #testimonials, #about, #side-projects, #faq, #contact,
+#work, #results, #concept, #benefits, #process, #pricing, #testimonials, #about, #faq, #contact,
 body > footer, main > footer {
   content-visibility: auto;
   contain-intrinsic-size: auto 1000px;
 }
-#work { contain-intrinsic-size: auto 1260px; }
-#results { contain-intrinsic-size: auto 870px; }
-#concept { contain-intrinsic-size: auto 770px; }
-#benefits { contain-intrinsic-size: auto 1030px; }
-#process { contain-intrinsic-size: auto 800px; }
-#pricing { contain-intrinsic-size: auto 1030px; }
-#teardown { contain-intrinsic-size: auto 480px; }
-#testimonials { contain-intrinsic-size: auto 1090px; }
-#about { contain-intrinsic-size: auto 1390px; }
-#side-projects { contain-intrinsic-size: auto 780px; }
-#faq { contain-intrinsic-size: auto 620px; }
-#contact { contain-intrinsic-size: auto 680px; }
+#work { contain-intrinsic-size: auto 830px; }
+#results { contain-intrinsic-size: auto 1070px; }
+#concept { contain-intrinsic-size: auto 960px; }
+#benefits { contain-intrinsic-size: auto 860px; }
+#process { contain-intrinsic-size: auto 950px; }
+#pricing { contain-intrinsic-size: auto 1120px; }
+#testimonials { contain-intrinsic-size: auto 1170px; }
+#about { contain-intrinsic-size: auto 660px; }
+#faq { contain-intrinsic-size: auto 810px; }
+#contact { contain-intrinsic-size: auto 770px; }
 body > footer, main > footer { contain-intrinsic-size: auto 560px; }
 @media (max-width: 768px) {
-  #work { contain-intrinsic-size: auto 1400px; }
-  #results { contain-intrinsic-size: auto 1100px; }
-  #concept { contain-intrinsic-size: auto 1210px; }
-  #benefits { contain-intrinsic-size: auto 1520px; }
-  #process { contain-intrinsic-size: auto 1070px; }
-  #pricing { contain-intrinsic-size: auto 1220px; }
-  #teardown { contain-intrinsic-size: auto 740px; }
-  #testimonials { contain-intrinsic-size: auto 1450px; }
-  #about { contain-intrinsic-size: auto 2080px; }
-  #side-projects { contain-intrinsic-size: auto 925px; }
-  #faq { contain-intrinsic-size: auto 870px; }
-  #contact { contain-intrinsic-size: auto 1200px; }
+  #work { contain-intrinsic-size: auto 570px; }
+  #results { contain-intrinsic-size: auto 1360px; }
+  #concept { contain-intrinsic-size: auto 1270px; }
+  #benefits { contain-intrinsic-size: auto 1290px; }
+  #process { contain-intrinsic-size: auto 1060px; }
+  #pricing { contain-intrinsic-size: auto 1210px; }
+  #testimonials { contain-intrinsic-size: auto 1470px; }
+  #about { contain-intrinsic-size: auto 980px; }
+  #faq { contain-intrinsic-size: auto 890px; }
+  #contact { contain-intrinsic-size: auto 1230px; }
   body > footer, main > footer { contain-intrinsic-size: auto 940px; }
 }
 
@@ -1504,3 +1469,7 @@ strong, b { font-weight: 600; }
   transition: opacity 0.2s ease, inset 0.2s ease;
 }
 .nav-link-anim.is-active::before { opacity: 1; inset: -1px 6px; }
+
+/* the plan buttons beside the featured one: a soft charcoal, purple on hover (the featured plan keeps the purple button) */
+.btn-primary.btn-quiet { background: #2c2c33; color: #fff; }
+.btn-primary.btn-quiet:hover { background: var(--btn-bg); }

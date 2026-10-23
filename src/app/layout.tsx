@@ -3,8 +3,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { FORCE_DARK } from "@/lib/theme";
 
-// One typeface for the whole site. The latin-ext subset covers the accents of French, Spanish, German and Portuguese
-// and the dotted letters and tone marks of Yoruba; Chinese and Japanese fall back to the visitor's system font.
+// One typeface for the whole site. The latin-ext subset covers the accents of French, Spanish, German and Portuguese;
+// Chinese and Japanese fall back to the visitor's system font.
 const geist = Geist({ subsets: ["latin", "latin-ext"], variable: "--font-geist", display: "swap" });
 // The second voice: small technical labels (section numbers, tags, years). Used sparingly.
 const geistMono = Geist_Mono({ subsets: ["latin"], variable: "--font-geist-mono", display: "swap" });

@@ -18,7 +18,7 @@ export function nextStartMonth(lang: string, today: Date = new Date()): string {
   const [year, month] = EARLIEST_START.split("-").map(Number);
   const earliest = new Date(year, month - 1, 1);
   if (d < earliest) d.setTime(earliest.getTime());
-  const locale = lang === "yo" ? "en" : lang; // no Yoruba month names in most browsers
+  const locale = lang;
   return new Intl.DateTimeFormat(locale, { month: "short", year: "numeric" }).format(d);
 }
 

@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 const EASE = [0.22, 1, 0.36, 1] as [number, number, number, number];
 
-// Success state shared by the contact form and the teardown form: floating isometric
+// Success state for the contact form: floating isometric
 // tick, title, message and a 5-second bar before the form resets.
 export default function FormSuccess({ title, desc, resetLabel }: { title: string; desc: string; resetLabel: string }) {
   return (

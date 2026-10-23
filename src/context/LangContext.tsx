@@ -20,12 +20,11 @@ Object.assign(T, WORK_COPY);
 
 const BUSINESS_PAGE = "/local-business";
 
-// Dutch and Norwegian are complete only on the business page, and Yoruba is not there at all, so a
+// Dutch and Norwegian are complete only on the business page, so elsewhere they show English and a
 // page never ends up half in one language and half in another.
 function renderLanguage(lang: LangCode, pathname: string | null): LangCode {
   const onBusinessPage = !!pathname && pathname.startsWith(BUSINESS_PAGE);
   if (lang === "nl" || lang === "no") return onBusinessPage ? lang : "en";
-  if (lang === "yo" && onBusinessPage) return "en";
   return lang;
 }
 
@@ -46,7 +45,6 @@ function detectLocale(): { lang: LangCode; currency: CurrencyCode } {
     pt: "pt",
     zh: "zh",
     ja: "ja",
-    yo: "yo",
     nl: "nl",
     no: "no",
     nb: "no",

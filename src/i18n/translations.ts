@@ -1,4 +1,4 @@
-﻿export type LangCode = "en" | "fr" | "es" | "de" | "pt" | "zh" | "ja" | "yo" | "nl" | "no";
+﻿export type LangCode = "en" | "fr" | "es" | "de" | "pt" | "zh" | "ja" | "nl" | "no";
 export type CurrencyCode = "USD" | "EUR" | "GBP" | "BRL" | "CNY" | "JPY" | "NGN" | "CAD" | "AUD" | "AED" | "NOK";
 
 export interface Language {
@@ -23,7 +23,6 @@ export const LANGUAGES: Language[] = [
   { code: "pt", label: "Português", flag: "🇧🇷", currency: "BRL" },
   { code: "zh", label: "中文",      flag: "🇨🇳", currency: "CNY" },
   { code: "ja", label: "日本語",    flag: "🇯🇵", currency: "JPY" },
-  { code: "yo", label: "Yorùbá",   flag: "🇳🇬", currency: "NGN" },
   // Dutch and Norwegian are fully translated only on /local-business (see LangContext)
   { code: "nl", label: "Nederlands", flag: "🇳🇱", currency: "EUR" },
   { code: "no", label: "Norsk",      flag: "🇳🇴", currency: "NOK" },
@@ -50,29 +49,29 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
   // ── Projects section ──────────────────────────────────────────────────
   "projects.eyebrow": {
     en: "RECENT PROJECTS",          fr: "PROJETS RÉCENTS",           es: "PROYECTOS RECIENTES",      de: "AKTUELLE PROJEKTE",
-    pt: "PROJETOS RECENTES",        zh: "近期项目",                    ja: "最近のプロジェクト",         yo: "ÀWỌN IṢẸ́ ÀÌPẸ́",
+    pt: "PROJETOS RECENTES",        zh: "近期项目",                    ja: "最近のプロジェクト",
   },
   "projects.h1": {
     en: "Featured Projects",        fr: "Projets Phares",            es: "Proyectos Destacados",     de: "Ausgewählte Projekte",
-    pt: "Projetos em Destaque",     zh: "精选项目",                    ja: "注目プロジェクト",           yo: "Àwọn Iṣẹ́ Pàtàkì",
+    pt: "Projetos em Destaque",     zh: "精选项目",                    ja: "注目プロジェクト",
   },
 
   // ── Pricing plans & addons ────────────────────────────────────────────
   "pricing.pricesIn": {
     en: "Prices in:",               fr: "Prix en :",                 es: "Precios en:",              de: "Preise in:",
-    pt: "Preços em:",               zh: "价格单位：",                  ja: "価格通貨：",                yo: "Iye ní:",
+    pt: "Preços em:",               zh: "价格单位：",                  ja: "価格通貨：",
   },
   "pricing.from": {
     en: "from",                     fr: "à partir de",              es: "desde",                    de: "ab",
-    pt: "a partir de",              zh: "起价",                       ja: "〜から",                    yo: "láti",
+    pt: "a partir de",              zh: "起价",                       ja: "〜から",
   },
   "pricing.plan0.label": {
     en: "LANDING PAGE",             fr: "PAGE D'ATTERRISSAGE",       es: "PÁGINA DE DESTINO",        de: "LANDINGPAGE",
-    pt: "PÁGINA DE DESTINO",        zh: "落地页",                     ja: "ランディングページ",         yo: "ÌWÉ ÌDÓKÒWÒ",
+    pt: "PÁGINA DE DESTINO",        zh: "落地页",                     ja: "ランディングページ",
   },
   "pricing.plan0.name": {
     en: "Single Page",              fr: "Page Unique",               es: "Página Única",             de: "Einzelseite",
-    pt: "Página Única",             zh: "单页",                       ja: "シングルページ",             yo: "Ojúewé Kan",
+    pt: "Página Única",             zh: "单页",                       ja: "シングルページ",
   },
   "pricing.plan0.desc": {
     en: "One focused page built to convert. For launches, lead gen, or a clear product pitch.",
@@ -82,35 +81,34 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     pt: "Uma página focada para converter. Para lançamentos, geração de leads ou um pitch de produto claro.",
     zh: "一个专注于转化的页面。用于产品发布、潜在客户开发或产品介绍。",
     ja: "コンバージョンに特化した1ページ。リリース、リード獲得、または明確なプロダクトピッチに。",
-    yo: "Ojúewé kan tó dojúkọ ìyípadà. Fún ìfilọ́lẹ̀, gbígba àwọn oníbàárà, tàbí ìgbékalẹ̀ ọjà.",
   },
   "pricing.plan0.f0": {
     en: "Custom Framer or Webflow design",        fr: "Design Framer ou Webflow personnalisé",   es: "Diseño Framer o Webflow personalizado",
     de: "Individuelles Framer- oder Webflow-Design", pt: "Design Framer ou Webflow personalizado",  zh: "定制 Framer 或 Webflow 设计",
-    ja: "カスタムFramerまたはWebflowデザイン",    yo: "Àpẹẹrẹ Framer tàbí Webflow pàtó",
+    ja: "カスタムFramerまたはWebflowデザイン",
   },
   "pricing.plan0.f1": {
     en: "Mobile-responsive, pixel-perfect",       fr: "Responsive mobile, pixel-perfect",        es: "Mobile-responsive, pixel-perfecto",
     de: "Mobil-responsiv, pixelgenau",             pt: "Responsivo para mobile, pixel-perfect",   zh: "移动端响应式，像素级精准",
-    ja: "モバイル対応、ピクセルパーフェクト",        yo: "Tó ń fèsì sí fóònù, tó pipe",
+    ja: "モバイル対応、ピクセルパーフェクト",
   },
   "pricing.plan0.f2": {
     en: "Animations & micro-interactions",        fr: "Animations et micro-interactions",        es: "Animaciones y micro-interacciones",
     de: "Animationen & Micro-Interaktionen",       pt: "Animações e micro-interações",            zh: "动画与微交互",
-    ja: "アニメーションとマイクロインタラクション",   yo: "Àwọn ìgbésẹ̀ & ìfọwọ́kàn kéékèékè",
+    ja: "アニメーションとマイクロインタラクション",
   },
   "pricing.plan0.f3": {
     en: "Delivered in 5–7 days",                  fr: "Livré en 5–7 jours",                      es: "Entregado en 5–7 días",
     de: "Lieferung in 5–7 Tagen",                  pt: "Entregue em 5–7 dias",                    zh: "5–7天交付",
-    ja: "5〜7日で納品",                              yo: "A fi ránṣẹ́ ní ọjọ́ 5–7",
+    ja: "5〜7日で納品",
   },
   "pricing.plan1.label": {
     en: "FULL WEBSITE",             fr: "SITE COMPLET",              es: "SITIO COMPLETO",           de: "KOMPLETTE WEBSITE",
-    pt: "SITE COMPLETO",            zh: "完整网站",                    ja: "フルサイト",                 yo: "OJÚEWÉ ÌPÍNNÚ",
+    pt: "SITE COMPLETO",            zh: "完整网站",                    ja: "フルサイト",
   },
   "pricing.plan1.name": {
     en: "Multi-Page Build",         fr: "Site Multi-Pages",          es: "Sitio Multi-Página",       de: "Mehrseitige Website",
-    pt: "Site Multi-Páginas",       zh: "多页网站",                    ja: "マルチページ構築",           yo: "Kíkọ́ Ojúewé Púpọ̀",
+    pt: "Site Multi-Páginas",       zh: "多页网站",                    ja: "マルチページ構築",
   },
   "pricing.plan1.desc": {
     en: "A complete site for founders and businesses who need more than a landing page.",
@@ -120,45 +118,44 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     pt: "Um site completo para fundadores e empresas que precisam de mais do que uma landing page.",
     zh: "为需要不止落地页的创始人和企业打造的完整网站。",
     ja: "ランディングページ以上のものが必要な創業者やビジネスのための完全なサイト。",
-    yo: "Ojúewé pípé fún àwọn olùdásílẹ̀ àti àwọn iṣowó tó nílò jù ojúewé ìdókòwò lọ.",
   },
   "pricing.plan1.f0": {
     en: "Up to 8 pages",                          fr: "Jusqu'à 8 pages",                         es: "Hasta 8 páginas",
     de: "Bis zu 8 Seiten",                         pt: "Até 8 páginas",                           zh: "最多8页",
-    ja: "最大8ページ",                               yo: "Ó tó ojúewé 8",
+    ja: "最大8ページ",
   },
   "pricing.plan1.f1": {
     en: "Figma wireframe before we build",        fr: "Maquette Figma avant construction",       es: "Wireframe Figma antes de construir",
     de: "Figma-Wireframe vor dem Bau",             pt: "Wireframe Figma antes de construir",      zh: "构建前提供 Figma 线框图",
-    ja: "構築前にFigmaワイヤーフレーム",               yo: "Àpẹẹrẹ Figma ṣáájú kíkọ́",
+    ja: "構築前にFigmaワイヤーフレーム",
   },
   "pricing.plan1.f2": {
     en: "Blog or portfolio CMS setup",            fr: "Configuration CMS blog ou portfolio",     es: "Configuración CMS de blog o portafolio",
     de: "Blog- oder Portfolio-CMS-Einrichtung",    pt: "Configuração de CMS de blog ou portfólio", zh: "博客或作品集 CMS 设置",
-    ja: "ブログまたはポートフォリオCMSセットアップ",   yo: "Ìtò CMS fún àgbékalẹ̀ tàbí àkójọ iṣẹ́",
+    ja: "ブログまたはポートフォリオCMSセットアップ",
   },
   "pricing.plan1.f3": {
     en: "SEO basics + sitemap",                   fr: "SEO de base + sitemap",                   es: "SEO básico + mapa del sitio",
     de: "SEO-Grundlagen + Sitemap",                pt: "SEO básico + mapa do site",               zh: "基础 SEO + 网站地图",
-    ja: "SEO基礎 + サイトマップ",                    yo: "Ìpìlẹ̀ SEO + maapu ojúewé",
+    ja: "SEO基礎 + サイトマップ",
   },
   "pricing.plan1.f4": {
     en: "Delivered in 10–14 days",                fr: "Livré en 10–14 jours",                    es: "Entregado en 10–14 días",
     de: "Lieferung in 10–14 Tagen",                pt: "Entregue em 10–14 dias",                  zh: "10–14天交付",
-    ja: "10〜14日で納品",                            yo: "A fi ránṣẹ́ ní ọjọ́ 10–14",
+    ja: "10〜14日で納品",
   },
   "pricing.plan1.f5": {
     en: "Loom handoff walkthrough",               fr: "Tutoriel Loom de transfert",              es: "Tutorial Loom de entrega",
     de: "Loom-Übergabe-Walkthrough",               pt: "Tutorial Loom de entrega",                zh: "Loom 交接教程",
-    ja: "Loomで引き渡しウォークスルー",               yo: "Àtúpalẹ̀ Loom fún gbigbe iṣẹ́",
+    ja: "Loomで引き渡しウォークスルー",
   },
   "pricing.plan2.label": {
     en: "E-COMMERCE",               fr: "E-COMMERCE",                es: "E-COMMERCE",               de: "E-COMMERCE",
-    pt: "E-COMMERCE",               zh: "电商",                       ja: "Eコマース",                  yo: "ÌṢÒWÒ AYÉLUJÁRA",
+    pt: "E-COMMERCE",               zh: "电商",                       ja: "Eコマース",
   },
   "pricing.plan2.name": {
     en: "Shopify / WooCommerce",    fr: "Shopify / WooCommerce",     es: "Shopify / WooCommerce",    de: "Shopify / WooCommerce",
-    pt: "Shopify / WooCommerce",    zh: "Shopify / WooCommerce",     ja: "Shopify / WooCommerce",    yo: "Shopify / WooCommerce",
+    pt: "Shopify / WooCommerce",    zh: "Shopify / WooCommerce",     ja: "Shopify / WooCommerce",
   },
   "pricing.plan2.desc": {
     en: "Conversion-focused store design for brands ready to sell online the right way.",
@@ -168,58 +165,57 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     pt: "Design de loja focado em conversão para marcas prontas para vender online do jeito certo.",
     zh: "以转化为核心的商店设计，适合准备好以正确方式在线销售的品牌。",
     ja: "正しい方法でオンライン販売する準備ができたブランドのための、コンバージョン重視のストアデザイン。",
-    yo: "Àpẹẹrẹ ilé-ìtajà tó dojúkọ ìyípadà fún àwọn àmì tó ṣetán láti tà ní orí ìnẹ́tì.",
   },
   "pricing.plan2.f0": {
     en: "Custom Shopify or WooCommerce theme",    fr: "Thème Shopify ou WooCommerce personnalisé", es: "Tema Shopify o WooCommerce personalizado",
     de: "Individuelles Shopify- oder WooCommerce-Theme", pt: "Tema Shopify ou WooCommerce personalizado", zh: "定制 Shopify 或 WooCommerce 主题",
-    ja: "カスタムShopifyまたはWooCommerceテーマ",   yo: "Àpẹẹrẹ Shopify tàbí WooCommerce pàtó",
+    ja: "カスタムShopifyまたはWooCommerceテーマ",
   },
   "pricing.plan2.f1": {
     en: "Product pages built to sell",            fr: "Pages produits conçues pour vendre",      es: "Páginas de producto diseñadas para vender",
     de: "Produktseiten zum Verkaufen erstellt",    pt: "Páginas de produto para vender",          zh: "专为销售打造的产品页",
-    ja: "販売のために作られた商品ページ",               yo: "Àwọn ojúewé ọjà tí a kọ́ láti tà",
+    ja: "販売のために作られた商品ページ",
   },
   "pricing.plan2.f2": {
     en: "Payment & checkout optimisation",        fr: "Optimisation paiement & caisse",          es: "Optimización de pago y checkout",
     de: "Zahlungs- & Checkout-Optimierung",        pt: "Otimização de pagamento e checkout",      zh: "支付与结账优化",
-    ja: "支払いとチェックアウトの最適化",               yo: "Ìmúdára ìsanwó & ìgbẹ̀yìn rírà",
+    ja: "支払いとチェックアウトの最適化",
   },
   "pricing.plan2.f3": {
     en: "Mobile-first, fast-loading",             fr: "Mobile-first, chargement rapide",         es: "Mobile-first, carga rápida",
     de: "Mobile-first, schnell ladend",            pt: "Mobile-first, carregamento rápido",       zh: "移动优先，快速加载",
-    ja: "モバイルファースト、高速ロード",               yo: "Fóònù kọ́kọ́, ìgbòkègbodò ìyára",
+    ja: "モバイルファースト、高速ロード",
   },
   "pricing.plan2.f4": {
     en: "Delivered in 14 days",                   fr: "Livré en 14 jours",                       es: "Entregado en 14 días",
     de: "Lieferung in 14 Tagen",                   pt: "Entregue em 14 dias",                     zh: "14天交付",
-    ja: "14日で納品",                               yo: "A fi ránṣẹ́ ní ọjọ́ 14",
+    ja: "14日で納品",
   },
   "pricing.addon0": {
     en: "Any Platform → Framer",    fr: "Toute Plateforme → Framer", es: "Cualquier Plataforma → Framer", de: "Jede Plattform → Framer",
-    pt: "Qualquer Plataforma → Framer", zh: "任意平台 → Framer",       ja: "どのプラットフォームも → Framer", yo: "Pẹpẹ Èyíkéyìí → Framer",
+    pt: "Qualquer Plataforma → Framer", zh: "任意平台 → Framer",       ja: "どのプラットフォームも → Framer",
   },
   "pricing.addon1": {
     en: "Ongoing monthly support",  fr: "Support mensuel continu",   es: "Soporte mensual continuo",  de: "Laufender monatlicher Support",
-    pt: "Suporte mensal contínuo",  zh: "持续月度支持",                ja: "継続月次サポート",            yo: "Àtìlẹ́yọ̀ oṣùnṣù tí ń lọ síwájú",
+    pt: "Suporte mensal contínuo",  zh: "持续月度支持",                ja: "継続月次サポート",
   },
   "pricing.addon2": {
     en: "Design only (Figma)",      fr: "Design seul (Figma)",       es: "Solo diseño (Figma)",       de: "Nur Design (Figma)",
-    pt: "Somente design (Figma)",   zh: "仅设计 (Figma)",              ja: "デザインのみ（Figma）",      yo: "Àpẹẹrẹ nìkan (Figma)",
+    pt: "Somente design (Figma)",   zh: "仅设计 (Figma)",              ja: "デザインのみ（Figma）",
   },
   "pricing.addon3": {
     en: "SEO audit + fixes",        fr: "Audit SEO + corrections",   es: "Auditoría SEO + correcciones", de: "SEO-Audit + Korrekturen",
-    pt: "Auditoria SEO + correções", zh: "SEO 审计 + 修复",            ja: "SEO監査 + 修正",             yo: "Ìdánwò SEO + àtúnṣe",
+    pt: "Auditoria SEO + correções", zh: "SEO 审计 + 修复",            ja: "SEO監査 + 修正",
   },
 
   // ── Footer bar ────────────────────────────────────────────────────────
   "footer.portfolioLabel": {
     en: "PORTFOLIO",                fr: "PORTFOLIO",                 es: "PORTFOLIO",                de: "PORTFOLIO",
-    pt: "PORTFÓLIO",                zh: "作品集",                     ja: "ポートフォリオ",             yo: "ÀKÓJỌ IṢẸ́",
+    pt: "PORTFÓLIO",                zh: "作品集",                     ja: "ポートフォリオ",
   },
   "footer.followLabel": {
     en: "FOLLOW ME ON",             fr: "SUIVEZ-MOI SUR",            es: "SÍGUEME EN",               de: "FOLGT MIR AUF",
-    pt: "SIGA-ME EM",               zh: "关注我",                     ja: "フォローはこちら",           yo: "TẸ̀LEМ Í LÓRí",
+    pt: "SIGA-ME EM",               zh: "关注我",                     ja: "フォローはこちら",
   },
   "footer.tagline": {
     en: "Web developer & Framer designer. Sites that ship in 14 days.",
@@ -229,85 +225,84 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     pt: "Desenvolvedor Framer & Web criando sites rápidos e bonitos.",
     zh: "Framer & 网页开发者，打造快速美观的网站。",
     ja: "Framer＆Web開発者。速くて美しいサイトを制作。",
-    yo: "Olùgbéjáde Framer & Wẹ́ẹ̀bù tó ń kọ́ àwọn ojúewé tó yára àti tó dára.",
   },
 
   // ── Currently section ─────────────────────────────────────────────────
   "currently.label": {
     en: "CURRENTLY",                fr: "EN CE MOMENT",              es: "ACTUALMENTE",              de: "AKTUELL",
-    pt: "ATUALMENTE",               zh: "当前",                       ja: "いま",                      yo: "NÍ BÁYÌÍ",
+    pt: "ATUALMENTE",               zh: "当前",                       ja: "いま",
   },
   "currently.nowPlaying": {
     en: "Now playing",             fr: "En écoute",               es: "Sonando ahora",           de: "Läuft gerade",
-    pt: "Tocando agora",           zh: "正在播放",                  ja: "再生中",                    yo: "Ń dún báyìí",
+    pt: "Tocando agora",           zh: "正在播放",                  ja: "再生中",
   },
   "currently.recent": {
     en: "Recently played",         fr: "Écouté récemment",        es: "Escuchado recientemente", de: "Zuletzt gehört",
-    pt: "Ouvido recentemente",     zh: "最近播放",                  ja: "最近の再生",                yo: "Tí mo gbọ́ láìpẹ́",
+    pt: "Ouvido recentemente",     zh: "最近播放",                  ja: "最近の再生",
   },
   "currently.listen": {
     en: "Listen on Spotify",       fr: "Écouter sur Spotify",     es: "Escuchar en Spotify",     de: "Auf Spotify hören",
-    pt: "Ouvir no Spotify",        zh: "在 Spotify 上收听",          ja: "Spotifyで聴く",             yo: "Gbọ́ lórí Spotify",
+    pt: "Ouvir no Spotify",        zh: "在 Spotify 上收听",          ja: "Spotifyで聴く",
   },
   "currently.reading": {
     en: "Currently reading",       fr: "Lecture en cours",        es: "Leyendo ahora",           de: "Lese gerade",
-    pt: "Lendo agora",             zh: "正在阅读",                  ja: "読書中",                    yo: "Ohun tí mo ń kà",
+    pt: "Lendo agora",             zh: "正在阅读",                  ja: "読書中",
   },
 
   // ── Nav ──────────────────────────────────────────────────────────────
   "nav.work": {
     en: "WORK",         fr: "PROJETS",      es: "PROYECTOS",    de: "ARBEIT",
-    pt: "PROJETOS",     zh: "作品",          ja: "実績",          yo: "ÌṢẸ",
+    pt: "PROJETOS",     zh: "作品",          ja: "実績",
   },
   "nav.benefits": {
     en: "BENEFITS",     fr: "AVANTAGES",    es: "BENEFICIOS",   de: "VORTEILE",
-    pt: "BENEFÍCIOS",   zh: "优势",          ja: "メリット",      yo: "ÀǸFÀNÍ",
+    pt: "BENEFÍCIOS",   zh: "优势",          ja: "メリット",
   },
   "nav.process": {
     en: "PROCESS",      fr: "PROCESSUS",    es: "PROCESO",      de: "PROZESS",
-    pt: "PROCESSO",     zh: "流程",          ja: "プロセス",      yo: "ÌLàNA",
+    pt: "PROCESSO",     zh: "流程",          ja: "プロセス",
   },
   "nav.pricing": {
     en: "PRICING",      fr: "TARIFS",       es: "PRECIOS",      de: "PREISE",
-    pt: "PREÇOS",       zh: "价格",          ja: "料金",          yo: "ÈTÒ OWÓ",
+    pt: "PREÇOS",       zh: "价格",          ja: "料金",
   },
   "nav.testimonials": {
     en: "TESTIMONIALS", fr: "AVIS",         es: "TESTIMONIOS",  de: "BEWERTUNGEN",
-    pt: "DEPOIMENTOS",  zh: "评价",          ja: "口コミ",        yo: "ẸRÍ",
+    pt: "DEPOIMENTOS",  zh: "评价",          ja: "口コミ",
   },
   "nav.about": {
     en: "ABOUT",        fr: "À PROPOS",     es: "SOBRE MÍ",     de: "ÜBER MICH",
-    pt: "SOBRE MIM",    zh: "关于我",        ja: "私について",    yo: "NÍPA MI",
+    pt: "SOBRE MIM",    zh: "关于我",        ja: "私について",
   },
   "nav.faq": {
     en: "FAQ",          fr: "FAQ",          es: "FAQ",          de: "FAQ",
-    pt: "FAQ",          zh: "常见问题",      ja: "よくある質問",  yo: "ÌBÉÈRÈ",
+    pt: "FAQ",          zh: "常见问题",      ja: "よくある質問",
   },
   "nav.contact": {
     en: "CONTACT",      fr: "CONTACT",      es: "CONTACTO",     de: "KONTAKT",
-    pt: "CONTATO",      zh: "联系",          ja: "お問い合わせ",  yo: "ÌBÁNISỌ̀RỌ̀",
+    pt: "CONTATO",      zh: "联系",          ja: "お問い合わせ",
   },
 
   // ── Hero ─────────────────────────────────────────────────────────────
   "hero.badge": {
     // {count} is SPOTS_OPEN in src/lib/availability.ts
     en: "{count} spots open",            fr: "{count} places disponibles",    es: "{count} plazas disponibles",    de: "{count} Plätze frei",
-    pt: "{count} vagas disponíveis",     zh: "{count}个名额开放",              ja: "残り{count}枠",                  yo: "àyè {count} ṣí",
+    pt: "{count} vagas disponíveis",     zh: "{count}个名额开放",              ja: "残り{count}枠",
   },
   "hero.badge2": {
     // {date} is filled in by nextStartMonth() in src/lib/availability.ts
     en: "Next start: {date}",      fr: "Début : {date}",          es: "Inicio: {date}",          de: "Start: {date}",
-    pt: "Início: {date}",          zh: "下一期: {date}",           ja: "次回開始: {date}",          yo: "Ìbẹ̀rẹ̀: {date}",
+    pt: "Início: {date}",          zh: "下一期: {date}",           ja: "次回開始: {date}",
   },
   "hero.h1": {
     en: "I DESIGN & BUILD",         fr: "JE CONÇOIS ET CRÉE",      es: "DISEÑO Y CONSTRUYO",      de: "ICH GESTALTE UND BAUE",
-    pt: "EU PROJETO E CONSTRUO",   zh: "我设计并构建",              ja: "デザインして構築する",      yo: "MO ṢEÈDÀ ATI KÒ",
+    pt: "EU PROJETO E CONSTRUO",   zh: "我设计并构建",              ja: "デザインして構築する",
   },
   // Second headline line = prefix + a word that cycles through the "|"-separated list.
   // zh/ja put the verb first, so the whole line cycles there (empty prefix).
   "hero.h2.prefix": {
     en: "SITES THAT",              fr: "DES SITES QUI",           es: "SITIOS WEB QUE",          de: "WEBSITES, DIE",
-    pt: "SITES QUE",               zh: "",                         ja: "",                         yo: "ÀWỌN OJÚEWÉ TÓ",
+    pt: "SITES QUE",               zh: "",                         ja: "",
   },
   "hero.h2.words": {
     en: "CONVERT.|SELL.|GROW.",
@@ -317,7 +312,6 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     pt: "CONVERTEM.|VENDEM.|CRESCEM.",
     zh: "能够转化的网站。|能够卖货的网站。|助力增长的网站。",
     ja: "成果が出るサイト。|売れるサイト。|成長するサイト。",
-    yo: "YÁRA.",
   },
   "hero.subtitle": {
     en: "Web developer & Framer designer. From brief to launch in 14 days, for founders done waiting on slow agencies.",
@@ -327,7 +321,6 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     pt: "Desenvolvedor e designer Framer. Do brief ao lançamento em 14 dias, para fundadores cansados de agências lentas e prazos inflados.",
     zh: "Framer开发者与设计师。从简报到上线14天。为那些厌倦了慢速代理机构的创始人服务。",
     ja: "Framer開発者＆デザイナー。ブリーフからライブまで14日。遅いエージェンシーに嫌気が差した創業者のために。",
-    yo: "Olùgbéjáde & aṣàpẹẹrẹ Framer. Láti àkọsílẹ̀ sí ìfilọ́lẹ̀ ní ọjọ́ 14, fún àwọn adárí tó ti rẹ̀ àwọn ilé-iṣẹ́ tó lọrا.",
   },
   "hero.proof": {
     en: "Top Rated on Upwork  ·  50+ Projects Shipped  ·  100% Job Success",
@@ -337,15 +330,14 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     pt: "Top Rated no Upwork  ·  50+ projetos entregues  ·  100% de sucesso",
     zh: "Upwork 顶级认证  ·  50+ 项目交付  ·  100% 成功率",
     ja: "Upwork Top Rated  ·  50以上のプロジェクト  ·  成功率100%",
-    yo: "Top Rated lórí Upwork  ·  50+ iṣẹ́ tí a pé  ·  100% Àṣeyọrí",
   },
   "hero.cta": {
     en: "BOOK A FREE CALL",        fr: "RÉSERVER UN APPEL",       es: "AGENDAR LLAMADA",         de: "ANRUF BUCHEN",
-    pt: "AGENDAR CHAMADA",         zh: "预约免费通话",              ja: "無料通話を予約",            yo: "PADE NÍNÚ ÌPÈ",
+    pt: "AGENDAR CHAMADA",         zh: "预约免费通话",              ja: "無料通話を予約",
   },
   "hero.ctaWork": {
     en: "SEE MY WORK",             fr: "VOIR MES PROJETS",        es: "VER MI TRABAJO",          de: "MEINE ARBEITEN",
-    pt: "VER MEU TRABALHO",        zh: "查看作品",                  ja: "実績を見る",                yo: "WO IṢẸ́ MI",
+    pt: "VER MEU TRABALHO",        zh: "查看作品",                  ja: "実績を見る",
   },
   "hero.localLink": {
     en: "Run a clinic, salon or trades business? See how I help",
@@ -355,21 +347,20 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     pt: "Tem uma clínica, um salão ou um negócio de serviços? Veja como posso ajudar",
     zh: "经营诊所、沙龙或维修服务？看看我能如何帮忙",
     ja: "クリニック、サロン、工事業を経営されていますか？私のサポート内容はこちら",
-    yo: "Ṣé o ní ilé ìwòsàn, ṣọ́ọ̀bù ìrun tàbí iṣẹ́ ọwọ́? Wo bí mo ṣe lè ràn ọ́ lọ́wọ́",
   },
   "hero.tagTopRated": {
     en: "Top Rated · Upwork",      fr: "Top Rated · Upwork",      es: "Top Rated · Upwork",      de: "Top Rated · Upwork",
-    pt: "Top Rated · Upwork",      zh: "Upwork 顶级认证",           ja: "Upwork Top Rated",         yo: "Top Rated · Upwork",
+    pt: "Top Rated · Upwork",      zh: "Upwork 顶级认证",           ja: "Upwork Top Rated",
   },
   "hero.tagShipped": {
     en: "50+ sites shipped",       fr: "50+ sites livrés",        es: "50+ sitios entregados",   de: "50+ Websites geliefert",
-    pt: "50+ sites entregues",     zh: "已交付 50+ 网站",           ja: "50件以上のサイトを納品",     yo: "50+ ojúewé tí a pé",
+    pt: "50+ sites entregues",     zh: "已交付 50+ 网站",           ja: "50件以上のサイトを納品",
   },
   "clients.label": {
     en: "Trusted by founders & teams at",   fr: "Ils m'ont fait confiance",      es: "Confían en mí",                de: "Vertrauen von Gründern & Teams bei",
-    pt: "Confiado por fundadores e equipes", zh: "合作过的创始人与团队",          ja: "創業者・チームからの信頼",       yo: "Àwọn tó gbẹ́kẹ̀lé mi",
+    pt: "Confiado por fundadores e equipes", zh: "合作过的创始人与团队",          ja: "創業者・チームからの信頼",
   },
-  // ── Case studies (results section) and free teardown offer ─────────
+  // ── Case studies (results section) ─────────
   "cases.eyebrow": {
     en: "Results",
     fr: "Résultats",
@@ -378,7 +369,6 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     pt: "Resultados",
     zh: "成果",
     ja: "成果",
-    yo: "Àwọn àbájáde",
   },
   "cases.h1": {
     en: "Real projects.",
@@ -388,7 +378,6 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     pt: "Projetos reais.",
     zh: "真实项目。",
     ja: "実際のプロジェクト。",
-    yo: "Iṣẹ́ gidi.",
   },
   "cases.h1b": {
     en: "Real outcomes.",
@@ -398,7 +387,6 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     pt: "Resultados reais.",
     zh: "真实成果。",
     ja: "実際の成果。",
-    yo: "Àbájáde gidi.",
   },
   "cases.brief": {
     en: "The brief",
@@ -408,7 +396,6 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     pt: "O desafio",
     zh: "需求",
     ja: "課題",
-    yo: "Ohun tí wọ́n fẹ́",
   },
   "cases.did": {
     en: "What I did",
@@ -418,7 +405,6 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     pt: "O que eu fiz",
     zh: "我做了什么",
     ja: "取り組んだこと",
-    yo: "Ohun tí mo ṣe",
   },
   "cases.visit": {
     en: "Visit site",
@@ -428,7 +414,6 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     pt: "Ver o site",
     zh: "访问网站",
     ja: "サイトを見る",
-    yo: "Wo ojúewé",
   },
   "cases.watch": {
     en: "Watch the video testimonial",
@@ -438,7 +423,6 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     pt: "Ver o depoimento em vídeo",
     zh: "观看视频评价",
     ja: "動画の推薦を見る",
-    yo: "Wo fídíò ìjẹ́rìí",
   },
   "cases.initial.metricLabel": {
     en: "new clients from one landing page",
@@ -448,7 +432,6 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     pt: "novos clientes com uma única landing page",
     zh: "通过一个落地页获得的新客户",
     ja: "1つのLPから獲得した新規顧客",
-    yo: "oníbàárà tuntun láti ojúewé kan",
   },
   "cases.initial.brief": {
     en: "An agency needed a landing page that brings in clients, not just one that looks good.",
@@ -458,7 +441,6 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     pt: "Uma agência precisava de uma landing page que trouxesse clientes, não só uma página bonita.",
     zh: "一家代理机构需要一个能带来客户的落地页，而不只是好看。",
     ja: "見た目だけでなく、顧客を獲得できるLPが必要でした。",
-    yo: "Ilé-iṣẹ́ kan nílò ojúewé tí yóò mú oníbàárà wá, kì í ṣe èyí tó kàn rẹwà nìkan.",
   },
   "cases.initial.did": {
     en: "Turned their Figma design into a fast, pixel-accurate site with custom interactions and a CMS, then added a page of social proof.",
@@ -477,7 +459,6 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     pt: "Todos os idiomas",
     zh: "所有语言",
     ja: "全言語",
-    yo: "Gbogbo èdè",
   },
   "cases.leadopo.metricLabel": {
     en: "versions displaying correctly again",
@@ -487,7 +468,6 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     pt: "voltaram a ser exibidos corretamente",
     zh: "版本重新正常显示",
     ja: "で再び正しく表示",
-    yo: "ń hàn dáadáa padà",
   },
   "cases.leadopo.brief": {
     en: "Their site's styles kept breaking across its different language versions.",
@@ -515,7 +495,6 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     pt: "pagos a artistas e organizadores em menos de um mês, com mais de 100 downloads no primeiro mês",
     zh: "不到一个月内向艺人和组织者发放，首月下载量超过 100 次",
     ja: "1か月足らずでアーティストと主催者に支払い。初月のダウンロード数は100件以上",
-    yo: "tí a san fún àwọn olórin àti olùṣètò ní ìsàlẹ̀ oṣù kan, pẹ̀lú ìgbàsílẹ̀ tó ju 100 lọ ní oṣù àkọ́kọ́",
   },
   "cases.bookedez.brief": {
     en: "An event booking platform connecting organizers, vendors and attendees needed one designer to own the product.",
@@ -525,7 +504,6 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     pt: "Uma plataforma de reservas de eventos que conecta organizadores, fornecedores e participantes precisava de um designer à frente do produto.",
     zh: "一个连接组织者、供应商和参与者的活动预订平台，需要一位设计师全面负责产品。",
     ja: "主催者・出店者・参加者をつなぐイベント予約プラットフォームに、プロダクト全体を担うデザイナーが必要でした。",
-    yo: "Pèpéle ìforúkọsílẹ̀ ayẹyẹ tó so olùṣètò, olùtajà àti àwọn olùkópa pọ̀ nílò aṣàpẹẹrẹ kan láti darí ọjà náà.",
   },
   "cases.bookedez.did": {
     en: "Designed the full dark-mode mobile app (profiles, membership tiers and the booking flow) from 2023 to 2025.",
@@ -535,57 +513,6 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     pt: "Desenhei todo o app mobile em modo escuro (perfis, níveis de assinatura e fluxo de reserva) de 2023 a 2025.",
     zh: "2023 年至 2025 年，设计了完整的深色模式移动应用（个人资料、会员等级和预订流程）。",
     ja: "2023年から2025年まで、ダークモードのモバイルアプリ全体（プロフィール、会員プラン、予約フロー）をデザインしました。",
-    yo: "Mo ṣe àpẹẹrẹ gbogbo áàpù alágbèéká onídúdú (àkọsílẹ̀ ara ẹni, ìpele ọmọ ẹgbẹ́ àti ọ̀nà ìforúkọsílẹ̀) láti 2023 sí 2025.",
-  },
-  "teardown.desc": {
-    en: "I'll record a short Loom walking through what's costing you leads and how I'd fix it. In your inbox within 48 hours.",
-    fr: "J'enregistre une courte vidéo Loom sur ce qui vous fait perdre des prospects et comment je le corrigerais. Dans votre boîte mail sous 48 heures.",
-    es: "Grabo un Loom corto mostrando qué te está haciendo perder clientes y cómo lo arreglaría. En tu bandeja en 48 horas.",
-    de: "Ich nehme ein kurzes Loom-Video auf: was dich Leads kostet und wie ich es beheben würde. Innerhalb von 48 Stunden in deinem Postfach.",
-    pt: "Gravo um Loom curto mostrando o que está te fazendo perder clientes e como eu resolveria. Na sua caixa de entrada em até 48 horas.",
-    zh: "我会录制一段简短的 Loom 视频，讲解哪些地方让你流失潜在客户，以及我会如何修复。48 小时内发送到你的邮箱。",
-    ja: "見込み客を逃している原因と改善方法を、短いLoom動画で解説します。48時間以内にお届けします。",
-    yo: "Màá ṣe fídíò Loom kúkúrú tó ń fi ohun tó ń mú kí o pàdánù oníbàárà hàn àti bí màá ṣe tún un ṣe. Yóò dé ọ̀dọ̀ rẹ láàárín wákàtí 48.",
-  },
-  "teardown.url": {
-    en: "Your website URL",
-    fr: "URL de votre site",
-    es: "URL de tu sitio",
-    de: "URL deiner Website",
-    pt: "URL do seu site",
-    zh: "你的网站链接",
-    ja: "サイトのURL",
-    yo: "Àdírẹ́sì ojúewé rẹ",
-  },
-  "teardown.cta": {
-    en: "Get my free teardown",
-    fr: "Recevoir mon analyse gratuite",
-    es: "Quiero mi análisis gratis",
-    de: "Kostenlose Analyse anfordern",
-    pt: "Quero minha análise grátis",
-    zh: "获取免费诊断",
-    ja: "無料診断を申し込む",
-    yo: "Gba àyẹ̀wò ọ̀fẹ́ mi",
-  },
-  "teardown.sending": {
-    en: "Sending…",
-    fr: "Envoi…",
-    es: "Enviando…",
-    de: "Wird gesendet…",
-    pt: "Enviando…",
-    zh: "发送中…",
-    ja: "送信中…",
-    yo: "Ń fi ránṣẹ́…",
-  },
-  "teardown.error": {
-    en: "Something went wrong. Email samuel@adefilasamuel.com instead.",
-    fr: "Une erreur s'est produite. Écrivez plutôt à samuel@adefilasamuel.com.",
-    es: "Algo salió mal. Escribe a samuel@adefilasamuel.com.",
-    de: "Etwas ist schiefgelaufen. Schreib stattdessen an samuel@adefilasamuel.com.",
-    pt: "Algo deu errado. Escreva para samuel@adefilasamuel.com.",
-    zh: "出了点问题，请改为发送邮件至 samuel@adefilasamuel.com。",
-    ja: "エラーが発生しました。samuel@adefilasamuel.com までご連絡ください。",
-    yo: "Nǹkan kan ṣẹlẹ̀. Kọ ímeèlì sí samuel@adefilasamuel.com dípò rẹ̀.",
   },
   // Promises shown under the pricing cards
   "pricing.guarantee1": {
@@ -596,7 +523,6 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     pt: "Preço fixo, combinado antes de começar. Sem surpresas.",
     zh: "固定价格，开工前确定。没有意外。",
     ja: "固定価格。着手前に合意します。追加費用なし。",
-    yo: "Iye owó tí kò yí padà, tí a fohùn ṣọ̀kan sí kí a tó bẹ̀rẹ̀. Kò sí ìyàlẹ́nu.",
   },
   "pricing.guarantee2": {
     en: "Revisions until you're happy, within the agreed scope.",
@@ -606,67 +532,6 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     pt: "Revisões até você ficar satisfeito, dentro do escopo combinado.",
     zh: "在约定范围内修改，直到你满意为止。",
     ja: "合意した範囲内で、ご満足いただけるまで修正します。",
-    yo: "Àtúnṣe títí inú rẹ yóò fi dùn, láàárín ààlà iṣẹ́ tí a fohùn sí.",
-  },
-  "teardown.label": {
-    en: "Free teardown",
-    fr: "Analyse gratuite",
-    es: "Análisis gratis",
-    de: "Kostenlose Analyse",
-    pt: "Análise grátis",
-    zh: "免费诊断",
-    ja: "無料診断",
-    yo: "Àyẹ̀wò ọ̀fẹ́",
-  },
-  "teardown.h1": {
-    en: "Not ready to call?",
-    fr: "Pas prêt à appeler ?",
-    es: "¿No listo para llamar?",
-    de: "Noch nicht bereit für einen Anruf?",
-    pt: "Ainda não quer ligar?",
-    zh: "还没准备好通话？",
-    ja: "まだ通話は早い？",
-    yo: "Ṣé o kò tíì ṣetán láti pè?",
-  },
-  "teardown.h1b": {
-    en: "Get a free video teardown.",
-    fr: "Recevez une analyse vidéo gratuite.",
-    es: "Recibe un análisis en video gratis.",
-    de: "Hol dir eine kostenlose Videoanalyse.",
-    pt: "Receba uma análise em vídeo grátis.",
-    zh: "免费获取视频诊断。",
-    ja: "無料の動画診断を受け取る。",
-    yo: "Gba àyẹ̀wò fídíò ọ̀fẹ́.",
-  },
-  "teardown.urlLabel": {
-    en: "Website",
-    fr: "Site web",
-    es: "Sitio web",
-    de: "Website",
-    pt: "Site",
-    zh: "网站",
-    ja: "ウェブサイト",
-    yo: "Ojúewé",
-  },
-  "teardown.successTitle": {
-    en: "Request received.",
-    fr: "Demande reçue.",
-    es: "Solicitud recibida.",
-    de: "Anfrage erhalten.",
-    pt: "Pedido recebido.",
-    zh: "请求已收到。",
-    ja: "リクエストを受け付けました。",
-    yo: "A ti gba ìbéèrè rẹ.",
-  },
-  "teardown.successDesc": {
-    en: "Your video teardown will be in your inbox within 48 hours.",
-    fr: "Votre analyse vidéo arrivera dans votre boîte mail sous 48 heures.",
-    es: "Tu análisis en video llegará a tu correo en 48 horas.",
-    de: "Deine Videoanalyse kommt innerhalb von 48 Stunden in dein Postfach.",
-    pt: "Sua análise em vídeo chega no seu e-mail em até 48 horas.",
-    zh: "你的视频诊断将在 48 小时内发送到你的邮箱。",
-    ja: "48時間以内に診断動画をメールでお送りします。",
-    yo: "Àyẹ̀wò fídíò rẹ yóò dé ímeèlì rẹ láàárín wákàtí 48.",
   },
   // Booking window (BookingPopup.tsx)
   "booking.loading": {
@@ -677,7 +542,6 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     pt: "Carregando calendário…",
     zh: "正在加载日历…",
     ja: "カレンダーを読み込み中…",
-    yo: "Ń gbé kàlẹ́ńdà wá…",
   },
   "booking.newTab": {
     en: "Open in new tab",
@@ -687,7 +551,6 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     pt: "Abrir em nova aba",
     zh: "在新标签页打开",
     ja: "新しいタブで開く",
-    yo: "Ṣí nínú táàbù tuntun",
   },
   "booking.close": {
     en: "Close",
@@ -697,25 +560,24 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     pt: "Fechar",
     zh: "关闭",
     ja: "閉じる",
-    yo: "Pa á dé",
   },
   "hero.downloadCv": {
     en: "DOWNLOAD CV",             fr: "TÉLÉCHARGER CV",          es: "DESCARGAR CV",            de: "CV HERUNTERLADEN",
-    pt: "BAIXAR CV",               zh: "下载简历",                 ja: "履歴書を取得",              yo: "GBOYE CV",
+    pt: "BAIXAR CV",               zh: "下载简历",                 ja: "履歴書を取得",
   },
 
   // ── Pricing ──────────────────────────────────────────────────────────
   "pricing.eyebrow": {
     en: "INVESTMENT",   fr: "INVESTISSEMENT", es: "INVERSIÓN",    de: "INVESTITION",
-    pt: "INVESTIMENTO", zh: "投资",            ja: "投資",          yo: "IDOKO-ỌWÓ",
+    pt: "INVESTIMENTO", zh: "投资",            ja: "投資",
   },
   "pricing.h2a": {
     en: "CLEAR SCOPE.",   fr: "PRIX CLAIRS.",     es: "PRECIOS CLAROS.",    de: "KLARE PREISE.",
-    pt: "PREÇOS CLAROS.", zh: "清晰报价。",         ja: "明確な価格。",        yo: "ÈTÒ TÓ KEDERE.",
+    pt: "PREÇOS CLAROS.", zh: "清晰报价。",         ja: "明確な価格。",
   },
   "pricing.h2b": {
     en: "CLEAR NUMBER. NO SURPRISES.", fr: "PAS DE MAUVAISES SURPRISES.", es: "SIN SORPRESAS.", de: "KEINE ÜBERRASCHUNGEN.",
-    pt: "SEM SURPRESAS.",              zh: "无隐藏费用。",                  ja: "驚きなし。",         yo: "KÒ SÍ ÌYÀLẸ́NÚ.",
+    pt: "SEM SURPRESAS.",              zh: "无隐藏费用。",                  ja: "驚きなし。",
   },
   "pricing.desc": {
     en: "Every project is scoped upfront. No hourly billing, no retainers you didn't ask for. Book a call and you'll leave with a number and exactly what's included.",
@@ -725,11 +587,10 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     pt: "Os preços são definidos por projeto. Sem cobrança por hora. Agende uma chamada e sairá com um número exato e tudo o que está incluído.",
     zh: "价格按项目定价。无按小时计费，无额外收费。预约通话，您将得到精确的报价。",
     ja: "料金はプロジェクトごとに設定されます。時間制課金はありません。通話を予約して正確な金額をご確認ください。",
-    yo: "Iye ọ̀pọ̀ ni a gbé kalẹ̀ fún iṣẹ́ kọ̀ọ̀kan. Kò sí ìsanwó lọ́ọ̀rọ̀. Pàdé mi nínú ìpè kí o tó mọ iye tó tọ́.",
   },
   "pricing.cta": {
     en: "Book a call",      fr: "Réserver un appel",    es: "Agendar una llamada", de: "Anruf buchen",
-    pt: "Agendar chamada",  zh: "预约通话",               ja: "通話を予約",           yo: "Sọ̀rọ̀ fún mi",
+    pt: "Agendar chamada",  zh: "预约通话",               ja: "通話を予約",
   },
   "pricing.addons": {
     en: "Add-ons", fr: "Options", es: "Extras", de: "Zusatzoptionen", pt: "Extras", zh: "附加服务", ja: "オプション",
@@ -742,7 +603,6 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     pt: "Todos os preços são pontos de partida. Agende uma chamada gratuita de 30 min e terá um número preciso.",
     zh: "所有价格均为起始价格，最终报价取决于项目范围。预约30分钟免费通话获取精确报价。",
     ja: "すべての価格は出発点です。30分の無料通話を予約して正確な数字をご確認ください。",
-    yo: "Gbogbo iye jẹ́ àkọsílẹ̀ ìbẹ̀rẹ̀. Ṣàgbékalẹ̀ ìpè ọ̀fẹ́ ìṣẹ́jú 30 kí o tó mọ iye tó tọ́.",
   },
 
   // ── Footer ───────────────────────────────────────────────────────────
@@ -754,7 +614,6 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     pt: "VAMOS CRIAR ALGO QUE VALE A PENA LANÇAR.",
     zh: "一起打造值得上线的产品。",
     ja: "ローンチに値するものを、一緒に作ろう。",
-    yo: "JẸ́ KÁ KÒ NǸKAN TÓ TÓ ÀTẸ̀JÁDÈRẹ.",
   },
   "footer.ctaDesc": {
     en: "Tell me what you're building. One call and you'll leave with the scope, timeline, and an exact price. No agencies, no back-and-forth, no surprises.",
@@ -764,18 +623,17 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     pt: "Diga-me o que você está construindo. Em uma chamada, darei o escopo, o prazo e o preço exato. Sem agências, sem idas e vindas, sem surpresas.",
     zh: "告诉我你在构建什么。一次通话内，我将给出方案范围、时间线和确切报价。没有中间商，没有来回沟通，没有意外。",
     ja: "何を作りたいか教えてください。1回の通話で、スコープ・スケジュール・正確な料金をお伝えします. 代理店なし、やり取りなし、サプライズなし。",
-    yo: "Sọ fún mi ohun tí o n kọ. Ní ìpè kan, n ó fún ọ ní ìmọ̀ gbogbo. Àárín, àkókò, àti owó gangan. Láìsí àgbàdo, làìsí àjèjì.",
   },
 
   // ── Common CTAs ──────────────────────────────────────────────────────
   // "or email me" link under the mid-page call to action
   "midcta.email": {
     en: "or email me",             fr: "ou écrivez-moi",          es: "o escríbeme",             de: "oder schreib mir",
-    pt: "ou me mande um e-mail",   zh: "或给我发邮件",             ja: "またはメールで",            yo: "tàbí fi ímeèlì ránṣẹ́ sí mi",
+    pt: "ou me mande um e-mail",   zh: "或给我发邮件",             ja: "またはメールで",
   },
   "common.bookCall": {
     en: "BOOK A FREE CALL",   fr: "RÉSERVER UN APPEL",   es: "AGENDAR LLAMADA",     de: "ANRUF BUCHEN",
-    pt: "AGENDAR CHAMADA",    zh: "预约免费通话",           ja: "無料通話を予約",        yo: "PADE NÍNÚ ÌPÈ",
+    pt: "AGENDAR CHAMADA",    zh: "预约免费通话",           ja: "無料通話を予約",
   },
 
   // ── Mid-page CTA ─────────────────────────────────────────────────────
@@ -783,7 +641,7 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     en: "Seen enough?",                fr: "Vous en avez assez vu ?",
     es: "¿Ya viste suficiente?",       de: "Genug gesehen?",
     pt: "Já viu o suficiente?",        zh: "看够了吗？",
-    ja: "十分見ましたか？",               yo: "Ti rí tó bí?",
+    ja: "十分見ましたか？",
   },
   "midcta.desc": {
     en: "One call gets you the scope, the timeline, and an exact price. No agencies, no back-and-forth.",
@@ -793,43 +651,42 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     pt: "Uma ligação já te dá o escopo, o prazo e o preço exato.",
     zh: "一次通话，了解范围、时间表和确切价格。",
     ja: "1回の通話でスコープ、タイムライン、確定価格がわかります。",
-    yo: "Ìpè kan yóò fún ọ ní ìmọ̀ nípa àkójọ iṣẹ́, àkókò, àti ìdiyèlẹ gangan.",
   },
 
   // ── Why Me ───────────────────────────────────────────────────────────
   "whyme.eyebrow": {
     en: "WHAT YOU GET",    fr: "CE QUE VOUS OBTENEZ",  es: "LO QUE OBTIENES",  de: "WAS SIE BEKOMMEN",
-    pt: "O QUE VOCÊ GANHA", zh: "您将获得什么",           ja: "あなたが得るもの",    yo: "OHUN TÍ O JÈ",
+    pt: "O QUE VOCÊ GANHA", zh: "您将获得什么",           ja: "あなたが得るもの",
   },
   "whyme.h1": {
     en: "Most sites are forgettable.",             fr: "La plupart des sites sont corrects.",
     es: "La mayoría de los sitios se ven bien.",  de: "Die meisten Seiten sehen gut aus.",
     pt: "A maioria dos sites parece boa.",    zh: "大多数网站看起来不错。",
-    ja: "ほとんどのサイトは見た目が良い。",        yo: "Ọpọlọpọ àwọn ìdí dára láti wo.",
+    ja: "ほとんどのサイトは見た目が良い。",
   },
   "whyme.h1b": {
     en: "Yours won't be.",        fr: "Le vôtre convertira vraiment.",
     es: "El tuyo realmente convertirá.",       de: "Ihrer wird wirklich konvertieren.",
     pt: "O seu vai realmente converter.",      zh: "您的将真正实现转化。",
-    ja: "あなたのは実際にコンバージョンします。",   yo: "Tirẹ yóò yípadà ní ìgbàgbọ́.",
+    ja: "あなたのは実際にコンバージョンします。",
   },
   "whyme.stat0": {
     en: "Projects Shipped On Time",              fr: "Projets livrés dans les délais",
     es: "Proyectos entregados a tiempo",         de: "Projekte pünktlich geliefert",
     pt: "Projetos entregues no prazo",           zh: "按时交付的项目",
-    ja: "期日通りに完了したプロジェクト",           yo: "Àwọn iṣẹ́ tí a pé ní àkókò",
+    ja: "期日通りに完了したプロジェクト",
   },
   "whyme.stat1": {
     en: "Upwork Job Success Score",        fr: "Amélioration moyenne des conversions",
     es: "Mejora promedio de conversión",         de: "Durchschnittliche Conversion-Steigerung",
     pt: "Melhora média de conversão",            zh: "平均客户转化率提升",
-    ja: "平均コンバージョン向上率",                yo: "Àlékún àárọ̀ ìyípadà àwọn oníbàárà",
+    ja: "平均コンバージョン向上率",
   },
   "whyme.stat2": {
     en: "Years Building For The Web",            fr: "Années de création web",
     es: "Años construyendo para la web",         de: "Jahre im Web-Aufbau",
     pt: "Anos desenvolvendo para a web",         zh: "年网站开发经验",
-    ja: "年間のWeb制作経験",                       yo: "Ọdún tí mo ti ń kọ́ fún wẹ́ẹ̀bù",
+    ja: "年間のWeb制作経験",
   },
   "whyme.b0.title": {
     en: "7–14 DAYS. LOCKED IN.",
@@ -848,7 +705,6 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     pt: "No ar em 7–14 dias, sem atalhos. Seu prazo é real e eu o trato com seriedade.",
     zh: "7–14 天上线，不走捷径。你的时间表是真实的，我也这样对待。",
     ja: "7〜14日で公開します。手を抜かず、お約束したスケジュールは必ず守ります。",
-    yo: "A bẹ̀rẹ̀ ní ọjọ́ 7–14 láì gé àwọn igun. Àkókò rẹ jẹ́ gidi. Mo mú u ni pé.",
   },
   "whyme.b1.title": {
     en: "BUILT FOR YOUR CUSTOMER",
@@ -867,7 +723,6 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     pt: "Cada decisão parte do seu público: sem soluções prontas, sem achismos e sem improviso.",
     zh: "每个决定都从你的受众出发：不用现成模板，也不靠猜测。",
     ja: "すべての判断はお客様の見込み客から。既製品に頼らず、推測もしません。",
-    yo: "Kò sí àpẹẹrẹ tí a ti ṣe tẹ́lẹ̀. Gbogbo nǹkan ni a kọ́ láti ìbẹ̀rẹ̀ ní àárọ̀ àmì rẹ àti ohun tí àwọn olùmúlò rẹ nílò.",
   },
   "whyme.b2.title": {
     en: "ONE POINT OF CONTACT",
@@ -886,7 +741,6 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     pt: "Cuido de tudo da primeira conversa ao lançamento. Sem repasses, sem lacunas, sem «vou ver com a equipe».",
     zh: "从第一次沟通到上线，我全程负责。没有交接，没有断层，也不会说“我问问团队”。",
     ja: "最初の打ち合わせから公開まで私が担当します。引き継ぎも抜け漏れもありません。",
-    yo: "Ènìyàn kan láti ìpè àkọ́kọ́ sí ìfilọ́lẹ̀. Kò sí gbigbe iṣẹ́ lọ, kò sí àáfin.",
   },
   "whyme.b3.title": {
     en: "THE RIGHT TOOL FOR YOU",
@@ -905,31 +759,30 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     pt: "Framer, Shopify, Webflow ou código. Escolho o que serve ao seu projeto, não o que é mais fácil para mim.",
     zh: "Framer、Shopify、Webflow 或纯代码，选最适合你项目的，而不是对我最省事的。",
     ja: "Framer、Shopify、Webflow、またはコード。あなたのプロジェクトに合うものを選びます。",
-    yo: "Framer, Shopify, Webflow. Mo yan ohun tó yẹ fún iṣẹ́ rẹ, kì í ṣe ohun tó rọrùn fún mi.",
   },
-  "whyme.svc1": { en: "RESPONSIVE DESIGN",   fr: "DESIGN RESPONSIVE",    es: "DISEÑO RESPONSIVE",    de: "RESPONSIVES DESIGN",   pt: "DESIGN RESPONSIVO",   zh: "响应式设计",   ja: "レスポンシブデザイン", yo: "ÀPẸẸRẸ TÓ Ń DÁHÙN" },
-  "whyme.svc2": { en: "FIGMA TO FRAMER",     fr: "FIGMA VERS FRAMER",    es: "FIGMA A FRAMER",       de: "FIGMA ZU FRAMER",      pt: "FIGMA PARA FRAMER",   zh: "Figma转Framer", ja: "FigmaからFramer", yo: "FIGMA SÍ FRAMER" },
-  "whyme.svc3": { en: "WEBSITE MIGRATION",   fr: "MIGRATION DE SITE",    es: "MIGRACIÓN DE SITIO",   de: "WEBSITE-MIGRATION",    pt: "MIGRAÇÃO DE SITE",    zh: "网站迁移",     ja: "サイト移行",    yo: "GBÍGBE OJÚEWÉ" },
-  "whyme.svc4": { en: "USER INTERFACE & UX", fr: "INTERFACE & UX",       es: "INTERFAZ Y UX",        de: "BENUTZEROBERFLÄCHE & UX", pt: "INTERFACE & UX",    zh: "界面与用户体验", ja: "UIとUX",       yo: "ÌDÀ OJÚEWÉ & UX" },
-  "whyme.svc5": { en: "SHOPIFY INTEGRATION", fr: "INTÉGRATION SHOPIFY",  es: "INTEGRACIÓN SHOPIFY",  de: "SHOPIFY-INTEGRATION",  pt: "INTEGRAÇÃO SHOPIFY",  zh: "Shopify集成",  ja: "Shopify連携",  yo: "IṢỌPỌ SHOPIFY" },
-  "whyme.svc6": { en: "FIGMA TO WEBFLOW",    fr: "FIGMA VERS WEBFLOW",   es: "FIGMA A WEBFLOW",      de: "FIGMA ZU WEBFLOW",     pt: "FIGMA PARA WEBFLOW",  zh: "Figma转Webflow", ja: "FigmaからWebflow", yo: "FIGMA SÍ WEBFLOW" },
+  "whyme.svc1": { en: "RESPONSIVE DESIGN",   fr: "DESIGN RESPONSIVE",    es: "DISEÑO RESPONSIVE",    de: "RESPONSIVES DESIGN",   pt: "DESIGN RESPONSIVO",   zh: "响应式设计",   ja: "レスポンシブデザイン", },
+  "whyme.svc2": { en: "FIGMA TO FRAMER",     fr: "FIGMA VERS FRAMER",    es: "FIGMA A FRAMER",       de: "FIGMA ZU FRAMER",      pt: "FIGMA PARA FRAMER",   zh: "Figma转Framer", ja: "FigmaからFramer", },
+  "whyme.svc3": { en: "WEBSITE MIGRATION",   fr: "MIGRATION DE SITE",    es: "MIGRACIÓN DE SITIO",   de: "WEBSITE-MIGRATION",    pt: "MIGRAÇÃO DE SITE",    zh: "网站迁移",     ja: "サイト移行", },
+  "whyme.svc4": { en: "USER INTERFACE & UX", fr: "INTERFACE & UX",       es: "INTERFAZ Y UX",        de: "BENUTZEROBERFLÄCHE & UX", pt: "INTERFACE & UX",    zh: "界面与用户体验", ja: "UIとUX", },
+  "whyme.svc5": { en: "SHOPIFY INTEGRATION", fr: "INTÉGRATION SHOPIFY",  es: "INTEGRACIÓN SHOPIFY",  de: "SHOPIFY-INTEGRATION",  pt: "INTEGRAÇÃO SHOPIFY",  zh: "Shopify集成",  ja: "Shopify連携", },
+  "whyme.svc6": { en: "FIGMA TO WEBFLOW",    fr: "FIGMA VERS WEBFLOW",   es: "FIGMA A WEBFLOW",      de: "FIGMA ZU WEBFLOW",     pt: "FIGMA PARA WEBFLOW",  zh: "Figma转Webflow", ja: "FigmaからWebflow", },
 
   // ── Process ──────────────────────────────────────────────────────────
   "process.eyebrow": {
     en: "THE PROCESS",    fr: "LE PROCESSUS",   es: "EL PROCESO",     de: "DER PROZESS",
-    pt: "O PROCESSO",     zh: "工作流程",         ja: "プロセス",         yo: "ÌLàNA IṢẸ́",
+    pt: "O PROCESSO",     zh: "工作流程",         ja: "プロセス",
   },
   "process.h1": {
     en: "From first call to live site.",        fr: "Du premier appel au site en ligne.",
     es: "Desde la primera llamada al sitio.",   de: "Vom ersten Gespräch zur Live-Site.",
     pt: "Da primeira chamada ao site no ar.",   zh: "从第一次通话到网站上线。",
-    ja: "最初の通話からライブサイトまで。",          yo: "Láti ìpè àkọ́kọ́ sí ojúewé alàáyè.",
+    ja: "最初の通話からライブサイトまで。",
   },
   "process.h1b": {
     en: "here's exactly how we do it.",          fr: "voici exactement comment nous procédons.",
     es: "así es exactamente como lo hacemos.",   de: "genau so machen wir es.",
     pt: "é exatamente assim que fazemos.",       zh: "这就是我们的做法。",
-    ja: "まさにこうやって進めます。",               yo: "bẹ́ẹ̀ ni a ṣe é gan-an.",
+    ja: "まさにこうやって進めます。",
   },
   "process.desc": {
     en: "Most projects are live in 14 days. Day 1 is a call, by Day 4 you've signed off the design, Day 14 you're live. That's the schedule. Not a rough estimate.",
@@ -939,10 +792,9 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     pt: "A maioria dos projetos vai ao ar em 14 dias. O prazo é curto porque o processo é apertado. Sem ambiguidade, sem espera, sem surpresas.",
     zh: "大多数项目在14天内上线。时间紧因为流程紧。无歧义，不等待，无意外。",
     ja: "ほとんどのプロジェクトは14日でリリース。プロセスがタイトだからスケジュールもタイト。曖昧さなし、待機なし、驚きなし。",
-    yo: "Ọpọ̀lọpọ̀ iṣẹ́ ń jáde ní ọjọ́ 14. Àkókò kúkúrú nítorí ìlàna naa kúkúrú. Kò sí àṣìṣe, kò sí dídúró, kò sí ìyàlẹ́nú.",
   },
-  "process.s0.title": { en: "Discovery Call",   fr: "Appel de découverte", es: "Llamada inicial",      de: "Erstgespräch",          pt: "Chamada inicial",     zh: "发现通话",   ja: "ヒアリング",     yo: "Ìpè Ìwárí" },
-  "process.s0.dur":   { en: "Day 1",             fr: "Jour 1",              es: "Día 1",                de: "Tag 1",                 pt: "Dia 1",               zh: "第1天",      ja: "1日目",          yo: "Ọjọ́ 1" },
+  "process.s0.title": { en: "Discovery Call",   fr: "Appel de découverte", es: "Llamada inicial",      de: "Erstgespräch",          pt: "Chamada inicial",     zh: "发现通话",   ja: "ヒアリング", },
+  "process.s0.dur":   { en: "Day 1",             fr: "Jour 1",              es: "Día 1",                de: "Tag 1",                 pt: "Dia 1",               zh: "第1天",      ja: "1日目", },
   "process.s0.desc": {
     en: "A 30-minute call where I ask more questions than I talk. I need to understand your goals, your audience, and what done looks like for you. Before anything gets designed.",
     fr: "Un appel de 30 minutes où je pose plus de questions que je ne parle. Je dois comprendre vos objectifs, votre audience et ce que 'terminé' signifie pour vous. Avant de concevoir quoi que ce soit.",
@@ -951,7 +803,6 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     pt: "Uma chamada de 30 minutos onde faço mais perguntas do que falo. Preciso entender seus objetivos, seu público e o que 'concluído' significa para você. Antes de qualquer design.",
     zh: "30分钟通话，我问的多说的少。在设计任何东西之前，我需要了解您的目标、受众以及您对完成的定义。",
     ja: "30分の通話で、私は話すより質問します。何かをデザインする前に、あなたの目標、オーディエンス、完成形を理解する必要があります。",
-    yo: "Ìpè ìṣẹ́jú 30 níbi tí mo ń béèrè jù bí mo ti ń sọ̀rọ̀. Mo nílò láti mọ àwọn èrò rẹ àti ohun tí 'òpin' túmọ̀ sí fún rẹ. Kí a tó bẹ̀rẹ̀ àpẹẹrẹ.",
   },
   "process.s0.detail": {
     en: "No pitch. No slide deck. Just a conversation that gives me enough to work with.",
@@ -961,10 +812,9 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     pt: "Sem apresentações. Apenas uma conversa que me dá o suficiente para trabalhar.",
     zh: "无推销。无幻灯片。只是一次给我足够信息的对话。",
     ja: "売り込みなし。スライドなし。作業に必要な情報を得るだけの会話。",
-    yo: "Kò sí ìgbékalẹ̀. Ìfọ̀rọ̀wérọ̀ kan ṣoṣo tó fún mi ní ohun tó tó láti ṣiṣẹ́.",
   },
-  "process.s1.title": { en: "Design Review",    fr: "Revue du design",     es: "Revisión de diseño",   de: "Design-Review",         pt: "Revisão de design",   zh: "设计评审",   ja: "デザインレビュー", yo: "Àtúnyẹ̀wò Àpẹẹrẹ" },
-  "process.s1.dur":   { en: "Days 2–4",          fr: "Jours 2–4",           es: "Días 2–4",             de: "Tage 2–4",              pt: "Dias 2–4",            zh: "第2–4天",    ja: "2〜4日目",       yo: "Ọjọ́ 2–4" },
+  "process.s1.title": { en: "Design Review",    fr: "Revue du design",     es: "Revisión de diseño",   de: "Design-Review",         pt: "Revisão de design",   zh: "设计评审",   ja: "デザインレビュー", },
+  "process.s1.dur":   { en: "Days 2–4",          fr: "Jours 2–4",           es: "Días 2–4",             de: "Tage 2–4",              pt: "Dias 2–4",            zh: "第2–4天",    ja: "2〜4日目", },
   "process.s1.desc": {
     en: "I build a clickable Figma wireframe based on what we talked about. You can see exactly how the site will flow before a single line of code is written. And change anything you want.",
     fr: "Je construis une maquette Figma cliquable basée sur notre conversation. Vous voyez exactement comment le site fonctionnera avant qu'une ligne de code soit écrite.",
@@ -973,7 +823,6 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     pt: "Construo um wireframe Figma clicável baseado no que conversamos. Você vê exatamente como o site fluirá antes de qualquer código ser escrito.",
     zh: "根据我们的对话，我构建一个可点击的Figma线框图。在编写任何代码之前，您可以看到网站的完整流程。",
     ja: "話し合いをもとにクリック可能なFigmaワイヤーフレームを作成します。コード一行も書かれていない段階でサイトの全体像を確認できます。",
-    yo: "Mo kọ́ àpẹẹrẹ Figma tó ń ṣiṣẹ́ gẹ́gẹ́ bí ohun tí a sọ̀rọ̀ rẹ̀. O lè ríi bí ojúewé náà yóò ṣe rìn kí ó tó kọ́ ìlà kódù kan.",
   },
   "process.s1.detail": {
     en: "Most revision cycles happen here. That's intentional. It's cheaper to fix a wireframe than a built page.",
@@ -983,10 +832,9 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     pt: "A maioria dos ciclos de revisão acontece aqui. É intencional. É mais barato corrigir um wireframe do que uma página construída.",
     zh: "大多数修改周期在这里完成。这是有意为之。修改线框比修改已构建的页面成本更低。",
     ja: "修正サイクルのほとんどはここで行われます。意図的なこと。作成済みのページよりワイヤーフレームを修正する方が安いです。",
-    yo: "Ọpọ̀lọpọ̀ àtúnṣe máa ń ṣẹlẹ̀ níbí. A ṣe bẹ́ẹ̀ mọ̀ọ́mọ̀. Ó rọrùn jù láti ṣe àtúnṣe lórí àpẹẹrẹ ju ojúewé tí a ti kọ́ tán.",
   },
-  "process.s2.title": { en: "Framer Build",     fr: "Construction Framer", es: "Construcción Framer",  de: "Framer-Entwicklung",    pt: "Construção Framer",   zh: "Framer构建",  ja: "Framer構築",     yo: "Kíkọ́ Framer" },
-  "process.s2.dur":   { en: "Days 5–12",         fr: "Jours 5–12",          es: "Días 5–12",            de: "Tage 5–12",             pt: "Dias 5–12",           zh: "第5–12天",   ja: "5〜12日目",      yo: "Ọjọ́ 5–12" },
+  "process.s2.title": { en: "Framer Build",     fr: "Construction Framer", es: "Construcción Framer",  de: "Framer-Entwicklung",    pt: "Construção Framer",   zh: "Framer构建",  ja: "Framer構築", },
+  "process.s2.dur":   { en: "Days 5–12",         fr: "Jours 5–12",          es: "Días 5–12",            de: "Tage 5–12",             pt: "Dias 5–12",           zh: "第5–12天",   ja: "5〜12日目", },
   "process.s2.desc": {
     en: "Development starts and you get a live Framer preview link on Day 5. You're not waiting two weeks to see something. You're watching it come together in real time.",
     fr: "Le développement commence et vous recevez un lien de prévisualisation Framer en direct le Jour 5. Vous ne patientez pas deux semaines. Vous regardez le projet prendre forme en temps réel.",
@@ -995,7 +843,6 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     pt: "O desenvolvimento começa e você recebe um link de pré-visualização ao vivo no Dia 5. Você não espera duas semanas. Vê tudo se unir em tempo real.",
     zh: "第5天开发开始，您将获得一个实时Framer预览链接。不需要等两周才看到成果。实时观看项目成形。",
     ja: "5日目に開発が始まり、ライブのFramerプレビューリンクが届きます。2週間待つ必要はありません。リアルタイムで出来上がっていくのを見られます。",
-    yo: "Ìdàgbàsókè bẹ̀rẹ̀ àti pé o gba ìjápọ̀ àfihàn Framer alàáyè ní Ọjọ́ 5. O kò dúró ọ̀sẹ̀ méjì. O ń wò ó ní àkókò gidi.",
   },
   "process.s2.detail": {
     en: "Animations, interactions, and responsive behaviour are all built in, not added as an afterthought.",
@@ -1005,10 +852,9 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     pt: "Animações, interações e comportamento responsivo são integrados desde o início, não adicionados depois.",
     zh: "动画、交互和响应式行为都是内置的，而非事后添加的。",
     ja: "アニメーション、インタラクション、レスポンシブ動作はすべて最初から組み込まれています。後付けではありません。",
-    yo: "Àwọn ìgbésẹ̀, ìfọwọ́kan, àti ìdáhùn gbogbo wọn jẹ́ apákan ìkọ́, kì í ṣe ohun tí a fikún lẹ́yìn.",
   },
-  "process.s3.title": { en: "Launch & Handoff", fr: "Lancement & transfert", es: "Lanzamiento y entrega", de: "Launch & Übergabe",     pt: "Lançamento e entrega", zh: "上线与交接", ja: "リリースと引き渡し", yo: "Ìfilọ́lẹ̀ & Gbigbe" },
-  "process.s3.dur":   { en: "Days 13–14",        fr: "Jours 13–14",          es: "Días 13–14",             de: "Tage 13–14",            pt: "Dias 13–14",           zh: "第13–14天", ja: "13〜14日目",      yo: "Ọjọ́ 13–14" },
+  "process.s3.title": { en: "Launch & Handoff", fr: "Lancement & transfert", es: "Lanzamiento y entrega", de: "Launch & Übergabe",     pt: "Lançamento e entrega", zh: "上线与交接", ja: "リリースと引き渡し", },
+  "process.s3.dur":   { en: "Days 13–14",        fr: "Jours 13–14",          es: "Días 13–14",             de: "Tage 13–14",            pt: "Dias 13–14",           zh: "第13–14天", ja: "13〜14日目", },
   "process.s3.desc": {
     en: "I deploy to your domain, QA every screen on every device, and record a short Loom walkthrough showing you exactly how to edit your own site. You own it. No dependency on me.",
     fr: "Je déploie sur votre domaine, teste chaque écran sur chaque appareil et enregistre un tutoriel Loom vous montrant exactement comment modifier votre site. Vous en êtes propriétaire. Sans dépendance vis-à-vis de moi.",
@@ -1017,7 +863,6 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     pt: "Faço o deploy no seu domínio, verifico cada tela em cada dispositivo e gravo um tutorial Loom mostrando exatamente como editar seu site. É seu. Sem dependência de mim.",
     zh: "我将其部署到您的域名，在每台设备上对每个屏幕进行质检，并录制一段Loom教程，准确展示如何编辑您的网站。您拥有它。无需依赖我。",
     ja: "あなたのドメインにデプロイし、あらゆるデバイスで全画面をQAし、あなた自身がサイトを編集する方法を正確に示すLoomウォークスルーを録画します。あなたのものです。私への依存なし。",
-    yo: "Mo gbé e sí àgbègbè rẹ, mo ṣàyẹ̀wò gbogbo ojú àwòrán lórí gbogbo ẹ̀rọ, mo sì gbasilẹ ìfihàn Loom tó fi hàn bí o ṣe lè ṣàtúnṣe ojúewé rẹ. Tirẹ ni. O kò nílò mi mọ́.",
   },
   "process.s3.detail": {
     en: "Most clients are live and editing on their own within 48 hours of handoff.",
@@ -1027,25 +872,24 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     pt: "A maioria dos clientes está ao vivo e editando por conta própria em até 48 horas após a entrega.",
     zh: "大多数客户在交接后48小时内即可独立上线和编辑。",
     ja: "ほとんどのクライアントは引き渡し後48時間以内に、自分でライブ編集できるようになります。",
-    yo: "Ọpọ̀lọpọ̀ oníbàárà máa ń jẹ́ alàáyè tí wọ́n sì ń ṣatúnṣe fúnra wọn ní àárọ̀ wákàtí 48 lẹ́yìn gbigbe.",
   },
 
   // ── Testimonials ──────────────────────────────────────────────────────
   "testimonials.eyebrow": {
     en: "TESTIMONIALS",    fr: "TÉMOIGNAGES",     es: "TESTIMONIOS",      de: "BEWERTUNGEN",
-    pt: "DEPOIMENTOS",     zh: "客户评价",          ja: "お客様の声",         yo: "ẸRÍ ÀWỌN ONÍBÀÁRÀ",
+    pt: "DEPOIMENTOS",     zh: "客户评价",          ja: "お客様の声",
   },
   "testimonials.h1": {
     en: "DON'T TAKE MY WORD FOR IT.",           fr: "NE ME CROYEZ PAS SUR PAROLE.",
     es: "NO SOLO TE LO DIGO YO.",               de: "GLAUBEN SIE NICHT EINFACH MIR.",
     pt: "NÃO ACREDITE SÓ NA MINHA PALAVRA.",    zh: "不只是我说好。",
-    ja: "私の言葉だけを信じないで。",               yo: "MÁ GBÀ ỌRỌ̀ MI NÌKAN.",
+    ja: "私の言葉だけを信じないで。",
   },
   "testimonials.statLabel": {
     en: "Successfully Delivered Projects",       fr: "Projets livrés avec succès",
     es: "Proyectos entregados exitosamente",     de: "Erfolgreich gelieferte Projekte",
     pt: "Projetos entregues com sucesso",        zh: "成功交付的项目",
-    ja: "正常に完了したプロジェクト",               yo: "Àwọn iṣẹ́ tí a pé dáadáa",
+    ja: "正常に完了したプロジェクト",
   },
   "testimonials.t0": {
     en: "Samuel was a fantastic collaborator throughout the entire project. He brought a high level of professionalism, attention to detail, and technical skill to the website build. Communication was smooth, and he consistently delivered high-quality work on time. I'd gladly work with him again and highly recommend him to anyone looking for a reliable Framer developer.",
@@ -1055,7 +899,6 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     pt: "Samuel foi um colaborador fantástico durante todo o projeto. Ele trouxe profissionalismo, atenção aos detalhes e habilidade técnica. A comunicação foi tranquila e ele sempre entregou trabalho de qualidade no prazo. Recomendo-o fortemente.",
     zh: "Samuel在整个项目中是出色的合作者。他展现了高度的专业精神、对细节的关注和技术能力。沟通顺畅，始终按时交付高质量的工作。强烈推荐。",
     ja: "Samuelはプロジェクト全体を通じて素晴らしい協力者でした。高い専門性、細部への注意、技術力を発揮し、常に期限内に高品質な仕事を届けてくれました。強くお勧めします。",
-    yo: "Samuel jẹ́ alábàáṣepọ̀ tó tayọ ní gbogbo iṣẹ́ náà. Ó mú ìmọ̀-ẹrọ, ìfọ̀kànbalẹ̀, àti ọjọgbọn gíga wá. Ìbáraẹniṣepọ̀ jẹ́ rọrùn, ó sì mú iṣẹ́ dára gélé ní àkókò. Mo gbédègbéyọ̀ rẹ̀.",
   },
   "testimonials.t1": {
     en: "Samuel was amazing in helping me complete my website on Framer. When he finished, my website was ready to go live. I really appreciate his quick communication and solution-oriented attitude. Hoping to work together in the future.",
@@ -1065,7 +908,6 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     pt: "Samuel foi incrível ao me ajudar a completar meu site no Framer. Quando terminou, meu site estava pronto para ir ao ar. Agradeço sua comunicação rápida e postura voltada a soluções. Espero trabalhar juntos no futuro.",
     zh: "Samuel在帮助我完成Framer网站方面非常出色。完成后，网站立即可以上线。我非常感谢他快速的沟通和以解决方案为导向的态度。期待未来再次合作。",
     ja: "SamuelはFramerでのウェブサイト完成を素晴らしくサポートしてくれました。完成後すぐに公開できました。迅速な対応と解決志向の姿勢に感謝します。またぜひ一緒に仕事をしたいです。",
-    yo: "Samuel ṣe iṣẹ́ tó tayọ láti ràn mí lọ́wọ́ pẹ̀lú ọ̀nàwòlé mi lórí Framer. Nígbàtí ó parí, ọ̀nàwòlé mi ti ṣetán. Mo yin ìbáraẹniṣepọ̀ rẹ̀ tó yára àti ìdáhùn-ojúkọ rẹ̀.",
   },
   "testimonials.t2": {
     en: "Samuel built my consultancy's landing page, and I've found 5+ new clients through it. I'm also receiving a lot of compliments from people on the design. We did some extra work on an additional page to add social proof.",
@@ -1075,7 +917,6 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     pt: "Samuel construiu a página de destino da minha consultoria e encontrei mais de 5 novos clientes por meio dela. Também recebo muitos elogios pelo design. Fizemos trabalho adicional em uma página extra para adicionar prova social.",
     zh: "Samuel为我的咨询公司建立了落地页，我通过它找到了5位以上的新客户。设计也获得了很多好评。我们还额外制作了一个页面来增加社交证明。",
     ja: "Samuelが私のコンサルタンシーのランディングページを作成してくれ、5人以上の新しいクライアントを獲得しました。デザインも多くの称賛を受けています。ソーシャルプルーフを追加するための追加ページも作成しました。",
-    yo: "Samuel kọ ojúewé ìgbasilẹ̀ ti ìdílé ìṣòwò mi, mo sì ti rí 5 àwọn oníbàárà tuntun nípa rẹ̀. Mo tún ń gbà ọ̀pọ̀ ìdúpẹ́ fún àpẹrẹ. A tún ṣe iṣẹ́ àfikún lórí ojúewé mìíràn.",
   },
   "testimonials.t3": {
     en: "I recently had the pleasure of working with Samuel on the development of my WordPress website, and I am happy to share my exceptional experience and satisfaction with his service.",
@@ -1085,7 +926,6 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     pt: "Recentemente tive o prazer de trabalhar com Samuel no desenvolvimento do meu site WordPress, e estou feliz em compartilhar minha experiência excepcional e satisfação com o serviço dele.",
     zh: "我最近很高兴与Samuel合作开发我的WordPress网站，很高兴分享我出色的体验和对他服务的满意度。",
     ja: "最近、WordPressサイトの開発でSamuelと仕事をする機会があり、その素晴らしい経験とサービスへの満足度を共有できることを嬉しく思います。",
-    yo: "Mo ní ayọ̀ láìpẹ́ láti ṣiṣẹ́ pẹ̀lú Samuel lórí ìdàgbàsókè ọ̀nàwòlé WordPress mi. Mo dùn láti pín ìrírí mi tó tayọ àti àtẹnu-ẹnu rẹ̀.",
   },
   "testimonials.t4": {
     en: "I had a great experience working with Samuel. They conducted a thorough audit of our current Framer setup and quickly identified why styles were breaking across different language versions.",
@@ -1095,7 +935,6 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     pt: "Tive uma ótima experiência trabalhando com Samuel. Eles conduziram uma auditoria completa da nossa configuração do Framer e identificaram rapidamente por que os estilos estavam quebrando nas diferentes versões de idioma.",
     zh: "与Samuel合作体验非常好。他对我们的Framer设置进行了全面审计，并迅速找出样式在不同语言版本中出现问题的原因。",
     ja: "Samuelとの仕事は素晴らしい経験でした。Framerのセットアップを徹底的に調査し、異なる言語バージョンでスタイルが崩れる原因を迅速に特定してくれました。",
-    yo: "Mo ní ìrírí tó dára ṣiṣẹ́ pẹ̀lú Samuel. Wọ́n ṣe ìwádìí pípé ti ìtọ̀jú Framer wa tí wọ́n sì yára dáhùn ìdí tí àwọn ọ̀nàwòlé ń fọ́ ní àwọn ẹ̀yà èdè.",
   },
   "testimonials.t5": {
     en: "Samuel was very honest and available. He understood the assignment clearly and delivered with a fast turnaround!",
@@ -1105,7 +944,6 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     pt: "Samuel foi muito honesto e disponível. Ele entendeu claramente a tarefa e entregou rapidamente!",
     zh: "Samuel非常诚实且随时待命。他清楚理解了任务并快速交付！",
     ja: "Samuelは非常に誠実で対応が早かった。課題を明確に理解し、迅速に納品してくれました！",
-    yo: "Samuel jẹ́ olóòtọ́ ó sì wà níbẹ̀ nígbàkigbà. Ó yé iṣẹ́ dáadáa, ó sì pé rẹ̀ kánkán!",
   },
   "testimonials.t6": {
     en: "Samuel did an outstanding job! He is reliable, knowledgeable, patient and kind. I highly recommend Samuel from the sea of providers on Upwork.",
@@ -1115,7 +953,6 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     pt: "Samuel fez um trabalho excelente! Ele é confiável, experiente, paciente e gentil. Recomendo-o fortemente.",
     zh: "Samuel做得非常出色！他可靠、专业、耐心且友善。强烈推荐。",
     ja: "Samuelは素晴らしい仕事をしてくれました！信頼でき、知識豊富で、辛抱強く、親切です。強くお勧めします。",
-    yo: "Samuel ṣe iṣẹ́ tó tayọ! Ó ní ìgbẹ́kẹ̀lé, ìmọ̀, sùúrù àti ìtọ́jú. Mo gbédègbéyọ̀ rẹ̀ pẹ̀lú gbogbo ọkàn mi.",
   },
   "testimonials.t7": {
     en: "I hired Samuel for our company's client rebranding and it was a success. He was responsive and very professional. I recommend him.",
@@ -1125,13 +962,12 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     pt: "Contratei Samuel para o rebranding de um cliente da nossa empresa e foi um sucesso. Ele foi responsivo e muito profissional. Eu o recomendo.",
     zh: "我聘请Samuel为我们公司的客户进行品牌重塑，取得了成功。他反应迅速、非常专业。我推荐他。",
     ja: "会社のクライアントのリブランディングにSamuelを採用し、成功しました。迅速に対応し、非常にプロフェッショナルでした。おすすめします。",
-    yo: "Mo gbàṣẹ Samuel fún ìmújú-àtúnṣe àmì ìdánimọ̀ alàájò ilé-iṣẹ́ wa, ó sì jẹ́ àṣeyọrí. Ó jẹ́ olóhùn-ìdáhùn àti olójúìṣẹ́ gíga. Mo gbédègbéyọ̀ rẹ̀.",
   },
 
   // ── About ─────────────────────────────────────────────────────────────
   "about.eyebrow": {
     en: "ABOUT ME",        fr: "À PROPOS",        es: "SOBRE MÍ",         de: "ÜBER MICH",
-    pt: "SOBRE MIM",       zh: "关于我",            ja: "私について",         yo: "NÍPA MI",
+    pt: "SOBRE MIM",       zh: "关于我",            ja: "私について",
   },
   "about.h1": {
     en: "ONE PERSON, FROM FIRST SKETCH TO LIVE SITE.",
@@ -1168,37 +1004,36 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     pt: "Esse histórico me rendeu o Top Rated no Upwork. 100% de sucesso em mais de 50 projetos. A maioria dos clientes continua voltando. Não porque precisam, mas porque conseguimos o resultado certo na primeira vez. É disso que mais me orgulho.",
     zh: "这一记录让我在Upwork上获得了'顶级认证'。50+个项目100%成功率。大多数客户不断回来。不是因为必须，而是因为我们第一次就做对了。这是我最引以为豪的地方。",
     ja: "その実績がUpworkでTop Rated獲得につながりました。50以上のプロジェクトで100%の成功率。ほとんどのクライアントは何度も戻ってきます。義務からではなく、最初から正しい結果を出したから。それが私が最も誇りに思っている部分です。",
-    yo: "Ìgbàsilẹ̀ yẹn mú mi jẹ́ Top Rated lórí Upwork. 100% Àṣeyọrí Iṣẹ́ ní iṣẹ́ 50+. Ọpọ̀lọpọ̀ oníbàárà máa ń padà wá. Kì í ṣe nítorí pé wọ́n gbọdọ̀, ṣùgbọ́n nítorí pé a gba àbájáde tó tọ́ ní ìgbà àkọ́kọ́.",
   },
   "about.techLabel": {
     en: "MY TECH STACKS",   fr: "MES OUTILS TECH",  es: "MIS TECNOLOGÍAS",  de: "MEINE TECH-STACKS",
-    pt: "MINHAS TECNOLOGIAS", zh: "我的技术栈",         ja: "技術スタック",       yo: "ÀWỌN ÈRÒ MI",
+    pt: "MINHAS TECNOLOGIAS", zh: "我的技术栈",         ja: "技術スタック",
   },
   "about.historyLabel": {
     en: "MY WORK HISTORY",  fr: "MON PARCOURS",     es: "MI HISTORIAL",     de: "MEIN WERDEGANG",
-    pt: "MEU HISTÓRICO",    zh: "工作经历",           ja: "職歴",              yo: "ÌTàN IṢẸ́ MI",
+    pt: "MEU HISTÓRICO",    zh: "工作经历",           ja: "職歴",
   },
   "about.photoLabel": {
     en: "PHOTO LIBRARY",    fr: "GALERIE PHOTOS",   es: "GALERÍA DE FOTOS", de: "FOTOGALERIE",
-    pt: "GALERIA DE FOTOS", zh: "照片库",             ja: "フォトライブラリ",   yo: "ILÉ-ÌPAMỌ́ ÀWÒRÁN",
+    pt: "GALERIA DE FOTOS", zh: "照片库",             ja: "フォトライブラリ",
   },
 
   // ── FAQ ───────────────────────────────────────────────────────────────
   "faq.eyebrow": {
     en: "F . A . Q",      fr: "F . A . Q",       es: "P . R . E",        de: "F . A . Q",
-    pt: "P . F . A",      zh: "常见问题",           ja: "よくある質問",       yo: "ÌBÈ̩ERÈ̩ LỌPỌLỌPỌ",
+    pt: "P . F . A",      zh: "常见问题",           ja: "よくある質問",
   },
   "faq.h1": {
     en: "STILL DECIDING?",              fr: "VOUS HÉSITEZ ENCORE?",
     es: "¿TODAVÍA DECIDIENDO?",         de: "NOCH UNENTSCHLOSSEN?",
     pt: "AINDA DECIDINDO?",             zh: "还在犹豫？",
-    ja: "まだ迷っていますか？",            yo: "ṢÉBÍ O ṢÌNṢIN ṢÌN?",
+    ja: "まだ迷っていますか？",
   },
   "faq.h2": {
     en: "LET ME CLEAR THAT UP.",        fr: "LAISSEZ-MOI ÉCLAIRCIR ÇA.",
     es: "DÉJAME ACLARARLO.",            de: "LASSEN SIE MICH DAS KLÄREN.",
     pt: "DEIXE EU ESCLARECER ISSO.",    zh: "让我来解答。",
-    ja: "それを明確にしましょう。",        yo: "JẸ́ KÍN ṢÀLÀYÉ RẸ̀.",
+    ja: "それを明確にしましょう。",
   },
   "faq.desc": {
     en: "Can't find what you're looking for? Reach out directly.",
@@ -1208,7 +1043,6 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     pt: "Não encontrou o que procura? Entre em contato diretamente.",
     zh: "找不到您需要的信息？直接联系我。",
     ja: "お探しのものが見つかりませんか？直接ご連絡ください。",
-    yo: "O kò rí ohun tí o ń wá? Kan sí mi tààrà.",
   },
   "faq.ask.label": {
     en: "Ask your own question",
@@ -1218,7 +1052,6 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     pt: "Faça a sua pergunta",
     zh: "提出你自己的问题",
     ja: "ご自身の質問をどうぞ",
-    yo: "Ask your own question",
   },
   "faq.ask.status": {
     en: "Replies within 24 hours",
@@ -1228,7 +1061,6 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     pt: "Resposta em até 24 horas",
     zh: "24 小时内回复",
     ja: "24時間以内に返信",
-    yo: "Replies within 24 hours",
   },
   "faq.ask.placeholder": {
     en: "e.g. Do you work with Shopify?",
@@ -1238,7 +1070,6 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     pt: "ex.: Você trabalha com Shopify?",
     zh: "例如：你们做 Shopify 吗？",
     ja: "例：Shopifyにも対応していますか？",
-    yo: "e.g. Do you work with Shopify?",
   },
   "faq.ask.clear": {
     en: "Clear question",
@@ -1248,7 +1079,6 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     pt: "Limpar a pergunta",
     zh: "清除问题",
     ja: "質問を消す",
-    yo: "Clear question",
   },
   "faq.ask.related": {
     en: "Also see",
@@ -1258,7 +1088,6 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     pt: "Veja também",
     zh: "另见",
     ja: "関連",
-    yo: "Also see",
   },
   "faq.ask.none": {
     en: "I haven't covered that one here yet. Send it to me and I'll reply within 24 hours.",
@@ -1268,7 +1097,6 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     pt: "Ainda não cobri isso aqui. Envie para mim e respondo em até 24 horas.",
     zh: "这里还没有涉及这个问题。发给我，我会在 24 小时内回复。",
     ja: "この質問はまだ載せていません。送っていただければ24時間以内にお返事します。",
-    yo: "I haven't covered that one here yet. Send it to me and I'll reply within 24 hours.",
   },
   "faq.ask.send": {
     en: "Send my question",
@@ -1278,7 +1106,6 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     pt: "Enviar minha pergunta",
     zh: "发送我的问题",
     ja: "質問を送る",
-    yo: "Send my question",
   },
   "faq.ask.sendAlt": {
     en: "Not quite? Ask me directly",
@@ -1288,7 +1115,6 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     pt: "Não foi bem isso? Pergunte direto",
     zh: "不太对？直接问我",
     ja: "違いますか？直接ご質問ください",
-    yo: "Not quite? Ask me directly",
   },
   "faq.ask.book": {
     en: "Or book a free call",
@@ -1298,13 +1124,12 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     pt: "Ou agende uma chamada grátis",
     zh: "或预约免费通话",
     ja: "または無料相談を予約",
-    yo: "Or book a free call",
   },
   "faq.q0": {
     en: "WHO DO YOU WORK WITH?",        fr: "AVEC QUI TRAVAILLEZ-VOUS?",
     es: "¿CON QUIÉN TRABAJAS?",         de: "MIT WEM ARBEITEN SIE?",
     pt: "COM QUEM VOCÊ TRABALHA?",      zh: "您与谁合作？",
-    ja: "どんな方と働きますか？",          yo: "TA NI O N ṢIṢẸ́ PẸ̀LÚ?",
+    ja: "どんな方と働きますか？",
   },
   "faq.a0": {
     en: "Founders, startups, and agencies who need a website that actually does something for their business. If you're serious about your product, I'm serious about your site.",
@@ -1314,13 +1139,12 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     pt: "Fundadores, startups e agências que precisam de um site que realmente faça algo pelo negócio. Se você é sério sobre seu produto, sou sério sobre seu site.",
     zh: "需要网站真正为业务服务的创始人、初创公司和代理机构。如果您认真对待您的产品，我就认真对待您的网站。",
     ja: "ビジネスのために本当に機能するウェブサイトを必要とする創業者、スタートアップ、代理店。あなたが製品に真剣なら、私はあなたのサイトに真剣です。",
-    yo: "Àwọn olùdásílẹ̀, àwọn ìbẹ̀rẹ̀ẹ̀, àti àwọn ilé-iṣẹ́ tí wọ́n nílò ojúewé tó ń ṣe nǹkan fún iṣowó wọn. Bí o bá ṣe pàtàkì nípa ọjà rẹ, mo ṣe pàtàkì nípa ojúewé rẹ.",
   },
   "faq.q1": {
     en: "WHAT TOOLS DO YOU BUILD WITH?",  fr: "QUELS OUTILS UTILISEZ-VOUS?",
     es: "¿QUÉ HERRAMIENTAS USAS?",        de: "MIT WELCHEN TOOLS BAUEN SIE?",
     pt: "QUAIS FERRAMENTAS VOCÊ USA?",    zh: "您使用什么工具构建？",
-    ja: "どんなツールで構築しますか？",      yo: "ÀWỌ̀N ÌMÒ WÒN TI O N LÒ?",
+    ja: "どんなツールで構築しますか？",
   },
   "faq.a1": {
     en: "Framer, Shopify, Webflow, WordPress. I choose based on what's right for you, not what I'm most comfortable with. My job is to give you the best tool for the job, then build it well.",
@@ -1330,13 +1154,12 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     pt: "Framer, Shopify, Webflow, WordPress. Escolho com base no que é certo para você, não no que é mais fácil para mim. Meu trabalho é dar a você a melhor ferramenta e usá-la bem.",
     zh: "Framer、Shopify、Webflow、WordPress。我根据什么适合您来选择，而不是我最熟悉什么。我的工作是给您最好的工具，然后用好它。",
     ja: "Framer、Shopify、Webflow、WordPress。私にとって楽なものでなく、あなたに合ったものを選びます。最適なツールを提供し、それをうまく使うのが私の仕事です。",
-    yo: "Framer, Shopify, Webflow, WordPress. Mo yan lórí ohun tó yẹ fún rẹ, kì í ṣe ohun tó rọrùn jù fún mi. Iṣẹ́ mi ni láti fún ọ ní ìmò tó dára jù, lẹ́yìn náà ni mo kọ́ rẹ̀ dáadáa.",
   },
   "faq.q2": {
     en: "HOW MUCH DOES IT COST?",        fr: "COMBIEN ÇA COÛTE?",
     es: "¿CUÁNTO CUESTA?",               de: "WIE VIEL KOSTET ES?",
     pt: "QUANTO CUSTA?",                 zh: "费用是多少？",
-    ja: "費用はいくらですか？",            yo: "MÉLÒÓ NI Ó JẸ?",
+    ja: "費用はいくらですか？",
   },
   "faq.a2": {
     en: "Projects start from $500. Pricing is scoped to your project. No surprises, no hidden fees. Retainers are available for ongoing support if you need someone in your corner long-term. Book a call and you'll leave with a clear number and exactly what's included.",
@@ -1346,13 +1169,12 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     pt: "Os projetos começam a partir de $500. O preço é definido de acordo com seu projeto. Sem surpresas, sem taxas ocultas. Retainers estão disponíveis para suporte contínuo. Agende uma chamada e sairá com um número claro.",
     zh: "项目起价500美元。价格根据您的项目确定。无意外，无隐藏费用。如需长期支持，可选择月度合同。预约通话，您将带着明确的数字和确切的包含内容离开。",
     ja: "プロジェクトは500ドルから始まります。価格はあなたのプロジェクトに合わせて設定されます。驚きなし、隠れた費用なし。長期サポートが必要な場合はリテーナーも利用可能です。通話を予約して、明確な数字を確認してください。",
-    yo: "Àwọn iṣẹ́ bẹ̀rẹ̀ láti $500. Iye ni a gé gẹ́gẹ́ bí iṣẹ́ rẹ. Kò sí ìyàlẹ́nú, kò sí owó tí a pamọ́. Retainer wà fún àtìlẹ́yìn tó gùn. Ṣàgbékalẹ̀ ìpè kí o tó mú iye tó kedere.",
   },
   "faq.q3": {
     en: "HOW FAST IS DELIVERY?",         fr: "QUELLE EST LA DURÉE DE LIVRAISON?",
     es: "¿QUÉ TAN RÁPIDA ES LA ENTREGA?", de: "WIE SCHNELL WIRD GELIEFERT?",
     pt: "QUAL É O PRAZO DE ENTREGA?",    zh: "交付有多快？",
-    ja: "納期はどのくらいですか？",         yo: "BÁWO NI ÌYÁRA ÌFITÍNSÍN?",
+    ja: "納期はどのくらいですか？",
   },
   "faq.a3": {
     en: "Most projects are done in 7–14 days. Larger builds with multiple pages can run 2–3 weeks. You'll know the timeline before we start. And I stick to it.",
@@ -1362,13 +1184,12 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     pt: "A maioria dos projetos é concluída em 7–14 dias. Projetos maiores podem levar 2–3 semanas. Você saberá o prazo antes de começarmos. E eu o cumpro.",
     zh: "大多数项目在7–14天内完成。多页面的较大项目可能需要2–3周。您在开始前就会知道时间表。我会坚持执行。",
     ja: "ほとんどのプロジェクトは7〜14日で完了します。複数ページの大型プロジェクトは2〜3週間かかることがあります。開始前にスケジュールをお知らせし、それを守ります。",
-    yo: "Ọpọ̀lọpọ̀ iṣẹ́ pé ní ọjọ́ 7–14. Àwọn iṣẹ́ tó tóbi lè gba ọ̀sẹ̀ 2–3. O máa mọ àkókò ṣáájú kí a tó bẹ̀rẹ̀. Mo sì ṣe é.",
   },
   "faq.q4": {
     en: "HOW MANY REVISIONS DO I GET?",  fr: "COMBIEN DE RÉVISIONS AI-JE?",
     es: "¿CUÁNTAS REVISIONES TENGO?",    de: "WIE VIELE REVISIONEN BEKOMME ICH?",
     pt: "QUANTAS REVISÕES EU TENHO?",    zh: "我可以有多少次修改？",
-    ja: "修正は何回できますか？",           yo: "ÀTÚNṢEìwo mélòó ni mo ní?",
+    ja: "修正は何回できますか？",
   },
   "faq.a4": {
     en: "As many as you need to get it right. Within the agreed scope. I don't cap revisions at some arbitrary number. What I do is build revision cycles into the process early, so by the time we're in development, there's almost nothing left to change.",
@@ -1378,13 +1199,12 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     pt: "Quantas forem necessárias para acertar. Dentro do escopo acordado. Não limito revisões a um número arbitrário. O que faço é incorporar ciclos de revisão no início do processo, para que na fase de desenvolvimento reste quase nada para mudar.",
     zh: "在商定范围内，要多少次都行，直到做对为止。我不会把修改次数限制在某个任意数字。我会在早期将修改周期纳入流程，这样到了开发阶段，几乎没有什么需要改动的了。",
     ja: "合意した範囲内で、正しく仕上げるために必要なだけ。修正回数を恣意的な数で制限しません。早い段階でプロセスに修正サイクルを組み込むことで、開発段階になると変更すべきことがほぼなくなります。",
-    yo: "Ó tó bí o ṣe nílò láti tọ́ rẹ̀. Nínú àgbègbè tí a gbà. Mi ò ń dín àtúnṣe mọ́ ní iye àdánidá. Ohun tí mo ń ṣe ni láti kọ́ àkókò àtúnṣe sínú ìlàna ṣáájú, kí nígbà ìdàgbàsókè, kò fẹ́rẹ̀ẹ́ sí nǹkan tí o kù láti yí padà.",
   },
   "faq.q5": {
     en: "CAN YOU IMPROVE MY EXISTING WEBSITE?", fr: "POUVEZ-VOUS AMÉLIORER MON SITE EXISTANT?",
     es: "¿PUEDES MEJORAR MI SITIO EXISTENTE?",  de: "KÖNNEN SIE MEINE BESTEHENDE WEBSITE VERBESSERN?",
     pt: "VOCÊ PODE MELHORAR MEU SITE EXISTENTE?", zh: "您能改进我现有的网站吗？",
-    ja: "既存のウェブサイトを改善できますか？",    yo: "ṢÉṢE O LÈ ṢÈLỌSÍWÁJÚ OJÚEWÉ MI TÍ MO TI NÍ?",
+    ja: "既存のウェブサイトを改善できますか？",
   },
   "faq.a5": {
     en: "Yes. And that's often the most impactful move. I look at what's working, fix what's not, and improve what could be better. Whether it's a redesign, a migration, or a targeted fix.",
@@ -1394,13 +1214,12 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     pt: "Sim. E essa é frequentemente a mudança mais impactante. Analiso o que está funcionando, corrijo o que não está e melhoro o que poderia ser melhor. Seja um redesign, migração ou correção específica.",
     zh: "是的。这往往是最有影响力的举措。我查看什么有效，修复什么无效，改进什么可以更好。无论是重新设计、迁移还是针对性修复。",
     ja: "はい。それが最も効果的な動きであることが多いです。機能していることを見て、機能していないことを修正し、より良くできることを改善します。リデザイン、移行、またはターゲットを絞った修正、どれでも対応します。",
-    yo: "Bẹ́ẹ̀ni. Àti pé èyí sábà máa ń jẹ́ ìgbésẹ̀ tó ní ipa jùlọ. Mo ń wo ohun tó ń ṣiṣẹ́, mo ṣe àtúnṣe ohun tí kò ṣiṣẹ́, mo sì ṣèlọsíwájú ohun tó lè dára jù. Bóyá àtúnṣe àpẹẹrẹ, gbígbé ojúewé, tàbí àtúnṣe pàtó.",
   },
   "faq.q6": {
     en: "DO YOU OFFER ONGOING SUPPORT?",   fr: "OFFREZ-VOUS UN SUPPORT CONTINU?",
     es: "¿OFRECES SOPORTE CONTINUO?",      de: "BIETEN SIE LAUFENDEN SUPPORT AN?",
     pt: "VOCÊ OFERECE SUPORTE CONTÍNUO?",  zh: "您提供持续支持吗？",
-    ja: "継続的なサポートはありますか？",      yo: "ṢÉ O N FUNNI NI ÀTÌLẸ́YỌ̀ TÓ MÁA Ń LÒ?",
+    ja: "継続的なサポートはありますか？",
   },
   "faq.a6": {
     en: "Yes. Once your site is live, I'm available for updates, tweaks, and new additions. Most clients keep me on retainer for ongoing changes rather than explaining their entire project to a new developer every time.",
@@ -1410,13 +1229,12 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     pt: "Sim. Depois que seu site estiver no ar, estou disponível para atualizações, ajustes e novas adições. A maioria dos clientes me mantém em contrato para pequenas mudanças contínuas em vez de ter que informar um novo desenvolvedor a cada vez.",
     zh: "是的。您的网站上线后，我可以提供更新、调整和新增内容。大多数客户选择留我做持续的小改动，而不是每次都需要向新开发者重新说明。",
     ja: "はい。サイトがライブになったら、更新、調整、新しい追加に対応できます。ほとんどのクライアントは、毎回新しい開発者に説明し直すのではなく、小さな継続的な変更のために私をリテーナーで置いています。",
-    yo: "Bẹ́ẹ̀ni. Bí ojúewé rẹ bá ti jẹ́ alàáyè, mo wà fún àwọn ìmúdójúìwọ̀n, àtúnṣe, àti àfikún tuntun. Ọpọ̀lọpọ̀ oníbàárà máa ń pa mi mọ́ fún àwọn ìyípadà kéékèékè tí ń lọ síwájú kí wọ́n tó nílò láti sọ̀rọ̀ pẹ̀lú olùgbéjáde tuntun ní ìgbà kọ̀ọ̀kan.",
   },
   "faq.q7": {
     en: "WILL MY SITE BE EASY TO MANAGE?",   fr: "MON SITE SERA-T-IL FACILE À GÉRER?",
     es: "¿SERÁ FÁCIL DE GESTIONAR MI SITIO?", de: "WIRD MEINE SITE EINFACH ZU VERWALTEN SEIN?",
     pt: "MEU SITE SERÁ FÁCIL DE GERENCIAR?",  zh: "我的网站易于管理吗？",
-    ja: "サイトは管理しやすいですか？",           yo: "ṢÉ OJÚEWÉ MI YÓÒ RỌRÙN LÁT ÍGÓJÚ RẸ̀?",
+    ja: "サイトは管理しやすいですか？",
   },
   "faq.a7": {
     en: "Yes. I build with content management in mind so you can update things without touching code. I'll walk you through everything after launch so you feel confident on day one.",
@@ -1426,13 +1244,12 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     pt: "Sim. Construo com gestão de conteúdo em mente para que você possa atualizar sem tocar no código. Vou guiá-lo por tudo após o lançamento para que você se sinta confiante desde o primeiro dia.",
     zh: "是的。我在构建时考虑到内容管理，您无需触碰代码即可更新内容。上线后我会带您了解一切，让您从第一天起就充满信心。",
     ja: "はい。コードに触れることなく内容を更新できるよう、コンテンツ管理を念頭に構築します。ローンチ後にすべてを説明するので、初日から自信を持って操作できます。",
-    yo: "Bẹ́ẹ̀ni. Mo kọ́ pẹ̀lú ìṣàkóso àkóónú ní ọkàn kí o lè ṣe àwọn ìmúdójúìwọ̀n láìfi ọwọ́ kan kódù. Màá ṣe amọ̀nà rẹ lẹ́yìn ìfilọ́lẹ̀ kí o sì ní ìdánilójú ní ọjọ́ àkọ́kọ́.",
   },
   "faq.q8": {
     en: "DO YOU USE TEMPLATES?",           fr: "UTILISEZ-VOUS DES MODÈLES?",
     es: "¿USAS PLANTILLAS?",               de: "VERWENDEN SIE TEMPLATES?",
     pt: "VOCÊ USA TEMPLATES?",             zh: "您使用模板吗？",
-    ja: "テンプレートを使いますか？",         yo: "ṢÉ O N LÒ ÀWỌN ÀPẸẸRẸ TÍ A TI ṢE?",
+    ja: "テンプレートを使いますか？",
   },
   "faq.a8": {
     en: "Yes. If the template fits your brand, there's no reason to avoid it. A great template used well beats a mediocre custom build every time. If it doesn't match your brand, I'll adapt it or find a better path. The goal is always a site that looks and feels like you.",
@@ -1442,13 +1259,12 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     pt: "Sim. Se o template se adequa à sua marca, não há razão para evitá-lo. Um bom template bem usado supera um trabalho personalizado medíocre. Se não se adequar, eu o adapto ou encontro um caminho melhor. O objetivo é sempre um site que pareça você.",
     zh: "是的。如果模板符合您的品牌，没有理由避免使用它。一个好的模板用得好胜过平庸的定制开发。如果不合适，我会调整或找到更好的方式。目标始终是一个看起来和感觉像您的网站。",
     ja: "はい。テンプレートがあなたのブランドに合うなら、使わない理由はありません。よく使われた良いテンプレートは、平凡なカスタム制作より優れています。合わない場合は、調整するか別の方法を見つけます。目標は常にあなたらしいサイトです。",
-    yo: "Bẹ́ẹ̀ni. Bí àpẹẹrẹ bá bá àmì rẹ mu, kò sí ìdí láti yẹra fún rẹ̀. Àpẹẹrẹ tó dára tí a lò dáadáa yọ iṣẹ́ àpẹẹrẹ tó kò dára jù. Bí kò bá bá mu, màá ṣàtúnṣe rẹ̀ tàbí wá ọ̀nà tó dára. Àfojúsùn ni ojúewé tí ó dàbí rẹ.",
   },
   "faq.q9": {
     en: "HOW DO WE GET STARTED?",          fr: "COMMENT COMMENÇONS-NOUS?",
     es: "¿CÓMO EMPEZAMOS?",                de: "WIE FANGEN WIR AN?",
     pt: "COMO COMEÇAMOS?",                 zh: "我们如何开始？",
-    ja: "どうやって始めますか？",             yo: "BÁWO NI A ṢE Ń BẸ̀RẸ̀?",
+    ja: "どうやって始めますか？",
   },
   "faq.a9": {
     en: "Book a free 30-minute call. We'll talk about your project, your goals, and what a good outcome looks like. No pressure. Just an honest conversation.",
@@ -1458,25 +1274,24 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     pt: "Agende uma chamada gratuita de 30 minutos. Falaremos sobre seu projeto, seus objetivos e como é um bom resultado. Sem pressão. Apenas uma conversa honesta.",
     zh: "预约一次免费的30分钟通话。我们将谈论您的项目、您的目标以及良好结果是什么样的。没有压力。只是一次诚实的对话。",
     ja: "無料の30分通話を予約してください。あなたのプロジェクト、目標、そして良い結果がどのようなものかについて話し合います。プレッシャーなし。ただの正直な会話です。",
-    yo: "Ṣàgbékalẹ̀ ìpè ọ̀fẹ́ ìṣẹ́jú 30. A ó sọ̀rọ̀ nípa iṣẹ́ rẹ, àwọn èrò rẹ, àti bí àbájáde tó dára ṣe dàbí. Kò sí ìtẹnumọ́. Ìfọ̀rọ̀wérọ̀ tó ṣí lójú ṣoṣo ni.",
   },
 
   // ── Contact Form ─────────────────────────────────────────────────────
   "contact.eyebrow": {
     en: "GET IN TOUCH",    fr: "CONTACTEZ-MOI",   es: "PONTE EN CONTACTO", de: "KONTAKT AUFNEHMEN",
-    pt: "ENTRE EM CONTATO", zh: "联系我",           ja: "お問い合わせ",        yo: "KAN SÍ MI",
+    pt: "ENTRE EM CONTATO", zh: "联系我",           ja: "お問い合わせ",
   },
   "contact.h1": {
     en: "HAVE A PROJECT IN MIND?",         fr: "UN PROJET EN TÊTE ?",
     es: "¿TIENES UN PROYECTO EN MENTE?",   de: "EIN PROJEKT IM KOPF?",
     pt: "TEM UM PROJETO EM MENTE?",        zh: "有项目想法？",
-    ja: "プロジェクトをお考えですか？",      yo: "ṢÉ O NÍ IṢẸ́ KAN LỌ́KÀN?",
+    ja: "プロジェクトをお考えですか？",
   },
   "contact.h1b": {
     en: "TELL ME ABOUT IT.",               fr: "PARLEZ-M'EN.",
     es: "CUÉNTAMELO.",                     de: "ERZÄHLEN SIE MIR DAVON.",
     pt: "ME CONTE SOBRE ELE.",             zh: "跟我聊聊。",
-    ja: "ぜひ聞かせてください。",            yo: "SỌ FÚN MI NÍPA RẸ̀.",
+    ja: "ぜひ聞かせてください。",
   },
   "contact.desc": {
     en: "Tell me what you're working on and I'll come back to you within 24 hours with an honest take on whether I can help. And what that would look like.",
@@ -1486,14 +1301,13 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     pt: "Me conte o que você está trabalhando e retornarei em até 24 horas com uma avaliação honesta sobre se posso ajudar. E como isso seria.",
     zh: "告诉我您在做什么，我会在24小时内回复您，诚实说明我是否能帮上忙。以及会是什么样子。",
     ja: "取り組んでいることを教えてください。24時間以内に、お役に立てるかどうかについての正直な見解をお返しします。",
-    yo: "Sọ fún mi ohun tí o ń ṣiṣẹ́ rẹ̀ àti pé màá padà sí ọ ní àárọ̀ wákàtí 24 pẹ̀lú ìyéwò tó ṣí lójú lórí bóyá mo lè ràn ọ́ lọ́wọ́.",
   },
-  "contact.label.name":    { en: "Name",                  fr: "Nom",                  es: "Nombre",             de: "Name",                pt: "Nome",                zh: "姓名",     ja: "名前",      yo: "Orúkọ" },
-  "contact.label.email":   { en: "Email",                 fr: "Email",                es: "Correo",             de: "E-Mail",              pt: "Email",               zh: "邮箱",     ja: "メール",    yo: "Ímeèlì" },
-  "contact.label.service": { en: "Service",               fr: "Service",              es: "Servicio",           de: "Service",             pt: "Serviço",             zh: "服务",     ja: "サービス",  yo: "Iṣẹ́" },
-  "contact.label.budget":  { en: "Budget",                fr: "Budget",               es: "Presupuesto",        de: "Budget",              pt: "Orçamento",           zh: "预算",     ja: "予算",      yo: "Owó" },
-  "contact.label.message": { en: "Tell me about your project", fr: "Parlez-moi de votre projet", es: "Cuéntame sobre tu proyecto", de: "Erzählen Sie mir von Ihrem Projekt", pt: "Fale sobre seu projeto", zh: "告诉我您的项目", ja: "プロジェクトについて", yo: "Sọ fún mi nípa iṣẹ́ rẹ" },
-  "contact.ph.name":    { en: "Your name",         fr: "Votre nom",          es: "Tu nombre",          de: "Ihr Name",           pt: "Seu nome",          zh: "您的姓名",  ja: "お名前",       yo: "Orúkọ rẹ" },
+  "contact.label.name":    { en: "Name",                  fr: "Nom",                  es: "Nombre",             de: "Name",                pt: "Nome",                zh: "姓名",     ja: "名前", },
+  "contact.label.email":   { en: "Email",                 fr: "Email",                es: "Correo",             de: "E-Mail",              pt: "Email",               zh: "邮箱",     ja: "メール", },
+  "contact.label.service": { en: "Service",               fr: "Service",              es: "Servicio",           de: "Service",             pt: "Serviço",             zh: "服务",     ja: "サービス", },
+  "contact.label.budget":  { en: "Budget",                fr: "Budget",               es: "Presupuesto",        de: "Budget",              pt: "Orçamento",           zh: "预算",     ja: "予算", },
+  "contact.label.message": { en: "Tell me about your project", fr: "Parlez-moi de votre projet", es: "Cuéntame sobre tu proyecto", de: "Erzählen Sie mir von Ihrem Projekt", pt: "Fale sobre seu projeto", zh: "告诉我您的项目", ja: "プロジェクトについて", },
+  "contact.ph.name":    { en: "Your name",         fr: "Votre nom",          es: "Tu nombre",          de: "Ihr Name",           pt: "Seu nome",          zh: "您的姓名",  ja: "お名前", },
   "contact.ph.message": {
     en: "What are you building, what's the goal, and when do you need it?",
     fr: "Que construisez-vous, quel est l'objectif et pour quand en avez-vous besoin?",
@@ -1502,16 +1316,15 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     pt: "O que você está construindo, qual é o objetivo e quando precisa disso?",
     zh: "您在构建什么，目标是什么，何时需要？",
     ja: "何を構築していますか、目標は何ですか、いつ必要ですか？",
-    yo: "Kín ni o n kọ́, kín ni èrò rẹ, àti nígbà wo ni o nílò rẹ̀?",
   },
-  "contact.btn.send":      { en: "Send message",    fr: "Envoyer",            es: "Enviar mensaje",     de: "Nachricht senden",   pt: "Enviar mensagem",   zh: "发送消息",  ja: "送信する",     yo: "Fi ìfiranṣẹ́ ránṣẹ́" },
-  "contact.btn.sending":   { en: "Sending…",        fr: "Envoi…",             es: "Enviando…",          de: "Senden…",            pt: "Enviando…",         zh: "发送中…",   ja: "送信中…",      yo: "Ń ránsẹ́…" },
-  "contact.success.title": { en: "Message sent.",   fr: "Message envoyé.",    es: "Mensaje enviado.",   de: "Nachricht gesendet.", pt: "Mensagem enviada.", zh: "消息已发送。", ja: "メッセージが送信されました。", yo: "A ti fi ìfiranṣẹ́ ránṣẹ́." },
+  "contact.btn.send":      { en: "Send message",    fr: "Envoyer",            es: "Enviar mensaje",     de: "Nachricht senden",   pt: "Enviar mensagem",   zh: "发送消息",  ja: "送信する", },
+  "contact.btn.sending":   { en: "Sending…",        fr: "Envoi…",             es: "Enviando…",          de: "Senden…",            pt: "Enviando…",         zh: "发送中…",   ja: "送信中…", },
+  "contact.success.title": { en: "Message sent.",   fr: "Message envoyé.",    es: "Mensaje enviado.",   de: "Nachricht gesendet.", pt: "Mensagem enviada.", zh: "消息已发送。", ja: "メッセージが送信されました。", },
   "contact.success.desc":  {
     en: "I'll get back to you within 24 hours.",     fr: "Je vous répondrai dans les 24 heures.",
     es: "Te responderé dentro de las 24 horas.",     de: "Ich melde mich innerhalb von 24 Stunden.",
     pt: "Responderei em até 24 horas.",              zh: "我将在24小时内回复您。",
-    ja: "24時間以内にご連絡します。",                  yo: "Màá padà sí ọ ní àárọ̀ wákàtí 24.",
+    ja: "24時間以内にご連絡します。",
   },
   "contact.error": {
     en: "Something went wrong. Try emailing me directly at samuel@adefilasamuel.com",
@@ -1521,7 +1334,6 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     pt: "Algo deu errado. Tente me enviar um email diretamente para samuel@adefilasamuel.com",
     zh: "出现错误。请直接发邮件至 samuel@adefilasamuel.com",
     ja: "エラーが発生しました。samuel@adefilasamuel.com に直接メールしてください",
-    yo: "Nǹkan kan kò tọ́. Gbìyànjú fí ímeèlì ránṣẹ́ sí samuel@adefilasamuel.com",
   },
 
   // ── Featured Projects ─────────────────────────────────────────────────
@@ -1529,17 +1341,17 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
   // ── Side Projects ─────────────────────────────────────────────────────
   "sideprojects.eyebrow": {
     en: "SIDE PROJECTS",    fr: "PROJETS PERSONNELS", es: "PROYECTOS PROPIOS",   de: "NEBENPROJEKTE",
-    pt: "PROJETOS PESSOAIS", zh: "个人项目",             ja: "個人プロジェクト",      yo: "ÀWỌN IṢẸ́ ẸNIKÒọ̀KAN",
+    pt: "PROJETOS PESSOAIS", zh: "个人项目",             ja: "個人プロジェクト",
   },
   "sideprojects.h1": {
     en: "STUFF I BUILT",       fr: "CE QUE J'AI CRÉÉ",   es: "COSAS QUE CONSTRUÍ",  de: "DINGE DIE ICH GEBAUT HABE",
-    pt: "COISAS QUE CONSTRUÍ", zh: "我构建的东西",           ja: "私が作ったもの",          yo: "OHUN TÍ MO KỌ́",
+    pt: "COISAS QUE CONSTRUÍ", zh: "我构建的东西",           ja: "私が作ったもの",
   },
   "sideprojects.h1b": {
     en: "BECAUSE I NEEDED IT.",   fr: "PARCE QUE J'EN AVAIS BESOIN.",
     es: "PORQUE LO NECESITABA.",  de: "WEIL ICH ES BRAUCHTE.",
     pt: "PORQUE PRECISEI DISSO.", zh: "因为我需要它。",
-    ja: "必要だったから。",           yo: "NÍTORÍ MO NÍLÒ RẸ̀.",
+    ja: "必要だったから。",
   },
   "sideprojects.p0.tagline": {
     en: "I kept getting ghosted after applying. Turned out my CV wasn't making it past ATS. Built this to fix that. It rewrites your CV and lets you run it through an HR simulator before you send it.",
@@ -1549,7 +1361,6 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     pt: "Fiquei sendo ignorado após candidaturas. Meu CV não passava pelo ATS. Construí isso para resolver. Reescreve seu CV e permite testá-lo em um simulador de RH antes de enviar.",
     zh: "投简历后一直没有回音。原来我的简历过不了ATS。我做了这个来解决。它重写您的简历并让您在发送前通过HR模拟器测试。",
     ja: "応募後ずっと無視されていました。CVがATSを通過していなかったと判明。これを作って解決。CVを書き直し、送信前にHRシミュレーターでテストできます。",
-    yo: "Mo máa ń sẹ́ lẹ́yìn ìfúnni wé. Ó hóhún pé CV mi kò lè kọjá ATS. Mo kọ́ èyí láti ṣe àtúnṣe rẹ̀. Ó tún CV rẹ kọ àti jẹ́ kí o ṣàgbéyẹ̀wò rẹ̀ nínú ẹ̀rọ HR ṣáájú kí o tó fi ránṣẹ́.",
   },
   "sideprojects.p1.tagline": {
     en: "I had a 400MB Loom recording I needed to send to a client. Every tool online wanted my email or had a file limit. Built this in a weekend. Compresses in the browser, nothing ever leaves your device.",
@@ -1559,7 +1370,6 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     pt: "Tinha uma gravação Loom de 400MB para enviar a um cliente. Todo ferramenta online queria meu email ou tinha um limite. Construí isso num fim de semana. Comprime no navegador, nada sai do seu dispositivo.",
     zh: "我有一个400MB的Loom录制需要发送给客户。每个在线工具都要我的邮箱或有文件限制。一个周末做了这个。在浏览器中压缩，没有任何内容离开您的设备。",
     ja: "クライアントに送る必要のある400MBのLoom録画がありました。オンラインのツールはどれも私のメールが必要か、ファイル制限がありました。週末に作りました。ブラウザ内で圧縮し、何もデバイスを離れません。",
-    yo: "Mo ní ìgbasilẹ Loom 400MB tí mo nílò láti fi ránṣẹ́ sí oníbàárà. Gbogbo ìmò orí ìnẹ́tì fẹ́ ímeèlì mi tàbí ní ìdiwọ̀n fáìlì. Mo kọ́ èyí ní ìdajì ọ̀sẹ̀. ń ṣe ìfúnpínpọ̀ nínú aṣàwákiri, kò sí nǹkan tí ó máa ń lọ kúrò lórí ẹ̀rọ rẹ.",
   },
   "sideprojects.p2.tagline": {
     en: "Back-to-back meetings with no time to write up what happened. Built a Chrome extension that joins your calls, transcribes everything, pulls out action items, and drafts the follow-up email. So you can actually focus on the meeting.",
@@ -1569,6 +1379,5 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     pt: "Reuniões seguidas sem tempo para escrever o que aconteceu. Construí uma extensão do Chrome que entra nas suas chamadas, transcreve tudo, extrai os pontos de ação e rascunha o e-mail de acompanhamento. Para você focar na reunião.",
     zh: "一个接一个的会议，没有时间记录发生了什么。我做了一个Chrome扩展，加入你的通话，转录所有内容，提取行动项，并起草后续邮件。让你真正专注于会议。",
     ja: "連続した会議で、何が起きたかを書き上げる時間がない。Chromeの拡張機能を作りました。通話に参加し、すべてを文字起こしし、アクションアイテムを抽出し、フォローアップメールを下書きします。会議に集中できるように。",
-    yo: "Àwọn ìpàdé tẹ̀lé ara wọn láìsí àkókò láti kọ ohun tó ṣẹlẹ̀. Mo kọ́ àfikún Chrome kan tó dara pọ̀ mọ́ àwọn ìpè rẹ, tó ń ṣe ìtumọ̀ ohun gbogbo, tó ń fa àwọn nǹkan ìṣe jáde, tó sì ń kọ ímeèlì àtẹ̀lé. Kí o lè dojúkọ ìpàdé.",
   },
 };

@@ -1,7 +1,7 @@
 import type { LangCode } from "./translations";
 
 // Project descriptions, industry tags and badges for the Projects section.
-// Rows are [en, fr, es, de, pt, zh, ja]; Yoruba, Dutch and Norwegian show English (the Projects
+// Rows are [en, fr, es, de, pt, zh, ja]; Dutch and Norwegian show English (the Projects
 // section only appears on the main site, where those two are not offered yet).
 type Row = [string, string, string, string, string, string, string];
 const ORDER: LangCode[] = ["en", "fr", "es", "de", "pt", "zh", "ja"];

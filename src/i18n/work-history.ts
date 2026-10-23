@@ -1,7 +1,7 @@
 import type { LangCode } from "./translations";
 
 // The About section's work history: dates, roles, places, bullet points and the toggle labels.
-// Rows are [en, fr, es, de, pt, zh, ja]; Yoruba, Dutch and Norwegian show English.
+// Rows are [en, fr, es, de, pt, zh, ja]; Dutch and Norwegian show English.
 // Company names stay as they are (they are names), except "Self-employed".
 type Row = [string, string, string, string, string, string, string];
 const ORDER: LangCode[] = ["en", "fr", "es", "de", "pt", "zh", "ja"];
