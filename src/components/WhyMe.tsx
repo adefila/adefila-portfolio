@@ -5,18 +5,18 @@ import SpecLabel from "./SpecLabel";
 import RevealWords, { revealDelayAfter } from "./RevealWords";
 
 // Icons draw on a 48-unit grid and show at 20px in a 32px box, so lines are thick in grid units.
-const IC = { stroke: "#7c3aed", sw: 4 };
+const IC = { stroke: "#c4b5fd", sw: 4.5 };
 
 const ICON_CSS = `
   @keyframes bolt-draw {
-    0%,5%   { stroke-dashoffset:115; opacity:0; }
+    0%,5%   { stroke-dashoffset:115; opacity:0.4; }
     30%     { stroke-dashoffset:0;   opacity:1; }
     60%     { stroke-dashoffset:0;   opacity:1; }
     63%     { stroke-dashoffset:0;   opacity:0.06; }
     67%     { stroke-dashoffset:0;   opacity:1; }
     71%     { stroke-dashoffset:0;   opacity:0.06; }
     76%     { stroke-dashoffset:0;   opacity:1; }
-    88%,100%{ stroke-dashoffset:0;   opacity:0; }
+    88%,100%{ stroke-dashoffset:0;   opacity:0.4; }
   }
   @keyframes sonar {
     0%   { transform:scale(0.61); opacity:0; }
@@ -59,7 +59,7 @@ const ICON_CSS = `
 
 function IsoSpeedIcon() {
   return (
-    <svg width="20" height="20" viewBox="0 0 48 48" fill="none" aria-hidden>
+    <svg width="22" height="22" viewBox="0 0 48 48" fill="none" aria-hidden>
       <path
         d="M28,4 L12,26 L22,26 L18,44 L36,22 L26,22 Z"
         fill="none" stroke={IC.stroke} strokeWidth={IC.sw}
@@ -77,7 +77,7 @@ function IsoAudienceIcon() {
     animation: `sonar 2.7s ease-out infinite ${delay}`,
   });
   return (
-    <svg width="20" height="20" viewBox="0 0 48 48" fill="none" aria-hidden>
+    <svg width="22" height="22" viewBox="0 0 48 48" fill="none" aria-hidden>
       <circle cx="24" cy="24" r="4" stroke={IC.stroke} strokeWidth={IC.sw}/>
       <circle cx="24" cy="24" r="11" stroke={IC.stroke} strokeWidth={IC.sw} opacity="0.35"/>
       <circle cx="24" cy="24" r="18" fill="none" stroke={IC.stroke} strokeWidth={IC.sw} style={ringStyle("0s")}/>
@@ -89,7 +89,7 @@ function IsoAudienceIcon() {
 
 function IsoOwnershipIcon() {
   return (
-    <svg width="20" height="20" viewBox="0 0 48 48" fill="none" aria-hidden>
+    <svg width="22" height="22" viewBox="0 0 48 48" fill="none" aria-hidden>
       <rect x="10" y="22" width="28" height="22" rx="3" stroke={IC.stroke} strokeWidth={IC.sw}/>
       <path
         d="M16 22 L16 16 Q24 6 32 16 L32 22"
@@ -104,7 +104,7 @@ function IsoOwnershipIcon() {
 
 function IsoToolsIcon() {
   return (
-    <svg width="20" height="20" viewBox="0 0 48 48" fill="none" aria-hidden>
+    <svg width="22" height="22" viewBox="0 0 48 48" fill="none" aria-hidden>
       <line x1="8" y1="14" x2="40" y2="14" stroke={IC.stroke} strokeWidth="1.5" strokeLinecap="round" opacity="0.3"/>
       <line x1="8" y1="24" x2="40" y2="24" stroke={IC.stroke} strokeWidth="1.5" strokeLinecap="round" opacity="0.3"/>
       <line x1="8" y1="34" x2="40" y2="34" stroke={IC.stroke} strokeWidth="1.5" strokeLinecap="round" opacity="0.3"/>
@@ -235,7 +235,7 @@ export default function WhyMe() {
           <div key={i} data-reveal className="wm-benefit">
             <div style={{
               marginBottom: 16, display: "inline-flex", alignItems: "center", justifyContent: "center",
-              width: 32, height: 32, background: "#ede9fe", borderRadius: 0,
+              width: 40, height: 40, background: "rgba(139, 92, 246, 0.14)", border: "1px solid rgba(167, 139, 250, 0.55)", borderRadius: 0,
             }}>
               <Icon />
             </div>

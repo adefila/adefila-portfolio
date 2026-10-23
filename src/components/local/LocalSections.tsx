@@ -1,9 +1,8 @@
 "use client";
-import Image from "next/image";
-import { ArrowUpRight } from "lucide-react";
 import { useLang } from "@/context/LangContext";
 import RevealWords from "@/components/RevealWords";
 import SpecLabel from "@/components/SpecLabel";
+import { ProjectIndex } from "@/components/Projects";
 import { BookingIllustration, QuoteIllustration, ReviewIllustration, SiteIllustration } from "./Illustrations";
 
 // The sections that belong to /local-business alone. Every word comes from the page's translations
@@ -93,32 +92,17 @@ export function ConceptWork() {
         </div>
         <p data-reveal style={{ ...bodyStyle, fontSize: 15, flex: "1 1 280px", maxWidth: 440 }}>{t("lb.concept.desc")}</p>
       </div>
-      <div className="lb-concepts">
-        {CONCEPTS.map((c) => (
-          <article key={c.key} data-reveal>
-            <a href={c.url} target="_blank" rel="noopener noreferrer" data-track-location={`concept_${c.key}`} className="lb-browser" aria-label={`${c.name}: ${t("lb.concept.cta")}`}>
-              <span className="lb-browser-bar" aria-hidden="true">
-                <i /><i /><i />
-                <em>{c.url.replace(/^https:\/\//, "").replace(/\/$/, "")}</em>
-              </span>
-              <span className="lb-browser-shot">
-                <Image src={c.image} alt={`${c.name} (${t(`lb.concept.${c.key}.type`)})`} width={1200} height={750} sizes="(max-width: 860px) 100vw, 580px" />
-              </span>
-            </a>
-            <div style={{ paddingTop: 24 }}>
-              <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap", marginBottom: 8 }}>
-                <h3 style={cardTitle}>{c.name}</h3>
-                <span style={{ ...chip, color: "var(--accent-purple)", borderColor: "rgba(109,40,217,0.3)", background: "rgba(109,40,217,0.06)" }}>{t("lb.concept.label")}</span>
-                <span style={chip}>{t(`lb.concept.${c.key}.type`)}</span>
-              </div>
-              <p style={{ ...bodyStyle, marginBottom: 16 }}>{t(`lb.concept.${c.key}.desc`)}</p>
-              <a href={c.url} target="_blank" rel="noopener noreferrer" data-track-location={`concept_${c.key}`} className="lb-concept-link">
-                {t("lb.concept.cta")} <ArrowUpRight size={15} strokeWidth={2.2} aria-hidden="true" />
-              </a>
-            </div>
-          </article>
-        ))}
-      </div>
+      <ProjectIndex
+        projects={CONCEPTS.map((c) => ({
+          title: c.name,
+          alt: `${c.name} (${t(`lb.concept.${c.key}.type`)})`,
+          year: "2026",
+          tags: [t(`lb.concept.${c.key}.type`), t("lb.concept.label")],
+          href: c.url,
+          screenshot: c.image,
+          track: `concept_${c.key}`,
+        }))}
+      />
     </section>
   );
 }

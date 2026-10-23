@@ -1,6 +1,7 @@
 ﻿"use client";
-import { motion, AnimatePresence, useInView } from "framer-motion";
-import { useRef, useState, useEffect } from "react";
+import { motion, useInView } from "framer-motion";
+import { useRef, useState, useEffect, useSyncExternalStore } from "react";
+import { createPortal } from "react-dom";
 import { Play, X } from "lucide-react";
 import { useLang } from "@/context/LangContext";
 import SpecLabel from "./SpecLabel";
@@ -135,6 +136,9 @@ function Avatar({ name, avatar, logo, size = 44 }: { name: string; avatar: strin
 
 export default function Testimonials() {
   const [videoOpen, setVideoOpen] = useState(false);
+  // The video window is placed on the page itself (a portal): the section's content-visibility would otherwise keep a
+  // fixed-position overlay inside the section, so it would only blur part of the page.
+  const host = useSyncExternalStore(() => () => {}, () => document.body, () => null);
   const modalVideoRef = useRef<HTMLVideoElement>(null);
   // The card's silent preview only downloads once the section is close to the screen
   const videoCardRef = useRef<HTMLDivElement>(null);
@@ -333,58 +337,42 @@ export default function Testimonials() {
         </div>
       </div>
 
-      {/* ── Video modal ── */}
-      <AnimatePresence>
-        {videoOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            onClick={() => setVideoOpen(false)}
-            style={{
-              position: "fixed", inset: 0, zIndex: 1000,
-              background: "rgba(var(--ink), 0.88)",
-              display: "flex", alignItems: "center", justifyContent: "center",
-              padding: 24,
-            }}
-          >
-            <motion.div
-              initial={{ scale: 0.93, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.95, opacity: 0 }}
-              transition={{ duration: 0.22 }}
-              onClick={e => e.stopPropagation()}
-              style={{
-                position: "relative",
-                width: "100%", maxWidth: 900,
-                aspectRatio: "16/9",
-                background: "#000",
-              }}
-            >
+      {/* ── Video window: the same blurred backdrop and framed panel as the booking window ── */}
+      {videoOpen && host && video && video.type === "video" && createPortal(
+        <div className="booking-overlay" onClick={(e) => { if (e.target === e.currentTarget) setVideoOpen(false); }}>
+          <div className="booking-panel corners" role="dialog" aria-modal="true" aria-label={`${video.name}, video testimonial`} style={{ width: "min(960px, 100%)" }}>
+            <header className="booking-header">
+              <div style={{ display: "flex", alignItems: "center", gap: 12, minWidth: 0 }}>
+                {video.avatar && (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img src={video.avatar} alt="" width={40} height={40} style={{ width: 40, height: 40, borderRadius: "50%", objectFit: "cover", flexShrink: 0 }} />
+                )}
+                <div style={{ minWidth: 0 }}>
+                  <p style={{ fontFamily: "var(--font-poppins)", fontWeight: 700, fontSize: 16, letterSpacing: "-0.3px", textTransform: "uppercase", color: "var(--fg)", lineHeight: 1.2 }}>
+                    {video.name}
+                  </p>
+                  <p style={{ fontFamily: "var(--font-mono)", fontSize: 11, letterSpacing: "0.06em", textTransform: "uppercase", color: "var(--fg-secondary)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+                    {video.role}
+                  </p>
+                </div>
+              </div>
+              <button type="button" className="booking-close" onClick={() => setVideoOpen(false)} aria-label="Close video" autoFocus>
+                <X size={16} strokeWidth={2} />
+              </button>
+            </header>
+            <div style={{ background: "#000", aspectRatio: "16 / 9", width: "100%", flexShrink: 1, minHeight: 0 }}>
               <video
                 ref={modalVideoRef}
-                src={video && video.type === "video" ? video.video : undefined}
+                src={video.video}
                 controls
                 playsInline
                 style={{ width: "100%", height: "100%", display: "block", objectFit: "contain" }}
               />
-              <button
-                onClick={() => setVideoOpen(false)}
-                aria-label="Close video"
-                style={{
-                  position: "absolute", top: -44, right: 0,
-                  background: "none", border: "none", cursor: "pointer",
-                  color: "#fff", display: "flex", alignItems: "center", gap: 6,
-                  fontFamily: "var(--font-inter)", fontSize: 13, opacity: 0.8,
-                }}
-              >
-                <X size={18} /> Close
-              </button>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            </div>
+          </div>
+        </div>,
+        host,
+      )}
     </section>
   );
 }

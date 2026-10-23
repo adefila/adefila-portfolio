@@ -286,7 +286,11 @@ const WL_CSS = `
   @media (prefers-reduced-motion: reduce) { .wl-t, .wl-a, .wl-float-in { transition: none; } }
 `;
 
-export default function Projects() {
+// One row of the index: a project or concept, with the hover preview. Used by the home page's work section and by
+// the business page's concept sites, so both look and behave the same.
+export type IndexProject = Pick<Project, "title" | "alt" | "year" | "tags" | "href" | "screenshot"> & { track?: string };
+
+export function ProjectIndex({ projects, shownCount = INDEX_SHOWN }: { projects: IndexProject[]; shownCount?: number }) {
   const { t } = useLang();
   const tr = (key: string, fallback: string) => { const v = t(key); return v === key ? fallback : v; };
   const [showAll, setShowAll] = useState(false);
@@ -297,10 +301,10 @@ export default function Projects() {
   const floatRef = useRef<HTMLDivElement>(null);
   // null while rendering on the server and during hydration, then the page body
   const host = useSyncExternalStore(() => () => {}, () => document.body, () => null);
-  const pos =useRef({ x: 0, y: 0, tx: 0, ty: 0, init: false });
+  const pos = useRef({ x: 0, y: 0, tx: 0, ty: 0, init: false });
 
-  const list = [...devProjects].sort(byLead);
-  const shown = showAll ? list : list.slice(0, INDEX_SHOWN);
+  const list = projects;
+  const shown = showAll ? list : list.slice(0, shownCount);
   const hovering = hover !== null;
 
   // The preview eases toward the cursor and leans a little with its speed.
@@ -333,23 +337,8 @@ export default function Projects() {
   const leave = () => { setHover(null); pos.current.init = false; };
 
   return (
-    <section
-      id="work"
-      style={{ width: "100%", maxWidth: 1200, margin: "0 auto", padding: "80px 20px" }}
-    >
+    <>
       <style>{WL_CSS}</style>
-
-      <div style={{ marginBottom: 40 }}>
-        <SpecLabel text={t("projects.eyebrow")} />
-        <h2 style={{
-          fontFamily: "var(--font-poppins)", fontWeight: 700,
-          fontSize: "clamp(28px, 3.5vw, 48px)", letterSpacing: "-1px",
-          lineHeight: 1.05, textTransform: "uppercase", color: "var(--fg)",
-        }}>
-          <RevealWords text={t("projects.h1")} />
-        </h2>
-      </div>
-
       <ol className="wl-list" data-reveal onMouseMove={(e) => aim(e.clientX, e.clientY)} onMouseLeave={leave}>
         {shown.map((proj, i) => {
           const hasLink = proj.href && proj.href !== "#";
@@ -385,6 +374,7 @@ export default function Projects() {
                 <a
                   className="wl-row"
                   href={proj.href}
+                  data-track-location={proj.track}
                   target="_blank"
                   rel="noopener noreferrer"
                   {...handlers}
@@ -408,7 +398,7 @@ export default function Projects() {
         })}
       </ol>
 
-      {list.length > INDEX_SHOWN && (
+      {list.length > shownCount && (
         <button type="button" className="wl-more" onClick={() => setShowAll((v) => !v)}>
           {showAll ? "Show fewer projects" : `Show all ${list.length} projects`}
         </button>
@@ -435,6 +425,29 @@ export default function Projects() {
         </div>,
         host,
       )}
+    </>
+  );
+}
+
+export default function Projects() {
+  const { t } = useLang();
+  return (
+    <section
+      id="work"
+      style={{ width: "100%", maxWidth: 1200, margin: "0 auto", padding: "80px 20px" }}
+    >
+      <div style={{ marginBottom: 40 }}>
+        <SpecLabel text={t("projects.eyebrow")} />
+        <h2 style={{
+          fontFamily: "var(--font-poppins)", fontWeight: 700,
+          fontSize: "clamp(28px, 3.5vw, 48px)", letterSpacing: "-1px",
+          lineHeight: 1.05, textTransform: "uppercase", color: "var(--fg)",
+        }}>
+          <RevealWords text={t("projects.h1")} />
+        </h2>
+      </div>
+
+      <ProjectIndex projects={[...devProjects].sort(byLead)} />
     </section>
   );
 }
