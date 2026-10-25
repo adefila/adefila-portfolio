@@ -314,7 +314,7 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     ja: "成果が出るサイト。|売れるサイト。|成長するサイト。",
   },
   "hero.subtitle": {
-    en: "Web developer & Framer designer. From brief to launch in 14 days, for founders done waiting on slow agencies.",
+    en: "I help founders and business owners ship websites and digital products in 14 days, without the delays and high costs of traditional agencies.",
     fr: "Développeur & designer Framer. Du brief au lancement en 14 jours, pour les fondateurs qui en ont fini avec les agences lentes.",
     es: "Desarrollador y diseñador Framer. Del brief al lanzamiento en 14 días, para fundadores hartos de agencias lentas y presupuestos inflados.",
     de: "Framer-Entwickler & Designer. Vom Brief bis live in 14 Tagen, für Gründer, die aufgehört haben, auf träge Agenturen zu warten.",
@@ -833,7 +833,7 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     zh: "大多数修改周期在这里完成。这是有意为之。修改线框比修改已构建的页面成本更低。",
     ja: "修正サイクルのほとんどはここで行われます。意図的なこと。作成済みのページよりワイヤーフレームを修正する方が安いです。",
   },
-  "process.s2.title": { en: "Framer Build",     fr: "Construction Framer", es: "Construcción Framer",  de: "Framer-Entwicklung",    pt: "Construção Framer",   zh: "Framer构建",  ja: "Framer構築", },
+  "process.s2.title": { en: "website & products build",     fr: "Construction Framer", es: "Construcción Framer",  de: "Framer-Entwicklung",    pt: "Construção Framer",   zh: "Framer构建",  ja: "Framer構築", },
   "process.s2.dur":   { en: "Days 5–12",         fr: "Jours 5–12",          es: "Días 5–12",            de: "Tage 5–12",             pt: "Dias 5–12",           zh: "第5–12天",   ja: "5〜12日目", },
   "process.s2.desc": {
     en: "Development starts and you get a live preview link of the site on Day 5. You're not waiting two weeks to see something. You're watching it come together in real time.",
