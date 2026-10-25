@@ -52,7 +52,7 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     pt: "PROJETOS RECENTES",        zh: "近期项目",                    ja: "最近のプロジェクト",
   },
   "projects.h1": {
-    en: "Featured Projects",        fr: "Projets Phares",            es: "Proyectos Destacados",     de: "Ausgewählte Projekte",
+    en: "Featured Projects here are done and done susted",        fr: "Projets Phares",            es: "Proyectos Destacados",     de: "Ausgewählte Projekte",
     pt: "Projetos em Destaque",     zh: "精选项目",                    ja: "注目プロジェクト",
   },
 
@@ -83,7 +83,7 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     ja: "コンバージョンに特化した1ページ。リリース、リード獲得、または明確なプロダクトピッチに。",
   },
   "pricing.plan0.f0": {
-    en: "Custom Framer or Webflow design",        fr: "Design Framer ou Webflow personnalisé",   es: "Diseño Framer o Webflow personalizado",
+    en: "Custom websites with any platfrom",        fr: "Design Framer ou Webflow personnalisé",   es: "Diseño Framer o Webflow personalizado",
     de: "Individuelles Framer- oder Webflow-Design", pt: "Design Framer ou Webflow personalizado",  zh: "定制 Framer 或 Webflow 设计",
     ja: "カスタムFramerまたはWebflowデザイン",
   },
