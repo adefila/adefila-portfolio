@@ -836,7 +836,7 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
   "process.s2.title": { en: "Framer Build",     fr: "Construction Framer", es: "Construcción Framer",  de: "Framer-Entwicklung",    pt: "Construção Framer",   zh: "Framer构建",  ja: "Framer構築", },
   "process.s2.dur":   { en: "Days 5–12",         fr: "Jours 5–12",          es: "Días 5–12",            de: "Tage 5–12",             pt: "Dias 5–12",           zh: "第5–12天",   ja: "5〜12日目", },
   "process.s2.desc": {
-    en: "Development starts and you get a live Framer preview link on Day 5. You're not waiting two weeks to see something. You're watching it come together in real time.",
+    en: "Development starts and you get a live preview link of the site on Day 5. You're not waiting two weeks to see something. You're watching it come together in real time.",
     fr: "Le développement commence et vous recevez un lien de prévisualisation Framer en direct le Jour 5. Vous ne patientez pas deux semaines. Vous regardez le projet prendre forme en temps réel.",
     es: "El desarrollo comienza y obtienes un enlace de vista previa en vivo en el Día 5. No esperas dos semanas. Lo ves tomar forma en tiempo real.",
     de: "Die Entwicklung beginnt und Sie erhalten am Tag 5 einen Live-Framer-Vorschau-Link. Sie warten nicht zwei Wochen. Sie sehen es in Echtzeit entstehen.",
