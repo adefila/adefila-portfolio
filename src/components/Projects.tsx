@@ -58,7 +58,7 @@ const devProjects: Project[] = [
     alt: "VPA London talent agency portfolio — editorial typography and roster filtering in Framer",
     desc: "Talent agency portfolio built in Framer with editorial typography, smooth scroll, and a roster filtering system.",
     year: "2025",
-    tags: ["Talent Agency", "Framer Build"],
+    tags: ["Talent Agency", "Websites & Products Build"],
     href: "https://www.vpalondon.co.uk/",
     screenshot: "/projects/vpa-london.png",
   },
