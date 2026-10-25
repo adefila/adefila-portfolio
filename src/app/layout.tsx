@@ -137,6 +137,14 @@ export default function RootLayout({
             __html: `document.documentElement.setAttribute("data-reveal-ready","");try{if(sessionStorage.getItem("preloader-seen"))document.documentElement.setAttribute("data-preloader-seen","");else if(location.pathname==="/")document.documentElement.setAttribute("data-hero-wait","");history.scrollRestoration="manual";var n=performance.getEntriesByType("navigation")[0];if(n&&n.type==="reload"){if(location.hash)history.replaceState(null,"",location.pathname+location.search);var toHero=function(){scrollTo({top:0,left:0,behavior:"instant"})};toHero();addEventListener("DOMContentLoaded",toHero);addEventListener("load",toHero)}}catch(e){}`,
           }}
         />
+        {/* The page is pre-rendered in English. If the visitor will be shown another language (link, saved choice or
+            browser language, same order as LangContext), hold the content back until LangProvider has switched, so
+            English never flashes first. A timeout releases it in any case. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `try{var d=document.documentElement,q=new URLSearchParams(location.search).get("lang"),c=localStorage.getItem("sam-lang-chosen")==="1",b=(navigator.language||"en").toLowerCase().split("-")[0];if(b==="nb"||b==="nn")b="no";var w=q||(c?localStorage.getItem("sam-lang"):b);if(w&&["fr","es","de","pt","zh","ja","nl","no"].indexOf(w)>-1&&!((w==="nl"||w==="no")&&location.pathname.indexOf("/local-business")!==0)){d.setAttribute("data-lang-pending","");setTimeout(function(){d.removeAttribute("data-lang-pending")},1500)}}catch(e){}`,
+          }}
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

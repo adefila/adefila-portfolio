@@ -173,6 +173,8 @@ export function LangProvider({ children }: { children: React.ReactNode }) {
   // Screen readers and translation tools read this
   useEffect(() => {
     document.documentElement.lang = lang === "no" ? "nb" : lang;
+    // The head script holds the page back while a non-English language is on its way (see layout.tsx)
+    if (lang !== "en") document.documentElement.removeAttribute("data-lang-pending");
   }, [lang]);
 
   const setLang = (l: LangCode) => {

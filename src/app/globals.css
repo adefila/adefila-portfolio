@@ -1545,3 +1545,6 @@ html[data-hero-wait] { --hero-delay: 1.05s; }
   }
 }
 @media (prefers-reduced-motion: reduce) { .hero-shape { animation: none; } }
+
+/* hold the page back until the visitor's language is applied, so English never flashes first (layout.tsx, LangContext.tsx) */
+html[data-lang-pending] main > :not(.preloader) { opacity: 0; }
