@@ -1294,7 +1294,7 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     ja: "ぜひ聞かせてください。",
   },
   "contact.desc": {
-    en: "Tell me what you're working on and I'll come back to you within 24 hours with an honest take on whether I can help. And what that would look like.",
+    en: "Tell me what you're working on and I'll come back to you within 24 hours with an honest take on whether I can help. And what that would look like",
     fr: "Dites-moi sur quoi vous travaillez et je vous répondrai dans les 24 heures avec un avis honnête sur si je peux vous aider. Et comment cela se présenterait.",
     es: "Cuéntame en qué estás trabajando y te responderé dentro de las 24 horas con una opinión honesta sobre si puedo ayudar. Y cómo sería eso.",
     de: "Erzählen Sie mir, woran Sie arbeiten, und ich melde mich innerhalb von 24 Stunden mit einer ehrlichen Einschätzung, ob ich helfen kann. Und wie das aussehen würde.",
