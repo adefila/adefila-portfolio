@@ -2,7 +2,13 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 
-const SPRING = [0.22, 1, 0.36, 1] as [number, number, number, number];
+// The boot log: each line appears at a set moment (timed in CSS, so it shows on time even while scripts are still loading)
+const BOOT_LINES = [
+  { delay: 0.12, text: "web developer, framer designer", ok: false },
+  { delay: 0.3, text: "loading frame", ok: true },
+  { delay: 0.48, text: "loading projects", ok: true },
+  { delay: 0.64, text: "ready", ok: true },
+];
 
 export default function Preloader() {
   const [visible, setVisible] = useState(true);
@@ -67,18 +73,20 @@ export default function Preloader() {
             pointerEvents: "all",
           }}
         >
-          {/* Centre: name + progress bar */}
-          <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 20 }}>
-            <motion.p
+          {/* Centre: name, a short boot log, and the progress bar, inside a frame with corner marks */}
+          <div style={{ position: "relative", display: "flex", flexDirection: "column", gap: 18, padding: "30px 36px", width: "min(420px, 86vw)" }}>
+            <span aria-hidden="true" className="fig-corner" style={{ top: 0, left: 0, borderTopWidth: 1, borderLeftWidth: 1 }} />
+            <span aria-hidden="true" className="fig-corner" style={{ top: 0, right: 0, borderTopWidth: 1, borderRightWidth: 1 }} />
+            <span aria-hidden="true" className="fig-corner" style={{ bottom: 0, left: 0, borderBottomWidth: 1, borderLeftWidth: 1 }} />
+            <span aria-hidden="true" className="fig-corner" style={{ bottom: 0, right: 0, borderBottomWidth: 1, borderRightWidth: 1 }} />
+            <p
               aria-hidden="true"
-              initial={reducedMotion ? false : { opacity: 0, y: 14 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.55, ease: SPRING }}
+              className="boot-name"
               style={{
                 fontFamily: "var(--font-poppins)",
-                fontWeight: 700,
-                fontSize: "clamp(20px, 3.8vw, 48px)",
-                letterSpacing: "0.18em",
+                fontWeight: 600,
+                fontSize: "clamp(20px, 3.4vw, 30px)",
+                letterSpacing: "0.12em",
                 textTransform: "uppercase",
                 color: "#fff",
                 margin: 0,
@@ -86,9 +94,19 @@ export default function Preloader() {
               }}
             >
               Samuel Adefila
-            </motion.p>
+            </p>
 
-            {/* Progress bar — announced to screen readers */}
+            {/* The log lines appear as the count passes them */}
+            <div aria-hidden="true" style={{ display: "grid", gap: 6, fontFamily: "var(--font-mono)", fontSize: 12, letterSpacing: "0.04em", color: "rgba(255,255,255,0.62)", minHeight: 78 }}>
+              {BOOT_LINES.map((line) => (
+                <p key={line.text} className="boot-line" style={{ margin: 0, animationDelay: `${line.delay}s`, display: "flex", justifyContent: "space-between", gap: 12 }}>
+                  <span>{"> "}{line.text}</span>
+                  {line.ok && <span style={{ color: "#4ade80" }}>ok</span>}
+                </p>
+              ))}
+            </div>
+
+            {/* Progress bar: announced to screen readers */}
             <motion.div
               role="progressbar"
               aria-valuenow={shown}
@@ -98,14 +116,9 @@ export default function Preloader() {
               initial={reducedMotion ? false : { opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.15, duration: 0.3 }}
-              style={{
-                width: "min(280px, 60vw)",
-                height: 1,
-                background: "rgba(255,255,255,0.1)",
-                overflow: "hidden",
-              }}
+              style={{ width: "100%", height: 1, background: "rgba(255,255,255,0.12)", overflow: "hidden" }}
             >
-              <div className="preloader-bar" style={{ height: "100%", background: "var(--surface)", transformOrigin: "left" }} />
+              <div className="preloader-bar" style={{ height: "100%", background: "var(--accent-purple)", transformOrigin: "left" }} />
             </motion.div>
           </div>
 
@@ -142,8 +155,8 @@ export default function Preloader() {
               position: "absolute",
               bottom: "8%",
               left: "6%",
-              fontFamily: "var(--font-inter)",
-              fontWeight: 500,
+              fontFamily: "var(--font-mono)",
+              fontWeight: 400,
               fontSize: 10,
               letterSpacing: "0.22em",
               textTransform: "uppercase",

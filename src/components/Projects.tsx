@@ -268,6 +268,8 @@ const WL_CSS = `
   .wl-float.is-on .wl-float-in { opacity: 1; transform: scale(1); }
   .wl-float-in img { opacity: 0; transition: opacity 0.2s ease; }
   .wl-float-in img.is-on { opacity: 1; }
+  .wl-float-in video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top center; animation: wlClipIn 0.35s ease 0.12s both; }
+  @keyframes wlClipIn { from { opacity: 0; } to { opacity: 1; } }
   .wl-inline { display: none; }
   @media (hover: none) {
     .wl-float { display: none; }
@@ -283,6 +285,13 @@ const WL_CSS = `
 
 // One row of the index: a project or concept, with the hover preview. Used by the home page's work section and by
 // the business page's concept sites, so both look and behave the same.
+// Short scroll-through recordings of the live sites (public/projects/video), played in the cursor preview while a row is hovered.
+const CLIPS: Record<string, string> = {
+  "Calder Health": "calder-health", "The Initial": "the-initial", BindHQ: "bindhq", "VPA London": "vpa-london",
+  "Upside ESG": "upside-esg", "Alyssa Corso": "alyssa-corso", Emalbu: "emalbu", Leadopo: "leadopo",
+  "The Prime Media": "the-prime-media", "Jamal Muse": "jamal", "Talon Tyres": "talon-tyres", "Datum Build": "datum",
+};
+
 export type IndexProject = Pick<Project, "title" | "alt" | "year" | "tags" | "href" | "screenshot"> & { track?: string };
 
 export function ProjectIndex({ projects, shownCount = INDEX_SHOWN }: { projects: IndexProject[]; shownCount?: number }) {
@@ -368,6 +377,7 @@ export function ProjectIndex({ projects, shownCount = INDEX_SHOWN }: { projects:
               {hasLink ? (
                 <a
                   className="wl-row"
+                  data-cursor="View"
                   href={proj.href}
                   data-track-location={proj.track}
                   target="_blank"
@@ -416,6 +426,17 @@ export function ProjectIndex({ projects, shownCount = INDEX_SHOWN }: { projects:
                 style={{ objectFit: "cover", objectPosition: "top center" }}
               />
             ))}
+            {hover !== null && shown[hover] && CLIPS[shown[hover].title] && (
+              <video
+                key={shown[hover].title}
+                src={`/projects/video/${CLIPS[shown[hover].title]}.mp4`}
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="auto"
+              />
+            )}
           </div>
         </div>,
         host,

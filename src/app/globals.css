@@ -1459,3 +1459,89 @@ strong, b { font-weight: 600; }
 /* the plan buttons beside the featured one: a soft charcoal, purple on hover (the featured plan keeps the purple button) */
 .btn-primary.btn-quiet { background: #2c2c33; color: #fff; }
 .btn-primary.btn-quiet:hover { background: var(--btn-bg); }
+
+/* ── Motion: hero draw-in, cursor-lit grid, scroll ruler ──
+   On a first visit the preloader covers the page for about a second, so the hero's animations wait for it. */
+:root { --hero-delay: 0s; }
+html[data-hero-wait] { --hero-delay: 1.05s; }
+
+/* the headline rises from its baseline through a mask */
+@keyframes heroMask {
+  from { clip-path: inset(0 0 100% 0); transform: translateY(0.45em); }
+  to   { clip-path: inset(-12% -2% -12% -2%); transform: none; }
+}
+
+/* the portrait is scanned in from the top, with a thin purple line at the edge of what has been revealed */
+.hero-scan { animation: heroScanIn 1.1s cubic-bezier(0.22, 1, 0.36, 1) calc(var(--hero-delay) + 0.2s) both; }
+.hero-scan::after {
+  content: ""; position: absolute; left: 0; right: 0; top: 0; height: 2px; pointer-events: none; z-index: 2;
+  background: linear-gradient(90deg, transparent, var(--accent-purple), transparent);
+  box-shadow: 0 0 18px 2px rgba(139, 92, 246, 0.55);
+  animation: heroScanLine 1.1s cubic-bezier(0.22, 1, 0.36, 1) calc(var(--hero-delay) + 0.2s) both;
+}
+.hero-scan img { animation: heroFocus 1.3s cubic-bezier(0.22, 1, 0.36, 1) calc(var(--hero-delay) + 0.2s) both; }
+@keyframes heroScanIn { from { clip-path: inset(0 0 100% 0); } to { clip-path: inset(0 0 0 0); } }
+@keyframes heroScanLine { 0% { top: 0; opacity: 1; } 85% { opacity: 1; } 100% { top: calc(100% - 2px); opacity: 0; } }
+@keyframes heroFocus { from { filter: blur(9px); transform: scale(1.04); } to { filter: none; transform: none; } }
+
+/* the caption types in */
+.type-in { display: inline-block; white-space: nowrap; animation: typeIn 0.7s steps(14, end) both; }
+@keyframes typeIn { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
+
+/* a brighter copy of the hero grid, visible only around the cursor */
+.hero-grid-lit {
+  position: absolute; inset: 0; pointer-events: none; opacity: 0; transition: opacity 0.35s ease;
+  background-image: linear-gradient(rgba(167, 139, 250, 0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(167, 139, 250, 0.5) 1px, transparent 1px);
+  background-size: 56px 56px;
+  -webkit-mask-image: radial-gradient(230px circle at var(--mx, 50%) var(--my, 50%), #000 0%, transparent 72%);
+  mask-image: radial-gradient(230px circle at var(--mx, 50%) var(--my, 50%), #000 0%, transparent 72%);
+}
+.hero-section:hover .hero-grid-lit { opacity: 1; }
+@media (hover: none) { .hero-grid-lit { display: none; } }
+
+/* the scroll ruler, attached to the outside of the frame's left edge */
+.scroll-ruler { display: none; }
+@media (min-width: 1200px) {
+  .scroll-ruler {
+    display: block; position: fixed; top: 0; bottom: 0; z-index: 3; pointer-events: none;
+    left: calc(50% - 660px - 26px); width: 26px; background-color: var(--bg); border-left: 1px solid rgba(var(--ink), 0.16);
+    background-image:
+      repeating-linear-gradient(to bottom, rgba(var(--ink), 0.5) 0 1px, transparent 1px 60px),
+      repeating-linear-gradient(to bottom, rgba(var(--ink), 0.28) 0 1px, transparent 1px 12px);
+    background-size: 16px 100%, 8px 100%; background-position: right top, right top; background-repeat: no-repeat;
+  }
+  .scroll-ruler-marker { position: absolute; left: 0; right: 0; top: 0; height: 2px; background: var(--accent-purple); will-change: transform; }
+  .scroll-ruler-num {
+    position: absolute; right: 100%; top: -8px; margin-right: 6px; padding: 2px 6px;
+    font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.08em; color: var(--accent-purple);
+    background: var(--bg); border: 1px solid rgba(var(--ink), 0.16);
+  }
+  .scroll-ruler-num:empty { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-scan, .hero-scan::after, .hero-scan img, .type-in { animation: none !important; }
+  .hero-headline { animation: none !important; }
+  .hero-grid-lit { display: none; }
+}
+
+/* the preloader name and boot log appear on a CSS clock, not when scripts arrive */
+@keyframes bootIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+.boot-name { animation: bootIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.02s both; }
+.boot-line { animation: bootIn 0.22s ease both; }
+@media (prefers-reduced-motion: reduce) { .boot-name, .boot-line { animation: none; } }
+
+/* section headings rise through a mask on first view (SectionTitles.tsx marks them) */
+[data-title-mask]:not([data-in]) { clip-path: inset(0 0 100% 0); transform: translateY(0.45em); }
+[data-title-mask][data-in] { animation: heroMask 0.9s cubic-bezier(0.22, 1, 0.36, 1) both; }
+@media (prefers-reduced-motion: reduce) { [data-title-mask] { clip-path: none !important; transform: none !important; animation: none !important; } }
+
+/* the wireframe solid beside the portrait: wide screens only, fades in after the portrait is drawn */
+.hero-shape { display: none; }
+@media (min-width: 1100px) and (hover: hover) {
+  .hero-shape {
+    display: block; position: absolute; left: -92px; bottom: 34px; pointer-events: none; z-index: 2;
+    animation: heroFadeUp 0.8s calc(var(--hero-delay, 0s) + 1.5s) cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+}
+@media (prefers-reduced-motion: reduce) { .hero-shape { animation: none; } }

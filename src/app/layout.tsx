@@ -134,7 +134,7 @@ export default function RootLayout({
             section hash the navbar wrote into the URL while scrolling. */}
         <script
           dangerouslySetInnerHTML={{
-            __html: `document.documentElement.setAttribute("data-reveal-ready","");try{if(sessionStorage.getItem("preloader-seen"))document.documentElement.setAttribute("data-preloader-seen","");history.scrollRestoration="manual";var n=performance.getEntriesByType("navigation")[0];if(n&&n.type==="reload"){if(location.hash)history.replaceState(null,"",location.pathname+location.search);var toHero=function(){scrollTo({top:0,left:0,behavior:"instant"})};toHero();addEventListener("DOMContentLoaded",toHero);addEventListener("load",toHero)}}catch(e){}`,
+            __html: `document.documentElement.setAttribute("data-reveal-ready","");try{if(sessionStorage.getItem("preloader-seen"))document.documentElement.setAttribute("data-preloader-seen","");else if(location.pathname==="/")document.documentElement.setAttribute("data-hero-wait","");history.scrollRestoration="manual";var n=performance.getEntriesByType("navigation")[0];if(n&&n.type==="reload"){if(location.hash)history.replaceState(null,"",location.pathname+location.search);var toHero=function(){scrollTo({top:0,left:0,behavior:"instant"})};toHero();addEventListener("DOMContentLoaded",toHero);addEventListener("load",toHero)}}catch(e){}`,
           }}
         />
         <script

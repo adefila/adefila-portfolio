@@ -1,5 +1,6 @@
 ﻿"use client";
 import { useEffect, useState } from "react";
+import HeroShape from "@/components/HeroShape";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowDown, ArrowRight, CalendarDays } from "lucide-react";
 import Image from "next/image";
@@ -49,7 +50,18 @@ export default function Hero({ workHref = "#work", altHref = "/local-business" }
   const words = t("hero.h2.words").split("|");
 
   return (
-    <section id="hero" className="hero-section" style={{ position: "relative", paddingTop: 152, paddingBottom: 80, width: "100%", overflow: "hidden" }}>
+    <section
+      id="hero"
+      className="hero-section"
+      style={{ position: "relative", paddingTop: 152, paddingBottom: 80, width: "100%", overflow: "hidden" }}
+      onPointerMove={(e) => {
+        // the lit grid follows the mouse (not touch)
+        if (e.pointerType !== "mouse") return;
+        const r = e.currentTarget.getBoundingClientRect();
+        e.currentTarget.style.setProperty("--mx", `${e.clientX - r.left}px`);
+        e.currentTarget.style.setProperty("--my", `${e.clientY - r.top}px`);
+      }}
+    >
       {/* Background: faint grid fading out from the top right, plus a soft glow behind the portrait */}
       <div
         aria-hidden="true"
@@ -64,6 +76,7 @@ export default function Hero({ workHref = "#work", altHref = "/local-business" }
           pointerEvents: "none",
         }}
       />
+      <div aria-hidden="true" className="hero-grid-lit" />
       <div className="hero-grid" style={{ position: "relative", zIndex: 1, maxWidth: 1200, margin: "0 auto", paddingLeft: 20, paddingRight: 20 }}>
         <div>
           <div
@@ -103,7 +116,7 @@ export default function Hero({ workHref = "#work", altHref = "/local-business" }
                   display: "block",
                   maxWidth: "100%",
                   overflowWrap: "break-word",
-                  animation: `heroFadeUp 0.55s ${0.15 + i * 0.12}s ${EASE} both`,
+                  animation: `heroMask 0.95s calc(var(--hero-delay, 0s) + ${0.15 + i * 0.14}s) ${EASE} both`,
                 }}
               >
                 {line ?? (
@@ -221,9 +234,9 @@ export default function Hero({ workHref = "#work", altHref = "/local-business" }
         {/* CSS fade (not JS) so the portrait — the page's main image — shows without waiting for scripts */}
         <div
           className="hero-portrait"
-          style={{ position: "relative", width: "100%", maxWidth: 420, justifySelf: "end", animation: `heroFadeUp 0.6s 0.1s ${EASE} both` }}
+          style={{ position: "relative", width: "100%", maxWidth: 420, justifySelf: "end" }}
         >
-          <div className="hero-portrait-box" style={{ position: "relative", width: "100%", aspectRatio: "5 / 6", overflow: "hidden", background: "var(--surface)", border: "1px solid rgba(var(--ink), 0.2)" }}>
+          <div className="hero-portrait-box hero-scan" style={{ position: "relative", width: "100%", aspectRatio: "5 / 6", overflow: "hidden", background: "var(--surface)", border: "1px solid rgba(var(--ink), 0.2)" }}>
             <Image
               src="/samuel-portrait.webp"
               alt="Samuel Adefila"
@@ -234,10 +247,11 @@ export default function Hero({ workHref = "#work", altHref = "/local-business" }
               style={{ objectFit: "cover", objectPosition: "50% 30%" }}
             />
           </div>
+          <HeroShape />
           {/* registration marks around the figure, and a caption */}
           <span aria-hidden="true" className="fig-corner" style={{ top: -7, left: -7, borderTopWidth: 1, borderLeftWidth: 1 }} />
           <span aria-hidden="true" className="fig-corner" style={{ top: -7, right: -7, borderTopWidth: 1, borderRightWidth: 1 }} />
-          <p className="fig-caption"><span>Fig. 01</span><span>Samuel Adefila</span></p>
+          <p className="fig-caption"><span className="type-in" style={{ animationDelay: "calc(var(--hero-delay, 0s) + 1.1s)" }}>Fig. 01</span><span className="type-in" style={{ animationDelay: "calc(var(--hero-delay, 0s) + 1.35s)" }}>Samuel Adefila</span></p>
         </div>
       </div>
     </section>
