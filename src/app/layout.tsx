@@ -117,7 +117,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${geist.variable} ${geistMono.variable}`} suppressHydrationWarning>
+    <html lang="en" data-theme={FORCE_DARK ? "dark" : undefined} className={`${geist.variable} ${geistMono.variable}`} suppressHydrationWarning>
       <head>
         <meta name="theme-color" content="#0f0f0f" />
         <meta name="color-scheme" content={FORCE_DARK ? "dark" : "light dark"} />
@@ -157,7 +157,6 @@ export default function RootLayout({
           <LanguageSwitcher />
         </LangProvider>
         <VisitBeacon />
-        <script src="https://batonedit.com/h.js" data-site="c276307dec" defer></script>
       </body>
       <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID!} />
     </html>
