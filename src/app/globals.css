@@ -566,10 +566,10 @@ html[data-reveal-ready] [data-reveal]:not([data-revealed]) {
   }
 }
 
-/* Client grid under the hero: 4 across, 2x2 on phones */
+/* Client grid under the hero: 3 across */
 .clients-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   border-top: 1px solid rgba(var(--ink), 0.14);
   border-left: 1px solid rgba(var(--ink), 0.08);
 }
@@ -624,7 +624,7 @@ html[data-reveal-ready] [data-reveal]:not([data-revealed]) {
 }
 @media (max-width: 768px) {
   .clients-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
   .clients-cell {
     height: 88px;

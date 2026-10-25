@@ -103,16 +103,6 @@ const devProjects: Project[] = [
     screenshot: "/projects/leadopo.png",
   },
   {
-    title: "Rusty Wears",
-    bg: "#f0e2d9",
-    alt: "Rusty Wears streetwear e-commerce storefront — bold visual identity built in Framer",
-    desc: "Streetwear brand e-commerce experience. Bold visual identity translated into a high-converting Framer storefront.",
-    year: "2026",
-    tags: ["E-commerce", "Framer Build"],
-    href: "https://rustywears.framer.website/",
-    screenshot: "/projects/rusty-wears.png",
-  },
-  {
     title: "The Prime Media",
     bg: "#dbe5f5",
     alt: "The Prime Media digital agency site — motion-forward editorial Framer build for Canadian studio",
@@ -244,12 +234,17 @@ export const designProjects: Project[] = [
 
 // The work as a large typographic index. Hover a row: the others dim and a screenshot follows the cursor.
 // What leads: the sites built in code, then client work with results; the rest is one click away.
-const LEAD_WITH = ["Talon Tyres", "Calder Health", "Datum Build", "Upside ESG", "The Initial", "BindHQ", "VPA London", "Leadopo", "BookedEZ", "The Prime Media"];
+const LEAD_WITH = ["The Initial", "BindHQ", "Leadopo", "Upside ESG", "VPA London", "BookedEZ", "The Prime Media"];
+// These two close the list, in this order. Everything else sits between the two groups in the order it is written above.
+const END_WITH = ["Talon Tyres", "Datum Build"];
 const INDEX_SHOWN = 6;
-const byLead = (a: Project, b: Project) => {
-  const ia = LEAD_WITH.indexOf(a.title), ib = LEAD_WITH.indexOf(b.title);
-  return (ia < 0 ? 99 : ia) - (ib < 0 ? 99 : ib);
+const rank = (title: string) => {
+  const lead = LEAD_WITH.indexOf(title);
+  if (lead >= 0) return lead;
+  const end = END_WITH.indexOf(title);
+  return end >= 0 ? 1000 + end : 500;
 };
+const byLead = (a: Project, b: Project) => rank(a.title) - rank(b.title);
 const FLOAT_W = 340;
 const FLOAT_H = 178;
 

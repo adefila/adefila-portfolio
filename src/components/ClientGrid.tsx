@@ -9,19 +9,16 @@ import { useLang } from "@/context/LangContext";
 // Without a logo, the client's name is shown as a wordmark.
 type Client = { name: string; logo?: string; aspect?: number };
 
-// 12 clients = 3 per cell. Cell i shows CLIENTS[i], then [i + 4], then [i + 8].
+// 9 clients = 3 per cell. Cell i shows CLIENTS[i], then [i + 3], then [i + 6]. So the first three are what shows first.
 const CLIENTS: Client[] = [
-  { name: "Calder Health" },
-  { name: "BookedEZ", logo: "/clients/bookedez.svg", aspect: 5.08 },
-  { name: "Upside ESG", logo: "/clients/upside-esg.svg", aspect: 1.82 },
   { name: "The Initial", logo: "/clients/the-initial.svg", aspect: 3.37 },
-  { name: "HitPay", logo: "/clients/hitpay.svg", aspect: 4.16 },
-  { name: "Leadopo", logo: "/clients/leadopo.svg", aspect: 7.37 },
-  { name: "VPA London" },
-  { name: "Talon Tyres", logo: "/clients/talon-tyres.svg", aspect: 5.95 },
   { name: "BindHQ", logo: "/clients/bindhq.svg", aspect: 4.55 },
+  { name: "Leadopo", logo: "/clients/leadopo.svg", aspect: 7.37 },
+  { name: "Upside ESG", logo: "/clients/upside-esg.svg", aspect: 1.82 },
+  { name: "BookedEZ", logo: "/clients/bookedez.svg", aspect: 5.08 },
+  { name: "VPA London" },
+  { name: "HitPay", logo: "/clients/hitpay.svg", aspect: 4.16 },
   { name: "The Prime Media", logo: "/clients/the-prime-media.svg", aspect: 1.56 },
-  { name: "Rusty Wears", logo: "/clients/rusty-wears.svg", aspect: 5.57 },
   { name: "Emalbu", logo: "/clients/emalbu.svg", aspect: 3.33 },
 ];
 
@@ -31,7 +28,7 @@ const LOGO_AREA = 3920;
 const LOGO_MAX_HEIGHT = 46;
 const logoHeight = (aspect: number) => Math.round(Math.min(LOGO_MAX_HEIGHT, Math.sqrt(LOGO_AREA / aspect)));
 
-const CELLS = 4;
+const CELLS = 3;
 const SETS = CLIENTS.length / CELLS;
 // Every few seconds all four cells change in a wave, first to last, each a
 // beat after the one before it.
