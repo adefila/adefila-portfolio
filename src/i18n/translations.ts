@@ -192,7 +192,7 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     ja: "14日で納品",
   },
   "pricing.addon0": {
-    en: "Website Migration$1,000",    fr: "Toute Plateforme → Framer", es: "Cualquier Plataforma → Framer", de: "Jede Plattform → Framer",
+    en: "Website Migration:",    fr: "Toute Plateforme → Framer", es: "Cualquier Plataforma → Framer", de: "Jede Plattform → Framer",
     pt: "Qualquer Plataforma → Framer", zh: "任意平台 → Framer",       ja: "どのプラットフォームも → Framer",
   },
   "pricing.addon1": {
@@ -301,7 +301,7 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
   // Second headline line = prefix + a word that cycles through the "|"-separated list.
   // zh/ja put the verb first, so the whole line cycles there (empty prefix).
   "hero.h2.prefix": {
-    en: "products THAT",              fr: "DES SITES QUI",           es: "SITIOS WEB QUE",          de: "WEBSITES, DIE",
+    en: "I DESIGN & BUILD products THATCONVERT.SELL.GROW.",              fr: "DES SITES QUI",           es: "SITIOS WEB QUE",          de: "WEBSITES, DIE",
     pt: "SITES QUE",               zh: "",                         ja: "",
   },
   "hero.h2.words": {
