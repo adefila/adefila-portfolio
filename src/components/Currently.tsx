@@ -30,8 +30,11 @@ export default function Currently() {
       }
     };
     load();
-    const id = setInterval(load, 30000);
-    return () => clearInterval(id);
+    // Refresh every 60s, and only while the tab is open in front of someone; catch up when they come back.
+    const id = setInterval(() => { if (document.visibilityState === "visible") load(); }, 60000);
+    const onVisible = () => { if (document.visibilityState === "visible") load(); };
+    document.addEventListener("visibilitychange", onVisible);
+    return () => { clearInterval(id); document.removeEventListener("visibilitychange", onVisible); };
   }, []);
 
   const isPlaying = spotify?.isPlaying;
