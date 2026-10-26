@@ -301,7 +301,7 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
   // Second headline line = prefix + a word that cycles through the "|"-separated list.
   // zh/ja put the verb first, so the whole line cycles there (empty prefix).
   "hero.h2.prefix": {
-    en: "products",              fr: "DES SITES QUI",           es: "SITIOS WEB QUE",          de: "WEBSITES, DIE",
+    en: "I DESIGN & BUILD productsCONVERT.SELL.GROW.",              fr: "DES SITES QUI",           es: "SITIOS WEB QUE",          de: "WEBSITES, DIE",
     pt: "SITES QUE",               zh: "",                         ja: "",
   },
   "hero.h2.words": {
