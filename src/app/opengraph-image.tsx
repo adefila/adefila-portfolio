@@ -34,7 +34,7 @@ export default async function Image() {
           </div>
 
           <div style={{ display: "flex", flexDirection: "column" }}>
-            <div style={{ ...line, color: "#0f0f0f" }}>I design &amp; build</div>
+            <div style={{ ...line, color: "#0f0f0f" }}></div>
             <div style={{ ...line, color: "#0f0f0f" }}>sites that</div>
             <div style={{ ...line, color: "#6d28d9" }}>sell.</div>
             <div style={{ display: "flex", fontSize: 24, fontWeight: 700, letterSpacing: -0.4, color: "#545c68", marginTop: 26, lineHeight: 1.35 }}>
