@@ -295,13 +295,13 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     pt: "Início: {date}",          zh: "下一期: {date}",           ja: "次回開始: {date}",
   },
   "hero.h1": {
-    en: "I DESIGN & BUILD",         fr: "JE CONÇOIS ET CRÉE",      es: "DISEÑO Y CONSTRUYO",      de: "ICH GESTALTE UND BAUE",
+    en: "",         fr: "JE CONÇOIS ET CRÉE",      es: "DISEÑO Y CONSTRUYO",      de: "ICH GESTALTE UND BAUE",
     pt: "EU PROJETO E CONSTRUO",   zh: "我设计并构建",              ja: "デザインして構築する",
   },
   // Second headline line = prefix + a word that cycles through the "|"-separated list.
   // zh/ja put the verb first, so the whole line cycles there (empty prefix).
   "hero.h2.prefix": {
-    en: "I DESIGN & BUILD productsCONVERT.SELL.GROW.",              fr: "DES SITES QUI",           es: "SITIOS WEB QUE",          de: "WEBSITES, DIE",
+    en: "I DESIGN & BUILD product",              fr: "DES SITES QUI",           es: "SITIOS WEB QUE",          de: "WEBSITES, DIE",
     pt: "SITES QUE",               zh: "",                         ja: "",
   },
   "hero.h2.words": {
