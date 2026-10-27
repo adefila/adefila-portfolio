@@ -192,7 +192,7 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     ja: "14日で納品",
   },
   "pricing.addon0": {
-    en: "Website Migration: $1,000",    fr: "Toute Plateforme → Framer", es: "Cualquier Plataforma → Framer", de: "Jede Plattform → Framer",
+    en: "Website Migration",    fr: "Toute Plateforme → Framer", es: "Cualquier Plataforma → Framer", de: "Jede Plattform → Framer",
     pt: "Qualquer Plataforma → Framer", zh: "任意平台 → Framer",       ja: "どのプラットフォームも → Framer",
   },
   "pricing.addon1": {
