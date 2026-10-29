@@ -380,7 +380,7 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     ja: "実際のプロジェクト。",
   },
   "cases.h1b": {
-    en: "Real outcomes.",
+    en: "Real outcomes",
     fr: "De vrais résultats.",
     es: "Resultados reales.",
     de: "Echte Ergebnisse.",
@@ -785,7 +785,7 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     ja: "まさにこうやって進めます。",
   },
   "process.desc": {
-    en: "Most projects are live in 14 days. Day 1 is a call, by Day 4 you've signed off the design, Day 14 you're live. That's the schedule. Not a rough estimate.",
+    en: "Most projects are live in 14 days. Call on Day 1. Design signed off by Day 4. Live on Day 14. This is the real schedule, not an estimate.",
     fr: "La plupart des projets sont livrés en 14 jours. Le délai est serré parce que le processus l'est. Sans ambiguïté, sans attente, sans surprises.",
     es: "La mayoría de proyectos se entregan en 14 días. El plazo es ajustado porque el proceso lo es. Sin ambigüedad, sin esperas, sin sorpresas.",
     de: "Die meisten Projekte gehen in 14 Tagen live. Der Zeitplan ist eng, weil der Prozess eng ist. Keine Unklarheiten, kein Warten, keine Überraschungen.",
