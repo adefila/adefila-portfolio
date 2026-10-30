@@ -83,7 +83,7 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     ja: "コンバージョンに特化した1ページ。リリース、リード獲得、または明確なプロダクトピッチに。",
   },
   "pricing.plan0.f0": {
-    en: "Custom Framer or Webflow design",        fr: "Design Framer ou Webflow personnalisé",   es: "Diseño Framer o Webflow personalizado",
+    en: "Custom websites with any platfrom",        fr: "Design Framer ou Webflow personnalisé",   es: "Diseño Framer o Webflow personalizado",
     de: "Individuelles Framer- oder Webflow-Design", pt: "Design Framer ou Webflow personalizado",  zh: "定制 Framer 或 Webflow 设计",
     ja: "カスタムFramerまたはWebflowデザイン",
   },
@@ -192,7 +192,7 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     ja: "14日で納品",
   },
   "pricing.addon0": {
-    en: "Any Platform → Framer",    fr: "Toute Plateforme → Framer", es: "Cualquier Plataforma → Framer", de: "Jede Plattform → Framer",
+    en: "Website Migrations",    fr: "Toute Plateforme → Framer", es: "Cualquier Plataforma → Framer", de: "Jede Plattform → Framer",
     pt: "Qualquer Plataforma → Framer", zh: "任意平台 → Framer",       ja: "どのプラットフォームも → Framer",
   },
   "pricing.addon1": {
@@ -295,13 +295,13 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     pt: "Início: {date}",          zh: "下一期: {date}",           ja: "次回開始: {date}",
   },
   "hero.h1": {
-    en: "I DESIGN & BUILD",         fr: "JE CONÇOIS ET CRÉE",      es: "DISEÑO Y CONSTRUYO",      de: "ICH GESTALTE UND BAUE",
+    en: "",         fr: "JE CONÇOIS ET CRÉE",      es: "DISEÑO Y CONSTRUYO",      de: "ICH GESTALTE UND BAUE",
     pt: "EU PROJETO E CONSTRUO",   zh: "我设计并构建",              ja: "デザインして構築する",
   },
   // Second headline line = prefix + a word that cycles through the "|"-separated list.
   // zh/ja put the verb first, so the whole line cycles there (empty prefix).
   "hero.h2.prefix": {
-    en: "SITES THAT",              fr: "DES SITES QUI",           es: "SITIOS WEB QUE",          de: "WEBSITES, DIE",
+    en: "I DESIGN & BUILD product",              fr: "DES SITES QUI",           es: "SITIOS WEB QUE",          de: "WEBSITES, DIE",
     pt: "SITES QUE",               zh: "",                         ja: "",
   },
   "hero.h2.words": {
@@ -314,7 +314,7 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     ja: "成果が出るサイト。|売れるサイト。|成長するサイト。",
   },
   "hero.subtitle": {
-    en: "Web developer & Framer designer. From brief to launch in 14 days, for founders done waiting on slow agencies.",
+    en: "I help founders and business owners ship websites and digital products in 14 days, without the delays and high costs of traditional agencies.",
     fr: "Développeur & designer Framer. Du brief au lancement en 14 jours, pour les fondateurs qui en ont fini avec les agences lentes.",
     es: "Desarrollador y diseñador Framer. Del brief al lanzamiento en 14 días, para fundadores hartos de agencias lentas y presupuestos inflados.",
     de: "Framer-Entwickler & Designer. Vom Brief bis live in 14 Tagen, für Gründer, die aufgehört haben, auf träge Agenturen zu warten.",
@@ -380,7 +380,7 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     ja: "実際のプロジェクト。",
   },
   "cases.h1b": {
-    en: "Real outcomes.",
+    en: "Real projects. Real outcomes",
     fr: "De vrais résultats.",
     es: "Resultados reales.",
     de: "Echte Ergebnisse.",
@@ -405,6 +405,51 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     pt: "O que eu fiz",
     zh: "我做了什么",
     ja: "取り組んだこと",
+  },
+  "clients.study": {
+    en: "Case study",
+    fr: "Étude de cas",
+    es: "Caso de estudio",
+    de: "Fallstudie",
+    pt: "Estudo de caso",
+    zh: "案例",
+    ja: "事例",
+  },
+  "cases.read": {
+    en: "Read the full case study",
+    fr: "Lire l'étude de cas complète",
+    es: "Leer el caso de estudio completo",
+    de: "Die ganze Fallstudie lesen",
+    pt: "Ler o estudo de caso completo",
+    zh: "阅读完整案例",
+    ja: "事例の全文を読む",
+  },
+  "cases.dlp.metricLabel": {
+    en: "from kickoff call to live, 12 pages",
+    fr: "de l'appel de lancement à la mise en ligne, 12 pages",
+    es: "de la llamada inicial a la publicación, 12 páginas",
+    de: "vom Kickoff-Call bis live, 12 Seiten",
+    pt: "da reunião inicial ao ar, 12 páginas",
+    zh: "从启动会议到上线，共 12 个页面",
+    ja: "キックオフから公開まで、12ページ",
+  },
+  "cases.dlp.brief": {
+    en: "A telecommunications company in Ghana needed its website redesigned and rebuilt, without losing anything the old one had earned.",
+    fr: "Une entreprise de télécommunications au Ghana avait besoin de refondre son site sans perdre ce que l'ancien avait acquis.",
+    es: "Una empresa de telecomunicaciones de Ghana necesitaba rediseñar y reconstruir su sitio sin perder nada de lo que el anterior había ganado.",
+    de: "Ein Telekommunikationsunternehmen in Ghana brauchte eine neu gestaltete und neu gebaute Website, ohne zu verlieren, was die alte erreicht hatte.",
+    pt: "Uma empresa de telecomunicações em Gana precisava redesenhar e reconstruir o site sem perder nada do que o antigo conquistou.",
+    zh: "加纳一家电信公司需要重新设计并重建网站，同时不能丢失旧站积累的任何成果。",
+    ja: "ガーナの通信会社が、旧サイトの資産を失わずにウェブサイトを刷新する必要がありました。",
+  },
+  "cases.dlp.did": {
+    en: "Designed 12 pages in Figma, built them in Framer with a CMS for seven products and custom forms wired to GA4, tested everything, then redirected the old site and rechecked every URL.",
+    fr: "J'ai conçu 12 pages dans Figma et les ai développées dans Framer, avec un CMS pour sept produits et des formulaires sur mesure reliés à GA4, puis testé le tout, redirigé l'ancien site et revérifié chaque URL.",
+    es: "Diseñé 12 páginas en Figma y las construí en Framer, con un CMS para siete productos y formularios a medida conectados a GA4; probé todo, redirigí el sitio antiguo y revisé cada URL.",
+    de: "12 Seiten in Figma gestaltet und in Framer gebaut, mit CMS für sieben Produkte und eigenen, an GA4 angebundenen Formularen. Alles getestet, die alte Seite weitergeleitet und jede URL erneut geprüft.",
+    pt: "Desenhei 12 páginas no Figma e construí no Framer, com CMS para sete produtos e formulários sob medida ligados ao GA4; testei tudo, redirecionei o site antigo e revisei cada URL.",
+    zh: "在 Figma 设计 12 个页面，用 Framer 搭建，配有覆盖七个产品的 CMS 和接入 GA4 的定制表单；全面测试后，重定向旧站并逐一复核每个 URL。",
+    ja: "Figmaで12ページを設計し、Framerで構築。7製品のCMSとGA4連携のカスタムフォームを実装し、全体をテストした上で旧サイトをリダイレクトし、全URLを再確認しました。",
   },
   "cases.visit": {
     en: "Visit site",
@@ -596,7 +641,7 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     en: "Add-ons", fr: "Options", es: "Extras", de: "Zusatzoptionen", pt: "Extras", zh: "附加服务", ja: "オプション",
   },
   "pricing.disclaimer": {
-    en: "All prices are starting points. Final scope and quote are confirmed on a free 30-min call — no obligation.",
+    en: "These prices are starting points. We confirm the final scope and quote on a free 30-minute call, with no obligation.",
     fr: "Tous les prix sont des points de départ. Réservez un appel gratuit de 30 min et vous repartirez avec un chiffre précis.",
     es: "Todos los precios son puntos de partida. Agenda una llamada gratuita de 30 minutos y tendrás un número exacto.",
     de: "Alle Preise sind Ausgangspunkte. Buchen Sie ein kostenloses 30-minütiges Gespräch und erhalten Sie eine genaue Zahl.",
@@ -698,7 +743,7 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     ja: "7〜14日で確実に公開",
   },
   "whyme.b0.desc": {
-    en: "Live in 7–14 days without cutting corners. Your timeline is real, and I treat it that way.",
+    en: "Your site goes live in 7, 14 days, and nothing important gets skipped. I take your deadline seriously.",
     fr: "En ligne en 7 à 14 jours, sans rogner sur la qualité. Votre calendrier est réel, et je le traite comme tel.",
     es: "En vivo en 7–14 días, sin atajos. Tu plazo es real y lo trato con total seriedad.",
     de: "In 7–14 Tagen live, ohne Abstriche. Ihr Zeitplan ist real, und ich behandle ihn so.",
@@ -752,7 +797,7 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     ja: "最適なツール選び",
   },
   "whyme.b3.desc": {
-    en: "Framer, Shopify, Webflow or code. I pick what suits your project, not what's easiest for me.",
+    en: "Framer, Shopify, Webflow or code. I use whatever fits your project, not whatever's easiest for me.",
     fr: "Framer, Shopify, Webflow ou du code. Je choisis ce qui convient à votre projet, pas ce qui m'arrange.",
     es: "Framer, Shopify, Webflow o código. Elijo lo que le conviene a tu proyecto, no lo que me resulta más fácil.",
     de: "Framer, Shopify, Webflow oder Code. Ich wähle, was zu Ihrem Projekt passt, nicht, was leichter ist.",
@@ -785,7 +830,7 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     ja: "まさにこうやって進めます。",
   },
   "process.desc": {
-    en: "Most projects are live in 14 days. Day 1 is a call, by Day 4 you've signed off the design, Day 14 you're live. That's the schedule. Not a rough estimate.",
+    en: "Most projects are live in 14 days. Call on Day 1. Design signed off by Day 4. Live on Day 14. This is the real schedule, not an estimate.",
     fr: "La plupart des projets sont livrés en 14 jours. Le délai est serré parce que le processus l'est. Sans ambiguïté, sans attente, sans surprises.",
     es: "La mayoría de proyectos se entregan en 14 días. El plazo es ajustado porque el proceso lo es. Sin ambigüedad, sin esperas, sin sorpresas.",
     de: "Die meisten Projekte gehen in 14 Tagen live. Der Zeitplan ist eng, weil der Prozess eng ist. Keine Unklarheiten, kein Warten, keine Überraschungen.",
@@ -833,10 +878,10 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     zh: "大多数修改周期在这里完成。这是有意为之。修改线框比修改已构建的页面成本更低。",
     ja: "修正サイクルのほとんどはここで行われます。意図的なこと。作成済みのページよりワイヤーフレームを修正する方が安いです。",
   },
-  "process.s2.title": { en: "Framer Build",     fr: "Construction Framer", es: "Construcción Framer",  de: "Framer-Entwicklung",    pt: "Construção Framer",   zh: "Framer构建",  ja: "Framer構築", },
+  "process.s2.title": { en: "website & products build",     fr: "Construction Framer", es: "Construcción Framer",  de: "Framer-Entwicklung",    pt: "Construção Framer",   zh: "Framer构建",  ja: "Framer構築", },
   "process.s2.dur":   { en: "Days 5–12",         fr: "Jours 5–12",          es: "Días 5–12",            de: "Tage 5–12",             pt: "Dias 5–12",           zh: "第5–12天",   ja: "5〜12日目", },
   "process.s2.desc": {
-    en: "Development starts and you get a live Framer preview link on Day 5. You're not waiting two weeks to see something. You're watching it come together in real time.",
+    en: "Development starts and you get a live preview link of the site on Day 5. You're not waiting two weeks to see something. You're watching it come together in real time.",
     fr: "Le développement commence et vous recevez un lien de prévisualisation Framer en direct le Jour 5. Vous ne patientez pas deux semaines. Vous regardez le projet prendre forme en temps réel.",
     es: "El desarrollo comienza y obtienes un enlace de vista previa en vivo en el Día 5. No esperas dos semanas. Lo ves tomar forma en tiempo real.",
     de: "Die Entwicklung beginnt und Sie erhalten am Tag 5 einen Live-Framer-Vorschau-Link. Sie warten nicht zwei Wochen. Sie sehen es in Echtzeit entstehen.",
@@ -1294,7 +1339,7 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     ja: "ぜひ聞かせてください。",
   },
   "contact.desc": {
-    en: "Tell me what you're working on and I'll come back to you within 24 hours with an honest take on whether I can help. And what that would look like.",
+    en: "Tell me about your project. I'll reply within 24 hours with an honest take on whether I can help and how.",
     fr: "Dites-moi sur quoi vous travaillez et je vous répondrai dans les 24 heures avec un avis honnête sur si je peux vous aider. Et comment cela se présenterait.",
     es: "Cuéntame en qué estás trabajando y te responderé dentro de las 24 horas con una opinión honesta sobre si puedo ayudar. Y cómo sería eso.",
     de: "Erzählen Sie mir, woran Sie arbeiten, und ich melde mich innerhalb von 24 Stunden mit einer ehrlichen Einschätzung, ob ich helfen kann. Und wie das aussehen würde.",

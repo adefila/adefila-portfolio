@@ -43,7 +43,7 @@ export default function LocalBusinessPage() {
       <BookingPopup />
       <LocalCopy>
         <Navbar hide={["#about"]} />
-        <Hero altHref="/" />
+        <Hero />
         <div className="spec-rule" aria-hidden="true" />
         <ClientGrid />
         <div className="spec-rule" aria-hidden="true" />

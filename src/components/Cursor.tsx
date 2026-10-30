@@ -27,8 +27,10 @@ export default function Cursor() {
         hovered.current = true;
         labelRef.current.textContent = label;
         labelRef.current.style.opacity = "1";
-        el.style.width = "64px";
-        el.style.height = "64px";
+        // wide enough for the label (mono, 10px): longer words get a bigger ring
+        const size = Math.max(64, label.length * 8 + 30);
+        el.style.width = `${size}px`;
+        el.style.height = `${size}px`;
         el.style.background = "transparent";
         el.style.border = "1.5px solid white";
       } else if (target.closest("a, button")) {

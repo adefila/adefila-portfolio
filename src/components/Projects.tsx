@@ -2,6 +2,7 @@
 import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { createPortal } from "react-dom";
 import Image from "next/image";
+import { CASE_STUDIES } from "@/lib/caseStudies";
 import { useLang } from "@/context/LangContext";
 import RevealWords from "./RevealWords";
 import SpecLabel from "./SpecLabel";
@@ -22,6 +23,16 @@ type Project = {
 };
 
 const devProjects: Project[] = [
+  {
+    title: "DLP Africa",
+    bg: "#d6dffa",
+    alt: "DLP Africa website: phone, chat and payment systems built in Africa, redesigned and built in Framer with a CMS for seven products",
+    desc: "Telecommunications company in Ghana. Twelve pages redesigned in Figma and built in Framer, with a CMS for seven products, custom forms wired to GA4, and the old site redirected without losing a URL.",
+    year: "2026",
+    tags: ["Telecom", "Figma to Framer"],
+    href: "https://dlp.africa/",
+    screenshot: "/projects/dlp-africa-desktop.webp",
+  },
   {
     title: "Calder Health",
     bg: "#dde7da",
@@ -58,7 +69,7 @@ const devProjects: Project[] = [
     alt: "VPA London talent agency portfolio — editorial typography and roster filtering in Framer",
     desc: "Talent agency portfolio built in Framer with editorial typography, smooth scroll, and a roster filtering system.",
     year: "2025",
-    tags: ["Talent Agency", "Framer Build"],
+    tags: ["Talent Agency", "Websites & Products Build"],
     href: "https://www.vpalondon.co.uk/",
     screenshot: "/projects/vpa-london.png",
   },
@@ -234,7 +245,7 @@ export const designProjects: Project[] = [
 
 // The work as a large typographic index. Hover a row: the others dim and a screenshot follows the cursor.
 // What leads: the sites built in code, then client work with results; the rest is one click away.
-const LEAD_WITH = ["The Initial", "BindHQ", "Leadopo", "Upside ESG", "VPA London", "BookedEZ", "The Prime Media"];
+const LEAD_WITH = ["DLP Africa", "The Initial", "BindHQ", "Leadopo", "Upside ESG", "VPA London", "BookedEZ", "The Prime Media"];
 // These two close the list, in this order. Everything else sits between the two groups in the order it is written above.
 const END_WITH = ["Talon Tyres", "Datum Build"];
 const INDEX_SHOWN = 6;
@@ -259,6 +270,7 @@ const WL_CSS = `
   .wl-row:hover .wl-t, .wl-row:focus-visible .wl-t { transform: translateX(14px); color: var(--accent-purple); }
   .wl-k { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--fg-secondary); display: flex; gap: 10px; align-items: baseline; white-space: nowrap; }
   .wl-k i { font-style: normal; font-family: var(--font-mono); text-transform: none; letter-spacing: 0; color: var(--accent-purple); }
+  .wl-case { font-weight: 500; padding: 2px 7px; border: 1px solid rgba(139, 92, 246, 0.55); color: var(--accent-purple); font-size: 10px; letter-spacing: 0.1em; }
   .wl-y { font-family: var(--font-mono); font-size: 12px; color: var(--fg-muted); text-align: right; }
   .wl-a { font-size: 18px; line-height: 1; color: var(--fg-muted); transition: transform 0.3s ease, color 0.2s ease; }
   .wl-row:hover .wl-a, .wl-row:focus-visible .wl-a { transform: translate(3px, -3px); color: var(--accent-purple); }
@@ -289,7 +301,7 @@ const WL_CSS = `
 const CLIPS: Record<string, string> = {
   "Calder Health": "calder-health", "The Initial": "the-initial", BindHQ: "bindhq", "VPA London": "vpa-london",
   "Upside ESG": "upside-esg", "Alyssa Corso": "alyssa-corso", Emalbu: "emalbu", Leadopo: "leadopo",
-  "The Prime Media": "the-prime-media", "Jamal Muse": "jamal", "Talon Tyres": "talon-tyres", "Datum Build": "datum",
+  "The Prime Media": "the-prime-media", "Jamal Muse": "jamal", "DLP Africa": "dlp-africa-desktop", "Talon Tyres": "talon-tyres", "Datum Build": "datum",
 };
 
 export type IndexProject = Pick<Project, "title" | "alt" | "year" | "tags" | "href" | "screenshot"> & { track?: string };
@@ -345,7 +357,9 @@ export function ProjectIndex({ projects, shownCount = INDEX_SHOWN }: { projects:
       <style>{WL_CSS}</style>
       <ol className="wl-list" data-reveal onMouseMove={(e) => aim(e.clientX, e.clientY)} onMouseLeave={leave}>
         {shown.map((proj, i) => {
-          const hasLink = proj.href && proj.href !== "#";
+          // A project with a case study page opens that; the live site is linked from inside the case study.
+          const study = CASE_STUDIES[proj.title];
+          const hasLink = !!study || (proj.href && proj.href !== "#");
           const inner = (
             <>
               <span className="wl-n">{String(i + 1).padStart(2, "0")}</span>
@@ -353,9 +367,10 @@ export function ProjectIndex({ projects, shownCount = INDEX_SHOWN }: { projects:
               <span className="wl-k">
                 {tr(`projtag.${proj.tags[0]}`, proj.tags[0])}
                 {proj.tags[1] && <i>{`</> ${tr(`projtag.${proj.tags[1]}`, proj.tags[1])}`}</i>}
+                {study && <b className="wl-case">{t("clients.study")}</b>}
               </span>
               <span className="wl-y">{proj.year}</span>
-              <span className="wl-a" aria-hidden="true">{hasLink ? "↗" : ""}</span>
+              <span className="wl-a" aria-hidden="true">{hasLink ? (study ? "→" : "↗") : ""}</span>
               {open === i && proj.screenshot && (
                 <span className="wl-inline">
                   <Image src={proj.screenshot} alt={proj.alt} fill sizes="100vw" quality={70} style={{ objectFit: "cover", objectPosition: "top center" }} />
@@ -377,11 +392,10 @@ export function ProjectIndex({ projects, shownCount = INDEX_SHOWN }: { projects:
               {hasLink ? (
                 <a
                   className="wl-row"
-                  data-cursor="View"
-                  href={proj.href}
+                  data-cursor={study ? t("clients.study") : "View"}
+                  href={study ?? proj.href}
                   data-track-location={proj.track}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  {...(study ? {} : { target: "_blank", rel: "noopener noreferrer" })}
                   {...handlers}
                   onClick={(e) => {
                     // On a touch screen the first tap opens the preview, the second opens the site.
