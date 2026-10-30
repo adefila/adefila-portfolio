@@ -192,7 +192,7 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     ja: "14日で納品",
   },
   "pricing.addon0": {
-    en: "Website Migration",    fr: "Toute Plateforme → Framer", es: "Cualquier Plataforma → Framer", de: "Jede Plattform → Framer",
+    en: "Website Migrations",    fr: "Toute Plateforme → Framer", es: "Cualquier Plataforma → Framer", de: "Jede Plattform → Framer",
     pt: "Qualquer Plataforma → Framer", zh: "任意平台 → Framer",       ja: "どのプラットフォームも → Framer",
   },
   "pricing.addon1": {
@@ -596,7 +596,7 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     en: "Add-ons", fr: "Options", es: "Extras", de: "Zusatzoptionen", pt: "Extras", zh: "附加服务", ja: "オプション",
   },
   "pricing.disclaimer": {
-    en: "All prices are starting points. Final scope and quote are confirmed on a free 30-min call — no obligation.",
+    en: "These prices are starting points. We confirm the final scope and quote on a free 30-minute call, with no obligation.",
     fr: "Tous les prix sont des points de départ. Réservez un appel gratuit de 30 min et vous repartirez avec un chiffre précis.",
     es: "Todos los precios son puntos de partida. Agenda una llamada gratuita de 30 minutos y tendrás un número exacto.",
     de: "Alle Preise sind Ausgangspunkte. Buchen Sie ein kostenloses 30-minütiges Gespräch und erhalten Sie eine genaue Zahl.",

@@ -95,7 +95,7 @@ const jsonLd = {
         "Shopify Development",
         "UI/UX Design",
         "Figma to Framer",
-        "Website Migration",
+        "Website Migrations",
       ],
       areaServed: "Worldwide",
       hasOfferCatalog: {
