@@ -752,7 +752,7 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     ja: "最適なツール選び",
   },
   "whyme.b3.desc": {
-    en: "Framer, Shopify, Webflow or code. I pick what suits your project, not what's easiest for me.",
+    en: "Framer, Shopify, Webflow or code. I use whatever fits your project, not whatever's easiest for me.",
     fr: "Framer, Shopify, Webflow ou du code. Je choisis ce qui convient à votre projet, pas ce qui m'arrange.",
     es: "Framer, Shopify, Webflow o código. Elijo lo que le conviene a tu proyecto, no lo que me resulta más fácil.",
     de: "Framer, Shopify, Webflow oder Code. Ich wähle, was zu Ihrem Projekt passt, nicht, was leichter ist.",
