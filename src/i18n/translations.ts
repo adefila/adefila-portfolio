@@ -380,7 +380,7 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     ja: "実際のプロジェクト。",
   },
   "cases.h1b": {
-    en: "Real outcomes",
+    en: "Real projects. Real outcomes",
     fr: "De vrais résultats.",
     es: "Resultados reales.",
     de: "Echte Ergebnisse.",
