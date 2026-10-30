@@ -698,7 +698,7 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     ja: "7〜14日で確実に公開",
   },
   "whyme.b0.desc": {
-    en: "Live in 7–14 days without cutting corners. Your timeline is real, and I treat it that way.",
+    en: "Your site goes live in 7, 14 days, and nothing important gets skipped. I take your deadline seriously.",
     fr: "En ligne en 7 à 14 jours, sans rogner sur la qualité. Votre calendrier est réel, et je le traite comme tel.",
     es: "En vivo en 7–14 días, sin atajos. Tu plazo es real y lo trato con total seriedad.",
     de: "In 7–14 Tagen live, ohne Abstriche. Ihr Zeitplan ist real, und ich behandle ihn so.",
