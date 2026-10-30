@@ -149,6 +149,7 @@ const rows: Record<string, Row> = {
   "projtag.Events Marketplace": ["Events Marketplace", "Marketplace d'événements", "Marketplace de eventos", "Event-Marktplatz", "Marketplace de eventos", "活动市场", "イベントマーケットプレイス"],
   "projtag.Template Customization": ["Template Customization", "Personnalisation de template", "Personalización de plantilla", "Template-Anpassung", "Personalização de template", "模板定制", "テンプレートカスタマイズ"],
   "projtag.Construction": ["Construction", "Construction", "Construcción", "Bau", "Construção", "建筑", "建設"],
+  "projtag.Telecom": ["Telecom", "Télécoms", "Telecomunicaciones", "Telekommunikation", "Telecomunicações", "电信", "通信"],
   "projtag.Concept": ["Concept", "Concept", "Concepto", "Konzept", "Conceito", "概念作品", "コンセプト"],
 
   // ── badges

@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import HeroShape from "@/components/HeroShape";
 import { motion, useReducedMotion } from "framer-motion";
-import { ArrowDown, ArrowRight, CalendarDays } from "lucide-react";
+import { ArrowDown, CalendarDays } from "lucide-react";
 import Image from "next/image";
 import MagneticButton from "./MagneticButton";
 import { useLang } from "@/context/LangContext";
@@ -44,7 +44,7 @@ function RotatingWord({ words }: { words: string[] }) {
   );
 }
 
-export default function Hero({ workHref = "#work", altHref = "/local-business" }: { workHref?: string; altHref?: string }) {
+export default function Hero({ workHref = "#work" }: { workHref?: string }) {
   const { t, lang } = useLang();
   const nextStart = useNextStartMonth(lang);
   const words = t("hero.h2.words").split("|");
@@ -215,19 +215,6 @@ export default function Hero({ workHref = "#work", altHref = "/local-business" }
               {t("hero.ctaWork")} <ArrowDown size={15} strokeWidth={2} />
             </MagneticButton>
           </div>
-          {/* For business owners arriving from outreach: their own, jargon-free page */}
-          <a
-            href={altHref}
-            data-track-location="hero_local"
-            style={{
-              display: "inline-flex", alignItems: "center", gap: 6, marginTop: 24,
-              fontFamily: "var(--font-inter)", fontSize: 14, color: "var(--fg-secondary)",
-              textDecoration: "none", borderBottom: "1px solid rgba(var(--ink), 0.2)", paddingBottom: 2,
-              animation: `heroFadeUp 0.6s 0.6s ${EASE} both`,
-            }}
-          >
-            {t("hero.localLink")} <ArrowRight size={14} strokeWidth={2} />
-          </a>
         </div>
 
         {/* Portrait with floating proof tags */}

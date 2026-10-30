@@ -3,7 +3,6 @@ import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import ClientGrid from "@/components/ClientGrid";
 import Projects from "@/components/Projects";
-import CaseStudies from "@/components/CaseStudies";
 import MidCTA from "@/components/MidCTA";
 import WhyMe from "@/components/WhyMe";
 import HowIWork from "@/components/HowIWork";
@@ -47,7 +46,6 @@ export default function Home() {
       <div className="spec-rule" aria-hidden="true" />
       <Projects />
       <div className="spec-rule" aria-hidden="true" />
-      <CaseStudies />
       <MidCTA />
       <WhyMe />
       <div className="spec-rule" aria-hidden="true" />

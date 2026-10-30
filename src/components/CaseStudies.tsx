@@ -23,10 +23,16 @@ type Case = {
   quoteKey?: string;     // existing testimonial text
   quoteBy?: string;
   href?: string;         // live site
+  study?: string;        // the full case study page on this site
   videoLink?: boolean;   // points to the video testimonial instead of a quote
 };
 
 const CASES: Case[] = [
+  {
+    id: "dlp", client: "DLP Africa", logo: "/clients/dlp-africa.svg", logoAspect: 2.08,
+    image: "/projects/dlp-africa-desktop.webp", imageSize: [1400, 875], frame: true, panel: "#0b1f6b",
+    metric: "4 weeks", href: "https://dlp.africa/", study: "/case-studies/dlp-africa",
+  },
   {
     id: "initial", client: "The Initial", logo: "/clients/the-initial.svg", logoAspect: 3.37,
     image: "/projects/the-initial.png", imageSize: [1280, 800], frame: true, panel: "#031319",
@@ -203,6 +209,11 @@ export default function CaseStudies() {
                     <span>{t("cases.watch")}</span>
                   </a>
                 ) : null}
+                {c.study && (
+                  <a href={c.study} className="csl-link" aria-label={`${t("cases.read")}: ${c.client}`}>
+                    {t("cases.read")} <ArrowRight size={14} strokeWidth={2} />
+                  </a>
+                )}
                 {c.href && (
                   <a href={c.href} target="_blank" rel="noopener noreferrer" className="csl-link" aria-label={`${t("cases.visit")}: ${c.client}`}>
                     {t("cases.visit")} <ArrowUpRight size={14} strokeWidth={2} />
