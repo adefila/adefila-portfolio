@@ -216,7 +216,7 @@ export default function Testimonials() {
                 marginBottom: 12,
               }}
             >
-              50+
+              60+
             </p>
             <p
               style={{
