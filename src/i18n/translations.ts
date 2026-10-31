@@ -830,7 +830,7 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     ja: "まさにこうやって進めます。",
   },
   "process.desc": {
-    en: "Most projects are live in 14 days. Call on Day 1. Design signed off by Day 4. Live on Day 14. This is the real schedule, not an estimate.",
+    en: "Most projects are live in 14 days. Call on Day 1. Design signed off by Day 4. Live on Day 14. This is the real schedule, not an estimate",
     fr: "La plupart des projets sont livrés en 14 jours. Le délai est serré parce que le processus l'est. Sans ambiguïté, sans attente, sans surprises.",
     es: "La mayoría de proyectos se entregan en 14 días. El plazo es ajustado porque el proceso lo es. Sin ambigüedad, sin esperas, sin sorpresas.",
     de: "Die meisten Projekte gehen in 14 Tagen live. Der Zeitplan ist eng, weil der Prozess eng ist. Keine Unklarheiten, kein Warten, keine Überraschungen.",
