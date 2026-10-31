@@ -314,7 +314,7 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     ja: "成果が出るサイト。|売れるサイト。|成長するサイト。",
   },
   "hero.subtitle": {
-    en: "I help founders and business owners ship websites and digital products in 14 days, without the delays and high costs of traditional agencies.",
+    en: "I build websites and digital products for founders and business owners, and I ship them in 14 days. No agency delays, no agency prices.",
     fr: "Développeur & designer Framer. Du brief au lancement en 14 jours, pour les fondateurs qui en ont fini avec les agences lentes.",
     es: "Desarrollador y diseñador Framer. Del brief al lanzamiento en 14 días, para fundadores hartos de agencias lentas y presupuestos inflados.",
     de: "Framer-Entwickler & Designer. Vom Brief bis live in 14 Tagen, für Gründer, die aufgehört haben, auf träge Agenturen zu warten.",
