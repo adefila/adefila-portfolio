@@ -225,7 +225,7 @@ export async function POST(req: Request) {
         I've received your message and will review it shortly. I typically get back within <strong style="color:#0f0f0f;">24–48 hours</strong> on business days.
       </p>
       <p style="margin:0 0 36px;font-family:Arial,sans-serif;font-size:15px;color:#555555;line-height:1.75;">
-        If your project is time-sensitive, booking a call is the fastest path — I can give you a clear direction in 30 minutes.
+        If your project is time-sensitive, booking a call is the fastest path — I can give you a clear direction in 15 minutes.
       </p>
 
       <!-- Booking CTA -->
@@ -233,7 +233,7 @@ export async function POST(req: Request) {
         <tr>
           <td style="background:#0f0f0f;padding:16px 36px;">
             <a href="${BOOKING}" style="font-family:Arial,sans-serif;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#ffffff;text-decoration:none;white-space:nowrap;">
-              BOOK A FREE 30-MIN CALL &rarr;
+              BOOK A FREE 15-MIN CALL &rarr;
             </a>
           </td>
         </tr>
