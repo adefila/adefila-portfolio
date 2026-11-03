@@ -314,7 +314,7 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     ja: "成果が出るサイト。|売れるサイト。|成長するサイト。",
   },
   "hero.subtitle": {
-    en: "I help founders and business owners ship websites and digital products in 14 days, without the delays and high costs of traditional agencies.",
+    en: "I build websites and digital products for founders and business owners, and I ship them in 14 days. No agency delays, no agency prices.",
     fr: "Développeur & designer Framer. Du brief au lancement en 14 jours, pour les fondateurs qui en ont fini avec les agences lentes.",
     es: "Desarrollador y diseñador Framer. Del brief al lanzamiento en 14 días, para fundadores hartos de agencias lentas y presupuestos inflados.",
     de: "Framer-Entwickler & Designer. Vom Brief bis live in 14 Tagen, für Gründer, die aufgehört haben, auf träge Agenturen zu warten.",
@@ -830,7 +830,7 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     ja: "まさにこうやって進めます。",
   },
   "process.desc": {
-    en: "Most projects are live in 14 days. Call on Day 1. Design signed off by Day 4. Live on Day 14. This is the real schedule, not an estimate.",
+    en: "Most projects are live in 14 days. Call on Day 1. Design signed off by Day 4. Live on Day 14. This is the real schedule, not an estimate",
     fr: "La plupart des projets sont livrés en 14 jours. Le délai est serré parce que le processus l'est. Sans ambiguïté, sans attente, sans surprises.",
     es: "La mayoría de proyectos se entregan en 14 días. El plazo es ajustado porque el proceso lo es. Sin ambigüedad, sin esperas, sin sorpresas.",
     de: "Die meisten Projekte gehen in 14 Tagen live. Der Zeitplan ist eng, weil der Prozess eng ist. Keine Unklarheiten, kein Warten, keine Überraschungen.",
