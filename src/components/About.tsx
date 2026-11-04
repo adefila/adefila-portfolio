@@ -200,7 +200,25 @@ export default function About({ gallery = false }: { gallery?: boolean }) {
           >
             <p>{t("about.p1")}</p>
             <p>{t("about.p2")}</p>
-            <p>{t("about.baton")}</p>
+            <p>
+              {(() => {
+                const [before, ...rest] = t("about.baton").split("Baton");
+                return (
+                  <>
+                    {before}
+                    <a
+                      href="https://batonedi.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{ color: "inherit", textDecoration: "underline", textDecorationStyle: "dotted", textUnderlineOffset: 3 }}
+                    >
+                      Baton
+                    </a>
+                    {rest.join("Baton")}
+                  </>
+                );
+              })()}
+            </p>
             <p>
               {fillSentence(t("about.p3"), RECENT_TEAMS.map((i) => (
                 <Term key={i} tip={(
@@ -215,17 +233,25 @@ export default function About({ gallery = false }: { gallery?: boolean }) {
               )))}
             </p>
             <p>
-              {fillSentence(t("about.p4"), SIDE_PROJECTS.map((p) => (
-                <Term key={p.name} tip={(
-                  <>
-                    <b>{p.name}</b>
-                    <span>{p.label} · {p.stack.join(", ")}</span>
-                    {p.href !== "#" && <a href={p.href} target="_blank" rel="noopener noreferrer">{t("about.viewProject")}</a>}
-                  </>
-                )}>
-                  {p.name}
-                </Term>
-              )))}
+              {fillSentence(t("about.p4"), SIDE_PROJECTS.map((p) => {
+                const linked = p.href !== "#";
+                const label = linked ? (
+                  <a href={p.href} target="_blank" rel="noopener noreferrer" style={{ color: "inherit", textDecoration: "none" }}>
+                    {p.name}
+                  </a>
+                ) : p.name;
+                return (
+                  <Term key={p.name} tip={(
+                    <>
+                      <b>{p.name}</b>
+                      <span>{p.label} · {p.stack.join(", ")}</span>
+                      {linked && <a href={p.href} target="_blank" rel="noopener noreferrer">{t("about.viewProject")}</a>}
+                    </>
+                  )}>
+                    {label}
+                  </Term>
+                );
+              }))}
             </p>
           </motion.div>
         </div>

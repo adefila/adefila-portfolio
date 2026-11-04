@@ -36,7 +36,8 @@ export default function Term({ children, tip, below = false }: { children: React
 
 export const TERM_CSS = `
   .about-term { position: relative; display: inline; }
-  .about-term-text { color: var(--fg); border-bottom: 1px dotted rgba(var(--ink), 0.55); cursor: help; transition: color 0.15s ease, border-color 0.15s ease; }
+  .about-term-text { color: var(--fg); border-bottom: 1px dotted rgba(var(--ink), 0.55); cursor: pointer; transition: color 0.15s ease, border-color 0.15s ease; }
+  .about-term-text a { color: inherit; text-decoration: none; }
   .about-term:hover .about-term-text, .about-term-text:focus-visible { color: var(--accent-purple); border-bottom-color: var(--accent-purple); outline: none; }
   .about-tip { position: absolute; z-index: 30; left: 0; bottom: calc(100% + 8px); width: max-content; max-width: min(280px, calc(100vw - 40px)); display: flex; flex-direction: column; gap: 3px; padding: 10px 12px; text-align: left; font-family: var(--font-inter); font-size: 12px; line-height: 1.45; letter-spacing: 0; text-transform: none; font-weight: 400; color: var(--fg-secondary); background: var(--surface); border: 1px solid rgba(var(--ink), 0.18); box-shadow: 0 10px 28px rgba(0, 0, 0, 0.25); }
   .about-tip-right { left: auto; right: 0; }
