@@ -81,6 +81,7 @@ function HamburgerIcon({ open }: { open: boolean }) {
 export default function Navbar({ hide = [] }: { hide?: string[] }) {
   const [active, setActive] = useState("");
   const [scrolled, setScrolled] = useState(false);
+  const [shrunk, setShrunk] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const { t } = useLang();
   // Pages built from the homepage sections scroll in place; elsewhere (case studies, 404)
@@ -94,8 +95,11 @@ export default function Navbar({ hide = [] }: { hide?: string[] }) {
   );
 
   useEffect(() => {
+    const isDesktop = () => window.innerWidth >= 769;
     const onScroll = () => {
-      setScrolled(window.scrollY > 60);
+      const down = window.scrollY > 60;
+      setScrolled(down);
+      setShrunk(down && isDesktop());
       // getBoundingClientRect is accurate regardless of lazy-loaded layout shifts
       const trigger = window.innerHeight * 0.45;
       let current = "hero";
@@ -111,10 +115,15 @@ export default function Navbar({ hide = [] }: { hide?: string[] }) {
         history.replaceState(null, "", hash || window.location.pathname);
       }
     };
+    const onResize = () => {
+      if (!isDesktop()) setShrunk(false);
+    };
     window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onResize, { passive: true });
     onScroll();
     return () => {
       window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onResize);
     };
   }, []);
 
@@ -135,7 +144,7 @@ export default function Navbar({ hide = [] }: { hide?: string[] }) {
         transition={{ duration: 0.5, ease: EASE }}
         style={{
           position: "fixed",
-          top: 0,
+          top: 16,
           left: 0,
           right: 0,
           zIndex: 200,
@@ -145,25 +154,25 @@ export default function Navbar({ hide = [] }: { hide?: string[] }) {
         }}
       >
         <div
-          className="site-nav-bar"
+          className="site-nav-bar corners"
           style={{
-            width: "100%",
-            minHeight: 60,
+            width: shrunk ? "calc(100% - 120px)" : "calc(100% - 48px)",
+            maxWidth: 1200,
             display: "flex",
-            alignItems: "stretch",
+            alignItems: "center",
             justifyContent: "space-between",
             background: menuOpen
               ? "var(--inverse)"
               : scrolled
               ? "rgba(var(--surface-rgb), 0.82)"
-              : "var(--bg)",
+              : "var(--surface)",
             backdropFilter: scrolled && !menuOpen ? "blur(20px)" : "none",
             WebkitBackdropFilter: scrolled && !menuOpen ? "blur(20px)" : "none",
-            borderBottom: menuOpen ? "1px solid rgba(255,255,255,0.08)" : "1px solid rgba(var(--ink), 0.08)",
+            border: menuOpen ? "1px solid rgba(255,255,255,0.08)" : "1px solid rgba(var(--ink), 0.07)",
             borderRadius: 0,
-            padding: "0 0 0 28px",
+            padding: "12px 12px 12px 28px",
             pointerEvents: "auto",
-            transition: "background 0.4s, border 0.3s",
+            transition: "background 0.4s, border 0.3s, width 0.5s cubic-bezier(0.22, 1, 0.36, 1)",
           }}
         >
           <Link
@@ -177,16 +186,13 @@ export default function Navbar({ hide = [] }: { hide?: string[] }) {
               color: menuOpen ? "var(--white)" : "var(--fg)",
               textDecoration: "none",
               transition: "color 0.3s",
-              display: "flex",
-              alignItems: "center",
-              alignSelf: "center",
             }}
           >
             Samuel
           </Link>
 
           {/* Desktop nav links */}
-          <div className="nav-links" style={{ display: "flex", gap: 2, alignSelf: "center" }}>
+          <div className="nav-links" style={{ display: "flex", gap: 2 }}>
             {navLinks.map(({ label, href }) => {
               const id = href.split("#")[1];
               const isActive = active === id;
@@ -228,13 +234,12 @@ export default function Navbar({ hide = [] }: { hide?: string[] }) {
               fontFamily: "var(--font-inter)",
               fontWeight: 600,
               fontSize: 13,
-              padding: "0 36px",
+              padding: "10px 20px",
               borderRadius: 0,
               textDecoration: "none",
               letterSpacing: "0.5px",
               textTransform: "uppercase",
               alignItems: "center",
-              alignSelf: "stretch",
               gap: 8,
             }}
           >
@@ -253,7 +258,6 @@ export default function Navbar({ hide = [] }: { hide?: string[] }) {
               display: "none",
               alignItems: "center",
               justifyContent: "center",
-              alignSelf: "center",
             }}
           >
             <HamburgerIcon open={menuOpen} />
