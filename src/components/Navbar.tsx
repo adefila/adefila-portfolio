@@ -148,6 +148,7 @@ export default function Navbar({ hide = [] }: { hide?: string[] }) {
           className="site-nav-bar"
           style={{
             width: "100%",
+            maxWidth: 1320,
             minHeight: 60,
             display: "flex",
             alignItems: "center",
@@ -161,6 +162,8 @@ export default function Navbar({ hide = [] }: { hide?: string[] }) {
             backdropFilter: scrolled && !menuOpen ? "blur(20px)" : "none",
             WebkitBackdropFilter: scrolled && !menuOpen ? "blur(20px)" : "none",
             borderBottom: menuOpen ? "1px solid rgba(255,255,255,0.08)" : "1px solid rgba(var(--ink), 0.08)",
+            borderLeft: "1px solid rgba(var(--ink), 0.16)",
+            borderRight: "1px solid rgba(var(--ink), 0.16)",
             borderRadius: 0,
             padding: "8px 8px 8px 28px",
             pointerEvents: "auto",
