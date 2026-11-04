@@ -148,19 +148,20 @@ export default function Navbar({ hide = [] }: { hide?: string[] }) {
           className="site-nav-bar"
           style={{
             width: "100%",
+            minHeight: 60,
             display: "flex",
-            alignItems: "center",
+            alignItems: "stretch",
             justifyContent: "space-between",
             background: menuOpen
               ? "var(--inverse)"
               : scrolled
               ? "rgba(var(--surface-rgb), 0.82)"
-              : "var(--surface)",
+              : "var(--bg)",
             backdropFilter: scrolled && !menuOpen ? "blur(20px)" : "none",
             WebkitBackdropFilter: scrolled && !menuOpen ? "blur(20px)" : "none",
-            borderBottom: menuOpen ? "1px solid rgba(255,255,255,0.08)" : "1px solid rgba(var(--ink), 0.07)",
+            borderBottom: menuOpen ? "1px solid rgba(255,255,255,0.08)" : "1px solid rgba(var(--ink), 0.08)",
             borderRadius: 0,
-            padding: "12px 28px",
+            padding: "0 0 0 28px",
             pointerEvents: "auto",
             transition: "background 0.4s, border 0.3s",
           }}
@@ -176,13 +177,16 @@ export default function Navbar({ hide = [] }: { hide?: string[] }) {
               color: menuOpen ? "var(--white)" : "var(--fg)",
               textDecoration: "none",
               transition: "color 0.3s",
+              display: "flex",
+              alignItems: "center",
+              alignSelf: "center",
             }}
           >
             Samuel
           </Link>
 
           {/* Desktop nav links */}
-          <div className="nav-links" style={{ display: "flex", gap: 2 }}>
+          <div className="nav-links" style={{ display: "flex", gap: 2, alignSelf: "center" }}>
             {navLinks.map(({ label, href }) => {
               const id = href.split("#")[1];
               const isActive = active === id;
@@ -224,12 +228,13 @@ export default function Navbar({ hide = [] }: { hide?: string[] }) {
               fontFamily: "var(--font-inter)",
               fontWeight: 600,
               fontSize: 13,
-              padding: "10px 20px",
+              padding: "0 36px",
               borderRadius: 0,
               textDecoration: "none",
               letterSpacing: "0.5px",
               textTransform: "uppercase",
               alignItems: "center",
+              alignSelf: "stretch",
               gap: 8,
             }}
           >
@@ -248,6 +253,7 @@ export default function Navbar({ hide = [] }: { hide?: string[] }) {
               display: "none",
               alignItems: "center",
               justifyContent: "center",
+              alignSelf: "center",
             }}
           >
             <HamburgerIcon open={menuOpen} />

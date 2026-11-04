@@ -674,6 +674,11 @@ html[data-reveal-ready] [data-reveal]:not([data-revealed]) {
 
 /* Mobile nav: hide links + desktop CTA, show hamburger */
 @media (max-width: 768px) {
+  /* The bar has no right padding on desktop (the CONTACT block touches the edge);
+     add it back on phones where the hamburger is the last item */
+  .site-nav-bar {
+    padding-right: 20px !important;
+  }
   .nav-links {
     display: none !important;
   }
