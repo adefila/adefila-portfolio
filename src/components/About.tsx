@@ -200,6 +200,7 @@ export default function About({ gallery = false }: { gallery?: boolean }) {
           >
             <p>{t("about.p1")}</p>
             <p>{t("about.p2")}</p>
+            <p>{t("about.baton")}</p>
             <p>
               {fillSentence(t("about.p3"), RECENT_TEAMS.map((i) => (
                 <Term key={i} tip={(

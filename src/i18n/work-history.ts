@@ -32,6 +32,15 @@ const rows: Record<string, Row> = {
     "当我需要的工具不存在时，我就自己做：{0}、{1} 和 {2}。",
     "必要なツールがなければ、自分で作ります：{0}、{1}、{2}。",
   ],
+  "about.baton": [
+    "Handovers usually end with a client afraid to touch their own site. So I'm building Baton: a handover layer that lets clients, marketing teams, and business owners edit their websites without touching a line of code. I ship the site, they stay in control — no ticket for every text change.",
+    "En général, la passation se termine avec un client qui n'ose plus toucher à son propre site. Alors je construis Baton : une couche de passation qui permet aux clients, aux équipes marketing et aux dirigeants de modifier leurs sites sans toucher une ligne de code. Je livre le site, ils gardent le contrôle — sans ticket pour chaque changement de texte.",
+    "Normalmente, la entrega termina con un cliente que teme tocar su propio sitio. Por eso estoy creando Baton: una capa de entrega que permite a clientes, equipos de marketing y dueños de negocio editar sus sitios sin tocar una línea de código. Yo entrego el sitio, ellos mantienen el control — sin tickets por cada cambio de texto.",
+    "Übergaben enden meist damit, dass der Kunde sich nicht mehr an seine eigene Seite traut. Deshalb baue ich Baton: eine Übergabe-Schicht, mit der Kunden, Marketingteams und Inhaber ihre Websites bearbeiten können, ohne eine Zeile Code anzufassen. Ich liefere die Seite, sie behalten die Kontrolle — kein Ticket für jede Textänderung.",
+    "Normalmente, a entrega termina com um cliente com medo de tocar no próprio site. Por isso estou criando o Baton: uma camada de entrega que permite a clientes, equipes de marketing e donos de negócio editar seus sites sem tocar em uma linha de código. Eu entrego o site, eles mantêm o controle — sem chamado para cada mudança de texto.",
+    "交接常常以客户不敢碰自己的网站告终。所以我正在打造 Baton：一个交接层，让客户、营销团队和企业主无需碰一行代码就能编辑自己的网站。我交付网站，他们保持掌控——改几个字也不用提工单。",
+    "引き渡しの後、クライアントが自分のサイトに触れるのを怖がることはよくあります。そこで私は Baton を作っています。クライアント、マーケティングチーム、経営者がコードに触れずにサイトを編集できる引き渡しレイヤーです。私がサイトを納品し、主導権は彼らの手に——ちょっとした文言変更のたびにチケットを切る必要はありません。",
+  ],
   "about.viewProject": ["View project", "Voir le projet", "Ver proyecto", "Projekt ansehen", "Ver projeto", "查看项目", "プロジェクトを見る"],
 
   // ── Work text: group labels and the tooltip link

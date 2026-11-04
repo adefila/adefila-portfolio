@@ -129,12 +129,11 @@ export default function RootLayout({
               : `try{var p=localStorage.getItem("sam-theme");var d=p==="dark"||(p==="system"&&matchMedia("(prefers-color-scheme: dark)").matches);document.documentElement.setAttribute("data-theme",d?"dark":"light")}catch(e){}`,
           }}
         />
-        {/* Runs before first paint: enable scroll reveals (ScrollReveal.tsx), skip the preloader after its first showing in
-            this tab, and make a reload start from the hero instead of the
+        {/* Runs before first paint: enable scroll reveals (ScrollReveal.tsx), and make a reload start from the hero instead of the
             section hash the navbar wrote into the URL while scrolling. */}
         <script
           dangerouslySetInnerHTML={{
-            __html: `document.documentElement.setAttribute("data-reveal-ready","");try{if(sessionStorage.getItem("preloader-seen"))document.documentElement.setAttribute("data-preloader-seen","");else if(location.pathname==="/")document.documentElement.setAttribute("data-hero-wait","");history.scrollRestoration="manual";var n=performance.getEntriesByType("navigation")[0];if(n&&n.type==="reload"){if(location.hash)history.replaceState(null,"",location.pathname+location.search);var toHero=function(){scrollTo({top:0,left:0,behavior:"instant"})};toHero();addEventListener("DOMContentLoaded",toHero);addEventListener("load",toHero)}}catch(e){}`,
+            __html: `document.documentElement.setAttribute("data-reveal-ready","");try{history.scrollRestoration="manual";var n=performance.getEntriesByType("navigation")[0];if(n&&n.type==="reload"){if(location.hash)history.replaceState(null,"",location.pathname+location.search);var toHero=function(){scrollTo({top:0,left:0,behavior:"instant"})};toHero();addEventListener("DOMContentLoaded",toHero);addEventListener("load",toHero)}}catch(e){}`,
           }}
         />
         {/* The page is pre-rendered in English. If the visitor will be shown another language (link, saved choice or

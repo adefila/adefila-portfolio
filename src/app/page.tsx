@@ -1,4 +1,3 @@
-import Preloader from "@/components/Preloader";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import ClientGrid from "@/components/ClientGrid";
@@ -31,7 +30,6 @@ export default function Home() {
         width: "100%",
       }}
     >
-      <Preloader />
       <ScrollReveal />
       <SpecNumbers />
       <ScrollRuler />

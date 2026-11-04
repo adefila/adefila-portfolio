@@ -1,33 +1,5 @@
 @import "tailwindcss";
 
-/* Set by the inline script in layout.tsx once the preloader has played this session */
-html[data-preloader-seen] .preloader {
-  display: none !important;
-}
-
-/* Preloader timing lives in CSS so it leaves on time even on slow phones,
-   where scripts can take seconds to start. Bar fills, then the overlay slides up. */
-.preloader {
-  animation: preloader-out 0.55s cubic-bezier(0.76, 0, 0.24, 1) 0.85s forwards;
-}
-.preloader-bar {
-  animation: preloader-fill 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
-}
-@keyframes preloader-out {
-  to { transform: translateY(-100%); visibility: hidden; }
-}
-@keyframes preloader-fill {
-  from { transform: scaleX(0); }
-  to   { transform: scaleX(1); }
-}
-@media (prefers-reduced-motion: reduce) {
-  .preloader { animation: preloader-fade 0.2s 0.3s forwards; }
-  .preloader-bar { animation: none; }
-}
-@keyframes preloader-fade {
-  to { opacity: 0; visibility: hidden; }
-}
-
 :root {
   --bg: #F7F7F7;
   --fg: #0f0f0f;
@@ -713,6 +685,12 @@ html[data-reveal-ready] [data-reveal]:not([data-revealed]) {
   }
 }
 
+/* Blueprint linework on the footer CTA: faint drafting marks, seamless on the purple */
+.footer-blueprint {
+  position: absolute;
+  pointer-events: none;
+}
+
 /* Grain noise on footer CTA */
 .footer-cta::after {
   content: "";
@@ -753,18 +731,9 @@ html[data-reveal-ready] [data-reveal]:not([data-revealed]) {
 
 /* Mobile ≤ 768px */
 @media (max-width: 768px) {
-  /* Navbar on a phone: a full-width bar flush with the top edge, not a floating box */
-  .site-nav { top: 0 !important; }
   /* Heading to body text: 16px on a phone, the same everywhere */
   .hero-section h1 { margin-bottom: 16px !important; }
   .lb-head { gap: 16px !important; }
-  .site-nav-bar {
-    width: 100% !important;
-    max-width: none !important;
-    border-top: none !important;
-    border-left: none !important;
-    border-right: none !important;
-  }
 
   /* Every section gets the same vertical rhythm on phones */
   #work, #benefits, #process, #pricing, #testimonials, #about, #faq, #contact {
@@ -942,6 +911,11 @@ html[data-reveal-ready] [data-reveal]:not([data-revealed]) {
   /* Footer CTA: reduce padding on mobile */
   .footer-cta {
     padding: 64px 20px !important;
+  }
+
+  /* Blueprint linework: hide the large figure on phones so it never crowds the headline */
+  .footer-blueprint-lg {
+    display: none !important;
   }
 
   /* Footer bar: stack columns full-width on small screens */
@@ -1460,10 +1434,8 @@ strong, b { font-weight: 600; }
 .btn-primary.btn-quiet { background: #2c2c33; color: #fff; }
 .btn-primary.btn-quiet:hover { background: var(--btn-bg); }
 
-/* ── Motion: hero draw-in, cursor-lit grid, scroll ruler ──
-   On a first visit the preloader covers the page for about a second, so the hero's animations wait for it. */
+/* ── Motion: hero draw-in, cursor-lit grid, scroll ruler ── */
 :root { --hero-delay: 0s; }
-html[data-hero-wait] { --hero-delay: 1.05s; }
 
 /* the headline rises from its baseline through a mask */
 @keyframes heroMask {
@@ -1525,12 +1497,6 @@ html[data-hero-wait] { --hero-delay: 1.05s; }
   .hero-grid-lit { display: none; }
 }
 
-/* the preloader name and boot log appear on a CSS clock, not when scripts arrive */
-@keyframes bootIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
-.boot-name { animation: bootIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.02s both; }
-.boot-line { animation: bootIn 0.22s ease both; }
-@media (prefers-reduced-motion: reduce) { .boot-name, .boot-line { animation: none; } }
-
 /* section headings rise through a mask on first view (SectionTitles.tsx marks them) */
 [data-title-mask]:not([data-in]) { clip-path: inset(0 0 100% 0); transform: translateY(0.45em); }
 [data-title-mask][data-in] { animation: heroMask 0.9s cubic-bezier(0.22, 1, 0.36, 1) both; }
@@ -1547,7 +1513,7 @@ html[data-hero-wait] { --hero-delay: 1.05s; }
 @media (prefers-reduced-motion: reduce) { .hero-shape { animation: none; } }
 
 /* hold the page back until the visitor's language is applied, so English never flashes first (layout.tsx, LangContext.tsx) */
-html[data-lang-pending] main > :not(.preloader) { opacity: 0; }
+html[data-lang-pending] main > * { opacity: 0; }
 
 /* ── case study page (src/app/case-studies/dlp-africa) ── */
 .cs-wrap { max-width: 1200px; margin: 0 auto; padding-left: 20px; padding-right: 20px; }
