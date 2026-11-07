@@ -105,6 +105,7 @@ export const COPY_C: Record<string, Entry> = {
     "Fijn team, en online boeken kostte een minuut. Ik kom terug!",
     "Hyggelig team, og nettbestillingen tok ett minutt. Kommer tilbake!",
   ],
+  "il.cursor": ["Customer", "Client", "Cliente", "Kunde", "Cliente", "客户", "お客様", "Klant", "Kunde"],
   "il.plus": ["+1 review", "+1 avis", "+1 reseña", "+1 Bewertung", "+1 avaliação", "+1 条评价", "口コミ +1", "+1 review", "+1 anmeldelse"],
   "il.phone.headline": ["Healthy smiles, booked fast", "Sourires sains, réservés vite", "Sonrisas sanas, reservadas rápido", "Gesunde Zähne, schnell gebucht", "Sorrisos saudáveis, reservados rápido", "健康笑容，快速预约", "健康な笑顔を、すぐ予約", "Gezonde glimlach, snel geboekt", "Sunne smil, raskt booket"],
   "il.phone.open": ["Open today 8:00 to 18:00", "Ouvert aujourd'hui 8 h à 18 h", "Abierto hoy de 8:00 a 18:00", "Heute geöffnet 8:00 bis 18:00", "Aberto hoje das 8h às 18h", "今天营业 8:00 至 18:00", "本日 8:00〜18:00 営業", "Vandaag open 8.00 tot 18.00", "Åpent i dag 8:00 til 18:00"],

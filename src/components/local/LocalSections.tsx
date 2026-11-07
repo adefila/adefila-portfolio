@@ -3,6 +3,7 @@ import { useLang } from "@/context/LangContext";
 import RevealWords from "@/components/RevealWords";
 import SpecLabel from "@/components/SpecLabel";
 import { ProjectIndex, devProjects } from "@/components/Projects";
+import SystemsReel from "./SystemsReel";
 import { BookingIllustration, QuoteIllustration, ReviewIllustration, SiteIllustration } from "./Illustrations";
 
 // The sections that belong to /local-business alone. Every word comes from the page's translations
@@ -32,6 +33,7 @@ export function Systems() {
           <span style={{ color: "rgb(163,163,163)" }}><RevealWords text={t("lb.sys.h2")} delay={0.1} /></span>
         </h2>
       </div>
+      <SystemsReel />
       <div className="lb-grid">
         {SYSTEMS.map((s) => (
           <article key={s.key} data-reveal>
