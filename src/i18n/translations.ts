@@ -301,26 +301,26 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
   // Second headline line = prefix + a word that cycles through the "|"-separated list.
   // zh/ja put the verb first, so the whole line cycles there (empty prefix).
   "hero.h2.prefix": {
-    en: "I DESIGN & BUILD PRODUCTS THAT",              fr: "DES SITES QUI",           es: "SITIOS WEB QUE",          de: "WEBSITES, DIE",
-    pt: "SITES QUE",               zh: "",                         ja: "",
+    en: "I REBUILD B2B WEBSITES THAT",              fr: "JE REFONDS DES SITES B2B QUI",           es: "REHAGO SITIOS WEB B2B QUE",          de: "ICH BAUE B2B-WEBSITES, DIE",
+    pt: "REFAÇO SITES B2B QUE",               zh: "",                         ja: "",
   },
   "hero.h2.words": {
-    en: "CONVERT.|SELL.|GROW.",
-    fr: "CONVERTISSENT.|VENDENT.|GRANDISSENT.",
-    es: "CONVIERTEN.|VENDEN.|CRECEN.",
-    de: "KONVERTIEREN.|VERKAUFEN.|WACHSEN.",
-    pt: "CONVERTEM.|VENDEM.|CRESCEM.",
-    zh: "能够转化的网站。|能够卖货的网站。|助力增长的网站。",
-    ja: "成果が出るサイト。|売れるサイト。|成長するサイト。",
+    en: "CONVERT.|RANK.|SCALE.",
+    fr: "CONVERTISSENT.|SE CLASSENT.|ÉVOLUENT.",
+    es: "CONVIERTEN.|POSICIONAN.|ESCALAN.",
+    de: "KONVERTIEREN.|RANKEN.|SKALIEREN.",
+    pt: "CONVERTEM.|RANQUEIAM.|ESCALAM.",
+    zh: "能够转化的B2B网站。|排名靠前的B2B网站。|可扩展的B2B网站。",
+    ja: "成果が出るB2Bサイト。|検索で上位に立つB2Bサイト。|拡張できるB2Bサイト。",
   },
   "hero.subtitle": {
-    en: "I build websites and digital products for founders and business owners, and I ship them in 14 days. No agency delays, no agency prices.",
-    fr: "Développeur & designer Framer. Du brief au lancement en 14 jours, pour les fondateurs qui en ont fini avec les agences lentes.",
-    es: "Desarrollador y diseñador Framer. Del brief al lanzamiento en 14 días, para fundadores hartos de agencias lentas y presupuestos inflados.",
-    de: "Framer-Entwickler & Designer. Vom Brief bis live in 14 Tagen, für Gründer, die aufgehört haben, auf träge Agenturen zu warten.",
-    pt: "Desenvolvedor e designer Framer. Do brief ao lançamento em 14 dias, para fundadores cansados de agências lentas e prazos inflados.",
-    zh: "Framer开发者与设计师。从简报到上线14天。为那些厌倦了慢速代理机构的创始人服务。",
-    ja: "Framer開発者＆デザイナー。ブリーフからライブまで14日。遅いエージェンシーに嫌気が差した創業者のために。",
+    en: "I redesign and rebuild B2B company websites in Framer or custom code: a CMS your team can edit, tracked forms, redirects that protect your search traffic, and a clean handover. DLP Africa went live in 4 weeks.",
+    fr: "Je refonds des sites d'entreprise B2B avec Framer ou du code sur mesure : un CMS que votre équipe peut modifier, des formulaires suivis, des redirections qui protègent votre trafic de recherche et une passation propre. DLP Africa est passé en ligne en 4 semaines.",
+    es: "Rediseño y reconstruyo sitios web de empresas B2B con Framer o código a medida: un CMS que tu equipo puede editar, formularios con seguimiento, redirecciones que protegen tu tráfico de búsqueda y una entrega limpia. DLP Africa salió en 4 semanas.",
+    de: "Ich gestalte und baue B2B-Unternehmenswebsites neu, mit Framer oder Individualcode: ein CMS, das Ihr Team selbst pflegt, getrackte Formulare, Weiterleitungen, die Ihren Suchtraffic schützen, und eine saubere Übergabe. DLP Africa war nach 4 Wochen live.",
+    pt: "Redesenho e reconstruo sites de empresas B2B com Framer ou código sob medida: um CMS que sua equipe pode editar, formulários com rastreamento, redirecionamentos que protegem seu tráfego de busca e uma entrega limpa. A DLP Africa foi ao ar em 4 semanas.",
+    zh: "我用 Framer 或定制代码重新设计并重建 B2B 企业网站：团队可自行编辑的 CMS、带追踪的表单、保护搜索流量的重定向，以及清晰的交接。DLP Africa 在 4 周内上线。",
+    ja: "FramerまたはカスタムコードでB2B企業のサイトを再設計・再構築します。チームが編集できるCMS、計測付きフォーム、検索流入を守るリダイレクト、丁寧な引き継ぎ。DLP Africaは4週間で公開しました。",
   },
   "hero.proof": {
     en: "Top Rated on Upwork  ·  50+ Projects Shipped  ·  100% Job Success",
@@ -357,8 +357,8 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     pt: "50+ sites entregues",     zh: "已交付 50+ 网站",           ja: "50件以上のサイトを納品",
   },
   "clients.label": {
-    en: "Trusted by founders & teams at",   fr: "Ils m'ont fait confiance",      es: "Confían en mí",                de: "Vertrauen von Gründern & Teams bei",
-    pt: "Confiado por fundadores e equipes", zh: "合作过的创始人与团队",          ja: "創業者・チームからの信頼",
+    en: "Trusted by B2B teams at",   fr: "Ils m'ont fait confiance",      es: "Confían en mí",                de: "Vertrauen von B2B-Teams bei",
+    pt: "Confiado por equipes B2B", zh: "合作过的 B2B 团队",          ja: "B2Bチームからの信頼",
   },
   // ── Case studies (results section) ─────────
   "cases.eyebrow": {

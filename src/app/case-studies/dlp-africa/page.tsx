@@ -131,7 +131,7 @@ export default function DlpAfricaCaseStudy() {
             <span className="cs-line cs-accent" aria-hidden="true" style={{ ["--d" as string]: "0.48s" }}>4 weeks.</span>
           </h1>
           <p className="cs-lede cs-in" style={{ ["--d" as string]: "0.7s" }}>
-            DLP Africa, a telecommunications company in Ghana, asked me to redesign and build 12 pages of their website. This is how it went, from the first call to a handover their team can run on their own.
+            DLP Africa, a telecommunications company in Ghana, asked me to redesign, rebuild and migrate 12 pages of their website without breaking what the old one had earned. This is how it went, from the first call to a handover their team can run on their own.
           </p>
 
           <dl className="cs-facts">

@@ -11,10 +11,12 @@ const geistMono = Geist_Mono({ subsets: ["latin"], variable: "--font-geist-mono"
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://adefilasamuel.com"),
-  title: "Samuel Adefila | Web Developer & Framer Designer",
+  title: "Samuel Adefila | B2B Website Developer (Framer & Custom)",
   description:
-    "Samuel Adefila is a web developer and Framer designer in Nigeria, building websites for founders and small businesses worldwide. Brief to live in 14 days. Top Rated on Upwork.",
+    "Samuel Adefila rebuilds B2B company websites in Framer or custom code: a CMS your team can edit, tracked forms, redirects that protect your search traffic and a clean handover. Based in Nigeria, working with teams worldwide. Top Rated on Upwork.",
   keywords: [
+    "B2B website developer",
+    "custom website development",
     "web developer",
     "freelance web developer",
     "web developer Nigeria",
@@ -27,17 +29,17 @@ export const metadata: Metadata = {
     "Samuel Adefila",
   ],
   openGraph: {
-    title: "Samuel Adefila | Web Developer & Framer Designer",
+    title: "Samuel Adefila | B2B Website Developer (Framer & Custom)",
     description:
-      "50+ Framer sites shipped for founders and teams. Brief to live in 14 days. Top Rated on Upwork, 100% Job Success. Book a call.",
+      "B2B websites rebuilt in Framer or custom code. DLP Africa: 12 pages live in 4 weeks. Top Rated on Upwork, 100% Job Success. Book a call.",
     type: "website",
     url: "https://adefilasamuel.com",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Samuel Adefila | Web Developer & Framer Designer",
+    title: "Samuel Adefila | B2B Website Developer (Framer & Custom)",
     description:
-      "50+ Framer sites. Brief to live in 14 days. Top Rated on Upwork. Book a free call.",
+      "B2B websites rebuilt in Framer or custom code. Top Rated on Upwork. Book a free call.",
   },
   alternates: {
     canonical: "https://adefilasamuel.com",
@@ -59,9 +61,9 @@ const jsonLd = {
       name: "Samuel Adefila",
       alternateName: "Adefila Samuel",
       url: "https://adefilasamuel.com",
-      jobTitle: "Web Developer & Framer Designer",
+      jobTitle: "B2B Website Developer",
       description:
-        "Web developer and Framer designer based in Nigeria. Takes projects from brief to live in 14 days with Framer, Webflow, Shopify and Next.js. Top Rated on Upwork with 100% Job Success.",
+        "B2B website developer based in Nigeria. Redesigns and rebuilds company websites in Framer or custom code (Next.js), with a CMS, tracked forms, SEO-safe redirects and a clean handover. Top Rated on Upwork with 100% Job Success.",
       homeLocation: { "@type": "Country", name: "Nigeria" },
       knowsAbout: ["Web development", "Website design", "Framer", "Webflow", "Shopify", "Next.js", "UI/UX design"],
       sameAs: [
@@ -78,9 +80,9 @@ const jsonLd = {
       "@type": "WebSite",
       "@id": "https://adefilasamuel.com/#website",
       url: "https://adefilasamuel.com",
-      name: "Samuel Adefila | Web Developer & Framer Designer",
+      name: "Samuel Adefila | B2B Website Developer (Framer & Custom)",
       description:
-        "Portfolio of Samuel Adefila. 50+ Framer sites built for founders and teams. Brief to live in 14 days.",
+        "Portfolio of Samuel Adefila. B2B websites rebuilt in Framer or custom code, including DLP Africa: 12 pages live in 4 weeks.",
       author: { "@id": "https://adefilasamuel.com/#person" },
     },
     {
