@@ -17,7 +17,7 @@ type TestimonialItem =
 const testimonialMeta: TestimonialItem[] = [
   { type: "video", name: "Davonte Wheeler",     role: "CEO · BookedEZ LLC",                     video: "/davonte-wheeler.mp4", preview: "/davonte-wheeler-preview.mp4", poster: "/davonte-wheeler-poster.jpg", avatar: null, logo: null },
   { type: "text",  name: "Nitin",               role: "HitPay App",                             key: "testimonials.t0",  avatar: "/nitin.png",        logo: null },
-  { type: "text",  name: "Alyssa Corso",        role: "SEO Consultant for Healthcare Startups", key: "testimonials.t1",  avatar: "/alyssa-corso.png", logo: null },
+  { type: "text",  name: "Alyssa Corso",        role: "SEO Consultant for Healthcare Startups", key: "testimonials.t1",  avatar: "/alyssa-corso-avatar.webp", logo: null },
   { type: "text",  name: "Johnno Van Den Brink",role: "The Initial Agency",                     key: "testimonials.t2",  avatar: null, logo: null },
   { type: "upwork" },
   { type: "text",  name: "Michal Kouril",       role: "Leadopo",                                key: "testimonials.t4",  avatar: null, logo: null },

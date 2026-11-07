@@ -1453,14 +1453,16 @@ strong, b { font-weight: 600; }
 }
 
 /* the portrait is scanned in from the top, with a thin purple line at the edge of what has been revealed */
-.hero-scan { animation: heroScanIn 1.1s cubic-bezier(0.22, 1, 0.36, 1) calc(var(--hero-delay) + 0.2s) both; }
+/* The picture is on screen from the first paint (it is the page's largest element, so hiding it behind a clip delays the
+   Largest Contentful Paint). A panel the colour of the frame wipes away from the top instead, ahead of the scan line. */
+.hero-scan::before { content: ""; position: absolute; inset: 0; z-index: 1; background: var(--surface); transform-origin: bottom; pointer-events: none; animation: heroWipe 1.1s cubic-bezier(0.22, 1, 0.36, 1) calc(var(--hero-delay) + 0.2s) both; }
+@keyframes heroWipe { from { transform: scaleY(1); } to { transform: scaleY(0); } }
 .hero-scan::after {
   content: ""; position: absolute; left: 0; right: 0; top: 0; height: 2px; pointer-events: none; z-index: 2;
   background: linear-gradient(90deg, transparent, var(--accent-purple), transparent);
   box-shadow: 0 0 18px 2px rgba(139, 92, 246, 0.55);
   animation: heroScanLine 1.1s cubic-bezier(0.22, 1, 0.36, 1) calc(var(--hero-delay) + 0.2s) both;
 }
-.hero-scan img { animation: heroFocus 1.3s cubic-bezier(0.22, 1, 0.36, 1) calc(var(--hero-delay) + 0.2s) both; }
 @keyframes heroScanIn { from { clip-path: inset(0 0 100% 0); } to { clip-path: inset(0 0 0 0); } }
 @keyframes heroScanLine { 0% { top: 0; opacity: 1; } 85% { opacity: 1; } 100% { top: calc(100% - 2px); opacity: 0; } }
 @keyframes heroFocus { from { filter: blur(9px); transform: scale(1.04); } to { filter: none; transform: none; } }
@@ -1501,7 +1503,8 @@ strong, b { font-weight: 600; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero-scan, .hero-scan::after, .hero-scan img, .type-in { animation: none !important; }
+  .hero-scan, .hero-scan::after, .type-in { animation: none !important; }
+  .hero-scan::before { display: none; }
   .hero-headline { animation: none !important; }
   .hero-grid-lit { display: none; }
 }
