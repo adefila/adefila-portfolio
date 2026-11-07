@@ -7,9 +7,9 @@ import RevealWords, { revealDelayAfter } from "./RevealWords";
 import { BOOKING_URL } from "@/lib/booking";
 
 const PLANS_BASE = [
-  { usdPrice: 500,  featured: false, featureCount: 5, planKey: "plan0" },
-  { usdPrice: 2000, featured: true,  featureCount: 6, planKey: "plan1" },
-  { usdPrice: 3000, featured: false, featureCount: 5, planKey: "plan2" },
+  { usdPrice: 1000, featured: false, featureCount: 5, planKey: "plan0" },
+  { usdPrice: 3500, featured: true,  featureCount: 6, planKey: "plan1" },
+  { usdPrice: 5000, featured: false, featureCount: 5, planKey: "plan2" },
 ];
 
 const ADDONS_BASE = [

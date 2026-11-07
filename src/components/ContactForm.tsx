@@ -75,20 +75,21 @@ function CopyEmailRow() {
 
 
 const services = [
+  "Redesign / Migration",
   "Framer Website",
+  "Custom Website (Next.js)",
+  "Landing Page",
   "Webflow Build",
   "Shopify Store",
-  "Landing Page",
-  "Redesign / Migration",
   "Ongoing Support",
   "Other",
 ];
 
 const budgets = [
-  "Under $600",
-  "$600 – $1,500",
-  "$1,500 – $3,000",
-  "$3,000+",
+  "Under $1,000",
+  "$1,000 – $3,500",
+  "$3,500 – $6,000",
+  "$6,000+",
 ];
 
 // The small-business page asks different questions: what would help most, and a rough budget in its own ranges.
