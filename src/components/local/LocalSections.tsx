@@ -4,24 +4,15 @@ import RevealWords from "@/components/RevealWords";
 import SpecLabel from "@/components/SpecLabel";
 import { ProjectIndex, devProjects } from "@/components/Projects";
 import SystemsReel from "./SystemsReel";
-import { BookingIllustration, QuoteIllustration, ReviewIllustration, SiteIllustration } from "./Illustrations";
 
 // The sections that belong to /local-business alone. Every word comes from the page's translations
 // (src/i18n/local-business), so they follow the visitor's language like the rest of the page.
 
 const h2Style = { fontFamily: "var(--font-poppins)", fontWeight: 700, fontSize: "clamp(28px, 3.5vw, 48px)", letterSpacing: "-1px", lineHeight: 1.05, textTransform: "uppercase", color: "var(--fg)" } as const;
 const bodyStyle = { fontFamily: "var(--font-inter)", fontSize: 14, lineHeight: 1.65, letterSpacing: "-0.2px", color: "var(--fg-secondary)", margin: 0, maxWidth: 520 } as const;
-const chip = { fontFamily: "var(--font-mono)", fontWeight: 400, fontSize: 10, letterSpacing: "0.8px", textTransform: "uppercase", color: "var(--fg-secondary)", background: "rgba(var(--ink), 0.04)", border: "1px solid rgba(var(--ink), 0.08)", padding: "3px 9px" } as const;
-const cardTitle = { fontFamily: "var(--font-poppins)", fontWeight: 700, fontSize: "clamp(15px, 1.2vw, 18px)", letterSpacing: "-0.4px", textTransform: "uppercase", color: "var(--fg)", margin: 0 } as const;
 
-const SYSTEMS = [
-  { key: "book", tags: ["clinics", "salons"], illo: <BookingIllustration />, tall: false },
-  { key: "quote", tags: ["trades", "services"], illo: <QuoteIllustration />, tall: false },
-  { key: "review", tags: ["any"], illo: <ReviewIllustration />, tall: true },
-  { key: "site", tags: ["site"], illo: <SiteIllustration />, tall: true },
-];
 
-// Same layout as the homepage's "Selected work" grid, with an animated illustration for each system.
+// The four systems as one film, with a caption on the stage and the four of them explained underneath.
 export function Systems() {
   const { t } = useLang();
   return (
@@ -34,20 +25,6 @@ export function Systems() {
         </h2>
       </div>
       <SystemsReel />
-      <div className="lb-grid">
-        {SYSTEMS.map((s) => (
-          <article key={s.key} data-reveal>
-            <div className={`lb-illo${s.tall ? " lb-illo-tall" : ""}`}>{s.illo}</div>
-            <div style={{ paddingTop: 24 }}>
-              <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap", marginBottom: 8 }}>
-                <h3 style={cardTitle}>{t(`lb.sys.${s.key}.title`)}</h3>
-                {s.tags.map((tag) => <span key={tag} style={chip}>{t(`lb.tag.${tag}`)}</span>)}
-              </div>
-              <p style={bodyStyle}>{t(`lb.sys.${s.key}.detail`)}</p>
-            </div>
-          </article>
-        ))}
-      </div>
     </section>
   );
 }

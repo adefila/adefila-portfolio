@@ -77,12 +77,22 @@ function cursorAt(t: number) {
   return { x, y };
 }
 
+// The four systems, in the order the film shows them: the translation key, when its part of the loop starts and ends,
+// and when its caption shows on the stage.
+const PARTS = [
+  { key: "book", from: 0, to: 4.6, cap: [-1.6, 4.4] },
+  { key: "quote", from: 4.6, to: 10.9, cap: [5.0, 10.7] },
+  { key: "review", from: 10.9, to: 17.4, cap: [11.3, 17.2] },
+  { key: "site", from: 17.4, to: 22.0, cap: [17.8, 21.8] },
+] as const;
+
 const BOOKED: [number, number, string][] = [
   [0, 0, "Ben"], [0, 2, "Sara"], [1, 2, "Tom"], [2, 0, "Lea"], [2, 1, "Kofi"], [3, 2, "Mia"], [4, 0, "Joe"], [4, 1, "Ivy"],
 ];
 
 export default function SystemsReel() {
   const { t: tr } = useLang();
+  const rootRef = useRef<HTMLDivElement>(null);
   const stageRef = useRef<HTMLDivElement>(null);
   const fitRef = useRef<HTMLDivElement>(null);
   const days = tr("il.days").split("|");
@@ -92,12 +102,13 @@ export default function SystemsReel() {
   const f2 = tr("il.quote.f2");
 
   useEffect(() => {
+    const root = rootRef.current;
     const stage = stageRef.current;
     const fit = fitRef.current;
-    if (!stage || !fit) return;
+    if (!root || !stage || !fit) return;
     // every animated element carries data-k="name"; they are looked up once, then driven directly
     const E: Record<string, HTMLElement> = {};
-    stage.querySelectorAll<HTMLElement>("[data-k]").forEach((n) => { E[n.dataset.k as string] = n; });
+    root.querySelectorAll<HTMLElement>("[data-k]").forEach((n) => { E[n.dataset.k as string] = n; });
     const set = (k: string, css: Partial<CSSStyleDeclaration>) => { const n = E[k]; if (n) Object.assign(n.style, css); };
     const show = (k: string, w: { op: number; blur: number; y: number }, extra = "") => {
       set(k, { opacity: String(w.op), filter: w.blur > 0.2 ? `blur(${w.blur.toFixed(1)}px)` : "none", transform: `translateY(${w.y.toFixed(1)}px) ${extra}`, visibility: w.op < 0.01 ? "hidden" : "visible" });
@@ -167,6 +178,16 @@ export default function SystemsReel() {
       const cam = lerp(1, 1.42, spring(t - 18.4, 8, 0.9)) - (lerp(1, 1.42, spring(t - 20.4, 8, 0.9)) - 1);
       set("world", { transform: `scale(${cam.toFixed(4)})` });
 
+      // the words: a caption on the stage and the matching item below it
+      PARTS.forEach((p, i) => {
+        const cap = i === 0 ? ta : t;
+        show(`cap-${i}`, window_(cap, p.cap[0], p.cap[1]));
+        const active = t >= p.from && t < p.to || (i === 0 && t >= 22);
+        const n = E[`lg-${i}`];
+        if (n && n.classList.contains("is-on") !== active) n.classList.toggle("is-on", active);
+        set(`lgp-${i}`, { transform: `scaleX(${active ? clamp((t - p.from) / (p.to - p.from)).toFixed(3) : 0})` });
+      });
+
       // the cursor
       const c = cursorAt(t);
       let press = 0, ripple = -1;
@@ -207,7 +228,13 @@ export default function SystemsReel() {
   }, [days.length, f1, f2, revText]);
 
   return (
+    <div ref={rootRef} className="sr">
     <div ref={stageRef} className="sr-stage" aria-hidden="true">
+      <div className="sr-caps">
+        {PARTS.map((p, i) => (
+          <span key={p.key} data-k={`cap-${i}`} className="sr-cap"><b>{String(i + 1).padStart(2, "0")}</b> {tr(`lb.sys.${p.key}.title`)}</span>
+        ))}
+      </div>
       <div ref={fitRef} className="sr-fit">
         <div data-k="world" className="sr-world" style={{ transformOrigin: "480px 400px" }}>
           <div data-k="shape" className="sr-shape">
@@ -291,6 +318,17 @@ export default function SystemsReel() {
           </div>
         </div>
       </div>
+    </div>
+    <ol className="sr-legend">
+      {PARTS.map((p, i) => (
+        <li key={p.key} data-k={`lg-${i}`} className={i === 0 ? "sr-lg is-on" : "sr-lg"}>
+          <i className="sr-lgp" data-k={`lgp-${i}`} />
+          <b className="sr-lg-n">{String(i + 1).padStart(2, "0")}</b>
+          <h3>{tr(`lb.sys.${p.key}.title`)}</h3>
+          <p className="sr-lg-d">{tr(`lb.sys.${p.key}.detail`)}</p>
+        </li>
+      ))}
+    </ol>
     </div>
   );
 }
