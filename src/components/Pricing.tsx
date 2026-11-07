@@ -21,7 +21,8 @@ const ADDONS_BASE = [
 
 
 // `prices` (USD, one per plan) is for pages with their own price points (see /local-business).
-export default function Pricing({ prices }: { prices?: [number, number, number] }) {
+// `retainer` shows the monthly retainer under the plans (the main page; /local-business has its own offer).
+export default function Pricing({ prices, retainer = true }: { prices?: [number, number, number]; retainer?: boolean }) {
   const { t, formatPrice, currency } = useLang();
   const [addonsOpen, setAddonsOpen] = useState(false); // phones only: the add-ons start folded away
 
@@ -212,6 +213,23 @@ export default function Pricing({ prices }: { prices?: [number, number, number] 
           );
         })}
       </div>
+
+      {retainer && (
+        <div data-reveal className="pricing-retainer">
+          <div>
+            <p className="pricing-retainer-label">{t("pricing.retainer.label")}</p>
+            <p className="pricing-retainer-title">{t("pricing.retainer.title")}</p>
+            <p className="pricing-retainer-desc">{t("pricing.retainer.desc")}</p>
+          </div>
+          <div className="pricing-retainer-side">
+            <p className="pricing-retainer-price">{t("pricing.from")} {formatPrice(1500, true)}</p>
+            <a href={BOOKING_URL} data-track-label="retainer" target="_blank" rel="noopener noreferrer" className="btn-primary btn-quiet pricing-retainer-cta">
+              {t("pricing.cta")}
+              <ArrowUpRight size={14} strokeWidth={2} />
+            </a>
+          </div>
+        </div>
+      )}
 
       {/* Add-ons strip (folded behind a button on phones) */}
       <button

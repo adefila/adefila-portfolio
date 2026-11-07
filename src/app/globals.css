@@ -1770,3 +1770,16 @@ html[data-lang-pending] main > * { opacity: 0; }
   .sr-lg:not(.is-on) .sr-lg-d { display: none; }
 }
 @media (prefers-reduced-motion: reduce) { .sr-lg { opacity: 1; } .sr-lg .sr-lg-d { display: block !important; } }
+
+/* the monthly retainer, under the three plans */
+.pricing-retainer { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 24px 40px; align-items: center; padding: 28px 32px; background: var(--bg); border: 1px solid rgba(var(--ink), 0.14); border-top: 0; }
+.pricing-retainer-label { font-family: var(--font-mono); font-weight: 700; font-size: 10px; letter-spacing: 2.5px; text-transform: uppercase; color: var(--accent-purple); }
+.pricing-retainer-title { margin-top: 10px; font-family: var(--font-poppins); font-weight: 700; font-size: 20px; letter-spacing: -0.5px; text-transform: uppercase; color: var(--fg); }
+.pricing-retainer-desc { margin-top: 8px; max-width: 560px; font-family: var(--font-inter); font-size: 14px; line-height: 1.65; color: var(--fg-secondary); }
+.pricing-retainer-side { display: grid; gap: 14px; justify-items: end; }
+.pricing-retainer-price { font-family: var(--font-poppins); font-weight: 700; font-size: 28px; letter-spacing: -1px; line-height: 1; color: var(--fg); white-space: nowrap; }
+.pricing-retainer-cta { display: inline-flex; align-items: center; justify-content: center; gap: 6px; padding: 14px 20px; font-family: var(--font-inter); font-weight: 600; font-size: 13px; letter-spacing: 0.5px; text-decoration: none; text-transform: uppercase; }
+@media (max-width: 760px) {
+  .pricing-retainer { grid-template-columns: minmax(0, 1fr); padding: 22px 20px; }
+  .pricing-retainer-side { justify-items: stretch; }
+}

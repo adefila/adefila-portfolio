@@ -55,7 +55,7 @@ export default function LocalBusinessPage() {
         <div className="spec-rule" aria-hidden="true" />
         <HowIWork />
         <div className="spec-rule" aria-hidden="true" />
-        <Pricing prices={[500, 1500, 2000]} />
+        <Pricing prices={[500, 1500, 2000]} retainer={false} />
         <TermsStrip />
         <div className="spec-rule" aria-hidden="true" />
         <Testimonials />
