@@ -5,7 +5,7 @@ import { useSyncExternalStore } from "react";
 export const SPOTS_OPEN = 5;
 // The earliest month you can start new work, as "YYYY-MM". The site never shows
 // a month before this one; once it's passed, the month keeps rolling forward.
-const EARLIEST_START = "2026-11";
+const EARLIEST_START = "2026-12";
 
 // The "Next start" month shown in the hero, mid-page call to action, mobile bar and
 // booking window. Until the 20th it's this month; after that, next month — never

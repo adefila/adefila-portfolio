@@ -125,10 +125,9 @@ export default function DlpAfricaCaseStudy() {
             <ArrowLeft size={14} strokeWidth={2} /> All work
           </Link>
           <p className="cs-eyebrow cs-in" style={{ ["--d" as string]: "0.1s" }}>Case study · Telecommunications · Ghana</p>
-          <h1 className="cs-title" aria-label="DLP Africa: 12 pages redesigned and built in 4 weeks.">
-            <span className="cs-line" aria-hidden="true" style={{ ["--d" as string]: "0.2s" }}>DLP Africa: 12 pages</span>
-            <span className="cs-line" aria-hidden="true" style={{ ["--d" as string]: "0.34s" }}>redesigned and built in</span>
-            <span className="cs-line cs-accent" aria-hidden="true" style={{ ["--d" as string]: "0.48s" }}>4 weeks.</span>
+          <h1 className="cs-title" aria-label="DLP Africa: 12 pages in 4 weeks.">
+            <span className="cs-line" aria-hidden="true" style={{ ["--d" as string]: "0.2s" }}>DLP Africa:</span>
+            <span className="cs-line cs-accent" aria-hidden="true" style={{ ["--d" as string]: "0.34s" }}>12 pages in 4 weeks.</span>
           </h1>
           <p className="cs-lede cs-in" style={{ ["--d" as string]: "0.7s" }}>
             DLP Africa, a telecommunications company in Ghana, asked me to redesign, rebuild and migrate 12 pages of their website without breaking what the old one had earned. This is how it went, from the first call to a handover their team can run on their own.
@@ -173,7 +172,7 @@ export default function DlpAfricaCaseStudy() {
         <div className="cs-wrap cs-split">
           <div>
             <SpecLabel text="The brief" />
-            <h2 id="cs-brief" className="cs-h2">A full redesign, with a live customer base to protect.</h2>
+            <h2 id="cs-brief" className="cs-h2">Protect what works.</h2>
           </div>
           <div className="cs-prose" data-reveal>
             <p>
@@ -188,7 +187,7 @@ export default function DlpAfricaCaseStudy() {
 
       <div className="spec-rule" aria-hidden="true" />
 
-      <ProcessRail steps={STEPS} label="The process" heading="Seven stages, from kickoff call to handover." />
+      <ProcessRail steps={STEPS} label="The process" heading="Seven stages." />
 
       <div className="spec-rule" aria-hidden="true" />
 
@@ -214,7 +213,7 @@ export default function DlpAfricaCaseStudy() {
       <section className="cs-section" aria-labelledby="cs-details">
         <div className="cs-wrap">
           <SpecLabel text="What made the difference" />
-          <h2 id="cs-details" className="cs-h2">Three things that mattered most.</h2>
+          <h2 id="cs-details" className="cs-h2">What mattered.</h2>
           <div className="cs-cards">
             {DETAILS.map((d) => (
               <article key={d.title} className="cs-card corners-in" data-reveal>
@@ -232,7 +231,7 @@ export default function DlpAfricaCaseStudy() {
       <section className="cs-section" aria-labelledby="cs-result">
         <div className="cs-wrap">
           <SpecLabel text="The result" />
-          <h2 id="cs-result" className="cs-h2">Live in four weeks, and handed over properly.</h2>
+          <h2 id="cs-result" className="cs-h2">Live in four weeks.</h2>
           <ul className="cs-results">
             {RESULTS.map(([n, label]) => (
               <li key={label} data-reveal>

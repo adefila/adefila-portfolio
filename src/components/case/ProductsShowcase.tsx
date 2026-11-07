@@ -41,7 +41,7 @@ export default function ProductsShowcase({ src, width, height, products }: { src
         <div className="cs-wrap ps-grid">
           <div className="ps-copy">
             <SpecLabel text="The products page" />
-            <h2 id="ps-heading" className="cs-h2">Seven products, one page that sells them.</h2>
+            <h2 id="ps-heading" className="cs-h2">Seven products. One page.</h2>
             <p>
               The products page lists every product from the CMS, each with its own page behind it. Scroll to see the page move.
             </p>

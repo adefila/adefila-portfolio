@@ -174,7 +174,7 @@ export const COPY_A: Record<string, Entry> = {
 
   // ── Process ──
   "process.h1": ["From first call to live.", "Du premier appel à la mise en ligne.", "De la primera llamada al lanzamiento.", "Vom ersten Anruf bis zum Start.", "Da primeira conversa ao lançamento.", "从第一次通话到上线。", "最初のご相談から公開まで。", "Van eerste gesprek tot live.", "Fra første samtale til lansering."],
-  "process.h1b": ["Two weeks, start to finish.", "Deux semaines, du début à la fin.", "Dos semanas, de principio a fin.", "Zwei Wochen, von A bis Z.", "Duas semanas, do começo ao fim.", "从开始到结束，两周。", "最初から最後まで、2週間。", "Twee weken, van begin tot eind.", "To uker, fra start til slutt."],
+  "process.h1b": ["", "", "", "", "", "", "", "", ""],
   "process.desc": [
     "Day 1 is a short call. By Day 4 you've seen how it will work. By Day 14 your customers are using it. That's the schedule, not a rough estimate.",
     "Jour 1 : un court appel. Au jour 4, vous avez vu comment ça va fonctionner. Au jour 14, vos clients l'utilisent. C'est le planning, pas une estimation.",

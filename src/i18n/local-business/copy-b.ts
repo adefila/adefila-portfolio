@@ -197,7 +197,7 @@ export const COPY_B: Record<string, Entry> = {
 
   // ── Contact form ──
   "contact.h1": ["WANT FEWER MISSED CALLS?", "MOINS D'APPELS MANQUÉS ?", "¿QUIERES MENOS LLAMADAS PERDIDAS?", "WENIGER VERPASSTE ANRUFE?", "QUER MENOS CHAMADAS PERDIDAS?", "想少漏接电话吗？", "不在着信を減らしませんか？", "MINDER GEMISTE TELEFOONTJES?", "VIL DU HA FÆRRE UBESVARTE ANROP?"],
-  "contact.h1b": ["TELL ME ABOUT YOUR BUSINESS.", "PARLEZ-MOI DE VOTRE ACTIVITÉ.", "CUÉNTAME SOBRE TU NEGOCIO.", "ERZÄHLEN SIE MIR VON IHREM BETRIEB.", "CONTE-ME SOBRE O SEU NEGÓCIO.", "请告诉我您的业务情况。", "事業について教えてください。", "VERTEL ME OVER UW BEDRIJF.", "FORTELL MEG OM BEDRIFTEN DIN."],
+  "contact.h1b": ["", "", "", "", "", "", "", "", ""],
   "contact.desc": [
     "Tell me how bookings and enquiries work today and I'll come back within 24 hours with an honest take on what would help, and what it would cost.",
     "Dites-moi comment fonctionnent aujourd'hui vos réservations et demandes, et je reviens vers vous sous 24 heures avec un avis honnête sur ce qui aiderait et ce que cela coûterait.",

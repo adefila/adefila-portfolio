@@ -61,7 +61,7 @@ export const CASE_STUDY_DATA: CaseStudy[] = [
     slug: "leadopo",
     client: "Leadopo",
     industry: "Lead generation SaaS",
-    title: "Leadopo: a Framer site fixed in every language.",
+    title: "Leadopo: fixed in every language.",
     lede: "Leadopo's site styles kept breaking across its different language versions. I audited the whole Framer build, found what was causing it and fixed it at the source.",
     facts: [
       ["Client", "Leadopo"],

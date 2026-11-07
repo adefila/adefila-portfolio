@@ -101,9 +101,10 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
         <div className="cs-wrap cs-split">
           <div>
             <SpecLabel text="The brief" />
-            <h2 id="cs-brief" className="cs-h2">{c.brief}</h2>
+            <h2 id="cs-brief" className="cs-h2">What they needed.</h2>
           </div>
           <div className="cs-prose" data-reveal>
+            <p>{c.brief}</p>
             <p className="cs-prose-label">What I did</p>
             <p>{c.did}</p>
           </div>
