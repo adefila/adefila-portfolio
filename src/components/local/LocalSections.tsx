@@ -2,7 +2,7 @@
 import { useLang } from "@/context/LangContext";
 import RevealWords from "@/components/RevealWords";
 import SpecLabel from "@/components/SpecLabel";
-import { ProjectIndex } from "@/components/Projects";
+import { ProjectIndex, devProjects } from "@/components/Projects";
 import { BookingIllustration, QuoteIllustration, ReviewIllustration, SiteIllustration } from "./Illustrations";
 
 // The sections that belong to /local-business alone. Every word comes from the page's translations
@@ -77,9 +77,13 @@ const CONCEPTS = [
   { key: "calder", name: "Calder Health", url: "https://calder-health.vercel.app/", image: "/local/concept-calder.webp" },
 ];
 
-// Practice sites, clearly marked as concepts (not past clients), for niches without client work to show.
+// Real projects for service businesses and teams, from the main portfolio, picked by name.
+const REAL_WORK = ["The Prime Media", "Emalbu", "VPA London", "Alyssa Corso", "Jamal Muse"];
+
+// Real work first, then practice sites, clearly marked as concepts (not past clients), for niches without client work to show.
 export function ConceptWork() {
   const { t } = useLang();
+  const real = REAL_WORK.map((name) => devProjects.find((p) => p.title === name)).filter((p): p is (typeof devProjects)[number] => !!p);
   return (
     <section id="concept" style={{ width: "100%", maxWidth: 1200, margin: "0 auto", padding: "80px 20px" }}>
       <SpecLabel text={t("lb.concept.eyebrow")} />
@@ -93,15 +97,26 @@ export function ConceptWork() {
         <p data-reveal style={{ ...bodyStyle, fontSize: 15, flex: "1 1 280px", maxWidth: 440 }}>{t("lb.concept.desc")}</p>
       </div>
       <ProjectIndex
-        projects={CONCEPTS.map((c) => ({
-          title: c.name,
-          alt: `${c.name} (${t(`lb.concept.${c.key}.type`)})`,
-          year: "2026",
-          tags: [t(`lb.concept.${c.key}.type`), t("lb.concept.label")],
-          href: c.url,
-          screenshot: c.image,
-          track: `concept_${c.key}`,
-        }))}
+        projects={[
+          ...real.map((p) => ({
+            title: p.title,
+            alt: p.alt,
+            year: p.year,
+            tags: p.tags,
+            href: p.href,
+            screenshot: p.screenshot,
+            track: `work_${p.title.toLowerCase().replace(/[^a-z0-9]+/g, "_")}`,
+          })),
+          ...CONCEPTS.map((c) => ({
+            title: c.name,
+            alt: `${c.name} (${t(`lb.concept.${c.key}.type`)})`,
+            year: "2026",
+            tags: [t(`lb.concept.${c.key}.type`), t("lb.concept.label")],
+            href: c.url,
+            screenshot: c.image,
+            track: `concept_${c.key}`,
+          })),
+        ]}
       />
     </section>
   );

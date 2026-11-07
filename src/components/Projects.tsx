@@ -22,7 +22,7 @@ type Project = {
   bg?: string;
 };
 
-const devProjects: Project[] = [
+export const devProjects: Project[] = [
   {
     title: "DLP Africa",
     bg: "#d6dffa",
@@ -288,9 +288,21 @@ const WL_CSS = `
     .wl-list:hover .wl-row { opacity: 1; }
     .wl-inline { display: block; grid-column: 2 / -1; margin-top: 12px; position: relative; aspect-ratio: 16 / 8.4; overflow: hidden; background: #111; }
   }
+  .wl-card-img { display: none; }
   @media (max-width: 760px) {
-    .wl-row { grid-template-columns: 30px 1fr 22px; column-gap: 12px; }
-    .wl-k, .wl-y { display: none; }
+    /* each project is a card: the picture, then the name, the tags and the year */
+    .wl-list { display: grid; gap: 16px; border-top: 0; }
+    .wl-list > li { min-width: 0; }
+    .wl-row { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "img img" "t a" "k k"; align-items: center; column-gap: 12px; row-gap: 10px; padding: 0 0 16px; border: 1px solid rgba(var(--ink), 0.14); background: var(--surface); overflow: hidden; transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.25s ease; }
+    .wl-row:active { transform: scale(0.985); border-color: rgba(139, 92, 246, 0.6); }
+    .wl-card-img { grid-area: img; display: block; position: relative; aspect-ratio: 16 / 10; background: #111; overflow: hidden; }
+    .wl-n { display: none; }
+    .wl-t { grid-area: t; padding-left: 16px; font-size: 20px; }
+    .wl-row:hover .wl-t { transform: none; }
+    .wl-a { grid-area: a; padding-right: 16px; font-size: 20px; }
+    .wl-k { grid-area: k; display: flex; flex-wrap: wrap; gap: 6px 10px; padding: 0 16px; white-space: normal; }
+    .wl-y { display: block; position: absolute; top: 10px; right: 10px; z-index: 1; padding: 3px 8px; background: rgba(0, 0, 0, 0.6); color: #fff; font-size: 11px; backdrop-filter: blur(6px); }
+    .wl-inline { display: none !important; }
   }
   @media (prefers-reduced-motion: reduce) { .wl-t, .wl-a, .wl-float-in { transition: none; } }
 `;
@@ -362,6 +374,11 @@ export function ProjectIndex({ projects, shownCount = INDEX_SHOWN }: { projects:
           const hasLink = !!study || (proj.href && proj.href !== "#");
           const inner = (
             <>
+              {proj.screenshot && (
+                <span className="wl-card-img" aria-hidden="true">
+                  <Image src={proj.screenshot} alt="" fill sizes="(max-width: 760px) 92vw, 1px" quality={70} style={{ objectFit: "cover", objectPosition: "top center" }} />
+                </span>
+              )}
               <span className="wl-n">{String(i + 1).padStart(2, "0")}</span>
               <span className="wl-t">{proj.title}</span>
               <span className="wl-k">
@@ -399,7 +416,7 @@ export function ProjectIndex({ projects, shownCount = INDEX_SHOWN }: { projects:
                   {...handlers}
                   onClick={(e) => {
                     // On a touch screen the first tap opens the preview, the second opens the site.
-                    if (window.matchMedia("(hover: none)").matches && open !== i) {
+                    if (window.matchMedia("(hover: none)").matches && !window.matchMedia("(max-width: 760px)").matches && open !== i) {
                       e.preventDefault();
                       setOpen(i);
                     }
