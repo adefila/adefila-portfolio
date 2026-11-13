@@ -1,9 +1,9 @@
 ﻿"use client";
 import { useEffect, useState } from "react";
 import HeroShape from "@/components/HeroShape";
+import HeroShowcase from "@/components/HeroShowcase";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowDown, CalendarDays } from "lucide-react";
-import Image from "next/image";
 import MagneticButton from "./MagneticButton";
 import { useLang } from "@/context/LangContext";
 import { SPOTS_OPEN, useNextStartMonth } from "@/lib/availability";
@@ -223,22 +223,11 @@ export default function Hero({ workHref = "#work" }: { workHref?: string }) {
           className="hero-portrait"
           style={{ position: "relative", width: "100%", maxWidth: 420, justifySelf: "end" }}
         >
-          <div className="hero-portrait-box hero-scan" style={{ position: "relative", width: "100%", aspectRatio: "5 / 6", overflow: "hidden", background: "var(--surface)", border: "1px solid rgba(var(--ink), 0.2)" }}>
-            <Image
-              src="/samuel-portrait.webp"
-              alt="Samuel Adefila"
-              fill
-              loading="eager"
-              fetchPriority="high"
-              sizes="(max-width: 768px) 90vw, 420px"
-              style={{ objectFit: "cover", objectPosition: "50% 30%" }}
-            />
-          </div>
+          <HeroShowcase />
           <HeroShape />
-          {/* registration marks around the figure, and a caption */}
+          {/* registration marks around the figure */}
           <span aria-hidden="true" className="fig-corner" style={{ top: -7, left: -7, borderTopWidth: 1, borderLeftWidth: 1 }} />
           <span aria-hidden="true" className="fig-corner" style={{ top: -7, right: -7, borderTopWidth: 1, borderRightWidth: 1 }} />
-          <p className="fig-caption"><span className="type-in" style={{ animationDelay: "calc(var(--hero-delay, 0s) + 1.1s)" }}>Fig. 01</span><span className="type-in" style={{ animationDelay: "calc(var(--hero-delay, 0s) + 1.35s)" }}>Samuel Adefila</span></p>
         </div>
       </div>
     </section>
