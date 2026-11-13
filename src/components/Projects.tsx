@@ -34,6 +34,16 @@ export const devProjects: Project[] = [
     screenshot: "/projects/dlp-africa-desktop.webp",
   },
   {
+    title: "Baton",
+    bg: "#f0e2dc",
+    alt: "Baton, a visual editor that lets clients change the words, photos and links on their live website without a developer",
+    desc: "My own product: a visual editor that lets clients change the words, photos and links on their live website. Stack detection, draft and publish with rollback, roles, and a guided setup.",
+    year: "2026",
+    tags: ["SaaS", "Product Build"],
+    href: "https://batonedit.com/",
+    screenshot: "/projects/baton.webp",
+  },
+  {
     title: "Calder Health",
     bg: "#dde7da",
     alt: "Calder Health telehealth website — personalised online care with licensed providers, built in Next.js",
@@ -245,7 +255,7 @@ export const designProjects: Project[] = [
 
 // The work as a large typographic index. Hover a row: the others dim and a screenshot follows the cursor.
 // What leads: the sites built in code, then client work with results; the rest is one click away.
-const LEAD_WITH = ["DLP Africa", "The Initial", "BindHQ", "Leadopo", "Upside ESG", "VPA London", "BookedEZ", "The Prime Media"];
+const LEAD_WITH = ["DLP Africa", "Baton", "The Initial", "BindHQ", "Leadopo", "Upside ESG", "VPA London", "BookedEZ", "The Prime Media"];
 // These two close the list, in this order. Everything else sits between the two groups in the order it is written above.
 const END_WITH = ["Talon Tyres", "Datum Build"];
 const INDEX_SHOWN = 6;
@@ -313,7 +323,7 @@ const WL_CSS = `
 const CLIPS: Record<string, string> = {
   "Calder Health": "calder-health", "The Initial": "the-initial", BindHQ: "bindhq", "VPA London": "vpa-london",
   "Upside ESG": "upside-esg", "Alyssa Corso": "alyssa-corso", Emalbu: "emalbu", Leadopo: "leadopo",
-  "The Prime Media": "the-prime-media", "Jamal Muse": "jamal", "DLP Africa": "dlp-africa-desktop", "Talon Tyres": "talon-tyres", "Datum Build": "datum",
+  "The Prime Media": "the-prime-media", "Jamal Muse": "jamal", "DLP Africa": "dlp-africa-desktop", Baton: "baton", "Talon Tyres": "talon-tyres", "Datum Build": "datum",
 };
 
 export type IndexProject = Pick<Project, "title" | "alt" | "year" | "tags" | "href" | "screenshot"> & { track?: string };

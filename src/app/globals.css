@@ -1786,3 +1786,10 @@ html[data-lang-pending] main > * { opacity: 0; }
   .pricing-retainer { grid-template-columns: minmax(0, 1fr); padding: 22px 20px; }
   .pricing-retainer-side { justify-items: stretch; }
 }
+
+/* Baton case study: stills of the app in a two-column grid */
+.bt-grid { margin-top: 56px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px 24px; }
+.bt-fig { margin: 0; }
+.bt-fig .cs-frame { box-shadow: 0 18px 40px rgba(0, 0, 0, 0.32); }
+.bt-fig figcaption { margin-top: 14px; font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--fg-secondary); }
+@media (max-width: 900px) { .bt-grid { grid-template-columns: minmax(0, 1fr); } }

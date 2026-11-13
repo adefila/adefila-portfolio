@@ -2,13 +2,14 @@
 import { useEffect, useRef, useState } from "react";
 import SpecLabel from "@/components/SpecLabel";
 import ProcessVisual from "./ProcessVisuals";
+import { BATON_VISUALS } from "./ProcessVisualsBaton";
 
 export type Step = { title: string; time?: string; body: string };
 
 // The process as a timeline that moves sideways while the page scrolls down: the section stays pinned and the
 // stages slide past a progress rail. On narrow screens, short windows and with reduced motion nothing is pinned;
 // the stages sit in a row you swipe through instead (the layout is switched in CSS, see .pr rules in globals.css).
-export default function ProcessRail({ steps, label, heading }: { steps: Step[]; label: string; heading: string }) {
+export default function ProcessRail({ steps, label, heading, visuals }: { steps: Step[]; label: string; heading: string; visuals?: "baton" }) {
   const sectionRef = useRef<HTMLElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState(0);
@@ -98,7 +99,7 @@ export default function ProcessRail({ steps, label, heading }: { steps: Step[]; 
           <div ref={trackRef} className="pr-track">
             {steps.map((s, i) => (
               <article key={s.title} className={`pr-card${i === active ? " is-active" : ""}${seen.includes(i) ? " is-seen" : ""}`} aria-label={`${i + 1} of ${steps.length}: ${s.title}`}>
-                <div className="pr-visual"><ProcessVisual index={i} /></div>
+                <div className="pr-visual">{visuals === "baton" && BATON_VISUALS[i] ? (() => { const V = BATON_VISUALS[i]; return <V />; })() : <ProcessVisual index={i} />}</div>
                 <p className="pr-n" aria-hidden="true">{String(i + 1).padStart(2, "0")} / {String(steps.length).padStart(2, "0")}</p>
                 <h3>{s.title}</h3>
                 {s.time && <p className="pr-time">{s.time}</p>}
