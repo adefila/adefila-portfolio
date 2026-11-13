@@ -23,6 +23,9 @@ export type CaseStudy = {
   shots: CaseShot[];
   shotsTitle: string;
   shotsIntro: string;
+  // A plain-text, step-by-step account of the process (no scroll-driven motion) — for product work where the
+  // "pages" are app screens rather than a site to scroll through. One optional static image for the whole section.
+  process?: { title: string; intro: string; steps: { title: string; text: string }[]; shots?: { src: string; width: number; height: number; alt: string; caption: string }[] };
   description: string;
 };
 
@@ -108,6 +111,33 @@ export const CASE_STUDY_DATA: CaseStudy[] = [
     shots: [],
     shotsTitle: "",
     shotsIntro: "",
+    process: {
+      title: "One app, two jobs.",
+      intro: "BookedEZ is a two-sided marketplace: organizers book artists for their events, artists book themselves into events. Both needed a home in the same app, without either feeling like an afterthought.",
+      steps: [
+        {
+          title: "01 — One onboarding, two accounts",
+          text: "Welcome screens, login and sign-up are shared. Account creation splits in two right after: an organizer account or an artist account, each asking only what that role needs, so neither carries fields meant for the other.",
+        },
+        {
+          title: "02 — The organizer's home",
+          text: "Browse and bookmark artists, post an event, and send a request straight to an artist you've saved. A running event history and a notification whenever an artist responds keep the organizer from having to chase anything.",
+        },
+        {
+          title: "03 — The artist's home",
+          text: "Browse open events and either submit a request to play one or accept a direct offer from an organizer. Submitted requests, pending bookings and recent bookings are tracked as three separate, clearly labelled lists — so an artist always knows which stage a booking is at.",
+        },
+        {
+          title: "04 — Where the two sides meet",
+          text: "Messages and notifications run the same way on both sides, so a conversation about a booking never has to leave the app. Profile is the one screen shared almost exactly: a bio and portfolio for artists to be judged on, membership tiers and payout settings underneath, tying back to the money actually moving through the app.",
+        },
+      ],
+      shots: [
+        { src: "/projects/case/bookedez/post-event.webp", width: 750, height: 2042, alt: "BookedEZ's Post event screen: event name, location, date, offer, description and image upload", caption: "1. The organizer posts an event" },
+        { src: "/projects/case/bookedez/pending-requests.webp", width: 750, height: 1728, alt: "BookedEZ's Pending requests screen: an Art Gallery Opening with 26 artist requests", caption: "2. Artists send requests, all in one list" },
+        { src: "/projects/case/bookedez/artist-details.webp", width: 750, height: 1788, alt: "BookedEZ's Artist details screen: availability, rate per event, bio, social links and a Book now button", caption: "3. The organizer opens an artist and books" },
+      ],
+    },
     description: "How I designed BookedEZ's full dark-mode mobile app (profiles, membership tiers and the booking flow). $10K+ was paid out to artists and organizers in under a month, with 100+ downloads in the first month.",
   },
 ];

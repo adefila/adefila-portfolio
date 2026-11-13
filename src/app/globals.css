@@ -1690,6 +1690,16 @@ html[data-lang-pending] main > * { opacity: 0; }
 .cs-quote figcaption, .cs-video figcaption { margin-top: 20px; font-family: var(--font-inter); font-size: 14px; color: var(--fg-secondary); }
 .cs-quote figcaption strong, .cs-video figcaption strong { color: var(--fg); font-weight: 600; margin-right: 8px; }
 .cs-video { margin: 64px 0 0; max-width: 760px; }
+.cs-screens { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; margin-top: 64px; }
+.cs-screen { aspect-ratio: 9 / 17; overflow: hidden; border: 1px solid rgba(var(--ink), 0.14); background: #0e0e10; }
+.cs-screen img { display: block; width: 100%; height: auto; }
+.cs-screens figcaption { margin-top: 14px; font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--fg-secondary); }
+@media (max-width: 900px) { .cs-screens { grid-template-columns: minmax(0, 1fr); max-width: 360px; } }
+.cs-result-split { margin-top: 48px; align-items: center; }
+.cs-result-split .cs-metric { margin-top: 0; }
+.cs-video-side { margin: 0; max-width: 360px; justify-self: end; width: 100%; }
+.cs-video-side video { max-height: 560px; }
+@media (max-width: 900px) { .cs-video-side { justify-self: start; margin-top: 40px; } }
 .cs-video video { display: block; width: 100%; max-height: 70vh; background: #000; border: 1px solid rgba(var(--ink), 0.14); }
 
 /* ── /local-business: the systems film (SystemsReel) ── */

@@ -117,11 +117,22 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
         <div className="cs-wrap">
           <SpecLabel text="The result" />
           <h2 id="cs-result" className="cs-h2 cs-sr">The result</h2>
+          <div className={c.video ? "cs-split cs-result-split" : undefined}>
           <div className="cs-metric" data-reveal>
             <div className="cs-metric-n">
               {c.metric.value !== undefined ? <CountUp to={c.metric.value} prefix={c.metric.prefix} suffix={c.metric.suffix} /> : c.metric.text}
             </div>
             <p>{c.metric.label}</p>
+          </div>
+
+          {c.video && (
+            <figure className="cs-video cs-video-side" data-reveal>
+              <video controls preload="none" poster={c.video.poster} playsInline aria-label={`Video testimonial from ${c.video.by}, ${c.video.role}`}>
+                <source src={c.video.src} type="video/mp4" />
+              </video>
+              <figcaption><strong>{c.video.by}</strong> <span>{c.video.role}</span></figcaption>
+            </figure>
+          )}
           </div>
 
           {c.quote && (
@@ -131,16 +142,43 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
             </figure>
           )}
 
-          {c.video && (
-            <figure className="cs-video" data-reveal>
-              <video controls preload="none" poster={c.video.poster} playsInline aria-label={`Video testimonial from ${c.video.by}, ${c.video.role}`}>
-                <source src={c.video.src} type="video/mp4" />
-              </video>
-              <figcaption><strong>{c.video.by}</strong> <span>{c.video.role}</span></figcaption>
-            </figure>
-          )}
         </div>
       </section>
+
+      {c.process && (
+        <>
+          <div className="spec-rule" aria-hidden="true" />
+          <section className="cs-section" aria-labelledby="cs-process">
+            <div className="cs-wrap cs-split">
+              <div>
+                <SpecLabel text="The process" />
+                <h2 id="cs-process" className="cs-h2">{c.process.title}</h2>
+                <p className="cs-prose-line" data-reveal>{c.process.intro}</p>
+              </div>
+              <div className="cs-prose" data-reveal>
+                {c.process.steps.map((s) => (
+                  <div key={s.title} style={{ marginBottom: 28 }}>
+                    <p className="cs-prose-label" style={{ marginBottom: 6 }}>{s.title}</p>
+                    <p>{s.text}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+            {c.process.shots && (
+              <div className="cs-wrap cs-screens" data-reveal>
+                {c.process.shots.map((s) => (
+                  <figure key={s.src}>
+                    <div className="cs-screen">
+                      <Image src={s.src} alt={s.alt} width={s.width} height={s.height} sizes="(max-width: 900px) 80vw, 340px" />
+                    </div>
+                    <figcaption>{s.caption}</figcaption>
+                  </figure>
+                ))}
+              </div>
+            )}
+          </section>
+        </>
+      )}
 
       {c.shots.length > 0 && (
         <>
