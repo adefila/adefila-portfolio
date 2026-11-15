@@ -79,7 +79,8 @@ const CSS = `
 
   @media (max-width: 900px) {
     .ab-grid { grid-template-columns: minmax(0, 1fr); }
-    .ab-portrait { max-width: 420px; min-height: 0; aspect-ratio: 4 / 5; }
+    .ab-portrait { align-self: start; width: 100%; max-width: 420px; min-height: 0; }
+    .ab-photo { position: relative; inset: auto; width: 100%; aspect-ratio: 4 / 5; }
     .ab-block { margin-top: 72px; }
     .ab-job { grid-template-columns: minmax(0, 1fr); gap: 6px; }
     .ab-stack { grid-template-columns: repeat(2, minmax(0, 1fr)); }
