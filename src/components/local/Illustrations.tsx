@@ -150,7 +150,6 @@ export function SiteIllustration() {
             </div>
           </div>
         </div>
-        <span className="il-glare" />
       </div>
     </div>
   );

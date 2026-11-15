@@ -49,7 +49,7 @@ function UpworkCard() {
         {/* Job Success Score */}
         <div>
           <p style={{
-            fontFamily: "var(--font-poppins)", fontWeight: 800,
+            fontFamily: "var(--font-poppins)", fontWeight: 400,
             fontSize: "clamp(52px, 7vw, 72px)",
             lineHeight: 1, color: "var(--fg)", letterSpacing: "-3px",
             marginBottom: 4,
@@ -209,7 +209,7 @@ export default function Testimonials() {
             <p
               style={{
                 fontFamily: "var(--font-satoshi)",
-                fontWeight: 700,
+                fontWeight: 400,
                 fontSize: "clamp(64px, 8vw, 96px)",
                 lineHeight: 1,
                 color: "var(--white)",
@@ -246,7 +246,7 @@ export default function Testimonials() {
                 preload="none"
                 style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }}
               />
-              <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(0,0,0,0.65) 30%, rgba(0,0,0,0.12) 100%)" }} />
+              <div style={{ position: "absolute", inset: 0, background: "rgba(0,0,0,0.45)" }} />
               <div style={{ position: "relative", zIndex: 1, padding: 32, display: "flex", flexDirection: "column", justifyContent: "space-between", height: "100%", minHeight: "inherit", pointerEvents: "none" }}>
                 <span style={{
                   display: "inline-block", alignSelf: "flex-start",

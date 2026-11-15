@@ -326,10 +326,10 @@ export default function HowIWork() {
                   {step.n}
                 </span>
                 <h3 style={{
-                  fontFamily: "var(--font-poppins)", fontWeight: 700,
-                  fontSize: "clamp(18px, 2vw, 26px)", letterSpacing: "-0.4px",
-                  textTransform: "uppercase", color: fg, marginBottom: 16,
-                  lineHeight: 1.1, transition: `color ${TRANS}`,
+                  fontFamily: "var(--font-poppins)", fontWeight: 600,
+                  fontSize: "clamp(17px, 1.6vw, 22px)", letterSpacing: "-0.025em",
+                  color: fg, marginBottom: 16,
+                  lineHeight: 1.2, transition: `color ${TRANS}`,
                 }}>
                   {step.title}
                 </h3>

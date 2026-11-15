@@ -1,6 +1,4 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
@@ -12,7 +10,6 @@ import { useLang } from "@/context/LangContext";
 // Without a logo, the client's name is shown as a wordmark.
 type Client = { name: string; logo?: string; aspect?: number };
 
-// Cell i shows CLIENTS[i], then [i + 3], then [i + 6]... wrapping round at the end. So the first three are what shows first.
 const CLIENTS: Client[] = [
   { name: "DLP Africa", logo: "/clients/dlp-africa.svg", aspect: 2.08 },
   { name: "The Initial", logo: "/clients/the-initial.svg", aspect: 3.37 },
@@ -32,67 +29,37 @@ const LOGO_AREA = 3920;
 const LOGO_MAX_HEIGHT = 46;
 const logoHeight = (aspect: number) => Math.round(Math.min(LOGO_MAX_HEIGHT, Math.sqrt(LOGO_AREA / aspect)));
 
-const CELLS = 3;
-const SETS = Math.ceil(CLIENTS.length / CELLS);
-// Every few seconds all four cells change in a wave, first to last, each a
-// beat after the one before it.
-const WAVE_EVERY_MS = 3200;
-const WAVE_STAGGER_MS = 160;
-const SPRING = [0.22, 1, 0.36, 1] as [number, number, number, number];
-
 // A client's logo (with its colour version that fades in on hover), or its name as a wordmark when it has no logo.
 function ClientMark({ client }: { client: Client }) {
   return (
     client.logo && client.aspect ? (
-        <span className="clients-logo-wrap">
-          <Image
-            src={client.logo}
-            alt={client.name}
-            unoptimized
-            className="clients-logo"
-            width={Math.round(logoHeight(client.aspect) * client.aspect)}
-            height={logoHeight(client.aspect)}
-          />
-          <Image
-            src={client.logo.replace(/\.svg$/, "-color.svg")}
-            alt=""
-            aria-hidden="true"
-            unoptimized
-            className="clients-logo-color"
-            width={Math.round(logoHeight(client.aspect) * client.aspect)}
-            height={logoHeight(client.aspect)}
-          />
-        </span>
-      ) : (
-        <span className="clients-wordmark">{client.name}</span>
-      )
+      <span className="clients-logo-wrap">
+        <Image
+          src={client.logo}
+          alt={client.name}
+          unoptimized
+          className="clients-logo"
+          width={Math.round(logoHeight(client.aspect) * client.aspect)}
+          height={logoHeight(client.aspect)}
+        />
+        <Image
+          src={client.logo.replace(/\.svg$/, "-color.svg")}
+          alt=""
+          aria-hidden="true"
+          unoptimized
+          className="clients-logo-color"
+          width={Math.round(logoHeight(client.aspect) * client.aspect)}
+          height={logoHeight(client.aspect)}
+        />
+      </span>
+    ) : (
+      <span className="clients-wordmark">{client.name}</span>
+    )
   );
 }
 
 export default function ClientGrid() {
   const { t } = useLang();
-  const reducedMotion = useReducedMotion();
-  const [sets, setSets] = useState<number[]>(() => Array(CELLS).fill(0));
-  // The cell under the cursor holds its logo so the colour hover isn't swapped away
-  const hoveredCell = useRef<number | null>(null);
-
-  useEffect(() => {
-    if (reducedMotion) return;
-    const timers: ReturnType<typeof setTimeout>[] = [];
-    const id = setInterval(() => {
-      timers.length = 0; // the last wave's timers have all fired by now
-      for (let cell = 0; cell < CELLS; cell++) {
-        timers.push(setTimeout(() => {
-          if (cell === hoveredCell.current) return;
-          setSets((prev) => prev.map((s, i) => (i === cell ? (s + 1) % SETS : s)));
-        }, cell * WAVE_STAGGER_MS));
-      }
-    }, WAVE_EVERY_MS);
-    return () => {
-      clearInterval(id);
-      timers.forEach(clearTimeout);
-    };
-  }, [reducedMotion]);
 
   return (
     <section aria-labelledby="clients-label" style={{ width: "100%", paddingTop: 48, paddingBottom: 32 }} className="clients-section">
@@ -114,45 +81,25 @@ export default function ClientGrid() {
         </p>
 
         <ul className="clients-grid" style={{ listStyle: "none", padding: 0, margin: 0 }}>
-          {sets.map((set, cell) => {
-            const client = CLIENTS[(cell + set * CELLS) % CLIENTS.length];
-            return (
-              <li
-                key={cell}
-                className="clients-cell"
-                data-reveal
-                onMouseEnter={() => { hoveredCell.current = cell; }}
-                onMouseLeave={() => { hoveredCell.current = null; }}
-              >
-                <AnimatePresence mode="popLayout" initial={false}>
-                  <motion.span
-                    key={client.name}
-                    initial={{ y: "60%", opacity: 0, filter: "blur(6px)" }}
-                    animate={{ y: "0%", opacity: 1, filter: "blur(0px)" }}
-                    exit={{ y: "-60%", opacity: 0, filter: "blur(6px)" }}
-                    transition={{ duration: 0.6, ease: SPRING }}
-                    style={{ display: "flex", alignItems: "center", justifyContent: "center", width: "100%", height: "100%" }}
-                  >
-                    {CASE_STUDIES[client.name] ? (
-                      <Link
-                        href={CASE_STUDIES[client.name]}
-                        className="clients-study"
-                        data-cursor={t("clients.study")}
-                        aria-label={`${client.name}: ${t("clients.study")}`}
-                      >
-                        <ClientMark client={client} />
-                        <span className="clients-study-label" aria-hidden="true">
-                          {t("clients.study")} <ArrowUpRight size={11} strokeWidth={2} />
-                        </span>
-                      </Link>
-                    ) : (
-                      <ClientMark client={client} />
-                    )}
-                  </motion.span>
-                </AnimatePresence>
-              </li>
-            );
-          })}
+          {CLIENTS.map((client) => (
+            <li key={client.name} className="clients-cell" data-reveal>
+              {CASE_STUDIES[client.name] ? (
+                <Link
+                  href={CASE_STUDIES[client.name]}
+                  className="clients-study"
+                  data-cursor={t("clients.study")}
+                  aria-label={`${client.name}: ${t("clients.study")}`}
+                >
+                  <ClientMark client={client} />
+                  <span className="clients-study-label" aria-hidden="true">
+                    {t("clients.study")} <ArrowUpRight size={11} strokeWidth={2} />
+                  </span>
+                </Link>
+              ) : (
+                <span className="clients-plain"><ClientMark client={client} /></span>
+              )}
+            </li>
+          ))}
         </ul>
       </div>
     </section>

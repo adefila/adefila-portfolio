@@ -2,7 +2,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useRef, useState, useMemo } from "react";
 import MagneticButton from "./MagneticButton";
 import { useLang } from "@/context/LangContext";
 import { trackEvent } from "@/lib/gtag";
@@ -82,6 +82,10 @@ export default function Navbar({ hide = [] }: { hide?: string[] }) {
   const [active, setActive] = useState("");
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const [marker, setMarker] = useState<{ left: number; width: number } | null>(null);
+  const [time, setTime] = useState("");
+  const linksRef = useRef<HTMLDivElement>(null);
   const { t } = useLang();
   // Pages built from the homepage sections scroll in place; elsewhere (case studies, 404)
   // the section links lead back to home.
@@ -96,6 +100,8 @@ export default function Navbar({ hide = [] }: { hide?: string[] }) {
   useEffect(() => {
     const onScroll = () => {
       setScrolled(window.scrollY > 60);
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      setProgress(max > 0 ? Math.min(1, window.scrollY / max) : 0);
       // getBoundingClientRect is accurate regardless of lazy-loaded layout shifts
       const trigger = window.innerHeight * 0.45;
       let current = "hero";
@@ -118,10 +124,31 @@ export default function Navbar({ hide = [] }: { hide?: string[] }) {
     };
   }, []);
 
+  // The time where I am, so a visitor knows when I am awake. It is filled in after the page loads, so it never mismatches the pre-built HTML.
+  useEffect(() => {
+    const fmt = new Intl.DateTimeFormat("en-GB", { timeZone: "Africa/Lagos", hour: "2-digit", minute: "2-digit", hour12: false });
+    const tick = () => setTime(fmt.format(new Date()));
+    tick();
+    const id = window.setInterval(tick, 20_000);
+    return () => window.clearInterval(id);
+  }, []);
+
+  // The purple marker under the link of the section being read slides to it.
+  useEffect(() => {
+    const place = () => {
+      const el = linksRef.current?.querySelector<HTMLElement>('[data-current="true"]');
+      setMarker(el ? { left: el.offsetLeft + 12, width: el.offsetWidth - 24 } : null);
+    };
+    place();
+    window.addEventListener("resize", place);
+    return () => window.removeEventListener("resize", place);
+  }, [active, navLinks]);
+
   // Lock body scroll when menu is open
   useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "";
-    return () => { document.body.style.overflow = ""; };
+    document.body.toggleAttribute("data-menu-open", menuOpen);
+    return () => { document.body.style.overflow = ""; document.body.removeAttribute("data-menu-open"); };
   }, [menuOpen]);
 
   const close = () => setMenuOpen(false);
@@ -187,15 +214,17 @@ export default function Navbar({ hide = [] }: { hide?: string[] }) {
           </Link>
 
           {/* Desktop nav links */}
-          <div className="nav-links" style={{ display: "flex", gap: 2 }}>
-            {navLinks.map(({ label, href }) => {
+          <div className="nav-links" ref={linksRef} style={{ display: "flex", gap: 2, position: "relative" }}>
+            {navLinks.map(({ label, href }, n) => {
               const id = href.split("#")[1];
               const isActive = active === id;
               return (
                 <a
                   key={href}
                   href={href}
-                  className={`nav-link-anim${isActive ? " is-active" : ""}`}
+                  className={`nav-link-anim${isActive ? " on" : ""}`}
+                  data-current={isActive ? "true" : undefined}
+                  aria-current={isActive ? "true" : undefined}
                   style={{
                     fontFamily: "var(--font-inter)",
                     fontWeight: 600,
@@ -207,9 +236,11 @@ export default function Navbar({ hide = [] }: { hide?: string[] }) {
                     borderRadius: 0,
                     background: "transparent",
                     transition: "color 0.2s",
-                    display: "inline-block",
+                    display: "inline-flex",
+                    alignItems: "center",
                   }}
                 >
+                  <span className="nav-n" aria-hidden="true">{String(n + 1).padStart(2, "0")}</span>
                   <span className="nav-link-clip">
                     <span className="nav-link-inner" data-text={label}>
                       {label}
@@ -218,7 +249,10 @@ export default function Navbar({ hide = [] }: { hide?: string[] }) {
                 </a>
               );
             })}
+            <span className="nav-marker" aria-hidden="true" style={marker ? { left: marker.left, width: marker.width, opacity: 1 } : { opacity: 0 }} />
           </div>
+
+          {time && <span className="nav-time" title="Local time in Lagos, Nigeria">Lagos <b>{time}</b></span>}
 
           {/* Desktop CTA */}
           <MagneticButton
@@ -257,6 +291,7 @@ export default function Navbar({ hide = [] }: { hide?: string[] }) {
           >
             <HamburgerIcon open={menuOpen} />
           </button>
+          <span className="nav-progress" aria-hidden="true" style={{ transform: `scaleX(${progress})`, opacity: menuOpen ? 0 : 1 }} />
         </div>
       </motion.nav>
 
@@ -301,18 +336,19 @@ export default function Navbar({ hide = [] }: { hide?: string[] }) {
                       style={{
                         display: "block",
                         fontFamily: "var(--font-poppins)",
-                        fontWeight: 700,
-                        fontSize: "clamp(28px, 8vw, 52px)",
-                        letterSpacing: "-1px",
-                        textTransform: "uppercase",
-                        color: isActive ? "rgba(255,255,255,1)" : "rgba(255,255,255,0.4)",
+                        fontWeight: 400,
+                        fontSize: "clamp(28px, 8vw, 48px)",
+                        letterSpacing: "-0.03em",
+                        color: isActive ? "rgba(255,255,255,1)" : "rgba(255,255,255,0.45)",
                         textDecoration: "none",
                         padding: "20px 0",
                         lineHeight: 1,
                         transition: "color 0.2s",
                       }}
+                      className="nav-big"
                     >
-                      {label}
+                      <span className="nav-big-n" aria-hidden="true">{String(i + 1).padStart(2, "0")}</span>
+                      <span className="nav-big-t">{label}</span>
                     </a>
                   </motion.div>
                 );
@@ -367,7 +403,7 @@ export default function Navbar({ hide = [] }: { hide?: string[] }) {
                 color: "rgba(255,255,255,0.2)",
               }}
             >
-              SAMUEL ADEFILA · FRAMER DEVELOPER
+              {time ? `Lagos ${time}` : ""}
             </motion.p>
           </motion.div>
         )}

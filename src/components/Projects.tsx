@@ -276,7 +276,7 @@ const WL_CSS = `
   .wl-list:hover .wl-row { opacity: 0.28; }
   .wl-list:hover .wl-row:hover, .wl-list .wl-row:focus-visible { opacity: 1; }
   .wl-n { font-family: var(--font-mono); font-size: 12px; color: var(--fg-muted); }
-  .wl-t { font-family: var(--font-poppins); font-weight: 600; font-size: clamp(18px, 2.6vw, 34px); letter-spacing: -0.03em; line-height: 1; text-transform: uppercase; transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), color 0.2s ease; }
+  .wl-t { font-family: var(--font-poppins); font-weight: 400; font-size: clamp(18px, 2vw, 26px); letter-spacing: -0.03em; line-height: 1.1; transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), color 0.2s ease; }
   .wl-row:hover .wl-t, .wl-row:focus-visible .wl-t { transform: translateX(14px); color: var(--accent-purple); }
   .wl-k { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--fg-secondary); display: flex; gap: 10px; align-items: baseline; white-space: nowrap; }
   .wl-k i { font-style: normal; font-family: var(--font-mono); text-transform: none; letter-spacing: 0; color: var(--accent-purple); }

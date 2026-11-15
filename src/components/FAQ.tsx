@@ -79,7 +79,7 @@ export default function FAQ() {
                       <span style={{ fontFamily: "var(--font-mono)", fontSize: 11, letterSpacing: "0.5px", color: isOpen ? "var(--accent-purple)" : "var(--fg-muted)", flexShrink: 0, transition: "color 0.2s", fontVariantNumeric: "tabular-nums", minWidth: 20 }}>
                         {String(n + 1).padStart(2, "0")}
                       </span>
-                      <span style={{ fontFamily: "var(--font-inter)", fontWeight: 600, fontSize: 13, letterSpacing: "0.3px", color: isOpen ? "var(--accent-purple)" : "var(--fg)", textTransform: "uppercase", transition: "color 0.2s" }}>
+                      <span style={{ fontFamily: "var(--font-inter)", fontWeight: 400, fontSize: 16, letterSpacing: "-0.01em", color: isOpen ? "var(--accent-purple)" : "var(--fg)", transition: "color 0.2s" }}>
                         {faq.q}
                       </span>
                     </div>

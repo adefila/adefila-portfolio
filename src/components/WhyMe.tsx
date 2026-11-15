@@ -154,7 +154,7 @@ const WM_CSS = `
   .wm-stat { display: flex; flex-direction: column; gap: 8px; padding: 28px 32px; }
   .wm-stat:first-child { padding-left: 0; }
   .wm-stat + .wm-stat { border-left: 1px solid rgba(var(--ink), 0.14); }
-  .wm-stat-num { font-family: var(--font-satoshi); font-weight: 600; font-size: clamp(36px, 4.6vw, 60px); letter-spacing: -0.04em; line-height: 1; color: var(--fg); }
+  .wm-stat-num { font-family: var(--font-satoshi); font-weight: 400; font-size: clamp(36px, 4.6vw, 60px); letter-spacing: -0.04em; line-height: 1; color: var(--fg); }
   .wm-stat-label { font-family: var(--font-inter); font-size: 12px; letter-spacing: 0.04em; text-transform: uppercase; line-height: 1.4; color: var(--fg-secondary); }
   .wm-benefits { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0 32px; }
   .wm-benefit { padding: 32px 0 8px; }

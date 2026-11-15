@@ -116,19 +116,18 @@ export default function Pricing({ prices, retainer = true }: { prices?: [number,
 
             <p style={{
               fontFamily: "var(--font-poppins)",
-              fontWeight: 700,
-              fontSize: 20,
-              letterSpacing: "-0.5px",
+              fontWeight: 400,
+              fontSize: 18,
+              letterSpacing: "-0.02em",
               color: plan.featured ? "#fff" : "var(--fg)",
               marginBottom: 8,
-              textTransform: "uppercase",
             }}>
               {plan.name}
             </p>
 
             <p style={{
               fontFamily: "var(--font-poppins)",
-              fontWeight: 700,
+              fontWeight: 400,
               fontSize: 28,
               letterSpacing: "-1px",
               color: plan.featured ? "#fff" : "var(--fg)",

@@ -4,7 +4,7 @@ import type { Entry } from "./types";
 // Order of each row: en, fr, es, de, pt, zh, ja, nl, no.
 export const COPY_B: Record<string, Entry> = {
   // ── FAQ ──
-  "faq.q0": ["DO I NEED A NEW WEBSITE?", "AI-JE BESOIN D'UN NOUVEAU SITE ?", "¿NECESITO UNA WEB NUEVA?", "BRAUCHE ICH EINE NEUE WEBSITE?", "PRECISO DE UM SITE NOVO?", "我需要新网站吗？", "新しいサイトは必要ですか？", "HEB IK EEN NIEUWE WEBSITE NODIG?", "TRENGER JEG EN NY NETTSIDE?"],
+  "faq.q0": ["Do i need a new website?", "Ai-je besoin d'un nouveau site ?", "¿Necesito una web nueva?", "Brauche ich eine neue Website?", "Preciso de um site novo?", "我需要新网站吗？", "新しいサイトは必要ですか？", "Heb ik een nieuwe website nodig?", "Trenger jeg en ny nettside?"],
   "faq.a0": [
     "Not always. Many businesses only need booking, reminders or a quote form added to the site they already have. I'll tell you honestly on the call.",
     "Pas toujours. Beaucoup d'entreprises ont seulement besoin d'ajouter réservation, rappels ou formulaire de devis à leur site actuel. Je vous le dirai honnêtement pendant l'appel.",
@@ -16,7 +16,7 @@ export const COPY_B: Record<string, Entry> = {
     "Niet altijd. Veel bedrijven hebben alleen afspraken, herinneringen of een offerteformulier nodig op de site die ze al hebben. Ik vertel het u eerlijk tijdens het gesprek.",
     "Ikke alltid. Mange bedrifter trenger bare bestilling, påminnelser eller et tilbudsskjema på nettsiden de allerede har. Jeg sier det ærlig i samtalen.",
   ],
-  "faq.q1": ["WILL IT WORK WITH WHAT I ALREADY USE?", "FONCTIONNERA-T-IL AVEC CE QUE J'UTILISE DÉJÀ ?", "¿FUNCIONARÁ CON LO QUE YA USO?", "FUNKTIONIERT ES MIT DEM, WAS ICH SCHON NUTZE?", "FUNCIONA COM O QUE JÁ USO?", "能和我现有的工具配合吗？", "今使っているものと連携できますか？", "WERKT HET MET WAT IK AL GEBRUIK?", "FUNGERER DET MED DET JEG BRUKER FRA FØR?"],
+  "faq.q1": ["Will it work with what i already use?", "Fonctionnera-t-il avec ce que j'utilise déjà ?", "¿Funcionará con lo que ya uso?", "Funktioniert es mit dem, was ich schon nutze?", "Funciona com o que já uso?", "能和我现有的工具配合吗？", "今使っているものと連携できますか？", "Werkt het met wat ik al gebruik?", "Fungerer det med det jeg bruker fra før?"],
   "faq.a1": [
     "Where possible, yes. I build around your current calendar, email and phone, so your team doesn't have to learn a whole new way of working.",
     "Dans la mesure du possible, oui. Je construis autour de votre agenda, votre e-mail et votre téléphone actuels, pour que votre équipe n'ait pas à tout réapprendre.",
@@ -28,7 +28,7 @@ export const COPY_B: Record<string, Entry> = {
     "Waar mogelijk, ja. Ik bouw rond uw huidige agenda, e-mail en telefoon, zodat uw team niet een compleet nieuwe manier van werken hoeft te leren.",
     "Der det er mulig, ja. Jeg bygger rundt kalenderen, e-posten og telefonen dere bruker nå, så teamet ikke må lære en helt ny arbeidsmåte.",
   ],
-  "faq.q2": ["DO I NEED TO BE TECHNICAL?", "FAUT-IL ÊTRE TECHNIQUE ?", "¿HACE FALTA SABER DE TECNOLOGÍA?", "MUSS ICH TECHNISCH VERSIERT SEIN?", "PRECISO ENTENDER DE TECNOLOGIA?", "我需要懂技术吗？", "技術的な知識は必要ですか？", "MOET IK TECHNISCH ZIJN?", "MÅ JEG VÆRE TEKNISK?"],
+  "faq.q2": ["Do i need to be technical?", "Faut-il être technique ?", "¿Hace falta saber de tecnología?", "Muss ich technisch versiert sein?", "Preciso entender de tecnologia?", "我需要懂技术吗？", "技術的な知識は必要ですか？", "Moet ik technisch zijn?", "Må jeg være teknisk?"],
   "faq.a2": [
     "No. Everything is set up for you, and you get a short video walkthrough. If you can use email, you can use this.",
     "Non. Tout est configuré pour vous, et vous recevez une courte vidéo explicative. Si vous savez utiliser l'e-mail, vous saurez l'utiliser.",
@@ -40,7 +40,7 @@ export const COPY_B: Record<string, Entry> = {
     "Nee. Alles wordt voor u ingericht en u krijgt een korte uitlegvideo. Als u e-mail kunt gebruiken, kunt u dit ook.",
     "Nei. Alt settes opp for deg, og du får en kort videogjennomgang. Kan du bruke e-post, kan du bruke dette.",
   ],
-  "faq.q3": ["HOW LONG DOES IT TAKE?", "COMBIEN DE TEMPS CELA PREND-IL ?", "¿CUÁNTO TARDA?", "WIE LANGE DAUERT ES?", "QUANTO TEMPO LEVA?", "需要多长时间？", "どのくらいかかりますか？", "HOE LANG DUURT HET?", "HVOR LENGE TAR DET?"],
+  "faq.q3": ["How long does it take?", "Combien de temps cela prend-il ?", "¿Cuánto tarda?", "Wie lange dauert es?", "Quanto tempo leva?", "需要多长时间？", "どのくらいかかりますか？", "Hoe lang duurt het?", "Hvor lenge tar det?"],
   "faq.a3": [
     "Two weeks from the day we start to the day it's live. You see it working before your customers do.",
     "Deux semaines entre le début et la mise en ligne. Vous le voyez fonctionner avant vos clients.",
@@ -52,7 +52,7 @@ export const COPY_B: Record<string, Entry> = {
     "Twee weken, vanaf de dag dat we starten tot de dag dat het live is. U ziet het werken vóór uw klanten.",
     "To uker fra vi starter til det er live. Du ser det fungere før kundene dine gjør det.",
   ],
-  "faq.q4": ["HOW DO I PAY?", "COMMENT PAYER ?", "¿CÓMO SE PAGA?", "WIE BEZAHLE ICH?", "COMO FUNCIONA O PAGAMENTO?", "如何付款？", "支払いはどうなりますか？", "HOE BETAAL IK?", "HVORDAN BETALER JEG?"],
+  "faq.q4": ["How do i pay?", "Comment payer ?", "¿Cómo se paga?", "Wie bezahle ich?", "Como funciona o pagamento?", "如何付款？", "支払いはどうなりますか？", "Hoe betaal ik?", "Hvordan betaler jeg?"],
   "faq.a4": [
     "We agree a fixed price on the call, before any work starts. You pay 70% to start and the remaining 30% when it's live. No hourly billing and no surprises.",
     "Nous convenons d'un prix fixe pendant l'appel, avant le début du travail. Vous payez 70 % au démarrage et les 30 % restants à la mise en ligne. Pas de facturation à l'heure, pas de surprise.",
@@ -64,7 +64,7 @@ export const COPY_B: Record<string, Entry> = {
     "We spreken tijdens het gesprek een vaste prijs af, voordat er iets begint. U betaalt 70% bij de start en de resterende 30% wanneer het live is. Geen uurtarief en geen verrassingen.",
     "Vi avtaler en fastpris i samtalen, før noe arbeid starter. Du betaler 70 % ved oppstart og de resterende 30 % når det er live. Ingen timefakturering og ingen overraskelser.",
   ],
-  "faq.q5": ["WHAT IF I NEED CHANGES LATER?", "ET SI JE VEUX DES CHANGEMENTS PLUS TARD ?", "¿Y SI NECESITO CAMBIOS MÁS ADELANTE?", "WAS, WENN ICH SPÄTER ÄNDERUNGEN BRAUCHE?", "E SE EU PRECISAR DE MUDANÇAS DEPOIS?", "以后需要修改怎么办？", "後から変更したくなったら？", "WAT ALS IK LATER WIJZIGINGEN WIL?", "HVA OM JEG TRENGER ENDRINGER SENERE?"],
+  "faq.q5": ["What if i need changes later?", "Et si je veux des changements plus tard ?", "¿Y si necesito cambios más adelante?", "Was, wenn ich später Änderungen brauche?", "E se eu precisar de mudanças depois?", "以后需要修改怎么办？", "後から変更したくなったら？", "Wat als ik later wijzigingen wil?", "Hva om jeg trenger endringer senere?"],
   "faq.a5": [
     "Just message me. Small changes are quick, and ongoing support is available if you'd like someone looking after it every month.",
     "Écrivez-moi simplement. Les petits changements sont rapides, et un suivi mensuel est possible si vous souhaitez que quelqu'un s'en occupe.",
@@ -90,8 +90,8 @@ export const COPY_B: Record<string, Entry> = {
 
   // ── Pricing ──
   "pricing.eyebrow": ["WHAT IT COSTS", "COMBIEN ÇA COÛTE", "CUÁNTO CUESTA", "WAS ES KOSTET", "QUANTO CUSTA", "价格", "料金", "WAT HET KOST", "HVA DET KOSTER"],
-  "pricing.h2a": ["FIXED PRICE.", "PRIX FIXE.", "PRECIO FIJO.", "FESTPREIS.", "PREÇO FIXO.", "固定价格。", "固定価格。", "VASTE PRIJS.", "FASTPRIS."],
-  "pricing.h2b": ["NO SURPRISES.", "ZÉRO SURPRISE.", "SIN SORPRESAS.", "KEINE ÜBERRASCHUNGEN.", "SEM SURPRESAS.", "没有意外。", "追加費用なし。", "GEEN VERRASSINGEN.", "INGEN OVERRASKELSER."],
+  "pricing.h2a": ["Fixed price.", "Prix fixe.", "Precio fijo.", "Festpreis.", "Preço fixo.", "固定价格。", "固定価格。", "Vaste prijs.", "Fastpris."],
+  "pricing.h2b": ["No surprises.", "Zéro surprise.", "Sin sorpresas.", "Keine Überraschungen.", "Sem surpresas.", "没有意外。", "追加費用なし。", "Geen verrassingen.", "Ingen overraskelser."],
   "pricing.desc": [
     "Every setup has one fixed price, agreed on a free call before any work starts. You pay 70% to start and 30% when it's live. No hourly billing and no monthly fees you didn't ask for.",
     "Chaque mise en place a un prix fixe, convenu lors d'un appel gratuit avant le début du travail. Vous payez 70 % au démarrage et 30 % à la mise en ligne. Pas de facturation à l'heure, pas d'abonnement non demandé.",
@@ -196,7 +196,7 @@ export const COPY_B: Record<string, Entry> = {
   "pricing.addon3": ["Google Business Profile tune-up", "Optimisation de la fiche Google Business", "Puesta a punto del perfil de Google Business", "Google-Unternehmensprofil optimieren", "Ajuste do perfil do Google Meu Negócio", "Google 商家资料优化", "Googleビジネスプロフィールの最適化", "Google Bedrijfsprofiel optimaliseren", "Optimalisering av Google Bedriftsprofil"],
 
   // ── Contact form ──
-  "contact.h1": ["WANT FEWER MISSED CALLS?", "MOINS D'APPELS MANQUÉS ?", "¿QUIERES MENOS LLAMADAS PERDIDAS?", "WENIGER VERPASSTE ANRUFE?", "QUER MENOS CHAMADAS PERDIDAS?", "想少漏接电话吗？", "不在着信を減らしませんか？", "MINDER GEMISTE TELEFOONTJES?", "VIL DU HA FÆRRE UBESVARTE ANROP?"],
+  "contact.h1": ["Want fewer missed calls?", "Moins d'appels manqués ?", "¿Quieres menos llamadas perdidas?", "Weniger verpasste Anrufe?", "Quer menos chamadas perdidas?", "想少漏接电话吗？", "不在着信を減らしませんか？", "Minder gemiste telefoontjes?", "Vil du ha færre ubesvarte anrop?"],
   "contact.h1b": ["", "", "", "", "", "", "", "", ""],
   "contact.desc": [
     "Tell me how bookings and enquiries work today and I'll come back within 24 hours with an honest take on what would help, and what it would cost.",

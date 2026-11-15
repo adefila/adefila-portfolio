@@ -1,123 +1,25 @@
 "use client";
-import { motion, AnimatePresence } from "framer-motion";
-import { useState, useEffect } from "react";
-import { ChevronLeft, ChevronRight, X, Download } from "lucide-react";
+import Image from "next/image";
+import { ArrowRight, Download } from "lucide-react";
 import MagneticButton from "./MagneticButton";
 import Term, { TERM_CSS } from "./Term";
+import Signature from "./Signature";
 import { useLang } from "@/context/LangContext";
 import SpecLabel from "./SpecLabel";
 
-const PHOTO_W = 380;
-const PHOTO_H = 300;
-const PHOTO_GAP = 16;
-
-const techStacks = ["Figma", "Framer", "Webflow", "WordPress", "Shopify", "React", "Claude"];
-
-// `points` are optional: a few short lines about what the role involved.
-const workHistory: { period: string; role: string; company: string; location: string; points?: string[] }[] = [
-  {
-    period: "2020 – Present", role: "Freelance Web Developer & Framer Designer", company: "Self-employed", location: "Remote",
-    points: [
-      "50+ websites for founders, agencies and small businesses.",
-      "Top Rated on Upwork with 100% Job Success.",
-    ],
-  },
-  {
-    period: "Sep 2025 – Oct 2026", role: "Framer Developer (Contract)", company: "Klimt and Design", location: "Los Angeles, CA. Remote",
-    points: [
-      "Turned design concepts into pixel-perfect, user-friendly websites in Framer.",
-      "Worked with designers to make sure functionality and usability matched what clients expected.",
-    ],
-  },
-  {
-    period: "Oct 2024 – Sep 2025", role: "UI/UX Designer & Project Manager (Full-time)", company: "Trust-Tai Agency", location: "Murfreesboro, TN. Remote",
-    points: [
-      "Led multidisciplinary teams on client projects spanning UI/UX design, branding and development.",
-      "Managed client communication and project timelines, delivering on time.",
-      "Introduced agile practices that made the team 25% more efficient.",
-    ],
-  },
-  {
-    period: "Oct 2024 – Jul 2025", role: "Framer Developer (Contract)", company: "Hitpay", location: "Singapore. Remote",
-    points: [
-      "Built high-fidelity prototypes in Framer to speed up user testing and developer handoff.",
-      "Worked with design and product teams to improve the experience across core payment tools.",
-      "Streamlined design workflows, cutting time-to-ship by 30%.",
-    ],
-  },
-  {
-    period: "Sep 2023 – Sep 2025", role: "Lead Product Designer (Full-time)", company: "BookedEZ LLC", location: "Atlanta, GA. Remote",
-    points: [
-      "Directed the redesign of the core booking flows, increasing conversion by 20%.",
-      "Ran user research, wireframing and usability testing for continuous product improvement.",
-      "Mentored junior designers and led design reviews across teams.",
-    ],
-  },
-  {
-    period: "Jan 2021 – Jul 2021", role: "Intern WordPress Developer", company: "Davis Enterprises", location: "United States. Remote",
-    points: [
-      "Helped build and update client websites with WordPress and Elementor.",
-      "Worked with cross-functional teams on real-world design challenges.",
-    ],
-  },
+// Everything about roles, dates, education and skills here comes from the CV (public/samuel-adefila-cv.pdf), in the CV's own words.
+// The newest role is first; the freelance work that runs through all of it is on top.
+const WORK: { period: string; role: string; company: string; place: string; win: string }[] = [
+  { period: "2020 to now", role: "Freelance web developer and Framer designer", company: "Self-employed", place: "Remote", win: "50+ websites for founders, agencies and small businesses. Top Rated on Upwork with 100% Job Success." },
+  { period: "Oct 2025 to May 2026", role: "UI/UX designer", company: "Virvly", place: "Abuja, Nigeria · Contract · Remote", win: "Built a component library covering 30+ UI elements, and launched the company's waitlist website in Framer in under two weeks." },
+  { period: "Nov 2025 to Mar 2026", role: "Framer developer", company: "Klimt and Design", place: "Los Angeles, US · Contract · Remote", win: "Delivered eight production-ready websites from Figma designs, and cut average revision rounds from three to one." },
+  { period: "Oct 2024 to Sep 2025", role: "UI/UX designer and project manager", company: "Trust-Tai Web Agency", place: "Tennessee, US · Full-time · Remote", win: "Introduced structured design handoffs that cut cross-team miscommunication by 30%, with 95% on-time delivery." },
+  { period: "Oct 2024 to Sep 2025", role: "Framer developer", company: "HitPay", place: "Singapore · Contract · Remote", win: "Designed interactive prototypes for payment and merchant dashboard workflows, improving design-to-development handoff." },
+  { period: "Sep 2023 to Aug 2025", role: "Product manager and lead product designer", company: "BookedEZ", place: "Atlanta, US · Contract · Remote", win: "Reduced booking-flow drop-off by 20% through usability testing, and late-stage rework by about 33%." },
 ];
 
-const photos = [
-  { id: 1, src: "/gallery/photo-1.jpeg" },
-  { id: 2, src: "/gallery/photo-2.jpeg" },
-  { id: 3, src: "/gallery/photo-3.jpeg" },
-  { id: 4, src: "/gallery/photo-4.jpeg" },
-  { id: 5, src: "/gallery/photo-5.jpeg" },
-];
+// The stack, packed as the path a product takes from an idea to a live site, so the list says what I can do and not only what I use.
 
-const ONE_SET_PX = photos.length * (PHOTO_W + PHOTO_GAP);
-
-const MARQUEE_CSS = `
-  @keyframes photo-marquee {
-    0%   { transform: translateX(0); }
-    100% { transform: translateX(-${ONE_SET_PX}px); }
-  }
-  .photo-strip {
-    animation: photo-marquee ${photos.length * 5}s linear infinite;
-  }
-  .photo-strip:hover {
-    animation-play-state: paused;
-  }
-  .photo-strip-img {
-    filter: grayscale(100%) contrast(1.05);
-    transition: filter 0.45s ease;
-  }
-  .photo-strip-img:hover {
-    filter: grayscale(0%) contrast(1);
-  }
-`;
-
-function TechTag({ label }: { label: string }) {
-  const [hovered, setHovered] = useState(false);
-  return (
-    <span
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      style={{
-        fontFamily: "var(--font-inter)",
-        fontWeight: 500,
-        fontSize: 11,
-        letterSpacing: "0.5px",
-        textTransform: "uppercase",
-        color: hovered ? "#fff" : "var(--fg)",
-        background: hovered ? "var(--accent-purple)" : "var(--surface)",
-        border: `1px solid ${hovered ? "var(--accent-purple)" : "rgba(var(--ink), 0.12)"}`,
-        padding: "8px 16px",
-        borderRadius: 0,
-        cursor: "default",
-        transition: "all 0.18s ease",
-        userSelect: "none",
-      }}
-    >
-      {label}
-    </span>
-  );
-}
 
 // Side projects named inside the text. Hovering a name shows a small card; no big section of their own.
 const SIDE_PROJECTS = [
@@ -126,78 +28,93 @@ const SIDE_PROJECTS = [
   { name: "MeetBot", label: "Chrome extension", stack: ["Recall.ai", "Claude AI"], href: "#" },
 ];
 
-// Three recent teams named inside the text (workHistory rows 1 to 3; row 0 is the freelance work the paragraphs are about).
-const RECENT_TEAMS = [1, 2, 3];
-
 // "Teams at {0}, {1} and {2}": the translated sentence with the hoverable names put in place of {0} {1} {2}.
 function fillSentence(template: string, nodes: React.ReactNode[]): React.ReactNode[] {
   return template.split(/\{(\d)\}/).map((part, i) => (i % 2 === 1 ? <span key={i}>{nodes[Number(part)]}</span> : part));
 }
 
-// The photo library is hidden everywhere for now: pass `gallery` to bring it back.
-export default function About({ gallery = false }: { gallery?: boolean }) {
+const RECENT = ["Klimt and Design", "Trust-Tai Web Agency", "HitPay"];
+
+const CSS = `
+  .ab-grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(32px, 6vw, 88px); align-items: stretch; margin-top: 8px; }
+  .ab-portrait { position: relative; margin: 0; min-height: 440px; }
+  .ab-photo { position: absolute; inset: 0; }
+  /* corner marks and a hairline frame, in the same language as the rest of the site */
+  .ab-photo img { object-fit: cover; object-position: top center; }
+  /* the picture fades into the page: clear at the top, darker towards the bottom until it is the page colour */
+  .ab-fade { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 32%, color-mix(in srgb, var(--bg) 62%, transparent) 68%, var(--bg) 100%); pointer-events: none; }
+  .ab-cap { position: absolute; left: 0; right: 0; bottom: 0; padding: 0 4px 6px; }
+  .ab-cap p { margin: 6px 0 0; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--fg-secondary); }
+
+  .ab-copy h2 { margin: 18px 0 0; max-width: 18ch; font-size: clamp(28px, 3.4vw, 44px); }
+  .ab-text { display: grid; gap: 16px; margin-top: 24px; font-family: var(--font-inter); font-size: 17px; line-height: 1.7; color: var(--fg-secondary); max-width: 62ch; }
+  .ab-text a { color: inherit; text-decoration: underline; text-decoration-style: dotted; text-underline-offset: 3px; }
+  .ab-facts { margin: 40px 0 0; border-top: 1px solid rgba(var(--ink), 0.14); }
+  .ab-facts div { display: grid; grid-template-columns: 110px minmax(0, 1fr); gap: 16px; padding: 12px 0; border-bottom: 1px solid rgba(var(--ink), 0.14); }
+  .ab-facts dt { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--fg-muted); padding-top: 2px; }
+  .ab-facts dd { margin: 0; font-family: var(--font-inter); font-size: 15px; line-height: 1.5; color: var(--fg); }
+  .ab-cv { margin-top: 28px; }
+
+  .ab-block { margin-top: 96px; }
+  .ab-block h3 { margin: 0; font-size: clamp(22px, 2.4vw, 30px); letter-spacing: -0.03em; line-height: 1.15; color: var(--fg); }
+  .ab-block > p { margin: 12px 0 0; max-width: 56ch; font-family: var(--font-inter); font-size: 16px; line-height: 1.6; color: var(--fg-secondary); }
+
+  .ab-work { list-style: none; margin: 32px 0 0; padding: 0; border-top: 1px solid rgba(var(--ink), 0.14); }
+  .ab-job { display: grid; grid-template-columns: 170px minmax(0, 0.9fr) minmax(0, 1.4fr); gap: 24px; padding: 22px 0; border-bottom: 1px solid rgba(var(--ink), 0.14); }
+  .ab-job time { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--fg-muted); padding-top: 4px; }
+  .ab-job b { display: block; font-family: var(--font-poppins); font-weight: 400; font-size: 19px; letter-spacing: -0.02em; line-height: 1.25; color: var(--fg); }
+  .ab-job small { display: block; margin-top: 4px; font-family: var(--font-inter); font-size: 13px; line-height: 1.4; color: var(--fg-muted); }
+  .ab-job p { margin: 0; font-family: var(--font-inter); font-size: 15px; line-height: 1.6; color: var(--fg-secondary); }
+
+  /* the stack as a path: design, build, speed up, run */
+  .ab-stack { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin-top: 32px; border-top: 1px solid rgba(var(--ink), 0.14); border-bottom: 1px solid rgba(var(--ink), 0.14); }
+  .ab-step { position: relative; padding: 24px 20px 24px 0; }
+  .ab-step + .ab-step { padding-left: 20px; border-left: 1px solid rgba(var(--ink), 0.14); }
+  .ab-step + .ab-step::before { content: ""; position: absolute; left: -4px; top: 30px; width: 7px; height: 7px; background: var(--bg); border: 1px solid var(--accent-purple); }
+  .ab-step-n { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent-purple); }
+  .ab-step h4 { margin: 8px 0 0; font-family: var(--font-poppins); font-weight: 400; font-size: 20px; letter-spacing: -0.025em; color: var(--fg); }
+  .ab-step p { margin: 6px 0 0; font-family: var(--font-inter); font-size: 13px; line-height: 1.5; color: var(--fg-muted); }
+  .ab-step ul { list-style: none; margin: 16px 0 0; padding: 0; display: grid; gap: 6px; }
+  .ab-step li { font-family: var(--font-inter); font-size: 15px; line-height: 1.4; color: var(--fg); }
+
+  @media (max-width: 900px) {
+    .ab-grid { grid-template-columns: minmax(0, 1fr); }
+    .ab-portrait { max-width: 420px; min-height: 0; aspect-ratio: 4 / 5; }
+    .ab-block { margin-top: 72px; }
+    .ab-job { grid-template-columns: minmax(0, 1fr); gap: 6px; }
+    .ab-stack { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .ab-step:nth-child(odd) { padding-left: 0; border-left: 0; }
+    .ab-step:nth-child(odd)::before { display: none; }
+    .ab-step:nth-child(n+3) { border-top: 1px solid rgba(var(--ink), 0.14); }
+  }
+  @media (max-width: 520px) { .ab-facts div { grid-template-columns: minmax(0, 1fr); gap: 2px; } }
+`;
+
+export default function About() {
   const { t } = useLang();
-  const tr = (key: string, fallback: string) => { const v = t(key); return v === key ? fallback : v; };
-  const [lightbox, setLightbox] = useState<number | null>(null);
-
-  const lbPrev = () => setLightbox((p) => (p !== null ? (p - 1 + photos.length) % photos.length : 0));
-  const lbNext = () => setLightbox((p) => (p !== null ? (p + 1) % photos.length : 0));
-
-  useEffect(() => {
-    if (lightbox === null) return;
-    const handler = (e: KeyboardEvent) => {
-      if (e.key === "ArrowLeft") lbPrev();
-      if (e.key === "ArrowRight") lbNext();
-      if (e.key === "Escape") setLightbox(null);
-    };
-    window.addEventListener("keydown", handler);
-    return () => window.removeEventListener("keydown", handler);
-  });
 
   return (
-    <section
-      id="about"
-      style={{ width: "100%", maxWidth: 1200, margin: "0 auto", padding: "80px 20px" }}
-    >
-      <style>{MARQUEE_CSS}</style>
+    <section id="about" style={{ width: "100%", maxWidth: 1200, margin: "0 auto", padding: "80px 20px" }}>
+      <style>{CSS}</style>
       <style>{TERM_CSS}</style>
 
       <SpecLabel text={t("about.eyebrow")} />
 
-      <div className="about-columns" style={{ display: "flex", gap: 80, alignItems: "flex-start", flexWrap: "wrap" }}>
-        {/* Left: Bio */}
-        <div style={{ flex: 2, minWidth: 300 }}>
-          <motion.h2
-            data-reveal
-            style={{
-              fontFamily: "var(--font-poppins)",
-              fontWeight: 700,
-              fontSize: "clamp(28px, 3.5vw, 48px)",
-              letterSpacing: "-1px",
-              lineHeight: 1.05,
-              textTransform: "uppercase",
-              color: "var(--fg)",
-              marginBottom: 16,
-              maxWidth: 720,
-            }}
-          >
-            {t("about.h1")}
-          </motion.h2>
+      <div className="ab-grid">
+        <figure className="ab-portrait">
+          <div className="ab-photo corners-in">
+            <Image src="/samuel-portrait-cutout.webp" alt="Samuel Adefila" fill sizes="(max-width: 900px) 420px, 480px" priority={false} />
+            <div className="ab-fade" aria-hidden="true" />
+            <figcaption className="ab-cap">
+              <Signature name="Samuel Adefila" />
+              <p>Product designer · Ibadan, Nigeria</p>
+            </figcaption>
+          </div>
+        </figure>
 
-          <motion.div
-            data-reveal
-            style={{
-              fontFamily: "var(--font-inter)",
-              fontWeight: 400,
-              fontSize: 16,
-              letterSpacing: "-0.2px",
-              lineHeight: 1.7,
-              color: "var(--fg-secondary)",
-              display: "flex",
-              flexDirection: "column",
-              gap: 16,
-            }}
-          >
+        <div className="ab-copy">
+          <h2 data-reveal>{t("about.h1")}</h2>
+          <div className="ab-text" data-reveal>
             <p>{t("about.p1")}</p>
             <p>{t("about.p2")}</p>
             <p>
@@ -206,40 +123,32 @@ export default function About({ gallery = false }: { gallery?: boolean }) {
                 return (
                   <>
                     {before}
-                    <a
-                      href="https://batonedi.com"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      style={{ color: "inherit", textDecoration: "underline", textDecorationStyle: "dotted", textUnderlineOffset: 3 }}
-                    >
-                      Baton
-                    </a>
+                    <a href="https://batonedit.com" target="_blank" rel="noopener noreferrer">Baton</a>
                     {rest.join("Baton")}
                   </>
                 );
               })()}
             </p>
             <p>
-              {fillSentence(t("about.p3"), RECENT_TEAMS.map((i) => (
-                <Term key={i} tip={(
-                  <>
-                    <b>{tr(`wh${i}.role`, workHistory[i].role)}</b>
-                    <span>{tr(`wh${i}.period`, workHistory[i].period)} · {tr(`wh${i}.location`, workHistory[i].location)}</span>
-                    {workHistory[i].points?.[0] && <span>{tr(`wh${i}.p0`, workHistory[i].points![0])}</span>}
-                  </>
-                )}>
-                  {tr(`wh${i}.company`, workHistory[i].company)}
-                </Term>
-              )))}
+              {fillSentence(t("about.p3"), RECENT.map((name) => {
+                const job = WORK.find((w) => w.company === name)!;
+                return (
+                  <Term key={name} tip={(
+                    <>
+                      <b>{job.role}</b>
+                      <span>{job.period} · {job.place}</span>
+                      <span>{job.win}</span>
+                    </>
+                  )}>
+                    {name}
+                  </Term>
+                );
+              }))}
             </p>
             <p>
               {fillSentence(t("about.p4"), SIDE_PROJECTS.map((p) => {
                 const linked = p.href !== "#";
-                const label = linked ? (
-                  <a href={p.href} target="_blank" rel="noopener noreferrer" style={{ color: "inherit", textDecoration: "none" }}>
-                    {p.name}
-                  </a>
-                ) : p.name;
+                const label = linked ? <a href={p.href} target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none" }}>{p.name}</a> : p.name;
                 return (
                   <Term key={p.name} tip={(
                     <>
@@ -253,230 +162,22 @@ export default function About({ gallery = false }: { gallery?: boolean }) {
                 );
               }))}
             </p>
-          </motion.div>
-        </div>
+          </div>
 
-        {/* Right: tools and CV */}
-        <div style={{ flex: 1, minWidth: 260 }}>
-            {/* Tech stacks */}
-            <motion.div
-              data-reveal
-              style={{ marginTop: 0 }}
-            >
-              <p style={{
-                fontFamily: "var(--font-mono)",
-                fontWeight: 700,
-                fontSize: 11,
-                letterSpacing: "4px",
-                textTransform: "uppercase",
-                color: "var(--accent-purple)",
-                marginBottom: 16,
-              }}>
-                {t("about.techLabel")}
-              </p>
-              <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
-                {techStacks.map((tech) => (
-                  <TechTag key={tech} label={tech} />
-                ))}
-              </div>
-            </motion.div>
-  
-            {/* CV download */}
-            <motion.div
-              data-reveal
-              style={{ marginTop: 32 }}
-            >
-              <MagneticButton
-                href="/samuel-adefila-cv.pdf"
-                download
+          <div className="ab-cv" data-reveal>
+            <MagneticButton
+              href="/samuel-adefila-cv.pdf"
+              download
               className="btn-ticks"
-                style={{
-                  fontFamily: "var(--font-inter)",
-                  fontWeight: 600,
-                  lineHeight: "20px",
-                  fontSize: 13,
-                  letterSpacing: "0.5px",
-                  textTransform: "uppercase",
-                  color: "var(--fg)",
-                  background: "transparent",
-                  border: "1px solid rgba(var(--ink), 0.2)",
-                  padding: "13px 25px",
-                  textDecoration: "none",
-                  alignItems: "center",
-                  gap: 8,
-                  transition: "background 0.2s ease, border-color 0.2s ease, color 0.2s ease",
-                }}
-                onMouseEnter={(e: React.MouseEvent<HTMLAnchorElement>) => {
-                  e.currentTarget.style.background = "var(--btn-bg)"; e.currentTarget.style.borderColor = "var(--btn-bg)"; e.currentTarget.style.color = "#fff";
-                }}
-                onMouseLeave={(e: React.MouseEvent<HTMLAnchorElement>) => {
-                  e.currentTarget.style.background = "transparent";
-                  e.currentTarget.style.borderColor = "rgba(var(--ink), 0.2)";
-                  e.currentTarget.style.color = "var(--fg)";
-                }}
-              >
-                {t("hero.downloadCv")} <Download size={13} strokeWidth={2} />
-              </MagneticButton>
-            </motion.div>
-        </div>
-      </div>
-
-      {gallery && (
-        <>
-      {/* Photo marquee strip */}
-      <motion.div
-        data-reveal
-        style={{ marginTop: 64 }}
-      >
-        <p style={{
-          fontFamily: "var(--font-mono)",
-          fontWeight: 700,
-          fontSize: 11,
-          letterSpacing: "4px",
-          textTransform: "uppercase",
-          color: "var(--accent-purple)",
-          marginBottom: 24,
-        }}>
-          {t("about.photoLabel")}
-        </p>
-
-        {/* Cubic 3D perspective wrapper */}
-        <div style={{ perspective: "700px", perspectiveOrigin: "50% 40%" }}>
-        {/* Viewport — clips overflow, fades edges, tilted on the 3D plane */}
-        <div style={{
-          overflow: "hidden",
-          transform: "rotateX(10deg) scale(1.02)",
-          transformStyle: "preserve-3d",
-          WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)",
-          maskImage: "linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)",
-        }}>
-          {/* The scrolling strip — doubled for seamless loop */}
-          <div
-            className="photo-strip"
-            style={{
-              display: "flex",
-              gap: PHOTO_GAP,
-              width: "max-content",
-            }}
-          >
-            {[...photos, ...photos].map((photo, i) => (
-              <div
-                key={i}
-                onClick={() => setLightbox(i % photos.length)}
-                style={{
-                  flexShrink: 0,
-                  width: PHOTO_W,
-                  height: PHOTO_H,
-                  overflow: "hidden",
-                  cursor: "zoom-in",
-                  background: "rgba(var(--ink), 0.06)",
-                }}
-              >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={photo.src}
-                  alt={`Gallery photo ${(i % photos.length) + 1}`}
-                  className="photo-strip-img"
-                  style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
-                />
-              </div>
-            ))}
+              style={{ fontFamily: "var(--font-inter)", fontWeight: 600, lineHeight: "20px", fontSize: 13, letterSpacing: "0.5px", textTransform: "uppercase", color: "var(--fg)", background: "transparent", border: "1px solid rgba(var(--ink), 0.2)", padding: "13px 25px", textDecoration: "none", alignItems: "center", gap: 8, transition: "background 0.2s ease, border-color 0.2s ease, color 0.2s ease" }}
+              onMouseEnter={(e: React.MouseEvent<HTMLAnchorElement>) => { e.currentTarget.style.background = "var(--btn-bg)"; e.currentTarget.style.borderColor = "var(--btn-bg)"; e.currentTarget.style.color = "#fff"; }}
+              onMouseLeave={(e: React.MouseEvent<HTMLAnchorElement>) => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.borderColor = "rgba(var(--ink), 0.2)"; e.currentTarget.style.color = "var(--fg)"; }}
+            >
+              {t("hero.downloadCv")} <Download size={13} strokeWidth={2} />
+            </MagneticButton>
           </div>
         </div>
-        </div>
-      </motion.div>
-
-      {/* Lightbox */}
-      <AnimatePresence>
-        {lightbox !== null && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            onClick={() => setLightbox(null)}
-            style={{
-              position: "fixed",
-              inset: 0,
-              background: "rgba(var(--ink), 0.92)",
-              zIndex: 1000,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <button
-              aria-label="Close photo viewer"
-              onClick={() => setLightbox(null)}
-              style={{
-                position: "absolute", top: 20, right: 20,
-                width: 40, height: 40, borderRadius: 0,
-                background: "rgba(255,255,255,0.12)", border: "none",
-                cursor: "pointer", display: "flex", alignItems: "center",
-                justifyContent: "center", color: "#fff",
-              }}
-            >
-              <X size={18} />
-            </button>
-
-            <button
-              aria-label="Previous photo"
-              onClick={(e) => { e.stopPropagation(); lbPrev(); }}
-              style={{
-                position: "absolute", left: 20,
-                width: 44, height: 44, borderRadius: 0,
-                background: "rgba(255,255,255,0.12)", border: "none",
-                cursor: "pointer", display: "flex", alignItems: "center",
-                justifyContent: "center", color: "#fff",
-              }}
-            >
-              <ChevronLeft size={22} />
-            </button>
-
-            <motion.div
-              key={lightbox}
-              initial={{ opacity: 0, scale: 0.96 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.96 }}
-              transition={{ duration: 0.25 }}
-              onClick={(e) => e.stopPropagation()}
-              style={{ maxWidth: "80vw", maxHeight: "85vh", borderRadius: 0, overflow: "hidden" }}
-            >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={photos[lightbox].src}
-                alt={`Gallery photo ${lightbox + 1}`}
-                style={{ maxWidth: "80vw", maxHeight: "85vh", objectFit: "contain", display: "block" }}
-              />
-            </motion.div>
-
-            <button
-              aria-label="Next photo"
-              onClick={(e) => { e.stopPropagation(); lbNext(); }}
-              style={{
-                position: "absolute", right: 20,
-                width: 44, height: 44, borderRadius: 0,
-                background: "rgba(255,255,255,0.12)", border: "none",
-                cursor: "pointer", display: "flex", alignItems: "center",
-                justifyContent: "center", color: "#fff",
-              }}
-            >
-              <ChevronRight size={22} />
-            </button>
-
-            <p style={{
-              position: "absolute", bottom: 20,
-              left: "50%", transform: "translateX(-50%)",
-              fontFamily: "var(--font-inter)", fontSize: 12,
-              color: "rgba(255,255,255,0.5)", letterSpacing: "1px",
-            }}>
-              {lightbox + 1} / {photos.length}
-            </p>
-          </motion.div>
-        )}
-      </AnimatePresence>
-        </>
-      )}
+      </div>
     </section>
   );
 }

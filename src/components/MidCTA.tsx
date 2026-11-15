@@ -88,11 +88,10 @@ export default function MidCTA() {
           <p
             style={{
               fontFamily: "var(--font-poppins)",
-              fontWeight: 700,
-              fontSize: "clamp(22px, 2.8vw, 36px)",
-              letterSpacing: "-0.6px",
-              lineHeight: 1.1,
-              textTransform: "uppercase",
+              fontWeight: 400,
+              fontSize: "clamp(20px, 2.2vw, 30px)",
+              letterSpacing: "-0.03em",
+              lineHeight: 1.15,
               color: "#fff",
               marginBottom: 10,
             }}

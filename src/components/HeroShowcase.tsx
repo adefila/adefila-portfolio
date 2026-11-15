@@ -21,6 +21,7 @@ const CSS = `
   .hs-layer { position: absolute; inset: 0; }
   .hs-rail { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-top: 14px; }
   .hs-seg { position: relative; height: 18px; padding: 0; background: none; border: 0; cursor: pointer; }
+  .hs-seg::after { content: ""; position: absolute; left: 0; right: 0; top: -13px; bottom: -13px; }
   .hs-seg::before { content: ""; position: absolute; left: 0; right: 0; top: 8px; height: 2px; background: rgba(var(--ink), 0.16); }
   .hs-seg i { position: absolute; left: 0; top: 8px; height: 2px; width: 0; background: var(--accent-purple); }
   .hs-seg.done i { width: 100%; }

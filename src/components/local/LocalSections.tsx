@@ -42,7 +42,7 @@ export function TermsStrip() {
       <div data-reveal className="lb-terms">
         {terms.map((term) => (
           <div key={term.text} style={{ padding: "24px", background: "var(--bg)", display: "grid", gap: 8 }}>
-            <span style={{ fontFamily: "var(--font-poppins)", fontWeight: 700, fontSize: 28, letterSpacing: "-1px", lineHeight: 1, color: "var(--fg)" }}>{term.big}</span>
+            <span style={{ fontFamily: "var(--font-poppins)", fontWeight: 400, fontSize: 28, letterSpacing: "-1px", lineHeight: 1, color: "var(--fg)" }}>{term.big}</span>
             <span style={{ fontFamily: "var(--font-inter)", fontWeight: 600, fontSize: 11, letterSpacing: "0.08em", textTransform: "uppercase", color: "var(--fg-muted)" }}>{term.text}</span>
           </div>
         ))}

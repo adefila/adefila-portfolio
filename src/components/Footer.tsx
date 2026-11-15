@@ -91,11 +91,12 @@ function twoLines(text: string, cls: string) {
   return <><span className={cls}>{text.slice(0, cut).trim()}</span><br /><span className={cls}>{text.slice(cut).trim()}</span></>;
 }
 
-export default function Footer() {
+export default function Footer({ showCta = true }: { showCta?: boolean }) {
   const { t } = useLang();
   return (
     <footer style={{ width: "100%" }}>
-      {/* GET STARTED CTA */}
+      {/* GET STARTED CTA: left out on the case study pages, which already end with the contact form */}
+      {showCta && (
       <div
         className="footer-cta grid-texture grid-texture-dark"
         style={{
@@ -229,13 +230,14 @@ export default function Footer() {
           </motion.div>
         </div>
       </div>
+      )}
 
       {/* Footer bar — the purple continues down, no hard line between the two */}
       <div
         className="grid-texture grid-texture-dark"
         style={{
           width: "100%",
-          background: "linear-gradient(180deg, var(--accent-purple), #5b21b6)",
+          background: "var(--accent-purple)",
           padding: "48px 20px",
           position: "relative",
           overflow: "hidden",

@@ -1,5 +1,5 @@
 ﻿import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Mrs_Saint_Delafield } from "next/font/google";
 import "./globals.css";
 import { FORCE_DARK } from "@/lib/theme";
 
@@ -8,6 +8,8 @@ import { FORCE_DARK } from "@/lib/theme";
 const geist = Geist({ subsets: ["latin", "latin-ext"], variable: "--font-geist", display: "swap" });
 // The second voice: small technical labels (section numbers, tags, years). Used sparingly.
 const geistMono = Geist_Mono({ subsets: ["latin"], variable: "--font-geist-mono", display: "swap" });
+// A signature script, used once: the name over the portrait in the About section.
+const signature = Mrs_Saint_Delafield({ subsets: ["latin"], weight: "400", variable: "--font-signature", display: "swap" });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://adefilasamuel.com"),
@@ -119,7 +121,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" data-theme={FORCE_DARK ? "dark" : undefined} className={`${geist.variable} ${geistMono.variable}`} suppressHydrationWarning>
+    <html lang="en" data-theme={FORCE_DARK ? "dark" : undefined} className={`${geist.variable} ${geistMono.variable} ${signature.variable}`} suppressHydrationWarning>
       <head>
         <meta name="theme-color" content="#0f0f0f" />
         <meta name="color-scheme" content={FORCE_DARK ? "dark" : "light dark"} />
