@@ -1861,3 +1861,6 @@ h1[style], h2[style], h3[style], h4[style] { font-weight: 400 !important; }
 
 /* The floating language and Framer badges step aside while the mobile menu is open */
 body[data-menu-open] .lang-switcher { opacity: 0; pointer-events: none; }
+
+/* No capital-letter text anywhere: every label, button and nav link reads in normal case */
+*, *::before, *::after { text-transform: none !important; }

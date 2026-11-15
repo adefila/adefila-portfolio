@@ -30,7 +30,7 @@ export default function MidCTA() {
         <line x1="52" y1="168" x2="172" y2="168" stroke="#fff" strokeWidth="1" />
         <line x1="52" y1="162" x2="52" y2="174" stroke="#fff" strokeWidth="1" />
         <line x1="172" y1="162" x2="172" y2="174" stroke="#fff" strokeWidth="1" />
-        <text x="128" y="42" fill="#fff" fontSize="11" fontFamily="monospace" letterSpacing="2" textAnchor="end">FIG. 03</text>
+        <text x="128" y="42" fill="#fff" fontSize="11" fontFamily="monospace" letterSpacing="2" textAnchor="end">Fig. 03</text>
       </svg>
       <svg aria-hidden="true" className="footer-blueprint footer-blueprint-lg" width="560" height="360" viewBox="0 0 560 360" fill="none" style={{ left: -60, bottom: -40, opacity: 0.3 }}>
         <rect x="70" y="34" width="420" height="252" stroke="#fff" strokeWidth="1" strokeDasharray="7 7" />
@@ -46,9 +46,9 @@ export default function MidCTA() {
         <line x1="70" y1="318" x2="490" y2="318" stroke="#fff" strokeWidth="1" />
         <line x1="70" y1="311" x2="70" y2="325" stroke="#fff" strokeWidth="1" />
         <line x1="490" y1="311" x2="490" y2="325" stroke="#fff" strokeWidth="1" />
-        <text x="70" y="24" fill="#fff" fontSize="11" fontFamily="monospace" letterSpacing="2">FIG. 04 — SCOPE</text>
-        <text x="380" y="150" fill="#fff" fontSize="10" fontFamily="monospace" letterSpacing="1">R 92</text>
-        <text x="236" y="332" fill="#fff" fontSize="10" fontFamily="monospace" letterSpacing="1">PANEL — 420</text>
+        <text x="70" y="24" fill="#fff" fontSize="11" fontFamily="monospace" letterSpacing="2">Fig. 04 — scope</text>
+        <text x="380" y="150" fill="#fff" fontSize="10" fontFamily="monospace" letterSpacing="1">r 92</text>
+        <text x="236" y="332" fill="#fff" fontSize="10" fontFamily="monospace" letterSpacing="1">Panel — 420</text>
       </svg>
       <div
         className="midcta-inner"

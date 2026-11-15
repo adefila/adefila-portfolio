@@ -115,7 +115,7 @@ export default function Footer({ showCta = true }: { showCta?: boolean }) {
           <line x1="48" y1="168" x2="168" y2="168" stroke="#fff" strokeWidth="1" />
           <line x1="48" y1="162" x2="48" y2="174" stroke="#fff" strokeWidth="1" />
           <line x1="168" y1="162" x2="168" y2="174" stroke="#fff" strokeWidth="1" />
-          <text x="48" y="42" fill="#fff" fontSize="11" fontFamily="monospace" letterSpacing="2">FIG. 01</text>
+          <text x="48" y="42" fill="#fff" fontSize="11" fontFamily="monospace" letterSpacing="2">Fig. 01</text>
         </svg>
         <svg aria-hidden="true" className="footer-blueprint footer-blueprint-lg" width="560" height="360" viewBox="0 0 560 360" fill="none" style={{ right: -60, bottom: -40, opacity: 0.3 }}>
           <rect x="70" y="34" width="420" height="252" stroke="#fff" strokeWidth="1" strokeDasharray="7 7" />
@@ -131,9 +131,9 @@ export default function Footer({ showCta = true }: { showCta?: boolean }) {
           <line x1="70" y1="318" x2="490" y2="318" stroke="#fff" strokeWidth="1" />
           <line x1="70" y1="311" x2="70" y2="325" stroke="#fff" strokeWidth="1" />
           <line x1="490" y1="311" x2="490" y2="325" stroke="#fff" strokeWidth="1" />
-          <text x="70" y="24" fill="#fff" fontSize="11" fontFamily="monospace" letterSpacing="2">FIG. 02 — HANDOVER</text>
-          <text x="380" y="150" fill="#fff" fontSize="10" fontFamily="monospace" letterSpacing="1">R 92</text>
-          <text x="236" y="332" fill="#fff" fontSize="10" fontFamily="monospace" letterSpacing="1">PANEL — 420</text>
+          <text x="70" y="24" fill="#fff" fontSize="11" fontFamily="monospace" letterSpacing="2">Fig. 02 — handover</text>
+          <text x="380" y="150" fill="#fff" fontSize="10" fontFamily="monospace" letterSpacing="1">r 92</text>
+          <text x="236" y="332" fill="#fff" fontSize="10" fontFamily="monospace" letterSpacing="1">Panel — 420</text>
         </svg>
         <div
           style={{
@@ -368,7 +368,7 @@ export default function Footer({ showCta = true }: { showCta?: boolean }) {
                 textTransform: "uppercase",
               }}
             >
-              &copy; SAMUEL ADEFILA 2026. ALL RIGHTS RESERVED
+              &copy; Samuel Adefila 2026. All rights reserved
             </p>
           </div>
         </div>

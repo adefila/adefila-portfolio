@@ -48,8 +48,8 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
 
   // ── Projects section ──────────────────────────────────────────────────
   "projects.eyebrow": {
-    en: "RECENT PROJECTS",          fr: "PROJETS RÉCENTS",           es: "PROYECTOS RECIENTES",      de: "AKTUELLE PROJEKTE",
-    pt: "PROJETOS RECENTES",        zh: "近期项目",                    ja: "最近のプロジェクト",
+    en: "Recent projects",          fr: "Projets récents",           es: "Proyectos recientes",      de: "Aktuelle Projekte",
+    pt: "Projetos recentes",        zh: "近期项目",                    ja: "最近のプロジェクト",
   },
   "projects.h1": {
     en: "Featured projects.",        fr: "Projets phares",            es: "Proyectos destacados",     de: "Ausgewählte Projekte",
@@ -66,8 +66,8 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     pt: "a partir de",              zh: "起价",                       ja: "〜から",
   },
   "pricing.plan0.label": {
-    en: "LANDING PAGE",             fr: "PAGE D'ATTERRISSAGE",       es: "PÁGINA DE DESTINO",        de: "LANDINGPAGE",
-    pt: "PÁGINA DE DESTINO",        zh: "落地页",                     ja: "ランディングページ",
+    en: "Landing page",             fr: "Page d'atterrissage",       es: "Página de destino",        de: "Landingpage",
+    pt: "Página de destino",        zh: "落地页",                     ja: "ランディングページ",
   },
   "pricing.plan0.name": {
     en: "Single page",              fr: "Page unique",               es: "Página única",             de: "Einzelseite",
@@ -116,11 +116,11 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     ja: "5〜7日で納品",
   },
   "pricing.plan1.label": {
-    en: "REDESIGN & MIGRATION",
-    fr: "REFONTE & MIGRATION",
-    es: "REDISEÑO Y MIGRACIÓN",
-    de: "REDESIGN & MIGRATION",
-    pt: "REDESIGN E MIGRAÇÃO",
+    en: "Redesign & migration",
+    fr: "Refonte & migration",
+    es: "Rediseño y migración",
+    de: "Redesign & migration",
+    pt: "Redesign e migração",
     zh: "改版与迁移",
     ja: "リデザイン＆移行",
   },
@@ -192,11 +192,11 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     ja: "解説動画と引き継ぎ資料、約4週間で公開",
   },
   "pricing.plan2.label": {
-    en: "CUSTOM BUILD",
-    fr: "SUR MESURE",
-    es: "A MEDIDA",
-    de: "INDIVIDUELL",
-    pt: "SOB MEDIDA",
+    en: "Custom build",
+    fr: "Sur mesure",
+    es: "A medida",
+    de: "Individuell",
+    pt: "Sob medida",
     zh: "定制开发",
     ja: "カスタム開発",
   },
@@ -264,11 +264,11 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     ja: "通話で範囲を決定、4〜8週間で納品",
   },
   "pricing.retainer.label": {
-    en: "MONTHLY RETAINER",
-    fr: "RETAINER MENSUEL",
-    es: "RETAINER MENSUAL",
-    de: "MONATLICHER RETAINER",
-    pt: "RETAINER MENSAL",
+    en: "Monthly retainer",
+    fr: "Retainer mensuel",
+    es: "Retainer mensual",
+    de: "Monatlicher Retainer",
+    pt: "Retainer mensal",
     zh: "月度长期合作",
     ja: "月額リテーナー",
   },
@@ -314,12 +314,12 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
 
   // ── Footer bar ────────────────────────────────────────────────────────
   "footer.portfolioLabel": {
-    en: "PORTFOLIO",                fr: "PORTFOLIO",                 es: "PORTFOLIO",                de: "PORTFOLIO",
-    pt: "PORTFÓLIO",                zh: "作品集",                     ja: "ポートフォリオ",
+    en: "Portfolio",                fr: "Portfolio",                 es: "Portfolio",                de: "Portfolio",
+    pt: "Portfólio",                zh: "作品集",                     ja: "ポートフォリオ",
   },
   "footer.followLabel": {
-    en: "FOLLOW ME ON",             fr: "SUIVEZ-MOI SUR",            es: "SÍGUEME EN",               de: "FOLGT MIR AUF",
-    pt: "SIGA-ME EM",               zh: "关注我",                     ja: "フォローはこちら",
+    en: "Follow me on",             fr: "Suivez-moi sur",            es: "Sígueme en",               de: "Folgt mir auf",
+    pt: "Siga-me em",               zh: "关注我",                     ja: "フォローはこちら",
   },
   "footer.tagline": {
     en: "B2B website developer. Framer or custom code, with a clear scope and price.",
@@ -333,8 +333,8 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
 
   // ── Currently section ─────────────────────────────────────────────────
   "currently.label": {
-    en: "CURRENTLY",                fr: "EN CE MOMENT",              es: "ACTUALMENTE",              de: "AKTUELL",
-    pt: "ATUALMENTE",               zh: "当前",                       ja: "いま",
+    en: "Currently",                fr: "En ce moment",              es: "Actualmente",              de: "Aktuell",
+    pt: "Atualmente",               zh: "当前",                       ja: "いま",
   },
   "currently.nowPlaying": {
     en: "Now playing",             fr: "En écoute",               es: "Sonando ahora",           de: "Läuft gerade",
@@ -355,36 +355,36 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
 
   // ── Nav ──────────────────────────────────────────────────────────────
   "nav.work": {
-    en: "WORK",         fr: "PROJETS",      es: "PROYECTOS",    de: "ARBEIT",
-    pt: "PROJETOS",     zh: "作品",          ja: "実績",
+    en: "Work",         fr: "Projets",      es: "Proyectos",    de: "Arbeit",
+    pt: "Projetos",     zh: "作品",          ja: "実績",
   },
   "nav.benefits": {
-    en: "BENEFITS",     fr: "AVANTAGES",    es: "BENEFICIOS",   de: "VORTEILE",
-    pt: "BENEFÍCIOS",   zh: "优势",          ja: "メリット",
+    en: "Benefits",     fr: "Avantages",    es: "Beneficios",   de: "Vorteile",
+    pt: "Benefícios",   zh: "优势",          ja: "メリット",
   },
   "nav.process": {
-    en: "PROCESS",      fr: "PROCESSUS",    es: "PROCESO",      de: "PROZESS",
-    pt: "PROCESSO",     zh: "流程",          ja: "プロセス",
+    en: "Process",      fr: "Processus",    es: "Proceso",      de: "Prozess",
+    pt: "Processo",     zh: "流程",          ja: "プロセス",
   },
   "nav.pricing": {
-    en: "PRICING",      fr: "TARIFS",       es: "PRECIOS",      de: "PREISE",
-    pt: "PREÇOS",       zh: "价格",          ja: "料金",
+    en: "Pricing",      fr: "Tarifs",       es: "Precios",      de: "Preise",
+    pt: "Preços",       zh: "价格",          ja: "料金",
   },
   "nav.testimonials": {
-    en: "TESTIMONIALS", fr: "AVIS",         es: "TESTIMONIOS",  de: "BEWERTUNGEN",
-    pt: "DEPOIMENTOS",  zh: "评价",          ja: "口コミ",
+    en: "Testimonials", fr: "Avis",         es: "Testimonios",  de: "Bewertungen",
+    pt: "Depoimentos",  zh: "评价",          ja: "口コミ",
   },
   "nav.about": {
-    en: "ABOUT",        fr: "À PROPOS",     es: "SOBRE MÍ",     de: "ÜBER MICH",
-    pt: "SOBRE MIM",    zh: "关于我",        ja: "私について",
+    en: "About",        fr: "À propos",     es: "Sobre mí",     de: "Über mich",
+    pt: "Sobre mim",    zh: "关于我",        ja: "私について",
   },
   "nav.faq": {
     en: "FAQ",          fr: "FAQ",          es: "FAQ",          de: "FAQ",
     pt: "FAQ",          zh: "常见问题",      ja: "よくある質問",
   },
   "nav.contact": {
-    en: "CONTACT",      fr: "CONTACT",      es: "CONTACTO",     de: "KONTAKT",
-    pt: "CONTATO",      zh: "联系",          ja: "お問い合わせ",
+    en: "Contact",      fr: "Contact",      es: "Contacto",     de: "Kontakt",
+    pt: "Contato",      zh: "联系",          ja: "お問い合わせ",
   },
 
   // ── Hero ─────────────────────────────────────────────────────────────
@@ -399,14 +399,14 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     pt: "Início: {date}",          zh: "下一期: {date}",           ja: "次回開始: {date}",
   },
   "hero.h1": {
-    en: "",         fr: "JE CONÇOIS ET CRÉE",      es: "DISEÑO Y CONSTRUYO",      de: "ICH GESTALTE UND BAUE",
-    pt: "EU PROJETO E CONSTRUO",   zh: "我设计并构建",              ja: "デザインして構築する",
+    en: "",         fr: "Je conçois et crée",      es: "Diseño y construyo",      de: "Ich gestalte und baue",
+    pt: "Eu projeto e construo",   zh: "我设计并构建",              ja: "デザインして構築する",
   },
   // Second headline line = prefix + a word that cycles through the "|"-separated list.
   // zh/ja put the verb first, so the whole line cycles there (empty prefix).
   "hero.h2.prefix": {
-    en: "I design and build products that",          fr: "Des produits qui",                       es: "Productos que",                       de: "Websites und Produkte, die",
-    pt: "Sites e produtos que",               zh: "",                         ja: "",
+    en: "I design and build products that",          fr: "des produits qui",                       es: "productos que",                       de: "Websites und Produkte, die",
+    pt: "sites e produtos que",               zh: "",                         ja: "",
   },
   "hero.h2.words": {
     en: "convert.|ship.|scale.",
@@ -436,12 +436,12 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     ja: "Upwork Top Rated  ·  50以上のプロジェクト  ·  成功率100%",
   },
   "hero.cta": {
-    en: "BOOK A FREE CALL",        fr: "RÉSERVER UN APPEL",       es: "AGENDAR LLAMADA",         de: "ANRUF BUCHEN",
-    pt: "AGENDAR CHAMADA",         zh: "预约免费通话",              ja: "無料通話を予約",
+    en: "Book a free call",        fr: "Réserver un appel",       es: "Agendar llamada",         de: "Anruf buchen",
+    pt: "Agendar chamada",         zh: "预约免费通话",              ja: "無料通話を予約",
   },
   "hero.ctaWork": {
-    en: "SEE MY WORK",             fr: "VOIR MES PROJETS",        es: "VER MI TRABAJO",          de: "MEINE ARBEITEN",
-    pt: "VER MEU TRABALHO",        zh: "查看作品",                  ja: "実績を見る",
+    en: "See my work",             fr: "Voir mes projets",        es: "Ver mi trabajo",          de: "Meine Arbeiten",
+    pt: "Ver meu trabalho",        zh: "查看作品",                  ja: "実績を見る",
   },
   "hero.localLink": {
     en: "Run a clinic, salon or trades business? See how I help",
@@ -711,14 +711,14 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     ja: "閉じる",
   },
   "hero.downloadCv": {
-    en: "DOWNLOAD CV",             fr: "TÉLÉCHARGER CV",          es: "DESCARGAR CV",            de: "CV HERUNTERLADEN",
-    pt: "BAIXAR CV",               zh: "下载简历",                 ja: "履歴書を取得",
+    en: "Download CV",             fr: "Télécharger CV",          es: "Descargar CV",            de: "CV herunterladen",
+    pt: "Baixar CV",               zh: "下载简历",                 ja: "履歴書を取得",
   },
 
   // ── Pricing ──────────────────────────────────────────────────────────
   "pricing.eyebrow": {
-    en: "INVESTMENT",   fr: "INVESTISSEMENT", es: "INVERSIÓN",    de: "INVESTITION",
-    pt: "INVESTIMENTO", zh: "投资",            ja: "投資",
+    en: "Investment",   fr: "Investissement", es: "Inversión",    de: "Investition",
+    pt: "Investimento", zh: "投资",            ja: "投資",
   },
   "pricing.h2a": {
     en: "Fixed scope.",
@@ -791,8 +791,8 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     pt: "ou me mande um e-mail",   zh: "或给我发邮件",             ja: "またはメールで",
   },
   "common.bookCall": {
-    en: "BOOK A FREE CALL",   fr: "RÉSERVER UN APPEL",   es: "AGENDAR LLAMADA",     de: "ANRUF BUCHEN",
-    pt: "AGENDAR CHAMADA",    zh: "预约免费通话",           ja: "無料通話を予約",
+    en: "Book a free call",   fr: "Réserver un appel",   es: "Agendar llamada",     de: "Anruf buchen",
+    pt: "Agendar chamada",    zh: "预约免费通话",           ja: "無料通話を予約",
   },
 
   // ── Mid-page CTA ─────────────────────────────────────────────────────
@@ -814,8 +814,8 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
 
   // ── Why Me ───────────────────────────────────────────────────────────
   "whyme.eyebrow": {
-    en: "WHAT YOU GET",    fr: "CE QUE VOUS OBTENEZ",  es: "LO QUE OBTIENES",  de: "WAS SIE BEKOMMEN",
-    pt: "O QUE VOCÊ GANHA", zh: "您将获得什么",           ja: "あなたが得るもの",
+    en: "What you get",    fr: "Ce que vous obtenez",  es: "Lo que obtienes",  de: "Was Sie bekommen",
+    pt: "O que você ganha", zh: "您将获得什么",           ja: "あなたが得るもの",
   },
   "whyme.h1": {
     en: "Sites people",
@@ -925,17 +925,17 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     zh: "Framer、Shopify、Webflow 或纯代码，选最适合你项目的，而不是对我最省事的。",
     ja: "Framer、Shopify、Webflow、またはコード。あなたのプロジェクトに合うものを選びます。",
   },
-  "whyme.svc1": { en: "RESPONSIVE DESIGN",   fr: "DESIGN RESPONSIVE",    es: "DISEÑO RESPONSIVE",    de: "RESPONSIVES DESIGN",   pt: "DESIGN RESPONSIVO",   zh: "响应式设计",   ja: "レスポンシブデザイン", },
-  "whyme.svc2": { en: "FIGMA TO FRAMER",     fr: "FIGMA VERS FRAMER",    es: "FIGMA A FRAMER",       de: "FIGMA ZU FRAMER",      pt: "FIGMA PARA FRAMER",   zh: "Figma转Framer", ja: "FigmaからFramer", },
-  "whyme.svc3": { en: "WEBSITE MIGRATION",   fr: "MIGRATION DE SITE",    es: "MIGRACIÓN DE SITIO",   de: "WEBSITE-MIGRATION",    pt: "MIGRAÇÃO DE SITE",    zh: "网站迁移",     ja: "サイト移行", },
-  "whyme.svc4": { en: "USER INTERFACE & UX", fr: "INTERFACE & UX",       es: "INTERFAZ Y UX",        de: "BENUTZEROBERFLÄCHE & UX", pt: "INTERFACE & UX",    zh: "界面与用户体验", ja: "UIとUX", },
-  "whyme.svc5": { en: "SHOPIFY INTEGRATION", fr: "INTÉGRATION SHOPIFY",  es: "INTEGRACIÓN SHOPIFY",  de: "SHOPIFY-INTEGRATION",  pt: "INTEGRAÇÃO SHOPIFY",  zh: "Shopify集成",  ja: "Shopify連携", },
-  "whyme.svc6": { en: "FIGMA TO WEBFLOW",    fr: "FIGMA VERS WEBFLOW",   es: "FIGMA A WEBFLOW",      de: "FIGMA ZU WEBFLOW",     pt: "FIGMA PARA WEBFLOW",  zh: "Figma转Webflow", ja: "FigmaからWebflow", },
+  "whyme.svc1": { en: "Responsive design",   fr: "Design responsive",    es: "Diseño responsive",    de: "Responsives Design",   pt: "Design responsivo",   zh: "响应式设计",   ja: "レスポンシブデザイン", },
+  "whyme.svc2": { en: "Figma to Framer",     fr: "Figma vers Framer",    es: "Figma a Framer",       de: "Figma zu Framer",      pt: "Figma para Framer",   zh: "Figma转Framer", ja: "FigmaからFramer", },
+  "whyme.svc3": { en: "Website migration",   fr: "Migration de site",    es: "Migración de sitio",   de: "Website-Migration",    pt: "Migração de site",    zh: "网站迁移",     ja: "サイト移行", },
+  "whyme.svc4": { en: "User interface & UX", fr: "Interface & UX",       es: "Interfaz y UX",        de: "Benutzeroberfläche & UX", pt: "Interface & UX",    zh: "界面与用户体验", ja: "UIとUX", },
+  "whyme.svc5": { en: "Shopify integration", fr: "Intégration Shopify",  es: "Integración Shopify",  de: "Shopify-Integration",  pt: "Integração Shopify",  zh: "Shopify集成",  ja: "Shopify連携", },
+  "whyme.svc6": { en: "Figma to Webflow",    fr: "Figma vers Webflow",   es: "Figma a Webflow",      de: "Figma zu Webflow",     pt: "Figma para Webflow",  zh: "Figma转Webflow", ja: "FigmaからWebflow", },
 
   // ── Process ──────────────────────────────────────────────────────────
   "process.eyebrow": {
-    en: "THE PROCESS",    fr: "LE PROCESSUS",   es: "EL PROCESO",     de: "DER PROZESS",
-    pt: "O PROCESSO",     zh: "工作流程",         ja: "プロセス",
+    en: "The process",    fr: "Le processus",   es: "El proceso",     de: "Der Prozess",
+    pt: "O processo",     zh: "工作流程",         ja: "プロセス",
   },
   "process.h1": {
     en: "First call to",
@@ -1079,8 +1079,8 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
 
   // ── Testimonials ──────────────────────────────────────────────────────
   "testimonials.eyebrow": {
-    en: "TESTIMONIALS",    fr: "TÉMOIGNAGES",     es: "TESTIMONIOS",      de: "BEWERTUNGEN",
-    pt: "DEPOIMENTOS",     zh: "客户评价",          ja: "お客様の声",
+    en: "Testimonials",    fr: "Témoignages",     es: "Testimonios",      de: "Bewertungen",
+    pt: "Depoimentos",     zh: "客户评价",          ja: "お客様の声",
   },
   "testimonials.h1": {
     en: "Don't take my word for it.",           fr: "Ne me croyez pas sur parole.",
@@ -1169,8 +1169,8 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
 
   // ── About ─────────────────────────────────────────────────────────────
   "about.eyebrow": {
-    en: "ABOUT ME",        fr: "À PROPOS",        es: "SOBRE MÍ",         de: "ÜBER MICH",
-    pt: "SOBRE MIM",       zh: "关于我",            ja: "私について",
+    en: "About me",        fr: "À propos",        es: "Sobre mí",         de: "Über mich",
+    pt: "Sobre mim",       zh: "关于我",            ja: "私について",
   },
   "about.h1": {
     en: "One person, start to finish.",
@@ -1209,16 +1209,16 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     ja: "その実績がUpworkでTop Rated獲得につながりました。50以上のプロジェクトで100%の成功率。ほとんどのクライアントは何度も戻ってきます。義務からではなく、最初から正しい結果を出したから。それが私が最も誇りに思っている部分です。",
   },
   "about.techLabel": {
-    en: "MY TECH STACKS",   fr: "MES OUTILS TECH",  es: "MIS TECNOLOGÍAS",  de: "MEINE TECH-STACKS",
-    pt: "MINHAS TECNOLOGIAS", zh: "我的技术栈",         ja: "技術スタック",
+    en: "My tech stacks",   fr: "Mes outils tech",  es: "Mis tecnologías",  de: "Meine Tech-Stacks",
+    pt: "Minhas tecnologias", zh: "我的技术栈",         ja: "技術スタック",
   },
   "about.historyLabel": {
-    en: "MY WORK HISTORY",  fr: "MON PARCOURS",     es: "MI HISTORIAL",     de: "MEIN WERDEGANG",
-    pt: "MEU HISTÓRICO",    zh: "工作经历",           ja: "職歴",
+    en: "My work history",  fr: "Mon parcours",     es: "Mi historial",     de: "Mein Werdegang",
+    pt: "Meu histórico",    zh: "工作经历",           ja: "職歴",
   },
   "about.photoLabel": {
-    en: "PHOTO LIBRARY",    fr: "GALERIE PHOTOS",   es: "GALERÍA DE FOTOS", de: "FOTOGALERIE",
-    pt: "GALERIA DE FOTOS", zh: "照片库",             ja: "フォトライブラリ",
+    en: "Photo library",    fr: "Galerie photos",   es: "Galería de fotos", de: "Fotogalerie",
+    pt: "Galeria de fotos", zh: "照片库",             ja: "フォトライブラリ",
   },
 
   // ── FAQ ───────────────────────────────────────────────────────────────
@@ -1487,8 +1487,8 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
 
   // ── Contact Form ─────────────────────────────────────────────────────
   "contact.eyebrow": {
-    en: "GET IN TOUCH",    fr: "CONTACTEZ-MOI",   es: "PONTE EN CONTACTO", de: "KONTAKT AUFNEHMEN",
-    pt: "ENTRE EM CONTATO", zh: "联系我",           ja: "お問い合わせ",
+    en: "Get in touch",    fr: "Contactez-moi",   es: "Ponte en contacto", de: "Kontakt aufnehmen",
+    pt: "Entre em contato", zh: "联系我",           ja: "お問い合わせ",
   },
   "contact.h1": {
     en: "Have a project?",
@@ -1555,8 +1555,8 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
 
   // ── Side Projects ─────────────────────────────────────────────────────
   "sideprojects.eyebrow": {
-    en: "SIDE PROJECTS",    fr: "PROJETS PERSONNELS", es: "PROYECTOS PROPIOS",   de: "NEBENPROJEKTE",
-    pt: "PROJETOS PESSOAIS", zh: "个人项目",             ja: "個人プロジェクト",
+    en: "Side projects",    fr: "Projets personnels", es: "Proyectos propios",   de: "Nebenprojekte",
+    pt: "Projetos pessoais", zh: "个人项目",             ja: "個人プロジェクト",
   },
   "sideprojects.h1": {
     en: "Side projects.",

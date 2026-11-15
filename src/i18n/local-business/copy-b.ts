@@ -89,7 +89,7 @@ export const COPY_B: Record<string, Entry> = {
   ],
 
   // ── Pricing ──
-  "pricing.eyebrow": ["WHAT IT COSTS", "COMBIEN ÇA COÛTE", "CUÁNTO CUESTA", "WAS ES KOSTET", "QUANTO CUSTA", "价格", "料金", "WAT HET KOST", "HVA DET KOSTER"],
+  "pricing.eyebrow": ["What it costs", "Combien ça coûte", "Cuánto cuesta", "Was es kostet", "Quanto custa", "价格", "料金", "Wat het kost", "Hva det koster"],
   "pricing.h2a": ["Fixed price.", "Prix fixe.", "Precio fijo.", "Festpreis.", "Preço fixo.", "固定价格。", "固定価格。", "Vaste prijs.", "Fastpris."],
   "pricing.h2b": ["No surprises.", "Zéro surprise.", "Sin sorpresas.", "Keine Überraschungen.", "Sem surpresas.", "没有意外。", "追加費用なし。", "Geen verrassingen.", "Ingen overraskelser."],
   "pricing.desc": [
@@ -115,7 +115,7 @@ export const COPY_B: Record<string, Entry> = {
     "Alle prijzen zijn startprijzen. Uw vaste prijs wordt bevestigd in een gratis gesprek van 15 minuten, zonder verplichting.",
     "Alle priser er utgangspunkt. Fastprisen din bekreftes i en gratis samtale på 15 minutter, uten forpliktelser.",
   ],
-  "pricing.plan0.label": ["START SMALL", "COMMENCER PETIT", "EMPEZAR POCO A POCO", "KLEIN STARTEN", "COMEÇAR PEQUENO", "从小处开始", "まずは小さく", "KLEIN BEGINNEN", "START LITE"],
+  "pricing.plan0.label": ["Start small", "Commencer petit", "Empezar poco a poco", "Klein starten", "Começar pequeno", "从小处开始", "まずは小さく", "Klein beginnen", "Start lite"],
   "pricing.plan0.name": ["One System", "Un système", "Un sistema", "Ein System", "Um sistema", "单项系统", "ひとつの仕組み", "Eén systeem", "Ett system"],
   "pricing.plan0.desc": [
     "One thing fixed well: online booking with reminders, or quote requests straight to your phone.",
@@ -153,7 +153,7 @@ export const COPY_B: Record<string, Entry> = {
     "En kort video som viser deg og teamet hvordan det brukes",
   ],
   "pricing.plan0.f4": ["Live within 2 weeks", "En ligne sous 2 semaines", "En marcha en 2 semanas", "In 2 Wochen live", "No ar em 2 semanas", "2 周内上线", "2週間以内に公開", "Binnen 2 weken live", "Live innen 2 uker"],
-  "pricing.plan1.label": ["FULL SETUP", "MISE EN PLACE COMPLÈTE", "PUESTA EN MARCHA COMPLETA", "KOMPLETT-EINRICHTUNG", "CONFIGURAÇÃO COMPLETA", "完整方案", "フルセットアップ", "VOLLEDIGE INRICHTING", "KOMPLETT OPPSETT"],
+  "pricing.plan1.label": ["Full setup", "Mise en place complète", "Puesta en marcha completa", "Komplett-einrichtung", "Configuração completa", "完整方案", "フルセットアップ", "Volledige inrichting", "Komplett oppsett"],
   "pricing.plan1.name": ["Complete Setup", "Mise en place complète", "Puesta en marcha completa", "Komplett-Setup", "Configuração completa", "完整搭建", "コンプリートセットアップ", "Complete inrichting", "Komplett oppsett"],
   "pricing.plan1.desc": [
     "Everything working together: a clear website, booking, reminders, quote requests and review requests.",
@@ -172,7 +172,7 @@ export const COPY_B: Record<string, Entry> = {
   "pricing.plan1.f3": ["Automatic Google review requests", "Demandes d'avis Google automatiques", "Peticiones de reseñas de Google automáticas", "Automatische Google-Bewertungsanfragen", "Pedidos de avaliação no Google automáticos", "自动发送 Google 好评邀请", "Googleクチコミの自動依頼", "Automatische verzoeken om een Google-review", "Automatiske forespørsler om Google-anmeldelser"],
   "pricing.plan1.f4": ["A short video for you and your team", "Une courte vidéo pour vous et votre équipe", "Un vídeo corto para ti y tu equipo", "Ein kurzes Video für Sie und Ihr Team", "Um vídeo curto para você e sua equipe", "为您和团队准备的简短视频", "ご自身とチーム向けの短い動画", "Een korte video voor u en uw team", "En kort video til deg og teamet"],
   "pricing.plan1.f5": ["Live within 2 weeks", "En ligne sous 2 semaines", "En marcha en 2 semanas", "In 2 Wochen live", "No ar em 2 semanas", "2 周内上线", "2週間以内に公開", "Binnen 2 weken live", "Live innen 2 uker"],
-  "pricing.plan2.label": ["SELL ONLINE", "VENDRE EN LIGNE", "VENDER ONLINE", "ONLINE VERKAUFEN", "VENDER ONLINE", "在线销售", "オンライン販売", "ONLINE VERKOPEN", "SELG PÅ NETT"],
+  "pricing.plan2.label": ["Sell online", "Vendre en ligne", "Vender online", "Online verkaufen", "Vender online", "在线销售", "オンライン販売", "Online verkopen", "Selg på nett"],
   "pricing.plan2.name": ["Setup + Online Orders", "Mise en place + commandes en ligne", "Puesta en marcha + pedidos online", "Setup + Online-Bestellungen", "Configuração + pedidos online", "搭建 + 在线下单", "セットアップ + オンライン注文", "Inrichting + online bestellingen", "Oppsett + nettbestillinger"],
   "pricing.plan2.desc": [
     "For shops, bakeries and studios that also want to take orders, deposits or payments online.",

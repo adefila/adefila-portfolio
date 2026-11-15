@@ -271,7 +271,7 @@ export default function LanguageSwitcher() {
       >
         <Globe size={13} strokeWidth={1.8} />
         <span>{inNigeria ? NIGERIA.flag : currentLang.flag}</span>
-        <span>{currentLang.code.toUpperCase()}</span>
+        <span>{currentLang.code.charAt(0).toUpperCase() + currentLang.code.slice(1).toLowerCase()}</span>
         <span style={{ width: 1, height: 12, background: "currentColor", opacity: 0.2, display: "inline-block" }} />
         <span style={{ opacity: 0.7 }}>{currentCurr.symbol}</span>
         <span>{currentCurr.code}</span>

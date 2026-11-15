@@ -435,7 +435,7 @@ export function ProjectIndex({ projects, shownCount = INDEX_SHOWN }: { projects:
                   {inner}
                 </a>
               ) : (
-                <div className="wl-row" tabIndex={0} {...handlers} onClick={() => setOpen(open === i ? null : i)}>
+                <div className="wl-row" tabIndex={0} {...handlers} onClick={() => { if (window.matchMedia("(hover: none)").matches) setOpen(open === i ? null : i); }}>
                   {inner}
                 </div>
               )}
