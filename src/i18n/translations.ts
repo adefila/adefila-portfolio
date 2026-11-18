@@ -52,7 +52,7 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     pt: "Projetos recentes",        zh: "近期项目",                    ja: "最近のプロジェクト",
   },
   "projects.h1": {
-    en: "Featured projects.",        fr: "Projets phares",            es: "Proyectos destacados",     de: "Ausgewählte Projekte",
+    en: "Featured projects",        fr: "Projets phares",            es: "Proyectos destacados",     de: "Ausgewählte Projekte",
     pt: "Projetos em destaque",     zh: "精选项目",                    ja: "注目プロジェクト",
   },
 
