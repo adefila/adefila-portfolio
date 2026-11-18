@@ -797,7 +797,7 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
 
   // ── Mid-page CTA ─────────────────────────────────────────────────────
   "midcta.headline": {
-    en: "Want to book a quick call?",                fr: "Vous en avez assez vu ?",
+    en: "Seen enough?",                fr: "Vous en avez assez vu ?",
     es: "¿Ya viste suficiente?",       de: "Genug gesehen?",
     pt: "Já viu o suficiente?",        zh: "看够了吗？",
     ja: "十分見ましたか？",
