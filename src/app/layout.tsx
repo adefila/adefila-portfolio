@@ -161,7 +161,7 @@ export default function RootLayout({
           <LanguageSwitcher />
         </LangProvider>
         <VisitBeacon />
-        <script src="https://batonedit.com/h.js" data-site="716ed91b72" defer></script>
+        <script src="https://batonedit.com/h.js" data-site="e4f91de86d" defer></script>
       </body>
       <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID!} />
     </html>

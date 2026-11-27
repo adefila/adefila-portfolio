@@ -52,7 +52,7 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     pt: "Projetos recentes",        zh: "近期项目",                    ja: "最近のプロジェクト",
   },
   "projects.h1": {
-    en: "Recent client work.",
+    en: "Recent client work",
     fr: "Travaux récents pour des clients",
     es: "Trabajo reciente para clientes",
     de: "Aktuelle Kundenarbeit",
@@ -1486,7 +1486,7 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     ja: "テンプレートを使いますか？",
   },
   "faq.a8": {
-    en: "Yes. If the template fits your brand, there's no reason to avoid it. A great template used well beats a mediocre custom build every time. If it doesn't match your brand, I'll adapt it or find a better path. The goal is always a site that looks and feels like you.",
+    en: "Yes. If the template fits your brand, there's no reason to avoid it. A great template used well beats a mediocre custom build every time. If it doesn't match your brand, I'll adapt it or find a better path.",
     fr: "Oui. Si le template correspond à votre marque, il n'y a aucune raison de l'éviter. Un bon template bien utilisé vaut mieux qu'une création sur mesure médiocre. S'il ne correspond pas, je l'adapte ou trouve une meilleure voie. L'objectif est toujours un site qui vous ressemble.",
     es: "Sí. Si la plantilla encaja con tu marca, no hay razón para evitarla. Una buena plantilla bien usada supera a una creación personalizada mediocre. Si no encaja, la adapto o encuentro un mejor camino. El objetivo es siempre un sitio que se vea y sienta como tú.",
     de: "Ja. Wenn das Template zu Ihrer Marke passt, gibt es keinen Grund, es zu vermeiden. Ein gutes Template übertrifft eine mittelmäßige individuelle Entwicklung jedes Mal. Wenn es nicht passt, passe ich es an oder finde einen besseren Weg. Das Ziel ist immer eine Site, die sich wie Sie anfühlt.",
