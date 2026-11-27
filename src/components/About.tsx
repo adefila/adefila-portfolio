@@ -22,10 +22,11 @@ const WORK: { period: string; role: string; company: string; place: string; win:
 
 
 // Side projects named inside the text. Hovering a name shows a small card; no big section of their own.
-const SIDE_PROJECTS = [
-  { name: "CVCraft", label: "AI tool", stack: ["Claude API", "Next.js"], href: "https://cvcraftai.vercel.app/" },
-  { name: "Video Compressor", label: "Utility", stack: ["Next.js", "FFmpeg WASM"], href: "https://video-compressor-bay.vercel.app/" },
-  { name: "MeetBot", label: "Chrome extension", stack: ["Recall.ai", "Claude AI"], href: "#" },
+const BUILT = [
+  { name: "Baton", label: "Visual editor for client sites", stack: ["Next.js", "Supabase"], href: "https://batonedit.com", logo: "/side-projects/baton.svg" },
+  { name: "CVCraft", label: "AI tool", stack: ["Claude API", "Next.js"], href: "https://cvcraftai.vercel.app/", logo: "/side-projects/cvcraft.svg" },
+  { name: "Video Compressor", label: "Utility", stack: ["Next.js", "FFmpeg WASM"], href: "https://video-compressor-bay.vercel.app/", logo: "/side-projects/video-compressor.svg" },
+  { name: "MeetBot", label: "Chrome extension", stack: ["Recall.ai", "Claude AI"], href: "#", logo: "/side-projects/meetbot.png" },
 ];
 
 // "Teams at {0}, {1} and {2}": the translated sentence with the hoverable names put in place of {0} {1} {2}.
@@ -36,6 +37,14 @@ function fillSentence(template: string, nodes: React.ReactNode[]): React.ReactNo
 const RECENT = ["Klimt and Design", "Trust-Tai Web Agency", "HitPay"];
 
 const CSS = `
+  /* the tools I built: round logos in one row, each overlapping the one before it (negative space), lifted on hover */
+  .ab-built { display: flex; flex-direction: row; align-items: center; margin-top: 32px; padding-left: 3px; }
+  .ab-built .about-term { display: block; position: relative; margin-left: -14px; transition: transform 0.2s ease; }
+  .ab-built .about-term:first-child { margin-left: 0; }
+  .ab-built .about-term:hover, .ab-built .about-term:focus-within { z-index: 5; transform: translateY(-3px); }
+  .ab-built .about-term-text { display: block; border-bottom: 0; line-height: 0; border-radius: 50%; }
+  .ab-logo { display: block; width: 52px; height: 52px; border-radius: 50%; overflow: hidden; line-height: 0; box-shadow: 0 0 0 3px var(--bg); }
+  .ab-logo img { width: 100%; height: 100%; display: block; object-fit: cover; }
   .ab-grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(32px, 6vw, 88px); align-items: stretch; margin-top: 8px; }
   .ab-portrait { position: relative; margin: 0; min-height: 440px; }
   .ab-photo { position: absolute; inset: 0; }
@@ -44,14 +53,14 @@ const CSS = `
   /* the picture fades into the page: clear at the top, darker towards the bottom until it is the page colour */
   .ab-fade { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 32%, color-mix(in srgb, var(--bg) 62%, transparent) 68%, var(--bg) 100%); pointer-events: none; }
   .ab-cap { position: absolute; left: 0; right: 0; bottom: 0; padding: 0 4px 6px; }
-  .ab-cap p { margin: 6px 0 0; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--fg-secondary); }
+  .ab-cap p { margin: 6px 0 0; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.02em; text-transform: uppercase; color: var(--fg-secondary); }
 
   .ab-copy h2 { margin: 18px 0 0; max-width: 18ch; font-size: clamp(28px, 3.4vw, 44px); }
   .ab-text { display: grid; gap: 16px; margin-top: 24px; font-family: var(--font-inter); font-size: 17px; line-height: 1.7; color: var(--fg-secondary); max-width: 62ch; }
   .ab-text a { color: inherit; text-decoration: underline; text-decoration-style: dotted; text-underline-offset: 3px; }
   .ab-facts { margin: 40px 0 0; border-top: 1px solid rgba(var(--ink), 0.14); }
   .ab-facts div { display: grid; grid-template-columns: 110px minmax(0, 1fr); gap: 16px; padding: 12px 0; border-bottom: 1px solid rgba(var(--ink), 0.14); }
-  .ab-facts dt { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--fg-muted); padding-top: 2px; }
+  .ab-facts dt { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.02em; text-transform: uppercase; color: var(--fg-muted); padding-top: 2px; }
   .ab-facts dd { margin: 0; font-family: var(--font-inter); font-size: 15px; line-height: 1.5; color: var(--fg); }
   .ab-cv { margin-top: 28px; }
 
@@ -61,7 +70,7 @@ const CSS = `
 
   .ab-work { list-style: none; margin: 32px 0 0; padding: 0; border-top: 1px solid rgba(var(--ink), 0.14); }
   .ab-job { display: grid; grid-template-columns: 170px minmax(0, 0.9fr) minmax(0, 1.4fr); gap: 24px; padding: 22px 0; border-bottom: 1px solid rgba(var(--ink), 0.14); }
-  .ab-job time { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--fg-muted); padding-top: 4px; }
+  .ab-job time { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.02em; text-transform: uppercase; color: var(--fg-muted); padding-top: 4px; }
   .ab-job b { display: block; font-family: var(--font-poppins); font-weight: 400; font-size: 19px; letter-spacing: -0.02em; line-height: 1.25; color: var(--fg); }
   .ab-job small { display: block; margin-top: 4px; font-family: var(--font-inter); font-size: 13px; line-height: 1.4; color: var(--fg-muted); }
   .ab-job p { margin: 0; font-family: var(--font-inter); font-size: 15px; line-height: 1.6; color: var(--fg-secondary); }
@@ -71,7 +80,7 @@ const CSS = `
   .ab-step { position: relative; padding: 24px 20px 24px 0; }
   .ab-step + .ab-step { padding-left: 20px; border-left: 1px solid rgba(var(--ink), 0.14); }
   .ab-step + .ab-step::before { content: ""; position: absolute; left: -4px; top: 30px; width: 7px; height: 7px; background: var(--bg); border: 1px solid var(--accent-purple); }
-  .ab-step-n { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent-purple); }
+  .ab-step-n { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.02em; text-transform: uppercase; color: var(--accent-purple); }
   .ab-step h4 { margin: 8px 0 0; font-family: var(--font-poppins); font-weight: 400; font-size: 20px; letter-spacing: -0.025em; color: var(--fg); }
   .ab-step p { margin: 6px 0 0; font-family: var(--font-inter); font-size: 13px; line-height: 1.5; color: var(--fg-muted); }
   .ab-step ul { list-style: none; margin: 16px 0 0; padding: 0; display: grid; gap: 6px; }
@@ -119,18 +128,6 @@ export default function About() {
             <p>{t("about.p1")}</p>
             <p>{t("about.p2")}</p>
             <p>
-              {(() => {
-                const [before, ...rest] = t("about.baton").split("Baton");
-                return (
-                  <>
-                    {before}
-                    <a href="https://batonedit.com" target="_blank" rel="noopener noreferrer">Baton</a>
-                    {rest.join("Baton")}
-                  </>
-                );
-              })()}
-            </p>
-            <p>
               {fillSentence(t("about.p3"), RECENT.map((name) => {
                 const job = WORK.find((w) => w.company === name)!;
                 return (
@@ -146,23 +143,24 @@ export default function About() {
                 );
               }))}
             </p>
-            <p>
-              {fillSentence(t("about.p4"), SIDE_PROJECTS.map((p) => {
-                const linked = p.href !== "#";
-                const label = linked ? <a href={p.href} target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none" }}>{p.name}</a> : p.name;
-                return (
-                  <Term key={p.name} tip={(
-                    <>
-                      <b>{p.name}</b>
-                      <span>{p.label} · {p.stack.join(", ")}</span>
-                      {linked && <a href={p.href} target="_blank" rel="noopener noreferrer">{t("about.viewProject")}</a>}
-                    </>
-                  )}>
-                    {label}
-                  </Term>
-                );
-              }))}
-            </p>
+          </div>
+
+          <div className="ab-built" data-reveal role="list" aria-label="Tools I built">
+            {BUILT.map((p) => {
+              const linked = p.href !== "#";
+              const logo = <Image src={p.logo} alt={p.name} width={48} height={48} unoptimized />;
+              return (
+                <Term key={p.name} tip={(
+                  <>
+                    <b>{p.name}</b>
+                    <span>{p.label} · {p.stack.join(", ")}</span>
+                    {linked && <a href={p.href} target="_blank" rel="noopener noreferrer">{t("about.viewProject")}</a>}
+                  </>
+                )}>
+                  {linked ? <a className="ab-logo" role="listitem" href={p.href} target="_blank" rel="noopener noreferrer" aria-label={p.name}>{logo}</a> : <span className="ab-logo" role="listitem">{logo}</span>}
+                </Term>
+              );
+            })}
           </div>
 
           <div className="ab-cv" data-reveal>

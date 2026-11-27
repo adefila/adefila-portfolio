@@ -58,7 +58,7 @@ function UpworkCard() {
           </p>
           <p style={{
             fontFamily: "var(--font-mono)", fontWeight: 600, fontSize: 12,
-            color: "rgba(var(--ink), 0.45)", letterSpacing: "2px", textTransform: "uppercase",
+            color: "rgba(var(--ink), 0.45)", letterSpacing: "0.02em", textTransform: "uppercase",
           }}>
             Job Success Score
           </p>
@@ -77,7 +77,7 @@ function UpworkCard() {
       {/* Footer */}
       <p style={{
         fontFamily: "var(--font-mono)", fontWeight: 400, fontSize: 11,
-        color: "rgba(var(--ink), 0.35)", letterSpacing: "1.5px", textTransform: "uppercase",
+        color: "rgba(var(--ink), 0.35)", letterSpacing: "0.02em", textTransform: "uppercase",
         textAlign: "center",
       }}>
         Verified on Upwork
@@ -223,7 +223,7 @@ export default function Testimonials() {
                 fontFamily: "var(--font-mono)",
                 fontWeight: 500,
                 fontSize: 11,
-                letterSpacing: "1.5px",
+                letterSpacing: "0.02em",
                 textTransform: "uppercase",
                 color: "rgba(255,255,255,0.85)",
                 lineHeight: 1.5,
@@ -251,7 +251,7 @@ export default function Testimonials() {
                 <span style={{
                   display: "inline-block", alignSelf: "flex-start",
                   fontFamily: "var(--font-mono)", fontWeight: 700, fontSize: 10,
-                  letterSpacing: "3px", textTransform: "uppercase",
+                  letterSpacing: "0.02em", textTransform: "uppercase",
                   color: "#fff", border: "1px solid rgba(255,255,255,0.4)",
                   padding: "4px 10px",
                 }}>
@@ -351,7 +351,7 @@ export default function Testimonials() {
                   <p style={{ fontFamily: "var(--font-poppins)", fontWeight: 700, fontSize: 16, letterSpacing: "-0.3px", textTransform: "uppercase", color: "var(--fg)", lineHeight: 1.2 }}>
                     {video.name}
                   </p>
-                  <p style={{ fontFamily: "var(--font-mono)", fontSize: 11, letterSpacing: "0.06em", textTransform: "uppercase", color: "var(--fg-secondary)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+                  <p style={{ fontFamily: "var(--font-mono)", fontSize: 11, letterSpacing: "0.02em", textTransform: "uppercase", color: "var(--fg-secondary)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
                     {video.role}
                   </p>
                 </div>

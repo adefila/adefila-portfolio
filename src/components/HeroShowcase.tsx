@@ -17,7 +17,7 @@ const HOLD_MS = 5200;
 
 const CSS = `
   .hs { position: relative; width: 100%; }
-  .hs-box { position: relative; aspect-ratio: 1 / 1; overflow: hidden; background: var(--surface); border: 1px solid rgba(var(--ink), 0.2); }
+  .hs-box { position: relative; aspect-ratio: 6 / 5; overflow: hidden; background: var(--surface); border: 1px solid rgba(var(--ink), 0.2); }
   .hs-layer { position: absolute; inset: 0; }
   .hs-rail { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-top: 14px; }
   .hs-seg { position: relative; height: 18px; padding: 0; background: none; border: 0; cursor: pointer; }
@@ -28,7 +28,7 @@ const CSS = `
   .hs-seg.on i { animation: hsFill ${HOLD_MS}ms linear forwards; }
   .hs.paused .hs-seg.on i { animation-play-state: paused; }
   .hs-seg:focus-visible { outline: 2px solid var(--accent-purple); outline-offset: 2px; }
-  .hs-cap { margin-top: 4px; display: flex; justify-content: space-between; gap: 12px; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--fg-muted); }
+  .hs-cap { margin-top: 4px; display: flex; justify-content: space-between; gap: 12px; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.02em; text-transform: uppercase; color: var(--fg-muted); }
   .hs-cap b { font-weight: 400; color: var(--fg-secondary); }
   @keyframes hsFill { to { width: 100%; } }
   @media (prefers-reduced-motion: reduce) { .hs-seg.on i { animation: none; width: 100%; } }

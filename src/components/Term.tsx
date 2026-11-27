@@ -39,10 +39,14 @@ export const TERM_CSS = `
   .about-term-text { color: var(--fg); border-bottom: 1px dotted rgba(var(--ink), 0.55); cursor: pointer; transition: color 0.15s ease, border-color 0.15s ease; }
   .about-term-text a { color: inherit; text-decoration: none; }
   .about-term:hover .about-term-text, .about-term-text:focus-visible { color: var(--accent-purple); border-bottom-color: var(--accent-purple); outline: none; }
-  .about-tip { position: absolute; z-index: 30; left: 0; bottom: calc(100% + 8px); width: max-content; max-width: min(280px, calc(100vw - 40px)); display: flex; flex-direction: column; gap: 3px; padding: 10px 12px; text-align: left; font-family: var(--font-inter); font-size: 12px; line-height: 1.45; letter-spacing: 0; text-transform: none; font-weight: 400; color: var(--fg-secondary); background: var(--surface); border: 1px solid rgba(var(--ink), 0.18); box-shadow: 0 10px 28px rgba(0, 0, 0, 0.25); }
+  .about-tip { position: absolute; z-index: 30; left: 0; bottom: calc(100% + 8px); width: max-content; max-width: min(280px, calc(100vw - 40px)); display: flex; flex-direction: column; gap: 3px; padding: 10px 12px; text-align: left; font-family: var(--font-inter); font-size: 12px; line-height: 1.45; letter-spacing: 0; text-transform: none; font-weight: 400; color: var(--fg-secondary); background: var(--surface); border: 1px solid rgba(var(--ink), 0.18); box-shadow: 0 6px 28px rgba(0, 0, 0, 0.06); }
+  .about-tip::after { content: ""; position: absolute; left: 0; right: 0; top: 100%; height: 14px; }
+  .about-tip-below::after { top: auto; bottom: 100%; }
   .about-tip-right { left: auto; right: 0; }
   .about-tip-below { bottom: auto; top: calc(100% + 8px); }
   .about-tip b { font-weight: 600; font-size: 12px; color: var(--fg); }
-  .about-tip a { align-self: flex-start; margin-top: 4px; font-weight: 600; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--fg); text-decoration: none; border-bottom: 1px solid currentColor; }
+  .about-tip a { align-self: flex-start; display: inline-flex; align-items: center; gap: 6px; margin-top: 8px; padding: 7px 12px; font-weight: 600; font-size: 12px; letter-spacing: 0; text-transform: none; color: #fff; background: var(--btn-bg); text-decoration: none; border: 0; transition: background 0.2s ease; }
+  .about-tip a::after { content: "↗"; font-size: 12px; }
+  .about-tip a:hover { background: var(--btn-bg-hover); }
   .about-tip-thumb { display: block; width: 264px; max-width: 100%; height: auto; aspect-ratio: 16 / 8.4; object-fit: cover; object-position: top center; margin: -10px -12px 8px; width: calc(100% + 24px); max-width: none; }
 `;

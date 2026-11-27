@@ -70,7 +70,7 @@ export default function ClientGrid() {
             fontFamily: "var(--font-mono)",
             fontWeight: 400,
             fontSize: 11,
-            letterSpacing: "0.14em",
+            letterSpacing: "0.02em",
             textTransform: "uppercase",
             color: "var(--fg-muted)",
             textAlign: "center",

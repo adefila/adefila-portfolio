@@ -3,7 +3,6 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { ArrowUpRight, X } from "lucide-react";
 import { useLang } from "@/context/LangContext";
-import { SPOTS_OPEN, useNextStartMonth } from "@/lib/availability";
 import { trackEvent } from "@/lib/gtag";
 import { isBookingHref } from "@/lib/booking";
 
@@ -64,7 +63,6 @@ const bookingLink = (target: EventTarget | null) => {
 
 export default function BookingPopup() {
   const { t, lang } = useLang();
-  const nextStart = useNextStartMonth(lang);
   const [url, setUrl] = useState<string | null>(null);
   const [loaded, setLoaded] = useState(false);
   const [slow, setSlow] = useState(false);
@@ -162,10 +160,6 @@ export default function BookingPopup() {
             <div style={{ minWidth: 0 }}>
               <p id="booking-title" style={{ fontFamily: "var(--font-poppins)", fontWeight: 700, fontSize: 16, letterSpacing: "-0.3px", textTransform: "uppercase", color: "var(--fg)", lineHeight: 1.2 }}>
                 {t("common.bookCall")}
-              </p>
-              <p style={{ display: "flex", alignItems: "center", gap: 6, fontFamily: "var(--font-inter)", fontSize: 11, fontWeight: 600, letterSpacing: "0.06em", textTransform: "uppercase", color: "var(--fg-secondary)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
-                <span style={{ width: 6, height: 6, borderRadius: "50%", background: "var(--accent-green)", flexShrink: 0 }} />
-                {t("hero.badge").replace("{count}", String(SPOTS_OPEN))} · {t("hero.badge2").replace("{date}", nextStart)}
               </p>
             </div>
           </div>

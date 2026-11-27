@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import { useLang } from "@/context/LangContext";
 import { LANGUAGES, CURRENCIES, CurrencyCode } from "@/i18n/translations";
 import ThemeToggle from "./ThemeToggle";
-import { FORCE_DARK } from "@/lib/theme";
+import { FORCE_DARK, FORCE_LIGHT } from "@/lib/theme";
 
 const EASE = [0.22, 1, 0.36, 1] as [number, number, number, number];
 
@@ -236,7 +236,7 @@ export default function LanguageSwitcher() {
           fontFamily: "var(--font-mono)",
           fontSize: 10,
           fontWeight: 500,
-          letterSpacing: "0.12em",
+          letterSpacing: "0.02em",
           textTransform: "uppercase",
           color: "var(--fg)",
           whiteSpace: "nowrap",
@@ -276,7 +276,7 @@ export default function LanguageSwitcher() {
         <span style={{ opacity: 0.7 }}>{currentCurr.symbol}</span>
         <span>{currentCurr.code}</span>
       </motion.button>
-      {!FORCE_DARK && <ThemeToggle />}
+      {!FORCE_DARK && !FORCE_LIGHT && <ThemeToggle />}
     </div>
   );
 }

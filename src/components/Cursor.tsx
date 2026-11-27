@@ -98,7 +98,7 @@ export default function Cursor() {
       <span
         ref={labelRef}
         aria-hidden="true"
-        style={{ opacity: 0, transition: "opacity 0.2s", fontFamily: "var(--font-mono)", fontSize: 10, letterSpacing: "0.12em", color: "#fff", textTransform: "uppercase", whiteSpace: "nowrap" }}
+        style={{ opacity: 0, transition: "opacity 0.2s", fontFamily: "var(--font-mono)", fontSize: 10, letterSpacing: "0.02em", color: "#fff", textTransform: "uppercase", whiteSpace: "nowrap" }}
       />
     </div>
   );

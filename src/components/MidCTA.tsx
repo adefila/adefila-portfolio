@@ -2,7 +2,6 @@
 import { CalendarDays } from "lucide-react";
 import Image from "next/image";
 import { useLang } from "@/context/LangContext";
-import { SPOTS_OPEN, useNextStartMonth } from "@/lib/availability";
 import MagneticButton from "./MagneticButton";
 import { BOOKING_URL } from "@/lib/booking";
 
@@ -10,7 +9,6 @@ const EMAIL = "samuel@adefilasamuel.com";
 
 export default function MidCTA() {
   const { t, lang } = useLang();
-  const nextStart = useNextStartMonth(lang);
   return (
     <section
       data-track-location="mid_cta"
@@ -30,7 +28,7 @@ export default function MidCTA() {
         <line x1="52" y1="168" x2="172" y2="168" stroke="#fff" strokeWidth="1" />
         <line x1="52" y1="162" x2="52" y2="174" stroke="#fff" strokeWidth="1" />
         <line x1="172" y1="162" x2="172" y2="174" stroke="#fff" strokeWidth="1" />
-        <text x="128" y="42" fill="#fff" fontSize="11" fontFamily="monospace" letterSpacing="2" textAnchor="end">Fig. 03</text>
+        <text x="128" y="42" fill="#fff" fontSize="11" style={{ fontFamily: "var(--font-inter)" }} letterSpacing="2" textAnchor="end">Fig. 03</text>
       </svg>
       <svg aria-hidden="true" className="footer-blueprint footer-blueprint-lg" width="560" height="360" viewBox="0 0 560 360" fill="none" style={{ left: -60, bottom: -40, opacity: 0.3 }}>
         <rect x="70" y="34" width="420" height="252" stroke="#fff" strokeWidth="1" strokeDasharray="7 7" />
@@ -46,9 +44,9 @@ export default function MidCTA() {
         <line x1="70" y1="318" x2="490" y2="318" stroke="#fff" strokeWidth="1" />
         <line x1="70" y1="311" x2="70" y2="325" stroke="#fff" strokeWidth="1" />
         <line x1="490" y1="311" x2="490" y2="325" stroke="#fff" strokeWidth="1" />
-        <text x="70" y="24" fill="#fff" fontSize="11" fontFamily="monospace" letterSpacing="2">Fig. 04 — scope</text>
-        <text x="380" y="150" fill="#fff" fontSize="10" fontFamily="monospace" letterSpacing="1">r 92</text>
-        <text x="236" y="332" fill="#fff" fontSize="10" fontFamily="monospace" letterSpacing="1">Panel — 420</text>
+        <text x="70" y="24" fill="#fff" fontSize="11" style={{ fontFamily: "var(--font-inter)" }} letterSpacing="2">Fig. 04 — scope</text>
+        <text x="380" y="150" fill="#fff" fontSize="10" style={{ fontFamily: "var(--font-inter)" }} letterSpacing="1">r 92</text>
+        <text x="236" y="332" fill="#fff" fontSize="10" style={{ fontFamily: "var(--font-inter)" }} letterSpacing="1">Panel — 420</text>
       </svg>
       <div
         className="midcta-inner"
@@ -81,9 +79,6 @@ export default function MidCTA() {
                 style={{ position: "absolute", right: 1, bottom: 1, width: 12, height: 12, borderRadius: "50%", background: "var(--accent-green)", border: "2px solid var(--accent-purple)" }}
               />
             </span>
-            <p style={{ fontFamily: "var(--font-inter)", fontWeight: 600, fontSize: 11, letterSpacing: "0.08em", textTransform: "uppercase", color: "rgba(255,255,255,0.9)", lineHeight: 1.6 }}>
-              {t("hero.badge").replace("{count}", String(SPOTS_OPEN))} <span aria-hidden="true">·</span> {t("hero.badge2").replace("{date}", nextStart)}
-            </p>
           </div>
           <p
             style={{

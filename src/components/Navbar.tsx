@@ -82,7 +82,6 @@ export default function Navbar({ hide = [] }: { hide?: string[] }) {
   const [active, setActive] = useState("");
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [progress, setProgress] = useState(0);
   const [marker, setMarker] = useState<{ left: number; width: number } | null>(null);
   const [time, setTime] = useState("");
   const linksRef = useRef<HTMLDivElement>(null);
@@ -100,8 +99,6 @@ export default function Navbar({ hide = [] }: { hide?: string[] }) {
   useEffect(() => {
     const onScroll = () => {
       setScrolled(window.scrollY > 60);
-      const max = document.documentElement.scrollHeight - window.innerHeight;
-      setProgress(max > 0 ? Math.min(1, window.scrollY / max) : 0);
       // getBoundingClientRect is accurate regardless of lazy-loaded layout shifts
       const trigger = window.innerHeight * 0.45;
       let current = "hero";
@@ -291,7 +288,6 @@ export default function Navbar({ hide = [] }: { hide?: string[] }) {
           >
             <HamburgerIcon open={menuOpen} />
           </button>
-          <span className="nav-progress" aria-hidden="true" style={{ transform: `scaleX(${progress})`, opacity: menuOpen ? 0 : 1 }} />
         </div>
       </motion.nav>
 

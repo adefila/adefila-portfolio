@@ -33,7 +33,7 @@ const CSS = `
   .ws-row:hover { background: rgba(var(--ink), 0.03); color: var(--fg); }
   .ws-row:focus-visible { outline: 2px solid var(--accent-purple); outline-offset: -2px; }
   .ws-row[aria-selected="true"] { color: var(--fg); }
-  .ws-n { padding-top: 4px; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em; color: var(--fg-muted); }
+  .ws-n { padding-top: 4px; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.02em; color: var(--fg-muted); }
   .ws-row[aria-selected="true"] .ws-n { color: var(--accent-purple); }
   .ws-name { font-family: var(--font-poppins); font-weight: 600; font-size: 18px; letter-spacing: -0.02em; line-height: 1.25; }
   .ws-note { display: block; margin-top: 4px; font-family: var(--font-inter); font-size: 13px; line-height: 1.5; color: var(--fg-secondary); }
@@ -43,7 +43,7 @@ const CSS = `
   .ws.paused .ws-rail i, .ws-stage:hover ~ .ws-list .ws-rail i { animation-play-state: paused; }
   @keyframes wsFill { to { width: 100%; } }
   .ws-stage { min-width: 0; animation: wsIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) both; }
-  .ws-bar { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 14px; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--fg-muted); }
+  .ws-bar { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 14px; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.02em; text-transform: uppercase; color: var(--fg-muted); }
   .ws-btn { display: inline-flex; align-items: center; gap: 6px; background: none; border: 1px solid rgba(var(--ink), 0.2); color: var(--fg-secondary); font: inherit; letter-spacing: inherit; text-transform: inherit; padding: 5px 10px; cursor: pointer; }
   .ws-btn:hover { color: var(--fg); border-color: rgba(var(--ink), 0.4); }
   .ws-btn:focus-visible { outline: 2px solid var(--accent-purple); outline-offset: 2px; }

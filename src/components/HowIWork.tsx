@@ -350,7 +350,7 @@ export default function HowIWork() {
                 <div>
                   <p style={{
                     fontFamily: "var(--font-mono)", fontWeight: 700, fontSize: 10,
-                    letterSpacing: "2.5px", textTransform: "uppercase",
+                    letterSpacing: "0.02em", textTransform: "uppercase",
                     color: purple, marginBottom: 16,
                   }}>
                     What to expect

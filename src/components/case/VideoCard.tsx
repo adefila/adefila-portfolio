@@ -17,7 +17,7 @@ export default function VideoCard({ src, poster, by, role, length }: { src: stri
         .vc-play span { display: grid; place-items: center; width: 72px; height: 72px; border-radius: 50%; background: #fff; color: #000; transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1); }
         .vc-play:hover span { transform: scale(1.08); }
         .vc-play:focus-visible { outline: 3px solid var(--accent-purple); outline-offset: -3px; }
-        .vc-time { position: absolute; left: 16px; bottom: 16px; padding: 4px 8px; background: rgba(0, 0, 0, 0.7); font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #fff; }
+        .vc-time { position: absolute; left: 16px; bottom: 16px; padding: 4px 8px; background: rgba(0, 0, 0, 0.7); font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.02em; text-transform: uppercase; color: #fff; }
         .vc-cap { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; padding: 14px 16px; border-top: 1px solid rgba(var(--ink), 0.14); font-family: var(--font-inter); font-size: 14px; color: var(--fg-secondary); }
         .vc-cap strong { color: var(--fg); font-weight: 600; margin-right: 8px; }
         @media (prefers-reduced-motion: reduce) { .vc-play span { transition: none; } }

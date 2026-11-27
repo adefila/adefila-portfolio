@@ -25,7 +25,7 @@ export default async function Image() {
 
   return new ImageResponse(
     (
-      <div style={{ display: "flex", width: "100%", height: "100%", fontFamily: "Poppins, sans-serif", background: "#f7f7f7" }}>
+      <div style={{ display: "flex", width: "100%", height: "100%", fontFamily: "Poppins, sans-serif", background: "#ffffff" }}>
         {/* Left: headline and proof */}
         <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", flex: 1, padding: "52px 56px 48px 64px" }}>
           <div style={{ display: "flex", alignItems: "center" }}>

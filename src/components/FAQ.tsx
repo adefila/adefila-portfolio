@@ -7,6 +7,9 @@ import RevealWords, { revealDelayAfter } from "./RevealWords";
 
 type Faq = { q: string; a: string; i: number };
 
+// The five questions people really ask: cost, timeline, improving a site they already have, running it afterwards, and how to start.
+const FAQ_SHOWN = [2, 3, 5, 7, 9];
+
 const EASE = [0.22, 1, 0.36, 1] as [number, number, number, number];
 
 export default function FAQ() {
@@ -14,7 +17,7 @@ export default function FAQ() {
   const { t } = useLang();
 
   const faqs: Faq[] = useMemo(
-    () => Array.from({ length: 10 }, (_, i) => ({ i, q: t(`faq.q${i}`), a: t(`faq.a${i}`) })).filter((f) => f.q),
+    () => FAQ_SHOWN.map((i) => ({ i, q: t(`faq.q${i}`), a: t(`faq.a${i}`) })).filter((f) => f.q),
     [t],
   );
 
@@ -76,7 +79,7 @@ export default function FAQ() {
                     style={{ display: "flex", alignItems: "center", justifyContent: "space-between", width: "100%", padding: isOpen ? "16px 0 8px" : "16px 0", background: "none", border: "none", cursor: "pointer", gap: 20, textAlign: "left" }}
                   >
                     <div style={{ display: "flex", alignItems: "center", gap: 14, minWidth: 0, flex: 1 }}>
-                      <span style={{ fontFamily: "var(--font-mono)", fontSize: 11, letterSpacing: "0.5px", color: isOpen ? "var(--accent-purple)" : "var(--fg-muted)", flexShrink: 0, transition: "color 0.2s", fontVariantNumeric: "tabular-nums", minWidth: 20 }}>
+                      <span style={{ fontFamily: "var(--font-mono)", fontSize: 11, letterSpacing: "0.02em", color: isOpen ? "var(--accent-purple)" : "var(--fg-muted)", flexShrink: 0, transition: "color 0.2s", fontVariantNumeric: "tabular-nums", minWidth: 20 }}>
                         {String(n + 1).padStart(2, "0")}
                       </span>
                       <span style={{ fontFamily: "var(--font-inter)", fontWeight: 400, fontSize: 16, letterSpacing: "-0.01em", color: isOpen ? "var(--accent-purple)" : "var(--fg)", transition: "color 0.2s" }}>

@@ -34,26 +34,6 @@ export const devProjects: Project[] = [
     screenshot: "/projects/dlp-africa-desktop.webp",
   },
   {
-    title: "Baton",
-    bg: "#f0e2dc",
-    alt: "Baton, a visual editor that lets clients change the words, photos and links on their live website without a developer",
-    desc: "My own product: a visual editor that lets clients change the words, photos and links on their live website. Stack detection, draft and publish with rollback, roles, and a guided setup.",
-    year: "2026",
-    tags: ["SaaS", "Product Build"],
-    href: "https://batonedit.com/",
-    screenshot: "/projects/baton.webp",
-  },
-  {
-    title: "Calder Health",
-    bg: "#dde7da",
-    alt: "Calder Health telehealth website — personalised online care with licensed providers, built in Next.js",
-    desc: "Telehealth website for personalised online care. Built in Next.js with a custom design system, calm healthcare visuals, and a content editor so the team can update pages without code.",
-    year: "2026",
-    tags: ["HealthTech", "Next.js Build"],
-    href: "https://calder-health.vercel.app/",
-    screenshot: "/projects/calder-health.webp",
-  },
-  {
     title: "The Initial",
     bg: "#d3e6e8",
     alt: "The Initial creative agency website — AI-powered Framer build with custom interactions",
@@ -164,16 +144,6 @@ export const devProjects: Project[] = [
     screenshot: "/projects/design/bookedez.jpg",
     badge: "Live on Stores",
   },
-  {
-    title: "Datum Build",
-    bg: "#e3e7ee",
-    alt: "Datum Build contractor website concept: bold construction visuals, current projects and a clear Start a project button",
-    desc: "A bold site for a building contractor: current projects up front, the fixed price and weekly report explained, and a clear Start a project button.",
-    year: "2026",
-    tags: ["Construction", "Concept"],
-    href: "https://datum-build.vercel.app/",
-    screenshot: "/local/concept-datum.webp",
-  },
 ];
 
 // Kept for later; not shown for now.
@@ -255,9 +225,9 @@ export const designProjects: Project[] = [
 
 // The work as a large typographic index. Hover a row: the others dim and a screenshot follows the cursor.
 // What leads: the sites built in code, then client work with results; the rest is one click away.
-const LEAD_WITH = ["DLP Africa", "Baton", "The Initial", "BindHQ", "Leadopo", "Upside ESG", "VPA London", "BookedEZ", "The Prime Media"];
+const LEAD_WITH = ["DLP Africa", "The Initial", "BindHQ", "Leadopo", "Upside ESG", "VPA London", "BookedEZ", "The Prime Media"];
 // These two close the list, in this order. Everything else sits between the two groups in the order it is written above.
-const END_WITH = ["Talon Tyres", "Datum Build"];
+const END_WITH = ["Talon Tyres"];
 const INDEX_SHOWN = 6;
 const rank = (title: string) => {
   const lead = LEAD_WITH.indexOf(title);
@@ -278,7 +248,7 @@ const WL_CSS = `
   .wl-n { font-family: var(--font-mono); font-size: 12px; color: var(--fg-muted); }
   .wl-t { font-family: var(--font-poppins); font-weight: 400; font-size: clamp(18px, 2vw, 26px); letter-spacing: -0.03em; line-height: 1.1; transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), color 0.2s ease; }
   .wl-row:hover .wl-t, .wl-row:focus-visible .wl-t { transform: translateX(14px); color: var(--accent-purple); }
-  .wl-k { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--fg-secondary); display: flex; gap: 10px; align-items: baseline; white-space: nowrap; }
+  .wl-k { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.02em; text-transform: uppercase; color: var(--fg-secondary); display: flex; gap: 10px; align-items: baseline; white-space: nowrap; }
   .wl-k i { font-style: normal; font-family: var(--font-mono); text-transform: none; letter-spacing: 0; color: var(--accent-purple); }
   .wl-case { font-weight: 500; padding: 2px 7px; border: 1px solid rgba(139, 92, 246, 0.55); color: var(--accent-purple); font-size: 10px; letter-spacing: 0.1em; }
   .wl-y { font-family: var(--font-mono); font-size: 12px; color: var(--fg-muted); text-align: right; }
@@ -321,9 +291,9 @@ const WL_CSS = `
 // the business page's concept sites, so both look and behave the same.
 // Short scroll-through recordings of the live sites (public/projects/video), played in the cursor preview while a row is hovered.
 const CLIPS: Record<string, string> = {
-  "Calder Health": "calder-health", "The Initial": "the-initial", BindHQ: "bindhq", "VPA London": "vpa-london",
+  "The Initial": "the-initial", BindHQ: "bindhq", "VPA London": "vpa-london",
   "Upside ESG": "upside-esg", "Alyssa Corso": "alyssa-corso", Emalbu: "emalbu", Leadopo: "leadopo",
-  "The Prime Media": "the-prime-media", "Jamal Muse": "jamal", "DLP Africa": "dlp-africa-desktop", Baton: "baton", "Talon Tyres": "talon-tyres", "Datum Build": "datum",
+  "The Prime Media": "the-prime-media", "Jamal Muse": "jamal", "DLP Africa": "dlp-africa-desktop", "Talon Tyres": "talon-tyres",
 };
 
 export type IndexProject = Pick<Project, "title" | "alt" | "year" | "tags" | "href" | "screenshot"> & { track?: string };

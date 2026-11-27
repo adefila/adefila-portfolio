@@ -12,7 +12,7 @@ export type BoardScreen = { kind: BoardKind; name: string; note: string; src: st
 
 const CSS = `
   .pb { position: relative; margin-top: 56px; border-top: 1px solid rgba(var(--ink), 0.14); border-bottom: 1px solid rgba(var(--ink), 0.14); background-color: rgba(var(--ink), 0.025); }
-  .pb-bar { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 12px max(20px, calc((100% - 1200px) / 2 + 20px)); font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--fg-muted); border-bottom: 1px solid rgba(var(--ink), 0.1); }
+  .pb-bar { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 12px max(20px, calc((100% - 1200px) / 2 + 20px)); font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.02em; text-transform: uppercase; color: var(--fg-muted); border-bottom: 1px solid rgba(var(--ink), 0.1); }
   .pb-bar b { font-weight: 500; color: var(--accent-purple); }
   .pb-btn { display: inline-flex; align-items: center; gap: 6px; background: none; border: 1px solid rgba(var(--ink), 0.2); color: var(--fg-secondary); font: inherit; letter-spacing: inherit; text-transform: inherit; padding: 5px 10px; cursor: pointer; }
   .pb-btn:hover { color: var(--fg); border-color: rgba(var(--ink), 0.4); }
@@ -31,11 +31,11 @@ const CSS = `
   .pb-frame { position: relative; width: 208px; aspect-ratio: 200 / 378; overflow: hidden; background: #0d0d0f; border: 1px solid rgba(var(--ink), 0.2); box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35); }
   .pb-frame svg, .pb-frame img { display: block; width: 100%; height: 100%; }
   .pb-frame img { object-fit: cover; object-position: top; }
-  .pb-lab { margin-top: 12px; display: flex; gap: 8px; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--fg-secondary); }
+  .pb-lab { margin-top: 12px; display: flex; gap: 8px; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.02em; text-transform: uppercase; color: var(--fg-secondary); }
   .pb-lab i { font-style: normal; color: var(--accent-purple); }
   .pb-arrow { width: 56px; flex-shrink: 0; align-self: flex-start; margin-top: 180px; display: flex; align-items: center; color: rgba(var(--ink), 0.4); }
   .pb-arrow svg { width: 100%; height: 12px; }
-  .pb-note { padding: 0 max(20px, calc((100% - 1200px) / 2 + 20px)) 18px; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.06em; color: var(--fg-muted); }
+  .pb-note { padding: 0 max(20px, calc((100% - 1200px) / 2 + 20px)) 18px; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.02em; color: var(--fg-muted); }
   @media (prefers-reduced-motion: reduce) {
     .pb-track { animation: none; }
     .pb-view { overflow-x: auto; -webkit-mask-image: none; mask-image: none; }
@@ -65,13 +65,13 @@ function Bar({ x, y, w, h = 5, sk }: { x: number; y: number; w: number; h?: numb
   return <rect x={x} y={y} width={w} height={h} rx={h / 2} fill={BAR} />;
 }
 function Tag({ x, y, children, sk }: { x: number; y: number; children: string; sk: boolean }) {
-  return sk ? <text x={x} y={y + 5} fill="rgba(255,255,255,0.6)" fontSize="7.5" fontFamily="monospace" letterSpacing="0.3">{children}</text> : null;
+  return sk ? <text x={x} y={y + 5} fill="rgba(255,255,255,0.6)" fontSize="7.5" style={{ fontFamily: "var(--font-inter)" }} letterSpacing="0.3">{children}</text> : null;
 }
 function Header({ sk, title }: { sk: boolean; title: string }) {
   return (
     <g>
       <path d="M20 22l-7 7 7 7" fill="none" stroke={LINE} strokeWidth={sk ? 1.5 : 1.2} strokeLinecap="round" strokeLinejoin="round" />
-      {sk ? <text x="100" y="32" textAnchor="middle" fill="rgba(255,255,255,0.7)" fontSize="9" fontFamily="monospace">{title}</text> : <Bar x={70} y={26} w={60} sk={false} />}
+      {sk ? <text x="100" y="32" textAnchor="middle" fill="rgba(255,255,255,0.7)" fontSize="9" style={{ fontFamily: "var(--font-inter)" }}>{title}</text> : <Bar x={70} y={26} w={60} sk={false} />}
       <circle cx="184" cy="24" r="1.6" fill={LINE} /><circle cx="184" cy="29" r="1.6" fill={LINE} /><circle cx="184" cy="34" r="1.6" fill={LINE} />
     </g>
   );
@@ -107,7 +107,7 @@ function PendingRequests({ sk }: P) {
       <Box x={14} y={48} w={172} h={64} r={8} sk={sk} />
       <path d="M14 48L186 112M186 48L14 112" stroke="rgba(255,255,255,0.14)" strokeWidth="1" />
       {sk ? <Tag x={20} y={76} sk>Event banner</Tag> : null}
-      {sk ? <text x="14" y="136" fill="rgba(255,255,255,0.7)" fontSize="8.5" fontFamily="monospace">Event name (26 requests)</text> : <Bar x={14} y={130} w={120} h={6} sk={false} />}
+      {sk ? <text x="14" y="136" fill="rgba(255,255,255,0.7)" fontSize="8.5" style={{ fontFamily: "var(--font-inter)" }}>Event name (26 requests)</text> : <Bar x={14} y={130} w={120} h={6} sk={false} />}
       <line x1="14" y1="144" x2="186" y2="144" stroke={LINE} strokeWidth="1" strokeDasharray={sk ? "3 3" : undefined} opacity="0.5" />
       {[0, 1, 2, 3].map((i) => {
         const y = 154 + i * 48;
@@ -131,13 +131,13 @@ function ArtistDetails({ sk }: P) {
     <g>
       <Header sk={sk} title="Artist details" />
       <circle cx="100" cy="72" r="26" fill={sk ? "none" : SOFT} stroke={LINE} strokeWidth={sk ? 1.5 : 1} />
-      {sk ? <text x="100" y="75" textAnchor="middle" fill="rgba(255,255,255,0.6)" fontSize="7.5" fontFamily="monospace">photo</text> : null}
+      {sk ? <text x="100" y="75" textAnchor="middle" fill="rgba(255,255,255,0.6)" fontSize="7.5" style={{ fontFamily: "var(--font-inter)" }}>photo</text> : null}
       <Bar x={54} y={108} w={58} h={6} sk={sk} />
       <Box x={120} y={106} w={36} h={12} r={6} sk={sk} />
       {sk ? <Tag x={50} y={122} sk>Artist · city · rate per event</Tag> : <Bar x={46} y={126} w={108} h={4} sk={false} />}
       <Box x={14} y={142} w={172} h={22} r={11} sk={sk} />
       <Box x={16} y={144} w={56} h={18} r={9} sk={sk} fill={ACCENT} />
-      {sk ? <text x="44" y="156" textAnchor="middle" fill="rgba(255,255,255,0.7)" fontSize="7.5" fontFamily="monospace">About</text> : <Bar x={30} y={151} w={28} sk={false} />}
+      {sk ? <text x="44" y="156" textAnchor="middle" fill="rgba(255,255,255,0.7)" fontSize="7.5" style={{ fontFamily: "var(--font-inter)" }}>About</text> : <Bar x={30} y={151} w={28} sk={false} />}
       <Bar x={92} y={151} w={22} sk={sk} /><Bar x={140} y={151} w={28} sk={sk} />
       <Box x={14} y={176} w={172} h={58} r={8} sk={sk} />
       {sk ? <Tag x={24} y={182} sk>Bio</Tag> : <Bar x={24} y={186} w={28} sk={false} />}

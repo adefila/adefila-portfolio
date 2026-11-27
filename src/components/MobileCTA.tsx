@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { CalendarDays } from "lucide-react";
 import { useLang } from "@/context/LangContext";
-import { SPOTS_OPEN, useNextStartMonth } from "@/lib/availability";
 import { BOOKING_URL } from "@/lib/booking";
 
 // Phones only (hidden on wider screens in globals.css). Slides up once the hero's
@@ -11,7 +10,6 @@ import { BOOKING_URL } from "@/lib/booking";
 // form or footer is on screen, since those have their own buttons.
 export default function MobileCTA() {
   const { t, lang } = useLang();
-  const nextStart = useNextStartMonth(lang);
   const [pastHero, setPastHero] = useState(false);
   const [nearEnd, setNearEnd] = useState(false);
   const show = pastHero && !nearEnd;
@@ -54,15 +52,7 @@ export default function MobileCTA() {
         height={40}
         style={{ width: 40, height: 40, borderRadius: "50%", objectFit: "cover", objectPosition: "50% 25%", flexShrink: 0 }}
       />
-      <div style={{ flex: 1, minWidth: 0 }}>
-        <p style={{ fontFamily: "var(--font-inter)", fontWeight: 700, fontSize: 12, color: "var(--fg)", lineHeight: 1.3, display: "flex", alignItems: "center", gap: 6 }}>
-          <span style={{ width: 7, height: 7, borderRadius: "50%", background: "var(--accent-green)", flexShrink: 0 }} />
-          {t("hero.badge").replace("{count}", String(SPOTS_OPEN))}
-        </p>
-        <p style={{ fontFamily: "var(--font-inter)", fontSize: 11, color: "var(--fg-secondary)", lineHeight: 1.3, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
-          {t("hero.badge2").replace("{date}", nextStart)}
-        </p>
-      </div>
+      <div style={{ flex: 1, minWidth: 0 }} />
       <a
         href={BOOKING_URL}
         target="_blank"

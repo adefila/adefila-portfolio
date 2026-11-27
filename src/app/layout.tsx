@@ -1,13 +1,12 @@
 ﻿import type { Metadata } from "next";
-import { Geist, Geist_Mono, Mrs_Saint_Delafield } from "next/font/google";
+import { Geist, Mrs_Saint_Delafield } from "next/font/google";
 import "./globals.css";
-import { FORCE_DARK } from "@/lib/theme";
+import { FORCE_DARK, FORCE_LIGHT } from "@/lib/theme";
 
 // One typeface for the whole site. The latin-ext subset covers the accents of French, Spanish, German and Portuguese;
 // Chinese and Japanese fall back to the visitor's system font.
 const geist = Geist({ subsets: ["latin", "latin-ext"], variable: "--font-geist", display: "swap" });
 // The second voice: small technical labels (section numbers, tags, years). Used sparingly.
-const geistMono = Geist_Mono({ subsets: ["latin"], variable: "--font-geist-mono", display: "swap" });
 // A signature script, used once: the name over the portrait in the About section.
 const signature = Mrs_Saint_Delafield({ subsets: ["latin"], weight: "400", variable: "--font-signature", display: "swap" });
 
@@ -121,15 +120,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" data-theme={FORCE_DARK ? "dark" : undefined} className={`${geist.variable} ${geistMono.variable} ${signature.variable}`} suppressHydrationWarning>
+    <html lang="en" data-theme={FORCE_DARK ? "dark" : FORCE_LIGHT ? "light" : undefined} className={`${geist.variable} ${signature.variable}`} suppressHydrationWarning>
       <head>
-        <meta name="theme-color" content="#0f0f0f" />
-        <meta name="color-scheme" content={FORCE_DARK ? "dark" : "light dark"} />
+        <meta name="theme-color" content={FORCE_DARK ? "#0f0f0f" : "#ffffff"} />
+        <meta name="color-scheme" content={FORCE_DARK ? "dark" : FORCE_LIGHT ? "light" : "light dark"} />
         {/* Applies the saved colour theme before first paint (same rule as ThemeToggle.tsx): light unless the visitor chose dark, or "match my device" on a dark device. */}
         <script
           dangerouslySetInnerHTML={{
             __html: FORCE_DARK
               ? `document.documentElement.setAttribute("data-theme","dark")`
+              : FORCE_LIGHT
+              ? `document.documentElement.setAttribute("data-theme","light")`
               : `try{var p=localStorage.getItem("sam-theme");var d=p==="dark"||(p==="system"&&matchMedia("(prefers-color-scheme: dark)").matches);document.documentElement.setAttribute("data-theme",d?"dark":"light")}catch(e){}`,
           }}
         />

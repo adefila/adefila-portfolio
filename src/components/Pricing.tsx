@@ -106,7 +106,7 @@ export default function Pricing({ prices, retainer = true }: { prices?: [number,
               fontFamily: "var(--font-mono)",
               fontWeight: 700,
               fontSize: 10,
-              letterSpacing: "2.5px",
+              letterSpacing: "0.02em",
               textTransform: "uppercase",
               color: plan.featured ? "rgba(255,255,255,0.4)" : "var(--accent-purple)",
               marginBottom: 12,
@@ -284,22 +284,6 @@ export default function Pricing({ prices, retainer = true }: { prices?: [number,
       </div>
       </div>
 
-      {/* Promises: the risk-reversal right where people decide */}
-      <ul data-reveal className="pricing-guarantees">
-        {["pricing.guarantee1", "pricing.guarantee2"].map((key) => (
-          <li key={key}>
-            <span aria-hidden="true" className="pricing-guarantee-icon" />
-            {t(key)}
-          </li>
-        ))}
-      </ul>
-
-      <p data-reveal style={{
-        fontFamily: "var(--font-inter)", fontSize: 12,
-        color: "var(--fg-muted)", marginTop: 16, letterSpacing: "-0.1px",
-      }}>
-        {t("pricing.disclaimer")}
-      </p>
     </section>
   );
 }

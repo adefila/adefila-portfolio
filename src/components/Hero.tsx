@@ -6,7 +6,6 @@ import { motion, useReducedMotion } from "framer-motion";
 import { ArrowDown, CalendarDays } from "lucide-react";
 import MagneticButton from "./MagneticButton";
 import { useLang } from "@/context/LangContext";
-import { SPOTS_OPEN, useNextStartMonth } from "@/lib/availability";
 import { BOOKING_URL } from "@/lib/booking";
 
 const EASE = "cubic-bezier(0.22, 1, 0.36, 1)";
@@ -46,14 +45,13 @@ function RotatingWord({ words }: { words: string[] }) {
 
 export default function Hero({ workHref = "#work" }: { workHref?: string }) {
   const { t, lang } = useLang();
-  const nextStart = useNextStartMonth(lang);
   const words = t("hero.h2.words").split("|");
 
   return (
     <section
       id="hero"
       className="hero-section"
-      style={{ position: "relative", paddingTop: 152, paddingBottom: 80, width: "100%", overflow: "hidden" }}
+      style={{ position: "relative", paddingTop: 112, paddingBottom: 80, width: "100%", overflow: "hidden" }}
       onPointerMove={(e) => {
         // the lit grid follows the mouse (not touch)
         if (e.pointerType !== "mouse") return;
@@ -79,23 +77,6 @@ export default function Hero({ workHref = "#work" }: { workHref?: string }) {
       <div aria-hidden="true" className="hero-grid-lit" />
       <div className="hero-grid" style={{ position: "relative", zIndex: 1, maxWidth: 1200, margin: "0 auto", paddingLeft: 20, paddingRight: 20 }}>
         <div>
-          <div
-            className="hero-badge"
-            style={{ display: "inline-flex", alignItems: "center", gap: 6, marginBottom: 24, animation: `heroFadeUp 0.6s 0.1s ${EASE} both` }}
-          >
-            <span style={{ position: "relative", width: 8, height: 8, flexShrink: 0, display: "inline-flex", alignItems: "center", justifyContent: "center" }}>
-              <span style={{ position: "absolute", inset: 0, borderRadius: "50%", background: "var(--accent-green)", animation: "pulseRipple 2s ease-out infinite" }} />
-              <span style={{ width: 8, height: 8, borderRadius: "50%", background: "var(--accent-green)", display: "block", position: "relative", zIndex: 1 }} />
-            </span>
-            <span style={{ fontFamily: "var(--font-mono)", fontWeight: 500, fontSize: 11, letterSpacing: "0.08em", textTransform: "uppercase", color: "var(--accent-green-text)" }}>
-              {t("hero.badge").replace("{count}", String(SPOTS_OPEN))}
-            </span>
-            <span style={{ width: 3, height: 3, borderRadius: "50%", background: "var(--fg-muted)", display: "inline-block" }} />
-            <span style={{ fontFamily: "var(--font-mono)", fontWeight: 400, fontSize: 11, letterSpacing: "0.06em", textTransform: "uppercase", color: "var(--fg-secondary)" }}>
-              {t("hero.badge2").replace("{date}", nextStart)}
-            </span>
-          </div>
-
           <h1
             aria-label={`${t("hero.h1")} ${t("hero.h2.prefix")} ${words[0]}`.replace(/\s+/g, " ").trim()}
             style={{ marginBottom: 24, fontSize: "inherit", fontWeight: "inherit" }}
@@ -140,21 +121,12 @@ export default function Hero({ workHref = "#work" }: { workHref?: string }) {
               color: "var(--fg-secondary)",
               maxWidth: 520,
               textWrap: "balance" as const,
-              marginBottom: 16,
+              marginBottom: 32,
               animation: `heroFadeUp 0.6s 0.35s ${EASE} both`,
             }}
           >
             {t("hero.subtitle")}
           </p>
-
-          <div
-            className="hero-proof"
-            style={{ marginBottom: 32, animation: `heroFadeUp 0.6s 0.42s ${EASE} both` }}
-          >
-            {t("hero.proof").split("·").map((cell) => cell.trim()).filter(Boolean).map((cell) => (
-              <span key={cell} className="spec-cell">{cell}</span>
-            ))}
-          </div>
 
           <div
             className="hero-cta"
@@ -174,7 +146,7 @@ export default function Hero({ workHref = "#work" }: { workHref?: string }) {
                 padding: "14px 26px",
                 borderRadius: 0,
                 textDecoration: "none",
-                letterSpacing: "0.5px",
+                letterSpacing: "0.02em",
                 alignItems: "center",
                 gap: 8,
               }}
@@ -196,7 +168,7 @@ export default function Hero({ workHref = "#work" }: { workHref?: string }) {
                 textTransform: "uppercase",
                 borderRadius: 0,
                 textDecoration: "none",
-                letterSpacing: "0.5px",
+                letterSpacing: "0.02em",
                 alignItems: "center",
                 gap: 8,
                 transition: "background 0.2s ease, border-color 0.2s ease, color 0.2s ease",

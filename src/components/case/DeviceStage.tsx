@@ -33,7 +33,7 @@ const CSS = `
   .ds:hover .ds-tall { animation-play-state: paused; }
   @keyframes dsScroll { from { transform: translate3d(0, 0, 0); } to { transform: translate3d(0, var(--shift, 0%), 0); } }
   @media (prefers-reduced-motion: reduce) { .ds-screen img.ds-tall { animation: none; } }
-  .ds-cap { position: relative; margin: 28px 0 0; text-align: center; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255, 255, 255, 0.5); }
+  .ds-cap { position: relative; margin: 28px 0 0; text-align: center; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.02em; text-transform: uppercase; color: rgba(255, 255, 255, 0.5); }
   @keyframes dsFloat { from { translate: 0 0; } to { translate: 0 -7px; } }
   @media (prefers-reduced-motion: reduce) { .ds-lp, .ds-ph { animation: none; } }
   @media (max-width: 640px) { .ds-scene { aspect-ratio: 16 / 12; } .ds-lp { width: 86%; } }
