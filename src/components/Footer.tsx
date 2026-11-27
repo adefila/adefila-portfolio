@@ -260,15 +260,14 @@ export default function Footer({ showCta = true }: { showCta?: boolean }) {
             <p
               style={{
                 fontFamily: "var(--font-inter)",
-                fontWeight: 700,
-                fontSize: 15,
-                letterSpacing: "1px",
-                textTransform: "uppercase",
+                fontWeight: 600,
+                fontSize: 13,
+                letterSpacing: "0.08em",
                 color: "var(--white)",
                 marginBottom: 16,
               }}
             >
-              Samuel
+              SAMUEL ADEFILA.
             </p>
             <p
               style={{

@@ -1,4 +1,4 @@
-﻿export type LangCode = "en" | "fr" | "es" | "de" | "pt" | "zh" | "ja" | "nl" | "no";
+export type LangCode = "en" | "fr" | "es" | "de" | "pt" | "zh" | "ja" | "nl" | "no";
 export type CurrencyCode = "USD" | "EUR" | "GBP" | "BRL" | "CNY" | "JPY" | "NGN" | "CAD" | "AUD" | "AED" | "NOK";
 
 export interface Language {
@@ -363,6 +363,10 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     en: "Work",         fr: "Projets",      es: "Proyectos",    de: "Arbeit",
     pt: "Projetos",     zh: "作品",          ja: "実績",
   },
+  "nav.experience": {
+    en: "Experience", fr: "Expérience", es: "Experiencia", de: "Erfahrung",
+    pt: "Experiência", zh: "经历", ja: "経歴",
+  },
   "nav.benefits": {
     en: "Benefits",     fr: "Avantages",    es: "Beneficios",   de: "Vorteile",
     pt: "Benefícios",   zh: "优势",          ja: "メリット",
@@ -451,11 +455,11 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     ja: "Upwork Top Rated  ·  50以上のプロジェクト  ·  成功率100%",
   },
   "hero.cta": {
-    en: "Book a free call",        fr: "Réserver un appel",       es: "Agendar llamada",         de: "Anruf buchen",
+    en: "Book a free discovery call",   fr: "Réserver un appel",       es: "Agendar llamada",         de: "Anruf buchen",
     pt: "Agendar chamada",         zh: "预约免费通话",              ja: "無料通話を予約",
   },
   "hero.ctaWork": {
-    en: "See my work",             fr: "Voir mes projets",        es: "Ver mi trabajo",          de: "Meine Arbeiten",
+    en: "See recent works",         fr: "Voir mes projets",        es: "Ver mi trabajo",          de: "Meine Arbeiten",
     pt: "Ver meu trabalho",        zh: "查看作品",                  ja: "実績を見る",
   },
   "hero.localLink": {
@@ -754,7 +758,7 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     ja: "価格も固定。",
   },
   "pricing.desc": {
-    en: "Every project is scoped upfront, with no hourly billing. Book a call and you'll leave with a number and exactly what's included.",
+    en: "Every project is scoped upfront, with no hourly billing. Book a free discovery call and you'll leave with a number and exactly what's included.",
     fr: "Les tarifs sont définis par projet, sans facturation horaire. Réservez un appel et vous repartirez avec un chiffre précis.",
     es: "El precio se define por proyecto, sin facturación por hora. Agenda una llamada y sabrás exactamente cuánto cuesta y qué incluye.",
     de: "Die Preise werden projektbezogen festgelegt, ohne Stundenabrechnung. Buchen Sie ein Gespräch und erhalten Sie eine genaue Zahl.",
@@ -763,7 +767,7 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     ja: "料金はプロジェクトごとに設定されます。時間制課金はありません。通話を予約して正確な金額をご確認ください。",
   },
   "pricing.cta": {
-    en: "Book a call",      fr: "Réserver un appel",    es: "Agendar una llamada", de: "Anruf buchen",
+    en: "Book a free discovery call",      fr: "Réserver un appel",    es: "Agendar una llamada", de: "Anruf buchen",
     pt: "Agendar chamada",  zh: "预约通话",               ja: "通話を予約",
   },
   "pricing.addons": {
@@ -806,7 +810,7 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     pt: "ou me mande um e-mail",   zh: "或给我发邮件",             ja: "またはメールで",
   },
   "common.bookCall": {
-    en: "Book a free call",   fr: "Réserver un appel",   es: "Agendar llamada",     de: "Anruf buchen",
+    en: "Book a free discovery call",   fr: "Réserver un appel",   es: "Agendar llamada",     de: "Anruf buchen",
     pt: "Agendar chamada",    zh: "预约免费通话",           ja: "無料通話を予約",
   },
 
@@ -872,22 +876,22 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     ja: "年間のWeb制作経験",
   },
   "whyme.b0.title": {
-    en: "Fixed timeline.",
-    fr: "Délai fixe.",
-    es: "Plazo fijo.",
-    de: "Fester Zeitplan.",
-    pt: "Prazo fixo.",
-    zh: "时间表固定。",
-    ja: "スケジュール固定。",
+    en: "Fixed timeline",
+    fr: "Délai fixe",
+    es: "Plazo fijo",
+    de: "Fester Zeitplan",
+    pt: "Prazo fixo",
+    zh: "时间表固定",
+    ja: "スケジュール固定",
   },
   "whyme.b0.desc": {
-    en: "Your site goes live on a timeline we agree upfront: 5 to 7 days for a landing page, about 4 weeks for a full B2B rebuild. I take your deadline seriously.",
-    fr: "Votre site est en ligne à la date convenue au départ : 5 à 7 jours pour une landing page, environ 4 semaines pour une refonte B2B complète. Je prends votre échéance au sérieux.",
-    es: "Tu sitio sale en la fecha acordada de antemano: 5 a 7 días para una landing page, unas 4 semanas para una reconstrucción B2B completa. Me tomo tu plazo en serio.",
-    de: "Ihre Website geht zum vorab vereinbarten Termin live: 5 bis 7 Tage für eine Landingpage, etwa 4 Wochen für einen kompletten B2B-Relaunch. Ich nehme Ihre Deadline ernst.",
-    pt: "Seu site vai ao ar na data combinada de antemão: 5 a 7 dias para uma landing page, cerca de 4 semanas para uma reconstrução B2B completa. Levo seu prazo a sério.",
-    zh: "网站按事先约定的时间上线：落地页 5 至 7 天，完整的 B2B 重建约 4 周。我认真对待你的截止日期。",
-    ja: "公開日は事前に合意します。ランディングページは5〜7日、B2Bサイト全体の再構築は約4週間。お約束の期限は必ず守ります。",
+    en: "Live on a date we agree upfront: 5 to 7 days for a landing page, about 4 weeks for a full B2B rebuild.",
+    fr: "En ligne à la date convenue : 5 à 7 jours pour une landing page, environ 4 semaines pour une refonte B2B complète.",
+    es: "En vivo en la fecha acordada: 5 a 7 días para una landing page, unas 4 semanas para una reconstrucción B2B completa.",
+    de: "Live zum vorab vereinbarten Termin: 5 bis 7 Tage für eine Landingpage, etwa 4 Wochen für einen kompletten B2B-Relaunch.",
+    pt: "No ar na data combinada: 5 a 7 dias para uma landing page, cerca de 4 semanas para uma reconstrução B2B completa.",
+    zh: "按约定日期上线：落地页 5 至 7 天，完整的 B2B 重建约 4 周，说到做到。",
+    ja: "公開日は事前に合意します。ランディングページは5〜7日、B2Bサイト全体の再構築は約4週間です。",
   },
   "whyme.b1.title": {
     en: "Built around your buyer",
@@ -899,13 +903,13 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     ja: "買い手を軸に設計",
   },
   "whyme.b1.desc": {
-    en: "Every decision starts with your audience: no off-the-shelf solutions, no guesswork.",
-    fr: "Chaque décision part de votre public : pas de solution toute faite, pas d'approximation.",
-    es: "Cada decisión parte de tu público: sin soluciones genéricas, sin conjeturas ni improvisación.",
-    de: "Jede Entscheidung geht von Ihrem Publikum aus: keine Standardlösungen, kein Rätselraten.",
-    pt: "Cada decisão parte do seu público: sem soluções prontas, sem achismos e sem improviso.",
-    zh: "每个决定都从你的受众出发：不用现成模板，也不靠猜测。",
-    ja: "すべての判断はお客様の見込み客から。既製品に頼らず、推測もしません。",
+    en: "Every decision starts with your audience: no off-the-shelf solutions, no guesswork, no filler pages.",
+    fr: "Chaque décision part de votre public : pas de solution toute faite, pas d'approximation, pas de pages de remplissage.",
+    es: "Cada decisión parte de tu público: sin soluciones genéricas, sin conjeturas, sin páginas de relleno.",
+    de: "Jede Entscheidung geht von Ihrem Publikum aus: keine Standardlösungen, kein Rätselraten, keine Füllseiten.",
+    pt: "Cada decisão parte do seu público: sem soluções prontas, sem achismos, sem páginas de enchimento.",
+    zh: "每个决定都从你的受众出发：不用现成模板，不靠猜测，也没有凑数的页面。",
+    ja: "すべての判断はお客様の見込み客から。既製品に頼らず、推測もせず、埋め草のページも作りません。",
   },
   "whyme.b2.title": {
     en: "One point of contact",
@@ -1351,7 +1355,7 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     ja: "違いますか？直接ご質問ください",
   },
   "faq.ask.book": {
-    en: "Or book a free call",
+    en: "Or book a free discovery call",
     fr: "Ou réservez un appel gratuit",
     es: "O reserva una llamada gratis",
     de: "Oder buchen Sie ein kostenloses Gespräch",
@@ -1396,7 +1400,7 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     ja: "費用はいくらですか？",
   },
   "faq.a2": {
-    en: "Projects start from $1,000, scoped to your project with no hidden fees. Book a call and you'll leave with a clear number and exactly what's included.",
+    en: "Projects start from $1,000, scoped to your project with no hidden fees. Book a free discovery call and you'll leave with a clear number and exactly what's included.",
     fr: "Les projets démarrent à partir de 1 000 $. Le tarif est défini selon votre projet. Pas de surprises, pas de frais cachés. Des forfaits mensuels sont disponibles pour un accompagnement continu. Réservez un appel et vous repartirez avec un chiffre précis.",
     es: "Los proyectos empiezan desde $1,000. El precio se adapta a tu proyecto. Sin sorpresas, sin costos ocultos. Hay retenciones disponibles para soporte continuo. Agenda una llamada y saldrás con un número claro y exactamente qué incluye.",
     de: "Projekte beginnen ab 1.000 $. Die Preisgestaltung richtet sich nach Ihrem Projekt. Keine Überraschungen, keine versteckten Kosten. Retainer sind für laufende Unterstützung verfügbar. Buchen Sie ein Gespräch und gehen Sie mit einer klaren Zahl nach Hause.",

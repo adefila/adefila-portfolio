@@ -227,7 +227,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
               </a>
             )}
             <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" data-track-location={`case_${c.slug}_book`} className="btn-primary cs-btn">
-              Book a free call <CalendarDays size={15} strokeWidth={2} />
+              Book a free discovery call <CalendarDays size={15} strokeWidth={2} />
             </a>
           </div>
 

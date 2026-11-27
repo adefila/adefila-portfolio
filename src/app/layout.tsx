@@ -12,9 +12,9 @@ const signature = Mrs_Saint_Delafield({ subsets: ["latin"], weight: "400", varia
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://adefilasamuel.com"),
-  title: "Samuel Adefila | B2B Website Developer (Framer & Custom)",
+  title: "Samuel Adefila | Product designer and Framer developer",
   description:
-    "Samuel Adefila rebuilds B2B company websites in Framer or custom code: a CMS your team can edit, tracked forms, redirects that protect your search traffic and a clean handover. Based in Nigeria, working with teams worldwide. Top Rated on Upwork.",
+    "Samuel Adefila is a product designer and Framer developer: UX and visual design in Figma, built in Framer, Next.js or custom code. Remote roles since 2020, Top Rated on Upwork. Open to work, remote or with relocation.",
   keywords: [
     "B2B website developer",
     "custom website development",
@@ -30,17 +30,17 @@ export const metadata: Metadata = {
     "Samuel Adefila",
   ],
   openGraph: {
-    title: "Samuel Adefila | B2B Website Developer (Framer & Custom)",
+    title: "Samuel Adefila | Product designer and Framer developer",
     description:
-      "B2B websites rebuilt in Framer or custom code. DLP Africa: 12 pages live in 4 weeks. Top Rated on Upwork, 100% Job Success. Book a call.",
+      "Product designer who ships in code. Figma, Framer and Next.js. Remote roles since 2020, Top Rated on Upwork with 100% job success. Open to work.",
     type: "website",
     url: "https://adefilasamuel.com",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Samuel Adefila | B2B Website Developer (Framer & Custom)",
+    title: "Samuel Adefila | Product designer and Framer developer",
     description:
-      "B2B websites rebuilt in Framer or custom code. Top Rated on Upwork. Book a free call.",
+      "Product designer who ships in code. Open to work, remote or with relocation.",
   },
   alternates: {
     canonical: "https://adefilasamuel.com",
@@ -138,7 +138,7 @@ export default function RootLayout({
             section hash the navbar wrote into the URL while scrolling. */}
         <script
           dangerouslySetInnerHTML={{
-            __html: `document.documentElement.setAttribute("data-reveal-ready","");try{history.scrollRestoration="manual";var n=performance.getEntriesByType("navigation")[0];if(n&&n.type==="reload"){if(location.hash)history.replaceState(null,"",location.pathname+location.search);var toHero=function(){scrollTo({top:0,left:0,behavior:"instant"})};toHero();addEventListener("DOMContentLoaded",toHero);addEventListener("load",toHero)}}catch(e){}`,
+            __html: `var biz=location.hostname.indexOf("web.")===0||location.pathname.indexOf("/business")===0;document.documentElement.setAttribute("data-site",biz?"business":"personal");document.documentElement.setAttribute("data-reveal-ready","");try{history.scrollRestoration="manual";var n=performance.getEntriesByType("navigation")[0];if(n&&n.type==="reload"){if(location.hash)history.replaceState(null,"",location.pathname+location.search);var toHero=function(){scrollTo({top:0,left:0,behavior:"instant"})};toHero();addEventListener("DOMContentLoaded",toHero);addEventListener("load",toHero)}}catch(e){}`,
           }}
         />
         {/* The page is pre-rendered in English. If the visitor will be shown another language (link, saved choice or
@@ -146,7 +146,7 @@ export default function RootLayout({
             English never flashes first. A timeout releases it in any case. */}
         <script
           dangerouslySetInnerHTML={{
-            __html: `try{var d=document.documentElement,q=new URLSearchParams(location.search).get("lang"),c=localStorage.getItem("sam-lang-chosen")==="1",b=(navigator.language||"en").toLowerCase().split("-")[0];if(b==="nb"||b==="nn")b="no";var w=q||(c?localStorage.getItem("sam-lang"):b);if(w&&["fr","es","de","pt","zh","ja","nl","no"].indexOf(w)>-1&&!((w==="nl"||w==="no")&&location.pathname.indexOf("/local-business")!==0)){d.setAttribute("data-lang-pending","");setTimeout(function(){d.removeAttribute("data-lang-pending")},1500)}}catch(e){}`,
+            __html: `try{var d=document.documentElement,q=new URLSearchParams(location.search).get("lang"),c=localStorage.getItem("sam-lang-chosen")==="1",b=(navigator.language||"en").toLowerCase().split("-")[0];if(b==="nb"||b==="nn")b="no";var w=q||(c?localStorage.getItem("sam-lang"):b);if(w&&["fr","es","de","pt","zh","ja"].indexOf(w)>-1&&(location.hostname.indexOf("web.")===0||location.pathname.indexOf("/business")===0)){d.setAttribute("data-lang-pending","");setTimeout(function(){d.removeAttribute("data-lang-pending")},1500)}}catch(e){}`,
           }}
         />
         <script

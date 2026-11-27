@@ -10,12 +10,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly",
       priority: 1,
     },
-    {
-      url: `${BASE}/local-business`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
     ...["dlp-africa", "baton", "the-initial", "leadopo", "bookedez"].map((slug) => ({
       url: `${BASE}/case-studies/${slug}`,
       lastModified: new Date(),

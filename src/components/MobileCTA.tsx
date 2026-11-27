@@ -6,7 +6,7 @@ import { useLang } from "@/context/LangContext";
 import { BOOKING_URL } from "@/lib/booking";
 
 // Phones only (hidden on wider screens in globals.css). Slides up once the hero's
-// own "Book a call" button has scrolled away, and steps aside while the contact
+// own "Book a free discovery call" button has scrolled away, and steps aside while the contact
 // form or footer is on screen, since those have their own buttons.
 export default function MobileCTA() {
   const { t, lang } = useLang();

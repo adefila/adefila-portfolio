@@ -9,7 +9,7 @@ import { PROJECT_COPY } from "@/i18n/projects";
 import { WORK_COPY } from "@/i18n/work-history";
 import { currencyForCountry, languageForCountry } from "@/i18n/geo";
 
-// Dutch and Norwegian exist for the text /local-business reuses from the main site
+// Dutch and Norwegian: the shared text (navigation, testimonials, footer, form messages)
 for (const [key, v] of Object.entries(NL_NO)) if (T[key]) Object.assign(T[key], v);
 
 // Project descriptions, tags and badges for the Projects section
@@ -18,13 +18,13 @@ Object.assign(T, PROJECT_COPY);
 // The About section's work history
 Object.assign(T, WORK_COPY);
 
-const BUSINESS_PAGE = "/local-business";
-
-// Dutch and Norwegian are complete only on the business page, so elsewhere they show English and a
-// page never ends up half in one language and half in another.
-function renderLanguage(lang: LangCode, pathname: string | null): LangCode {
-  const onBusinessPage = !!pathname && pathname.startsWith(BUSINESS_PAGE);
-  if (lang === "nl" || lang === "no") return onBusinessPage ? lang : "en";
+// Dutch and Norwegian are not translated for the main pages (only the shared bits are), so for now those visitors see English
+// rather than a page half in one language and half in another.
+function renderLanguage(lang: LangCode, _pathname: string | null): LangCode {
+  void _pathname;
+  if (lang === "nl" || lang === "no") return "en";
+  // The personal site (adefilasamuel.com) is written in English only; the business site (web.adefilasamuel.com) has the languages.
+  if (typeof window !== "undefined" && window.location.hostname.indexOf("web.") !== 0 && window.location.pathname.indexOf("/business") !== 0) return "en";
   return lang;
 }
 

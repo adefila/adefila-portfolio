@@ -16,9 +16,8 @@ const NIGERIA = { flag: "🇳🇬", label: "Nigeria", note: "English · NGN" };
 export default function LanguageSwitcher() {
   const [open, setOpen] = useState(false);
   const { lang, currency, setLang, setCurrency } = useLang();
-  // Dutch and Norwegian are complete only on /local-business
-  const onBusinessPage = !!usePathname()?.startsWith("/local-business");
-  const languages = LANGUAGES.filter((l) => (l.code === "nl" || l.code === "no" ? onBusinessPage : true));
+  // Dutch and Norwegian are not translated for the main pages yet, so they are not offered
+  const languages = LANGUAGES.filter((l) => l.code !== "nl" && l.code !== "no");
   const ref = useRef<HTMLDivElement>(null);
 
   const currentLang = LANGUAGES.find((l) => l.code === lang) ?? LANGUAGES[0];
@@ -249,6 +248,7 @@ export default function LanguageSwitcher() {
 
       {/* Trigger */}
       <motion.button
+        className="lang-trigger"
         whileTap={{ scale: 0.96 }}
         onClick={() => setOpen((v) => !v)}
         style={{

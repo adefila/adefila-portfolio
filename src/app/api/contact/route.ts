@@ -233,7 +233,7 @@ export async function POST(req: Request) {
         <tr>
           <td style="background:#0f0f0f;padding:16px 36px;">
             <a href="${BOOKING}" style="font-family:Arial,sans-serif;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#ffffff;text-decoration:none;white-space:nowrap;">
-              BOOK A FREE 15-MIN CALL &rarr;
+              BOOK A FREE DISCOVERY CALL &rarr;
             </a>
           </td>
         </tr>

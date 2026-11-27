@@ -7,7 +7,6 @@ export default function SpecLabel({ text }: { text: string }) {
       <b aria-hidden="true" />
       <span aria-hidden="true">/</span>
       <span>{text}</span>
-      <i aria-hidden="true" />
     </p>
   );
 }

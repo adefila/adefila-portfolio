@@ -9,17 +9,17 @@ import { trackEvent } from "@/lib/gtag";
 
 const NAV_HREFS = [
   { key: "nav.work",         href: "#work"         },
+  { key: "nav.experience",   href: "#experience"   },
   { key: "nav.benefits",     href: "#benefits"     },
   { key: "nav.process",      href: "#process"      },
   { key: "nav.pricing",      href: "#pricing"      },
   { key: "nav.testimonials", href: "#testimonials" },
-  { key: "nav.about",        href: "#about"        },
   { key: "nav.faq",          href: "#faq"          },
 ];
 
-const SECTION_PAGES = ["/", "/local-business"];
+const SECTION_PAGES = ["/", "/business"];
 
-const SECTION_IDS = ["hero", "work", "benefits", "process", "pricing", "testimonials", "about", "faq", "contact"];
+const SECTION_IDS = ["hero", "work", "experience", "benefits", "process", "pricing", "testimonials", "faq", "contact"];
 
 const EASE = [0.22, 1, 0.36, 1] as [number, number, number, number];
 
@@ -78,12 +78,11 @@ function HamburgerIcon({ open }: { open: boolean }) {
 }
 
 // `hide`: section links to leave out on pages that do not have that section (e.g. ["#about"]).
-export default function Navbar({ hide = [] }: { hide?: string[] }) {
+export default function Navbar({ hide = [], contactHref }: { hide?: string[]; contactHref?: string }) {
   const [active, setActive] = useState("");
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [marker, setMarker] = useState<{ left: number; width: number } | null>(null);
-  const [time, setTime] = useState("");
   const linksRef = useRef<HTMLDivElement>(null);
   const { t } = useLang();
   // Pages built from the homepage sections scroll in place; elsewhere (case studies, 404)
@@ -119,15 +118,6 @@ export default function Navbar({ hide = [] }: { hide?: string[] }) {
     return () => {
       window.removeEventListener("scroll", onScroll);
     };
-  }, []);
-
-  // The time where I am, so a visitor knows when I am awake. It is filled in after the page loads, so it never mismatches the pre-built HTML.
-  useEffect(() => {
-    const fmt = new Intl.DateTimeFormat("en-GB", { timeZone: "Africa/Lagos", hour: "2-digit", minute: "2-digit", hour12: false });
-    const tick = () => setTime(fmt.format(new Date()));
-    tick();
-    const id = window.setInterval(tick, 20_000);
-    return () => window.clearInterval(id);
   }, []);
 
   // The purple marker under the link of the section being read slides to it.
@@ -198,16 +188,15 @@ export default function Navbar({ hide = [] }: { hide?: string[] }) {
             href={onHome ? "#hero" : "/"}
             style={{
               fontFamily: "var(--font-inter)",
-              fontWeight: 700,
-              fontSize: 15,
-              letterSpacing: "1px",
-              textTransform: "uppercase",
+              fontWeight: 600,
+              fontSize: 13,
+              letterSpacing: "0.08em",
               color: menuOpen ? "var(--white)" : "var(--fg)",
               textDecoration: "none",
               transition: "color 0.3s",
             }}
           >
-            Samuel
+            SAMUEL ADEFILA.
           </Link>
 
           {/* Desktop nav links */}
@@ -249,11 +238,10 @@ export default function Navbar({ hide = [] }: { hide?: string[] }) {
             <span className="nav-marker" aria-hidden="true" style={marker ? { left: marker.left, width: marker.width, opacity: 1 } : { opacity: 0 }} />
           </div>
 
-          {time && <span className="nav-time" title="Local time in Lagos, Nigeria">Lagos <b>{time}</b></span>}
 
           {/* Desktop CTA */}
           <MagneticButton
-            href={`${base}#contact`}
+            href={contactHref ?? `${base}#contact`}
             onClick={() => trackEvent("cta_click", { location: "navbar" })}
             className="nav-cta nav-cta-desktop btn-primary"
             style={{
@@ -360,7 +348,7 @@ export default function Navbar({ hide = [] }: { hide?: string[] }) {
               style={{ marginTop: 40 }}
             >
               <a
-                href={`${base}#contact`}
+                href={contactHref ?? `${base}#contact`}
                 onClick={close}
                 style={{
                   display: "inline-flex",
@@ -382,25 +370,6 @@ export default function Navbar({ hide = [] }: { hide?: string[] }) {
                 {t("nav.contact")}
               </a>
             </motion.div>
-
-            {/* Subtle bottom tag */}
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.45, duration: 0.4 }}
-              style={{
-                position: "absolute",
-                bottom: 32,
-                left: 40,
-                fontFamily: "var(--font-inter)",
-                fontSize: 11,
-                letterSpacing: "0.08em",
-                textTransform: "uppercase",
-                color: "rgba(255,255,255,0.2)",
-              }}
-            >
-              {time ? `Lagos ${time}` : ""}
-            </motion.p>
           </motion.div>
         )}
       </AnimatePresence>

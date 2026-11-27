@@ -1,0 +1,200 @@
+"use client";
+import { useState } from "react";
+import { ArrowUp3, DocumentDownload, Sms } from "iconsax-react";
+import Toolkit from "@/components/personal/Toolkit";
+import { ROLES } from "@/components/personal/Experience";
+import { Btn, IndexList, PP_CSS, Reveal } from "@/components/personal/ui";
+import type { Detail, Row } from "@/components/personal/ui";
+import { devProjects } from "@/components/Projects";
+import { CASE_STUDIES } from "@/lib/caseStudies";
+import { BOOKING_URL } from "@/lib/booking";
+import { CASE_STUDY_DATA } from "@/lib/caseStudyData";
+
+// The personal site (adefilasamuel.com), written for people hiring: one narrow column of plain text and index rows.
+// No boxes, no dividers: spacing separates the blocks. Motion is framer-motion springs, kept small (see ui.tsx). English only.
+const FIRST = ["DLP Africa", "The Initial", "BindHQ", "Leadopo", "Upside ESG", "VPA London"];
+const UPWORK = "https://upwork.com/freelancers/adefilasamuel";
+
+const QUOTES: { q: string; name: string; role: string }[] = [
+  { q: "I've found 5+ new clients through it.", name: "Johnno Van Den Brink", role: "The Initial Agency" },
+  { q: "He consistently delivered high-quality work on time.", name: "Nitin", role: "HitPay" },
+  { q: "He is reliable, knowledgeable, patient and kind.", name: "Heather Burns", role: "Upside ESG" },
+];
+
+// The whole case study, as the story shown when a row is opened, so there is nowhere else to go to read it. Every line comes from the
+// recorded case study (src/lib/caseStudyData.ts); Neetly is written here because it has no case study page yet.
+const metricText = (m: { prefix?: string; value?: number; suffix?: string; text?: string; label: string }) =>
+  `${m.text ?? `${m.prefix ?? ""}${m.value ?? ""}${m.suffix ?? ""}`} ${m.label}`.trim();
+
+const detailFor = (title: string): Detail | undefined => {
+  const slug = CASE_STUDIES[title];
+  const c = slug ? CASE_STUDY_DATA.find((x) => `/case-studies/${x.slug}` === slug) : undefined;
+  if (!c) return undefined;
+  return {
+    facts: c.facts.filter(([k]) => k !== "Client" && k !== "Status"),
+    brief: c.brief,
+    did: c.did,
+    constraint: c.constraint,
+    steps: c.process?.steps.map((s) => ({ title: s.title, lead: s.lead })),
+    decisions: c.decisions,
+    result: c.outcome ?? metricText(c.metric),
+    metrics: [c.metric, ...(c.extraMetrics ?? [])].map(metricText),
+    quote: c.quote,
+    closing: c.closing,
+    links: c.site ? [{ label: "Visit the site", href: c.site, external: true }] : undefined,
+  };
+};
+
+const NEETLY: Detail = {
+  facts: [["Role", "UI/UX design"], ["Scope", "Mobile app"], ["Tools", "Figma"]],
+  brief: "A laundry app where customers book a pickup, follow their order and pay, without calling anyone.",
+  did: "Mapped the order journey first, then designed the orders list, the account settings and a quick payment checkout, in light and dark.",
+  steps: [
+    { title: "Order journey.", lead: "From booking a pickup to receiving clean clothes, with every state in between." },
+    { title: "Wireframes.", lead: "The orders list, the account settings and the checkout, at low fidelity first." },
+    { title: "High fidelity.", lead: "Screens designed in light and dark, with a clear payment step." },
+  ],
+  result: "A complete, clickable app design, ready to hand to a developer.",
+};
+
+// "Nov 2025 to Mar 2026" -> "2025 to 2026", "Jan 2020 to now" -> "2020 to now"
+const years = (when: string) => when.replace(/[A-Z][a-z]{2} (20\d\d)/g, "$1");
+
+const CSS = `
+  .pp { width: 100%; padding: 140px 20px 0; }
+  .pp-col { max-width: 720px; margin: 0 auto; }
+  .pp h1 { font-family: var(--font-poppins); font-weight: 400; font-size: clamp(32px, 4.4vw, 48px); line-height: 1.08; letter-spacing: -0.035em !important; color: var(--fg); }
+  .pp-intro { margin-top: 28px; font-family: var(--font-inter); font-size: 17px; line-height: 1.65; letter-spacing: -0.15px; color: var(--fg-secondary); }
+  .pp-intro + .pp-intro { margin-top: 14px; }
+  .pp-link { color: var(--fg); text-decoration: none; background-image: linear-gradient(currentColor, currentColor); background-size: 100% 1px; background-position: 0 100%; background-repeat: no-repeat; padding-bottom: 1px; transition: background-size 0.4s cubic-bezier(0.2, 0.7, 0.2, 1), color 0.3s ease; }
+  .pp-link:hover { background-size: 0% 1px; background-position: 100% 100%; color: var(--accent-purple); }
+  .pp-cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+
+  .pp-block { display: grid; grid-template-columns: 110px minmax(0, 1fr); gap: 16px; margin-top: 80px; scroll-margin-top: 90px; }
+  .pp-label { padding-top: 3px; font-family: var(--font-inter); font-size: 14px; color: var(--fg-muted); }
+  .pp-note { margin-bottom: 18px; font-family: var(--font-inter); font-size: 16px; line-height: 1.6; letter-spacing: -0.15px; color: var(--fg-secondary); }
+  .pp-more { margin-top: 12px; padding: 0 0 2px; border: 0; cursor: pointer; font-family: var(--font-inter); font-weight: 600; font-size: 12px; letter-spacing: 0.08em; color: var(--accent-purple); background-color: transparent; background-image: linear-gradient(currentColor, currentColor); background-size: 0% 1px; background-position: 0 100%; background-repeat: no-repeat; transition: background-size 0.4s cubic-bezier(0.2, 0.7, 0.2, 1); }
+  .pp-more:hover { background-size: 100% 1px; }
+  .pp-quote { padding: 9px 0; }
+  .pp-quote p { font-family: var(--font-inter); font-size: 16px; line-height: 1.5; letter-spacing: -0.15px; color: var(--fg); }
+  .pp-quote span { display: block; margin-top: 2px; font-size: 14px; color: var(--fg-muted); }
+  .pp-strip { margin: 120px -20px 0; padding: 72px 20px 28px; background: #6d28d9; color: #fff; }
+  .pp-strip-in { max-width: 720px; margin: 0 auto; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(32px, 6vw, 96px); align-items: start; }
+  .pp-strip-h { font-family: var(--font-poppins); font-weight: 400; font-size: clamp(30px, 4vw, 44px); line-height: 1.08; letter-spacing: -0.035em; color: #fff; }
+  .pp-strip-p { margin-top: 16px; font-family: var(--font-inter); font-size: 15px; line-height: 1.6; color: rgba(255, 255, 255, 0.78); }
+  .pp-strip-list { list-style: none; margin: 0; padding: 0; }
+  .pp-strip-list a { display: grid; grid-template-columns: 78px minmax(0, 1fr) auto; align-items: baseline; gap: 12px; padding: 9px 0; font-family: var(--font-inter); font-size: 15px; color: #fff; text-decoration: none; transition: opacity 0.3s ease; }
+  .pp-strip-list span { color: rgba(255, 255, 255, 0.7); font-size: 14px; }
+  .pp-strip-list em { font-style: normal; overflow-wrap: anywhere; }
+  .pp-strip-list svg { align-self: center; opacity: 0.6; transition: transform 0.3s ease, opacity 0.3s ease; }
+  .pp-strip-list:hover a { opacity: 0.55; }
+  .pp-strip-list a:hover { opacity: 1; }
+  .pp-strip-list a:hover svg { opacity: 1; transform: translate(2px, -2px) rotate(45deg) !important; }
+  .pp-strip-foot { max-width: 720px; margin: 64px auto 0; font-family: var(--font-inter); font-size: 13px; color: rgba(255, 255, 255, 0.65); }
+  @media (max-width: 760px) { .pp-strip-in { grid-template-columns: 1fr; } }
+  @media (max-width: 640px) { .pp { padding-top: 112px; } .pp-block { grid-template-columns: 1fr; gap: 14px; margin-top: 60px; } }
+`;
+
+export default function PersonalPage() {
+  const [all, setAll] = useState(false);
+  const first = FIRST.map((t) => devProjects.find((p) => p.title === t)).filter((p): p is (typeof devProjects)[number] => !!p);
+  const rest = devProjects.filter((p) => !FIRST.includes(p.title));
+  const projects = all ? [...first, ...rest] : first;
+
+  const workRows: Row[] = [
+    { key: "recorder", title: "Grossrec", note: "Screen recorder, building now", right: "Now", href: "https://reel.samuel-cb7.workers.dev/", external: true },
+    { key: "neetly", title: "Neetly", note: "Laundry app, UI/UX", right: "2025", detail: NEETLY },
+    ...projects.map((p): Row => {
+      const study = CASE_STUDIES[p.title];
+      const href = study ?? (p.href !== "#" ? p.href : undefined);
+      const detail = detailFor(p.title);
+      return { key: p.title, title: p.title, note: p.tags[0], right: p.year, href: detail ? undefined : href, external: !study, detail };
+    }),
+  ];
+  const expRows: Row[] = ROLES.map((r) => ({ key: `${r.org}-${r.when}`, title: r.role, note: r.org, right: years(r.when) }));
+  const contactRows: Row[] = [
+    { key: "mail", title: "Email", note: "samuel@adefilasamuel.com", href: "mailto:samuel@adefilasamuel.com" },
+    { key: "li", title: "LinkedIn", note: "adefila-samuel", href: "https://www.linkedin.com/in/adefila-samuel-144448201/", external: true },
+    { key: "up", title: "Upwork", note: "Top Rated", href: UPWORK, external: true },
+    { key: "call", title: "Call", note: "Book a free discovery call", href: BOOKING_URL, external: true },
+  ];
+
+  return (
+    <section id="hero" className="pp">
+      <style>{CSS}</style>
+      <style>{PP_CSS}</style>
+      <div className="pp-col">
+        <Reveal><h1>Product designer who ships in code.</h1></Reveal>
+        <Reveal delay={0.08}>
+          <p className="pp-intro">
+            I design, prototype and help build web and mobile products: UX thinking and visual design, then Figma, Framer and Next.js,
+            with Claude Code and Cursor to get from idea to a working interface fast.
+          </p>
+          <p className="pp-intro">
+            I started with websites for small businesses, so I know a site has to work, not just look good.{" "}
+            <a className="pp-link" href={UPWORK} target="_blank" rel="noopener noreferrer">Top Rated on Upwork</a>, 100% Job Success across 50+ projects.
+          </p>
+        </Reveal>
+        <Reveal delay={0.16}>
+          <div className="pp-cta">
+            <Btn primary download href="/samuel-adefila-cv.pdf" label="Download CV" icon={<DocumentDownload size={16} variant="Broken" color="currentColor" />} />
+            <Btn href="mailto:samuel@adefilasamuel.com" label="Email me" icon={<Sms size={16} variant="Broken" color="currentColor" />} />
+          </div>
+        </Reveal>
+
+        <Reveal id="toolkit" className="pp-block">
+          <p className="pp-label">Toolkit</p>
+          <Toolkit />
+        </Reveal>
+
+        <Reveal id="work" className="pp-block">
+          <p className="pp-label">Work</p>
+          <div>
+            <IndexList rows={workRows} />
+            <button type="button" className="pp-more" onClick={() => setAll((v) => !v)}>{all ? "Show less" : `Show all ${devProjects.length} projects`}</button>
+          </div>
+        </Reveal>
+
+        <Reveal id="experience" className="pp-block">
+          <p className="pp-label">Experience</p>
+          <IndexList rows={expRows} />
+        </Reveal>
+
+        <Reveal id="testimonials" className="pp-block">
+          <p className="pp-label">Kind words</p>
+          <ul className="pp-list">
+            {QUOTES.map((x) => (
+              <li key={x.name} className="pp-quote">
+                <p>&ldquo;{x.q}&rdquo;</p>
+                <span>{x.name}, {x.role}</span>
+              </li>
+            ))}
+          </ul>
+        </Reveal>
+
+      </div>
+
+      <footer id="contact" className="pp-strip">
+        <div className="pp-strip-in">
+          <Reveal>
+            <p className="pp-strip-h">Open to roles.</p>
+            <p className="pp-strip-p">Remote, or relocating with visa sponsorship. Send me the role and I&rsquo;ll reply within 24 hours.</p>
+          </Reveal>
+          <Reveal delay={0.08}>
+            <ul className="pp-strip-list">
+              {contactRows.map((r) => (
+                <li key={r.key}>
+                  <a href={r.href} {...(r.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}>
+                    <span>{r.title}</span><em>{r.note}</em>
+                    <ArrowUp3 size={16} variant="Broken" color="currentColor" style={{ transform: "rotate(45deg)" }} aria-hidden="true" />
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </Reveal>
+        </div>
+        <p className="pp-strip-foot">&copy; 2026 Samuel Adefila. Product designer and Framer developer, based in Ibadan, Nigeria.</p>
+      </footer>
+    </section>
+  );
+}

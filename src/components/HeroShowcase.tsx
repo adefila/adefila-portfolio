@@ -3,10 +3,13 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
 
-// The hero picture for the job-search page: four of Samuel's app designs that take turns. Each new one wipes up over the
+// The hero picture for the job-search page: Samuel's client websites and app designs that take turns. Each new one wipes up over the
 // last while it settles from a slight zoom, one easing curve for everything. It pauses while the pointer or keyboard
 // focus is on it, the thin rail shows how long until the next one, and with reduced motion it only changes when picked.
 const SLIDES = [
+  { src: "/hero/site-1.webp", label: "DLP Africa website", alt: "The DLP Africa website: a telecommunications company in Ghana, redesigned in Figma and built in Framer" },
+  { src: "/hero/site-2.webp", label: "The Initial website", alt: "The Initial website: a dark, fast Framer site for a conversion agency" },
+  { src: "/hero/site-3.webp", label: "Upside ESG website", alt: "The Upside ESG website: custom AI sales systems for ESG revenue teams" },
   { src: "/hero/design-1.webp", label: "Wallet app", alt: "A crypto wallet app in light and dark mode: balance, assets and transactions" },
   { src: "/hero/design-2.webp", label: "News app", alt: "A news app: trending stories and a reading view" },
   { src: "/hero/design-3.webp", label: "Laundry orders app", alt: "A laundry orders app: account settings and a payment checkout" },
@@ -19,7 +22,7 @@ const CSS = `
   .hs { position: relative; width: 100%; }
   .hs-box { position: relative; aspect-ratio: 6 / 5; overflow: hidden; background: var(--surface); border: 1px solid rgba(var(--ink), 0.2); }
   .hs-layer { position: absolute; inset: 0; }
-  .hs-rail { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-top: 14px; }
+  .hs-rail { display: grid; gap: 6px; margin-top: 14px; }
   .hs-seg { position: relative; height: 18px; padding: 0; background: none; border: 0; cursor: pointer; }
   .hs-seg::after { content: ""; position: absolute; left: 0; right: 0; top: -13px; bottom: -13px; }
   .hs-seg::before { content: ""; position: absolute; left: 0; right: 0; top: 8px; height: 2px; background: rgba(var(--ink), 0.16); }
@@ -95,14 +98,14 @@ export default function HeroShowcase() {
         </motion.div>
       </div>
 
-      <div className="hs-rail" role="tablist" aria-label="App designs">
+      <div className="hs-rail" role="tablist" aria-label="Selected work" style={{ gridTemplateColumns: `repeat(${SLIDES.length}, 1fr)` }}>
         {SLIDES.map((s, i) => (
           <button key={s.label} type="button" role="tab" aria-selected={cur === i} aria-label={s.label} className={`hs-seg${cur === i ? " on" : i < cur ? " done" : ""}`} onClick={() => go(i)}>
             <i key={cur} />
           </button>
         ))}
       </div>
-      <p className="hs-cap"><span>Fig. 0{cur + 1} / 04</span><b>{SLIDES[cur].label}</b></p>
+      <p className="hs-cap"><span>Fig. 0{cur + 1} / 0{SLIDES.length}</span><b>{SLIDES[cur].label}</b></p>
     </div>
   );
 }

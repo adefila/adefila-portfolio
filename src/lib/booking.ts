@@ -1,4 +1,4 @@
-// The one place the booking page address lives. Every "Book a call" button links here,
+// The one place the booking page address lives. Every "Book a free discovery call" button links here,
 // and BookingPopup.tsx opens it in the site's own window.
 export const BOOKING_URL = "https://cal.com/samuel-adefila/15min";
 

@@ -1,5 +1,6 @@
 "use client";
 import { useRef, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 
 // A name inside a sentence that shows a small card on hover, on keyboard focus, or on a tap.
 // Used by the About text and the Work text.
@@ -29,7 +30,20 @@ export default function Term({ children, tip, below = false }: { children: React
       >
         {children}
       </span>
-      {open && <span role="tooltip" className={cls}>{tip}</span>}
+      <AnimatePresence>
+        {open && (
+          <motion.span
+            role="tooltip"
+            className={cls}
+            initial={{ opacity: 0, y: below ? -6 : 6, filter: "blur(4px)" }}
+            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            exit={{ opacity: 0, y: below ? -3 : 3, filter: "blur(2px)", transition: { duration: 0.12 } }}
+            transition={{ type: "spring", stiffness: 460, damping: 34 }}
+          >
+            {tip}
+          </motion.span>
+        )}
+      </AnimatePresence>
     </span>
   );
 }

@@ -22,10 +22,11 @@ const WORK: { period: string; role: string; company: string; place: string; win:
 
 
 // Side projects named inside the text. Hovering a name shows a small card; no big section of their own.
-const BUILT = [
+export const BUILT = [
   { name: "Baton", label: "Visual editor for client sites", stack: ["Next.js", "Supabase"], href: "https://batonedit.com", logo: "/side-projects/baton.svg" },
-  { name: "CVCraft", label: "AI tool", stack: ["Claude API", "Next.js"], href: "https://cvcraftai.vercel.app/", logo: "/side-projects/cvcraft.svg" },
+  { name: "CVCraft", label: "AI tool", stack: ["Claude API", "Next.js"], href: "https://cvcraftai-f0y.pages.dev/", logo: "/side-projects/cvcraft.svg" },
   { name: "Video Compressor", label: "Utility", stack: ["Next.js", "FFmpeg WASM"], href: "https://video-compressor-bay.vercel.app/", logo: "/side-projects/video-compressor.svg" },
+  { name: "Grossrec", label: "Screen recorder, in progress", stack: [] as string[], href: "https://reel.samuel-cb7.workers.dev/", logo: "/side-projects/screen-recorder.svg" },
   { name: "MeetBot", label: "Chrome extension", stack: ["Recall.ai", "Claude AI"], href: "#", logo: "/side-projects/meetbot.png" },
 ];
 
@@ -37,8 +38,11 @@ function fillSentence(template: string, nodes: React.ReactNode[]): React.ReactNo
 const RECENT = ["Klimt and Design", "Trust-Tai Web Agency", "HitPay"];
 
 const CSS = `
+  .ab-grid.ab-solo { grid-template-columns: minmax(0, 1fr); }
+  .ab-grid.ab-solo .ab-text { max-width: 760px; }
   /* the tools I built: round logos in one row, each overlapping the one before it (negative space), lifted on hover */
-  .ab-built { display: flex; flex-direction: row; align-items: center; margin-top: 32px; padding-left: 3px; }
+  .ab-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 20px 32px; margin-top: 32px; }
+  .ab-built { display: flex; flex-direction: row; align-items: center; padding-left: 3px; }
   .ab-built .about-term { display: block; position: relative; margin-left: -14px; transition: transform 0.2s ease; }
   .ab-built .about-term:first-child { margin-left: 0; }
   .ab-built .about-term:hover, .ab-built .about-term:focus-within { z-index: 5; transform: translateY(-3px); }
@@ -62,7 +66,7 @@ const CSS = `
   .ab-facts div { display: grid; grid-template-columns: 110px minmax(0, 1fr); gap: 16px; padding: 12px 0; border-bottom: 1px solid rgba(var(--ink), 0.14); }
   .ab-facts dt { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.02em; text-transform: uppercase; color: var(--fg-muted); padding-top: 2px; }
   .ab-facts dd { margin: 0; font-family: var(--font-inter); font-size: 15px; line-height: 1.5; color: var(--fg); }
-  .ab-cv { margin-top: 28px; }
+  .ab-cv { margin: 0; }
 
   .ab-block { margin-top: 96px; }
   .ab-block h3 { margin: 0; font-size: clamp(22px, 2.4vw, 30px); letter-spacing: -0.03em; line-height: 1.15; color: var(--fg); }
@@ -100,7 +104,7 @@ const CSS = `
   @media (max-width: 520px) { .ab-facts div { grid-template-columns: minmax(0, 1fr); gap: 2px; } }
 `;
 
-export default function About() {
+export default function About({ portrait = true, minimal = false }: { portrait?: boolean; minimal?: boolean } = {}) {
   const { t } = useLang();
 
   return (
@@ -110,8 +114,8 @@ export default function About() {
 
       <SpecLabel text={t("about.eyebrow")} />
 
-      <div className="ab-grid">
-        <figure className="ab-portrait">
+      <div className={`ab-grid${portrait ? "" : " ab-solo"}`}>
+        {portrait && <figure className="ab-portrait">
           <div className="ab-photo corners-in">
             <Image src="/samuel-portrait-cutout.webp" alt="Samuel Adefila" fill sizes="(max-width: 900px) 420px, 480px" priority={false} />
             <div className="ab-fade" aria-hidden="true" />
@@ -120,14 +124,14 @@ export default function About() {
               <p>Product designer · Ibadan, Nigeria</p>
             </figcaption>
           </div>
-        </figure>
+        </figure>}
 
         <div className="ab-copy">
           <h2 data-reveal>{t("about.h1")}</h2>
           <div className="ab-text" data-reveal>
             <p>{t("about.p1")}</p>
             <p>{t("about.p2")}</p>
-            <p>
+            {!minimal && <p>
               {fillSentence(t("about.p3"), RECENT.map((name) => {
                 const job = WORK.find((w) => w.company === name)!;
                 return (
@@ -142,9 +146,10 @@ export default function About() {
                   </Term>
                 );
               }))}
-            </p>
+            </p>}
           </div>
 
+          {!minimal && <div className="ab-actions">
           <div className="ab-built" data-reveal role="list" aria-label="Tools I built">
             {BUILT.map((p) => {
               const linked = p.href !== "#";
@@ -175,6 +180,7 @@ export default function About() {
               {t("hero.downloadCv")} <Download size={13} strokeWidth={2} />
             </MagneticButton>
           </div>
+          </div>}
         </div>
       </div>
     </section>

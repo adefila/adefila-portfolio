@@ -8,6 +8,7 @@
   --fg-label: #1a1a1a;
   --accent-green: rgb(0, 171, 74);
   --accent-purple: #6d28d9;
+  --hero-word: #0a0a0a; /* the changing word in the hero headline */
   --accent-teal: rgb(12, 237, 230);
   --dark-bg: #0f0f0f;
   --card-bg: rgb(235, 234, 230);
@@ -195,7 +196,7 @@ html[data-reveal-ready] [data-reveal]:not([data-revealed]) {
   .skeleton { animation: none; }
 }
 
-/* Phone-only "Book a call" bar (MobileCTA.tsx) */
+/* Phone-only "Book a free discovery call" bar (MobileCTA.tsx) */
 .mobile-cta {
   display: none;
 }
@@ -461,7 +462,7 @@ html[data-reveal-ready] [data-reveal]:not([data-revealed]) {
 /* Hero: copy on the left, portrait on the right; stacks below 900px */
 .hero-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr);
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
   gap: 56px;
   align-items: center;
 }
@@ -1229,8 +1230,7 @@ html[data-reveal-ready] [data-reveal]:not([data-revealed]) .il, html[data-reveal
 
 /* Benefit cards sit four across: the title area is two lines tall so every description starts on the same line,
    whatever the language. On narrower layouts the cards stack and need no reserved space. */
-.benefit-title { min-height: 2.6em; display: flex; align-items: flex-start; }
-@media (max-width: 1024px) { .benefit-title { min-height: 0; } }
+.benefit-title { display: flex; align-items: flex-start; }
 
 /* ── Speed: sections below the first screen are not laid out or drawn until the visitor scrolls near them ──
    The content stays in the page (search engines and in-page search still see it); the browser just skips the
@@ -1356,7 +1356,7 @@ strong, b { font-weight: 600; }
 
 /* ── Section rhythm: a hairline (.spec-rule) divides the sections, and each one has generous room above and below ── */
 #work, #results, #concept, #benefits, #process, #pricing, #testimonials, #about, #faq, #contact { padding-top: 120px !important; padding-bottom: 120px !important; }
-.hero-section { padding-bottom: 56px !important; }
+.hero-section { padding-bottom: 80px !important; }
 .clients-section { padding-top: 72px !important; padding-bottom: 72px !important; }
 @media (max-width: 768px) {
   #work, #results, #concept, #benefits, #process, #pricing, #testimonials, #about, #faq, #contact { padding-top: 72px !important; padding-bottom: 72px !important; }
@@ -1784,9 +1784,22 @@ body[data-menu-open] .lang-switcher { opacity: 0; pointer-events: none; }
 /* No capital-letter text anywhere: every label, button and nav link reads in normal case */
 *, *::before, *::after { text-transform: none !important; }
 
+/* ...except buttons and eyebrow labels, which read in capitals */
+button, .btn-primary, .btn-white, .btn-cta, .btn-quiet, .btn-ticks, .cs-btn, .cs-btn-quiet, .ws-btn, .pb-btn, .hero-cta a, .hero-cta button, .ph-cta a, .nav-cta, .csl-link, .csl-video, .footer-cta a, .midcta-inner a, .midcta-inner button, .framer-badge, .pp-btn, .pp-btn *, .pn-name, .pp-more, .bw-tab, .spec-label, .spec-label *, .cs-eyebrow, .cs-back, .pricing-retainer-label, .ph-facts dt { text-transform: uppercase !important; letter-spacing: 0.06em; }
+
+
 /* Numbers that change in place (the nav clock, counters) keep a steady width now that the font is not mono */
 .nav-time, .sr-odo, .nav-n, .wl-n, .wl-y, .pr-time, .ds-cap { font-variant-numeric: tabular-nums; }
 
 /* No corner marks, edge ticks or full-width rules anywhere (the elements are hidden so every page and every place they were used is clean) */
 .fig-corner, .spec-rule, .nav-progress, .nav-avail { display: none !important; }
 .corners, .corners-in, .btn-ticks, .btn-primary, .nav-link-anim { position: relative; }
+
+/* The personal site is in English only, so it has no language pill. (data-site is set in the page head, see layout.tsx) */
+html[data-site="personal"] .lang-trigger { display: none !important; }
+
+/* Business hero: a rendered cloud bank across the top (lit from above, shaded underneath), fading into the page */
+.hero-cloud { position: absolute; left: 0; right: 0; top: 0; height: 460px; pointer-events: none; z-index: 0;
+  background: url("/hero/cloud.webp") center top / cover no-repeat;
+  opacity: 0.5;
+  -webkit-mask-image: linear-gradient(to bottom, #000 15%, rgba(0,0,0,0.55) 50%, transparent 100%); mask-image: linear-gradient(to bottom, #000 15%, rgba(0,0,0,0.55) 50%, transparent 100%); }
