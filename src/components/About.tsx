@@ -25,8 +25,9 @@ const WORK: { period: string; role: string; company: string; place: string; win:
 export const BUILT = [
   { name: "Baton", label: "Visual editor for client sites", stack: ["Next.js", "Supabase"], href: "https://batonedit.com", logo: "/side-projects/baton.svg" },
   { name: "CVCraft", label: "AI tool", stack: ["Claude API", "Next.js"], href: "https://cvcraftai-f0y.pages.dev/", logo: "/side-projects/cvcraft.svg" },
-  { name: "Video Compressor", label: "Utility", stack: ["Next.js", "FFmpeg WASM"], href: "https://video-compressor-bay.vercel.app/", logo: "/side-projects/video-compressor.svg" },
+  { name: "Video Compressor", label: "Utility", stack: ["Next.js", "FFmpeg WASM"], href: "https://video-compressor.samuel-cb7.workers.dev/", logo: "/side-projects/video-compressor.svg" },
   { name: "Grossrec", label: "Screen recorder, in progress", stack: [] as string[], href: "https://reel.samuel-cb7.workers.dev/", logo: "/side-projects/screen-recorder.svg" },
+  { name: "DocSign", label: "PDF signing", stack: ["Next.js", "pdf-lib"], href: "https://docsign.samuel-cb7.workers.dev/", logo: "/side-projects/docsign.svg" },
   { name: "MeetBot", label: "Chrome extension", stack: ["Recall.ai", "Claude AI"], href: "#", logo: "/side-projects/meetbot.png" },
 ];
 

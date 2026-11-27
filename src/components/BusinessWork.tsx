@@ -8,7 +8,7 @@ import { devProjects } from "@/components/Projects";
 
 // Work for the business site (web.adefilasamuel.com), as cards: the title sits on the picture and the picture softens under it.
 // Two tabs: websites built for clients (each opens the live site), and concept websites designed and built on my own to show a direction.
-// All pictures are real desktop captures (1440 x 900) in /public/work.
+// All pictures are real desktop captures taken at 2x (2880 x 1800) in /public/work, shown as they are so they stay sharp.
 const CLIENT: [string, string][] = [
   ["DLP Africa", "dlp-africa"], ["The Initial", "the-initial"], ["BindHQ", "bindhq"],
   ["Leadopo", "leadopo"], ["Upside ESG", "upside-esg"], ["VPA London", "vpa-london"],
@@ -19,7 +19,7 @@ const CONCEPTS: Card[] = [
   { key: "paver-pro", title: "Paver Pro", note: "Outdoor construction", year: "2026", image: "/work/paver-pro.webp" },
   { key: "datum", title: "Datum Build", note: "Contractor, West Africa", year: "2026", image: "/work/datum-build.webp", href: "https://datum-build.samuel-cb7.workers.dev/", external: true },
   { key: "calder", title: "Calder Health", note: "Telehealth", year: "2026", image: "/work/calder-health.webp", href: "https://calder-health.samuel-cb7.workers.dev/", external: true },
-  { key: "talon", title: "Talon Tyres", note: "Automotive e-commerce", year: "2026", image: "/work/talon-tyres.webp" },
+  { key: "talon", title: "Talon Tyres", note: "Automotive e-commerce", year: "2026", image: "/work/talon-tyres.webp", href: "https://talon-tyres.samuel-cb7.workers.dev/", external: true },
 ];
 
 const TABS = [

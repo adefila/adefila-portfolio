@@ -62,7 +62,7 @@ export type Detail = {
   closing?: string;
   links?: { label: string; href: string; external?: boolean }[];
 };
-export type Row = { key: string; title: string; note?: string; right?: string; href?: string; external?: boolean; detail?: Detail };
+export type Row = { key: string; title: string; note?: string; right?: string; href?: string; external?: boolean; detail?: Detail; badge?: string };
 
 export function IndexList({ rows }: { rows: Row[] }) {
   const [active, setActive] = useState<string | null>(null);
@@ -78,6 +78,7 @@ export function IndexList({ rows }: { rows: Row[] }) {
             <span className="pp-t">
               {r.title}
               {r.note && <em>{r.note}</em>}
+              {r.badge && <b className="pp-badge">{r.badge}</b>}
               {r.href && (
                 <motion.span className="pp-go" aria-hidden="true" initial={false} animate={{ opacity: on ? 1 : 0, x: on ? 0 : -6, y: on ? 0 : 4 }} transition={{ type: "spring", stiffness: 380, damping: 30 }}>
                   <ArrowUp3 size={14} variant="Broken" color="currentColor" style={{ transform: "rotate(45deg)" }} />
@@ -91,6 +92,7 @@ export function IndexList({ rows }: { rows: Row[] }) {
                   <ArrowDown2 size={14} variant="Broken" color="currentColor" />
                 </motion.span>
               )}
+              {!r.detail && <span className="pp-chev" aria-hidden="true" />}
             </span>
           </>
         );
@@ -183,7 +185,8 @@ export const PP_CSS = `
   .pp-t em { font-style: normal; color: var(--fg-muted); }
   .pp-go { display: inline-flex; align-self: center; color: var(--accent-purple); }
   .pp-rowbtn { width: 100%; padding-left: 0; padding-right: 0; border: 0; background: none; text-align: left; cursor: pointer; }
-  .pp-chev { display: inline-flex; vertical-align: middle; margin-left: 8px; }
+  .pp-badge { font-family: var(--font-inter); font-weight: 500; font-size: 14px; font-style: normal; color: var(--accent-purple); }
+  .pp-chev { display: inline-flex; vertical-align: middle; width: 14px; height: 14px; margin-left: 8px; }
   .pp-detail { overflow: hidden; }
   .pp-detail-in { margin: 6px 0 0; padding: 8px 0 4px; display: grid; gap: 22px; }
   .pp-detail-in h4 { font-family: var(--font-inter); font-weight: 500; font-size: 12px; color: var(--fg-muted); }

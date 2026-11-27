@@ -1,10 +1,10 @@
+import { jsonLd } from "@/lib/personalJsonLd";
 import PersonalNav from "@/components/personal/PersonalNav";
 import PersonalToc from "@/components/personal/PersonalToc";
 import PersonalPage from "@/components/personal/PersonalPage";
 import BookingPopup from "@/components/BookingPopup";
 import ScrollReveal from "@/components/ScrollReveal";
 import SpecNumbers from "@/components/SpecNumbers";
-import ScrollRuler from "@/components/ScrollRuler";
 import SectionTitles from "@/components/SectionTitles";
 import MagneticButtons from "@/components/MagneticButtons";
 import ClickTracking from "@/components/ClickTracking";
@@ -21,9 +21,9 @@ export default function Home() {
         width: "100%",
       }}
     >
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <ScrollReveal />
       <SpecNumbers />
-      <ScrollRuler />
       <SectionTitles />
       <MagneticButtons />
       <ClickTracking />

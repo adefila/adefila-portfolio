@@ -1,51 +1,57 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { useBurn } from "@/components/useBurn";
 import Image from "next/image";
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { ArrowDown, CalendarDays } from "lucide-react";
 import MagneticButton from "./MagneticButton";
 import { useLang } from "@/context/LangContext";
 import { BOOKING_URL } from "@/lib/booking";
 
 const EASE = "cubic-bezier(0.22, 1, 0.36, 1)";
-const SPRING = [0.22, 1, 0.36, 1] as [number, number, number, number];
 
-// Cycles the last word of the headline. Every word sits in the same grid cell
-// so the line keeps the width of the longest one and never reflows.
+// Cycles the last word of the headline. Every word sits in the same grid cell so the line keeps the width of the longest one and
+// never reflows. The word in view burns away into small pieces that scatter, and the next one re-forms in its place.
 export function RotatingWord({ words }: { words: string[] }) {
   const [index, setIndex] = useState(0);
   const reducedMotion = useReducedMotion();
+  const wordRef = useRef<HTMLSpanElement>(null);
+  const burn = useBurn({ freq: "0.06 0.075", scatter: 42, lift: 8, seed: 9, k: 24, ms: 520 });
+  const run = burn.run;
 
   useEffect(() => {
     if (reducedMotion || words.length < 2) return;
-    const id = setInterval(() => setIndex((i) => (i + 1) % words.length), 2600);
-    return () => clearInterval(id);
-  }, [reducedMotion, words.length]);
+    let alive = true;
+    (async () => {
+      while (alive) {
+        await new Promise((r) => setTimeout(r, 2600));
+        if (!alive) break;
+        await run(wordRef.current, () => setIndex((i) => (i + 1) % words.length));
+      }
+    })();
+    return () => { alive = false; };
+  }, [reducedMotion, words.length, run]);
 
   const active = index % words.length;
 
   return (
-    <span style={{ display: "inline-grid", position: "relative", maxWidth: "100%", overflow: "hidden", verticalAlign: "bottom", paddingBottom: "0.06em" }}>
+    <span style={{ display: "inline-grid", position: "relative", maxWidth: "100%", verticalAlign: "bottom", paddingBottom: "0.06em" }}>
+      {burn.svg}
       {/* every word, invisible, so the line keeps the width of the longest one */}
       {words.map((word) => (
         <span key={word} aria-hidden="true" style={{ gridArea: "1 / 1", visibility: "hidden", whiteSpace: "normal", overflowWrap: "break-word" }}>{word}</span>
       ))}
-      {/* the word in view slides in from the right while the last one slides out to the left */}
-      <AnimatePresence initial={false} mode="popLayout">
-        <motion.span
-          key={active}
-          initial={{ x: "105%", opacity: 0 }}
-          animate={{ x: "0%", opacity: 1 }}
-          exit={{ x: "-105%", opacity: 0 }}
-          transition={{ duration: 0.6, ease: SPRING }}
-          style={{ gridArea: "1 / 1", whiteSpace: "normal", overflowWrap: "break-word", color: "var(--hero-word)" }}
-        >
-          {words[active]}
-        </motion.span>
-      </AnimatePresence>
+      <span ref={wordRef} style={{ gridArea: "1 / 1", whiteSpace: "normal", overflowWrap: "break-word", color: "var(--hero-word)" }}>{words[active]}</span>
     </span>
   );
 }
+
+// Real results from the case studies, floating over the hero photo.
+const PROOF: { top?: string; bottom?: string; left?: string; right?: string; big: string; small: string; float: number; delay: number }[] = [
+  { top: "9%", left: "3.5%", big: "12 pages live in 4 weeks", small: "DLP Africa", float: 5.2, delay: 0.9 },
+  { top: "36%", right: "3%", big: "5+ new clients from one landing page", small: "The Initial", float: 6.1, delay: 1.1 },
+  { bottom: "9%", left: "6%", big: "$10K+ paid out in under a month", small: "BookedEZ", float: 5.6, delay: 1.3 },
+];
 
 export default function Hero({ workHref = "#work" }: { workHref?: string }) {
   const { t, lang } = useLang();
@@ -68,6 +74,7 @@ export default function Hero({ workHref = "#work" }: { workHref?: string }) {
       <div aria-hidden="true" className="hero-cloud" />
       <div className="hero-grid" style={{ position: "relative", zIndex: 1, maxWidth: 1200, margin: "0 auto", paddingLeft: 20, paddingRight: 20, display: "block" }}>
         <div>
+          <p className="hero-eyebrow"><i aria-hidden="true" />Top Rated on Upwork, 100% Job Success across 50+ projects</p>
           <h1
             aria-label={`${t("hero.h1")} ${t("hero.h2.prefix")} ${words[0]}`.replace(/\s+/g, " ").trim()}
             style={{ marginBottom: 14, maxWidth: 1100, fontSize: "inherit", fontWeight: "inherit" }}
@@ -181,6 +188,19 @@ export default function Hero({ workHref = "#work" }: { workHref?: string }) {
 
         {/* One big, clean picture of client sites on a flat ground: no texture, no animation */}
         <div className="hero-portrait" style={{ position: "relative", width: "100%", marginTop: 56, animation: `heroFadeUp 0.8s 0.6s ${EASE} both` }}>
+          {PROOF.map((c) => (
+            <motion.div
+              key={c.big}
+              className="hero-chip"
+              style={{ top: c.top, bottom: c.bottom, left: c.left, right: c.right }}
+              initial={{ opacity: 0, scale: 0.92, y: 14 }}
+              animate={{ opacity: 1, scale: 1, y: [0, -7, 0] }}
+              transition={{ opacity: { delay: c.delay, duration: 0.6 }, scale: { delay: c.delay, type: "spring", stiffness: 260, damping: 22 }, y: { delay: c.delay, duration: c.float, repeat: Infinity, ease: "easeInOut" } }}
+            >
+              <b>{c.big}</b>
+              <span>{c.small}</span>
+            </motion.div>
+          ))}
           <Image src="/hero/business-photo.webp" alt="A designer working on a laptop in a bright modern office (photo by Vitaly Gariev on Unsplash)" width={2400} height={1300} priority sizes="(max-width: 1240px) 100vw, 1200px" style={{ display: "block", width: "100%", height: "auto" }} />
         </div>
       </div>

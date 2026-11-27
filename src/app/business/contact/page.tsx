@@ -12,10 +12,12 @@ import ClickTracking from "@/components/ClickTracking";
 
 // web.adefilasamuel.com/contact: its own page for people who want a B2B website quote or a discovery call.
 export const metadata: Metadata = {
+  metadataBase: new URL("https://web.adefilasamuel.com"),
   title: "Contact: Book a Free Discovery Call for Your B2B Website | Samuel Adefila",
   description: "Tell me about your B2B website project and book a free discovery call. Framer or custom-code websites with a CMS and lead tracking, with a reply within 24 hours.",
   alternates: { canonical: "https://web.adefilasamuel.com/contact" },
-  openGraph: { url: "https://web.adefilasamuel.com/contact", siteName: "Samuel Adefila" },
+  openGraph: { url: "https://web.adefilasamuel.com/contact", siteName: "Samuel Adefila", title: "Contact: Book a Free Discovery Call for Your B2B Website", description: "Tell me about your B2B website project and book a free discovery call." },
+  twitter: { card: "summary_large_image", title: "Contact: Book a Free Discovery Call for Your B2B Website", description: "Tell me about your B2B website project and book a free discovery call." },
 };
 
 export default function BusinessContactPage() {
@@ -28,7 +30,7 @@ export default function BusinessContactPage() {
       <MagneticButtons />
       <ClickTracking />
       <BookingPopup />
-      <Navbar hide={["#work", "#about", "#experience", "#benefits", "#process", "#pricing", "#testimonials", "#faq"]} contactHref="/contact" />
+      <Navbar hide={["#work", "#about", "#experience", "#benefits", "#process", "#pricing", "#testimonials", "#faq"]} contactHref="/contact" brandHref="/business" />
       <div style={{ paddingTop: 72 }}>
         <ContactForm />
       </div>

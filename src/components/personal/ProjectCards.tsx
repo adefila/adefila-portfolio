@@ -6,7 +6,7 @@ import { ArrowUp3 } from "iconsax-react";
 // Project cards: a desktop capture of the live site, with the title set over a progressive blur at the foot of the picture.
 // Eight blur layers, each stronger than the last and each revealed a little lower, so the softening has no visible steps; the layers
 // are wider than the card (and clipped by it) so no halo shows at the edges. Under the blur sits a dark tint on an eased curve,
-// which keeps white type readable on any site, light or dark.
+// which keeps white type readable on any site, light or dark. It runs close to black at the foot so the picture never fades to grey.
 export type Card = { key: string; title: string; note?: string; year?: string; image?: string; bg?: string; href?: string; external?: boolean };
 
 const BLURS = [0.4, 0.9, 1.8, 3.2, 5, 7.5, 10.5, 14];
@@ -22,14 +22,14 @@ const layerStyle = (i: number) => {
 };
 
 // an eased tint: slow start, steeper middle, then a firm base for the type
-const TINT = "linear-gradient(to bottom, rgba(10,10,14,0) 0%, rgba(10,10,14,0.03) 12%, rgba(10,10,14,0.1) 26%, rgba(10,10,14,0.24) 42%, rgba(10,10,14,0.42) 60%, rgba(10,10,14,0.6) 80%, rgba(10,10,14,0.7) 100%)";
+const TINT = "linear-gradient(to bottom, rgba(6,6,10,0) 0%, rgba(6,6,10,0.1) 14%, rgba(6,6,10,0.28) 30%, rgba(6,6,10,0.52) 48%, rgba(6,6,10,0.74) 66%, rgba(6,6,10,0.88) 84%, rgba(6,6,10,0.94) 100%)";
 
 const CSS = `
   .pc-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 20px; }
   .pc-card { position: relative; display: block; aspect-ratio: 16 / 10; overflow: hidden; background: var(--surface); text-decoration: none; color: #fff; isolation: isolate; }
   .pc-img { position: absolute; inset: 0; transition: opacity 0.35s ease; }
   .pc-list:hover .pc-card:not(:hover) .pc-img { opacity: 0.6; }
-  .pc-foot { position: absolute; left: 0; right: 0; bottom: 0; height: 52%; pointer-events: none; }
+  .pc-foot { position: absolute; left: 0; right: 0; bottom: 0; height: 58%; pointer-events: none; }
   .pc-blur { position: absolute; top: 0; bottom: 0; left: -40px; right: -40px; }
   .pc-blur i { position: absolute; inset: 0; }
   .pc-tint { position: absolute; inset: 0; background: ${TINT}; }
@@ -48,7 +48,7 @@ export default function ProjectCards({ cards }: { cards: Card[] }) {
         const body = (
           <>
             <div className="pc-img" style={{ background: c.bg }}>
-              {c.image && <Image src={c.image} alt={`${c.title} website, ${c.note ?? "client project"}`} fill sizes="(max-width: 760px) 92vw, 580px" quality={82} style={{ objectFit: "cover", objectPosition: "top center" }} />}
+              {c.image && <Image src={c.image} alt={`${c.title} website, ${c.note ?? "client project"}`} fill unoptimized sizes="(max-width: 760px) 92vw, 580px" style={{ objectFit: "cover", objectPosition: "top center" }} />}
             </div>
             <div className="pc-foot" aria-hidden="true">
               <div className="pc-blur">{BLURS.map((_, i) => <i key={i} style={layerStyle(i)} />)}</div>

@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
-import { ArrowUp3, DocumentDownload, Sms } from "iconsax-react";
+import { motion } from "framer-motion";
+import { ArrowDown, ArrowRight, ArrowUp3, DocumentDownload, Sms } from "iconsax-react";
 import Toolkit from "@/components/personal/Toolkit";
 import { ROLES } from "@/components/personal/Experience";
 import { Btn, IndexList, PP_CSS, Reveal } from "@/components/personal/ui";
@@ -12,6 +13,7 @@ import { CASE_STUDY_DATA } from "@/lib/caseStudyData";
 
 // The personal site (adefilasamuel.com), written for people hiring: one narrow column of plain text and index rows.
 // No boxes, no dividers: spacing separates the blocks. Motion is framer-motion springs, kept small (see ui.tsx). English only.
+const PROCESS = ["Discover", "Design", "Build", "Hand off"];
 const FIRST = ["DLP Africa", "The Initial", "BindHQ", "Leadopo", "Upside ESG", "VPA London"];
 const UPWORK = "https://upwork.com/freelancers/adefilasamuel";
 
@@ -70,7 +72,14 @@ const CSS = `
   .pp-link:hover { background-size: 0% 1px; background-position: 100% 100%; color: var(--accent-purple); }
   .pp-cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
 
-  .pp-block { display: grid; grid-template-columns: 110px minmax(0, 1fr); gap: 16px; margin-top: 80px; scroll-margin-top: 90px; }
+  .pp-block { display: grid; grid-template-columns: 110px minmax(0, 1fr); gap: 16px; margin-top: 44px; scroll-margin-top: 90px; }
+  .pp-wide { grid-template-columns: minmax(0, 1fr); }
+  .pp-proc { list-style: none; margin: 0; padding: 0; display: flex; align-items: center; flex-wrap: wrap; gap: 8px 14px; }
+  .pp-proc li { display: flex; align-items: center; gap: 14px; }
+  .pp-proc-step { font-family: var(--font-poppins); font-weight: 400; font-size: clamp(22px, 2.6vw, 30px); letter-spacing: -0.03em; color: var(--fg); }
+  .pp-proc-arrow { display: inline-flex; color: var(--fg-muted); }
+  .pp-arrow-v { display: none; }
+  @media (max-width: 640px) { .pp-proc { flex-direction: column; align-items: flex-start; } .pp-proc li { flex-direction: column; align-items: flex-start; gap: 6px; } .pp-arrow-h { display: none; } .pp-arrow-v { display: block; } }
   .pp-label { padding-top: 3px; font-family: var(--font-inter); font-size: 14px; color: var(--fg-muted); }
   .pp-note { margin-bottom: 18px; font-family: var(--font-inter); font-size: 16px; line-height: 1.6; letter-spacing: -0.15px; color: var(--fg-secondary); }
   .pp-more { margin-top: 12px; padding: 0 0 2px; border: 0; cursor: pointer; font-family: var(--font-inter); font-weight: 600; font-size: 12px; letter-spacing: 0.08em; color: var(--accent-purple); background-color: transparent; background-image: linear-gradient(currentColor, currentColor); background-size: 0% 1px; background-position: 0 100%; background-repeat: no-repeat; transition: background-size 0.4s cubic-bezier(0.2, 0.7, 0.2, 1); }
@@ -78,7 +87,15 @@ const CSS = `
   .pp-quote { padding: 9px 0; }
   .pp-quote p { font-family: var(--font-inter); font-size: 16px; line-height: 1.5; letter-spacing: -0.15px; color: var(--fg); }
   .pp-quote span { display: block; margin-top: 2px; font-size: 14px; color: var(--fg-muted); }
-  .pp-strip { margin: 120px -20px 0; padding: 72px 20px 28px; background: #6d28d9; color: #fff; }
+  .pp-strip { position: relative; overflow: hidden; margin: 72px -20px 0; padding: 72px 20px 28px; background: #6d28d9; color: #fff; }
+  .pp-strip > *:not(.pp-art) { position: relative; z-index: 1; }
+  .pp-art { position: absolute; right: 0; bottom: 0; width: min(560px, 62vw); height: auto; pointer-events: none; fill: none; stroke: rgba(255, 255, 255, 0.17); stroke-width: 1; }
+  .pp-art .pp-dot-a { fill: rgba(255, 255, 255, 0.85); stroke: none; }
+  .pp-orbit { transform-origin: 600px 600px; }
+  .pp-orbit-a { animation: ppSpin 46s linear infinite; }
+  .pp-orbit-b { animation: ppSpin 70s linear infinite reverse; }
+  @keyframes ppSpin { to { transform: rotate(360deg); } }
+  @media (prefers-reduced-motion: reduce) { .pp-orbit { animation: none; } }
   .pp-strip-in { max-width: 720px; margin: 0 auto; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(32px, 6vw, 96px); align-items: start; }
   .pp-strip-h { font-family: var(--font-poppins); font-weight: 400; font-size: clamp(30px, 4vw, 44px); line-height: 1.08; letter-spacing: -0.035em; color: #fff; }
   .pp-strip-p { margin-top: 16px; font-family: var(--font-inter); font-size: 15px; line-height: 1.6; color: rgba(255, 255, 255, 0.78); }
@@ -92,7 +109,7 @@ const CSS = `
   .pp-strip-list a:hover svg { opacity: 1; transform: translate(2px, -2px) rotate(45deg) !important; }
   .pp-strip-foot { max-width: 720px; margin: 64px auto 0; font-family: var(--font-inter); font-size: 13px; color: rgba(255, 255, 255, 0.65); }
   @media (max-width: 760px) { .pp-strip-in { grid-template-columns: 1fr; } }
-  @media (max-width: 640px) { .pp { padding-top: 112px; } .pp-block { grid-template-columns: 1fr; gap: 14px; margin-top: 60px; } }
+  @media (max-width: 640px) { .pp { padding-top: 112px; } .pp-block { grid-template-columns: 1fr; gap: 12px; margin-top: 34px; } }
 `;
 
 export default function PersonalPage() {
@@ -103,12 +120,12 @@ export default function PersonalPage() {
 
   const workRows: Row[] = [
     { key: "recorder", title: "Grossrec", note: "Screen recorder, building now", right: "Now", href: "https://reel.samuel-cb7.workers.dev/", external: true },
-    { key: "neetly", title: "Neetly", note: "Laundry app, UI/UX", right: "2025", detail: NEETLY },
+    { key: "neetly", title: "Neetly", note: "Laundry app, UI/UX", right: "2025", detail: NEETLY, badge: "Case study" },
     ...projects.map((p): Row => {
       const study = CASE_STUDIES[p.title];
       const href = study ?? (p.href !== "#" ? p.href : undefined);
       const detail = detailFor(p.title);
-      return { key: p.title, title: p.title, note: p.tags[0], right: p.year, href: detail ? undefined : href, external: !study, detail };
+      return { key: p.title, title: p.title, note: p.tags[0], right: p.year, href: detail ? undefined : href, external: !study, detail, badge: detail ? "Case study" : undefined };
     }),
   ];
   const expRows: Row[] = ROLES.map((r) => ({ key: `${r.org}-${r.when}`, title: r.role, note: r.org, right: years(r.when) }));
@@ -147,6 +164,23 @@ export default function PersonalPage() {
           <Toolkit />
         </Reveal>
 
+        <Reveal id="process" className="pp-block pp-wide">
+          <p className="pp-label">Process</p>
+          <ol className="pp-proc">
+            {PROCESS.map((title, i) => (
+              <li key={title}>
+                <span className="pp-proc-step">{title}</span>
+                {i < PROCESS.length - 1 && (
+                  <motion.span className="pp-proc-arrow" aria-hidden="true" initial={{ opacity: 0, x: -6 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: 0.25 + i * 0.18, type: "spring", stiffness: 260, damping: 22 }}>
+                    <ArrowRight size={18} variant="Broken" color="currentColor" className="pp-arrow-h" />
+                    <ArrowDown size={18} variant="Broken" color="currentColor" className="pp-arrow-v" />
+                  </motion.span>
+                )}
+              </li>
+            ))}
+          </ol>
+        </Reveal>
+
         <Reveal id="work" className="pp-block">
           <p className="pp-label">Work</p>
           <div>
@@ -175,6 +209,13 @@ export default function PersonalPage() {
       </div>
 
       <footer id="contact" className="pp-strip">
+        <svg className="pp-art" viewBox="0 0 600 600" aria-hidden="true" focusable="false">
+          {[70, 130, 190, 250, 310, 370, 430, 490, 550].map((r) => <circle key={r} cx="600" cy="600" r={r} />)}
+          <g className="pp-orbit pp-orbit-a"><circle className="pp-dot-a" cx="600" cy="410" r="5" /></g>
+          <g className="pp-orbit pp-orbit-b"><circle className="pp-dot-a" cx="600" cy="230" r="3.5" /></g>
+          <line x1="0" y1="600" x2="600" y2="600" />
+          <line x1="600" y1="0" x2="600" y2="600" />
+        </svg>
         <div className="pp-strip-in">
           <Reveal>
             <p className="pp-strip-h">Open to roles.</p>

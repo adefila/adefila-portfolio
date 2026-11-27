@@ -2,7 +2,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
-import { CASE_STUDIES } from "@/lib/caseStudies";
 import { useLang } from "@/context/LangContext";
 
 // logo: one-colour SVG under /public/clients; aspect is its width / height.
@@ -83,21 +82,7 @@ export default function ClientGrid() {
         <ul className="clients-grid" style={{ listStyle: "none", padding: 0, margin: 0 }}>
           {CLIENTS.map((client) => (
             <li key={client.name} className="clients-cell" data-reveal>
-              {CASE_STUDIES[client.name] ? (
-                <Link
-                  href={CASE_STUDIES[client.name]}
-                  className="clients-study"
-                  data-cursor={t("clients.study")}
-                  aria-label={`${client.name}: ${t("clients.study")}`}
-                >
-                  <ClientMark client={client} />
-                  <span className="clients-study-label" aria-hidden="true">
-                    {t("clients.study")} <ArrowUpRight size={11} strokeWidth={2} />
-                  </span>
-                </Link>
-              ) : (
-                <span className="clients-plain"><ClientMark client={client} /></span>
-              )}
+              <span className="clients-plain"><ClientMark client={client} /></span>
             </li>
           ))}
         </ul>

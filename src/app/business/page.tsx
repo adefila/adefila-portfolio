@@ -21,14 +21,16 @@ import BookingPopup from "@/components/BookingPopup";
 
 // The business site, at web.adefilasamuel.com (next.config.ts rewrites that address to this page). It is the page cold emails and
 // pitches point at: what you get, the process, pricing, FAQ and contact, with the client logos and testimonials as proof.
-// The personal pages (work, about) live on adefilasamuel.com, and the work link below goes there.
+// The business site stands on its own: nothing on it links to the personal site.
 export const metadata: Metadata = {
+  metadataBase: new URL("https://web.adefilasamuel.com"),
   title: "B2B Website Design and Framer Development | Samuel Adefila",
   description:
     "B2B website design and Framer development for SaaS, fintech and service companies: fixed-price websites with a CMS, lead-capture forms and conversion tracking, built to bring in qualified leads. Landing pages live in 5 to 7 days, full rebuilds in about 4 weeks.",
   keywords: ["B2B website design", "Framer developer", "B2B web design", "SaaS website design", "lead generation website", "website redesign", "Framer website", "conversion focused website", "Next.js developer", "web designer for B2B companies"],
   alternates: { canonical: "https://web.adefilasamuel.com" },
   openGraph: { url: "https://web.adefilasamuel.com", siteName: "Samuel Adefila", title: "B2B Website Design and Framer Development", description: "Fixed-price B2B websites in Framer or custom code, built to bring in qualified leads." },
+  twitter: { card: "summary_large_image", title: "B2B Website Design and Framer Development", description: "Fixed-price B2B websites in Framer or custom code, built to bring in qualified leads." },
 };
 
 const JSON_LD = {
@@ -39,7 +41,7 @@ const JSON_LD = {
   description: "B2B website design and development in Framer or custom code, with a CMS, lead-capture forms and conversion tracking, at a fixed scope and price.",
   areaServed: "Worldwide",
   serviceType: ["B2B website design", "Framer development", "Website redesign", "Landing page design", "Conversion rate optimisation"],
-  founder: { "@type": "Person", name: "Samuel Adefila", url: "https://adefilasamuel.com" },
+  founder: { "@type": "Person", name: "Samuel Adefila" },
   sameAs: ["https://www.linkedin.com/in/adefila-samuel-144448201/", "https://upwork.com/freelancers/adefilasamuel"],
 };
 

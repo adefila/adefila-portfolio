@@ -78,7 +78,7 @@ function HamburgerIcon({ open }: { open: boolean }) {
 }
 
 // `hide`: section links to leave out on pages that do not have that section (e.g. ["#about"]).
-export default function Navbar({ hide = [], contactHref }: { hide?: string[]; contactHref?: string }) {
+export default function Navbar({ hide = [], contactHref, brandHref }: { hide?: string[]; contactHref?: string; brandHref?: string }) {
   const [active, setActive] = useState("");
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -185,7 +185,7 @@ export default function Navbar({ hide = [], contactHref }: { hide?: string[]; co
           }}
         >
           <Link
-            href={onHome ? "#hero" : "/"}
+            href={brandHref ?? (onHome ? "#hero" : "/")}
             style={{
               fontFamily: "var(--font-inter)",
               fontWeight: 600,

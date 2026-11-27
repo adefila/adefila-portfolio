@@ -16,7 +16,7 @@ const OPEN_TO: { code: string; name: string }[] = [
 ];
 
 const CSS = `
-  .pn { position: fixed; top: 0; left: 0; right: 0; z-index: 50; display: flex; align-items: center; justify-content: space-between; height: 64px; padding: 0 24px; background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+  .pn { position: fixed; top: 0; left: 0; right: 0; z-index: 50; display: flex; align-items: center; justify-content: space-between; height: 64px; padding: 0 max(24px, calc((100vw - 1200px) / 2 + 24px)); background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid rgba(var(--ink), 0.14); }
   .pn-name { font-family: var(--font-inter); font-weight: 600; font-size: 13px; letter-spacing: 0.08em; color: var(--fg); text-decoration: none; }
   .pn-right { display: flex; align-items: center; gap: 22px; }
   .pn-open { display: flex; align-items: center; gap: 10px; font-family: var(--font-inter); font-size: 12px; color: var(--fg-muted); }
