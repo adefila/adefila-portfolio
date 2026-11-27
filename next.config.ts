@@ -29,6 +29,9 @@ const nextConfig: NextConfig = {
       // the case study pages are retired for now (backed up in /backup); old links go home
       { source: "/case-studies/:slug*", destination: "/", permanent: false },
       { source: "/local-business", destination: "https://web.adefilasamuel.com/", permanent: true },
+      { source: "/local-business/:path*", destination: "https://web.adefilasamuel.com/", permanent: true },
+      { source: "/local", destination: "https://web.adefilasamuel.com/", permanent: true },
+      { source: "/local/:path*", destination: "https://web.adefilasamuel.com/", permanent: true },
       // /business is only an internal address; the public one is web.adefilasamuel.com
       { source: "/business", has: [{ type: "host" as const, value: "(www\\.)?adefilasamuel\\.com" }], destination: "https://web.adefilasamuel.com/", permanent: true },
       { source: "/business/contact", has: [{ type: "host" as const, value: "(www\\.)?adefilasamuel\\.com" }], destination: "https://web.adefilasamuel.com/contact", permanent: true },
