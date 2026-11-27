@@ -92,7 +92,6 @@ export function IndexList({ rows }: { rows: Row[] }) {
                   <ArrowDown2 size={14} variant="Broken" color="currentColor" />
                 </motion.span>
               )}
-              {!r.detail && <span className="pp-chev" aria-hidden="true" />}
             </span>
           </>
         );
@@ -186,7 +185,7 @@ export const PP_CSS = `
   .pp-go { display: inline-flex; align-self: center; color: var(--accent-purple); }
   .pp-rowbtn { width: 100%; padding-left: 0; padding-right: 0; border: 0; background: none; text-align: left; cursor: pointer; }
   .pp-badge { font-family: var(--font-inter); font-weight: 500; font-size: 14px; font-style: normal; color: var(--accent-purple); }
-  .pp-chev { display: inline-flex; vertical-align: middle; width: 14px; height: 14px; margin-left: 8px; }
+  .pp-chev { position: absolute; right: -24px; top: 50%; margin-top: -7px; display: inline-flex; width: 14px; height: 14px; }
   .pp-detail { overflow: hidden; }
   .pp-detail-in { margin: 6px 0 0; padding: 8px 0 4px; display: grid; gap: 22px; }
   .pp-detail-in h4 { font-family: var(--font-inter); font-weight: 500; font-size: 12px; color: var(--fg-muted); }
@@ -204,6 +203,6 @@ export const PP_CSS = `
   .pp-quote-in p { margin: 0; font-family: var(--font-poppins); font-size: 17px; line-height: 1.45; letter-spacing: -0.02em; color: var(--fg); }
   .pp-quote-in cite { display: block; margin-top: 8px; font-style: normal; font-family: var(--font-inter); font-size: 13px; color: var(--fg-muted); }
   .pp-detail-links { display: flex; flex-wrap: wrap; gap: 6px 22px; margin: 14px 0 12px; font-family: var(--font-inter); font-size: 14px; }
-  .pp-d { font-size: 14px; color: var(--fg-muted); font-variant-numeric: tabular-nums; white-space: nowrap; }
-  @media (max-width: 640px) { .pp-dot { display: none; } }
+  .pp-d { position: relative; font-size: 14px; color: var(--fg-muted); font-variant-numeric: tabular-nums; white-space: nowrap; }
+  @media (max-width: 640px) { .pp-dot { display: none; } .pp-chev { right: -20px; } }
 `;

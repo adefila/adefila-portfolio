@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import ContactForm from "@/components/ContactForm";
+import FAQ from "@/components/FAQ";
 import Footer from "@/components/Footer";
 import BookingPopup from "@/components/BookingPopup";
 import ScrollReveal from "@/components/ScrollReveal";
@@ -30,9 +31,10 @@ export default function BusinessContactPage() {
       <MagneticButtons />
       <ClickTracking />
       <BookingPopup />
-      <Navbar hide={["#work", "#about", "#experience", "#benefits", "#process", "#pricing", "#testimonials", "#faq"]} contactHref="/contact" brandHref="/business" />
+      <Navbar hide={["#about", "#experience"]} contactHref="/contact" brandHref="/business" />
       <div style={{ paddingTop: 72 }}>
         <ContactForm />
+        <FAQ all />
       </div>
       <Footer />
     </main>

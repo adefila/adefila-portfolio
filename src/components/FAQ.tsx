@@ -10,15 +10,23 @@ type Faq = { q: string; a: string; i: number };
 // The five questions people really ask: cost, timeline, improving a site they already have, running it afterwards, and how to start.
 const FAQ_SHOWN = [2, 3, 5, 7, 9];
 
+// The contact page shows every question, with the ones people ask before writing first, plus a few about the enquiry itself.
+const FAQ_ALL = [2, 3, 9, 5, 0, 1, 4, 6, 7, 8];
+const FAQ_EXTRA: Faq[] = [
+  { i: 100, q: "How quickly will you reply?", a: "Within 24 hours, usually sooner. If your message is about a live site that is down or broken, say so in the first line and I will look at it first." },
+  { i: 101, q: "What should I include in my message?", a: "Who you are and what the company does, the site you have now (if any), what you want it to do for the business, and a rough date you need it by. A budget range helps too, but it is fine to leave it out." },
+  { i: 102, q: "Do you work with companies outside Nigeria?", a: "Yes. Most of my clients are in the US, the UK, Canada and across Africa, and I work async with a clear weekly update so time zones do not slow a project down." },
+];
+
 const EASE = [0.22, 1, 0.36, 1] as [number, number, number, number];
 
-export default function FAQ() {
+export default function FAQ({ all = false }: { all?: boolean } = {}) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const { t } = useLang();
 
   const faqs: Faq[] = useMemo(
-    () => FAQ_SHOWN.map((i) => ({ i, q: t(`faq.q${i}`), a: t(`faq.a${i}`) })).filter((f) => f.q),
-    [t],
+    () => [...(all ? FAQ_ALL : FAQ_SHOWN).map((i) => ({ i, q: t(`faq.q${i}`), a: t(`faq.a${i}`) })).filter((f) => f.q), ...(all ? FAQ_EXTRA : [])],
+    [t, all],
   );
 
   const toggle = (i: number) => setOpenIndex(openIndex === i ? null : i);
