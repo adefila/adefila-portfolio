@@ -20,9 +20,12 @@ const CSS = `
   .pt { position: fixed; left: max(24px, calc((100vw - 1200px) / 2 + 24px)); top: 164px; z-index: 40; display: none; transition: opacity 0.4s ease; }
   @media (min-width: 1180px) { .pt { display: block; } }
   .pt ol { list-style: none; margin: 0; padding: 0 0 0 14px; position: relative; }
-  .pt a { position: relative; display: block; padding: 6px 0; font-family: var(--font-inter); font-size: 12px; line-height: 1.2; letter-spacing: -0.1px; color: var(--fg-muted); text-decoration: none; transition: color 0.4s ease; }
+  .pt a { position: relative; display: block; padding: 6px 0; font-family: var(--font-inter); font-size: 12px; line-height: 1.2; letter-spacing: -0.1px; color: var(--fg-muted); text-decoration: none; transition: color 0.4s ease, opacity 0.3s ease; }
   .pt a:hover, .pt a[aria-current="true"], .pt a[data-lit="true"] { color: var(--fg); }
   .pt li { position: relative; }
+  /* hovering one item softens the others, as in the toolkit and the work cards */
+  .pt ol:hover a { opacity: 0.38; }
+  .pt ol:hover a:hover, .pt ol:hover a:focus-visible { opacity: 1; }
   .pt-inv a { color: rgba(255, 255, 255, 0.62); }
   .pt-inv a:hover, .pt-inv a[aria-current="true"], .pt-inv a[data-lit="true"] { color: #fff; }
   .pt-inv .pt-mark { background: #fff; }

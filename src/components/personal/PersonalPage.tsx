@@ -97,8 +97,9 @@ const CSS = `
   .pp-link:hover { background-size: 0% 1px; background-position: 100% 100%; color: var(--accent-purple); }
   .pp-cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
 
-  .pp-block { display: grid; grid-template-columns: 110px minmax(0, 1fr); gap: 16px; margin-top: 64px; scroll-margin-top: 90px; }
-  .pp-label { padding-top: 3px; font-family: var(--font-inter); font-size: 14px; color: var(--fg-muted); }
+  .pp-block { display: grid; grid-template-columns: 110px minmax(0, 1fr); gap: 16px; margin-top: 64px; scroll-margin-top: 90px; align-items: baseline; }
+  #gallery > .pp-label { align-self: start; padding-top: 3px; }
+  .pp-label { padding-top: 0; font-family: var(--font-inter); font-size: 14px; color: var(--fg-muted); }
   .pp-note { margin-bottom: 18px; font-family: var(--font-inter); font-size: 16px; line-height: 1.6; letter-spacing: -0.15px; color: var(--fg-secondary); }
   .pp-more { margin-top: 12px; padding: 0 0 2px; border: 0; cursor: pointer; font-family: var(--font-inter); font-weight: 600; font-size: 12px; letter-spacing: 0.08em; color: var(--accent-purple); background-color: transparent; background-image: linear-gradient(currentColor, currentColor); background-size: 0% 1px; background-position: 0 100%; background-repeat: no-repeat; transition: background-size 0.4s cubic-bezier(0.2, 0.7, 0.2, 1); }
   .pp-more:hover { background-size: 100% 1px; }
@@ -132,7 +133,7 @@ const CSS = `
   .pp-strip-list a:hover svg { opacity: 1; transform: translate(2px, -2px) rotate(45deg) !important; }
   .pp-strip-foot { max-width: 720px; margin: 64px auto 0; font-family: var(--font-inter); font-size: 13px; color: rgba(255, 255, 255, 0.9); }
   @media (max-width: 760px) { .pp-strip-in { grid-template-columns: 1fr; } }
-  @media (max-width: 640px) { .pp { padding-top: 112px; } .pp-block { grid-template-columns: 1fr; gap: 10px; margin-top: 44px; } }
+  @media (max-width: 640px) { .pp { padding-top: 112px; } .pp-block { grid-template-columns: minmax(0, 1fr); gap: 10px; margin-top: 44px; } }
   @media (max-width: 640px) { .pp-intro { margin-top: 14px; } .pp-intro + .pp-intro { margin-top: 10px; } .pp-cta { margin-top: 20px; } }
 `;
 
