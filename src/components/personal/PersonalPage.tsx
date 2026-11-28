@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { motion } from "framer-motion";
+import Gallery from "@/components/personal/Gallery";
 import { ArrowUp3, DocumentDownload, Sms } from "iconsax-react";
 import Toolkit from "@/components/personal/Toolkit";
 import { ROLES } from "@/components/personal/Experience";
@@ -21,6 +21,25 @@ const PROCESS: Row[] = [
 ];
 const FIRST = ["DLP Africa", "The Initial", "BindHQ", "Leadopo", "Upside ESG", "VPA London"];
 const UPWORK = "https://upwork.com/freelancers/adefilasamuel";
+const B2B_SITE = "https://web.adefilasamuel.com";
+
+// A few photographs: the desk, the work, and me away from it.
+const GALLERY: { src: string; alt: string }[] = [
+  { src: "/gallery/photo-6.jpeg", alt: "Samuel in an orange striped polo, looking down at his phone" },
+  { src: "/gallery/photo-1.jpeg", alt: "Samuel standing in front of a car" },
+  { src: "/gallery/photo-2.jpeg", alt: "A standing desk with a monitor and laptops, lit in blue" },
+  { src: "/gallery/photo-3.jpeg", alt: "A quote management dashboard on a monitor" },
+  { src: "/gallery/photo-4.jpeg", alt: "Samuel smiling at a National Youth Service Corps event" },
+  { src: "/gallery/photo-5.jpeg", alt: "A desk setup with a monitor and a hand holding a black ball" },
+  { src: "/gallery/photo-7.jpeg", alt: "A black and white mirror selfie holding a phone" },
+];
+
+// Reading: what is on the table now, a line worth keeping, and a couple to pass on.
+const BOOKS: Row[] = [
+  { key: "keep-going", title: "Keep Going", note: "Austin Kleon", right: "Reading now", href: "https://www.goodreads.com/book/show/40591677", external: true },
+  { key: "steal", title: "Steal Like an Artist", note: "Austin Kleon", right: "Recommended", href: "https://www.goodreads.com/book/show/13099738", external: true },
+  { key: "show", title: "Show Your Work!", note: "Austin Kleon", right: "Recommended", href: "https://www.goodreads.com/book/show/18290401", external: true },
+];
 
 const QUOTES: { q: string; name: string; role: string }[] = [
   { q: "I've found 5+ new clients through it.", name: "Johnno Van Den Brink", role: "The Initial Agency" },
@@ -85,6 +104,9 @@ const CSS = `
   .pp-quote { padding: 9px 0; }
   .pp-quote p { font-family: var(--font-inter); font-size: 16px; line-height: 1.5; letter-spacing: -0.15px; color: var(--fg); }
   .pp-quote span { display: block; margin-top: 2px; font-size: 14px; color: var(--fg-muted); }
+  .pp-bq { margin: 22px 0 0; padding: 0; }
+  .pp-bq p { font-family: var(--font-poppins); font-weight: 400; font-size: clamp(18px, 2.4vw, 22px); line-height: 1.4; letter-spacing: -0.02em; color: var(--fg); }
+  .pp-bq footer { margin-top: 10px; font-family: var(--font-inter); font-size: 14px; color: var(--fg-muted); }
   .pp-strip { position: relative; overflow: hidden; margin: 88px -20px 0; padding: 72px 20px 28px; background: #6d28d9; color: #fff; }
   .pp-strip > *:not(.pp-art) { position: relative; z-index: 1; }
   .pp-art { position: absolute; right: 0; bottom: 0; width: min(560px, 62vw); height: auto; pointer-events: none; fill: none; stroke: rgba(255, 255, 255, 0.17); stroke-width: 1; }
@@ -175,9 +197,36 @@ export default function PersonalPage() {
           </div>
         </Reveal>
 
+        <Reveal id="b2b" className="pp-block">
+          <p className="pp-label">B2B</p>
+          <div>
+            <p className="pp-note">
+              Alongside this, I build websites for B2B companies: Framer or custom code, one fixed scope and price, and a site made to bring in qualified enquiries.
+              If your company needs one, everything is on the{" "}
+              <a className="pp-link" href={B2B_SITE} target="_blank" rel="noopener noreferrer">B2B page</a>.
+            </p>
+          </div>
+        </Reveal>
+
         <Reveal id="experience" className="pp-block">
           <p className="pp-label">Experience</p>
           <IndexList rows={expRows} />
+        </Reveal>
+
+        <Reveal id="gallery" className="pp-block">
+          <p className="pp-label">Gallery</p>
+          <Gallery images={GALLERY} />
+        </Reveal>
+
+        <Reveal id="books" className="pp-block">
+          <p className="pp-label">Books</p>
+          <div>
+            <IndexList rows={BOOKS} />
+            <blockquote className="pp-bq">
+              <p>&ldquo;None of us know what will happen. Don&rsquo;t spend time worrying about it. Make the most beautiful thing you can. Try to do that every day. That&rsquo;s it.&rdquo;</p>
+              <footer>Laurie Anderson, in Keep Going. My favourite line right now.</footer>
+            </blockquote>
+          </div>
         </Reveal>
 
         <Reveal id="testimonials" className="pp-block">

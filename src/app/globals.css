@@ -2011,3 +2011,11 @@ html[data-site="business"] #process { background: linear-gradient(rgba(26, 20, 5
 .pricing-grid > div:nth-child(2) { background: linear-gradient(rgba(26, 20, 52, 0.86), rgba(26, 20, 52, 0.86)), url("/hero/mosaic.webp") center / cover no-repeat !important; }
 .dd-val, .dd-ph { min-width: 0; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
 .form-row { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important; } .form-row > div { min-width: 0; } @media (max-width: 560px) { .form-row { grid-template-columns: minmax(0, 1fr) !important; } }
+
+/* ── Smooth experience: the page fades in, links and fields ease between states, and moving between pages cross-fades ── */
+@keyframes pageIn { from { opacity: 0; } to { opacity: 1; } }
+body { animation: pageIn 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+:where(a, button, [role="button"], input, textarea) { transition: color 0.25s ease, background-color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease, opacity 0.25s ease; }
+@view-transition { navigation: auto; }
+::view-transition-old(root), ::view-transition-new(root) { animation-duration: 0.35s; animation-timing-function: cubic-bezier(0.2, 0.7, 0.2, 1); }
+@media (prefers-reduced-motion: reduce) { body { animation: none; } }

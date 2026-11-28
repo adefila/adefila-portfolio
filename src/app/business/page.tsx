@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { preload } from "react-dom";
 import HeroClear from "@/components/HeroClear";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
@@ -48,6 +49,7 @@ const JSON_LD = {
 };
 
 export default function BusinessPage() {
+  preload("/hero/mosaic.webp", { as: "image", fetchPriority: "high" });
   return (
     <main style={{ background: "var(--bg)", minHeight: "100vh", overflowX: "hidden", width: "100%" }}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(JSON_LD) }} />

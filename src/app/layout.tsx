@@ -48,6 +48,8 @@ export const metadata: Metadata = {
 };
 
 import Cursor from "@/components/Cursor";
+import SmoothScroll from "@/components/SmoothScroll";
+import { GA_ID } from "@/lib/gtag";
 import VisitBeacon from "@/components/VisitBeacon";
 import { LangProvider } from "@/context/LangContext";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
@@ -93,13 +95,14 @@ export default function RootLayout({
       <body>
         <LangProvider>
           <Cursor />
+          <SmoothScroll />
           {children}
           <LanguageSwitcher />
         </LangProvider>
         <VisitBeacon />
         <script src="https://batonedit.com/h.js" data-site="e4f91de86d" defer></script>
       </body>
-      <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID!} />
+      <GoogleAnalytics gaId={GA_ID} />
     </html>
   );
 }

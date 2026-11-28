@@ -15,7 +15,7 @@ export default function Term({ children, tip, below = false }: { children: React
   };
   const cls = ["about-tip", alignRight && "about-tip-right", below && "about-tip-below"].filter(Boolean).join(" ");
   return (
-    <span className="about-term" ref={ref} onMouseEnter={show} onMouseLeave={() => setOpen(false)}>
+    <span className="about-term" ref={ref} onMouseEnter={() => { if (!window.matchMedia("(hover: none)").matches) show(); }} onMouseLeave={() => setOpen(false)}>
       <span
         className="about-term-text"
         tabIndex={0}

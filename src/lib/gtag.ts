@@ -4,7 +4,7 @@ declare global {
   }
 }
 
-export const GA_ID = process.env.NEXT_PUBLIC_GA_ID ?? "";
+export const GA_ID = process.env.NEXT_PUBLIC_GA_ID || "G-DEHTKR5QHX";
 
 export function trackEvent(
   name: string,

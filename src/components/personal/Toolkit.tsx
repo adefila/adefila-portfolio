@@ -36,7 +36,7 @@ const CSS = `
   .tk-row .about-term-text { display: block; border-bottom: 0; line-height: 0; border-radius: 50%; }
   .tk-logo { display: block; width: 38px; height: 38px; border-radius: 50%; overflow: hidden; line-height: 0; box-shadow: 0 0 0 2px var(--bg); }
   .tk-logo img { width: 100%; height: 100%; display: block; object-fit: cover; }
-  @media (max-width: 640px) { .tk-logo { width: 34px; height: 34px; } .tk-row .about-term { margin-left: -9px; } .tk-row { overflow-x: auto; padding-bottom: 8px; } }
+  @media (max-width: 640px) { .tk-logo { width: 34px; height: 34px; } .tk-row .about-term { margin-left: 6px; } .tk-row .about-term:first-child { margin-left: 0; } .tk-row { overflow-x: auto; padding-bottom: 8px; } }
 `;
 
 export default function Toolkit() {
@@ -46,10 +46,10 @@ export default function Toolkit() {
       <style>{TERM_CSS}</style>
       <div className="tk-group" data-reveal>
         <p>What I work in</p>
-        <div className="tk-row" role="list" aria-label="Tools I work in">
+        <div className="tk-row" aria-label="Tools I work in">
           {TOOLS.map((t) => (
             <Term key={t.slug} tip={<><b>{t.name}</b><span>{t.stage}</span></>}>
-              <span className="tk-logo" role="listitem"><Image src={`/tools/${t.slug}.svg`} alt={t.name} width={38} height={38} unoptimized /></span>
+              <span className="tk-logo"><Image src={`/tools/${t.slug}.svg`} alt={t.name} width={38} height={38} unoptimized /></span>
             </Term>
           ))}
         </div>
@@ -57,7 +57,7 @@ export default function Toolkit() {
 
       <div className="tk-group" data-reveal>
         <p>What I built</p>
-        <div className="tk-row" role="list" aria-label="Tools I built">
+        <div className="tk-row" aria-label="Tools I built">
           {BUILT.map((p) => {
             const linked = p.href !== "#";
             const logo = <Image src={p.logo} alt={p.name} width={38} height={38} unoptimized />;
@@ -69,7 +69,7 @@ export default function Toolkit() {
                   {linked && <a href={p.href} target="_blank" rel="noopener noreferrer">View project</a>}
                 </>
               )}>
-                {linked ? <a className="tk-logo" role="listitem" href={p.href} target="_blank" rel="noopener noreferrer" aria-label={p.name}>{logo}</a> : <span className="tk-logo" role="listitem">{logo}</span>}
+                {linked ? <a className="tk-logo" href={p.href} target="_blank" rel="noopener noreferrer" aria-label={p.name} onClick={(e) => e.stopPropagation()}>{logo}</a> : <span className="tk-logo">{logo}</span>}
               </Term>
             );
           })}
