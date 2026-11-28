@@ -1,23 +1,25 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { AnimatePresence, motion, useInView, useReducedMotion } from "framer-motion";
+import { AnimatePresence, motion, MotionValue, useMotionValue, useReducedMotion, useScroll, useSpring, useTransform } from "framer-motion";
 import { ArrowLeft2, ArrowRight2, CloseSquare } from "iconsax-react";
 
-// The personal gallery: the photographs lie in one row, each one overlapping the one before it (negative spacing), like a hand of cards.
-//  - they rise in one after another when the row comes into view;
-//  - hovering (or tabbing to) one brings it to the front and eases the others aside, to the left if they sit before it and to the right if they sit
-//    after it (the ones next to it the most), so it opens a gap to be seen. It does not move or zoom itself;
-//  - the stack is centred, and its spacing adapts to the width and to how many photos there are, so any number fits one row;
+// The personal gallery: a calm grid that arrives with the page.
+//  - the photographs start as one small fanned stack and, as you scroll the gallery into view, spread out into their places in the grid
+//    (the movement follows your scroll, so it is as slow or as fast as you are, and it works the same on a phone);
+//  - once spread, hovering one softens the others a little. Nothing moves, lifts or zooms under the cursor;
+//  - the grid adapts to the width and to how many photos there are: four across on desktop, three on a phone, any number of rows;
 //  - a click or tap opens the photo large on a pale veil, with arrows, the arrow keys and Esc.
-// Nothing bounces or flashes (soft springs). With "reduce motion" on, the movement is off.
+// With "reduce motion" on, the photos simply sit in the grid.
 export type GalleryImage = { src: string; alt: string };
 
 const CSS = `
-  .gl-stack { position: relative; width: 100%; }
-  .gl-tile { position: absolute; will-change: transform; }
-  /* a white mat of 3px with a hairline outside it, so overlapping photos sit on each other like prints */
-  .gl-fig { position: relative; width: 100%; height: 100%; margin: 0; overflow: hidden; background: #fff; border: 3px solid #fff; box-shadow: 0 0 0 0.5px #cfcfd8; cursor: zoom-in; }
+  .gl-grid { position: relative; width: 100%; }
+  .gl-tile { position: absolute; left: 0; top: 0; will-change: transform; }
+  /* a white mat of 3px with a hairline outside it, so photos that start overlapped sit on each other like prints */
+  .gl-fig { position: relative; width: 100%; height: 100%; margin: 0; overflow: hidden; background: #fff; border: 3px solid #fff; box-shadow: 0 0 0 0.5px #cfcfd8; cursor: zoom-in; transition: opacity 0.4s ease; }
+  .gl-grid:hover .gl-fig { opacity: 0.62; }
+  .gl-grid:hover .gl-fig:hover, .gl-grid:hover .gl-fig:focus-visible { opacity: 1; }
   .gl-fig:focus-visible { outline: 2px solid var(--accent-purple); outline-offset: 2px; }
   .gl-fig img { object-fit: cover; user-select: none; -webkit-user-drag: none; }
   .gl-pic { position: absolute; inset: 0; }
@@ -35,15 +37,37 @@ const CSS = `
   @media (max-width: 640px) { .gl-lb { padding: 16px; } .gl-lb-fig { height: min(68vh, 600px); } }
 `;
 
-const SHIFT = 44;     // how far the nearest neighbour moves aside; the same room is kept free on both sides of the stack
-const OVERLAP = 0.42; // the step between photos, as a share of a photo's width (so each photo is about 40% uncovered)
+const GAP = 12;
+
+// One photograph: it travels from its place in the stack to its place in the grid as the shared progress goes from 0 to 1
+function Tile({ i, n, g, p, w, tileW, tileH, cols, onOpen }: {
+  i: number; n: number; g: GalleryImage; p: MotionValue<number>; w: number; tileW: number; tileH: number; cols: number; onOpen: () => void;
+}) {
+  const mid = (n - 1) / 2;
+  const fx = (i % cols) * (tileW + GAP);
+  const fy = Math.floor(i / cols) * (tileH + GAP);
+  const x = useTransform(p, [0, 1], [(w - tileW) / 2 + (i - mid) * 7, fx]);
+  const y = useTransform(p, [0, 1], [0, fy]);
+  const rotate = useTransform(p, [0, 1], [(i - mid) * 2.6, 0]);
+  return (
+    <motion.div className="gl-tile" role="listitem" style={{ x, y, rotate, width: tileW, height: tileH, zIndex: i + 1 }}>
+      <figure
+        className="gl-fig"
+        tabIndex={0}
+        onClick={onOpen}
+        onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); onOpen(); } }}
+        aria-label={`Open photo ${i + 1} of ${n}: ${g.alt}`}
+      >
+        <span className="gl-pic"><Image src={g.src} alt={g.alt} fill sizes="(max-width: 640px) 33vw, 160px" draggable={false} /></span>
+      </figure>
+    </motion.div>
+  );
+}
 
 export default function Gallery({ images }: { images: GalleryImage[] }) {
   const reduced = useReducedMotion();
   const wrap = useRef<HTMLDivElement>(null);
-  const seen = useInView(wrap, { once: true, margin: "0px 0px -8% 0px" });
   const [w, setW] = useState(594);
-  const [hover, setHover] = useState<number | null>(null);
   const [open, setOpen] = useState<number | null>(null);
   const n = images.length;
 
@@ -56,28 +80,17 @@ export default function Gallery({ images }: { images: GalleryImage[] }) {
     return () => ro.disconnect();
   }, []);
 
-  // The size of a photo follows the width; the step between photos is whatever lets all of them fit the row (never wider than 80% of a photo)
-  const tileW = Math.round(Math.min(190, Math.max(112, w * 0.31)));
+  // Progress of the spread: 0 while the gallery is still low on the screen, 1 once it has come up to the middle of it. The spring takes the edges off the scroll.
+  const { scrollYProgress } = useScroll({ target: wrap, offset: ["start 90%", "start 40%"] });
+  const spring = useSpring(scrollYProgress, { stiffness: 110, damping: 26, mass: 0.6 });
+  const done = useMotionValue(1);
+  const p = reduced ? done : spring;
+
+  const cols = w < 480 ? 3 : 4;
+  const tileW = Math.floor((w - GAP * (cols - 1)) / cols);
   const tileH = Math.round((tileW * 4) / 3);
-  const step = n > 1 ? Math.min(tileW * OVERLAP, (w - 2 * SHIFT - tileW) / (n - 1)) : 0;
-  const left0 = Math.max(SHIFT, (w - (tileW + (n - 1) * step)) / 2);
-
-  const onMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (n < 2) return;
-    const x = e.clientX - e.currentTarget.getBoundingClientRect().left;
-    const total = tileW + (n - 1) * step;
-    if (x < left0 - 6 || x > left0 + total + 6) { if (hover !== null) setHover(null); return; }
-    // every photo owns one slice of the resting stack, so moving the pointer along the row steps through the photos one by one
-    const idx = Math.max(0, Math.min(n - 1, Math.floor((x - left0) / step)));
-    if (idx !== hover) setHover(idx);
-  };
-
-  const offset = (i: number) => {
-    if (hover === null || reduced || i === hover) return 0;
-    const d = Math.abs(i - hover);
-    const fall = 1 / (1 + (d - 1) * 0.7); // the nearest move most, the rest less
-    return (i > hover ? 1 : -1) * SHIFT * fall;
-  };
+  const rows = Math.ceil(n / cols);
+  const height = rows * tileH + (rows - 1) * GAP + 4;
 
   // The large view
   useEffect(() => {
@@ -96,35 +109,9 @@ export default function Gallery({ images }: { images: GalleryImage[] }) {
   return (
     <div className="gl">
       <style>{CSS}</style>
-      <div ref={wrap} className="gl-stack" role="list" aria-label="Photographs" style={{ height: tileH + 4 }} onMouseMove={onMove} onMouseLeave={() => setHover(null)}>
+      <div ref={wrap} className="gl-grid" role="list" aria-label="Photographs" style={{ height }}>
         {images.map((g, i) => (
-          <motion.div
-            key={g.src}
-            role="listitem"
-            className="gl-tile"
-            style={{ left: left0 + i * step, top: 2, width: tileW, height: tileH, zIndex: hover === i ? n + 1 : i + 1 }}
-            initial={reduced ? false : { opacity: 0, y: 18 }}
-            animate={seen || reduced ? { opacity: 1, y: 0 } : { opacity: 0, y: 18 }}
-            transition={{ duration: 0.7, delay: i * 0.08, ease: [0.2, 0.7, 0.2, 1] }}
-          >
-            <motion.div
-              style={{ width: "100%", height: "100%" }}
-              animate={{ x: offset(i) }}
-              transition={{ type: "spring", stiffness: 170, damping: 28, mass: 0.9 }}
-            >
-              <figure
-                className="gl-fig"
-                tabIndex={0}
-                onFocus={() => setHover(i)}
-                onBlur={() => setHover(null)}
-                onClick={() => setOpen(i)}
-                onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); setOpen(i); } }}
-                aria-label={`Open photo ${i + 1} of ${n}: ${g.alt}`}
-              >
-                <span className="gl-pic"><Image src={g.src} alt={g.alt} fill sizes="200px" draggable={false} /></span>
-              </figure>
-            </motion.div>
-          </motion.div>
+          <Tile key={g.src} i={i} n={n} g={g} p={p} w={w} tileW={tileW} tileH={tileH} cols={cols} onOpen={() => setOpen(i)} />
         ))}
       </div>
 

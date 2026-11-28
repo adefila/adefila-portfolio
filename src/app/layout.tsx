@@ -49,6 +49,7 @@ export const metadata: Metadata = {
 
 import Cursor from "@/components/Cursor";
 import SmoothScroll from "@/components/SmoothScroll";
+import HashLinks from "@/components/HashLinks";
 import { GA_ID } from "@/lib/gtag";
 import VisitBeacon from "@/components/VisitBeacon";
 import { LangProvider } from "@/context/LangContext";
@@ -96,6 +97,7 @@ export default function RootLayout({
         <LangProvider>
           <Cursor />
           <SmoothScroll />
+          <HashLinks />
           {children}
           <LanguageSwitcher />
         </LangProvider>

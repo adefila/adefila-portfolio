@@ -5,7 +5,7 @@ import { Btn } from "@/components/personal/ui";
 import Term, { TERM_CSS } from "@/components/Term";
 import { Sms } from "iconsax-react";
 
-// The top bar of the personal site: my name on the left, and on the right where I'd work from (flags), the time in Lagos, and the hire button.
+// The top bar of the personal site: my name on the left, and on the right where I'd work from (flags), the time in Ibadan, and the hire button.
 // Flags are the countries I'm open to relocating to, with visa sponsorship (edit this list to change them).
 const OPEN_TO: { code: string; name: string }[] = [
   { code: "us", name: "United States" },
@@ -29,7 +29,7 @@ const CSS = `
   .pn-time { font-family: var(--font-inter); font-size: 12px; color: var(--fg-muted); font-variant-numeric: tabular-nums; white-space: nowrap; }
   .pn-time b { font-weight: 500; color: var(--fg); }
   .pn .pp-btn { padding: 10px 18px; font-size: 12px; }
-  @media (max-width: 760px) { .pn { padding: 0 16px; } .pn-name { font-size: 12px; letter-spacing: 0.06em; white-space: nowrap; } .pn-open span, .pn-city { display: none; } .pn-right { gap: 10px; } .pn .pp-btn { padding: 9px 14px; } .pn .pp-btn svg { display: none; } }
+  @media (max-width: 760px) { .pn { padding: 0 16px; } .pn-name { font-size: 12px; letter-spacing: 0.06em; white-space: nowrap; } .pn-open span, .pn-city { display: none; } .pn-right { gap: 8px; } .pn-name { letter-spacing: 0.04em; } .pn .pp-btn { padding: 9px 11px; gap: 6px; justify-content: center; } .pn .pp-btn svg { width: 14px; height: 14px; } }
 `;
 
 export default function PersonalNav() {
@@ -59,7 +59,7 @@ export default function PersonalNav() {
             ))}
           </div>
         </div>
-        {time && <span className="pn-time" title="Local time in Lagos, Nigeria"><span className="pn-city">Lagos </span><b>{time}</b></span>}
+        {time && <span className="pn-time" title="Local time in Ibadan, Nigeria"><span className="pn-city">Ibadan </span><b>{time}</b></span>}
         <Btn primary href="#contact" label="Hire me" icon={<Sms size={15} variant="Broken" color="currentColor" />} />
       </div>
     </motion.header>

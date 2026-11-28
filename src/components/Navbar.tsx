@@ -106,12 +106,6 @@ export default function Navbar({ hide = [], contactHref, brandHref }: { hide?: s
         if (el && el.getBoundingClientRect().top <= trigger) current = id;
       }
       setActive(current === "hero" ? "" : current);
-      if (window.location.pathname !== "/") return;
-      // Sync URL hash to current section without pushing a history entry
-      const hash = current === "hero" ? "" : `#${current}`;
-      if (window.location.hash !== hash) {
-        history.replaceState(null, "", hash || window.location.pathname);
-      }
     };
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();

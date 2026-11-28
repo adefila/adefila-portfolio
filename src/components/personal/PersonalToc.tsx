@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 
 // A small table of contents pinned to the left edge, like the contents of a printed page: just the words, and a dot that glides to the
@@ -32,6 +32,7 @@ const CSS = `
 export default function PersonalToc() {
   const [active, setActive] = useState("hero");
   const [onPurple, setOnPurple] = useState(false);
+  const lock = useRef<string | null>(null); // the item that was clicked: stays lit until the visitor scrolls by hand
   const [lit, setLit] = useState<string | null>(null); // a section still on screen above the end, kept in the bright colour (without the dot)
 
   useEffect(() => {
@@ -40,11 +41,12 @@ export default function PersonalToc() {
     let raf = 0;
     const update = () => {
       raf = 0;
+      if (lock.current) { setActive(lock.current); setLit(null); return; }
       const atEnd = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 8;
       let current = ITEMS[0].id;
       for (const i of ITEMS) {
         const el = document.getElementById(i.id);
-        if (el && el.getBoundingClientRect().top <= window.innerHeight * 0.45) current = i.id;
+        if (el && el.getBoundingClientRect().top <= Math.min(window.innerHeight * 0.45, 170)) current = i.id;
       }
       const next = atEnd ? ITEMS[ITEMS.length - 1].id : current;
       setActive(next);
@@ -54,17 +56,26 @@ export default function PersonalToc() {
     };
     const onScroll = update;
     update();
+    // a hand on the wheel, the screen, the keys or the scrollbar hands the highlight back to the scroll position
+    const unlock = (e: Event) => { if (lock.current && !(e.target as Element | null)?.closest?.(".pt")) { lock.current = null; update(); } };
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll);
+    window.addEventListener("wheel", unlock, { passive: true });
+    window.addEventListener("touchstart", unlock, { passive: true });
+    window.addEventListener("keydown", unlock);
+    window.addEventListener("pointerdown", unlock);
     // the strip is behind the list while it crosses the upper band of the screen, where the list sits
     const strip = document.getElementById("contact");
     const band = new IntersectionObserver(([e]) => { setOnPurple(!!e?.isIntersecting); }, { rootMargin: "-15% 0px -55% 0px" });
     if (strip) band.observe(strip);
-    return () => { band.disconnect(); window.removeEventListener("scroll", onScroll); window.removeEventListener("resize", onScroll); if (raf) cancelAnimationFrame(raf); };
+    return () => { band.disconnect(); window.removeEventListener("scroll", onScroll); window.removeEventListener("resize", onScroll); window.removeEventListener("wheel", unlock); window.removeEventListener("touchstart", unlock); window.removeEventListener("keydown", unlock); window.removeEventListener("pointerdown", unlock); if (raf) cancelAnimationFrame(raf); };
   }, []);
 
   const go = (id: string) => (e: React.MouseEvent) => {
     e.preventDefault();
+    lock.current = id;
+    setActive(id);
+    setLit(null);
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
