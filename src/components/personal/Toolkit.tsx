@@ -36,7 +36,7 @@ const CSS = `
   .tk-row .about-term-text { display: block; border-bottom: 0; line-height: 0; border-radius: 50%; }
   .tk-logo { display: block; width: 38px; height: 38px; border-radius: 50%; overflow: hidden; line-height: 0; box-shadow: 0 0 0 2px var(--bg); }
   .tk-logo img { width: 100%; height: 100%; display: block; object-fit: cover; }
-  @media (max-width: 640px) { .tk-logo { width: 34px; height: 34px; } .tk-row .about-term { margin-left: 6px; } .tk-row .about-term:first-child { margin-left: 0; } .tk-row { overflow-x: auto; padding-bottom: 8px; } }
+  @media (max-width: 640px) { .tk-logo { width: 34px; height: 34px; } .tk-row .about-term { margin-left: -9px; } .tk-row { overflow-x: auto; padding-bottom: 8px; } }
 `;
 
 export default function Toolkit() {
