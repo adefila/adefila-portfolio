@@ -118,16 +118,16 @@ const CSS = `
   @media (prefers-reduced-motion: reduce) { .pp-orbit { animation: none; } }
   .pp-strip-in { max-width: 720px; margin: 0 auto; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(32px, 6vw, 96px); align-items: start; }
   .pp-strip-h { font-family: var(--font-poppins); font-weight: 400; font-size: clamp(30px, 4vw, 44px); line-height: 1.08; letter-spacing: -0.035em; color: #fff; }
-  .pp-strip-p { margin-top: 16px; font-family: var(--font-inter); font-size: 15px; line-height: 1.6; color: rgba(255, 255, 255, 0.78); }
+  .pp-strip-p { margin-top: 16px; font-family: var(--font-inter); font-size: 15px; line-height: 1.6; color: rgba(255, 255, 255, 0.92); }
   .pp-strip-list { list-style: none; margin: 0; padding: 0; }
   .pp-strip-list a { display: grid; grid-template-columns: 78px minmax(0, 1fr) auto; align-items: baseline; gap: 12px; padding: 9px 0; font-family: var(--font-inter); font-size: 15px; color: #fff; text-decoration: none; transition: opacity 0.3s ease; }
-  .pp-strip-list span { color: rgba(255, 255, 255, 0.7); font-size: 14px; }
+  .pp-strip-list span { color: rgba(255, 255, 255, 0.88); font-size: 14px; }
   .pp-strip-list em { font-style: normal; overflow-wrap: anywhere; }
   .pp-strip-list svg { align-self: center; opacity: 0.6; transition: transform 0.3s ease, opacity 0.3s ease; }
   .pp-strip-list:hover a { opacity: 0.55; }
   .pp-strip-list a:hover { opacity: 1; }
   .pp-strip-list a:hover svg { opacity: 1; transform: translate(2px, -2px) rotate(45deg) !important; }
-  .pp-strip-foot { max-width: 720px; margin: 64px auto 0; font-family: var(--font-inter); font-size: 13px; color: rgba(255, 255, 255, 0.65); }
+  .pp-strip-foot { max-width: 720px; margin: 64px auto 0; font-family: var(--font-inter); font-size: 13px; color: rgba(255, 255, 255, 0.9); }
   @media (max-width: 760px) { .pp-strip-in { grid-template-columns: 1fr; } }
   @media (max-width: 640px) { .pp { padding-top: 112px; } .pp-block { grid-template-columns: 1fr; gap: 10px; margin-top: 44px; } }
 `;
@@ -161,8 +161,8 @@ export default function PersonalPage() {
       <style>{CSS}</style>
       <style>{PP_CSS}</style>
       <div className="pp-col">
-        <Reveal><h1>Product designer who ships in code.</h1></Reveal>
-        <Reveal delay={0.08}>
+        <Reveal now><h1>Product designer who ships in code.</h1></Reveal>
+        <Reveal now delay={0.08}>
           <p className="pp-intro">
             I design, prototype and help build web and mobile products: UX thinking and visual design, then Figma, Framer and Next.js,
             with Claude Code and Cursor to get from idea to a working interface fast.
@@ -172,7 +172,7 @@ export default function PersonalPage() {
             <a className="pp-link" href={UPWORK} target="_blank" rel="noopener noreferrer">Top Rated on Upwork</a>, 100% Job Success across 50+ projects.
           </p>
         </Reveal>
-        <Reveal delay={0.16}>
+        <Reveal now delay={0.16}>
           <div className="pp-cta">
             <Btn primary download href="/samuel-adefila-cv.pdf" label="Download CV" icon={<DocumentDownload size={16} variant="Broken" color="currentColor" />} />
             <Btn href="mailto:samuel@adefilasamuel.com" label="Email me" icon={<Sms size={16} variant="Broken" color="currentColor" />} />

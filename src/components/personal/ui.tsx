@@ -9,7 +9,8 @@ import { ArrowDown2, ArrowUp3 } from "iconsax-react";
 // framer-motion, so it eases in and out instead of snapping. Icons are the "Broken" style of the Iconsax set.
 const EASE = [0.2, 0.7, 0.2, 1] as const;
 
-export function Reveal({ children, delay = 0, id, className }: { children: ReactNode; delay?: number; id?: string; className?: string }) {
+export function Reveal({ children, delay = 0, id, className, now = false }: { children: ReactNode; delay?: number; id?: string; className?: string; now?: boolean }) {
+  if (now) return <div id={id} className={className} style={{ animation: `heroFadeUp 0.7s ${delay}s cubic-bezier(0.22, 1, 0.36, 1) both` }}>{children}</div>;
   return (
     <motion.div
       id={id}

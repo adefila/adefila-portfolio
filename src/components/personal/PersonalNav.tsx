@@ -29,7 +29,7 @@ const CSS = `
   .pn-time { font-family: var(--font-inter); font-size: 12px; color: var(--fg-muted); font-variant-numeric: tabular-nums; white-space: nowrap; }
   .pn-time b { font-weight: 500; color: var(--fg); }
   .pn .pp-btn { padding: 10px 18px; font-size: 12px; }
-  @media (max-width: 760px) { .pn { padding: 0 16px; } .pn-open span, .pn-time { display: none; } .pn-right { gap: 14px; } }
+  @media (max-width: 760px) { .pn-flags { gap: 2px; } .pn-flags .about-term { margin-left: 0; } .pn-flags .about-term-text { padding: 2px; } .pn { padding: 0 16px; } .pn-open span, .pn-time { display: none; } .pn-right { gap: 14px; } }
 `;
 
 export default function PersonalNav() {
