@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { motion } from "framer-motion";
 import Gallery from "@/components/personal/Gallery";
 import { ArrowUp3, DocumentDownload, Sms } from "iconsax-react";
 import Toolkit from "@/components/personal/Toolkit";
@@ -25,26 +26,26 @@ const B2B_SITE = "https://web.adefilasamuel.com";
 
 // A few photographs: the desk, the work, and me away from it.
 const GALLERY: { src: string; alt: string }[] = [
-  { src: "/gallery/photo-6.jpeg", alt: "Samuel in an orange striped polo, looking down at his phone" },
-  { src: "/gallery/photo-1.jpeg", alt: "Samuel standing in front of a car" },
-  { src: "/gallery/photo-2.jpeg", alt: "A standing desk with a monitor and laptops, lit in blue" },
-  { src: "/gallery/photo-3.jpeg", alt: "A quote management dashboard on a monitor" },
-  { src: "/gallery/photo-4.jpeg", alt: "Samuel smiling at a National Youth Service Corps event" },
-  { src: "/gallery/photo-5.jpeg", alt: "A desk setup with a monitor and a hand holding a black ball" },
-  { src: "/gallery/photo-7.jpeg", alt: "A black and white mirror selfie holding a phone" },
+  { src: "/gallery/photo-6.webp", alt: "Samuel in an orange striped polo, looking down at his phone" },
+  { src: "/gallery/photo-1.webp", alt: "Samuel standing in front of a car" },
+  { src: "/gallery/photo-2.webp", alt: "A standing desk with a monitor and laptops, lit in blue" },
+  { src: "/gallery/photo-3.webp", alt: "A quote management dashboard on a monitor" },
+  { src: "/gallery/photo-4.webp", alt: "Samuel smiling at a National Youth Service Corps event" },
+  { src: "/gallery/photo-5.webp", alt: "A desk setup with a monitor and a hand holding a black ball" },
+  { src: "/gallery/photo-7.webp", alt: "A black and white mirror selfie holding a phone" },
+  { src: "/gallery/photo-8.webp", alt: "Samuel taking a mirror photo in a gym" },
 ];
 
-// Reading: what is on the table now, a line worth keeping, and a couple to pass on.
+// Reading: what is on the table now, a line worth keeping, and an open door for someone to recommend the next one.
 const BOOKS: Row[] = [
   { key: "keep-going", title: "Keep Going", note: "Austin Kleon", right: "Reading now", href: "https://www.goodreads.com/book/show/40591677", external: true },
-  { key: "steal", title: "Steal Like an Artist", note: "Austin Kleon", right: "Recommended", href: "https://www.goodreads.com/book/show/13099738", external: true },
-  { key: "show", title: "Show Your Work!", note: "Austin Kleon", right: "Recommended", href: "https://www.goodreads.com/book/show/18290401", external: true },
 ];
 
-const QUOTES: { q: string; name: string; role: string }[] = [
-  { q: "I've found 5+ new clients through it.", name: "Johnno Van Den Brink", role: "The Initial Agency" },
-  { q: "He consistently delivered high-quality work on time.", name: "Nitin", role: "HitPay" },
-  { q: "He is reliable, knowledgeable, patient and kind.", name: "Heather Burns", role: "Upside ESG" },
+// Each kind word in three parts: before, the part that is marked, after. The marked part is what the person is really saying.
+const QUOTES: { q: [string, string, string]; name: string; role: string }[] = [
+  { q: ["I've found ", "5+ new clients", " through it."], name: "Johnno Van Den Brink", role: "The Initial Agency" },
+  { q: ["He consistently delivered ", "high-quality work on time", "."], name: "Nitin", role: "HitPay" },
+  { q: ["He is ", "reliable, knowledgeable, patient and kind", "."], name: "Heather Burns", role: "Upside ESG" },
 ];
 
 // The whole case study, as the story shown when a row is opened, so there is nowhere else to go to read it. Every line comes from the
@@ -102,10 +103,12 @@ const CSS = `
   .pp-more { margin-top: 12px; padding: 0 0 2px; border: 0; cursor: pointer; font-family: var(--font-inter); font-weight: 600; font-size: 12px; letter-spacing: 0.08em; color: var(--accent-purple); background-color: transparent; background-image: linear-gradient(currentColor, currentColor); background-size: 0% 1px; background-position: 0 100%; background-repeat: no-repeat; transition: background-size 0.4s cubic-bezier(0.2, 0.7, 0.2, 1); }
   .pp-more:hover { background-size: 100% 1px; }
   .pp-quote { padding: 9px 0; }
+  .pp-mark { color: inherit; background: linear-gradient(#ece3fd, #ece3fd) no-repeat 0 0 / 0% 100%; padding: 1px 3px; margin: 0 -3px; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
   .pp-quote p { font-family: var(--font-inter); font-size: 16px; line-height: 1.5; letter-spacing: -0.15px; color: var(--fg); }
   .pp-quote span { display: block; margin-top: 2px; font-size: 14px; color: var(--fg-muted); }
   .pp-bq { margin: 22px 0 0; padding: 0; }
   .pp-bq p { font-family: var(--font-poppins); font-weight: 400; font-size: clamp(18px, 2.4vw, 22px); line-height: 1.4; letter-spacing: -0.02em; color: var(--fg); }
+  .pp-ask { margin: 22px 0 0; }
   .pp-bq footer { margin-top: 10px; font-family: var(--font-inter); font-size: 14px; color: var(--fg-muted); }
   .pp-strip { position: relative; overflow: hidden; margin: 88px -20px 0; padding: 72px 20px 28px; background: #6d28d9; color: #fff; }
   .pp-strip > *:not(.pp-art) { position: relative; z-index: 1; }
@@ -170,7 +173,8 @@ export default function PersonalPage() {
           </p>
           <p className="pp-intro">
             I started with websites for small businesses, so I know a site has to work, not just look good.{" "}
-            <a className="pp-link" href={UPWORK} target="_blank" rel="noopener noreferrer">Top Rated on Upwork</a>, 100% Job Success across 50+ projects.
+            <a className="pp-link" href={UPWORK} target="_blank" rel="noopener noreferrer">Top Rated on Upwork</a> and a{" "}
+            <a className="pp-link" href="https://www.framer.com/@adefila-samuel/" target="_blank" rel="noopener noreferrer">Framer Expert</a>, with 100% Job Success across 50+ projects.
           </p>
         </Reveal>
         <Reveal now delay={0.16}>
@@ -227,15 +231,29 @@ export default function PersonalPage() {
               <p>&ldquo;None of us know what will happen. Don&rsquo;t spend time worrying about it. Make the most beautiful thing you can. Try to do that every day. That&rsquo;s it.&rdquo;</p>
               <footer>Laurie Anderson, in Keep Going. My favourite line right now.</footer>
             </blockquote>
+            <p className="pp-note pp-ask">
+              Read something good lately? Tell me what to read next:{" "}
+              <a className="pp-link" href="mailto:samuel@adefilasamuel.com?subject=A%20book%20for%20you">recommend me a book</a>.
+            </p>
           </div>
         </Reveal>
 
         <Reveal id="testimonials" className="pp-block">
           <p className="pp-label">Kind words</p>
           <ul className="pp-list">
-            {QUOTES.map((x) => (
+            {QUOTES.map((x, i) => (
               <li key={x.name} className="pp-quote">
-                <p>&ldquo;{x.q}&rdquo;</p>
+                <p>
+                  &ldquo;{x.q[0]}
+                  <motion.mark
+                    className="pp-mark"
+                    initial={{ backgroundSize: "0% 100%" }}
+                    whileInView={{ backgroundSize: "100% 100%" }}
+                    viewport={{ once: true, margin: "0px 0px -12% 0px" }}
+                    transition={{ duration: 0.9, delay: 0.35 + i * 0.18, ease: [0.2, 0.7, 0.2, 1] }}
+                  >{x.q[1]}</motion.mark>
+                  {x.q[2]}&rdquo;
+                </p>
                 <span>{x.name}, {x.role}</span>
               </li>
             ))}

@@ -217,35 +217,6 @@ export default function LanguageSwitcher() {
         )}
       </AnimatePresence>
 
-      {/* Framer Expert badge, sitting just above the trigger */}
-      <a
-        href="https://www.framer.com/@adefila-samuel/"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Framer Expert: Samuel Adefila on Framer"
-        className="framer-badge btn-ticks"
-        style={{
-          display: "flex",
-          alignItems: "center",
-          gap: 8,
-          padding: "7px 12px",
-          background: "var(--surface)",
-          border: "0.5px solid var(--line)",
-          boxShadow: "0 4px 20px rgba(0,0,0,0.1)",
-          fontFamily: "var(--font-mono)",
-          fontSize: 10,
-          fontWeight: 500,
-          letterSpacing: "0.02em",
-          textTransform: "uppercase",
-          color: "var(--fg)",
-          whiteSpace: "nowrap",
-          textDecoration: "none",
-        }}
-      >
-        <svg width="9" height="13" viewBox="0 0 14 21" aria-hidden="true" fill="currentColor"><path d="M0 0h14v7H7zM0 7h7l7 7H7v7l-7-7z" /></svg>
-        <span>Framer Expert</span>
-      </a>
-
       {/* Trigger */}
       <motion.button
         className="lang-trigger"

@@ -16,8 +16,8 @@ export type GalleryImage = { src: string; alt: string };
 const CSS = `
   .gl-grid { position: relative; width: 100%; }
   .gl-tile { position: absolute; left: 0; top: 0; will-change: transform; }
-  /* a white mat of 3px with a hairline outside it, so photos that start overlapped sit on each other like prints */
-  .gl-fig { position: relative; width: 100%; height: 100%; margin: 0; overflow: hidden; background: #fff; border: 3px solid #fff; box-shadow: 0 0 0 0.5px #cfcfd8; cursor: zoom-in; transition: opacity 0.4s ease; }
+  /* no mat: the photo runs to its edge, with only a hairline around it */
+  .gl-fig { position: relative; width: 100%; height: 100%; margin: 0; overflow: hidden; background: var(--surface); border: 0.5px solid var(--line); cursor: zoom-in; transition: opacity 0.4s ease; }
   .gl-grid:hover .gl-fig { opacity: 0.62; }
   .gl-grid:hover .gl-fig:hover, .gl-grid:hover .gl-fig:focus-visible { opacity: 1; }
   .gl-fig:focus-visible { outline: 2px solid var(--accent-purple); outline-offset: 2px; }
@@ -37,7 +37,7 @@ const CSS = `
   @media (max-width: 640px) { .gl-lb { padding: 16px; } .gl-lb-fig { height: min(68vh, 600px); } }
 `;
 
-const GAP = 12;
+const GAP = 6;
 
 // One photograph: it travels from its place in the stack to its place in the grid as the shared progress goes from 0 to 1
 function Tile({ i, n, g, p, w, tileW, tileH, cols, onOpen }: {
@@ -138,7 +138,7 @@ export default function Gallery({ images }: { images: GalleryImage[] }) {
                 exit={{ opacity: 0, transition: { duration: 0.14 } }}
                 transition={{ duration: 0.4, ease: [0.2, 0.7, 0.2, 1] }}
               >
-                <span><Image src={images[open].src} alt={images[open].alt} fill sizes="(max-width: 640px) 92vw, 520px" priority /></span>
+                <span><Image src={images[open].src} alt={images[open].alt} fill sizes="(max-width: 640px) 92vw, 520px" quality={88} priority /></span>
               </motion.figure>
             </AnimatePresence>
             <div className="gl-lb-ui">

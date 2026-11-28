@@ -49,10 +49,10 @@ export default function PersonalNav() {
       <a className="pn-name" href="#hero" aria-label="Samuel Adefila, back to top">SAMUEL ADEFILA.</a>
       <div className="pn-right">
         <div className="pn-open">
-          <span>Open to</span>
+          <span>Open to roles in</span>
           <div className="pn-flags">
             {OPEN_TO.map((c) => (
-              <Term key={c.code} below tip={<b>{c.name}</b>}>
+              <Term key={c.code} below tip={<><b>{c.name}</b><span>Open to roles here</span></>}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src={`/flags/${c.code}.svg`} alt={c.name} width={20} height={20} />
               </Term>
