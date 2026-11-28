@@ -23,6 +23,21 @@ const SECTION_IDS = ["hero", "work", "experience", "benefits", "process", "prici
 
 const EASE = [0.22, 1, 0.36, 1] as [number, number, number, number];
 
+const MENU_CSS = `
+  .mm { position: fixed; inset: 0; z-index: 190; display: flex; flex-direction: column; background: var(--bg); padding: 84px 24px 40px; overflow-y: auto; }
+  .mm-art { position: absolute; left: 0; right: 0; bottom: 0; height: 38%; pointer-events: none; opacity: 0.85; background: #1a1434 url("/hero/mosaic.webp") center 40% / cover no-repeat;
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.4) 35%, #000 80%); mask-image: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.4) 35%, #000 80%); }
+  .mm-nav, .mm-cta { position: relative; z-index: 1; }
+  .mm-row { border-bottom: 0.5px solid var(--line); }
+  .mm-row:first-child { border-top: 0.5px solid var(--line); }
+  .mm-link { position: relative; display: flex; align-items: center; gap: 12px; padding: 17px 0; font-family: var(--font-poppins); font-weight: 400; font-size: clamp(26px, 7.4vw, 36px); line-height: 1.05; letter-spacing: -0.03em; color: var(--fg-muted); text-decoration: none; transition: color 0.25s ease; }
+  .mm-link.is-on, .mm-link:hover { color: var(--fg); }
+  .mm-dot { width: 6px; height: 6px; flex: none; background: var(--accent-purple); opacity: 0; transform: scale(0.4); transition: opacity 0.25s ease, transform 0.25s ease; }
+  .mm-link.is-on .mm-dot { opacity: 1; transform: scale(1); }
+  .mm-cta { margin-top: 28px; }
+  .mm-btn { display: flex; align-items: center; justify-content: center; width: 100%; padding: 15px 24px; font-family: var(--font-inter); font-weight: 600; font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none; border-radius: 0; }
+`;
+
 function HamburgerIcon({ open }: { open: boolean }) {
   return (
     <div
@@ -44,7 +59,7 @@ function HamburgerIcon({ open }: { open: boolean }) {
         style={{
           display: "block",
           height: 1.5,
-          background: open ? "var(--white)" : "var(--fg)",
+          background: "var(--fg)",
           borderRadius: 2,
           transformOrigin: "center",
           width: "100%",
@@ -56,7 +71,7 @@ function HamburgerIcon({ open }: { open: boolean }) {
         style={{
           display: "block",
           height: 1.5,
-          background: open ? "var(--white)" : "var(--fg)",
+          background: "var(--fg)",
           borderRadius: 2,
           width: "68%",
         }}
@@ -67,7 +82,7 @@ function HamburgerIcon({ open }: { open: boolean }) {
         style={{
           display: "block",
           height: 1.5,
-          background: open ? "var(--white)" : "var(--fg)",
+          background: "var(--fg)",
           borderRadius: 2,
           transformOrigin: "center",
           width: "84%",
@@ -162,14 +177,10 @@ export default function Navbar({ hide = [], contactHref, brandHref }: { hide?: s
             alignItems: "center",
             justifyContent: "space-between",
             gap: 16,
-            background: menuOpen
-              ? "var(--inverse)"
-              : scrolled
-              ? "var(--bg)"
-              : "var(--bg)",
+            background: "var(--bg)",
             backdropFilter: scrolled && !menuOpen ? "blur(20px)" : "none",
             WebkitBackdropFilter: scrolled && !menuOpen ? "blur(20px)" : "none",
-            borderBottom: menuOpen ? "1px solid rgba(255,255,255,0.08)" : "1px solid rgba(var(--ink), 0.08)",
+            borderBottom: "0.5px solid var(--line)",
             borderLeft: "0.5px solid var(--line)",
             borderRight: "0.5px solid var(--line)",
             borderRadius: 0,
@@ -185,7 +196,7 @@ export default function Navbar({ hide = [], contactHref, brandHref }: { hide?: s
               fontWeight: 600,
               fontSize: 13,
               letterSpacing: "0.08em",
-              color: menuOpen ? "var(--white)" : "var(--fg)",
+              color: "var(--fg)",
               textDecoration: "none",
               transition: "color 0.3s",
             }}
@@ -272,94 +283,48 @@ export default function Navbar({ hide = [], contactHref, brandHref }: { hide?: s
         </div>
       </motion.nav>
 
-      {/* Full-screen mobile menu */}
+      {/* Full-screen mobile menu: the site's own look (white, hairlines, one purple button) with the mosaic rising from the bottom */}
       <AnimatePresence>
         {menuOpen && (
           <motion.div
+            className="mm"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.25, ease: EASE }}
-            style={{
-              position: "fixed",
-              inset: 0,
-              zIndex: 190,
-              background: "var(--inverse)",
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "flex-start",
-              alignItems: "flex-start",
-              padding: "80px 40px 48px",
-              overflowY: "auto",
-            }}
           >
-            {/* Nav links */}
-            <nav style={{ width: "100%" }}>
+            <style>{MENU_CSS}</style>
+            <div className="mm-art" aria-hidden="true" />
+            <nav className="mm-nav">
               {navLinks.map(({ label, href }, i) => {
                 const id = href.split("#")[1];
                 const isActive = active === id;
                 return (
                   <motion.div
                     key={href}
-                    initial={{ opacity: 0, x: -24 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -16 }}
-                    transition={{ duration: 0.35, delay: i * 0.055, ease: EASE }}
-                    style={{ borderBottom: "0.5px solid rgba(255,255,255,0.07)" }}
+                    className="mm-row"
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.4, delay: 0.05 + i * 0.05, ease: EASE }}
                   >
-                    <a
-                      href={href}
-                      onClick={close}
-                      style={{
-                        display: "block",
-                        fontFamily: "var(--font-poppins)",
-                        fontWeight: 400,
-                        fontSize: "clamp(28px, 8vw, 48px)",
-                        letterSpacing: "-0.03em",
-                        color: isActive ? "rgba(255,255,255,1)" : "rgba(255,255,255,0.45)",
-                        textDecoration: "none",
-                        padding: "20px 0",
-                        lineHeight: 1,
-                        transition: "color 0.2s",
-                      }}
-                      className="nav-big"
-                    >
-                      <span className="nav-big-n" aria-hidden="true">{String(i + 1).padStart(2, "0")}</span>
-                      <span className="nav-big-t">{label}</span>
+                    <a href={href} onClick={close} className={isActive ? "mm-link is-on" : "mm-link"}>
+                      <span className="mm-dot" aria-hidden="true" />
+                      <span className="mm-t">{label}</span>
                     </a>
                   </motion.div>
                 );
               })}
             </nav>
 
-            {/* CTA button at bottom */}
             <motion.div
-              initial={{ opacity: 0, y: 16 }}
+              className="mm-cta"
+              initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.4, delay: navLinks.length * 0.055 + 0.05, ease: EASE }}
-              style={{ marginTop: 40 }}
+              transition={{ duration: 0.4, delay: 0.1 + navLinks.length * 0.05, ease: EASE }}
             >
-              <a
-                href={contactHref ?? `${base}#contact`}
-                onClick={close}
-                style={{
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: 10,
-                  fontFamily: "var(--font-inter)",
-                  fontWeight: 600,
-                  lineHeight: "20px",
-                  fontSize: 13,
-                  color: "var(--fg)",
-                  background: "var(--surface)",
-                  padding: "14px 26px",
-                  borderRadius: 0,
-                  textDecoration: "none",
-                  letterSpacing: "0.5px",
-                  textTransform: "uppercase",
-                }}
-              >
+              <a href={contactHref ?? `${base}#contact`} onClick={close} className="btn-primary mm-btn">
                 {t("nav.contact")}
               </a>
             </motion.div>

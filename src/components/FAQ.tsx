@@ -81,7 +81,7 @@ export default function FAQ({ all = false, moreHref }: { all?: boolean; moreHref
             <div className="fq-tabs" role="tablist" aria-label="Question categories">
               <style>{`.fq-tabs { display: flex; flex-wrap: wrap; gap: 6px 26px; margin: 0 0 18px; } .fq-tab { position: relative; padding: 0 0 10px; border: 0; background: none; cursor: pointer; font-family: var(--font-inter); font-weight: 600; font-size: 12.5px; letter-spacing: 0.06em; color: var(--fg-muted); transition: color 0.25s ease; } .fq-tab[aria-selected="true"], .fq-tab:hover { color: var(--fg); } .fq-line { position: absolute; left: 0; right: 0; bottom: 0; height: 2px; background: var(--accent-purple); }`}</style>
               {FAQ_CATS.map((c) => (
-                <button key={c.id} type="button" role="tab" aria-selected={cat === c.id} className="fq-tab" onClick={() => { setCat(c.id); setOpenIndex(null); }}>
+                <button key={c.id} type="button" role="tab" aria-selected={cat === c.id} className="fq-tab" onClick={(e) => { setCat(c.id); setOpenIndex(null); e.currentTarget.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" }); }}>
                   {t(c.label)}
                   {cat === c.id && <motion.span layoutId="fq-line" className="fq-line" transition={{ type: "spring", stiffness: 500, damping: 40 }} />}
                 </button>

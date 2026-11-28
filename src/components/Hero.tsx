@@ -130,7 +130,7 @@ export default function Hero({ workHref = "#work" }: { workHref?: string }) {
                     return (
                       <>
                         {parts.length > 0 && <span style={{ display: "block" }}>{parts.join(" ")}</span>}
-                        <span className="rw-line" style={{ display: "block" }}>{last} <RotatingWord words={words} /></span>
+                        <span className="rw-line" style={{ display: "block" }}><span className="rw-last">{last}</span>{" "}<RotatingWord words={words} /></span>
                       </>
                     );
                   })()}

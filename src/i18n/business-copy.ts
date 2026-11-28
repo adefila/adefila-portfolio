@@ -5,6 +5,8 @@ const e = (en: string, fr: string, es: string, de: string, pt: string, zh: strin
 
 export const BIZ_COPY: Record<string, L> = {
   "nav.contact": e("Contact me", "Me contacter", "Contáctame", "Kontakt aufnehmen", "Fale comigo", "联系我", "お問い合わせ"),
+  "pricing.cta": e("Book a call", "Réserver un appel", "Agendar llamada", "Anruf buchen", "Agendar chamada", "预约通话", "通話を予約"),
+  "hero.cta": e("Book a free call", "Réserver un appel gratuit", "Agendar llamada gratis", "Kostenlosen Anruf buchen", "Agendar chamada grátis", "预约免费通话", "無料通話を予約"),
   "hero.kicker": e("B2B web design and development", "Design et développement web B2B", "Diseño y desarrollo web B2B", "B2B-Webdesign und Entwicklung", "Design e desenvolvimento web B2B", "B2B 网站设计与开发", "B2Bウェブデザイン・開発"),
   "hero.subtitle": e(
     "I design and build B2B websites in Framer or custom code that turn visitors into qualified leads: a CMS your team controls, forms that track every enquiry, and redirects that protect your Google traffic.",

@@ -1978,12 +1978,6 @@ html[data-site="business"] #process { background: linear-gradient(rgba(26, 20, 5
   .hero-mosaic { height: 46% !important; background-position: 40% 50%; }
   .hero-section::after { height: 46% !important; background: linear-gradient(to top, rgba(26, 20, 52, 0.78) 0%, rgba(26, 20, 52, 0.6) 55%, rgba(26, 20, 52, 0) 100%) !important; }
   .hero-stats { margin-top: 110px !important; }
-  .hero-section::before { height: 55% !important;
-    background:
-      radial-gradient(75% 42% at 50% 0%, rgba(150, 120, 240, 0.2), transparent 72%),
-      radial-gradient(55% 34% at 85% 4%, rgba(255, 255, 255, 0.9), transparent 70%),
-      radial-gradient(55% 38% at 12% 8%, rgba(214, 198, 255, 0.34), transparent 72%) !important;
-    background-size: 140% 140% !important; }
 }
 
 /* ── Form fields: one look for every state (rest, hover, focus, invalid, disabled), shared by the text fields and the custom dropdown ── */
@@ -2016,3 +2010,127 @@ html[data-site="business"] #process { background: linear-gradient(rgba(26, 20, 5
 :where(a, button, [role="button"], input, textarea) { transition: color 0.25s ease, background-color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease, opacity 0.25s ease; }
 @view-transition { navigation: auto; }
 ::view-transition-old(root), ::view-transition-new(root) { animation-duration: 0.35s; animation-timing-function: cubic-bezier(0.2, 0.7, 0.2, 1); }
+
+/* Business hero on phones: less empty space between the buttons and the numbers, and the mosaic shows more and drifts slowly (a very quiet movement) */
+@media (max-width: 900px) {
+  .hero-stats { margin-top: 52px !important; }
+  .hero-mosaic { height: 52% !important; opacity: 0.95; background-size: cover !important; animation: mosaicPan 32s ease-in-out infinite alternate !important; }
+  .hero-section::after { height: 52% !important; background: linear-gradient(to top, rgba(26, 20, 52, 0.7) 0%, rgba(26, 20, 52, 0.5) 50%, rgba(26, 20, 52, 0) 100%) !important; }
+}
+@keyframes mosaicPan { from { background-position: 22% 50%; } to { background-position: 78% 50%; } }
+@media (prefers-reduced-motion: reduce) { .hero-mosaic { animation: none !important; } }
+
+/* Business hero type scale: the text under the headline stays clearly smaller than the headline at every width (about 2.2x on a phone, 3x on a desktop) */
+.hero-headline { font-size: clamp(32px, 4vw, 52px) !important; }
+.hero-stack .hero-subtitle, .hero-subtitle { font-size: clamp(15px, 1.15vw, 17px) !important; line-height: 1.65 !important; }
+@media (max-width: 768px) { .hero-subtitle { font-size: 15px !important; line-height: 1.6 !important; } }
+
+/* Business hero: the headline and the text under it share one width, so they read as a single block (the width is set by the headline's own size) */
+.hero-section { --hh: clamp(32px, 4vw, 52px); }
+.hero-section h1, .hero-stack .hero-subtitle { max-width: calc(var(--hh) * 12.2) !important; margin-left: auto !important; margin-right: auto !important; }
+
+/* Hero block width, tuned to the longest English line ("companies qualified leads." is about 11.1 headline-heights wide), so the text under the headline
+   sits exactly in the headline's width. Other languages keep a wider block, and phones use the full width. */
+.hero-section h1, .hero-stack .hero-subtitle { max-width: calc(var(--hh) * 16) !important; }
+@media (min-width: 769px) {
+  html[lang="en"] .hero-section h1, html[lang="en"] .hero-stack .hero-subtitle { max-width: calc(var(--hh) * 11.3) !important; }
+  html[lang="en"] .hero-headline { white-space: nowrap; }
+}
+
+/* Phones: the two hero buttons are the same width, stacked */
+@media (max-width: 768px) {
+  .hero-stack .hero-cta { flex-direction: column; align-items: stretch; flex-wrap: nowrap; gap: 10px; width: 100%; max-width: 340px; margin-left: auto; margin-right: auto; }
+  .hero-stack .hero-cta > * { width: 100% !important; display: flex !important; justify-content: center; }
+  .hero-stack .hero-cta a { width: 100% !important; justify-content: center; box-sizing: border-box; }
+}
+
+/* Phones: the FAQ tabs are one row that scrolls sideways (nothing wraps, and nothing is cut off at the edges or underneath) */
+@media (max-width: 768px) {
+  .fq-tabs { flex-wrap: nowrap !important; gap: 26px !important; overflow-x: auto !important; overflow-y: hidden !important; margin: 0 -20px 12px !important; padding: 0 20px !important; scrollbar-width: none; scroll-snap-type: x proximity; -webkit-overflow-scrolling: touch; overscroll-behavior-x: contain; }
+  .fq-tabs::-webkit-scrollbar { display: none; }
+  .fq-tab { flex: none !important; white-space: nowrap; scroll-snap-align: start; scroll-margin-left: 20px; }
+}
+
+/* The Framer Expert badge belongs to the business site only */
+html[data-site="personal"] .framer-badge { display: none !important; }
+@media (max-width: 768px) { .faq-grid { grid-template-columns: minmax(0, 1fr) !important; } .faq-grid > * { min-width: 0; } .fq-tabs { max-width: calc(100% + 40px); } }
+
+/* Phones: the headline is always three lines (line one, the word before the moving words, and the moving words on a line of their own), so the page below never jumps when the words change */
+@media (max-width: 640px) { .rw-last { display: block; } }
+
+/* Hero background: a slow white and purple gradient that drifts in a smooth loop at the top of the hero (it moves by transform, so it stays smooth, and it is the same on every screen) */
+.hero-section::before { left: -12%; right: -12%; top: -10%; height: 90%;
+  background:
+    radial-gradient(52% 52% at 22% 24%, rgba(196, 181, 253, 0.42), transparent 70%),
+    radial-gradient(48% 52% at 80% 18%, rgba(167, 139, 250, 0.28), transparent 72%),
+    radial-gradient(60% 55% at 52% 72%, rgba(255, 255, 255, 0.95), transparent 76%);
+  background-size: auto; background-position: 0 0; will-change: transform;
+  animation: heroDrift 26s ease-in-out infinite alternate; }
+@keyframes heroDrift { 0% { transform: translate3d(-5%, -3%, 0) scale(1.04); } 50% { transform: translate3d(5%, 2%, 0) scale(1.1); } 100% { transform: translate3d(-2%, 5%, 0) scale(1.05); } }
+@media (prefers-reduced-motion: reduce) { .hero-section::before { animation: none; } }
+
+/* Hero gradient, lighter and clearly moving: three soft blobs (light lavender, a paler violet and white) each travel their own path across the top of the hero in a slow smooth loop.
+   The blob positions are animated as registered properties, so each blob moves on its own and the motion stays smooth. Browsers without support show it still. */
+@property --gx1 { syntax: "<percentage>"; inherits: false; initial-value: 18%; }
+@property --gy1 { syntax: "<percentage>"; inherits: false; initial-value: 20%; }
+@property --gx2 { syntax: "<percentage>"; inherits: false; initial-value: 82%; }
+@property --gy2 { syntax: "<percentage>"; inherits: false; initial-value: 14%; }
+@property --gx3 { syntax: "<percentage>"; inherits: false; initial-value: 50%; }
+@property --gy3 { syntax: "<percentage>"; inherits: false; initial-value: 78%; }
+.hero-section::before { left: 0; right: 0; top: 0; height: 88%; transform: none; will-change: auto;
+  background:
+    radial-gradient(62% 58% at var(--gx1) var(--gy1), rgba(222, 208, 255, 0.72), transparent 86%),
+    radial-gradient(58% 58% at var(--gx2) var(--gy2), rgba(232, 222, 255, 0.78), transparent 88%),
+    radial-gradient(70% 60% at var(--gx3) var(--gy3), rgba(255, 255, 255, 0.98), transparent 88%);
+  background-size: auto; animation: heroBlobs 18s ease-in-out infinite alternate; }
+@keyframes heroBlobs {
+  0%   { --gx1: 16%; --gy1: 18%; --gx2: 84%; --gy2: 12%; --gx3: 50%; --gy3: 80%; }
+  50%  { --gx1: 58%; --gy1: 44%; --gx2: 28%; --gy2: 38%; --gx3: 24%; --gy3: 62%; }
+  100% { --gx1: 86%; --gy1: 20%; --gx2: 56%; --gy2: 58%; --gx3: 78%; --gy3: 84%; }
+}
+@media (prefers-reduced-motion: reduce) { .hero-section::before { animation: none; } }
+
+/* ── Hero background: a real, very soft cloud (layered fractal noise, white with pale lavender shading) drifting very slowly, fading out toward the bottom so it blends into the page.
+   It replaces the moving purple blobs. ── */
+.hero-section::before { left: -14%; right: -14%; top: -4%; height: 80%; background: url("/hero/hero-cloud.webp") center top / 100% 100% no-repeat; opacity: 0.22; will-change: transform;
+  -webkit-mask-image: linear-gradient(to bottom, #000 55%, transparent 100%); mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);
+  animation: heroCloud 80s ease-in-out infinite alternate; }
+@keyframes heroCloud { 0% { transform: translate3d(-4%, 0, 0) scale(1.02); } 100% { transform: translate3d(4%, 1.5%, 0) scale(1.08); } }
+@media (prefers-reduced-motion: reduce) { .hero-section::before { animation: none; } }
+
+/* Hero buttons on tablets and desktops: the two buttons are the same width and together they are exactly as wide as the text block above them */
+@media (min-width: 769px) {
+  .hero-stack .hero-cta { display: grid !important; grid-template-columns: 1fr 1fr; gap: 12px; width: 100%; max-width: calc(var(--hh) * 16); margin-left: auto; margin-right: auto; }
+  html[lang="en"] .hero-stack .hero-cta { max-width: calc(var(--hh) * 11.3); }
+  .hero-stack .hero-cta > * { width: 100% !important; display: flex !important; }
+  .hero-stack .hero-cta a { width: 100% !important; justify-content: center; box-sizing: border-box; }
+}
+@media (min-width: 769px) { .hero-stack .hero-cta a { white-space: nowrap; padding-left: 14px !important; padding-right: 14px !important; gap: 8px !important; } }
+
+/* Hero buttons are 40px tall */
+.hero-stack .hero-cta a { height: 40px !important; min-height: 0 !important; padding-top: 0 !important; padding-bottom: 0 !important; align-items: center; }
+.hero-stack .hero-cta a { font-size: 12px !important; letter-spacing: 0.05em !important; gap: 7px !important; justify-content: center !important; text-align: center; }
+.hero-stack .hero-cta a svg { width: 13px; height: 13px; flex: none; }
+
+/* Business site: buttons get a small 6px corner radius (the cards, fields and photos stay square) */
+html[data-site="business"] :is(.btn-primary, .btn-white, .btn-cta, .btn-ticks, .btn-quiet, .nav-cta, .hero-ghost, .pricing-retainer-cta, .mm-btn, .framer-badge, .bw-more, .addons-toggle, .hero-cta a, .footer-cta a, .midcta-inner a) { border-radius: 6px !important; }
+
+/* Navigation links: a thin line draws in under the link on hover (and draws out the other way when the pointer leaves). The link being read keeps its purple marker. */
+.nav-links .nav-link-anim { position: relative; }
+.nav-links .nav-link-anim::after { content: ""; position: absolute; left: 12px; right: 12px; bottom: 3px; height: 1px; background: var(--fg); transform: scaleX(0); transform-origin: right center; transition: transform 0.35s cubic-bezier(0.2, 0.7, 0.2, 1); pointer-events: none; }
+.nav-links .nav-link-anim:not(.on):hover::after, .nav-links .nav-link-anim:not(.on):focus-visible::after { transform: scaleX(1); transform-origin: left center; }
+.nav-links .nav-link-anim:not(.on):hover { color: var(--fg) !important; }
+@media (prefers-reduced-motion: reduce) { .nav-links .nav-link-anim::after { transition: none; } }
+
+/* Business site: less side padding inside the buttons (they hug their label more closely) */
+html[data-site="business"] .nav-cta { padding-left: 15px !important; padding-right: 15px !important; }
+html[data-site="business"] :is(.btn-cta, .btn-white, .footer-cta a, .midcta-inner a) { padding-left: 18px !important; padding-right: 18px !important; }
+html[data-site="business"] .hero-stack .hero-cta a { padding-left: 12px !important; padding-right: 12px !important; }
+html[data-site="business"] .mm-btn { padding-left: 18px !important; padding-right: 18px !important; }
+
+/* Hero buttons on tablets and desktops: the two buttons are the same width, but that width now comes from the longer label plus a small side padding
+   (before, both stretched to fill the text block, which left a lot of empty space left and right of each label). */
+@media (min-width: 769px) {
+  .hero-stack .hero-cta, html[lang="en"] .hero-stack .hero-cta { width: max-content !important; max-width: 100% !important; grid-template-columns: 1fr 1fr; justify-content: center; }
+  html[data-site="business"] .hero-stack .hero-cta a { padding-left: 14px !important; padding-right: 14px !important; }
+}
