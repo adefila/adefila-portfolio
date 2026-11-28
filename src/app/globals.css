@@ -1985,3 +1985,29 @@ html[data-site="business"] #process { background: linear-gradient(rgba(26, 20, 5
       radial-gradient(55% 38% at 12% 8%, rgba(214, 198, 255, 0.34), transparent 72%) !important;
     background-size: 140% 140% !important; }
 }
+
+/* ── Form fields: one look for every state (rest, hover, focus, invalid, disabled), shared by the text fields and the custom dropdown ── */
+.cf-input, .dd-btn { width: 100%; padding: 14px 16px; font-family: var(--font-inter); font-size: 16px; letter-spacing: -0.2px; color: var(--fg); background: var(--bg); border: 0.5px solid var(--line); border-radius: 0; outline: none; appearance: none; -webkit-appearance: none; transition: border-color 0.18s ease, box-shadow 0.18s ease, background-color 0.18s ease; }
+.cf-area { resize: vertical; min-height: 130px; }
+.cf-input::placeholder { color: var(--fg-muted); }
+.cf-input:hover:not(:disabled), .dd-btn:hover:not(:disabled) { border-color: #b9b9c6; }
+.cf-input:focus, .dd-btn:focus-visible, .dd.is-open .dd-btn { border-color: var(--accent-purple); box-shadow: 0 0 0 3px rgba(109, 40, 217, 0.12); }
+.cf-input[aria-invalid="true"], .dd.is-invalid .dd-btn { border-color: #d64545; }
+.cf-input[aria-invalid="true"]:focus, .dd.is-invalid .dd-btn:focus-visible { box-shadow: 0 0 0 3px rgba(214, 69, 69, 0.14); }
+.cf-input:disabled, .dd-btn:disabled { background: #f4f4f7; color: var(--fg-muted); border-color: var(--line); cursor: not-allowed; opacity: 0.75; }
+.cf-err { margin: 6px 0 0; font-family: var(--font-inter); font-size: 12.5px; line-height: 1.4; color: #c23a3a; }
+.dd { position: relative; }
+.dd-btn { display: flex; align-items: center; justify-content: space-between; gap: 12px; text-align: left; cursor: pointer; }
+.dd-ph { color: var(--fg-muted); }
+.dd-val { color: var(--fg); }
+.dd-chev { flex-shrink: 0; color: var(--fg-muted); transition: transform 0.2s ease; }
+.dd.is-open .dd-chev { transform: rotate(180deg); }
+.dd-list { position: absolute; left: 0; right: 0; top: calc(100% + 4px); z-index: 30; margin: 0; padding: 4px; list-style: none; max-height: 260px; overflow-y: auto; background: #fff; border: 0.5px solid var(--line); box-shadow: 0 14px 34px rgba(26, 20, 52, 0.14); }
+.dd-opt { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 11px 12px; font-family: var(--font-inter); font-size: 14.5px; letter-spacing: -0.1px; color: var(--fg); cursor: pointer; }
+.dd-opt.is-active { background: #f1eafe; }
+.dd-opt.is-selected { color: var(--accent-purple); font-weight: 600; }
+
+/* Pricing: the featured plan carries the mosaic behind a deep tint, so its text and button stay exactly as they were */
+.pricing-grid > div:nth-child(2) { background: linear-gradient(rgba(26, 20, 52, 0.86), rgba(26, 20, 52, 0.86)), url("/hero/mosaic.webp") center / cover no-repeat !important; }
+.dd-val, .dd-ph { min-width: 0; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.form-row { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important; } .form-row > div { min-width: 0; } @media (max-width: 560px) { .form-row { grid-template-columns: minmax(0, 1fr) !important; } }

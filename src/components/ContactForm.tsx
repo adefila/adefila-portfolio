@@ -5,6 +5,7 @@ import { ArrowUpRight, Send } from "lucide-react";
 import { useLang } from "@/context/LangContext";
 import SpecLabel from "./SpecLabel";
 import FormSuccess from "./FormSuccess";
+import Dropdown from "./Dropdown";
 import { trackEvent } from "@/lib/gtag";
 import RevealWords, { revealDelayAfter } from "./RevealWords";
 
@@ -132,6 +133,16 @@ export default function ContactForm({ variant = "default" }: { variant?: "defaul
   });
 
   // The send button stays off until the three required fields are filled in (name, a real-looking email, a message)
+  // A field shows its problem once the visitor has left it, in words, in place (the browser's own pop-ups are switched off with noValidate)
+  const [touched, setTouched] = useState<Record<string, boolean>>({});
+  const touch = (k: string) => () => setTouched((x) => (x[k] ? x : { ...x, [k]: true }));
+  const errors = {
+    name: form.name.trim() ? "" : t("biz.err.name"),
+    email: /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(form.email.trim()) ? "" : t("biz.err.email"),
+    message: form.message.trim() ? "" : t("biz.err.message"),
+  };
+  const bad = (k: keyof typeof errors) => !!touched[k] && !!errors[k];
+  const busy = status === "submitting";
   const canSend = form.name.trim().length > 0 && /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(form.email.trim()) && form.message.trim().length > 0;
 
   // The FAQ's "send my question" button fills in the message
@@ -298,7 +309,7 @@ export default function ContactForm({ variant = "default" }: { variant?: "defaul
           {status === "success" ? (
             <FormSuccess title={t("contact.success.title")} desc={t("contact.success.desc")} resetLabel={`Form resets in ${countdown}s`} />
           ) : (
-            <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+            <form onSubmit={handleSubmit} noValidate style={{ display: "flex", flexDirection: "column", gap: 16 }}>
               {/* Name + Email */}
               <div className="form-row" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
                 <div>
@@ -312,10 +323,12 @@ export default function ContactForm({ variant = "default" }: { variant?: "defaul
                     placeholder={t("contact.ph.name")}
                     value={form.name}
                     onChange={set("name")}
-                    style={inputStyle}
-                    onFocus={(e) => (e.target.style.borderColor = "var(--accent-purple)")}
-                    onBlur={(e) => (e.target.style.borderColor = "var(--line)")}
+                    onBlur={touch("name")}
+                    disabled={busy}
+                    aria-invalid={bad("name") || undefined}
+                    className="cf-input"
                   />
+                  {bad("name") && <p className="cf-err" role="alert">{errors.name}</p>}
                 </div>
                 <div>
                   <label htmlFor="contact-email" style={{ fontFamily: "var(--font-mono)", fontSize: 10, letterSpacing: "0.02em", textTransform: "uppercase", color: "var(--fg-muted)", display: "block", marginBottom: 8 }}>
@@ -328,10 +341,12 @@ export default function ContactForm({ variant = "default" }: { variant?: "defaul
                     placeholder="your@email.com"
                     value={form.email}
                     onChange={set("email")}
-                    style={inputStyle}
-                    onFocus={(e) => (e.target.style.borderColor = "var(--accent-purple)")}
-                    onBlur={(e) => (e.target.style.borderColor = "var(--line)")}
+                    onBlur={touch("email")}
+                    disabled={busy}
+                    aria-invalid={bad("email") || undefined}
+                    className="cf-input"
                   />
+                  {bad("email") && <p className="cf-err" role="alert">{errors.email}</p>}
                 </div>
               </div>
 
@@ -348,9 +363,8 @@ export default function ContactForm({ variant = "default" }: { variant?: "defaul
                     value={form.business}
                     onChange={set("business")}
                     maxLength={120}
-                    style={inputStyle}
-                    onFocus={(e) => (e.target.style.borderColor = "var(--accent-purple)")}
-                    onBlur={(e) => (e.target.style.borderColor = "var(--line)")}
+                    disabled={busy}
+                    className="cf-input"
                   />
                 </div>
               )}
@@ -361,33 +375,27 @@ export default function ContactForm({ variant = "default" }: { variant?: "defaul
                   <label htmlFor="contact-service" style={{ fontFamily: "var(--font-mono)", fontSize: 10, letterSpacing: "0.02em", textTransform: "uppercase", color: "var(--fg-muted)", display: "block", marginBottom: 8 }}>
                     {t("contact.label.service")}
                   </label>
-                  <select
+                  <Dropdown
                     id="contact-service"
                     value={form.service}
-                    onChange={set("service")}
-                    style={{ ...inputStyle, cursor: "pointer" }}
-                    onFocus={(e) => (e.target.style.borderColor = "var(--accent-purple)")}
-                    onBlur={(e) => (e.target.style.borderColor = "var(--line)")}
-                  >
-                    <option value="">{local ? t("contact.opt.choose") : "Select service"}</option>
-                    {(local ? LOCAL_SERVICES : services).map((s, i) => <option key={s} value={s}>{local ? t(`contact.svc${i}`) : s}</option>)}
-                  </select>
+                    onChange={(v) => setForm((f) => ({ ...f, service: v }))}
+                    disabled={busy}
+                    placeholder={local ? t("contact.opt.choose") : t("biz.selService")}
+                    options={(local ? LOCAL_SERVICES : services).map((s, i) => ({ value: s, label: local ? t(`contact.svc${i}`) : s }))}
+                  />
                 </div>
                 <div>
                   <label htmlFor="contact-budget" style={{ fontFamily: "var(--font-mono)", fontSize: 10, letterSpacing: "0.02em", textTransform: "uppercase", color: "var(--fg-muted)", display: "block", marginBottom: 8 }}>
                     {t("contact.label.budget")}
                   </label>
-                  <select
+                  <Dropdown
                     id="contact-budget"
                     value={form.budget}
-                    onChange={set("budget")}
-                    style={{ ...inputStyle, cursor: "pointer" }}
-                    onFocus={(e) => (e.target.style.borderColor = "var(--accent-purple)")}
-                    onBlur={(e) => (e.target.style.borderColor = "var(--line)")}
-                  >
-                    <option value="">{local ? t("contact.opt.range") : "Select budget"}</option>
-                    {(local ? LOCAL_BUDGETS : budgets).map((b, i) => <option key={b} value={b}>{local ? t(`contact.bud${i}`) : b}</option>)}
-                  </select>
+                    onChange={(v) => setForm((f) => ({ ...f, budget: v }))}
+                    disabled={busy}
+                    placeholder={local ? t("contact.opt.range") : t("biz.selBudget")}
+                    options={(local ? LOCAL_BUDGETS : budgets).map((s, i) => ({ value: s, label: local ? t(`contact.bud${i}`) : s }))}
+                  />
                 </div>
               </div>
 
@@ -403,10 +411,12 @@ export default function ContactForm({ variant = "default" }: { variant?: "defaul
                   placeholder={t("contact.ph.message")}
                   value={form.message}
                   onChange={set("message")}
-                  style={{ ...inputStyle, resize: "vertical", minHeight: 130 }}
-                  onFocus={(e) => (e.target.style.borderColor = "var(--accent-purple)")}
-                  onBlur={(e) => (e.target.style.borderColor = "var(--line)")}
+                  onBlur={touch("message")}
+                  disabled={busy}
+                  aria-invalid={bad("message") || undefined}
+                  className="cf-input cf-area"
                 />
+                {bad("message") && <p className="cf-err" role="alert">{errors.message}</p>}
               </div>
 
               {/* Honeypot. hidden from real users, bots fill it */}

@@ -69,7 +69,7 @@ export default function BusinessPage() {
       <HowIWork />
       <Pricing />
       <Testimonials />
-      <FAQ moreHref="expand" />
+      <FAQ all />
       <Footer />
       <MobileCTA />
     </main>
