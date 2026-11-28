@@ -1,6 +1,5 @@
 "use client";
 import { useEffect, useState } from "react";
-import Image from "next/image";
 import { CalendarDays } from "lucide-react";
 import { useLang } from "@/context/LangContext";
 import { BOOKING_URL } from "@/lib/booking";
@@ -45,14 +44,7 @@ export default function MobileCTA() {
 
   return (
     <div className={show ? "mobile-cta is-visible" : "mobile-cta"} data-track-location="mobile_bar" aria-hidden={!show}>
-      <Image
-        src="/samuel-portrait.webp"
-        alt=""
-        width={40}
-        height={40}
-        style={{ width: 40, height: 40, borderRadius: "50%", objectFit: "cover", objectPosition: "50% 25%", flexShrink: 0 }}
-      />
-      <div style={{ flex: 1, minWidth: 0 }} />
+      <span style={{ flex: 1, minWidth: 0, fontFamily: "var(--font-inter)", fontWeight: 500, fontSize: 13, lineHeight: 1.3, letterSpacing: "-0.2px", color: "var(--fg-secondary)" }}>Fixed scope.<br />Fixed price.</span>
       <a
         href={BOOKING_URL}
         target="_blank"

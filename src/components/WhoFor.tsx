@@ -30,7 +30,7 @@ const CSS = `
   .wf-p { margin-top: 12px; font-family: var(--font-inter); font-size: 15px; line-height: 1.6; letter-spacing: -0.1px; color: rgba(255, 255, 255, 0.82); }
   @keyframes wfDrift { from { transform: scale(1.04) translate3d(-1.5%, 0, 0); } to { transform: scale(1.12) translate3d(1.5%, -1%, 0); } }
   @keyframes wfFlow { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
-  @media (max-width: 900px) { .wf-grid { grid-template-columns: 1fr; } .wf-card { min-height: 320px; } }
+  @media (max-width: 900px) { .wf-grid { display: flex; overflow-x: auto; overflow-y: hidden; scroll-snap-type: x mandatory; scrollbar-width: none; overscroll-behavior-x: contain; margin: 0 -20px; padding: 0 20px; scroll-padding: 0 20px; } .wf-grid::-webkit-scrollbar { display: none; } .wf-card { flex: 0 0 82%; min-height: 380px; scroll-snap-align: start; } }
   @media (prefers-reduced-motion: reduce) { .wf-bg, .wf-tag::before { animation: none; } }
 `;
 

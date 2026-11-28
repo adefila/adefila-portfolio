@@ -171,7 +171,7 @@ export default function Navbar({ hide = [], contactHref, brandHref }: { hide?: s
             background: menuOpen
               ? "var(--inverse)"
               : scrolled
-              ? "rgba(var(--surface-rgb), 0.82)"
+              ? "var(--bg)"
               : "var(--bg)",
             backdropFilter: scrolled && !menuOpen ? "blur(20px)" : "none",
             WebkitBackdropFilter: scrolled && !menuOpen ? "blur(20px)" : "none",

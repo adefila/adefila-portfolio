@@ -1946,3 +1946,10 @@ section[data-track-location="mid_cta"], .footer-cta, footer > div.grid-texture-d
 
 /* Footer: the sentence under the headline wraps inside the same narrow box as the headline (no line running past it) */
 @media (min-width: 901px) { .footer-cta p .footer-two-line, .footer-cta .footer-two-line { white-space: normal !important; display: inline; } .footer-cta p { max-width: 440px !important; } }
+
+/* Phones: the pricing cards swipe sideways on the white page (no grey behind them, no vertical clipping or scroll trapping) */
+@media (max-width: 768px) {
+  .pricing-grid { background: transparent !important; overflow-y: hidden !important; overscroll-behavior-x: contain; touch-action: pan-x pan-y; }
+  .pricing-grid > div { background-clip: padding-box; }
+  .mobile-cta { background: #fff; }
+}

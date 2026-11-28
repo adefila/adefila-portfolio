@@ -33,11 +33,18 @@ const CSS = `
   .bw-tab[aria-selected="true"], .bw-tab:hover { color: var(--fg); }
   .bw-line { position: absolute; left: 0; right: 0; bottom: 0; height: 2px; background: var(--accent-purple); }
   .bw-grid .pc-list { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
-  @media (max-width: 760px) { .bw-grid .pc-list { grid-template-columns: 1fr; gap: 12px; } }
+  .bw-more { display: none; }
+  @media (max-width: 760px) {
+    .bw-grid .pc-list { grid-template-columns: 1fr; gap: 12px; }
+    .bw-grid:not(.is-open) .pc-list > li:nth-of-type(n+4) { display: none; }
+    .bw-more { display: block; width: 100%; margin-top: 12px; padding: 15px 20px; background: #fff; border: 0.5px solid var(--line); cursor: pointer; font-family: var(--font-inter); font-weight: 600; font-size: 12.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--fg); }
+    .bw-more:hover { background: #f1eafe; }
+  }
 `;
 
 export default function BusinessWork() {
   const [tab, setTab] = useState<(typeof TABS)[number]["id"]>("client");
+  const [open, setOpen] = useState(false); // phones: three cards first, the rest after "See more"
   const client: Card[] = CLIENT.map(([t, slug]) => ({ p: devProjects.find((x) => x.title === t), slug }))
     .filter((x): x is { p: (typeof devProjects)[number]; slug: string } => !!x.p)
     .map(({ p, slug }) => ({ key: p.title, title: p.title, note: p.tags[0], year: p.year, image: `/work/${slug}.webp`, href: p.href !== "#" ? p.href : undefined, external: true }));
@@ -52,18 +59,19 @@ export default function BusinessWork() {
         </h2>
         <div className="bw-tabs" role="tablist" aria-label="Kinds of work">
           {TABS.map((t) => (
-            <button key={t.id} type="button" role="tab" aria-selected={tab === t.id} className="bw-tab" onClick={() => setTab(t.id)}>
+            <button key={t.id} type="button" role="tab" aria-selected={tab === t.id} className="bw-tab" onClick={() => { setTab(t.id); setOpen(false); }}>
               {t.label}
               {tab === t.id && <motion.span layoutId="bw-line" className="bw-line" transition={{ type: "spring", stiffness: 500, damping: 40 }} />}
             </button>
           ))}
         </div>
-        <div className="bw-grid">
+        <div className={open ? "bw-grid is-open" : "bw-grid"}>
           <AnimatePresence mode="wait" initial={false}>
             <motion.div key={tab} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -6 }} transition={{ duration: 0.3, ease: [0.2, 0.7, 0.2, 1] }}>
               <ProjectCards cards={tab === "client" ? client : CONCEPTS} />
             </motion.div>
           </AnimatePresence>
+          {!open && (tab === "client" ? client : CONCEPTS).length > 3 && <button type="button" className="bw-more" onClick={() => setOpen(true)}>See more projects</button>}
         </div>
       </div>
     </section>
