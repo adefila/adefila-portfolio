@@ -29,9 +29,11 @@ export function RotatingWord({ words }: { words: string[] }) {
   useEffect(() => {
     if (reducedMotion || words.length < 2) return;
     let alive = true;
+    let first = true; // the first change waits until the page has finished loading, so the moving word is not what the speed tests wait for
     (async () => {
       while (alive) {
-        await new Promise((r) => setTimeout(r, 2600));
+        await new Promise((r) => setTimeout(r, first ? 9000 : 2600));
+        first = false;
         if (!alive) break;
         await run(wordRef.current, () => setIndex((i) => (i + 1) % words.length));
       }

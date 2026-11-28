@@ -2,8 +2,6 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   compress: true,
-  // The stylesheet is put inside the page itself, so it no longer blocks the first paint as a separate request
-  experimental: { inlineCss: true },
   images: {
     formats: ["image/avif", "image/webp"],
     remotePatterns: [
