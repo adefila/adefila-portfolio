@@ -44,7 +44,7 @@ export default function MobileCTA() {
 
   return (
     <div className={show ? "mobile-cta is-visible" : "mobile-cta"} data-track-location="mobile_bar" aria-hidden={!show}>
-      <span style={{ flex: 1, minWidth: 0, fontFamily: "var(--font-inter)", fontWeight: 500, fontSize: 13, lineHeight: 1.3, letterSpacing: "-0.2px", color: "var(--fg-secondary)" }}>Fixed scope.<br />Fixed price.</span>
+      <span style={{ flex: 1, minWidth: 0, fontFamily: "var(--font-inter)", fontWeight: 500, fontSize: 13, lineHeight: 1.3, letterSpacing: "-0.2px", color: "var(--fg-secondary)" }}>{t("biz.fixed1")}<br />{t("biz.fixed2")}</span>
       <a
         href={BOOKING_URL}
         target="_blank"
@@ -54,10 +54,10 @@ export default function MobileCTA() {
         style={{
           display: "inline-flex", alignItems: "center", gap: 6, flexShrink: 0,
           fontFamily: "var(--font-inter)", fontWeight: 600, fontSize: 13,
-                    padding: "12px 16px", textDecoration: "none", letterSpacing: "-0.2px",
+                    padding: "11px 18px", textDecoration: "none", letterSpacing: "-0.2px",
         }}
       >
-        {t("common.bookCall")} <CalendarDays size={14} strokeWidth={2} />
+        {t("biz.bookShort")} <CalendarDays size={14} strokeWidth={2} />
       </a>
     </div>
   );

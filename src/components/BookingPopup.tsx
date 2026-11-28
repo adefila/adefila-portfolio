@@ -1,6 +1,5 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import Image from "next/image";
 import { ArrowUpRight, X } from "lucide-react";
 import { useLang } from "@/context/LangContext";
 import { trackEvent } from "@/lib/gtag";
@@ -150,13 +149,6 @@ export default function BookingPopup() {
       <div className="booking-panel" role="dialog" aria-modal="true" aria-labelledby="booking-title">
         <header className="booking-header">
           <div style={{ display: "flex", alignItems: "center", gap: 12, minWidth: 0 }}>
-            <Image
-              src="/samuel-portrait.webp"
-              alt=""
-              width={40}
-              height={40}
-              style={{ width: 40, height: 40, borderRadius: "50%", objectFit: "cover", objectPosition: "50% 25%", flexShrink: 0 }}
-            />
             <div style={{ minWidth: 0 }}>
               <p id="booking-title" style={{ fontFamily: "var(--font-poppins)", fontWeight: 700, fontSize: 16, letterSpacing: "-0.3px", textTransform: "uppercase", color: "var(--fg)", lineHeight: 1.2 }}>
                 {t("common.bookCall")}

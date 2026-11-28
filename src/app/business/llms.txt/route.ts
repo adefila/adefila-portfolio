@@ -5,8 +5,7 @@ const BODY = `# Samuel Adefila: B2B website design and Framer development
 > Fixed-scope, fixed-price websites for B2B companies, built in Framer or custom code (Next.js) with a CMS your team controls, forms that track every enquiry, and redirects that protect your Google traffic. A landing page is live in 5 to 7 days; a full B2B rebuild takes about 4 weeks; custom builds 4 to 8 weeks.
 
 ## Pages
-- [Home](https://web.adefilasamuel.com/): What you get, process, pricing, client work and testimonials.
-- [Contact and FAQ](https://web.adefilasamuel.com/contact): Book a free discovery call or send a project brief; answers to the questions people ask before hiring.
+- [Home](https://web.adefilasamuel.com/): What you get, process, pricing, client work, testimonials, answers to the questions people ask before hiring, a contact form and a free discovery call booking.
 
 ## Services
 - B2B website design and development in Framer, Webflow or Next.js
@@ -29,7 +28,7 @@ const BODY = `# Samuel Adefila: B2B website design and Framer development
 - 50+ websites and apps shipped since 2020.
 
 ## Contact
-- Book a free discovery call: https://web.adefilasamuel.com/contact
+- Book a free discovery call: https://web.adefilasamuel.com/
 - Email: samuel@adefilasamuel.com
 `;
 

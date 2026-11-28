@@ -32,20 +32,28 @@ export default function PersonalToc() {
   const [onPurple, setOnPurple] = useState(false);
 
   useEffect(() => {
-    const els = ITEMS.map((i) => document.getElementById(i.id)).filter((e): e is HTMLElement => !!e);
-    const io = new IntersectionObserver(
-      (entries) => {
-        const seen = entries.filter((e) => e.isIntersecting).sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0];
-        if (seen) setActive(seen.target.id);
-      },
-      { rootMargin: "-35% 0px -55% 0px" },
-    );
-    els.forEach((e) => io.observe(e));
+    // The section being read is the last one whose top has passed 45% of the screen. At the very bottom of the page, the last item (Contact)
+    // is the one, because the short final section can never reach that line.
+    let raf = 0;
+    const update = () => {
+      raf = 0;
+      const atEnd = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 8;
+      let current = ITEMS[0].id;
+      for (const i of ITEMS) {
+        const el = document.getElementById(i.id);
+        if (el && el.getBoundingClientRect().top <= window.innerHeight * 0.45) current = i.id;
+      }
+      setActive(atEnd ? ITEMS[ITEMS.length - 1].id : current);
+    };
+    const onScroll = update;
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
     // the strip is behind the list while it crosses the middle band of the screen, where the list sits
     const strip = document.getElementById("contact");
-    const band = new IntersectionObserver(([e]) => { setOnPurple(!!e?.isIntersecting); if (e?.isIntersecting) setActive("contact"); }, { rootMargin: "-38% 0px -38% 0px" });
+    const band = new IntersectionObserver(([e]) => { setOnPurple(!!e?.isIntersecting); }, { rootMargin: "-38% 0px -38% 0px" });
     if (strip) band.observe(strip);
-    return () => { io.disconnect(); band.disconnect(); };
+    return () => { band.disconnect(); window.removeEventListener("scroll", onScroll); window.removeEventListener("resize", onScroll); if (raf) cancelAnimationFrame(raf); };
   }, []);
 
   const go = (id: string) => (e: React.MouseEvent) => {

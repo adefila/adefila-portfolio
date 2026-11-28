@@ -4,12 +4,12 @@ import { motion } from "framer-motion";
 import { ArrowUp3 } from "iconsax-react";
 
 // Project cards: a desktop capture of the live site, with the title set over a progressive blur at the foot of the picture.
-// Eight blur layers, each stronger than the last and each revealed a little lower, so the softening has no visible steps; the layers
-// are wider than the card (and clipped by it) so no halo shows at the edges. Under the blur sits a dark tint on an eased curve,
-// which keeps white type readable on any site, light or dark. It runs close to black at the foot so the picture never fades to grey.
+// Ten blur layers, each stronger than the last and each revealed a little lower, so the softening has no visible steps; the layers
+// are wider than the card (and clipped by it) so no halo shows at the edges. Under the blur sits a tint of the site's own deep blue on an eased curve,
+// which keeps white type readable on any site, light or dark. It runs close to solid at the foot so the picture never fades to grey.
 export type Card = { key: string; title: string; note?: string; year?: string; image?: string; bg?: string; href?: string; external?: boolean };
 
-const BLURS = [0.4, 0.9, 1.8, 3.2, 5, 7.5, 10.5, 14];
+const BLURS = [0.5, 1.2, 2.4, 4, 6.5, 9.5, 13, 18, 24, 32];
 const layerStyle = (i: number) => {
   const n = BLURS.length;
   const step = 100 / (n + 1);
@@ -22,14 +22,14 @@ const layerStyle = (i: number) => {
 };
 
 // an eased tint: slow start, steeper middle, then a firm base for the type
-const TINT = "linear-gradient(to bottom, rgba(6,6,10,0) 0%, rgba(6,6,10,0.1) 14%, rgba(6,6,10,0.28) 30%, rgba(6,6,10,0.52) 48%, rgba(6,6,10,0.74) 66%, rgba(6,6,10,0.88) 84%, rgba(6,6,10,0.94) 100%)";
+const TINT = "linear-gradient(to bottom, rgba(26,20,52,0) 0%, rgba(26,20,52,0.12) 14%, rgba(26,20,52,0.34) 30%, rgba(26,20,52,0.6) 48%, rgba(26,20,52,0.8) 66%, rgba(26,20,52,0.92) 84%, rgba(26,20,52,0.97) 100%)";
 
 const CSS = `
   .pc-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 20px; }
   .pc-card { position: relative; display: block; aspect-ratio: 16 / 10; overflow: hidden; background: #fff; border: 0.5px solid var(--line); text-decoration: none; color: #fff; isolation: isolate; }
   .pc-img { position: absolute; inset: 10px; overflow: hidden; transition: opacity 0.35s ease; }
   .pc-list:hover .pc-card:not(:hover) .pc-img { opacity: 0.6; }
-  .pc-foot { position: absolute; left: 10px; right: 10px; bottom: 10px; height: 58%; overflow: hidden; pointer-events: none; }
+  .pc-foot { position: absolute; left: 10px; right: 10px; bottom: 10px; height: 64%; overflow: hidden; pointer-events: none; }
   .pc-blur { position: absolute; top: 0; bottom: 0; left: -40px; right: -40px; }
   .pc-blur i { position: absolute; inset: 0; }
   .pc-tint { position: absolute; inset: 0; background: ${TINT}; }

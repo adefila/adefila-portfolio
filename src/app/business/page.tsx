@@ -19,6 +19,7 @@ import MagneticButtons from "@/components/MagneticButtons";
 import ClickTracking from "@/components/ClickTracking";
 import MobileCTA from "@/components/MobileCTA";
 import BookingPopup from "@/components/BookingPopup";
+import ContactPopup from "@/components/ContactPopup";
 
 // The business site, at web.adefilasamuel.com (next.config.ts rewrites that address to this page). It is the page cold emails and
 // pitches point at: what you get, the process, pricing, FAQ and contact, with the client logos and testimonials as proof.
@@ -57,7 +58,8 @@ export default function BusinessPage() {
       <MagneticButtons />
       <ClickTracking />
       <BookingPopup />
-      <Navbar hide={["#about", "#experience"]} contactHref="/contact" />
+      <ContactPopup />
+      <Navbar hide={["#about", "#experience"]} contactHref="#contact-popup" />
       <Hero />
       <ClientGrid />
       <WhoFor />
@@ -67,7 +69,7 @@ export default function BusinessPage() {
       <HowIWork />
       <Pricing />
       <Testimonials />
-      <FAQ moreHref="/contact#faq" />
+      <FAQ moreHref="expand" />
       <Footer />
       <MobileCTA />
     </main>

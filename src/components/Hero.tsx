@@ -47,13 +47,6 @@ export function RotatingWord({ words }: { words: string[] }) {
   );
 }
 
-// Real results from the case studies, as a strip of numbers under the hero picture.
-const PROOF: { n: string; label: string; by: string }[] = [
-  { n: "4 weeks", label: "From kickoff to a 12-page site, live", by: "DLP Africa" },
-  { n: "5+", label: "New clients from one landing page", by: "The Initial" },
-  { n: "$10K+", label: "Paid out in under a month", by: "BookedEZ" },
-  { n: "50+", label: "Websites and apps shipped", by: "Since 2020" },
-];
 
 // "4 weeks", "$10K+", "50+": the number inside counts up from 0 the first time it is on screen
 function CountText({ text }: { text: string }) {
@@ -74,6 +67,13 @@ function CountText({ text }: { text: string }) {
 export default function Hero({ workHref = "#work" }: { workHref?: string }) {
   const { t, lang } = useLang();
   const words = t("hero.h2.words").split("|");
+  // Real results from the case studies, as a strip of numbers under the headline
+  const PROOF = [
+    { n: t("hero.stat1.n"), label: t("hero.stat1.l"), by: "DLP Africa" },
+    { n: "5+", label: t("hero.stat2.l"), by: "The Initial" },
+    { n: "$10K+", label: t("hero.stat3.l"), by: "BookedEZ" },
+    { n: "50+", label: t("hero.stat4.l"), by: t("hero.stat4.by") },
+  ];
   const reducedMotion = useReducedMotion();
 
   return (
@@ -94,7 +94,7 @@ export default function Hero({ workHref = "#work" }: { workHref?: string }) {
       <div className="hero-grid" style={{ position: "relative", zIndex: 1, maxWidth: 1240, margin: "0 auto", paddingLeft: 20, paddingRight: 20, display: "block" }}>
         <p className="hero-kicker" style={{ animation: `heroFadeUp 0.6s 0.05s ${EASE} both` }}>
           <span className="hero-kicker-tiles" aria-hidden="true"><i /><i /><i /></span>
-          B2B web design and development
+          {t("hero.kicker")}
         </p>
         <h1
           aria-label={`${t("hero.h1")} ${t("hero.h2.prefix")} ${words[0]}`.replace(/\s+/g, " ").trim()}

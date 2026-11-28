@@ -14,10 +14,10 @@ const FAQ_SHOWN = [2, 3, 5, 7, 9];
 const FAQ_ALL = [2, 3, 9, 5, 0, 1, 4, 6, 7, 8];
 // ...and on that page they sit in tabs, by what the visitor wants to know
 const FAQ_CATS: { id: string; label: string; ids: number[] }[] = [
-  { id: "start", label: "Getting started", ids: [9, 0, 100, 101, 102] },
-  { id: "price", label: "Pricing and timing", ids: [2, 3, 4] },
-  { id: "build", label: "Build and tools", ids: [1, 8, 5] },
-  { id: "after", label: "After launch", ids: [7, 6] },
+  { id: "start", label: "biz.faq.cat1", ids: [9, 0, 100, 101, 102] },
+  { id: "price", label: "biz.faq.cat2", ids: [2, 3, 4] },
+  { id: "build", label: "biz.faq.cat3", ids: [1, 8, 5] },
+  { id: "after", label: "biz.faq.cat4", ids: [7, 6] },
 ];
 const FAQ_EXTRA: Faq[] = [
   { i: 100, q: "How quickly will you reply?", a: "Within 24 hours, usually sooner. If your message is about a live site that is down or broken, say so in the first line and I will look at it first." },
@@ -30,14 +30,16 @@ const EASE = [0.22, 1, 0.36, 1] as [number, number, number, number];
 export default function FAQ({ all = false, moreHref }: { all?: boolean; moreHref?: string } = {}) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const [cat, setCat] = useState(FAQ_CATS[0].id);
+  const [expanded, setExpanded] = useState(false); // "See more questions" opens the full list, in tabs, in place
+  const showAll = all || expanded;
   const { t } = useLang();
 
   const faqs: Faq[] = useMemo(
-    () => [...(all ? FAQ_ALL : FAQ_SHOWN).map((i) => ({ i, q: t(`faq.q${i}`), a: t(`faq.a${i}`) })).filter((f) => f.q), ...(all ? FAQ_EXTRA : [])],
-    [t, all],
+    () => [...(showAll ? FAQ_ALL : FAQ_SHOWN).map((i) => ({ i, q: t(`faq.q${i}`), a: t(`faq.a${i}`) })).filter((f) => f.q), ...(showAll ? FAQ_EXTRA : [])],
+    [t, showAll],
   );
 
-  const shown = all ? faqs.filter((f) => FAQ_CATS.find((c) => c.id === cat)?.ids.includes(f.i)) : faqs;
+  const shown = showAll ? faqs.filter((f) => FAQ_CATS.find((c) => c.id === cat)?.ids.includes(f.i)) : faqs;
   const toggle = (i: number) => setOpenIndex(openIndex === i ? null : i);
 
   const body = { fontFamily: "var(--font-inter)", fontSize: 14, lineHeight: 1.65, letterSpacing: "-0.2px", color: "var(--fg-secondary)" } as const;
@@ -75,12 +77,12 @@ export default function FAQ({ all = false, moreHref }: { all?: boolean; moreHref
 
         {/* Right: the list, then a box to type your own question; the reply fills in underneath as you type */}
         <div>
-          {all && (
+          {showAll && (
             <div className="fq-tabs" role="tablist" aria-label="Question categories">
               <style>{`.fq-tabs { display: flex; flex-wrap: wrap; gap: 6px 26px; margin: 0 0 18px; } .fq-tab { position: relative; padding: 0 0 10px; border: 0; background: none; cursor: pointer; font-family: var(--font-inter); font-weight: 600; font-size: 12.5px; letter-spacing: 0.06em; color: var(--fg-muted); transition: color 0.25s ease; } .fq-tab[aria-selected="true"], .fq-tab:hover { color: var(--fg); } .fq-line { position: absolute; left: 0; right: 0; bottom: 0; height: 2px; background: var(--accent-purple); }`}</style>
               {FAQ_CATS.map((c) => (
                 <button key={c.id} type="button" role="tab" aria-selected={cat === c.id} className="fq-tab" onClick={() => { setCat(c.id); setOpenIndex(null); }}>
-                  {c.label}
+                  {t(c.label)}
                   {cat === c.id && <motion.span layoutId="fq-line" className="fq-line" transition={{ type: "spring", stiffness: 500, damping: 40 }} />}
                 </button>
               ))}
@@ -143,10 +145,10 @@ export default function FAQ({ all = false, moreHref }: { all?: boolean; moreHref
             })}
           </div>
 
-          {moreHref && (
-            <a href={moreHref} className="faq-more" style={{ display: "inline-flex", alignItems: "center", gap: 8, marginTop: 24, fontFamily: "var(--font-inter)", fontWeight: 600, fontSize: 13, letterSpacing: "0.06em", color: "var(--accent-purple)", textDecoration: "none", textTransform: "uppercase" }}>
-              See more questions <span aria-hidden="true">→</span>
-            </a>
+          {moreHref && !showAll && (
+            <button type="button" onClick={() => setExpanded(true)} className="faq-more" style={{ display: "inline-flex", alignItems: "center", gap: 8, marginTop: 24, fontFamily: "var(--font-inter)", fontWeight: 600, fontSize: 13, letterSpacing: "0.06em", color: "var(--accent-purple)", textDecoration: "none", textTransform: "uppercase", background: "none", border: 0, padding: 0, cursor: "pointer" }}>
+              {t("biz.faq.more")} <span aria-hidden="true">→</span>
+            </button>
           )}
         </div>
       </div>

@@ -15,7 +15,6 @@ const nextConfig: NextConfig = {
     return {
       beforeFiles: [
         { source: "/", has: [{ type: "host" as const, value: "web\\.(adefilasamuel\\.com|localhost)" }], destination: "/business" },
-        { source: "/contact", has: [{ type: "host" as const, value: "web\\.(adefilasamuel\\.com|localhost)" }], destination: "/business/contact" },
         { source: "/sitemap.xml", has: [{ type: "host" as const, value: "web\\.(adefilasamuel\\.com|localhost)" }], destination: "/business/sitemap.xml" },
         { source: "/robots.txt", has: [{ type: "host" as const, value: "web\\.(adefilasamuel\\.com|localhost)" }], destination: "/business/robots.txt" },
         { source: "/llms.txt", has: [{ type: "host" as const, value: "web\\.(adefilasamuel\\.com|localhost)" }], destination: "/business/llms.txt" },
@@ -36,7 +35,8 @@ const nextConfig: NextConfig = {
       { source: "/local/:path*", destination: "https://web.adefilasamuel.com/", permanent: true },
       // /business is only an internal address; the public one is web.adefilasamuel.com
       { source: "/business", has: [{ type: "host" as const, value: "(www\\.)?adefilasamuel\\.com" }], destination: "https://web.adefilasamuel.com/", permanent: true },
-      { source: "/business/contact", has: [{ type: "host" as const, value: "(www\\.)?adefilasamuel\\.com" }], destination: "https://web.adefilasamuel.com/contact", permanent: true },
+      { source: "/business/contact", destination: "https://web.adefilasamuel.com/", permanent: false },
+      { source: "/contact", has: [{ type: "host" as const, value: "web\.(adefilasamuel\.com|localhost)" }], destination: "/", permanent: false },
     ];
   },
   async headers() {

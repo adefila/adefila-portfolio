@@ -1,13 +1,14 @@
 "use client";
 import { motion } from "framer-motion";
 import SpecLabel from "@/components/SpecLabel";
+import { useLang } from "@/context/LangContext";
 
 // Who the business site is for: three cards. Two sit on the purple mosaic (different crops of the same painting as the hero) and one on a
 // slowly moving purple gradient, so the row feels alive without any of it asking for attention.
-const CARDS: { tag: string; title: string; text: string; bg: "mosaic-a" | "gradient" | "mosaic-b" }[] = [
-  { tag: "SaaS and software teams", title: "You sell a product that needs explaining.", text: "A site that makes the product clear and turns visitors into demo requests.", bg: "mosaic-a" },
-  { tag: "Service firms and agencies", title: "Your work is better than your website.", text: "A credible site that wins enquiries, with forms you can track from first click.", bg: "gradient" },
-  { tag: "Founders and startups", title: "You need to launch, or relaunch, fast.", text: "A fixed-price site live in days or weeks, with a CMS your team runs on its own.", bg: "mosaic-b" },
+const CARDS: { k: string; bg: "mosaic-a" | "gradient" | "mosaic-b" }[] = [
+  { k: "1", bg: "mosaic-a" },
+  { k: "2", bg: "gradient" },
+  { k: "3", bg: "mosaic-b" },
 ];
 
 const CSS = `
@@ -35,16 +36,17 @@ const CSS = `
 `;
 
 export default function WhoFor() {
+  const { t } = useLang();
   return (
     <section id="for" className="wf">
       <style>{CSS}</style>
       <div className="wf-in">
-        <SpecLabel text="Who it's for" />
-        <h2 data-reveal className="wf-h">Built for teams that sell to businesses.</h2>
+        <SpecLabel text={t("biz.who.label")} />
+        <h2 data-reveal className="wf-h">{t("biz.who.h")}</h2>
         <div className="wf-grid">
           {CARDS.map((c, i) => (
             <motion.article
-              key={c.tag}
+              key={c.k}
               className={`wf-card ${c.bg}`}
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -52,10 +54,10 @@ export default function WhoFor() {
               transition={{ duration: 0.7, delay: i * 0.12, ease: [0.2, 0.7, 0.2, 1] }}
             >
               <div className="wf-bg" aria-hidden="true" />
-              <p className="wf-tag">{c.tag}</p>
+              <p className="wf-tag">{t(`biz.who.${c.k}.tag`)}</p>
               <div>
-                <h3 className="wf-t">{c.title}</h3>
-                <p className="wf-p">{c.text}</p>
+                <h3 className="wf-t">{t(`biz.who.${c.k}.t`)}</h3>
+                <p className="wf-p">{t(`biz.who.${c.k}.p`)}</p>
               </div>
             </motion.article>
           ))}

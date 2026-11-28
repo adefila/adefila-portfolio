@@ -776,7 +776,7 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
 
   // ── Footer ───────────────────────────────────────────────────────────
   "footer.cta": {
-    en: "Let's rebuild your site. Built around enquiries.",
+    en: "Let's build your site. Built around enquiries.",
     fr: "Reconstruisons votre site. Pensé pour les demandes.",
     es: "Reconstruyamos tu sitio. Pensado para las consultas.",
     de: "Lass uns deine Website neu bauen. Auf Anfragen ausgerichtet.",
@@ -1247,7 +1247,7 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     pt: "P . F . A",      zh: "常见问题",           ja: "よくある質問",
   },
   "faq.h1": {
-    en: "Questions?",
+    en: "Questions before we talk?",
     fr: "Des questions ?",
     es: "¿Preguntas?",
     de: "Fragen?",

@@ -5,6 +5,7 @@ import SpecLabel from "@/components/SpecLabel";
 import ProjectCards from "@/components/personal/ProjectCards";
 import type { Card } from "@/components/personal/ProjectCards";
 import { devProjects } from "@/components/Projects";
+import { useLang } from "@/context/LangContext";
 
 // Work for the business site (web.adefilasamuel.com), as cards: the title sits on the picture and the picture softens under it.
 // Two tabs: websites built for clients (each opens the live site), and concept websites designed and built on my own to show a direction.
@@ -23,8 +24,8 @@ const CONCEPTS: Card[] = [
 ];
 
 const TABS = [
-  { id: "client", label: "Client work" },
-  { id: "concept", label: "Concept websites" },
+  { id: "client", key: "biz.work.tab1" },
+  { id: "concept", key: "biz.work.tab2" },
 ] as const;
 
 const CSS = `
@@ -43,6 +44,7 @@ const CSS = `
 `;
 
 export default function BusinessWork() {
+  const { t: tr } = useLang();
   const [tab, setTab] = useState<(typeof TABS)[number]["id"]>("client");
   const [open, setOpen] = useState(false); // phones: three cards first, the rest after "See more"
   const client: Card[] = CLIENT.map(([t, slug]) => ({ p: devProjects.find((x) => x.title === t), slug }))
@@ -53,14 +55,14 @@ export default function BusinessWork() {
     <section id="work" style={{ width: "100%", padding: "80px 20px", background: "var(--bg)" }}>
       <style>{CSS}</style>
       <div style={{ maxWidth: 1160, margin: "0 auto" }}>
-        <SpecLabel text="Work" />
-        <h2 data-reveal style={{ fontFamily: "var(--font-poppins)", fontWeight: 400, fontSize: "clamp(28px, 3.5vw, 48px)", letterSpacing: "-0.03em", lineHeight: 1.05, color: "var(--fg)", marginBottom: 36 }}>
-          Recent B2B website projects.
+        <SpecLabel text={tr("biz.work.label")} />
+        <h2 data-reveal style={{ fontFamily: "var(--font-poppins)", fontWeight: 400, fontSize: "clamp(28px, 3.5vw, 48px)", letterSpacing: "-0.03em", lineHeight: 1.05, color: "var(--fg)", marginBottom: 32 }}>
+          {tr("biz.work.h")}
         </h2>
         <div className="bw-tabs" role="tablist" aria-label="Kinds of work">
           {TABS.map((t) => (
             <button key={t.id} type="button" role="tab" aria-selected={tab === t.id} className="bw-tab" onClick={() => { setTab(t.id); setOpen(false); }}>
-              {t.label}
+              {tr(t.key)}
               {tab === t.id && <motion.span layoutId="bw-line" className="bw-line" transition={{ type: "spring", stiffness: 500, damping: 40 }} />}
             </button>
           ))}
@@ -71,7 +73,7 @@ export default function BusinessWork() {
               <ProjectCards cards={tab === "client" ? client : CONCEPTS} />
             </motion.div>
           </AnimatePresence>
-          {!open && (tab === "client" ? client : CONCEPTS).length > 3 && <button type="button" className="bw-more" onClick={() => setOpen(true)}>See more projects</button>}
+          {!open && (tab === "client" ? client : CONCEPTS).length > 3 && <button type="button" className="bw-more" onClick={() => setOpen(true)}>{tr("biz.work.more")}</button>}
         </div>
       </div>
     </section>

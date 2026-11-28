@@ -5,6 +5,7 @@ import {
   LangCode, CurrencyCode, LANGUAGES, CURRENCIES, T,
 } from "@/i18n/translations";
 import { NL_NO } from "@/i18n/nl-no";
+import { BIZ_COPY } from "@/i18n/business-copy";
 import { PROJECT_COPY } from "@/i18n/projects";
 import { WORK_COPY } from "@/i18n/work-history";
 import { currencyForCountry, languageForCountry } from "@/i18n/geo";
@@ -14,6 +15,9 @@ for (const [key, v] of Object.entries(NL_NO)) if (T[key]) Object.assign(T[key], 
 
 // Project descriptions, tags and badges for the Projects section
 Object.assign(T, PROJECT_COPY);
+
+// Text of the business site (kicker, numbers, who-it's-for, work tabs, FAQ tabs, popups)
+Object.assign(T, BIZ_COPY);
 
 // The About section's work history
 Object.assign(T, WORK_COPY);
