@@ -90,11 +90,11 @@ const CSS = `
   .pp { width: 100%; padding: 140px 20px 0; }
   .pp-col { max-width: 720px; margin: 0 auto; }
   .pp h1 { font-family: var(--font-poppins); font-weight: 400; font-size: clamp(32px, 4.4vw, 48px); line-height: 1.08; letter-spacing: -0.035em !important; color: var(--fg); }
-  .pp-intro { margin-top: 28px; font-family: var(--font-inter); font-size: 17px; line-height: 1.65; letter-spacing: -0.15px; color: var(--fg-secondary); }
-  .pp-intro + .pp-intro { margin-top: 14px; }
+  .pp-intro { margin-top: 16px; font-family: var(--font-inter); font-size: 17px; line-height: 1.65; letter-spacing: -0.15px; color: var(--fg-secondary); }
+  .pp-intro + .pp-intro { margin-top: 12px; }
   .pp-link { color: var(--fg); text-decoration: none; background-image: linear-gradient(currentColor, currentColor); background-size: 100% 1px; background-position: 0 100%; background-repeat: no-repeat; padding-bottom: 1px; transition: background-size 0.4s cubic-bezier(0.2, 0.7, 0.2, 1), color 0.3s ease; }
   .pp-link:hover { background-size: 0% 1px; background-position: 100% 100%; color: var(--accent-purple); }
-  .pp-cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+  .pp-cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
 
   .pp-block { display: grid; grid-template-columns: 110px minmax(0, 1fr); gap: 16px; margin-top: 64px; scroll-margin-top: 90px; }
   .pp-label { padding-top: 3px; font-family: var(--font-inter); font-size: 14px; color: var(--fg-muted); }
@@ -130,6 +130,7 @@ const CSS = `
   .pp-strip-foot { max-width: 720px; margin: 64px auto 0; font-family: var(--font-inter); font-size: 13px; color: rgba(255, 255, 255, 0.9); }
   @media (max-width: 760px) { .pp-strip-in { grid-template-columns: 1fr; } }
   @media (max-width: 640px) { .pp { padding-top: 112px; } .pp-block { grid-template-columns: 1fr; gap: 10px; margin-top: 44px; } }
+  @media (max-width: 640px) { .pp-intro { margin-top: 14px; } .pp-intro + .pp-intro { margin-top: 10px; } .pp-cta { margin-top: 20px; } }
 `;
 
 export default function PersonalPage() {

@@ -15,7 +15,7 @@ export type GalleryImage = { src: string; alt: string };
 
 const CSS = `
   .gl-stack { position: relative; width: 100%; }
-  .gl-tile { position: absolute; }
+  .gl-tile { position: absolute; will-change: transform; }
   /* a white mat of 3px with a hairline outside it, so overlapping photos sit on each other like prints */
   .gl-fig { position: relative; width: 100%; height: 100%; margin: 0; overflow: hidden; background: #fff; border: 3px solid #fff; box-shadow: 0 0 0 0.5px #cfcfd8; cursor: zoom-in; }
   .gl-fig:focus-visible { outline: 2px solid var(--accent-purple); outline-offset: 2px; }
@@ -62,6 +62,16 @@ export default function Gallery({ images }: { images: GalleryImage[] }) {
   const step = n > 1 ? Math.min(tileW * OVERLAP, (w - 2 * SHIFT - tileW) / (n - 1)) : 0;
   const left0 = Math.max(SHIFT, (w - (tileW + (n - 1) * step)) / 2);
 
+  const onMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (n < 2) return;
+    const x = e.clientX - e.currentTarget.getBoundingClientRect().left;
+    const total = tileW + (n - 1) * step;
+    if (x < left0 - 6 || x > left0 + total + 6) { if (hover !== null) setHover(null); return; }
+    // every photo owns one slice of the resting stack, so moving the pointer along the row steps through the photos one by one
+    const idx = Math.max(0, Math.min(n - 1, Math.floor((x - left0) / step)));
+    if (idx !== hover) setHover(idx);
+  };
+
   const offset = (i: number) => {
     if (hover === null || reduced || i === hover) return 0;
     const d = Math.abs(i - hover);
@@ -86,7 +96,7 @@ export default function Gallery({ images }: { images: GalleryImage[] }) {
   return (
     <div className="gl">
       <style>{CSS}</style>
-      <div ref={wrap} className="gl-stack" role="list" aria-label="Photographs" style={{ height: tileH + 4 }} onMouseLeave={() => setHover(null)}>
+      <div ref={wrap} className="gl-stack" role="list" aria-label="Photographs" style={{ height: tileH + 4 }} onMouseMove={onMove} onMouseLeave={() => setHover(null)}>
         {images.map((g, i) => (
           <motion.div
             key={g.src}
@@ -100,12 +110,11 @@ export default function Gallery({ images }: { images: GalleryImage[] }) {
             <motion.div
               style={{ width: "100%", height: "100%" }}
               animate={{ x: offset(i) }}
-              transition={{ type: "spring", stiffness: 210, damping: 30, mass: 0.9 }}
+              transition={{ type: "spring", stiffness: 170, damping: 28, mass: 0.9 }}
             >
               <figure
                 className="gl-fig"
                 tabIndex={0}
-                onMouseEnter={() => setHover(i)}
                 onFocus={() => setHover(i)}
                 onBlur={() => setHover(null)}
                 onClick={() => setOpen(i)}
