@@ -18,6 +18,8 @@ const nextConfig: NextConfig = {
         { source: "/contact", has: [{ type: "host" as const, value: "web\\.(adefilasamuel\\.com|localhost)" }], destination: "/business/contact" },
         { source: "/sitemap.xml", has: [{ type: "host" as const, value: "web\\.(adefilasamuel\\.com|localhost)" }], destination: "/business/sitemap.xml" },
         { source: "/robots.txt", has: [{ type: "host" as const, value: "web\\.(adefilasamuel\\.com|localhost)" }], destination: "/business/robots.txt" },
+        { source: "/llms.txt", has: [{ type: "host" as const, value: "web\\.(adefilasamuel\\.com|localhost)" }], destination: "/business/llms.txt" },
+        { source: "/favicon.ico", has: [{ type: "host" as const, value: "web\\.(adefilasamuel\\.com|localhost)" }], destination: "/business/favicon.ico" },
       ],
       afterFiles: [],
       fallback: [],

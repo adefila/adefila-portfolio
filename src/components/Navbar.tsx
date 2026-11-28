@@ -176,8 +176,8 @@ export default function Navbar({ hide = [], contactHref, brandHref }: { hide?: s
             backdropFilter: scrolled && !menuOpen ? "blur(20px)" : "none",
             WebkitBackdropFilter: scrolled && !menuOpen ? "blur(20px)" : "none",
             borderBottom: menuOpen ? "1px solid rgba(255,255,255,0.08)" : "1px solid rgba(var(--ink), 0.08)",
-            borderLeft: "1px solid rgba(var(--ink), 0.16)",
-            borderRight: "1px solid rgba(var(--ink), 0.16)",
+            borderLeft: "0.5px solid var(--line)",
+            borderRight: "0.5px solid var(--line)",
             borderRadius: 0,
             padding: "8px 8px 8px 28px",
             pointerEvents: "auto",
@@ -226,7 +226,6 @@ export default function Navbar({ hide = [], contactHref, brandHref }: { hide?: s
                     alignItems: "center",
                   }}
                 >
-                  <span className="nav-n" aria-hidden="true">{String(n + 1).padStart(2, "0")}</span>
                   <span className="nav-link-clip">
                     <span className="nav-link-inner" data-text={label}>
                       {label}
@@ -312,7 +311,7 @@ export default function Navbar({ hide = [], contactHref, brandHref }: { hide?: s
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: -16 }}
                     transition={{ duration: 0.35, delay: i * 0.055, ease: EASE }}
-                    style={{ borderBottom: "1px solid rgba(255,255,255,0.07)" }}
+                    style={{ borderBottom: "0.5px solid rgba(255,255,255,0.07)" }}
                   >
                     <a
                       href={href}

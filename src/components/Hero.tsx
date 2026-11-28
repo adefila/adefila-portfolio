@@ -1,8 +1,7 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { useBurn } from "@/components/useBurn";
-import Image from "next/image";
-import { motion, useReducedMotion } from "framer-motion";
+import { animate, motion, useInView, useReducedMotion } from "framer-motion";
 import { ArrowDown, CalendarDays } from "lucide-react";
 import MagneticButton from "./MagneticButton";
 import { useLang } from "@/context/LangContext";
@@ -10,14 +9,22 @@ import { BOOKING_URL } from "@/lib/booking";
 
 const EASE = "cubic-bezier(0.22, 1, 0.36, 1)";
 
-// Cycles the last word of the headline. Every word sits in the same grid cell so the line keeps the width of the longest one and
-// never reflows. The word in view burns away into small pieces that scatter, and the next one re-forms in its place.
+// Cycles the last word of the headline. The box around the word is exactly as wide as the word in view and eases to the next word's
+// width as it changes, so a short word never leaves a gap beside it and the centred line stays centred. The word burns away into small
+// pieces that scatter, and the next one re-forms in its place.
 export function RotatingWord({ words }: { words: string[] }) {
   const [index, setIndex] = useState(0);
+  const [width, setWidth] = useState<number | undefined>(undefined);
   const reducedMotion = useReducedMotion();
   const wordRef = useRef<HTMLSpanElement>(null);
   const burn = useBurn({ freq: "0.06 0.075", scatter: 42, lift: 8, seed: 9, k: 24, ms: 520 });
   const run = burn.run;
+  const active = index % words.length;
+
+  useLayoutEffect(() => {
+    const el = wordRef.current;
+    if (el) setWidth(Math.ceil(el.getBoundingClientRect().width * 100) / 100);
+  }, [active, words]);
 
   useEffect(() => {
     if (reducedMotion || words.length < 2) return;
@@ -32,30 +39,42 @@ export function RotatingWord({ words }: { words: string[] }) {
     return () => { alive = false; };
   }, [reducedMotion, words.length, run]);
 
-  const active = index % words.length;
-
   return (
-    <span style={{ display: "inline-grid", position: "relative", maxWidth: "100%", verticalAlign: "bottom", paddingBottom: "0.06em" }}>
+    <span className="rw" style={{ width }}>
       {burn.svg}
-      {/* every word, invisible, so the line keeps the width of the longest one */}
-      {words.map((word) => (
-        <span key={word} aria-hidden="true" style={{ gridArea: "1 / 1", visibility: "hidden", whiteSpace: "normal", overflowWrap: "break-word" }}>{word}</span>
-      ))}
-      <span ref={wordRef} style={{ gridArea: "1 / 1", whiteSpace: "normal", overflowWrap: "break-word", color: "var(--hero-word)" }}>{words[active]}</span>
+      <span ref={wordRef} className="rw-word" style={{ color: "var(--hero-word)" }}>{words[active]}</span>
     </span>
   );
 }
 
-// Real results from the case studies, floating over the hero photo.
-const PROOF: { top?: string; bottom?: string; left?: string; right?: string; big: string; small: string; float: number; delay: number }[] = [
-  { top: "9%", left: "3.5%", big: "12 pages live in 4 weeks", small: "DLP Africa", float: 5.2, delay: 0.9 },
-  { top: "36%", right: "3%", big: "5+ new clients from one landing page", small: "The Initial", float: 6.1, delay: 1.1 },
-  { bottom: "9%", left: "6%", big: "$10K+ paid out in under a month", small: "BookedEZ", float: 5.6, delay: 1.3 },
+// Real results from the case studies, as a strip of numbers under the hero picture.
+const PROOF: { n: string; label: string; by: string }[] = [
+  { n: "4 weeks", label: "From kickoff to a 12-page site, live", by: "DLP Africa" },
+  { n: "5+", label: "New clients from one landing page", by: "The Initial" },
+  { n: "$10K+", label: "Paid out in under a month", by: "BookedEZ" },
+  { n: "50+", label: "Websites and apps shipped", by: "Since 2020" },
 ];
+
+// "4 weeks", "$10K+", "50+": the number inside counts up from 0 the first time it is on screen
+function CountText({ text }: { text: string }) {
+  const m = text.match(/^(\D*)(\d+)(.*)$/);
+  const ref = useRef<HTMLElement>(null);
+  const inView = useInView(ref, { once: true });
+  const [n, setN] = useState(0);
+  const reduced = useReducedMotion();
+  useEffect(() => {
+    if (!m || !inView || reduced) return;
+    const c = animate(0, +m[2], { duration: 1.6, ease: [0.2, 0.7, 0.2, 1], delay: 0.2, onUpdate: (v) => setN(Math.round(v)) });
+    return () => c.stop();
+  }, [inView, reduced]); // eslint-disable-line react-hooks/exhaustive-deps
+  if (!m) return <>{text}</>;
+  return <span ref={ref}>{m[1]}{reduced ? m[2] : n}{m[3]}</span>;
+}
 
 export default function Hero({ workHref = "#work" }: { workHref?: string }) {
   const { t, lang } = useLang();
   const words = t("hero.h2.words").split("|");
+  const reducedMotion = useReducedMotion();
 
   return (
     <section
@@ -70,139 +89,85 @@ export default function Hero({ workHref = "#work" }: { workHref?: string }) {
         e.currentTarget.style.setProperty("--my", `${e.clientY - r.top}px`);
       }}
     >
-      {/* a soft cloud of colour at the top that fades into the page */}
-      <div aria-hidden="true" className="hero-cloud" />
-      <div className="hero-grid" style={{ position: "relative", zIndex: 1, maxWidth: 1200, margin: "0 auto", paddingLeft: 20, paddingRight: 20, display: "block" }}>
-        <div>
-          <p className="hero-eyebrow"><i aria-hidden="true" />Top Rated on Upwork, 100% Job Success across 50+ projects</p>
-          <h1
-            aria-label={`${t("hero.h1")} ${t("hero.h2.prefix")} ${words[0]}`.replace(/\s+/g, " ").trim()}
-            style={{ marginBottom: 14, maxWidth: 1100, fontSize: "inherit", fontWeight: "inherit" }}
-          >
-            {[t("hero.h1"), null].map((line, i) => (
-              <span
-                key={i}
-                aria-hidden="true"
-                className="hero-headline"
-                style={{
-                  fontFamily: "var(--font-poppins)",
-                  fontWeight: 700,
-                  fontSize: "clamp(44px, 6.6vw, 96px)",
-                  letterSpacing: "-0.04em",
-                  lineHeight: 1.05,
-                  textTransform: "uppercase",
-                  color: "var(--fg)",
-                  display: "block",
-                  maxWidth: "100%",
-                  overflowWrap: "break-word",
-                  animation: `heroMask 0.95s calc(var(--hero-delay, 0s) + ${0.15 + i * 0.14}s) ${EASE} both`,
-                }}
-              >
-                {line ?? (
-                  <>
-                    {t("hero.h2.prefix") && <>{t("hero.h2.prefix")} </>}
-                    <RotatingWord words={words} />
-                  </>
-                )}
-              </span>
-            ))}
-          </h1>
+      {/* the mosaic is the hero's background: white at the top, where the text sits, and full purple below */}
+      <div aria-hidden="true" className="hero-mosaic" />
+      <div className="hero-grid" style={{ position: "relative", zIndex: 1, maxWidth: 1240, margin: "0 auto", paddingLeft: 20, paddingRight: 20, display: "block" }}>
+        <p className="hero-kicker" style={{ animation: `heroFadeUp 0.6s 0.05s ${EASE} both` }}>
+          <span className="hero-kicker-tiles" aria-hidden="true"><i /><i /><i /></span>
+          B2B web design and development
+        </p>
+        <h1
+          aria-label={`${t("hero.h1")} ${t("hero.h2.prefix")} ${words[0]}`.replace(/\s+/g, " ").trim()}
+          style={{ margin: "0 auto 14px", maxWidth: 1100, fontSize: "inherit", fontWeight: "inherit" }}
+        >
+          {[t("hero.h1"), null].map((line, i) => (
+            <span
+              key={i}
+              aria-hidden="true"
+              className="hero-headline"
+              style={{
+                fontFamily: "var(--font-poppins)",
+                fontWeight: 700,
+                fontSize: "clamp(44px, 6.6vw, 96px)",
+                letterSpacing: "-0.04em",
+                lineHeight: 1.05,
+                textTransform: "uppercase",
+                color: "var(--fg)",
+                display: "block",
+                maxWidth: "100%",
+                overflowWrap: "break-word",
+                animation: `heroMask 0.95s calc(var(--hero-delay, 0s) + ${0.15 + i * 0.14}s) ${EASE} both`,
+              }}
+            >
+              {line ?? (
+                <>
+                  {/* two fixed lines: everything but the last word of the prefix, then that word with the rotating word, so the line count never changes */}
+                  {(() => {
+                    const parts = (t("hero.h2.prefix") || "").trim().split(/\s+/);
+                    const last = parts.pop() ?? "";
+                    return (
+                      <>
+                        {parts.length > 0 && <span style={{ display: "block" }}>{parts.join(" ")}</span>}
+                        <span className="rw-line" style={{ display: "block" }}>{last} <RotatingWord words={words} /></span>
+                      </>
+                    );
+                  })()}
+                </>
+              )}
+            </span>
+          ))}
+        </h1>
 
-          <p
-            className="hero-subtitle"
-            style={{
-              fontFamily: "var(--font-inter)",
-              fontWeight: 400,
-              fontSize: 18,
-              letterSpacing: "-0.3px",
-              lineHeight: 1.7,
-              color: "var(--fg-secondary)",
-              maxWidth: 640,
-              marginBottom: 36,
-              animation: `heroFadeUp 0.6s 0.35s ${EASE} both`,
-            }}
-          >
-            {t("hero.subtitle")}
-          </p>
-
-          <div
-            className="hero-cta"
-            style={{ display: "flex", gap: 16, flexWrap: "wrap", animation: `heroFadeUp 0.6s 0.5s ${EASE} both` }}
-          >
+        <div className="hero-stack">
+          <p className="hero-subtitle" style={{ animation: `heroFadeUp 0.6s 0.35s ${EASE} both` }}>{t("hero.subtitle")}</p>
+          <div className="hero-cta" style={{ animation: `heroFadeUp 0.6s 0.5s ${EASE} both` }}>
             <MagneticButton
               href={BOOKING_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-primary"
-              style={{
-                fontFamily: "var(--font-mono)",
-                fontWeight: 500,
-                textTransform: "uppercase",
-                lineHeight: "20px",
-                fontSize: 13,
-                padding: "14px 26px",
-                borderRadius: 0,
-                textDecoration: "none",
-                letterSpacing: "0.02em",
-                alignItems: "center",
-                gap: 8,
-              }}
+              className="btn-primary hero-shine"
+              style={{ fontFamily: "var(--font-mono)", fontWeight: 500, textTransform: "uppercase", lineHeight: "20px", fontSize: 13, padding: "14px 26px", borderRadius: 0, textDecoration: "none", letterSpacing: "0.02em", alignItems: "center", gap: 8 }}
             >
               {t("hero.cta")} <CalendarDays size={15} strokeWidth={2} />
             </MagneticButton>
             <MagneticButton
               href={workHref}
-              className="btn-ticks"
-              style={{
-                fontFamily: "var(--font-mono)",
-                fontWeight: 500,
-                fontSize: 13,
-                color: "var(--fg)",
-                background: "transparent",
-                border: "1px solid rgba(var(--ink), 0.2)",
-                padding: "13px 25px",
-                lineHeight: "20px",
-                textTransform: "uppercase",
-                borderRadius: 0,
-                textDecoration: "none",
-                letterSpacing: "0.02em",
-                alignItems: "center",
-                gap: 8,
-                transition: "background 0.2s ease, border-color 0.2s ease, color 0.2s ease",
-              }}
-              onMouseEnter={(e: React.MouseEvent<HTMLAnchorElement>) => {
-                e.currentTarget.style.background = "var(--btn-bg)";
-                e.currentTarget.style.borderColor = "var(--btn-bg)";
-                e.currentTarget.style.color = "#fff";
-              }}
-              onMouseLeave={(e: React.MouseEvent<HTMLAnchorElement>) => {
-                e.currentTarget.style.background = "transparent";
-                e.currentTarget.style.borderColor = "rgba(var(--ink), 0.2)";
-                e.currentTarget.style.color = "var(--fg)";
-              }}
+              className="btn-ticks hero-ghost"
+              style={{ fontFamily: "var(--font-mono)", fontWeight: 500, fontSize: 13, color: "var(--fg)", background: "#fff", border: "0.5px solid var(--line)", padding: "13px 25px", lineHeight: "20px", textTransform: "uppercase", borderRadius: 0, textDecoration: "none", letterSpacing: "0.02em", alignItems: "center", gap: 8, transition: "background 0.2s ease, border-color 0.2s ease, color 0.2s ease" }}
             >
               {t("hero.ctaWork")} <ArrowDown size={15} strokeWidth={2} />
             </MagneticButton>
           </div>
         </div>
 
-        {/* One big, clean picture of client sites on a flat ground: no texture, no animation */}
-        <div className="hero-portrait" style={{ position: "relative", width: "100%", marginTop: 56, animation: `heroFadeUp 0.8s 0.6s ${EASE} both` }}>
-          {PROOF.map((c) => (
-            <motion.div
-              key={c.big}
-              className="hero-chip"
-              style={{ top: c.top, bottom: c.bottom, left: c.left, right: c.right }}
-              initial={{ opacity: 0, scale: 0.92, y: 14 }}
-              animate={{ opacity: 1, scale: 1, y: [0, -7, 0] }}
-              transition={{ opacity: { delay: c.delay, duration: 0.6 }, scale: { delay: c.delay, type: "spring", stiffness: 260, damping: 22 }, y: { delay: c.delay, duration: c.float, repeat: Infinity, ease: "easeInOut" } }}
-            >
-              <b>{c.big}</b>
-              <span>{c.small}</span>
+        <dl className="hero-stats">
+          {PROOF.map((p, i) => (
+            <motion.div key={p.n} className="hero-stat" initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.1 + i * 0.1, duration: 0.6, ease: [0.2, 0.7, 0.2, 1] }}>
+              <dt><CountText text={p.n} /></dt>
+              <dd>{p.label}<span>{p.by}</span></dd>
             </motion.div>
           ))}
-          <Image src="/hero/business-photo.webp" alt="A designer working on a laptop in a bright modern office (photo by Vitaly Gariev on Unsplash)" width={2400} height={1300} priority sizes="(max-width: 1240px) 100vw, 1200px" style={{ display: "block", width: "100%", height: "auto" }} />
-        </div>
+        </dl>
       </div>
     </section>
   );

@@ -141,7 +141,7 @@ export default function HowIWork() {
       aria-label="My process — how I work"
       style={{
         width: "100%",
-        background: isDark ? "#0f0f0f" : "var(--bg)",
+        background: isDark ? "#1a1434" : "var(--bg)",
         transition: `background ${TRANS}`,
         padding: "80px 0",
       }}
@@ -152,8 +152,7 @@ export default function HowIWork() {
         {/* Header */}
         <div className="process-head" style={{
           display: "flex", gap: 48, alignItems: "flex-end", flexWrap: "wrap",
-          marginBottom: 48, borderBottom: `1px solid ${border}`,
-          paddingBottom: 32, transition: `border-color ${TRANS}`,
+          marginBottom: 40,
         }}>
           <div data-reveal style={{ flex: "1 1 320px" }}>
             <h2 style={{
@@ -242,7 +241,7 @@ export default function HowIWork() {
                 style={{
                   flex: "1 1 0", minWidth: 0,
                   background: isActive ? purpleA : "transparent",
-                  border: `1px solid ${isActive ? purpleB : border}`,
+                  border: `0.5px solid ${isActive ? purpleB : border}`,
                   padding: "12px 14px 10px",
                   cursor: "pointer", textAlign: "left",
                   transition: `background 0.3s ease, border-color 0.3s ease`,
@@ -304,14 +303,14 @@ export default function HowIWork() {
               style={{
                 display: i === displayed ? "grid" : "none",
                 gridTemplateColumns: "1fr 1fr",
-                background: cardBg, border: `1px solid ${cardBrd}`,
+                background: cardBg, border: `0.5px solid ${cardBrd}`,
                 transition: `background ${TRANS}, border-color ${TRANS}`,
               }}
               className="process-card-grid"
             >
               {/* Left — step detail */}
               <div
-                style={{ padding: "32px", borderRight: `1px solid ${cardBrd}`, transition: `border-color ${TRANS}` }}
+                style={{ padding: "32px", borderRight: `0.5px solid ${cardBrd}`, transition: `border-color ${TRANS}` }}
                 className="process-card-left"
               >
                 <span
@@ -372,7 +371,7 @@ export default function HowIWork() {
                     aria-label="Previous step"
                     style={{
                       width: 36, height: 36, display: "flex", alignItems: "center", justifyContent: "center",
-                      border: `1px solid ${border}`, background: "transparent",
+                      border: `0.5px solid ${border}`, background: "transparent",
                       cursor: active === 0 ? "default" : "pointer",
                       opacity: active === 0 ? 0.35 : 1,
                       transition: `opacity 0.2s ease, border-color ${TRANS}`,
@@ -388,7 +387,7 @@ export default function HowIWork() {
                     aria-label="Next step"
                     style={{
                       width: 36, height: 36, display: "flex", alignItems: "center", justifyContent: "center",
-                      border: `1px solid ${active === steps.length - 1 ? border : "transparent"}`,
+                      border: `0.5px solid ${active === steps.length - 1 ? border : "transparent"}`,
                       background: active === steps.length - 1 ? "transparent" : purple,
                       cursor: active === steps.length - 1 ? "default" : "pointer",
                       opacity: active === steps.length - 1 ? 0.35 : 1,
@@ -425,7 +424,7 @@ export default function HowIWork() {
           .process-card-grid { grid-template-columns: 1fr !important; }
           .process-card-left {
             border-right: none !important;
-            border-bottom: 1px solid rgba(128,128,128,0.15) !important;
+            border-bottom: 0.5px solid rgba(128,128,128,0.15) !important;
             padding: 24px !important;
           }
           .process-card-right { padding: 24px !important; }

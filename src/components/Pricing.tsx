@@ -53,8 +53,7 @@ export default function Pricing({ prices, retainer = true }: { prices?: [number,
         className="pricing-header"
         style={{
           display: "flex", gap: 80, alignItems: "flex-end",
-          flexWrap: "wrap", marginBottom: 48,
-          borderBottom: "1px solid rgba(var(--ink), 0.14)", paddingBottom: 32,
+          flexWrap: "wrap", marginBottom: 40,
         }}
       >
         <div data-reveal style={{ flex: "1 1 360px" }}>
@@ -87,7 +86,7 @@ export default function Pricing({ prices, retainer = true }: { prices?: [number,
           gridTemplateColumns: "repeat(3, 1fr)",
           gap: 1,
           background: "rgba(var(--ink), 0.14)",
-          border: "1px solid rgba(var(--ink), 0.14)",
+          border: "0.5px solid var(--line)",
           marginBottom: 0,
         }}
       >
@@ -98,7 +97,7 @@ export default function Pricing({ prices, retainer = true }: { prices?: [number,
             data-reveal style={{
               display: "flex", flexDirection: "column",
               padding: "32px",
-              background: plan.featured ? "var(--inverse)" : "var(--bg)",
+              background: plan.featured ? "#1a1434" : "var(--bg)",
               position: "relative",
             }}
           >
@@ -157,7 +156,7 @@ export default function Pricing({ prices, retainer = true }: { prices?: [number,
               letterSpacing: "-0.2px",
               marginBottom: 24,
               paddingBottom: 24,
-              borderBottom: `1px solid ${plan.featured ? "rgba(255,255,255,0.14)" : "rgba(var(--ink), 0.14)"}`,
+              borderBottom: `0.5px solid ${plan.featured ? "rgba(255,255,255,0.14)" : "rgba(var(--ink), 0.14)"}`,
             }}>
               {plan.desc}
             </p>
@@ -222,10 +221,6 @@ export default function Pricing({ prices, retainer = true }: { prices?: [number,
           </div>
           <div className="pricing-retainer-side">
             <p className="pricing-retainer-price">{t("pricing.from")} {formatPrice(1500, true)}</p>
-            <a href={BOOKING_URL} data-track-label="retainer" target="_blank" rel="noopener noreferrer" className="btn-primary btn-quiet pricing-retainer-cta">
-              {t("pricing.cta")}
-              <ArrowUpRight size={14} strokeWidth={2} />
-            </a>
           </div>
         </div>
       )}
@@ -246,7 +241,7 @@ export default function Pricing({ prices, retainer = true }: { prices?: [number,
         style={{
           display: "grid", gridTemplateColumns: "repeat(4, 1fr)",
           gap: 1, background: "rgba(var(--ink), 0.14)",
-          border: "1px solid rgba(var(--ink), 0.14)", borderTop: "none",
+          border: "0.5px solid var(--line)", borderTop: "none",
         }}
       >
         {addons.map((addon, i) => (

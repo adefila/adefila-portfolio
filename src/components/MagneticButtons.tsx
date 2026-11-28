@@ -9,6 +9,8 @@ const REACH_PX = 46;
 
 export default function MagneticButtons() {
   useEffect(() => {
+    return; // hover effects are switched off for now
+    // eslint-disable-next-line no-unreachable
     if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 

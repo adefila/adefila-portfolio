@@ -240,8 +240,8 @@ const FLOAT_W = 340;
 const FLOAT_H = 178;
 
 const WL_CSS = `
-  .wl-list { list-style: none; margin: 0; padding: 0; border-top: 1px solid rgba(var(--ink), 0.14); }
-  .wl-row { display: grid; grid-template-columns: 48px 1fr auto 56px 28px; align-items: baseline; column-gap: 16px; padding: clamp(12px, 1.3vw, 17px) 0; border-bottom: 1px solid rgba(var(--ink), 0.14); color: var(--fg); text-decoration: none; transition: opacity 0.25s ease; cursor: default; outline: none; }
+  .wl-list { list-style: none; margin: 0; padding: 0; border-top: 0.5px solid var(--line); }
+  .wl-row { display: grid; grid-template-columns: 48px 1fr auto 56px 28px; align-items: baseline; column-gap: 16px; padding: clamp(12px, 1.3vw, 17px) 0; border-bottom: 0.5px solid var(--line); color: var(--fg); text-decoration: none; transition: opacity 0.25s ease; cursor: default; outline: none; }
   a.wl-row { cursor: pointer; }
   .wl-list:hover .wl-row { opacity: 0.28; }
   .wl-list:hover .wl-row:hover, .wl-list .wl-row:focus-visible { opacity: 1; }
@@ -250,11 +250,11 @@ const WL_CSS = `
   .wl-row:hover .wl-t, .wl-row:focus-visible .wl-t { transform: translateX(14px); color: var(--accent-purple); }
   .wl-k { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.02em; text-transform: uppercase; color: var(--fg-secondary); display: flex; gap: 10px; align-items: baseline; white-space: nowrap; }
   .wl-k i { font-style: normal; font-family: var(--font-mono); text-transform: none; letter-spacing: 0; color: var(--accent-purple); }
-  .wl-case { font-weight: 500; padding: 2px 7px; border: 1px solid rgba(139, 92, 246, 0.55); color: var(--accent-purple); font-size: 10px; letter-spacing: 0.1em; }
+  .wl-case { font-weight: 500; padding: 2px 7px; border: 0.5px solid rgba(139, 92, 246, 0.55); color: var(--accent-purple); font-size: 10px; letter-spacing: 0.1em; }
   .wl-y { font-family: var(--font-mono); font-size: 12px; color: var(--fg-muted); text-align: right; }
   .wl-a { font-size: 18px; line-height: 1; color: var(--fg-muted); transition: transform 0.3s ease, color 0.2s ease; }
   .wl-row:hover .wl-a, .wl-row:focus-visible .wl-a { transform: translate(3px, -3px); color: var(--accent-purple); }
-  .wl-more { margin-top: 24px; background: transparent; border: 0; padding: 4px 0; cursor: pointer; font-family: var(--font-inter); font-weight: 600; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent-purple); border-bottom: 1px solid currentColor; }
+  .wl-more { margin-top: 24px; background: transparent; border: 0; padding: 4px 0; cursor: pointer; font-family: var(--font-inter); font-weight: 600; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent-purple); border-bottom: 0.5px solid currentColor; }
   .wl-float { position: fixed; left: 0; top: 0; z-index: 60; width: ${FLOAT_W}px; height: ${FLOAT_H}px; pointer-events: none; will-change: transform; }
   .wl-float-in { position: absolute; inset: 0; overflow: hidden; background: #111; box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35), 0 4px 14px rgba(0, 0, 0, 0.2); opacity: 0; transform: scale(0.9); transition: opacity 0.2s ease, transform 0.3s cubic-bezier(0.22, 1, 0.36, 1); }
   .wl-float.is-on .wl-float-in { opacity: 1; transform: scale(1); }
@@ -273,7 +273,7 @@ const WL_CSS = `
     /* each project is a card: the picture, then the name, the tags and the year */
     .wl-list { display: grid; gap: 16px; border-top: 0; }
     .wl-list > li { min-width: 0; }
-    .wl-row { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "img img" "t a" "k k"; align-items: center; column-gap: 12px; row-gap: 10px; padding: 0 0 16px; border: 1px solid rgba(var(--ink), 0.14); background: var(--surface); overflow: hidden; transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.25s ease; }
+    .wl-row { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "img img" "t a" "k k"; align-items: center; column-gap: 12px; row-gap: 10px; padding: 0 0 16px; border: 0.5px solid var(--line); background: var(--surface); overflow: hidden; transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.25s ease; }
     .wl-row:active { transform: scale(0.985); border-color: rgba(139, 92, 246, 0.6); }
     .wl-card-img { grid-area: img; display: block; position: relative; aspect-ratio: 16 / 10; background: #111; overflow: hidden; }
     .wl-n { display: none; }

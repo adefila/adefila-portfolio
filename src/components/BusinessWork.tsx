@@ -32,8 +32,8 @@ const CSS = `
   .bw-tab { position: relative; padding: 0 0 10px; border: 0; background: none; cursor: pointer; font-family: var(--font-inter); font-weight: 600; font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--fg-muted); transition: color 0.3s ease; }
   .bw-tab[aria-selected="true"], .bw-tab:hover { color: var(--fg); }
   .bw-line { position: absolute; left: 0; right: 0; bottom: 0; height: 2px; background: var(--accent-purple); }
-  .bw-grid .pc-list { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; }
-  @media (max-width: 760px) { .bw-grid .pc-list { grid-template-columns: 1fr; gap: 20px; } }
+  .bw-grid .pc-list { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  @media (max-width: 760px) { .bw-grid .pc-list { grid-template-columns: 1fr; gap: 12px; } }
 `;
 
 export default function BusinessWork() {

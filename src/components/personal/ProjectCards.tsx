@@ -26,18 +26,25 @@ const TINT = "linear-gradient(to bottom, rgba(6,6,10,0) 0%, rgba(6,6,10,0.1) 14%
 
 const CSS = `
   .pc-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 20px; }
-  .pc-card { position: relative; display: block; aspect-ratio: 16 / 10; overflow: hidden; background: var(--surface); text-decoration: none; color: #fff; isolation: isolate; }
-  .pc-img { position: absolute; inset: 0; transition: opacity 0.35s ease; }
+  .pc-card { position: relative; display: block; aspect-ratio: 16 / 10; overflow: hidden; background: #fff; border: 0.5px solid var(--line); text-decoration: none; color: #fff; isolation: isolate; }
+  .pc-img { position: absolute; inset: 10px; overflow: hidden; transition: opacity 0.35s ease; }
   .pc-list:hover .pc-card:not(:hover) .pc-img { opacity: 0.6; }
-  .pc-foot { position: absolute; left: 0; right: 0; bottom: 0; height: 58%; pointer-events: none; }
+  .pc-foot { position: absolute; left: 10px; right: 10px; bottom: 10px; height: 58%; overflow: hidden; pointer-events: none; }
   .pc-blur { position: absolute; top: 0; bottom: 0; left: -40px; right: -40px; }
   .pc-blur i { position: absolute; inset: 0; }
   .pc-tint { position: absolute; inset: 0; background: ${TINT}; }
-  .pc-text { position: absolute; left: 26px; right: 26px; bottom: 22px; display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; }
+  .pc-text { position: absolute; left: 34px; right: 34px; bottom: 30px; display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; }
   .pc-title { font-family: var(--font-poppins); font-weight: 500; font-size: clamp(20px, 2.1vw, 26px); line-height: 1.15; letter-spacing: -0.025em; color: #fff; }
   .pc-meta { margin-top: 5px; font-family: var(--font-inter); font-size: 14px; letter-spacing: -0.1px; color: rgba(255, 255, 255, 0.78); }
   .pc-go { display: inline-flex; color: #fff; }
-  @media (max-width: 640px) { .pc-card { aspect-ratio: 4 / 3; } .pc-text { left: 18px; right: 18px; bottom: 16px; } }
+  /* on phones the card keeps the capture's own 16:10 shape, so the whole desktop view shows instead of its middle */
+  @media (max-width: 640px) {
+    .pc-card { aspect-ratio: 16 / 10; }
+    .pc-foot { height: 62%; }
+    .pc-text { left: 24px; right: 24px; bottom: 22px; }
+    .pc-title { font-size: 17px; }
+    .pc-meta { margin-top: 2px; font-size: 12px; }
+  }
 `;
 
 export default function ProjectCards({ cards }: { cards: Card[] }) {

@@ -48,14 +48,14 @@ const BOOKING = BOOKING_URL;
 
 const linkBtn = (href: string, label: string) =>
   `<td style="padding-right:8px;padding-bottom:8px;">
-    <a href="${href}" target="_blank" style="display:inline-block;padding:10px 20px;border:1px solid rgba(255,255,255,0.18);color:#ffffff;font-family:Arial,sans-serif;font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;text-decoration:none;white-space:nowrap;">
+    <a href="${href}" target="_blank" style="display:inline-block;padding:10px 20px;border:0.5px solid rgba(255,255,255,0.18);color:#ffffff;font-family:Arial,sans-serif;font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;text-decoration:none;white-space:nowrap;">
       ${label}
     </a>
   </td>`;
 
 const row = (label: string, val: string) =>
   `<tr>
-    <td style="padding:14px 0;border-bottom:1px solid #f3f3f3;">
+    <td style="padding:14px 0;border-bottom:0.5px solid var(--line);">
       <p style="margin:0 0 3px;font-family:Arial,sans-serif;font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:#b0b0b0;">${label}</p>
       <p style="margin:0;font-family:Arial,sans-serif;font-size:15px;color:#0f0f0f;font-weight:500;line-height:1.4;">${val}</p>
     </td>
@@ -246,11 +246,11 @@ export async function POST(req: Request) {
             <p style="margin:0 0 16px;font-family:Arial,sans-serif;font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:#b0b0b0;">Your submission</p>
           </td>
         </tr>
-        ${service ? `<tr><td style="padding:10px 0;border-bottom:1px solid #f3f3f3;">
+        ${service ? `<tr><td style="padding:10px 0;border-bottom:0.5px solid var(--line);">
           <p style="margin:0 0 2px;font-family:Arial,sans-serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#c0c0c0;">Service</p>
           <p style="margin:0;font-family:Arial,sans-serif;font-size:14px;color:#0f0f0f;font-weight:500;">${h.service}</p>
         </td></tr>` : ""}
-        ${budget ? `<tr><td style="padding:10px 0;border-bottom:1px solid #f3f3f3;">
+        ${budget ? `<tr><td style="padding:10px 0;border-bottom:0.5px solid var(--line);">
           <p style="margin:0 0 2px;font-family:Arial,sans-serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#c0c0c0;">Budget</p>
           <p style="margin:0;font-family:Arial,sans-serif;font-size:14px;color:#0f0f0f;font-weight:500;">${h.budget}</p>
         </td></tr>` : ""}

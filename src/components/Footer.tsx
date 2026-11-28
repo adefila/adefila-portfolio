@@ -40,7 +40,7 @@ function FooterCopyEmail() {
       }}
     >
       <span style={{
-        borderBottom: `1px solid ${hovered ? "rgba(255,255,255,0.45)" : "transparent"}`,
+        borderBottom: `0.5px solid ${hovered ? "rgba(255,255,255,0.45)" : "transparent"}`,
         paddingBottom: 1,
         transition: "border-color 0.2s ease",
       }}>
@@ -187,7 +187,7 @@ export default function Footer({ showCta = true }: { showCta?: boolean }) {
                 letterSpacing: "-0.3px",
                 lineHeight: 1.65,
                 color: "rgba(255,255,255,0.85)",
-                maxWidth: 760,
+                maxWidth: 440,
               }}
             >
               {twoLines(t("footer.ctaDesc"), "footer-two-line")}

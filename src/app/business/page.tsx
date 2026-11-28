@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
+import HeroClear from "@/components/HeroClear";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import BusinessWork from "@/components/BusinessWork";
+import WhoFor from "@/components/WhoFor";
 import ClientGrid from "@/components/ClientGrid";
 import MidCTA from "@/components/MidCTA";
 import WhyMe from "@/components/WhyMe";
@@ -12,7 +14,6 @@ import FAQ from "@/components/FAQ";
 import Footer from "@/components/Footer";
 import ScrollReveal from "@/components/ScrollReveal";
 import SpecNumbers from "@/components/SpecNumbers";
-import ScrollRuler from "@/components/ScrollRuler";
 import SectionTitles from "@/components/SectionTitles";
 import MagneticButtons from "@/components/MagneticButtons";
 import ClickTracking from "@/components/ClickTracking";
@@ -49,9 +50,9 @@ export default function BusinessPage() {
   return (
     <main style={{ background: "var(--bg)", minHeight: "100vh", overflowX: "hidden", width: "100%" }}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(JSON_LD) }} />
+      <HeroClear />
       <ScrollReveal />
       <SpecNumbers />
-      <ScrollRuler />
       <SectionTitles />
       <MagneticButtons />
       <ClickTracking />
@@ -59,13 +60,14 @@ export default function BusinessPage() {
       <Navbar hide={["#about", "#experience"]} contactHref="/contact" />
       <Hero />
       <ClientGrid />
+      <WhoFor />
       <BusinessWork />
       <MidCTA />
       <WhyMe />
       <HowIWork />
       <Pricing />
       <Testimonials />
-      <FAQ />
+      <FAQ moreHref="/contact#faq" />
       <Footer />
       <MobileCTA />
     </main>

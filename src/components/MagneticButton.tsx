@@ -40,7 +40,6 @@ export default function MagneticButton({ children, href, className, style, stren
         href={href}
         className={className}
         style={shared}
-        onMouseMove={onMove}
         onMouseLeave={onLeave}
         {...rest}
       >
@@ -54,7 +53,6 @@ export default function MagneticButton({ children, href, className, style, stren
       ref={ref as React.Ref<HTMLSpanElement>}
       className={className}
       style={shared}
-      onMouseMove={onMove}
     >
       {children}
     </span>

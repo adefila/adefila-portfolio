@@ -64,22 +64,6 @@ export default function MidCTA() {
         }}
       >
         <div style={{ flex: "1 1 340px" }}>
-          {/* Who you'd be talking to, and whether there's room */}
-          <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 20 }}>
-            <span style={{ position: "relative", flexShrink: 0 }}>
-              <Image
-                src="/samuel-portrait.webp"
-                alt="Samuel Adefila"
-                width={52}
-                height={52}
-                style={{ width: 52, height: 52, borderRadius: "50%", objectFit: "cover", objectPosition: "50% 25%", border: "2px solid rgba(255,255,255,0.9)", display: "block" }}
-              />
-              <span
-                aria-hidden="true"
-                style={{ position: "absolute", right: 1, bottom: 1, width: 12, height: 12, borderRadius: "50%", background: "var(--accent-green)", border: "2px solid var(--accent-purple)" }}
-              />
-            </span>
-          </div>
           <p
             style={{
               fontFamily: "var(--font-poppins)",
@@ -89,6 +73,7 @@ export default function MidCTA() {
               lineHeight: 1.15,
               color: "#fff",
               marginBottom: 10,
+              maxWidth: 320,
             }}
           >
             {t("midcta.headline")}
@@ -101,7 +86,7 @@ export default function MidCTA() {
               letterSpacing: "-0.3px",
               lineHeight: 1.6,
               color: "rgba(255,255,255,0.82)",
-              maxWidth: 420,
+              maxWidth: 320,
             }}
           >
             {t("midcta.desc")}

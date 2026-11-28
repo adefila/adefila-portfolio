@@ -12,6 +12,13 @@ const FAQ_SHOWN = [2, 3, 5, 7, 9];
 
 // The contact page shows every question, with the ones people ask before writing first, plus a few about the enquiry itself.
 const FAQ_ALL = [2, 3, 9, 5, 0, 1, 4, 6, 7, 8];
+// ...and on that page they sit in tabs, by what the visitor wants to know
+const FAQ_CATS: { id: string; label: string; ids: number[] }[] = [
+  { id: "start", label: "Getting started", ids: [9, 0, 100, 101, 102] },
+  { id: "price", label: "Pricing and timing", ids: [2, 3, 4] },
+  { id: "build", label: "Build and tools", ids: [1, 8, 5] },
+  { id: "after", label: "After launch", ids: [7, 6] },
+];
 const FAQ_EXTRA: Faq[] = [
   { i: 100, q: "How quickly will you reply?", a: "Within 24 hours, usually sooner. If your message is about a live site that is down or broken, say so in the first line and I will look at it first." },
   { i: 101, q: "What should I include in my message?", a: "Who you are and what the company does, the site you have now (if any), what you want it to do for the business, and a rough date you need it by. A budget range helps too, but it is fine to leave it out." },
@@ -20,8 +27,9 @@ const FAQ_EXTRA: Faq[] = [
 
 const EASE = [0.22, 1, 0.36, 1] as [number, number, number, number];
 
-export default function FAQ({ all = false }: { all?: boolean } = {}) {
+export default function FAQ({ all = false, moreHref }: { all?: boolean; moreHref?: string } = {}) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [cat, setCat] = useState(FAQ_CATS[0].id);
   const { t } = useLang();
 
   const faqs: Faq[] = useMemo(
@@ -29,6 +37,7 @@ export default function FAQ({ all = false }: { all?: boolean } = {}) {
     [t, all],
   );
 
+  const shown = all ? faqs.filter((f) => FAQ_CATS.find((c) => c.id === cat)?.ids.includes(f.i)) : faqs;
   const toggle = (i: number) => setOpenIndex(openIndex === i ? null : i);
 
   const body = { fontFamily: "var(--font-inter)", fontSize: 14, lineHeight: 1.65, letterSpacing: "-0.2px", color: "var(--fg-secondary)" } as const;
@@ -66,16 +75,27 @@ export default function FAQ({ all = false }: { all?: boolean } = {}) {
 
         {/* Right: the list, then a box to type your own question; the reply fills in underneath as you type */}
         <div>
+          {all && (
+            <div className="fq-tabs" role="tablist" aria-label="Question categories">
+              <style>{`.fq-tabs { display: flex; flex-wrap: wrap; gap: 6px 26px; margin: 0 0 18px; } .fq-tab { position: relative; padding: 0 0 10px; border: 0; background: none; cursor: pointer; font-family: var(--font-inter); font-weight: 600; font-size: 12.5px; letter-spacing: 0.06em; color: var(--fg-muted); transition: color 0.25s ease; } .fq-tab[aria-selected="true"], .fq-tab:hover { color: var(--fg); } .fq-line { position: absolute; left: 0; right: 0; bottom: 0; height: 2px; background: var(--accent-purple); }`}</style>
+              {FAQ_CATS.map((c) => (
+                <button key={c.id} type="button" role="tab" aria-selected={cat === c.id} className="fq-tab" onClick={() => { setCat(c.id); setOpenIndex(null); }}>
+                  {c.label}
+                  {cat === c.id && <motion.span layoutId="fq-line" className="fq-line" transition={{ type: "spring", stiffness: 500, damping: 40 }} />}
+                </button>
+              ))}
+            </div>
+          )}
           {/* Full list: compact rows */}
-          <div style={{ borderTop: "1px solid rgba(var(--ink), 0.14)" }}>
-            {faqs.map((faq, n) => {
+          <div style={{ borderTop: "0.5px solid var(--line)" }}>
+            {shown.map((faq, n) => {
               const isOpen = openIndex === faq.i;
               return (
                 <motion.div
                   key={faq.i}
                   data-reveal
                   style={{
-                    borderBottom: "1px solid rgba(var(--ink), 0.14)",
+                    borderBottom: "0.5px solid var(--line)",
                     padding: "0 14px",
                     background: isOpen ? "rgba(109,40,217,0.025)" : "transparent",
                     transition: "background 0.25s ease",
@@ -123,6 +143,11 @@ export default function FAQ({ all = false }: { all?: boolean } = {}) {
             })}
           </div>
 
+          {moreHref && (
+            <a href={moreHref} className="faq-more" style={{ display: "inline-flex", alignItems: "center", gap: 8, marginTop: 24, fontFamily: "var(--font-inter)", fontWeight: 600, fontSize: 13, letterSpacing: "0.06em", color: "var(--accent-purple)", textDecoration: "none", textTransform: "uppercase" }}>
+              See more questions <span aria-hidden="true">→</span>
+            </a>
+          )}
         </div>
       </div>
     </section>

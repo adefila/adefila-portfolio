@@ -1,12 +1,6 @@
-// A numbered section label in the spec-sheet style: "01 / WORK ────────".
-// The number is a CSS counter (see .spec-label in globals.css), so every page counts 01, 02, 03 in the order its
-// sections appear, whichever sections that page uses.
+// The small label above a section heading ("WORK", "INVESTMENT", "F.A.Q"). Section labels are switched off site-wide: every section
+// opens straight on its heading. The component stays so each call site is unchanged and the labels can come back from here.
 export default function SpecLabel({ text }: { text: string }) {
-  return (
-    <p className="spec-label" data-reveal>
-      <b aria-hidden="true" />
-      <span aria-hidden="true">/</span>
-      <span>{text}</span>
-    </p>
-  );
+  void text;
+  return null;
 }

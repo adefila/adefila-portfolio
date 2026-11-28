@@ -6,7 +6,6 @@ import Footer from "@/components/Footer";
 import BookingPopup from "@/components/BookingPopup";
 import ScrollReveal from "@/components/ScrollReveal";
 import SpecNumbers from "@/components/SpecNumbers";
-import ScrollRuler from "@/components/ScrollRuler";
 import SectionTitles from "@/components/SectionTitles";
 import MagneticButtons from "@/components/MagneticButtons";
 import ClickTracking from "@/components/ClickTracking";
@@ -26,7 +25,6 @@ export default function BusinessContactPage() {
     <main style={{ background: "var(--bg)", minHeight: "100vh", overflowX: "hidden", width: "100%" }}>
       <ScrollReveal />
       <SpecNumbers />
-      <ScrollRuler />
       <SectionTitles />
       <MagneticButtons />
       <ClickTracking />

@@ -10,7 +10,7 @@ export default function VideoCard({ src, poster, by, role, length }: { src: stri
   return (
     <figure className="vc">
       <style>{`
-        .vc { margin: 0; border: 1px solid rgba(var(--ink), 0.14); background: var(--surface); }
+        .vc { margin: 0; border: 0.5px solid var(--line); background: var(--surface); }
         .vc-stage { position: relative; aspect-ratio: 960 / 992; background: #000; overflow: hidden; }
         .vc-stage video, .vc-stage img { display: block; width: 100%; height: 100%; object-fit: cover; }
         .vc-play { position: absolute; inset: 0; display: grid; place-items: center; width: 100%; border: 0; padding: 0; background: rgba(0, 0, 0, 0.28); cursor: pointer; }
@@ -18,7 +18,7 @@ export default function VideoCard({ src, poster, by, role, length }: { src: stri
         .vc-play:hover span { transform: scale(1.08); }
         .vc-play:focus-visible { outline: 3px solid var(--accent-purple); outline-offset: -3px; }
         .vc-time { position: absolute; left: 16px; bottom: 16px; padding: 4px 8px; background: rgba(0, 0, 0, 0.7); font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.02em; text-transform: uppercase; color: #fff; }
-        .vc-cap { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; padding: 14px 16px; border-top: 1px solid rgba(var(--ink), 0.14); font-family: var(--font-inter); font-size: 14px; color: var(--fg-secondary); }
+        .vc-cap { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; padding: 14px 16px; border-top: 0.5px solid var(--line); font-family: var(--font-inter); font-size: 14px; color: var(--fg-secondary); }
         .vc-cap strong { color: var(--fg); font-weight: 600; margin-right: 8px; }
         @media (prefers-reduced-motion: reduce) { .vc-play span { transition: none; } }
       `}</style>

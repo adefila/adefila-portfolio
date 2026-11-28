@@ -392,7 +392,7 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     pt: "FAQ",          zh: "常见问题",      ja: "よくある質問",
   },
   "nav.contact": {
-    en: "Contact",      fr: "Contact",      es: "Contacto",     de: "Kontakt",
+    en: "Contact me",   fr: "Contact",      es: "Contacto",     de: "Kontakt",
     pt: "Contato",      zh: "联系",          ja: "お問い合わせ",
   },
 
@@ -437,7 +437,7 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     ja: "B2B企業に見込み客をもたらすサイト。|予約につながるサイト。|新規顧客を呼ぶサイト。",
   },
   "hero.subtitle": {
-    en: "DLP Africa went live in 4 weeks. I build your site in Framer or custom code, with a CMS your team controls, forms that track every enquiry, and redirects that protect your Google traffic.",
+    en: "I design and build B2B websites in Framer or custom code that turn visitors into qualified leads: a CMS your team controls, forms that track every enquiry, and redirects that protect your Google traffic.",
     fr: "DLP Africa est en ligne en 4 semaines. Je construis votre site avec Framer ou du code sur mesure, avec un CMS que votre équipe maîtrise, des formulaires qui suivent chaque demande et des redirections qui protègent votre trafic Google.",
     es: "DLP Africa salió en vivo en 4 semanas. Construyo tu sitio con Framer o código a medida, con un CMS que tu equipo controla, formularios que registran cada consulta y redirecciones que protegen tu tráfico de Google.",
     de: "DLP Africa war in 4 Wochen live. Ich baue Ihre Website mit Framer oder individuellem Code, mit einem CMS, das Ihr Team selbst steuert, Formularen, die jede Anfrage erfassen, und Weiterleitungen, die Ihren Google-Traffic schützen.",
@@ -461,15 +461,6 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
   "hero.ctaWork": {
     en: "See recent works",         fr: "Voir mes projets",        es: "Ver mi trabajo",          de: "Meine Arbeiten",
     pt: "Ver meu trabalho",        zh: "查看作品",                  ja: "実績を見る",
-  },
-  "hero.localLink": {
-    en: "Run a clinic, salon or trades business? See how I help",
-    fr: "Vous gérez un cabinet, un salon ou une entreprise artisanale ? Voyez comment je peux aider",
-    es: "¿Tienes una clínica, un salón o un negocio de oficios? Mira cómo puedo ayudarte",
-    de: "Sie führen eine Praxis, einen Salon oder einen Handwerksbetrieb? So helfe ich",
-    pt: "Tem uma clínica, um salão ou um negócio de serviços? Veja como posso ajudar",
-    zh: "经营诊所、沙龙或维修服务？看看我能如何帮忙",
-    ja: "クリニック、サロン、工事業を経営されていますか？私のサポート内容はこちら",
   },
   "hero.tagTopRated": {
     en: "Top Rated · Upwork",      fr: "Top Rated · Upwork",      es: "Top Rated · Upwork",      de: "Top Rated · Upwork",
@@ -794,7 +785,7 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     ja: "サイトを一緒に作り直しましょう。問い合わせを軸に。",
   },
   "footer.ctaDesc": {
-    en: "Tell me what you're building. One call and you'll leave with the scope, timeline, and an exact price. No agencies, no back-and-forth, no surprises.",
+    en: "Tell me what you're building. One call, one scope, one price, and no surprises: you'll leave with the timeline and an exact number.",
     fr: "Dites-moi ce que vous construisez. En un appel, je vous donne le périmètre, le calendrier et le prix exact. Sans agences, sans allers-retours, sans surprises.",
     es: "Cuéntame qué estás construyendo. En una llamada te doy el alcance, el plazo y el precio exacto. Sin agencias, sin idas y venidas, sin sorpresas.",
     de: "Sagen Sie mir, was Sie bauen. In einem Anruf erhalten Sie Umfang, Zeitplan und genauen Preis. Keine Agenturen, kein Hin und Her, keine Überraschungen.",
@@ -825,7 +816,7 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     ja: "あなたのサイトにも？",
   },
   "midcta.desc": {
-    en: "One call gets you the scope, the timeline, and an exact price. No agencies, no back-and-forth.",
+    en: "One call, one scope, one price: you leave with the timeline and an exact number.",
     fr: "Un seul appel suffit pour obtenir le cadre, le calendrier et le prix exact.",
     es: "Una llamada y obtienes el alcance, el cronograma y el precio exacto.",
     de: "Ein Anruf genügt. Umfang, Zeitplan und Fixpreis.",
@@ -864,7 +855,7 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     ja: "期日通りに完了したプロジェクト",
   },
   "whyme.stat1": {
-    en: "Upwork job success score",        fr: "Amélioration moyenne des conversions",
+    en: "Pages in the biggest rebuild, live in 4 weeks",        fr: "Amélioration moyenne des conversions",
     es: "Mejora promedio de conversión",         de: "Durchschnittliche Conversion-Steigerung",
     pt: "Melhora média de conversão",            zh: "平均客户转化率提升",
     ja: "平均コンバージョン向上率",
@@ -939,7 +930,7 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     ja: "Framerかコードか、合う方を選びます",
   },
   "whyme.b3.desc": {
-    en: "Framer, Shopify, Webflow or code. I use whatever fits your project, not whatever's easiest for me.",
+    en: "Framer, Webflow or Next.js. I use whatever fits your project, not whatever's easiest for me.",
     fr: "Framer, Shopify, Webflow ou du code. Je choisis ce qui convient à votre projet, pas ce qui m'arrange.",
     es: "Framer, Shopify, Webflow o código. Elijo lo que le conviene a tu proyecto, no lo que me resulta más fácil.",
     de: "Framer, Shopify, Webflow oder Code. Ich wähle, was zu Ihrem Projekt passt, nicht, was leichter ist.",
@@ -951,7 +942,7 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
   "whyme.svc2": { en: "Figma to Framer",     fr: "Figma vers Framer",    es: "Figma a Framer",       de: "Figma zu Framer",      pt: "Figma para Framer",   zh: "Figma转Framer", ja: "FigmaからFramer", },
   "whyme.svc3": { en: "Website migration",   fr: "Migration de site",    es: "Migración de sitio",   de: "Website-Migration",    pt: "Migração de site",    zh: "网站迁移",     ja: "サイト移行", },
   "whyme.svc4": { en: "User interface & UX", fr: "Interface & UX",       es: "Interfaz y UX",        de: "Benutzeroberfläche & UX", pt: "Interface & UX",    zh: "界面与用户体验", ja: "UIとUX", },
-  "whyme.svc5": { en: "Shopify integration", fr: "Intégration Shopify",  es: "Integración Shopify",  de: "Shopify-Integration",  pt: "Integração Shopify",  zh: "Shopify集成",  ja: "Shopify連携", },
+  "whyme.svc5": { en: "CMS and integrations", fr: "Intégration Shopify",  es: "Integración Shopify",  de: "Shopify-Integration",  pt: "Integração Shopify",  zh: "Shopify集成",  ja: "Shopify連携", },
   "whyme.svc6": { en: "Figma to Webflow",    fr: "Figma vers Webflow",   es: "Figma a Webflow",      de: "Figma zu Webflow",     pt: "Figma para Webflow",  zh: "Figma转Webflow", ja: "FigmaからWebflow", },
 
   // ── Process ──────────────────────────────────────────────────────────
@@ -1301,7 +1292,7 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     ja: "24時間以内に返信",
   },
   "faq.ask.placeholder": {
-    en: "e.g. Do you work with Shopify?",
+    en: "e.g. Do you work with Webflow?",
     fr: "ex. Travaillez-vous avec Shopify ?",
     es: "p. ej. ¿Trabajas con Shopify?",
     de: "z. B. Arbeiten Sie mit Shopify?",
@@ -1385,7 +1376,7 @@ export const T: Record<string, Partial<Record<LangCode, string>> & { en: string 
     ja: "どんなツールで構築しますか？",
   },
   "faq.a1": {
-    en: "Framer, Shopify, Webflow, WordPress. I choose based on what's right for you, not what I'm most comfortable with. My job is to give you the best tool for the job, then build it well.",
+    en: "Framer, Webflow and Next.js. I choose based on what's right for you, not what I'm most comfortable with. My job is to give you the best tool for the job, then build it well.",
     fr: "Framer, Shopify, Webflow, WordPress. Je choisis ce qui vous convient, pas ce qui me convient le mieux. Mon travail est de vous donner le meilleur outil, puis de bien l'utiliser.",
     es: "Framer, Shopify, Webflow, WordPress. Elijo según lo que sea correcto para ti, no lo que me sea más cómodo. Mi trabajo es darte la mejor herramienta y luego usarla bien.",
     de: "Framer, Shopify, Webflow, WordPress. Ich wähle was für Sie richtig ist, nicht was mir am bequemsten ist. Meine Aufgabe ist es, Ihnen das beste Werkzeug zu geben und es dann gut einzusetzen.",

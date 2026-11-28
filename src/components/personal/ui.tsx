@@ -26,7 +26,7 @@ export function Reveal({ children, delay = 0, id, className }: { children: React
 
 // A button or link whose label rolls up and is replaced by a second copy from below; the icon drifts a little. Nothing grows or throws a shadow.
 export function Btn({ href, label, icon, primary, download, external }: { href: string; label: string; icon: ReactNode; primary?: boolean; download?: boolean; external?: boolean }) {
-  const [on, setOn] = useState(false);
+  const on = false; // the rolling label on hover is switched off for now
   const spring = { type: "spring" as const, stiffness: 420, damping: 36 };
   return (
     <motion.a
@@ -34,10 +34,6 @@ export function Btn({ href, label, icon, primary, download, external }: { href: 
       {...(download ? { download: true } : {})}
       {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
       className={`pp-btn ${primary ? "btn-primary" : "pp-sec"}`}
-      onHoverStart={() => setOn(true)}
-      onHoverEnd={() => setOn(false)}
-      onFocus={() => setOn(true)}
-      onBlur={() => setOn(false)}
       whileTap={{ scale: 0.98 }}
     >
       <span className="pp-roll">
@@ -87,6 +83,7 @@ export function IndexList({ rows }: { rows: Row[] }) {
             </span>
             <span className="pp-d" style={{ color: on || isOpen ? "var(--fg)" : undefined }}>
               {r.right}
+              {!r.detail && <span className="pp-chev pp-chev-empty" aria-hidden="true" />}
               {r.detail && (
                 <motion.span className="pp-chev" aria-hidden="true" animate={{ rotate: isOpen ? 180 : 0 }} transition={{ type: "spring", stiffness: 360, damping: 28 }}>
                   <ArrowDown2 size={14} variant="Broken" color="currentColor" />
@@ -170,7 +167,7 @@ export function IndexList({ rows }: { rows: Row[] }) {
 
 export const PP_CSS = `
   .pp-btn { display: inline-flex; align-items: center; gap: 10px; padding: 13px 22px; font-family: var(--font-inter); font-weight: 600; font-size: 13px; line-height: 1; text-decoration: none; letter-spacing: 0.06em; }
-  .pp-sec { color: var(--fg); background: transparent; border: 1px solid rgba(var(--ink), 0.2); transition: border-color 0.3s ease; }
+  .pp-sec { color: var(--fg); background: transparent; border: 0.5px solid var(--line); transition: border-color 0.3s ease; }
   .pp-sec:hover, .pp-sec:focus-visible { border-color: var(--fg); }
   .pp-roll { position: relative; display: inline-block; overflow: hidden; line-height: 1.25; }
   .pp-roll-b { position: absolute; left: 0; top: 0; }
@@ -204,5 +201,13 @@ export const PP_CSS = `
   .pp-quote-in cite { display: block; margin-top: 8px; font-style: normal; font-family: var(--font-inter); font-size: 13px; color: var(--fg-muted); }
   .pp-detail-links { display: flex; flex-wrap: wrap; gap: 6px 22px; margin: 14px 0 12px; font-family: var(--font-inter); font-size: 14px; }
   .pp-d { position: relative; font-size: 14px; color: var(--fg-muted); font-variant-numeric: tabular-nums; white-space: nowrap; }
-  @media (max-width: 640px) { .pp-dot { display: none; } .pp-chev { right: -20px; } }
+  .pp-chev-empty { display: none; }
+  @media (max-width: 640px) {
+    .pp-dot { display: none; }
+    .pp-row { gap: 10px; font-size: 15px; }
+    .pp-t { flex-wrap: wrap; gap: 2px 8px; overflow-wrap: anywhere; }
+    .pp-d { display: inline-flex; align-items: center; font-size: 13px; }
+    .pp-chev { position: static; margin: 0 0 0 6px; flex: none; }
+    .pp-chev-empty { display: inline-flex; }
+  }
 `;

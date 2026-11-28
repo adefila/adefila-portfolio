@@ -63,8 +63,8 @@ const CSS = `
   .ab-copy h2 { margin: 18px 0 0; max-width: 18ch; font-size: clamp(28px, 3.4vw, 44px); }
   .ab-text { display: grid; gap: 16px; margin-top: 24px; font-family: var(--font-inter); font-size: 17px; line-height: 1.7; color: var(--fg-secondary); max-width: 62ch; }
   .ab-text a { color: inherit; text-decoration: underline; text-decoration-style: dotted; text-underline-offset: 3px; }
-  .ab-facts { margin: 40px 0 0; border-top: 1px solid rgba(var(--ink), 0.14); }
-  .ab-facts div { display: grid; grid-template-columns: 110px minmax(0, 1fr); gap: 16px; padding: 12px 0; border-bottom: 1px solid rgba(var(--ink), 0.14); }
+  .ab-facts { margin: 40px 0 0; border-top: 0.5px solid var(--line); }
+  .ab-facts div { display: grid; grid-template-columns: 110px minmax(0, 1fr); gap: 16px; padding: 12px 0; border-bottom: 0.5px solid var(--line); }
   .ab-facts dt { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.02em; text-transform: uppercase; color: var(--fg-muted); padding-top: 2px; }
   .ab-facts dd { margin: 0; font-family: var(--font-inter); font-size: 15px; line-height: 1.5; color: var(--fg); }
   .ab-cv { margin: 0; }
@@ -73,18 +73,18 @@ const CSS = `
   .ab-block h3 { margin: 0; font-size: clamp(22px, 2.4vw, 30px); letter-spacing: -0.03em; line-height: 1.15; color: var(--fg); }
   .ab-block > p { margin: 12px 0 0; max-width: 56ch; font-family: var(--font-inter); font-size: 16px; line-height: 1.6; color: var(--fg-secondary); }
 
-  .ab-work { list-style: none; margin: 32px 0 0; padding: 0; border-top: 1px solid rgba(var(--ink), 0.14); }
-  .ab-job { display: grid; grid-template-columns: 170px minmax(0, 0.9fr) minmax(0, 1.4fr); gap: 24px; padding: 22px 0; border-bottom: 1px solid rgba(var(--ink), 0.14); }
+  .ab-work { list-style: none; margin: 32px 0 0; padding: 0; border-top: 0.5px solid var(--line); }
+  .ab-job { display: grid; grid-template-columns: 170px minmax(0, 0.9fr) minmax(0, 1.4fr); gap: 24px; padding: 22px 0; border-bottom: 0.5px solid var(--line); }
   .ab-job time { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.02em; text-transform: uppercase; color: var(--fg-muted); padding-top: 4px; }
   .ab-job b { display: block; font-family: var(--font-poppins); font-weight: 400; font-size: 19px; letter-spacing: -0.02em; line-height: 1.25; color: var(--fg); }
   .ab-job small { display: block; margin-top: 4px; font-family: var(--font-inter); font-size: 13px; line-height: 1.4; color: var(--fg-muted); }
   .ab-job p { margin: 0; font-family: var(--font-inter); font-size: 15px; line-height: 1.6; color: var(--fg-secondary); }
 
   /* the stack as a path: design, build, speed up, run */
-  .ab-stack { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin-top: 32px; border-top: 1px solid rgba(var(--ink), 0.14); border-bottom: 1px solid rgba(var(--ink), 0.14); }
+  .ab-stack { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin-top: 32px; border-top: 0.5px solid var(--line); border-bottom: 0.5px solid var(--line); }
   .ab-step { position: relative; padding: 24px 20px 24px 0; }
-  .ab-step + .ab-step { padding-left: 20px; border-left: 1px solid rgba(var(--ink), 0.14); }
-  .ab-step + .ab-step::before { content: ""; position: absolute; left: -4px; top: 30px; width: 7px; height: 7px; background: var(--bg); border: 1px solid var(--accent-purple); }
+  .ab-step + .ab-step { padding-left: 20px; border-left: 0.5px solid var(--line); }
+  .ab-step + .ab-step::before { content: ""; position: absolute; left: -4px; top: 30px; width: 7px; height: 7px; background: var(--bg); border: 0.5px solid var(--accent-purple); }
   .ab-step-n { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.02em; text-transform: uppercase; color: var(--accent-purple); }
   .ab-step h4 { margin: 8px 0 0; font-family: var(--font-poppins); font-weight: 400; font-size: 20px; letter-spacing: -0.025em; color: var(--fg); }
   .ab-step p { margin: 6px 0 0; font-family: var(--font-inter); font-size: 13px; line-height: 1.5; color: var(--fg-muted); }
@@ -100,7 +100,7 @@ const CSS = `
     .ab-stack { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .ab-step:nth-child(odd) { padding-left: 0; border-left: 0; }
     .ab-step:nth-child(odd)::before { display: none; }
-    .ab-step:nth-child(n+3) { border-top: 1px solid rgba(var(--ink), 0.14); }
+    .ab-step:nth-child(n+3) { border-top: 0.5px solid var(--line); }
   }
   @media (max-width: 520px) { .ab-facts div { grid-template-columns: minmax(0, 1fr); gap: 2px; } }
 `;
@@ -174,7 +174,7 @@ export default function About({ portrait = true, minimal = false }: { portrait?:
               href="/samuel-adefila-cv.pdf"
               download
               className="btn-ticks"
-              style={{ fontFamily: "var(--font-inter)", fontWeight: 600, lineHeight: "20px", fontSize: 13, letterSpacing: "0.5px", textTransform: "uppercase", color: "var(--fg)", background: "transparent", border: "1px solid rgba(var(--ink), 0.2)", padding: "13px 25px", textDecoration: "none", alignItems: "center", gap: 8, transition: "background 0.2s ease, border-color 0.2s ease, color 0.2s ease" }}
+              style={{ fontFamily: "var(--font-inter)", fontWeight: 600, lineHeight: "20px", fontSize: 13, letterSpacing: "0.5px", textTransform: "uppercase", color: "var(--fg)", background: "transparent", border: "0.5px solid var(--line)", padding: "13px 25px", textDecoration: "none", alignItems: "center", gap: 8, transition: "background 0.2s ease, border-color 0.2s ease, color 0.2s ease" }}
               onMouseEnter={(e: React.MouseEvent<HTMLAnchorElement>) => { e.currentTarget.style.background = "var(--btn-bg)"; e.currentTarget.style.borderColor = "var(--btn-bg)"; e.currentTarget.style.color = "#fff"; }}
               onMouseLeave={(e: React.MouseEvent<HTMLAnchorElement>) => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.borderColor = "rgba(var(--ink), 0.2)"; e.currentTarget.style.color = "var(--fg)"; }}
             >

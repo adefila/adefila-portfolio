@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 import { motion, useInView } from "framer-motion";
 import { useRef, useState, useEffect, useSyncExternalStore } from "react";
 import { createPortal } from "react-dom";
@@ -9,82 +9,21 @@ import SpecLabel from "./SpecLabel";
 type TestimonialItem =
   | { type: "video"; name: string; role: string; video: string; preview: string; poster: string; avatar: string|null; logo: string|null }
   | { type: "text";  name: string; role: string; key: string;   avatar: string|null; logo: string|null }
-  | { type: "upwork" };
+  ;
 
 // avatar: path to client headshot  (e.g. "/testimonials/alyssa.jpg")
 // logo:   path to company logo     (e.g. "/testimonials/hitpay-logo.png")
 // Leave both null → shows styled initials placeholder
 const testimonialMeta: TestimonialItem[] = [
   { type: "video", name: "Davonte Wheeler",     role: "CEO · BookedEZ LLC",                     video: "/davonte-wheeler.mp4", preview: "/davonte-wheeler-preview.mp4", poster: "/davonte-wheeler-poster.jpg", avatar: null, logo: null },
-  { type: "text",  name: "Nitin",               role: "HitPay App",                             key: "testimonials.t0",  avatar: "/nitin.png",        logo: null },
-  { type: "text",  name: "Alyssa Corso",        role: "SEO Consultant for Healthcare Startups", key: "testimonials.t1",  avatar: "/alyssa-corso-avatar.webp", logo: null },
   { type: "text",  name: "Johnno Van Den Brink",role: "The Initial Agency",                     key: "testimonials.t2",  avatar: null, logo: null },
-  { type: "upwork" },
+  { type: "text",  name: "Nitin",               role: "HitPay App",                             key: "testimonials.t0",  avatar: "/nitin.png",        logo: null },
   { type: "text",  name: "Michal Kouril",       role: "Leadopo",                                key: "testimonials.t4",  avatar: null, logo: null },
-  { type: "text",  name: "Raffaello Cuccuini",  role: "Humanity",                               key: "testimonials.t5",  avatar: null, logo: null },
   { type: "text",  name: "Heather Burns",       role: "Upside ESG",                             key: "testimonials.t6",  avatar: "/heather-burns.webp", logo: null },
+  { type: "text",  name: "Raffaello Cuccuini",  role: "Humanity",                               key: "testimonials.t5",  avatar: null, logo: null },
+  { type: "text",  name: "Alyssa Corso",        role: "SEO Consultant for Healthcare Startups", key: "testimonials.t1",  avatar: "/alyssa-corso-avatar.webp", logo: null },
   { type: "text",  name: "Kevin N.",            role: "The Tech Unit",                          key: "testimonials.t7",  avatar: null, logo: null },
-  { type: "text",  name: "Layo",                role: "Content Writer",                         key: "testimonials.t3",  avatar: null, logo: null },
 ];
-
-function UpworkCard() {
-  return (
-    <div style={{
-      background: "var(--surface)",
-      border: "1px solid rgba(var(--ink), 0.14)",
-      minHeight: 400,
-      display: "flex",
-      flexDirection: "column",
-      justifyContent: "space-between",
-      padding: "32px",
-    }}>
-      {/* Upwork wordmark */}
-      <div>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/upwork-logo.svg" alt="Upwork" width={140} height={38} className="logo-invert" style={{ display: "block" }} />
-      </div>
-
-      {/* Center stats */}
-      <div style={{ textAlign: "center", flex: 1, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 16 }}>
-        {/* Job Success Score */}
-        <div>
-          <p style={{
-            fontFamily: "var(--font-poppins)", fontWeight: 400,
-            fontSize: "clamp(52px, 7vw, 72px)",
-            lineHeight: 1, color: "var(--fg)", letterSpacing: "-3px",
-            marginBottom: 4,
-          }}>
-            100%
-          </p>
-          <p style={{
-            fontFamily: "var(--font-mono)", fontWeight: 600, fontSize: 12,
-            color: "rgba(var(--ink), 0.45)", letterSpacing: "0.02em", textTransform: "uppercase",
-          }}>
-            Job Success Score
-          </p>
-        </div>
-
-        {/* Stars */}
-        <div style={{ display: "flex", gap: 3 }}>
-          {[1,2,3,4,5].map(s => (
-            <svg key={s} width="16" height="16" viewBox="0 0 16 16" fill="#6FDA44">
-              <path d="M8 1l1.85 3.75L14 5.5l-3 2.92.71 4.13L8 10.4l-3.71 2.15L5 8.42 2 5.5l4.15-.75L8 1z"/>
-            </svg>
-          ))}
-        </div>
-      </div>
-
-      {/* Footer */}
-      <p style={{
-        fontFamily: "var(--font-mono)", fontWeight: 400, fontSize: 11,
-        color: "rgba(var(--ink), 0.35)", letterSpacing: "0.02em", textTransform: "uppercase",
-        textAlign: "center",
-      }}>
-        Verified on Upwork
-      </p>
-    </div>
-  );
-}
 
 const AVATAR_COLORS = ["#7c3aed","#0073e6","#d4a853","#00ab4a","#e05a8a","#c0a060","#6366f1","#0891b2"];
 
@@ -113,7 +52,7 @@ function Avatar({ name, avatar, logo, size = 44 }: { name: string; avatar: strin
       <img
         src={logo}
         alt={name}
-        style={{ width: size, height: size, borderRadius: 8, objectFit: "contain", flexShrink: 0, background: "#f5f5f5", padding: 4, border: "1px solid rgba(var(--ink), 0.14)" }}
+        style={{ width: size, height: size, borderRadius: 8, objectFit: "contain", flexShrink: 0, background: "#f5f5f5", padding: 4, border: "0.5px solid var(--line)" }}
       />
     );
   }
@@ -145,7 +84,9 @@ export default function Testimonials() {
   const videoNear = useInView(videoCardRef, { once: true, margin: "400px 0px" });
   const { t } = useLang();
   const video = testimonialMeta.find((m) => m.type === "video");
-  const quotes = testimonialMeta.filter((m): m is Extract<TestimonialItem, { type: "text" }> => m.type === "text");
+  const allQuotes = testimonialMeta.filter((m): m is Extract<TestimonialItem, { type: "text" }> => m.type === "text");
+  const featured = allQuotes[0];   // the first written quote sits beside the video
+  const quotes = allQuotes.slice(1); // the rest scroll underneath
 
   // Close modal on Escape
   useEffect(() => {
@@ -191,7 +132,7 @@ export default function Testimonials() {
           </motion.h2>
         </div>
 
-        {/* Featured row: stat, video testimonial, Upwork record */}
+        {/* Featured row: stat, video testimonial, one written quote */}
         <div className="testimonials-grid" style={{ display: "grid", gridTemplateColumns: "240px 1.4fr 1fr", gap: 0, alignItems: "stretch" }}>
           <div
             className="testimonials-stat-card"
@@ -252,7 +193,7 @@ export default function Testimonials() {
                   display: "inline-block", alignSelf: "flex-start",
                   fontFamily: "var(--font-mono)", fontWeight: 700, fontSize: 10,
                   letterSpacing: "0.02em", textTransform: "uppercase",
-                  color: "#fff", border: "1px solid rgba(255,255,255,0.4)",
+                  color: "#fff", border: "0.5px solid rgba(255,255,255,0.4)",
                   padding: "4px 10px",
                 }}>
                   Video Testimonial
@@ -281,7 +222,7 @@ export default function Testimonials() {
                   width: 64, height: 64, borderRadius: "50%",
                   background: "rgba(255,255,255,0.18)",
                   backdropFilter: "blur(6px)",
-                  border: "1px solid rgba(255,255,255,0.35)",
+                  border: "0.5px solid rgba(255,255,255,0.35)",
                   display: "flex", alignItems: "center", justifyContent: "center",
                   pointerEvents: "none",
                 }}>
@@ -291,9 +232,20 @@ export default function Testimonials() {
             </div>
           )}
 
-          <div data-reveal className="testimonial-card testimonial-upwork">
-            <UpworkCard />
-          </div>
+          {featured && (
+            <div data-reveal className="testimonial-card" style={{ background: "var(--surface)", border: "0.5px solid var(--line)", minHeight: 400, padding: 32, display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+              <blockquote style={{ margin: 0, fontFamily: "var(--font-poppins)", fontWeight: 400, fontSize: "clamp(20px, 2vw, 26px)", lineHeight: 1.3, letterSpacing: "-0.02em", color: "var(--fg)" }}>
+                &ldquo;{t(featured.key)}&rdquo;
+              </blockquote>
+              <figcaption style={{ display: "flex", alignItems: "center", gap: 12, marginTop: 24 }}>
+                <Avatar name={featured.name} avatar={featured.avatar ?? null} logo={featured.logo ?? null} size={40} />
+                <div>
+                  <p style={{ fontFamily: "var(--font-inter)", fontWeight: 700, fontSize: 13, letterSpacing: "0.5px", color: "var(--fg)", marginBottom: 3 }}>{featured.name}</p>
+                  <p style={{ fontFamily: "var(--font-inter)", fontSize: 12, color: "var(--fg-secondary)" }}>{featured.role}</p>
+                </div>
+              </figcaption>
+            </div>
+          )}
         </div>
       </div>
 

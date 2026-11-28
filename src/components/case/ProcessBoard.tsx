@@ -11,10 +11,10 @@ export type BoardKind = "post-event" | "pending-requests" | "artist-details";
 export type BoardScreen = { kind: BoardKind; name: string; note: string; src: string; width: number; height: number; alt: string };
 
 const CSS = `
-  .pb { position: relative; margin-top: 56px; border-top: 1px solid rgba(var(--ink), 0.14); border-bottom: 1px solid rgba(var(--ink), 0.14); background-color: rgba(var(--ink), 0.025); }
-  .pb-bar { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 12px max(20px, calc((100% - 1200px) / 2 + 20px)); font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.02em; text-transform: uppercase; color: var(--fg-muted); border-bottom: 1px solid rgba(var(--ink), 0.1); }
+  .pb { position: relative; margin-top: 56px; border-top: 0.5px solid var(--line); border-bottom: 0.5px solid var(--line); background-color: rgba(var(--ink), 0.025); }
+  .pb-bar { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 12px max(20px, calc((100% - 1200px) / 2 + 20px)); font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.02em; text-transform: uppercase; color: var(--fg-muted); border-bottom: 0.5px solid var(--line); }
   .pb-bar b { font-weight: 500; color: var(--accent-purple); }
-  .pb-btn { display: inline-flex; align-items: center; gap: 6px; background: none; border: 1px solid rgba(var(--ink), 0.2); color: var(--fg-secondary); font: inherit; letter-spacing: inherit; text-transform: inherit; padding: 5px 10px; cursor: pointer; }
+  .pb-btn { display: inline-flex; align-items: center; gap: 6px; background: none; border: 0.5px solid var(--line); color: var(--fg-secondary); font: inherit; letter-spacing: inherit; text-transform: inherit; padding: 5px 10px; cursor: pointer; }
   .pb-btn:hover { color: var(--fg); border-color: rgba(var(--ink), 0.4); }
   .pb-btn:focus-visible { outline: 2px solid var(--accent-purple); outline-offset: 2px; }
   .pb-view { overflow: hidden; padding: 40px 0 36px; }
@@ -22,13 +22,13 @@ const CSS = `
   .pb:hover .pb-track, .pb:focus-within .pb-track, .pb.paused .pb-track { animation-play-state: paused; }
   @keyframes pbMove { to { transform: translate3d(-50%, 0, 0); } }
   .pb-set { display: flex; flex-shrink: 0; }
-  .pb-group { flex-shrink: 0; padding: 0 44px; border-right: 1px solid rgba(var(--ink), 0.12); position: relative; }
+  .pb-group { flex-shrink: 0; padding: 0 44px; border-right: 0.5px solid var(--line); position: relative; }
   .pb-head { margin-bottom: 18px; }
   .pb-head b { display: block; font-family: var(--font-poppins); font-weight: 600; font-size: 20px; letter-spacing: -0.02em; color: var(--fg); }
   .pb-head span { display: block; margin-top: 4px; max-width: 520px; font-family: var(--font-inter); font-size: 13px; line-height: 1.5; color: var(--fg-secondary); }
   .pb-frames { display: flex; align-items: flex-start; gap: 0; }
   .pb-step { width: 208px; flex-shrink: 0; }
-  .pb-frame { position: relative; width: 208px; aspect-ratio: 200 / 378; overflow: hidden; background: #0d0d0f; border: 1px solid rgba(var(--ink), 0.2); box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35); }
+  .pb-frame { position: relative; width: 208px; aspect-ratio: 200 / 378; overflow: hidden; background: #0d0d0f; border: 0.5px solid var(--line); box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35); }
   .pb-frame svg, .pb-frame img { display: block; width: 100%; height: 100%; }
   .pb-frame img { object-fit: cover; object-position: top; }
   .pb-lab { margin-top: 12px; display: flex; gap: 8px; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.02em; text-transform: uppercase; color: var(--fg-secondary); }
