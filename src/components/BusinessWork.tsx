@@ -38,7 +38,7 @@ const CSS = `
   @media (max-width: 760px) {
     .bw-grid .pc-list { grid-template-columns: 1fr; gap: 12px; }
     .bw-grid:not(.is-open) .pc-list > li:nth-of-type(n+4) { display: none; }
-    .bw-more { display: block; width: 100%; margin-top: 12px; padding: 15px 20px; background: #fff; border: 0.5px solid var(--line); cursor: pointer; font-family: var(--font-inter); font-weight: 600; font-size: 12.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--fg); }
+    .bw-more { display: block; width: 100%; margin-top: 12px; padding: 15px 20px; background: #fff; border: 0.8px solid var(--line); cursor: pointer; font-family: var(--font-inter); font-weight: 600; font-size: 12.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--fg); }
     .bw-more:hover { background: #f1eafe; }
   }
 `;

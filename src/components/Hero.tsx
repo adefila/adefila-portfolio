@@ -155,7 +155,7 @@ export default function Hero({ workHref = "#work" }: { workHref?: string }) {
             <MagneticButton
               href={workHref}
               className="btn-ticks hero-ghost"
-              style={{ fontFamily: "var(--font-mono)", fontWeight: 500, fontSize: 13, color: "var(--fg)", background: "#fff", border: "0.5px solid var(--line)", padding: "13px 25px", lineHeight: "20px", textTransform: "uppercase", borderRadius: 0, textDecoration: "none", letterSpacing: "0.02em", alignItems: "center", gap: 8, transition: "background 0.2s ease, border-color 0.2s ease, color 0.2s ease" }}
+              style={{ fontFamily: "var(--font-mono)", fontWeight: 500, fontSize: 13, color: "var(--fg)", background: "#fff", border: "0.8px solid var(--line)", padding: "13px 25px", lineHeight: "20px", textTransform: "uppercase", borderRadius: 0, textDecoration: "none", letterSpacing: "0.02em", alignItems: "center", gap: 8, transition: "background 0.2s ease, border-color 0.2s ease, color 0.2s ease" }}
             >
               {t("hero.ctaWork")} <ArrowDown size={15} strokeWidth={2} />
             </MagneticButton>

@@ -52,7 +52,7 @@ function Avatar({ name, avatar, logo, size = 44 }: { name: string; avatar: strin
       <img
         src={logo}
         alt={name}
-        style={{ width: size, height: size, borderRadius: 8, objectFit: "contain", flexShrink: 0, background: "#f5f5f5", padding: 4, border: "0.5px solid var(--line)" }}
+        style={{ width: size, height: size, borderRadius: 8, objectFit: "contain", flexShrink: 0, background: "#f5f5f5", padding: 4, border: "0.8px solid var(--line)" }}
       />
     );
   }
@@ -193,7 +193,7 @@ export default function Testimonials() {
                   display: "inline-block", alignSelf: "flex-start",
                   fontFamily: "var(--font-mono)", fontWeight: 700, fontSize: 10,
                   letterSpacing: "0.02em", textTransform: "uppercase",
-                  color: "#fff", border: "0.5px solid rgba(255,255,255,0.4)",
+                  color: "#fff", border: "0.8px solid rgba(255,255,255,0.4)",
                   padding: "4px 10px",
                 }}>
                   Video Testimonial
@@ -222,7 +222,7 @@ export default function Testimonials() {
                   width: 64, height: 64, borderRadius: "50%",
                   background: "rgba(255,255,255,0.18)",
                   backdropFilter: "blur(6px)",
-                  border: "0.5px solid rgba(255,255,255,0.35)",
+                  border: "0.8px solid rgba(255,255,255,0.35)",
                   display: "flex", alignItems: "center", justifyContent: "center",
                   pointerEvents: "none",
                 }}>
@@ -233,7 +233,7 @@ export default function Testimonials() {
           )}
 
           {featured && (
-            <div data-reveal className="testimonial-card" style={{ background: "var(--surface)", border: "0.5px solid var(--line)", minHeight: 400, padding: 32, display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+            <div data-reveal className="testimonial-card" style={{ background: "var(--surface)", border: "0.8px solid var(--line)", minHeight: 400, padding: 32, display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
               <blockquote style={{ margin: 0, fontFamily: "var(--font-poppins)", fontWeight: 400, fontSize: "clamp(20px, 2vw, 26px)", lineHeight: 1.3, letterSpacing: "-0.02em", color: "var(--fg)" }}>
                 &ldquo;{t(featured.key)}&rdquo;
               </blockquote>

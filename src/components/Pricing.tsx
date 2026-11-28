@@ -86,7 +86,7 @@ export default function Pricing({ prices, retainer = true }: { prices?: [number,
           gridTemplateColumns: "repeat(3, 1fr)",
           gap: 1,
           background: "rgba(var(--ink), 0.14)",
-          border: "0.5px solid var(--line)",
+          border: "0.8px solid var(--line)",
           marginBottom: 0,
         }}
       >
@@ -156,7 +156,7 @@ export default function Pricing({ prices, retainer = true }: { prices?: [number,
               letterSpacing: "-0.2px",
               marginBottom: 24,
               paddingBottom: 24,
-              borderBottom: `0.5px solid ${plan.featured ? "rgba(255,255,255,0.14)" : "rgba(var(--ink), 0.14)"}`,
+              borderBottom: `0.8px solid ${plan.featured ? "rgba(255,255,255,0.14)" : "rgba(var(--ink), 0.14)"}`,
             }}>
               {plan.desc}
             </p>
@@ -241,7 +241,7 @@ export default function Pricing({ prices, retainer = true }: { prices?: [number,
         style={{
           display: "grid", gridTemplateColumns: "repeat(4, 1fr)",
           gap: 1, background: "rgba(var(--ink), 0.14)",
-          border: "0.5px solid var(--line)", borderTop: "none",
+          border: "0.8px solid var(--line)", borderTop: "none",
         }}
       >
         {addons.map((addon, i) => (

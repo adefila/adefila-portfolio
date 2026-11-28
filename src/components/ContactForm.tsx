@@ -37,7 +37,7 @@ function CopyEmailRow() {
         alignItems: "center",
         justifyContent: "space-between",
         padding: "14px 0",
-        borderBottom: "0.5px solid var(--line)",
+        borderBottom: "0.8px solid var(--line)",
         textDecoration: "none",
       }}
     >
@@ -47,7 +47,7 @@ function CopyEmailRow() {
         </p>
         <p style={{
           fontFamily: "var(--font-inter)", fontSize: 14, color: "var(--fg)", letterSpacing: "-0.2px",
-          borderBottom: `0.5px solid ${hovered ? "rgba(var(--ink), 0.35)" : "transparent"}`,
+          borderBottom: `0.8px solid ${hovered ? "rgba(var(--ink), 0.35)" : "transparent"}`,
           paddingBottom: 1,
           transition: "border-color 0.2s ease",
           display: "inline",
@@ -207,7 +207,7 @@ export default function ContactForm({ variant = "default" }: { variant?: "defaul
     letterSpacing: "-0.2px",
     color: "var(--fg)",
     background: "var(--bg)",
-    border: "0.5px solid var(--line)",
+    border: "0.8px solid var(--line)",
     outline: "none",
     borderRadius: 0,
     appearance: "none",
@@ -283,7 +283,7 @@ export default function ContactForm({ variant = "default" }: { variant?: "defaul
                   alignItems: "center",
                   justifyContent: "space-between",
                   padding: "14px 0",
-                  borderBottom: "0.5px solid var(--line)",
+                  borderBottom: "0.8px solid var(--line)",
                   textDecoration: "none",
                 }}
               >

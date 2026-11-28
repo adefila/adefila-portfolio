@@ -28,8 +28,8 @@ const scrollSeconds = (it: WorkItem) => {
 
 const CSS = `
   .ws { display: grid; grid-template-columns: minmax(230px, 0.7fr) minmax(0, 2fr); gap: clamp(24px, 4vw, 56px); align-items: start; margin-top: 48px; }
-  .ws-list { order: -1; list-style: none; margin: 0; padding: 0; border-top: 0.5px solid var(--line); }
-  .ws-row { position: relative; display: grid; grid-template-columns: 34px minmax(0, 1fr); column-gap: 8px; width: 100%; padding: 16px 0 16px 4px; text-align: left; background: none; border: 0; border-bottom: 0.5px solid var(--line); color: var(--fg-secondary); cursor: pointer; transition: color 0.2s ease, background 0.2s ease; font: inherit; }
+  .ws-list { order: -1; list-style: none; margin: 0; padding: 0; border-top: 0.8px solid var(--line); }
+  .ws-row { position: relative; display: grid; grid-template-columns: 34px minmax(0, 1fr); column-gap: 8px; width: 100%; padding: 16px 0 16px 4px; text-align: left; background: none; border: 0; border-bottom: 0.8px solid var(--line); color: var(--fg-secondary); cursor: pointer; transition: color 0.2s ease, background 0.2s ease; font: inherit; }
   .ws-row:hover { background: rgba(var(--ink), 0.03); color: var(--fg); }
   .ws-row:focus-visible { outline: 2px solid var(--accent-purple); outline-offset: -2px; }
   .ws-row[aria-selected="true"] { color: var(--fg); }
@@ -44,7 +44,7 @@ const CSS = `
   @keyframes wsFill { to { width: 100%; } }
   .ws-stage { min-width: 0; animation: wsIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) both; }
   .ws-bar { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 14px; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.02em; text-transform: uppercase; color: var(--fg-muted); }
-  .ws-btn { display: inline-flex; align-items: center; gap: 6px; background: none; border: 0.5px solid var(--line); color: var(--fg-secondary); font: inherit; letter-spacing: inherit; text-transform: inherit; padding: 5px 10px; cursor: pointer; }
+  .ws-btn { display: inline-flex; align-items: center; gap: 6px; background: none; border: 0.8px solid var(--line); color: var(--fg-secondary); font: inherit; letter-spacing: inherit; text-transform: inherit; padding: 5px 10px; cursor: pointer; }
   .ws-btn:hover { color: var(--fg); border-color: rgba(var(--ink), 0.4); }
   .ws-btn:focus-visible { outline: 2px solid var(--accent-purple); outline-offset: 2px; }
   @keyframes wsIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }

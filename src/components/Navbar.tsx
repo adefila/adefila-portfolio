@@ -28,8 +28,8 @@ const MENU_CSS = `
   .mm-art { position: absolute; left: 0; right: 0; bottom: 0; height: 38%; pointer-events: none; opacity: 0.85; background: #1a1434 url("/hero/mosaic.webp") center 40% / cover no-repeat;
     -webkit-mask-image: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.4) 35%, #000 80%); mask-image: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.4) 35%, #000 80%); }
   .mm-nav, .mm-cta { position: relative; z-index: 1; }
-  .mm-row { border-bottom: 0.5px solid var(--line); }
-  .mm-row:first-child { border-top: 0.5px solid var(--line); }
+  .mm-row { border-bottom: 0.8px solid var(--line); }
+  .mm-row:first-child { border-top: 0.8px solid var(--line); }
   .mm-link { position: relative; display: flex; align-items: center; gap: 12px; padding: 17px 0; font-family: var(--font-poppins); font-weight: 400; font-size: clamp(26px, 7.4vw, 36px); line-height: 1.05; letter-spacing: -0.03em; color: var(--fg-muted); text-decoration: none; transition: color 0.25s ease; }
   .mm-link.is-on, .mm-link:hover { color: var(--fg); }
   .mm-dot { width: 6px; height: 6px; flex: none; background: var(--accent-purple); opacity: 0; transform: scale(0.4); transition: opacity 0.25s ease, transform 0.25s ease; }
@@ -180,9 +180,9 @@ export default function Navbar({ hide = [], contactHref, brandHref }: { hide?: s
             background: "var(--bg)",
             backdropFilter: scrolled && !menuOpen ? "blur(20px)" : "none",
             WebkitBackdropFilter: scrolled && !menuOpen ? "blur(20px)" : "none",
-            borderBottom: "0.5px solid var(--line)",
-            borderLeft: "0.5px solid var(--line)",
-            borderRight: "0.5px solid var(--line)",
+            borderBottom: "0.8px solid var(--line)",
+            borderLeft: "0.8px solid var(--line)",
+            borderRight: "0.8px solid var(--line)",
             borderRadius: 0,
             padding: "8px 8px 8px 28px",
             pointerEvents: "auto",

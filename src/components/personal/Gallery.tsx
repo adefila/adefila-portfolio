@@ -17,7 +17,7 @@ const CSS = `
   .gl-grid { position: relative; width: 100%; }
   .gl-tile { position: absolute; left: 0; top: 0; will-change: transform; }
   /* no mat: the photo runs to its edge, with only a hairline around it */
-  .gl-fig { position: relative; width: 100%; height: 100%; margin: 0; overflow: hidden; background: var(--surface); border: 0.5px solid var(--line); cursor: zoom-in; transition: opacity 0.4s ease; }
+  .gl-fig { position: relative; width: 100%; height: 100%; margin: 0; overflow: hidden; background: var(--surface); border: 0.8px solid var(--line); cursor: zoom-in; transition: opacity 0.4s ease; }
   .gl-grid:hover .gl-fig { opacity: 0.62; }
   .gl-grid:hover .gl-fig:hover, .gl-grid:hover .gl-fig:focus-visible { opacity: 1; }
   .gl-fig:focus-visible { outline: 2px solid var(--accent-purple); outline-offset: 2px; }
@@ -25,12 +25,12 @@ const CSS = `
   .gl-pic { position: absolute; inset: 0; }
 
   .gl-lb { position: fixed; inset: 0; z-index: 9000; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px; padding: 24px; background: rgba(250, 249, 255, 0.9); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); }
-  .gl-lb-fig { position: relative; margin: 0; aspect-ratio: 3 / 4; height: min(72vh, 680px); max-width: 100%; border: 0.5px solid var(--line); background: var(--surface); }
+  .gl-lb-fig { position: relative; margin: 0; aspect-ratio: 3 / 4; height: min(72vh, 680px); max-width: 100%; border: 0.8px solid var(--line); background: var(--surface); }
   .gl-lb-fig > span { position: absolute; inset: 0; display: block; }
   .gl-lb-fig img { object-fit: contain; }
   .gl-lb-ui { display: flex; align-items: center; gap: 16px; font-family: var(--font-inter); font-size: 13px; letter-spacing: 0.04em; color: var(--fg-muted); font-variant-numeric: tabular-nums; }
   .gl-btns { display: flex; gap: 6px; }
-  .gl-btn { width: 36px; height: 36px; display: inline-flex; align-items: center; justify-content: center; background: #fff; border: 0.5px solid var(--line); color: var(--fg); cursor: pointer; transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, opacity 0.2s ease; }
+  .gl-btn { width: 36px; height: 36px; display: inline-flex; align-items: center; justify-content: center; background: #fff; border: 0.8px solid var(--line); color: var(--fg); cursor: pointer; transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, opacity 0.2s ease; }
   .gl-btn:hover:not(:disabled) { background: #1a1434; color: #fff; border-color: #1a1434; }
   .gl-btn:disabled { opacity: 0.35; cursor: default; }
   .gl-lb-close { position: absolute; top: 18px; right: 18px; }

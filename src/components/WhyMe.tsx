@@ -153,13 +153,13 @@ const WM_CSS = `
   .wm-stats { display: grid; grid-template-columns: repeat(3, 1fr); }
   .wm-stat { display: flex; flex-direction: column; gap: 8px; padding: 28px 32px; }
   .wm-stat:first-child { padding-left: 0; }
-  .wm-stat + .wm-stat { border-left: 0.5px solid var(--line); }
+  .wm-stat + .wm-stat { border-left: 0.8px solid var(--line); }
   .wm-stat-num { font-family: var(--font-satoshi); font-weight: 400; font-size: clamp(36px, 4.6vw, 60px); letter-spacing: -0.04em; line-height: 1; color: var(--fg); }
   .wm-stat-label { font-family: var(--font-inter); font-size: 12px; letter-spacing: 0.04em; text-transform: uppercase; line-height: 1.4; color: var(--fg-secondary); }
   .wm-benefits { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0 32px; }
   .wm-benefit { padding: 32px 0 8px; }
-  .wm-services { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; padding-top: 28px; border-top: 0.5px solid var(--line); }
-  .wm-service { display: inline-flex; align-items: baseline; gap: 8px; padding: 9px 14px; border: 0.5px solid var(--line); font-family: var(--font-inter); font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--fg); }
+  .wm-services { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; padding-top: 28px; border-top: 0.8px solid var(--line); }
+  .wm-service { display: inline-flex; align-items: baseline; gap: 8px; padding: 9px 14px; border: 0.8px solid var(--line); font-family: var(--font-inter); font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--fg); }
   .wm-service i { font-style: normal; font-size: 10px; color: var(--fg-muted); }
   @media (max-width: 1024px) { .wm-benefits { grid-template-columns: repeat(2, 1fr); gap: 0 40px; } }
   @media (max-width: 768px) {
@@ -235,7 +235,7 @@ export default function WhyMe() {
           <div key={i} data-reveal className="wm-benefit">
             <div style={{
               marginBottom: 16, display: "inline-flex", alignItems: "center", justifyContent: "center",
-              width: 40, height: 40, background: "rgba(139, 92, 246, 0.14)", border: "0.5px solid rgba(167, 139, 250, 0.55)", borderRadius: 0,
+              width: 40, height: 40, background: "rgba(139, 92, 246, 0.14)", border: "0.8px solid rgba(167, 139, 250, 0.55)", borderRadius: 0,
             }}>
               <Icon />
             </div>

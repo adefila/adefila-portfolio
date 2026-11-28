@@ -26,7 +26,7 @@ const TINT = "linear-gradient(to bottom, rgba(26,20,52,0) 0%, rgba(26,20,52,0.12
 
 const CSS = `
   .pc-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 20px; }
-  .pc-card { position: relative; display: block; aspect-ratio: 16 / 10; overflow: hidden; background: #fff; border: 0.5px solid var(--line); text-decoration: none; color: #fff; isolation: isolate; }
+  .pc-card { position: relative; display: block; aspect-ratio: 16 / 10; overflow: hidden; background: #fff; border: 0.8px solid var(--line); text-decoration: none; color: #fff; isolation: isolate; }
   .pc-img { position: absolute; inset: 10px; overflow: hidden; transition: opacity 0.35s ease; }
   .pc-list:hover .pc-card:not(:hover) .pc-img { opacity: 0.6; }
   .pc-foot { position: absolute; left: 10px; right: 10px; bottom: 10px; height: 64%; overflow: hidden; pointer-events: none; }

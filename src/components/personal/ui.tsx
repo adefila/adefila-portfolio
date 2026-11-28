@@ -168,7 +168,7 @@ export function IndexList({ rows }: { rows: Row[] }) {
 
 export const PP_CSS = `
   .pp-btn { display: inline-flex; align-items: center; gap: 10px; padding: 13px 22px; font-family: var(--font-inter); font-weight: 600; font-size: 13px; line-height: 1; text-decoration: none; letter-spacing: 0.06em; }
-  .pp-sec { color: var(--fg); background: transparent; border: 0.5px solid var(--line); transition: border-color 0.3s ease; }
+  .pp-sec { color: var(--fg); background: transparent; border: 0.8px solid var(--line); transition: border-color 0.3s ease; }
   .pp-sec:hover, .pp-sec:focus-visible { border-color: var(--fg); }
   .pp-roll { position: relative; display: inline-block; overflow: hidden; line-height: 1.25; }
   .pp-roll-b { position: absolute; left: 0; top: 0; }

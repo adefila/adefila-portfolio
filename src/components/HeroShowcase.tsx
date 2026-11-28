@@ -20,7 +20,7 @@ const HOLD_MS = 5200;
 
 const CSS = `
   .hs { position: relative; width: 100%; }
-  .hs-box { position: relative; aspect-ratio: 6 / 5; overflow: hidden; background: var(--surface); border: 0.5px solid var(--line); }
+  .hs-box { position: relative; aspect-ratio: 6 / 5; overflow: hidden; background: var(--surface); border: 0.8px solid var(--line); }
   .hs-layer { position: absolute; inset: 0; }
   .hs-rail { display: grid; gap: 6px; margin-top: 14px; }
   .hs-seg { position: relative; height: 18px; padding: 0; background: none; border: 0; cursor: pointer; }

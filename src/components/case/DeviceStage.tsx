@@ -8,11 +8,11 @@ import Image from "next/image";
 export type DeviceShot = { src: string; alt: string; tall?: { width: number; height: number; seconds?: number } };
 
 const CSS = `
-  .ds { position: relative; overflow: hidden; padding: clamp(36px, 7vw, 84px) clamp(16px, 4vw, 48px) clamp(44px, 8vw, 96px); border: 0.5px solid var(--line); background: #0b0b0d; }
+  .ds { position: relative; overflow: hidden; padding: clamp(36px, 7vw, 84px) clamp(16px, 4vw, 48px) clamp(44px, 8vw, 96px); border: 0.8px solid var(--line); background: #0b0b0d; }
   .ds-scene { position: relative; width: min(100%, 1040px); margin: 0 auto; aspect-ratio: 16 / 9.6; }
 
   .ds-lp { position: absolute; left: 50%; top: 0; width: 74%; transform: translateX(-50%); animation: dsFloat 9s ease-in-out infinite alternate; }
-  .ds-lid { position: relative; padding: 2.4% 2.4% 2.8%; background: #141417; border: 0.5px solid var(--line); border-radius: 1.8cqw 1.8cqw 0.5cqw 0.5cqw;
+  .ds-lid { position: relative; padding: 2.4% 2.4% 2.8%; background: #141417; border: 0.8px solid var(--line); border-radius: 1.8cqw 1.8cqw 0.5cqw 0.5cqw;
     box-shadow: 0 50px 90px rgba(0, 0, 0, 0.6), 0 0 0 1px #000, inset 0 1px 0 rgba(255, 255, 255, 0.08); }
   .ds-lid::before { content: ""; position: absolute; top: 1.1%; left: 50%; width: 0.7%; aspect-ratio: 1; border-radius: 50%; background: #16161a; box-shadow: 0 0 0 1px #2a2a30; transform: translateX(-50%); }
   .ds-screen { position: relative; aspect-ratio: 16 / 10; overflow: hidden; background: #fff; border-radius: 0.5cqw; }

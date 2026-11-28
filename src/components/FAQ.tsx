@@ -89,7 +89,7 @@ export default function FAQ({ all = false, moreHref }: { all?: boolean; moreHref
             </div>
           )}
           {/* Full list: compact rows */}
-          <div style={{ borderTop: "0.5px solid var(--line)" }}>
+          <div style={{ borderTop: "0.8px solid var(--line)" }}>
             {shown.map((faq, n) => {
               const isOpen = openIndex === faq.i;
               return (
@@ -97,7 +97,7 @@ export default function FAQ({ all = false, moreHref }: { all?: boolean; moreHref
                   key={faq.i}
                   data-reveal
                   style={{
-                    borderBottom: "0.5px solid var(--line)",
+                    borderBottom: "0.8px solid var(--line)",
                     padding: "0 14px",
                     background: isOpen ? "rgba(109,40,217,0.025)" : "transparent",
                     transition: "background 0.25s ease",

@@ -47,7 +47,7 @@ export default function Currently() {
       id="currently"
       style={{ width: "100%", maxWidth: 1200, margin: "0 auto", padding: "0 20px 80px" }}
     >
-      <div style={{ borderTop: "0.5px solid var(--line)", paddingTop: 56 }}>
+      <div style={{ borderTop: "0.8px solid var(--line)", paddingTop: 56 }}>
 
         {/* Section label */}
         <motion.p

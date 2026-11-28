@@ -33,8 +33,8 @@ export const ROLES: { when: string; type: string; role: string; org: string; pla
 const CSS = `
   .ex { width: 100%; max-width: 1200px; margin: 0 auto; padding: 64px 20px; }
   .ex h2 { margin: 18px 0 0; max-width: 20ch; font-family: var(--font-poppins); font-size: clamp(28px, 3.4vw, 44px); line-height: 1.1; color: var(--fg); }
-  .ex-list { list-style: none; margin: 36px 0 0; padding: 0; border-top: 0.5px solid var(--line); }
-  .ex-row { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 32px; padding: 22px 0; border-bottom: 0.5px solid var(--line); }
+  .ex-list { list-style: none; margin: 36px 0 0; padding: 0; border-top: 0.8px solid var(--line); }
+  .ex-row { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 32px; padding: 22px 0; border-bottom: 0.8px solid var(--line); }
   .ex-when { font-family: var(--font-inter); font-size: 14px; line-height: 1.5; color: var(--fg-secondary); }
   .ex-when span { display: block; margin-top: 2px; color: var(--fg-muted); }
   .ex-role { font-family: var(--font-poppins); font-size: clamp(19px, 1.9vw, 24px); line-height: 1.25; letter-spacing: -0.02em; color: var(--fg); }

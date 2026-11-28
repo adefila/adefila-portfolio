@@ -40,7 +40,7 @@ function FooterCopyEmail() {
       }}
     >
       <span style={{
-        borderBottom: `0.5px solid ${hovered ? "rgba(255,255,255,0.45)" : "transparent"}`,
+        borderBottom: `0.8px solid ${hovered ? "rgba(255,255,255,0.45)" : "transparent"}`,
         paddingBottom: 1,
         transition: "border-color 0.2s ease",
       }}>
